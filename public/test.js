@@ -34,11 +34,11 @@
 
 
 
-var test_rr = [
-    {entity:'rank', screen:'base', name: 'Звания', id: 151}
-];
-
-
+/*var test_rr = [
+ {entity:'rank', screen:'base', name: 'Звания', id: 151},
+ {entity:'rank', screen:'base', name: 'Звания', id: 153},
+ {entity:'rank', screen:'base', name: 'Звания', id: 154}
+ ];*/
 
 
 var CatLink = React. createClass({
@@ -59,41 +59,35 @@ var CatLink = React. createClass({
 
 var CatScreenLinksList = React. createClass({
     getInitialState: function() {
-        /*return {
+        return {
+            links: '',
             screens: '',
             entities: ''
-        };*/
-        if(this.props.childNodes!=null){
-            //array
-            console.log('childrens');
-            var links = this.props.childNodes;
-
-            this.setState({
-                links : links,
-                something: links.id
-            });
-        }else{
-            console.log('ajax!');
-
-            //$.get(this.props.source, function(result) {
-            $.get('http://zend_test/main/index/ajax', function(result) {
-                var links = result[0];
-                this.setState({
-                    links : links,
-                    something: links.id
-                });
-            }.bind(this));
-
-        }
+        };
     },
     componentDidMount: function() {
-            //myabe later
+        if(this.props.childs!=null){
+            //array
+            console.log('childrens');
+            var links = [];
+            var links = this.props.childs;
+            this.setState({links: links})
+        }else{
+            //console.log('ajax!');
+            $.get('http://zend_test/main/index/ajax', function(result) {
+                var links = [];
+                links = result;
+                this.setState({links: links});
+            }.bind(this));
+        }
     },
     render: function(){
         var links_output = [];
         var links = this.state.links;
+
+        //console.log(links);
         links.forEach(function(link){
-            console.info(link);
+            //console.info(link);
             links_output.push(<CatLink screen ={link} key={link.id} />)
         });
         return(
@@ -107,7 +101,7 @@ var CatScreen = React. createClass({
         var cat = this.props.cat;
         var source = './react/get/cat/'+cat;
         return(
-            <CatScreenLinksList source={source} />
+            <CatScreenLinksList source={source} childs={null}/>
         );
     }
 });
