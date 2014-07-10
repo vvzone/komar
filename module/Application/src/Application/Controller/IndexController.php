@@ -50,4 +50,18 @@ class IndexController extends AbstractActionController
         $JsonModel->setVariables($data_array);
         return $JsonModel;
     }
+
+    public function yesAction(){
+        $data_array['response'] = true;
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
+
+    public function noAction(){
+        $data_array['response'] = false;
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
 }

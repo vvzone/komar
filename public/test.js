@@ -119,7 +119,8 @@ var CatScreenLinksList = React. createClass({
 
 var ButtonEdit = React.createClass({
     handleClick: function (e) {
-        this.props.clicked(this.props.key);
+        var action = 'edit';
+        this.props.clicked(action);
     },
     render: function () {
         return ( <button className="ButtonEdit" type="button" onClick={this.handleClick}>Edit</button> );
@@ -128,24 +129,38 @@ var ButtonEdit = React.createClass({
 
 var ButtonDelete = React.createClass({
     handleClick: function (e) {
-        this.props.clicked(this.props.key);
+        var action = 'delete';
+        this.props.clicked(action);
     },
     render: function () {
         return ( <button className="ButtonDelete" type="button" onClick={this.handleClick}>Delete</button> );
     }
 });
 
-var PositionsListItem = React.createClass({
+var ListItems = React.createClass({
+   /*
+   * <ListItem item=[] key='' action={this.whenListItemsAction} />
+   * props:
+   * item = []; required: 'name', 'id'
+   * key - unique;
+   * */
    whenClicked: function(action){
-       console.warn(action);
+       var itaction = [];
+       itaction['action'] = action;
+       itaction['id'] = this.props.item.id;
+       //console.log('whenClicked'+itaction['action']+' action[id]='+ itaction['id']);
+       this.props.itemaction(itaction);
    },
    render: function(){
-       var delete_key= 'delete/'+this.props.position.id;
-       var edit_key= 'edit/'+this.props.position.id;
+       var delete_key= 'delete/'+this.props.item.id;
+       var edit_key= 'edit/'+this.props.item.id;
        return(
-           <div className="position_name">
-               <div>{this.props.position.name}</div>
-               <div><ButtonEdit clicked={this.whenClicked} key={edit_key}/><ButtonDelete clicked={this.whenClicked} key={delete_key}/></div>
+           <div className="item">
+               <div className="item_name">{this.props.item.name}</div>
+               <div className="item_cp">
+                   <ButtonEdit clicked={this.whenClicked} id={this.props.item.id} key={edit_key}/>
+                   <ButtonDelete clicked={this.whenClicked} id={this.props.item.id} key={delete_key}/>
+               </div>
            </div>
        )
    }
@@ -162,13 +177,24 @@ var PositionsList = React. createClass({
                 this.setState({positions: result});
             }.bind(this));
     },
+    whenListItemsAction: function(action){
+        //console.warn('whenListItemsCpAction'+ action['action']+' k='+action['id']);
+        //$.get('http://zend_test/main/index/no', function(result){
+        $.get('http://zend_test/main/index/yes', function(result){
+            if(result['response'] == true){
+                alert('Success');
+            }else{
+                alert('Error');
+            }
+        });
+    },
     render: function(){
         var positions_arr = this.state.positions;
         var output =[];
 
         for(var position in positions_arr){
             console.log(positions_arr[position]);
-           output.push(<PositionsListItem position={positions_arr[position]} key={positions_arr[position].id} />);
+           output.push(<ListItems item={positions_arr[position]} key={positions_arr[position].id} itemaction={this.whenListItemsAction} />);
         }
 
         return(
