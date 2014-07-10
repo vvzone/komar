@@ -108,12 +108,38 @@ var CatScreenLinksList = React. createClass({
     }
 });
 
+var FormEntTest = React. createClass({
+    render: function(){
+        return(<input type="text" size="40" id="test" value="test" />)
+    }
+});
 
+var FormEntTestChild1 = React. createClass({
+    render: function(){
+        return(<input type="text" size="20" id="child1"/>)
+    }
+});
+
+var FormEntTestChild2 = React. createClass({
+    render: function(){
+        return(<input type="text" size="5" id="child2"/>)
+    }
+});
 
 var CatScreenEntity = React. createClass({
     render: function(){
         var class_name = this.props.entity_name;
-        return(<div>class={class_name}</div>)
+        console.info(class_name);
+        switch(class_name) {
+             case 'child_test1':
+                 return(<FormEntTestChild1 />)
+                 break;
+             case 'child_test2':
+                 return(<FormEntTestChild2 />)
+                 break;
+
+        };
+        return(<div>&nbsp;</div>)
     }
 });
 
@@ -133,28 +159,15 @@ var CatScreenWindow = React. createClass({
         this.setState({entities: entities});
     },
     render: function(){
-        var screens_arr = [];
-        var screen_name = '';
         var render_entities = [];
-        screens_arr = this.state.entities;
-        screen_name = this.state.screen_name;
+        var screens_arr = this.state.entities;
+        var screen_name = this.state.screen_name;
 
-        var entities_arr =screens_arr[screen_name];
+        var entities_arr=screens_arr[screen_name];
         for(var key in entities_arr){
-            console.info('entities_arr[key]='+entities_arr[key]+ ' (key='+key+') {entities_arr='+entities_arr+'}');
-            render_entities.push(<CatScreenEntity entity_name={entities_arr[key]} />)
+            //console.info('entities_arr[key]='+entities_arr[key]+ ' (key='+key+') {entities_arr='+entities_arr+'}');
+            render_entities.push(<CatScreenEntity entity_name={entities_arr[key]} key={key} />)
         }
-
-        /* full search */
-        /*
-        for(var screen_key in screens_arr){
-            //console.warn('screens_arr[screen_key]='+screens_arr[screen_key]+ ' (screen_key='+screen_key+') {screens_arr='+screens_arr+'}');
-            var entities_arr = screens_arr[screen_key];
-            for(var key in entities_arr ){
-                //console.info('sec_arr[sec_key]='+sec_arr[sec_key]+ ' (sec_key='+sec_key+') {sec_arr='+sec_arr+'}');
-                render_entities.push(<CatScreenEntity entity_name={entities_arr[key]} />)
-            }
-        }*/
 
         return(<div>{render_entities}</div>)
     }
@@ -166,8 +179,7 @@ var CatScreen = React. createClass({
         var cat = this.props.cat;
         var source = './react/get/cat/'+cat;
         return(
-                <CatScreenLinksList source={source} childs={null}/>,
-                <CatScreenWindow screen_name='test_screen' />
+                <CatScreenLinksList source={source} childs={null}/>
         );
     }
 });
@@ -175,6 +187,10 @@ var CatScreen = React. createClass({
 
 React.renderComponent(
     <CatScreen cat="base"/>,
-    document.getElementById('content')
+    document.getElementById('left_panel')
 );
 
+React.renderComponent(
+    <CatScreenWindow screen_name='test_screen' />,
+    document.getElementById('main_window')
+);
