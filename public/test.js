@@ -32,26 +32,20 @@
      *  -->
     * */
 
-/*
-var screen_entities = {
-    'test_screen' : {},
-    'sys': {}
-}*/
+var test_screen = [];
+test_screen[0] = 'test_entity';
+test_screen[1] = 'child_test1';
+test_screen[2] = 'child_test2';
 
-var test_screen = {};
-test_screen[1] = 'test_entity';
-test_screen[2] = 'child_test1';
-test_screen[3] = 'child_test2';
-
-var sys = {};
+var sys = [];
 sys[0] = 'rank';
 sys[1] = 'position';
 sys[2] = 'rank_position';
 
 var screen_entities = {};
 
-screen_entities[0] = test_screen;
-screen_entities[1] = sys;
+screen_entities['test_screen'] = test_screen;
+screen_entities['sys'] = sys;
 
 
 /*var test_rr = [
@@ -121,14 +115,24 @@ var CatScreenWindow = React. createClass({
         };
     },
     componentDidMount: function() {
-        var entities = [];
-        this.setState(entities);
+        var entities = screen_entities;
+        this.setState({entities: entities});
     },
     render: function(){
-        /*return(
-            this.state.entities.forEach(function(entity){
-                entity111111
-            }));*/
+        var arr = [];
+        arr = this.state.entities;
+        console.info(arr);
+            /*arr.forEach(function(entity, key){
+                console.log(entity+' k='+key);
+            });*/
+
+        for(var key in arr){
+            console.warn('arr[key]='+arr[key]+ ' (key='+key+') {arr='+arr+'}');
+            var sec_arr = arr[key];
+            for(var sec_key in sec_arr ){
+                console.info('sec_arr[sec_key]='+sec_arr[sec_key]+ ' (sec_key='+sec_key+') {sec_arr='+sec_arr+'}');
+            }
+        }
         return(<div>test</div>)
     }
 });
