@@ -135,7 +135,7 @@ var ButtonDelete = React.createClass({
     render: function () {
         return ( <button className="ButtonDelete" type="button" onClick={this.handleClick}>Delete</button> );
     }
-});
+});s
 
 var ListItems = React.createClass({
    /*
@@ -144,7 +144,11 @@ var ListItems = React.createClass({
    * item = []; required: 'name', 'id'
    * key - unique;
    * */
-   whenClicked: function(action){
+    z
+     whenClicked: function(){
+         this.props.itemdisplay(this.props.item.id);
+     },
+     whenClickedCP: function(action){
        var itaction = [];
        itaction['action'] = action;
        itaction['id'] = this.props.item.id;
@@ -156,10 +160,10 @@ var ListItems = React.createClass({
        var edit_key= 'edit/'+this.props.item.id;
        return(
            <div className="item">
-               <div className="item_name">{this.props.item.name}</div>
+               <div className="item_name"><ItemLink name={this.props.item.name} clicked={this.whenClicked} /></div>
                <div className="item_cp">
-                   <ButtonEdit clicked={this.whenClicked} id={this.props.item.id} key={edit_key}/>
-                   <ButtonDelete clicked={this.whenClicked} id={this.props.item.id} key={delete_key}/>
+                   <ButtonEdit clicked={this.whenClickedCP} id={this.props.item.id} key={edit_key}/>
+                   <ButtonDelete clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key}/>
                </div>
            </div>
        )
@@ -182,6 +186,9 @@ var MainList = React. createClass({
             $.get('http://zend_test/main/index/'+source, function(result) {
                 this.setState({items: result});
             }.bind(this));
+    },
+    whenListItemsClick: function(id){
+            //somehow call MainScreen width cur id
     },
     whenListItemsAction: function(action){
         /* 2do
@@ -206,7 +213,7 @@ var MainList = React. createClass({
 
         for(var item in items_arr){
             console.log(items_arr[position]);
-           output.push(<ListItems item={items_arr[item]} key={items_arr[item].id} itemaction={this.whenListItemsAction} />);
+           output.push(<ListItems item={items_arr[item]} key={items_arr[item].id} itemaction={this.whenListItemsAction} itemdisplay={this.whenListItemsClick} />);
         }
 
         return(
@@ -216,10 +223,13 @@ var MainList = React. createClass({
 });
 
 var MainScreen = React.createClass({
+
     render: function(){
         return(
-            <div className="MainScreen"></div>
-            )
+            <div className="MainScreen">
+                <EntityAttributesList entity_id={this.props.entity_id} />
+            </div>
+        )
     }
 });
 
