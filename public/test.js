@@ -108,32 +108,55 @@ var CatScreenLinksList = React. createClass({
     }
 });
 
+
+
+var CatScreenEntity = React. createClass({
+    render: function(){
+        var class_name = this.props.entity_name;
+        return(<div>class={class_name}</div>)
+    }
+});
+
 var CatScreenWindow = React. createClass({
     getInitialState: function() {
         return {
+            screen_name: '',
             entities: []
         };
     },
     componentDidMount: function() {
+        if(this.props.screen_name==null){
+            this.setState({screen_name: 'welcome'})
+        }
+        this.setState({screen_name: this.props.screen_name});
         var entities = screen_entities;
         this.setState({entities: entities});
     },
     render: function(){
-        var arr = [];
-        arr = this.state.entities;
-        console.info(arr);
-            /*arr.forEach(function(entity, key){
-                console.log(entity+' k='+key);
-            });*/
+        var screens_arr = [];
+        var screen_name = '';
+        var render_entities = [];
+        screens_arr = this.state.entities;
+        screen_name = this.state.screen_name;
 
-        for(var key in arr){
-            console.warn('arr[key]='+arr[key]+ ' (key='+key+') {arr='+arr+'}');
-            var sec_arr = arr[key];
-            for(var sec_key in sec_arr ){
-                console.info('sec_arr[sec_key]='+sec_arr[sec_key]+ ' (sec_key='+sec_key+') {sec_arr='+sec_arr+'}');
-            }
+        var entities_arr =screens_arr[screen_name];
+        for(var key in entities_arr){
+            console.info('entities_arr[key]='+entities_arr[key]+ ' (key='+key+') {entities_arr='+entities_arr+'}');
+            render_entities.push(<CatScreenEntity entity_name={entities_arr[key]} />)
         }
-        return(<div>test</div>)
+
+        /* full search */
+        /*
+        for(var screen_key in screens_arr){
+            //console.warn('screens_arr[screen_key]='+screens_arr[screen_key]+ ' (screen_key='+screen_key+') {screens_arr='+screens_arr+'}');
+            var entities_arr = screens_arr[screen_key];
+            for(var key in entities_arr ){
+                //console.info('sec_arr[sec_key]='+sec_arr[sec_key]+ ' (sec_key='+sec_key+') {sec_arr='+sec_arr+'}');
+                render_entities.push(<CatScreenEntity entity_name={entities_arr[key]} />)
+            }
+        }*/
+
+        return(<div>{render_entities}</div>)
     }
 });
 
@@ -144,7 +167,7 @@ var CatScreen = React. createClass({
         var source = './react/get/cat/'+cat;
         return(
                 <CatScreenLinksList source={source} childs={null}/>,
-                <CatScreenWindow screen='testscreen' />
+                <CatScreenWindow screen_name='test_screen' />
         );
     }
 });
