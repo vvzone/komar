@@ -32,6 +32,26 @@
      *  -->
     * */
 
+/*
+var screen_entities = {
+    'test_screen' : {},
+    'sys': {}
+}*/
+
+var test_screen = {};
+test_screen[1] = 'test_entity';
+test_screen[2] = 'child_test1';
+test_screen[3] = 'child_test2';
+
+var sys = {};
+sys[0] = 'rank';
+sys[1] = 'position';
+sys[2] = 'rank_position';
+
+var screen_entities = {};
+
+screen_entities[0] = test_screen;
+screen_entities[1] = sys;
 
 
 /*var test_rr = [
@@ -60,7 +80,7 @@ var CatLink = React. createClass({
 var CatScreenLinksList = React. createClass({
     getInitialState: function() {
         return {
-            links: '',
+            links: [], //array!!
             screens: '',
             entities: ''
         };
@@ -85,23 +105,42 @@ var CatScreenLinksList = React. createClass({
         var links_output = [];
         var links = this.state.links;
 
-        //console.log(links);
         links.forEach(function(link){
-            //console.info(link);
             links_output.push(<CatLink screen ={link} key={link.id} />)
         });
         return(
-            <ol>{links_output}</ol>
+            <ul>{links_output}</ul>
         );
     }
 });
+
+var CatScreenWindow = React. createClass({
+    getInitialState: function() {
+        return {
+            entities: []
+        };
+    },
+    componentDidMount: function() {
+        var entities = [];
+        this.setState(entities);
+    },
+    render: function(){
+        /*return(
+            this.state.entities.forEach(function(entity){
+                entity111111
+            }));*/
+        return(<div>test</div>)
+    }
+});
+
 
 var CatScreen = React. createClass({
     render: function(){
         var cat = this.props.cat;
         var source = './react/get/cat/'+cat;
         return(
-            <CatScreenLinksList source={source} childs={null}/>
+                <CatScreenLinksList source={source} childs={null}/>,
+                <CatScreenWindow screen='testscreen' />
         );
     }
 });

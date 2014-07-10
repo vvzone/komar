@@ -27,27 +27,26 @@ class IndexController extends AbstractActionController
             array('id' => '110', 'category' => 'base', 'entity' => 'position_rabk', 'screen' => 'position', 'name' => 'Соответсвие звания должности'));
 */
 
-        $data_array = array(
+        /*$data_array = array(
             array('id' => '101', 'category' => 'base', 'entity' => 'rank', 'screen' => 'rank', 'name' => 'Rank'),
             array('id' => '109', 'category' => 'base', 'entity' => 'position', 'screen' => 'position', 'name' => 'Position'),
             array('id' => '110', 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'position', 'name' => 'Rank for Position'),
             array('id' => '111', 'category' => 'base', 'entity' => 'test_entity', 'screen' => 'test', 'name' => 'Test'),
-        );
+        );*/
 
-        /**
 
         $data_array = array(
         array('id' => '101', 'category' => 'base', 'entity' => 'rank', 'screen' => 'rank', 'name' => 'Rank'),
         array('id' => '109', 'category' => 'base', 'entity' => 'position', 'screen' => 'position', 'name' => 'Position'),
         array('id' => '110', 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'position', 'name' => 'Rank for Position'),
-        array('id' => '111', 'category' => 'base', 'entity' => 'test_entity', 'screen' => 'test', 'name' => 'Test',
+        array('id' => '111', 'category' => 'base', 'entity' => 'test_entity', 'screen' => 'testscreen', 'name' => 'Test',
         'childNodes' => array(
-        array('id' => '121', 'category' => 'base', 'entity' => 'child_test1', 'screen' => 'test', 'name' => 'child1'),
-        array('id' => '122', 'category' => 'base', 'entity' => 'child_test2', 'screen' => 'test', 'name' => 'child2')
+        array('id' => '121', 'category' => 'base', 'entity' => 'child_test1', 'screen' => 'testscreen', 'name' => 'child1'),
+        array('id' => '122', 'category' => 'base', 'entity' => 'child_test2', 'screen' => 'testscreen', 'name' => 'child2')
         ))
         );
 
-         */
+
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
