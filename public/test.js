@@ -166,6 +166,7 @@ var ListItems = React.createClass({
    }
 });
 
+
 var PositionsList = React. createClass({
     getInitialState: function() {
         return {
@@ -215,7 +216,7 @@ var FormEntPosition = React. createClass({
 
 var FormEntRankPosition = React. createClass({
     render: function(){
-        return(<input type="text" size="5" id="child2"/>)
+        return(<input type="text" size="15" id="child2" value="test for FormEntRankPosition" />)
     }
 });
 
