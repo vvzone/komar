@@ -70,7 +70,7 @@ var CatLink = React. createClass({
         var src = './react/get/screen/'+link.screen;
         if(link.childNodes!=null){
             return(
-                    <li><CatScreenLinksList source={null} childs={link.childNodes}/></li>
+                    <li><CatTreeLinksList source={null} childs={link.childNodes}/></li>
                 );
         }else{
             return(
@@ -80,7 +80,7 @@ var CatLink = React. createClass({
     }
 });
 
-var CatScreenLinksList = React. createClass({
+var CatTreeLinksList = React. createClass({
     getInitialState: function() {
         return {
             links: [], //array!!
@@ -167,19 +167,30 @@ var ListItems = React.createClass({
 });
 
 
-var PositionsList = React. createClass({
+var MainList = React. createClass({
+    /* Props
+    *
+    * source - server data-controller action
+    * */
     getInitialState: function() {
         return {
-            positions: []
+            items: []
         }
     },
     componentDidMount: function() {
-            $.get('http://zend_test/main/index/positions', function(result) {
-                this.setState({positions: result});
+            var source = this.props.source;
+            $.get('http://zend_test/main/index/'+source, function(result) {
+                this.setState({items: result});
             }.bind(this));
     },
     whenListItemsAction: function(action){
+        /* 2do
+        *  action 2 ajax
+        * */
+
         //console.warn('whenListItemsCpAction'+ action['action']+' k='+action['id']);
+
+
         //$.get('http://zend_test/main/index/no', function(result){
         $.get('http://zend_test/main/index/yes', function(result){
             if(result['response'] == true){
@@ -190,29 +201,55 @@ var PositionsList = React. createClass({
         });
     },
     render: function(){
-        var positions_arr = this.state.positions;
+        var items_arr = this.state.items;
         var output =[];
 
-        for(var position in positions_arr){
-            console.log(positions_arr[position]);
-           output.push(<ListItems item={positions_arr[position]} key={positions_arr[position].id} itemaction={this.whenListItemsAction} />);
+        for(var item in items_arr){
+            console.log(items_arr[position]);
+           output.push(<ListItems item={items_arr[item]} key={items_arr[item].id} itemaction={this.whenListItemsAction} />);
         }
 
         return(
-            <div className="PositionList">{output}</div>
+            <div className="MainList">{output}</div>
         )
     }
 });
+
+var MainScreen = React.createClass({
+    render: function(){
+        return(
+            <div className="MainScreen"></div>
+            )
+    }
+});
+
 
 var FormEntPosition = React. createClass({
     render: function(){
         return(
             <div className="PositionBox">
-                <PositionsList />
+                <MainList source="positions" />
             </div>
         )
     }
 });
+
+var FormEntRank = React. createClass({
+    render: function(){
+        return(
+            <div className="RankBox">
+                <MainList source="ranks" />
+            </div>
+        )
+    }
+});
+
+
+/*
+var MainDropDown = React. createClass({
+
+});
+*/
 
 var FormEntRankPosition = React. createClass({
     render: function(){
@@ -220,11 +257,14 @@ var FormEntRankPosition = React. createClass({
     }
 });
 
-var CatScreenEntity = React. createClass({
+var EntityBlock = React. createClass({
     render: function(){
         var class_name = this.props.entity_name;
-        console.info(class_name);
+        //console.info(class_name);
         switch(class_name) {
+            case 'rank':
+                return(<FormEntRank />)
+                break;
              case 'position':
                  return(<FormEntPosition />)
                  break;
@@ -237,7 +277,7 @@ var CatScreenEntity = React. createClass({
     }
 });
 
-var CatScreenWindow = React. createClass({
+var BaseScreen = React. createClass({
     getInitialState: function() {
         return {
             screen_name: '',
@@ -260,7 +300,7 @@ var CatScreenWindow = React. createClass({
         var entities_arr=screens_arr[screen_name];
         for(var key in entities_arr){
             //console.info('entities_arr[key]='+entities_arr[key]+ ' (key='+key+') {entities_arr='+entities_arr+'}');
-            render_entities.push(<CatScreenEntity entity_name={entities_arr[key]} key={key} />)
+            render_entities.push(<EntityBlock entity_name={entities_arr[key]} key={key} />)
         }
 
         return(<div>{render_entities}</div>)
@@ -273,7 +313,7 @@ var CatScreen = React. createClass({
         var cat = this.props.cat;
         var source = './react/get/cat/'+cat;
         return(
-                <CatScreenLinksList source={source} childs={null}/>
+                <CatTreeLinksList source={source} childs={null}/>
         );
     }
 });
@@ -285,6 +325,6 @@ React.renderComponent(
 );
 
 React.renderComponent(
-    <CatScreenWindow screen_name='position' />,
+    <BaseScreen screen_name='rank' />,
     document.getElementById('main_window')
 );
