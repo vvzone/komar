@@ -21,19 +21,6 @@ class IndexController extends AbstractActionController
     }
     
     public function ajaxAction(){
-/*
- *         $data_array = array(array('id' => '101', 'category' => 'base', 'entity' => 'rank', 'screen' => 'rank', 'name' => 'Звание'),
-            array('id' => '109', 'category' => 'base', 'entity' => 'position', 'screen' => 'position', 'name' => 'Должность'),
-            array('id' => '110', 'category' => 'base', 'entity' => 'position_rabk', 'screen' => 'position', 'name' => 'Соответсвие звания должности'));
-*/
-
-        /*$data_array = array(
-            array('id' => '101', 'category' => 'base', 'entity' => 'rank', 'screen' => 'rank', 'name' => 'Rank'),
-            array('id' => '109', 'category' => 'base', 'entity' => 'position', 'screen' => 'position', 'name' => 'Position'),
-            array('id' => '110', 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'position', 'name' => 'Rank for Position'),
-            array('id' => '111', 'category' => 'base', 'entity' => 'test_entity', 'screen' => 'test', 'name' => 'Test'),
-        );*/
-
 
         $data_array = array(
         array('id' => '101', 'category' => 'base', 'entity' => 'rank', 'screen' => 'rank', 'name' => 'Rank'),
@@ -46,20 +33,21 @@ class IndexController extends AbstractActionController
         ))
         );
 
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
+
+    public function positionsAction(){
+        $data_array = array(
+            array('name' => 'Private', 'id' => 1, 'order' => 1),
+            array('name' => 'Sergent', 'id' => 2, 'order' => 2),
+            array('name' => 'Sen. Sergent', 'id' => 3, 'order' => 3)
+        );
 
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
-
         return $JsonModel;
-
-        // Encode PHP object recursively
-        //echo phpinfo();
-
-        //$jsonObject = Zend\Json\Json::encode($data_array, true);
-
-        //return $jsonObject;
-        
     }
-    
 }

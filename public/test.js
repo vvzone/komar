@@ -38,14 +38,23 @@ test_screen[1] = 'child_test1';
 test_screen[2] = 'child_test2';
 
 var sys = [];
-sys[0] = 'rank';
-sys[1] = 'position';
-sys[2] = 'rank_position';
+sys[0] = 'country';
+sys[1] = 'sys1';
+sys[2] = 'sys2';
+
+var rank = [];
+rank[0] = 'rank';
+
+var position = [];
+position[0] = 'position';
+position[1] = 'rank_position';
 
 var screen_entities = {};
 
 screen_entities['test_screen'] = test_screen;
 screen_entities['sys'] = sys;
+screen_entities['rank'] = rank;
+screen_entities['position'] = position;
 
 
 /*var test_rr = [
@@ -108,19 +117,74 @@ var CatScreenLinksList = React. createClass({
     }
 });
 
-var FormEntTest = React. createClass({
-    render: function(){
-        return(<input type="text" size="40" id="test" value="test" />)
+var ButtonEdit = React.createClass({
+    handleClick: function (e) {
+        this.props.clicked(order);
+    },
+    render: function () {
+        return ( <button className="ButtonEdit" type="button" onClick={this.handleClick}></button> );
+    }
+ });
+
+var ButtonDelete = React.createClass({
+    handleClick: function (e) {
+        this.props.clicked(order);
+    },
+    render: function () {
+        return ( <button className="ButtonDelete" type="button" onClick={this.handleClick}></button> );
     }
 });
 
-var FormEntTestChild1 = React. createClass({
+var PositionsListItem = React.createClass({
+   whenClicked: function(){
+       alert(this.props.position.name);
+   },
+   render: function(){
+       return(
+           <div className="position_name">
+               <div>{position.name}</div>
+               <div><ButtonEdit clicked={this.whenClicked} /><ButtonDelete clicked={this.whenClicked} /></div>
+           </div>
+       )
+   }
+});
+
+var PositionsList = React. createClass({
+    getInitialState: function() {
+        return {
+            positions: []
+        }
+    },
+    componentDidMount: function() {
+            $.get('http://zend_test/main/index/positions', function(result) {
+                this.setState({positions: result});
+            }.bind(this));
+    },
     render: function(){
-        return(<input type="text" size="20" id="child1"/>)
+        var positions_arr = this.state.positions;
+        var output =[];
+
+        for(var position in positions_arr){
+           output.push(<PositionsListItem />);
+        }
+
+        return(
+            <div className="PositionList">{output}</div>
+        )
     }
 });
 
-var FormEntTestChild2 = React. createClass({
+var FormEntPosition = React. createClass({
+    render: function(){
+        return(
+            <div className="PositionBox">
+                <PositionsList />
+            </div>
+        )
+    }
+});
+
+var FormEntRankPosition = React. createClass({
     render: function(){
         return(<input type="text" size="5" id="child2"/>)
     }
@@ -131,11 +195,11 @@ var CatScreenEntity = React. createClass({
         var class_name = this.props.entity_name;
         console.info(class_name);
         switch(class_name) {
-             case 'child_test1':
-                 return(<FormEntTestChild1 />)
+             case 'position':
+                 return(<FormEntPosition />)
                  break;
-             case 'child_test2':
-                 return(<FormEntTestChild2 />)
+             case 'rank_position':
+                 return(<FormEntRankPosition />)
                  break;
 
         };
@@ -191,6 +255,6 @@ React.renderComponent(
 );
 
 React.renderComponent(
-    <CatScreenWindow screen_name='test_screen' />,
+    <CatScreenWindow screen_name='position' />,
     document.getElementById('main_window')
 );
