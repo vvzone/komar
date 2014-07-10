@@ -119,31 +119,33 @@ var CatScreenLinksList = React. createClass({
 
 var ButtonEdit = React.createClass({
     handleClick: function (e) {
-        this.props.clicked(order);
+        this.props.clicked(this.props.key);
     },
     render: function () {
-        return ( <button className="ButtonEdit" type="button" onClick={this.handleClick}></button> );
+        return ( <button className="ButtonEdit" type="button" onClick={this.handleClick}>Edit</button> );
     }
  });
 
 var ButtonDelete = React.createClass({
     handleClick: function (e) {
-        this.props.clicked(order);
+        this.props.clicked(this.props.key);
     },
     render: function () {
-        return ( <button className="ButtonDelete" type="button" onClick={this.handleClick}></button> );
+        return ( <button className="ButtonDelete" type="button" onClick={this.handleClick}>Delete</button> );
     }
 });
 
 var PositionsListItem = React.createClass({
-   whenClicked: function(){
-       alert(this.props.position.name);
+   whenClicked: function(action){
+       console.warn(action);
    },
    render: function(){
+       var delete_key= 'delete/'+this.props.position.id;
+       var edit_key= 'edit/'+this.props.position.id;
        return(
            <div className="position_name">
-               <div>{position.name}</div>
-               <div><ButtonEdit clicked={this.whenClicked} /><ButtonDelete clicked={this.whenClicked} /></div>
+               <div>{this.props.position.name}</div>
+               <div><ButtonEdit clicked={this.whenClicked} key={edit_key}/><ButtonDelete clicked={this.whenClicked} key={delete_key}/></div>
            </div>
        )
    }
@@ -165,7 +167,8 @@ var PositionsList = React. createClass({
         var output =[];
 
         for(var position in positions_arr){
-           output.push(<PositionsListItem />);
+            console.log(positions_arr[position]);
+           output.push(<PositionsListItem position={positions_arr[position]} key={positions_arr[position].id} />);
         }
 
         return(
