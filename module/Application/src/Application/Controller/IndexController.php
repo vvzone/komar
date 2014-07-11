@@ -30,14 +30,18 @@ class IndexController extends AbstractActionController
         $array_base = array(
             array('id' => 101, 'category' => 'base', 'entity' => 'rank', 'screen' => 'rank', 'name' => 'Звания'),
             array('id' => 102, 'category' => 'base', 'entity' => 'position', 'screen' => 'position', 'name' => 'Должности'),
-            array('id' => 103, 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'position', 'name' => 'Соответствие звания должности', 'isNonIndependent' => true ),
+            array('id' => 103, 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'position', 'name' => 'Соответствие звания должности',
+                'isNonIndependent' => true ),
             array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => '5.2.2	Типы удостоверяющих личность документов'),
             array('id' => 105, 'category' => 'base', 'entity' => 'sys', 'screen' => 'sys', 'name' => 'Основные настройки'),
         );
 
         $array_staff = array(
-            array('id' => 201, 'category' => 'staff', 'entity' => '', 'screen' => '', 'name' => ''),
-            array('id' => 201, 'category' => 'staff', 'entity' => '', 'screen' => '', 'name' => ''),
+            array('id' => 201, 'category' => 'staff', 'entity' => 'person', 'screen' => 'person', 'name' => 'Личная карточка'),
+            array('id' => 201, 'category' => 'staff', 'entity' => 'person_position_history', 'screen' => 'person', 'name' => 'История назначений',
+                'isNonIndependent' => true ),
+            array('id' => 202, 'category' => 'staff', 'entity' => 'person_position_history', 'screen' => 'person', 'name' => 'История назначений',
+                'isNonIndependent' => true ),
         );
 
         $array_doc = array(

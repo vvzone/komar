@@ -41,8 +41,9 @@
     CommanderType -> base -> commander_type -> sys_units
     PeriodType -> base -> period_types -> sys_docs
     EnumerationType -> base -> enumeration_types -> sys_docs
-    
-    
+    DocType -> base -> doc_types -> sys_docs
+    NodeType -> base -> route_node_types -> sys_docs
+    (?)DocTypeArrtibute -> base -> doc_attribute_types -> sys_docs
     
     Person -> staff -> person -> person
     PersonPost -> staff -> person_position_history -> person
@@ -51,16 +52,25 @@
     Role -> staff -> person_role -> person
     
     
-    
+    Document -> doc -> doc -> doc
     PersonDocument -> doc -> pass_docs -> pass_docs
+    Route -> doc -> route -> doc?
+    Node -> doc -> route_node -> route?
+    NodeAttribute -> doc -> route_node_attribute
+    Attribute -> doc -> doc_attribute - > doc
     
     
     
     Client -> unit -> client -> unit?        
            -> staff? -> client -> person
     Unit -> unit -> unit -> unit
-    UnitComander -> unit -> unit_comender -> unit
-    UnitPost -> unit -> unit_positions -> unitcz
+    UnitComander -> unit -> unit_comander -> unit
+    UnitPost -> unit -> unit_positions -> unit
+    (!!???)Enumeration -> unit -> enumaration -> unit
+    Unit_DocType -> unit -> unit_doc_types -> unit
+    Unit_Route -> unit -> unit_routes -> unit
+    Unit_Enumeration -> unit -> unit_enumeration -> unit
+    
     
     
     
