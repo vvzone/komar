@@ -1,82 +1,56 @@
 /** @jsx React.DOM */
 
-    /*
-    * base - Базовые определения: звания, должности, типы документов
-    *   --> rank - звания
-    *   --> position - должность + соотв
-    *   --> pass_doc_types
-    *   --> sys - основные настройки: страны, сокр. пол,
-    *   --> sys_docs - основные настройки документов
-    *   --> address - тип адреса
-    *   --> unit_lead_types
-    *   -->
-    * staff - Персонал
-    *   --> person - личная карточка + история званий, должностей, адрес, роль,
-    *   --> pass_docs
-    *   -->
-    *   -->
-    *   -->
-    * doc - Документы
-    *   -->
-    *   -->
-    *   -->
-    *   -->
-    *   -->
-    *   -->
-    *   -->
-    * unit - Подразделение
-    *   --> client
-    *   --> unit
-    *   --> unit_lead
-    *   -->
-     *  -->
-    * */
-
-var test_screen = [];
-test_screen[0] = 'test_entity';
-test_screen[1] = 'child_test1';
-test_screen[2] = 'child_test2';
-
-var sys = [];
-sys[0] = 'country';
-sys[1] = 'sys1';
-sys[2] = 'sys2';
-
-var rank = [];
-rank[0] = 'rank';
-
-var position = [];
-position[0] = 'position';
-position[1] = 'rank_position';
-
-var screen_entities = {};
-
-screen_entities['test_screen'] = test_screen;
-screen_entities['sys'] = sys;
-screen_entities['rank'] = rank;
-screen_entities['position'] = position;
-
-
-/*var test_rr = [
- {entity:'rank', screen:'base', name: 'Звания', id: 151},
- {entity:'rank', screen:'base', name: 'Звания', id: 153},
- {entity:'rank', screen:'base', name: 'Звания', id: 154}
- ];*/
-
 
 var CatLink = React. createClass({
+    getInitialState: function() {
+        return {
+            visible: true
+        };
+    },
+    componentDidMount: function() {
+        if(this.props.screen.childNodes!=null){
+            this.setState({visible: false});
+        }
+    },
     render: function(){
         var link = this.props.screen;
         var src = './react/get/screen/'+link.screen;
+
+        var className = "";
+        var style = {};
+        if (!this.state.visible) {
+            style.display = "none";
+        }
+
         if(link.childNodes!=null){
+            className = "glyphicon togglable";
+            if (this.state.visible) {
+                className += " glyphicon-minus";
+            } else {
+                className += " glyphicon-plus";
+            }
+
+            if(link.isNotScreen!=null){
+                return(
+                    <li>
+                        <span onClick={this.toggle} className={className}></span>
+                        <span className="childs">{link.name}</span>
+                        <div style={style}><CatTreeLinksList source={null} childs={link.childNodes}/></div>
+                    </li>
+                    );
+            }
             return(
-                    <li><i className="icon-user"></i><a href={src}>{link.name}</a><CatTreeLinksList source={null} childs={link.childNodes}/></li>
-                );
-        }else{
-            return(
-                    <li><a href={src}>{link.name}</a></li>
+                    <li><span onClick={this.toggle} className={className}></span><a className="childs" href={src}>{link.name}</a><div style={style}><CatTreeLinksList source={null} childs={link.childNodes}/></div></li>
                 );
         }
+
+        return(
+                    <li style={style}><a href={src}>{link.name}</a></li>
+        );
+
+    },
+    toggle: function() {
+        this.setState({visible: !this.state.visible});
     }
 });
 
@@ -112,7 +86,7 @@ var CatTreeLinksList = React. createClass({
             links_output.push(<CatLink screen ={link} key={link.id} />)
         });
         return(
-            <ul className="nav nav-list">{links_output}</ul>
+            <ul className="nav nav-sidebar cattree">{links_output}</ul>
         );
     }
 });
@@ -276,7 +250,7 @@ var CatScreen = React. createClass({
         var cat = this.props.cat;
         var source = './react/get/cat/'+cat;
         return(
-            <div className="well pull-left"><CatTreeLinksList source={source} childs={null}/></div>
+            <div className="well"><CatTreeLinksList source={source} childs={null}/></div>
         );
     }
 });
@@ -287,7 +261,9 @@ React.renderComponent(
     document.getElementById('left_panel')
 );
 
+/*
 React.renderComponent(
     <BaseScreen screen_name='rank' />,
     document.getElementById('main_window')
 );
+*/
