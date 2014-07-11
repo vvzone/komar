@@ -135,7 +135,22 @@ var ButtonDelete = React.createClass({
     render: function () {
         return ( <button className="ButtonDelete" type="button" onClick={this.handleClick}>Delete</button> );
     }
-});s
+});
+
+var ItemLink = React. createClass({
+    /*
+    * props: name, clicked()
+    *
+    * */
+
+    handleClick: function(e){
+        e.preventDefault();
+      this.props.clicked();
+    },
+     render: function(){
+        return(<a href="" onClick={this.handleClick}>{this.props.name}</a>)
+    }
+});
 
 var ListItems = React.createClass({
    /*
@@ -144,7 +159,7 @@ var ListItems = React.createClass({
    * item = []; required: 'name', 'id'
    * key - unique;
    * */
-    z
+
      whenClicked: function(){
          this.props.itemdisplay(this.props.item.id);
      },
@@ -189,6 +204,9 @@ var MainList = React. createClass({
     },
     whenListItemsClick: function(id){
             //somehow call MainScreen width cur id
+        //this.props.itemclick(id);
+        //??? does this really need?
+        console.log(' whenListItemsClick');
     },
     whenListItemsAction: function(action){
         /* 2do
