@@ -31,6 +31,7 @@
      *  -->
     * */
     
+    /*
     Rank -> base -> ranks -> ranks
     Post -> base -> position -> positions
     PostRank -> base -> position_rank -> positions
@@ -78,7 +79,7 @@
     Unit_Route -> unit -> unit_routes -> unit
     Unit_Enumeration -> unit -> unit_enumeration -> unit
     
-    
+    */
     
     
 

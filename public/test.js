@@ -34,7 +34,7 @@ var CatLink = React. createClass({
                 return(
                     <li>
                         <span onClick={this.toggle} className={className}></span>
-                        <span className="childs">{link.name}</span>
+                        <div className="childs">{link.name}</div>
                         <div style={style}><CatTreeLinksList source={null} childs={link.childNodes}/></div>
                     </li>
                     );
