@@ -34,7 +34,7 @@ var CatLink = React. createClass({
                 return(
                     <li>
                         <span onClick={this.toggle} className={className}></span>
-                        <div className="childs">{link.name}</div>
+                        <div className="childs" onClick={this.toggle}>{link.name}</div>
                         <div style={style}><CatTreeLinksList source={null} childs={link.childNodes}/></div>
                     </li>
                     );
@@ -83,7 +83,9 @@ var CatTreeLinksList = React. createClass({
         var links = this.state.links;
 
         links.forEach(function(link){
-            links_output.push(<CatLink screen ={link} key={link.id} />)
+            if(!link.isNonIndependent){
+                links_output.push(<CatLink screen ={link} key={link.id} />)
+            }
         });
         return(
             <ul className="nav nav-sidebar cattree">{links_output}</ul>
