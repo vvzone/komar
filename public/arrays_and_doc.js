@@ -35,15 +35,20 @@
     Post -> base -> position -> positions
     PostRank -> base -> position_rank -> positions
     PersonDocType -> base -> pass_doc_types -> pass_doc_types
+    
     AddressType -> base -> address_types -> sys
     SexType -> base -> sex_types -> sys
     Country -> base -> countries -> sys
+    
     CommanderType -> base -> commander_type -> sys_units
+    
     PeriodType -> base -> period_types -> sys_docs
     EnumerationType -> base -> enumeration_types -> sys_docs
     DocType -> base -> doc_types -> sys_docs
     NodeType -> base -> route_node_types -> sys_docs
     (?)DocTypeArrtibute -> base -> doc_attribute_types -> sys_docs
+    (!!???)Enumeration -> unit -> enumaration -> sys_docs
+    ==================================================================
     
     Person -> staff -> person -> person
     PersonPost -> staff -> person_position_history -> person
@@ -51,22 +56,24 @@
     Address -> staff -> person_address -> person
     Role -> staff -> person_role -> person
     
+    ==================================================================
     
     Document -> doc -> doc -> doc
     PersonDocument -> doc -> pass_docs -> pass_docs
     Route -> doc -> route -> doc?
     Node -> doc -> route_node -> route?
-    NodeAttribute -> doc -> route_node_attribute
+    NodeAttribute -> doc -> route_node_attribute ->(?) route_node
     Attribute -> doc -> doc_attribute - > doc
     
+    ==================================================================
     
-    
-    Client -> unit -> client -> unit?        
-           -> staff? -> client -> person
+    Client -> unit -> client -> unit?        !!!!!!!!!!!!
+           -> staff? -> client -> person     !!!!!!!!!!!!
+           
     Unit -> unit -> unit -> unit
     UnitComander -> unit -> unit_comander -> unit
     UnitPost -> unit -> unit_positions -> unit
-    (!!???)Enumeration -> unit -> enumaration -> unit
+    
     Unit_DocType -> unit -> unit_doc_types -> unit
     Unit_Route -> unit -> unit_routes -> unit
     Unit_Enumeration -> unit -> unit_enumeration -> unit

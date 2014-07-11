@@ -34,24 +34,51 @@ class IndexController extends AbstractActionController
                 'isNonIndependent' => true ),
             array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => '5.2.2	Типы удостоверяющих личность документов'),
             array('id' => 105, 'category' => 'base', 'entity' => 'sys', 'screen' => 'sys', 'name' => 'Основные настройки'),
+            array('id' => 105, 'category' => 'base', 'entity' => 'address_types', 'screen' => 'sys', 'name' => 'Типы адреса'),
+            array('id' => 105, 'category' => 'base', 'entity' => 'sex_types', 'screen' => 'sys', 'name' => 'Пол'),
+            array('id' => 105, 'category' => 'base', 'entity' => 'countries', 'screen' => 'sys', 'name' => 'Страны'),
+            array('id' => 105, 'category' => 'base', 'entity' => 'sys_docs', 'screen' => 'sys_docs', 'name' => 'Настройки документов'),
+            array('id' => 105, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'sys_docs', 'name' => 'Типы периодов'),
+            array('id' => 105, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'sys_docs', 'name' => 'Типы нумерации'),
+            array('id' => 105, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'sys_docs', 'name' => 'Типы нумерации'),
         );
 
         $array_staff = array(
-            array('id' => 201, 'category' => 'staff', 'entity' => 'person', 'screen' => 'person', 'name' => 'Личная карточка'),
-            array('id' => 201, 'category' => 'staff', 'entity' => 'person_position_history', 'screen' => 'person', 'name' => 'История назначений',
-                'isNonIndependent' => true ),
+            array('id' => 201, 'category' => 'staff', 'entity' => 'person', 'screen' => 'person', 'name' => 'Картотека Личных дел'),
             array('id' => 202, 'category' => 'staff', 'entity' => 'person_position_history', 'screen' => 'person', 'name' => 'История назначений',
+                'isNonIndependent' => true ),
+            array('id' => 203, 'category' => 'staff', 'entity' => 'person_rank_history', 'screen' => 'person', 'name' => 'История присвоения званий',
+                'isNonIndependent' => true ),
+            array('id' => 204, 'category' => 'staff', 'entity' => 'person_address', 'screen' => 'person', 'name' => 'Адрес лица',
+                'isNonIndependent' => true ),
+            array('id' => 205, 'category' => 'staff', 'entity' => 'role', 'screen' => 'person', 'name' => 'Роль служащего',
                 'isNonIndependent' => true ),
         );
 
         $array_doc = array(
-            array('id' => 301, 'category' => 'doc', 'entity' => '', 'screen' => '', 'name' => ''),
-            array('id' => 301, 'category' => 'doc', 'entity' => '', 'screen' => '', 'name' => ''),
+            array('id' => 301, 'category' => 'doc', 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Документы'),
+            array('id' => 302, 'category' => 'doc', 'entity' => 'doc_attribute', 'screen' => 'doc', 'name' => 'Аттрибуты документа',
+                'isNonIndependent' => true ),
+            array('id' => 303, 'category' => 'doc', 'entity' => 'pass_docs', 'screen' => 'pass_docs', 'name' => 'Документы удостоверяющие личность'),
+            array('id' => 304, 'category' => 'doc', 'entity' => 'route', 'screen' => 'route', 'name' => 'Маршрут'),
+            array('id' => 305, 'category' => 'doc', 'entity' => 'route_node', 'screen' => 'route', 'name' => 'Пункт маршрута',
+                'isNonIndependent' => true ),
+            array('id' => 306, 'category' => 'doc', 'entity' => 'route_node_attribute', 'screen' => 'route_node', 'name' => 'Изменяемые в узле атрибуты',
+                'isNonIndependent' => true )
         );
 
         $array_unit = array(
-            array('id' => 401, 'category' => 'unit', 'entity' => '', 'screen' => '', 'name' => ''),
-            array('id' => 401, 'category' => 'unit', 'entity' => '', 'screen' => '', 'name' => ''),
+            array('id' => 401, 'category' => 'unit', 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Организация/Юр.Лицо/Подразделение'),
+            array('id' => 402, 'category' => 'unit', 'entity' => 'unit_commander', 'screen' => 'unit', 'name' => 'Руководство',
+                'isNonIndependent' => true ),
+            array('id' => 403, 'category' => 'unit', 'entity' => 'unit_positions', 'screen' => 'unit', 'name' => 'Штатное расписание',
+                'isNonIndependent' => true ),
+            array('id' => 404, 'category' => 'unit', 'entity' => 'unit_doc_types', 'screen' => 'unit', 'name' => 'Типы документов подразделения',
+                'isNonIndependent' => true ),
+            array('id' => 405, 'category' => 'unit', 'entity' => 'unit_routes', 'screen' => 'unit', 'name' => 'Маршруты в подразделении',
+                'isNonIndependent' => true ),
+            array('id' => 406, 'category' => 'unit', 'entity' => 'unit_enumeration', 'screen' => 'unit', 'name' => 'Нумерация в подразделении',
+                'isNonIndependent' => true ),
         );
 
 
