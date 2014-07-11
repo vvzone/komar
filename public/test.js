@@ -276,7 +276,7 @@ var CatScreen = React. createClass({
         var cat = this.props.cat;
         var source = './react/get/cat/'+cat;
         return(
-                <CatTreeLinksList source={source} childs={null}/>
+            <div className="well pull-left"><CatTreeLinksList source={source} childs={null}/></div>
         );
     }
 });
