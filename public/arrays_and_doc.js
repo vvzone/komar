@@ -31,10 +31,36 @@
      *  -->
     * */
     
-    rank -> base -> rank -> rank
-    post -> base -> position -> position
+    Rank -> base -> ranks -> ranks
+    Post -> base -> position -> positions
+    PostRank -> base -> position_rank -> positions
+    PersonDocType -> base -> pass_doc_types -> pass_doc_types
+    AddressType -> base -> address_types -> sys
+    SexType -> base -> sex_types -> sys
+    Country -> base -> countries -> sys
+    CommanderType -> base -> commander_type -> sys_units
+    PeriodType -> base -> period_types -> sys_docs
+    EnumerationType -> base -> enumeration_types -> sys_docs
     
-    person_post -> staff -> person_position_history -> person
+    
+    
+    Person -> staff -> person -> person
+    PersonPost -> staff -> person_position_history -> person
+    PersonRank -> staff -> person_rank_history -> person
+    Address -> staff -> person_address -> person
+    Role -> staff -> person_role -> person
+    
+    
+    
+    PersonDocument -> doc -> pass_docs -> pass_docs
+    
+    
+    
+    Client -> unit -> client -> unit?        
+           -> staff? -> client -> person
+    Unit -> unit -> unit -> unit
+    UnitComander -> unit -> unit_comender -> unit
+    UnitPost -> unit -> unit_positions -> unitcz
     
     
     
