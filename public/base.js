@@ -32,8 +32,8 @@ var ItemLink = React. createClass({
 
     handleClick: function(e){
         e.preventDefault();
-        this.props.clicked(this.props.item);
-        console.warn('Clicked!');
+        this.props.onClick(this.props.item);
+        console.info(this.props);
     },
     render: function(){
         return(<a href={this.props.item.id} onClick={this.handleClick}>{this.props.item.name}</a>)

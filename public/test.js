@@ -3,7 +3,9 @@
 var CatLink = React. createClass({
     getInitialState: function() {
         return {
-            visible: true
+            visible: true,
+            click: undefined,
+            screen: []
         };
     },
     componentDidMount: function() {
@@ -11,10 +13,11 @@ var CatLink = React. createClass({
             this.setState({visible: false});
         }
     },
-    whenClicked: function(screen){
-        //this.props.reaction(screen);
-        console.log('catch whenClicked!');
-        console.warn(screen);
+    whenClicked: function(e, screen){
+        console.log(screen);
+        console.log(this.props)
+        //TestScreen.setState({screen_name: screen});
+        this.props.onClick(screen);
     },
     render: function(){
         var link = this.props.screen;
@@ -55,7 +58,7 @@ var CatLink = React. createClass({
 
         return(
             //<li style={style}><a href={src}>{link.name}</a></li>
-            <li style={style}><ItemLink item={link} clicked={this.whenClicked}/></li>
+            <li style={style}><ItemLink item={link} onClick={this.whenClicked}/></li>
             );
 
     },
@@ -71,10 +74,6 @@ var CatTreeLinksList = React. createClass({
             screens: '',
             entities: ''
         };
-    },
-    whenReaction: function(screen){
-        console.warn('Reaction');
-        this.props.reaction = screen ;
     },
     componentDidMount: function() {
         if(this.props.childs!=null){
@@ -92,18 +91,30 @@ var CatTreeLinksList = React. createClass({
             }.bind(this));
         }
     },
+    handleClick: function(){
+      console.log('handle click');
+    },
     render: function(){
         var links_output = [];
         var links = this.state.links;
-
-        links.forEach(function(link){
-            if(!link.isNonIndependent){
-                links_output.push(<CatLink screen ={link} reaction={this.whenReaction} key={link.id}/>)
-            }
-        });
+        if(Object.prototype.toString.call(this.state.links) === '[object Array]'){
+            var self = this;
+            var links_output = this.state.links.map(function(l){
+                if(!l.isNonIndependent){
+                    return(<CatLink screen={l} key={l.id} onClick={self.handleClick}/>)
+                }
+            });
+            return(
+                    <ul className="nav nav-sidebar cattree">{links_output}</ul>
+                );
+        }
         return(
-            <ul className="nav nav-sidebar cattree">{links_output}</ul>
-        );
+            <div className="alert alert-error">
+                <a href="#" className="close" data-dismiss="alert">&times;</a>
+                <strong>Ошибка</strong>
+                <br />Неправильный формат ответа сервера
+            </div>
+        )
     }
 });
 
@@ -274,6 +285,17 @@ var CatScreen = React. createClass({
     }
 });
 
+var TestScreen = React.createClass({
+    getInitialState: function() {
+        return {
+            screen_name: ''
+        };
+    },
+    render: function(){
+        return(<div>Screen Name: {this.state.screen_name}</div>)
+    }
+});
+
 
 
 React.renderComponent(
@@ -282,6 +304,10 @@ React.renderComponent(
 );
 
 
+React.renderComponent(
+    <TestScreen/>,
+    document.getElementById('main_window')
+);
 /*
 React.renderComponent(
     <BaseScreen screen_name='rank' />,

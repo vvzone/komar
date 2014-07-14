@@ -61,3 +61,6 @@ ul.cattree{
     border-left: red;
 }
 
+div.alert-error{
+background: #d6001e;
+}
