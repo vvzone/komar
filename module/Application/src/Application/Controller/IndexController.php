@@ -123,6 +123,10 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
+    public function pageAction(){
+        //
+    }
+
     public function ranksAction(){
         $data_array = array(
             array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
@@ -141,7 +145,6 @@ class IndexController extends AbstractActionController
             array('name' => 'Начальник пищеблока', 'id' => 2, 'order' => 2),
             array('name' => 'Командир части', 'id' => 3, 'order' => 3)
         );
-
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);

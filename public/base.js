@@ -26,16 +26,16 @@ var ButtonDelete = React.createClass({
 
 var ItemLink = React. createClass({
     /*
-     * props: name, clicked()
+     * props: name, clicked(), id
      *
      * */
 
     handleClick: function(e){
         e.preventDefault();
-        this.props.clicked();
+        this.props.clicked(this.props.item);
     },
     render: function(){
-        return(<a href="" onClick={this.handleClick}>{this.props.name}</a>)
+        return(<a href={this.props.item.id} onClick={this.handleClick}>{this.props.item.name}</a>)
     }
 });
 
@@ -63,7 +63,7 @@ var ListItems = React.createClass({
         var edit_key= 'edit/'+this.props.item.id;
         return(
             <div className="item">
-                <div className="item_name"><ItemLink name={this.props.item.name} clicked={this.whenClicked} /></div>
+                <div className="item_name"><ItemLink item={this.props.item} clicked={this.whenClicked} /></div>
                 <div className="item_cp">
                     <ButtonEdit clicked={this.whenClickedCP} id={this.props.item.id} key={edit_key}/>
                     <ButtonDelete clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key}/>
