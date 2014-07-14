@@ -1,21 +1,21 @@
 /** @jsx React.DOM */    
     /*
-    * base - Базовые определения: звания, должности, типы документов
-    *   --> rank - звания
-    *   --> position - должность + соотв
+    * base - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    *   --> rank - пїЅпїЅпїЅпїЅпїЅпїЅ
+    *   --> position - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ + пїЅпїЅпїЅпїЅпїЅ
     *   --> pass_doc_types
-    *   --> sys - основные настройки: страны, сокр. пол,
-    *   --> sys_docs - основные настройки документов
-    *   --> address - тип адреса
+    *   --> sys - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ: пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ. пїЅпїЅпїЅ,
+    *   --> sys_docs - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    *   --> address - пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     *   --> unit_lead_types
     *   -->
-    * staff - Персонал
-    *   --> person - личная карточка + история званий, должностей, адрес, роль,
+    * staff - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+    *   --> person - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ + пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅ,
     *   --> pass_docs
     *   -->
     *   -->
     *   -->
-    * doc - Документы
+    * doc - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     *   --> person_document
     *   -->
     *   -->
@@ -23,7 +23,7 @@
     *   -->
     *   -->
     *   -->
-    * unit - Подразделение
+    * unit - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
     *   --> client
     *   --> unit
     *   --> unit_lead
@@ -47,8 +47,8 @@
     EnumerationType -> base -> enumeration_types -> sys_docs
     DocType -> base -> doc_types -> sys_docs
     NodeType -> base -> route_node_types -> sys_docs
-    (?)DocTypeArrtibute -> base -> doc_attribute_types -> sys_docs
-    (!!???)Enumeration -> unit -> enumaration -> sys_docs
+    (?)DocTypeAttribute -> base -> doc_attribute_types -> sys_docs
+    (!!???)Enumeration -> unit -> enumeration -> sys_docs
     ==================================================================
     
     Person -> staff -> person -> person
@@ -68,8 +68,8 @@
     
     ==================================================================
     
-    Client -> unit -> client -> unit?        !!!!!!!!!!!!
-           -> staff? -> client -> person     !!!!!!!!!!!!
+    Client -> unit -> client -> unit?        !!!
+           -> staff? -> client -> person     !!!
            
     Unit -> unit -> unit -> unit
     UnitComander -> unit -> unit_comander -> unit
@@ -109,7 +109,7 @@ screen_entities['position'] = position;
 
 
 /*var test_rr = [
- {entity:'rank', screen:'base', name: 'Звания', id: 151},
- {entity:'rank', screen:'base', name: 'Звания', id: 153},
- {entity:'rank', screen:'base', name: 'Звания', id: 154}
+ {entity:'rank', screen:'base', name: 'пїЅпїЅпїЅпїЅпїЅпїЅ', id: 151},
+ {entity:'rank', screen:'base', name: 'пїЅпїЅпїЅпїЅпїЅпїЅ', id: 153},
+ {entity:'rank', screen:'base', name: 'пїЅпїЅпїЅпїЅпїЅпїЅ', id: 154}
  ];*/

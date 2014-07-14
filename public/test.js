@@ -1,6 +1,5 @@
 /** @jsx React.DOM */
 
-
 var CatLink = React. createClass({
     getInitialState: function() {
         return {
@@ -13,8 +12,9 @@ var CatLink = React. createClass({
         }
     },
     whenClicked: function(screen){
-        //console.log(screen);
-        this.props.test(screen)
+        //this.props.reaction(screen);
+        console.log('catch whenClicked!');
+        console.warn(screen);
     },
     render: function(){
         var link = this.props.screen;
@@ -44,19 +44,19 @@ var CatLink = React. createClass({
                     );
             }
             return(
-                    <li><span onClick={this.toggle} className={className}></span>
-                        <a className="childs" href={src}>{link.name}</a>
-                        <div style={style}>
-                            <CatTreeLinksList source={null} childs={link.childNodes}/>
-                        </div>
-                    </li>
+                <li><span onClick={this.toggle} className={className}></span>
+                    <a className="childs" href={src}>{link.name}</a>
+                    <div style={style}>
+                        <CatTreeLinksList source={null} childs={link.childNodes}/>
+                    </div>
+                </li>
                 );
         }
 
         return(
-                    //<li style={style}><a href={src}>{link.name}</a></li>
-                    <li style={style}><ItemLink item={link} clicked={this.whenClicked}/></li>
-        );
+            //<li style={style}><a href={src}>{link.name}</a></li>
+            <li style={style}><ItemLink item={link} clicked={this.whenClicked}/></li>
+            );
 
     },
     toggle: function() {
@@ -73,6 +73,7 @@ var CatTreeLinksList = React. createClass({
         };
     },
     whenReaction: function(screen){
+        console.warn('Reaction');
         this.props.reaction = screen ;
     },
     componentDidMount: function() {
@@ -96,9 +97,9 @@ var CatTreeLinksList = React. createClass({
         var links = this.state.links;
 
         links.forEach(function(link){
-            //if(!link.isNonIndependent){
-                links_output.push(<CatLink screen ={link} key={link.id} test={this.whenReaction} />)
-            //}
+            if(!link.isNonIndependent){
+                links_output.push(<CatLink screen ={link} reaction={this.whenReaction} key={link.id}/>)
+            }
         });
         return(
             <ul className="nav nav-sidebar cattree">{links_output}</ul>
@@ -129,7 +130,7 @@ var MainList = React. createClass({
     whenListItemsClick: function(id){
             //somehow call MainScreen width cur id
         //this.props.itemclick(id);
-        //??? does this really need?
+        //??? really need?
         console.log(' whenListItemsClick');
     },
     whenListItemsAction: function(action){
@@ -137,7 +138,7 @@ var MainList = React. createClass({
         *  action 2 ajax
         * */
 
-        //console.warn('whenListItemsCpAction'+ action['action']+' k='+action['id']);
+        console.warn('whenListItemsCpAction'+ action['action']+' k='+action['id']);
 
 
         //$.get('http://zend_test/main/index/no', function(result){
@@ -262,13 +263,13 @@ var BaseScreen = React. createClass({
 
 var CatScreen = React. createClass({
     whenReaction: function(screen){
-
+        console.log('when_reaction');
     },
     render: function(){
         var cat = this.props.cat;
         var source = './react/get/cat/'+cat;
         return(
-            <div className="well"><CatTreeLinksList source={source} childs={null} reaction={this.whenReaction }/></div>
+            <div className="well"><CatTreeLinksList source={source} childs={null} reaction={this.whenReaction}/></div>
         );
     }
 });
