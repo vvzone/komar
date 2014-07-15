@@ -1,6 +1,8 @@
 /*
 * 2-g css
 */
+/* colors */
+/* fonts */
 body {
   color: white;
 }
@@ -10,22 +12,25 @@ div#header {
 div#left_panel {
   clear: both;
   float: left;
-  width: 345px px;
+  width: 345px;
 }
 div#main_window {
   float: left;
-  padding: 5 px;
+  padding: 5px;
   width: 1250px;
 }
-.nav li a {
-  padding-left: 10 px;
+div.next {
+  clear: both;
 }
-.nav li a .childs {
+.nav > li > a {
+  padding-left: 10px;
+}
+.nav > li > a .childs {
   padding-left: 12px;
   margin-left: 8px;
 }
-.nav li div.childs {
-  padding: 10 px;
+.nav > li div.childs {
+  padding: 10px;
   padding-left: 12px;
   margin-left: 8px;
   color: #428bca;
@@ -33,7 +38,7 @@ div#main_window {
   position: relative;
   cursor: pointer;
 }
-.nav li span {
+.nav > li span {
   position: absolute;
   top: 14px;
   left: -4px;
@@ -44,8 +49,47 @@ div#main_window {
 .well ul.cattree {
   margin-left: 10px;
 }
-div.alert .alert-error {
-  background: #d6001e;
-  width: 450px;
-  margin: 5px;
+div.MainList {
+  overflow: hidden;
+}
+div.MainList div.item {
+  clear: both;
+  float: left;
+  margin: 1px;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #d6e5ed;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+}
+div.MainList div.item a {
+  text-decoration: none;
+}
+div.MainList div.item div.item_name,
+div.MainList div.item div.item_cp {
+  float: left;
+}
+div.MainList div.item div.item_name {
+  min-width: 307.5px;
+}
+div.MainList div.item div.item_cp button {
+  margin-left: 1px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+div.MainList div.item:hover {
+  background: #eaf9ff;
+  border: 1px solid #a4b3bb;
+  cursor: pointer;
+}
+/* msg's*/
+.alert-error {
+  background: #d00a03;
+  margin: 10px;
+  width: 1230px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  font-size: 1em;
+}
+.alert-error strong {
+  font-size: 1.2em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }

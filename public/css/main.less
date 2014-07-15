@@ -5,10 +5,19 @@
 @base_width: 1600px;
 @left_panel_width: 350px;
 
-@min: 1;
-@med: 5;
-@big: 10;
-@huge: 20;
+@min: 1px;
+@med: 5px;
+@big: 10px;
+@huge: 20px;
+
+
+/* colors */
+@dark_red: #d00a03;
+@light_silver: #d6e5ed;
+
+/* fonts */
+@base_font_size: 1em;
+
 
 body{
     color: white;
@@ -25,21 +34,24 @@ div#main_container{
 div#left_panel{
   clear: both;
   float: left;
-  width: @left_panel_width - @med+px;
+  width: @left_panel_width - @med;
 }
 
 
 div#main_window{
     float: left;
-    padding: @med+px;
+    padding: @med;
     width: @base_width - @left_panel_width;
 }
 
+div.next{
+  clear: both;
+}
 
-.nav  li{
+.nav > li{
 
-  a{
-    padding-left: @big+px;
+  > a{
+    padding-left: @big;
 
     .childs {
       padding-left: 12px;
@@ -47,7 +59,7 @@ div#main_window{
     }
   }
   div.childs {
-    padding: @big + px;
+    padding: @big;
     padding-left: 12px;
     margin-left: 8px;
     color: #428bca;
@@ -67,22 +79,65 @@ div#main_window{
   }
 }
 
-
-
-
-
-
-
-
 .well ul.cattree{
   margin-left: 10px;
 }
 
+div.MainList{
+  overflow: hidden;
 
-div.alert{
-    .alert-error{
-        background: #d6001e;
-        width: 450px;
-        margin: 5px;
+  div.item{
+    clear: both;
+    float:left;
+    margin: @min;
+    padding: @med;
+    border-radius: 3px;
+    border: 1px solid @light_silver;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+
+    a{
+      text-decoration: none;
     }
+
+    div.item_name, div.item_cp{
+      float: left;
+    }
+
+    div.item_name{
+      min-width: @base_modal_width/4;
+    }
+
+
+    div.item_cp{
+
+      button{
+        margin-left: @min;
+        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+
+  div.item:hover{
+    background: @light_silver+20;
+    border: 1px solid @light_silver - 50;
+    cursor: pointer;
+  }
+}
+
+/* msg's*/
+
+@base_modal_width: @base_width - @left_panel_width - @big*2;
+
+.alert-error{
+  background: @dark_red;
+  margin: @big;
+  width: @base_modal_width;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  font-size: @base_font_size;
+
+  strong{
+    font-size: @base_font_size+0.2;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  }
 }

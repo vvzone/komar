@@ -116,63 +116,6 @@ var CatTreeLinksList = React. createClass({
 });
 
 
-
-
-
-var MainList = React. createClass({
-    /* Props
-    *
-    * source - server data-controller action
-    * */
-    getInitialState: function() {
-        return {
-            items: []
-        }
-    },
-    componentDidMount: function() {
-            var source = this.props.source;
-            $.get('http://zend_test/main/index/'+source, function(result) {
-                this.setState({items: result});
-            }.bind(this));
-    },
-    whenListItemsClick: function(id){
-            //somehow call MainScreen width cur id
-        //this.props.itemclick(id);
-        //??? really need?
-        console.log(' whenListItemsClick');
-    },
-    whenListItemsAction: function(action){
-        /* 2do
-        *  action 2 ajax
-        * */
-
-        console.warn('whenListItemsCpAction'+ action['action']+' k='+action['id']);
-
-
-        //$.get('http://zend_test/main/index/no', function(result){
-        $.get('http://zend_test/main/index/yes', function(result){
-            if(result['response'] == true){
-                alert('Success');
-            }else{
-                alert('Error');
-            }
-        });
-    },
-    render: function(){
-        var items_arr = this.state.items;
-        var output =[];
-
-        for(var item in items_arr){
-            console.log(items_arr[position]);
-           output.push(<ListItems item={items_arr[item]} key={items_arr[item].id} itemaction={this.whenListItemsAction} itemdisplay={this.whenListItemsClick} />);
-        }
-
-        return(
-            <div className="MainList">{output}</div>
-        )
-    }
-});
-
 var CatScreen = React. createClass({
     whenReaction: function(screen){
         //console.log('when_reaction');

@@ -14,9 +14,14 @@ var MainScreen = React.createClass({
 
 var FormEntPosition = React. createClass({
     render: function(){
+
+        var dependencies = [];
+        //dependencies[0] = 'FormEntRankPosition';
+        //dependencies[1] = 'FormEntRank';
+        dependencies[0] = 'rank_position';
         return(
             <div className="PositionBox">
-                <MainList source="positions" />
+                <MainList source="positions" dependencies={dependencies} />
             </div>
             )
     }
@@ -41,11 +46,14 @@ var FormEntRank = React. createClass({
 
 var FormEntRankPosition = React. createClass({
     render: function(){
-        return(<input type="text" size="15" id="child2" value="test for FormEntRankPosition" />)
+        console.info(this.props.host_id);
+        return(<div className="next"><RecordsList /></div>)
     }
 });
 
 var EntityBlock = React. createClass({
+    /* Router Class */
+
     render: function(){
         var class_name = this.props.entity_name;
         //console.info(class_name);
@@ -57,7 +65,7 @@ var EntityBlock = React. createClass({
                 return(<FormEntPosition />)
                 break;
             case 'rank_position':
-                return(<FormEntRankPosition />)
+                return(<FormEntRankPosition host_id={this.props.host_id} />)
                 break;
 
         };
@@ -89,6 +97,8 @@ var BaseScreen = React. createClass({
         console.info(this.state.entities);
         console.info(this.props.screen_name);
 
+        /* Вывод множественных сущностей для одного экрана. Пока хз зачем */
+
         if(Object.prototype.toString.call(this.state.entities[this.props.screen_name]) === '[object Array]'){
             console.info('yes');
             render_entities =this.state.entities[this.props.screen_name].map(function(ent){
@@ -96,8 +106,9 @@ var BaseScreen = React. createClass({
                 //console.log('ent='+ent);
             });
         }else{
+            var msg = 'Страница '+ this.props.screen_name +  ' не найдена';
             return(
-                <ErrorMsg msg="Страница не найдена" />
+                <ErrorMsg msg={msg} />
             )
         }
 

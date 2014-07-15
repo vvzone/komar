@@ -98,7 +98,7 @@ rank[0] = 'rank';
 
 var position = [];
 position[0] = 'position';
-position[1] = 'rank_position';
+//position[1] = 'rank_position';
 
 var screen_entities = {};
 
