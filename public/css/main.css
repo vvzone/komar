@@ -1,66 +1,51 @@
 /*
 * 2-g css
 */
-
-body{
-    color: white;
+body {
+  color: white;
 }
-
-div#header{
-        background: deepskyblue;
+div#header {
+  background: deepskyblue;
 }
-
-div#left_panel{
-    clear: both;
-    float: left;
-    /*background: red;*/
-    width: 350px;
+div#left_panel {
+  clear: both;
+  float: left;
+  width: 345px px;
 }
-
-div#main_window{
-    float: left;
-    background: green;
+div#main_window {
+  float: left;
+  padding: 5 px;
+  width: 1250px;
 }
-
-
-.nav > li > span.togglable{
-    position: absolute;
-    top: 14px;
-    left: -4px;
-    color: #428bca;
-    font-size: 9pt;
-    cursor: pointer;
+.nav li a {
+  padding-left: 10 px;
 }
-
-
-.nav > li > a {
-    padding-left: 20px;
+.nav li a .childs {
+  padding-left: 12px;
+  margin-left: 8px;
 }
-
-.nav > li > a.childs {
-    /*display: inline;*/
-    padding-left: 12px;
-    margin-left: 8px;
+.nav li div.childs {
+  padding: 10 px;
+  padding-left: 12px;
+  margin-left: 8px;
+  color: #428bca;
+  display: block;
+  position: relative;
+  cursor: pointer;
 }
-
-
-.nav > li > div.childs {
-    /*display: inline;*/
-    padding: 10px;
-    padding-left: 12px;
-    margin-left: 8px;
-    color: #428bca;
-
-    display: block;
-    position: relative;
-    cursor: pointer;
+.nav li span {
+  position: absolute;
+  top: 14px;
+  left: -4px;
+  color: #428bca;
+  font-size: 9pt;
+  cursor: pointer;
 }
-
-ul.cattree{
-    margin-left: 10px;
-    border-left: red;
+.well ul.cattree {
+  margin-left: 10px;
 }
-
-div.alert-error{
-background: #d6001e;
+div.alert .alert-error {
+  background: #d6001e;
+  width: 450px;
+  margin: 5px;
 }

@@ -72,29 +72,44 @@ var BaseScreen = React. createClass({
             entities: []
         };
     },
-    componentDidMount: function() {
+    componentWillMount: function() {
         if(this.props.screen_name==null){
             this.setState({screen_name: 'welcome'})
         }
         this.setState({screen_name: this.props.screen_name});
+
         var entities = screen_entities;
+
         this.setState({entities: entities});
     },
     render: function(){
-        //var render_entities = [];
-       // var screens_arr = this.state.entities;
-        //var screen_name = this.state.screen_name;
 
-        //var entities_arr=screens_arr[screen_name];
 
-        var render_entities = this.state.entities.map(function(ent){
-            return(<EntityBlock entity_name={ent} key={ent} />);
-        });
+        var render_entities = [];
+        console.info(this.state.entities);
+        console.info(this.props.screen_name);
 
-        for(var key in entities_arr){
-            //render_entities.push(<EntityBlock entity_name={entities_arr[key]} key={key} />)
-
+        if(Object.prototype.toString.call(this.state.entities[this.props.screen_name]) === '[object Array]'){
+            console.info('yes');
+            render_entities =this.state.entities[this.props.screen_name].map(function(ent){
+                return(<EntityBlock entity_name={ent} key={ent} />);
+                //console.log('ent='+ent);
+            });
+        }else{
+            return(
+                <ErrorMsg msg="Страница не найдена" />
+            )
         }
+
+        /*this.state.entities[this.props.screen_name].map(function(ent){
+            //return(<EntityBlock entity_name={ent} key={ent} />);
+            console.log('ent='+ent);
+        });*/
+
+        /*for(var key in entities_arr){
+            render_entities.push(<EntityBlock entity_name={entities_arr[key]} key={key} />)
+
+        }*/
 
         return(<div>{render_entities}</div>)
     }

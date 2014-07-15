@@ -1,6 +1,26 @@
 /** @jsx React.DOM */
 /* som base elements */
 
+var ErrorMsg = React.createClass({
+    render: function () {
+        //class="btn btn-sm btn-warning">
+        var message = '';
+        var header = '';
+        (this.props.header == undefined)? header= 'Ошибка' : header = this.props.header;
+        (this.props.msg == undefined)? message= 'Неизвестная ошибка': message = this.props.msg;
+
+        return (
+            <div className="alert alert-error">
+                <a href="#" className="close" data-dismiss="alert">&times;</a>
+                <strong>{header}</strong>
+                <br />{message}
+            </div>
+            );
+    }
+});
+
+
+
 var ButtonEdit = React.createClass({
     handleClick: function (e) {
         var action = 'edit';

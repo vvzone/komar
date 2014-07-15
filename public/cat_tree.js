@@ -110,11 +110,7 @@ var CatTreeLinksList = React. createClass({
                 );
         }
         return(
-            <div className="alert alert-error">
-                <a href="#" className="close" data-dismiss="alert">&times;</a>
-                <strong>Ошибка</strong>
-                <br />Неправильный формат ответа сервера
-            </div>
+            <ErrorMsg msg="Неправильный формат ответа сервера" />
         )
     }
 });

@@ -1,0 +1,88 @@
+/*
+* 2-g css
+*/
+
+@base_width: 1600px;
+@left_panel_width: 350px;
+
+@min: 1;
+@med: 5;
+@big: 10;
+@huge: 20;
+
+body{
+    color: white;
+}
+
+div#header{
+        background: deepskyblue;
+}
+
+div#main_container{
+
+}
+
+div#left_panel{
+  clear: both;
+  float: left;
+  width: @left_panel_width - @med+px;
+}
+
+
+div#main_window{
+    float: left;
+    padding: @med+px;
+    width: @base_width - @left_panel_width;
+}
+
+
+.nav  li{
+
+  a{
+    padding-left: @big+px;
+
+    .childs {
+      padding-left: 12px;
+      margin-left: 8px;
+    }
+  }
+  div.childs {
+    padding: @big + px;
+    padding-left: 12px;
+    margin-left: 8px;
+    color: #428bca;
+
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  span{
+    position: absolute;
+    top: 14px;
+    left: -4px;
+    color: #428bca;
+    font-size: 9pt;
+    cursor: pointer;
+  }
+}
+
+
+
+
+
+
+
+
+.well ul.cattree{
+  margin-left: 10px;
+}
+
+
+div.alert{
+    .alert-error{
+        background: #d6001e;
+        width: 450px;
+        margin: 5px;
+    }
+}
