@@ -26,9 +26,9 @@ var ButtonDiscard = React.createClass({
     },
     render: function () {
         if(this.props.mini == 'true'){
-            return ( <button className="ButtonSave btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span></button> )
+            return ( <button className="ButtonDiscard btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span></button> )
         }
-        return ( <button className="ButtonSave btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span>  Сброс</button> );
+        return ( <button className="ButtonDiscard btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span>  Сброс</button> );
     }
 });
 
@@ -92,16 +92,27 @@ var ItemLink = React. createClass({
 
 var ControlTinyText = React.createClass({
     getInitialState: function() {
-        return {value: this.props.value};
+        return {
+            value: this.props.value,
+            discard: this.props.discard
+        };
     },
     discardChanges: function(){
         this.setState({value: this.props.value});
+    },
+    componentDidMount: function() {
+        this.setState({value: this.props.value});
+        this.setState({discard: this.props.discard});
+    },
+    componentWillReceiveProps: function(prop){
+        this.discardChanges();
     },
     handleChange: function(event){
         this.setState({value: event.target.value});
     },
     render: function(){
         var id = 'tiny_control_'+this.props.name;
+        console.info('this.state.discard='+this.state.discard);
         return(<div className="form-group">
             <label htmlFor={id}>{this.props.name}</label>
             <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} />
@@ -111,16 +122,27 @@ var ControlTinyText = React.createClass({
 
 var ControlSmallText = React.createClass({
     getInitialState: function() {
-        return {value: this.props.value};
+        return {
+            value: '',
+            discard: undefined
+        };
     },
     discardChanges: function(){
         this.setState({value: this.props.value});
+    },
+    componentDidMount: function() {
+        this.setState({value: this.props.value});
+        this.setState({discard: this.props.discard});
+    },
+    componentWillReceiveProps: function(prop){
+        this.discardChanges();
     },
     handleChange: function(event){
         this.setState({value: event.target.value});
     },
     render: function(){
         var id = 'small_control_'+this.props.name;
+        console.info('this.state.discard'+this.state.discard);
         return(<div className="form-group">
             <label htmlFor={id}>{this.props.name}</label>
             <textarea className="form-control" id={id} value={this.state.value} onChange={this.handleChange} />
@@ -138,18 +160,33 @@ var Control = React.createClass({
      * props: value, type (route)
      *
      * */
+    getInitialState: function() {
+        return {
+            value: '',
+            discard: false
+        };
+    },
+    componentDidMount: function() {
+        this.setState({value: this.props.value});
+        this.setState({discard: this.props.discard});
 
+    },
+    componentWillReceiveProps: function(prop){
+        this.setState({discard: prop.discard});
+    },
     render: function () {
         var type = this.props.type;
         var value = this.props.value;
         var name = this.props.name;
+        var discard = this.props.discard;
+        console.info('dis-2:'+this.state.discard);
 
         switch (type) {
             case('tiny_text'):
-                return(<ControlTinyText value={value} name={name} />)
+                return(<ControlTinyText value={value} name={name} discard={discard} />)
                 break;
             case('small_text'):
-                return(<ControlSmallText value={value} name={name} />)
+                return(<ControlSmallText value={value} name={name} discard={discard} />)
                 break;
         }
 
@@ -165,18 +202,27 @@ var ControlsList = React.createClass({
         };
     },
     childrensDiscardChanges: function(){
-        //console.info(this.refs);
         this.setState({discard: this.state.discard==true? false : true});
+        console.info('dis-1:'+this.state.discard);
     },
     render: function(){
         var controls = [];
+        var controls2 = [];
         var editable = this.props.editable;
-        
+
+
+        /*console.info(this.state.items);
+        var controls2 = this.state.items.map(function(prop){
+
+            console.info('prop='+prop);
+            //<Control type={properties_types[type]} value={this.state.items[prop]} name={editable[prop]} discard={this.state.discard} />
+             //return(<CatLink screen={l} key={l.id} onClick={self.handleClick}/>)
+        });*/
         for(var prop in this.state.items){
             if(editable[prop]){
                 var type=prop;
                 controls.push(
-                    <Control type={properties_types[type]} value={this.state.items[prop]} name={editable[prop]} />
+                    <Control type={properties_types[type]} value={this.state.items[prop]} name={editable[prop]} discard={this.state.discard} />
                 )
                 console.log('type:'+type);
                 console.log('control chosen:'+properties_types[type]);
