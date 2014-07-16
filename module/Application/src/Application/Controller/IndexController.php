@@ -129,6 +129,10 @@ class IndexController extends AbstractActionController
     }
 
     public function ranksAction(){
+
+        $editable_array = array('name' => 'Название', 'name_min' => 'Сокращенное название', 'description'=> 'Описание');
+        $prototype_array = array('editable_properties' => $editable_array);
+
         $data_array = array(
             array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
             array('name' => 'Ефрейтор', 'id' => 2, 'order' => 2),
@@ -152,12 +156,17 @@ class IndexController extends AbstractActionController
             array('name' => 'Маршал Российской Федерации', 'id' => 20, 'order' => 20)
         );
 
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+
         $JsonModel = new JsonModel();
-        $JsonModel->setVariables($data_array);
+        $JsonModel->setVariables($response);
         return $JsonModel;
     }
 
     public function positionsAction(){
+
+        $editable_array = array('name' => 'Название', 'name_min' => 'Сокращенное название', 'description'=> 'Описание');
+        $prototype_array = array('editable_properties' => $editable_array);
 
         $data_array = array(
             array('name' => 'Командир полка', 'description'=> 'Описание тест описание тест тест описания тест', 'id' => 1, 'order' => 1),
@@ -187,8 +196,10 @@ class IndexController extends AbstractActionController
             array('name' => '', 'id' => 25, 'order' => 25),
         );
 
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+
         $JsonModel = new JsonModel();
-        $JsonModel->setVariables($data_array);
+        $JsonModel->setVariables($response);
         return $JsonModel;
     }
 
@@ -196,6 +207,9 @@ class IndexController extends AbstractActionController
         /*
          * Предполагается что экшен возращает выборку соответтсвующих входящему post_id
          * */
+
+        $editable_array = array();
+        $prototype_array = array('editable_properties' => $editable_array);
 
         $data_array = array(
             array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
@@ -205,8 +219,10 @@ class IndexController extends AbstractActionController
             array('name' => 'Старший лейтенант', 'id' => 5, 'order' => 3)
         );
 
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+
         $JsonModel = new JsonModel();
-        $JsonModel->setVariables($data_array);
+        $JsonModel->setVariables($response);
         return $JsonModel;
     }
 

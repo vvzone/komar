@@ -19,15 +19,30 @@ var ErrorMsg = React.createClass({
     }
 });
 
-
-var ButtonEditMini = React.createClass({
+var ButtonDiscard = React.createClass({
     handleClick: function (e) {
-        var action = 'edit';
+        var action = 'save';
         this.props.clicked(action);
     },
     render: function () {
-        //class="btn btn-sm btn-warning">
-        return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span></button> );
+        if(this.props.mini == 'true'){
+            return ( <button className="ButtonSave btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span></button> )
+        }
+        return ( <button className="ButtonSave btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span>  Сброс</button> );
+    }
+});
+
+
+var ButtonSave = React.createClass({
+    handleClick: function (e) {
+        var action = 'save';
+        this.props.clicked(action);
+    },
+    render: function () {
+        if(this.props.mini == 'true'){
+            return ( <button className="ButtonSave btn btn-xs btn-success" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ok"></span></button> )
+        }
+        return ( <button className="ButtonSave btn btn-xs btn-success" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ok"></span>  Сохранить</button> );
     }
 });
 
@@ -37,21 +52,13 @@ var ButtonEdit = React.createClass({
         this.props.clicked(action);
     },
     render: function () {
-        //class="btn btn-sm btn-warning">
+        if(this.props.mini == 'true'){
+            return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span></button> )
+        }
         return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span>  Редактировать</button> );
     }
 });
 
-var ButtonDeleteMini = React.createClass({
-    handleClick: function (e) {
-        var action = 'delete';
-        this.props.clicked(action);
-    },
-    render: function () {
-        //class="btn btn-xs btn-danger"> Удалить</a>
-        return ( <button className="ButtonDelete btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span></button> );
-    }
-});
 
 
 var ButtonDelete = React.createClass({
@@ -60,7 +67,9 @@ var ButtonDelete = React.createClass({
         this.props.clicked(action);
     },
     render: function () {
-        //class="btn btn-xs btn-danger"> Удалить</a>
+        if(this.props.mini == 'true'){
+            return ( <button className="ButtonDelete btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span></button> );
+        }
         return ( <button className="ButtonDelete btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span>  Удалить</button> );
     }
 });
@@ -81,8 +90,103 @@ var ItemLink = React. createClass({
     }
 });
 
+var ControlTinyText = React.createClass({
+    getInitialState: function() {
+        return {value: this.props.value};
+    },
+    discardChanges: function(){
+        this.setState({value: this.props.value});
+    },
+    handleChange: function(event){
+        this.setState({value: event.target.value});
+    },
+    render: function(){
+        var id = 'tiny_control_'+this.props.name;
+        return(<div className="form-group">
+            <label htmlFor={id}>{this.props.name}</label>
+            <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} />
+        </div>)
+    }
+})
 
-var ListItems = React.createClass({
+var ControlSmallText = React.createClass({
+    getInitialState: function() {
+        return {value: this.props.value};
+    },
+    discardChanges: function(){
+        this.setState({value: this.props.value});
+    },
+    handleChange: function(event){
+        this.setState({value: event.target.value});
+    },
+    render: function(){
+        var id = 'small_control_'+this.props.name;
+        return(<div className="form-group">
+            <label htmlFor={id}>{this.props.name}</label>
+            <textarea className="form-control" id={id} value={this.state.value} onChange={this.handleChange} />
+        </div>)
+    }
+})
+
+/* Controls: text, selector, search */
+
+
+
+var Control = React.createClass({
+    /* Router
+     * ---
+     * props: value, type (route)
+     *
+     * */
+
+    render: function () {
+        var type = this.props.type;
+        var value = this.props.value;
+        var name = this.props.name;
+
+        switch (type) {
+            case('tiny_text'):
+                return(<ControlTinyText value={value} name={name} />)
+                break;
+            case('small_text'):
+                return(<ControlSmallText value={value} name={name} />)
+                break;
+        }
+
+        return(<div></div>)
+    }
+});
+
+var ControlsList = React.createClass({
+    getInitialState: function() {
+        return {
+            items: this.props.items,
+            discard: false
+        };
+    },
+    childrensDiscardChanges: function(){
+        //console.info(this.refs);
+        this.setState({discard: this.state.discard==true? false : true});
+    },
+    render: function(){
+        var controls = [];
+        var editable = this.props.editable;
+        
+        for(var prop in this.state.items){
+            if(editable[prop]){
+                var type=prop;
+                controls.push(
+                    <Control type={properties_types[type]} value={this.state.items[prop]} name={editable[prop]} />
+                )
+                console.log('type:'+type);
+                console.log('control chosen:'+properties_types[type]);
+            }
+        };
+        return(<form role="form" className="ControlsBox">{controls}<ButtonSave /><ButtonDiscard clicked={this.childrensDiscardChanges}/></form>)
+    }
+})
+
+var ListItem = React.createClass({
     /*
      * <ListItem item=[] key='' action={this.whenListItemsAction} />
      * props:
@@ -91,60 +195,64 @@ var ListItems = React.createClass({
      * */
     getInitialState: function() {
         return {
-            item: this.props.item,
-            item_dependencies: []
+            item: [],
+            item_dependencies: [],
+            open: false,
+            editing: false
         }
     },
     whenClicked: function(){
-        this.props.itemdisplay(this.props.item.id);
+        this.setState({open: this.state.open==true? false: true});
+    },
+    componentDidMount: function() {
+        this.setState({item: this.props.item});
+    },
+    itemAdditionalInfo : function(){
+
     },
     whenClickedCP: function(action){
-        var itaction = [];
-        itaction['action'] = action;
-        itaction['id'] = this.props.item.id;
-        console.log('whenClicked'+itaction['action']+' action[id]='+ itaction['id']);
 
+        this.setState({open: this.state.open==true? false: false});
         if(action == 'edit'){
-            /*$.get('http://zend_test/main/index/'+this.props.source, function(result) {
-                this.setState({items: result});
-            }.bind(this));*/
-            this.setState({item_dependencies: this.props.dependencies});
-            console.log('dependencies='+this.props.dependencies);
+            this.setState({editing: this.state.editing==true? false: true});
         }
-        //this.props.itemaction(itaction);
     },
     render: function(){
         var delete_key= 'delete/'+this.props.item.id;
         var edit_key= 'edit/'+this.props.item.id;
 
-        console.log(this.state);
-        var item_dependencies = [];
-        var self=this;
-        item_dependencies = this.state.item_dependencies.map(function(item){
+        var item_additional_info = [];
+        var editable = this.props.prototype.editable_properties;
 
-            //console.log('this.props.item.id'+this.props.item.id);
-            var key = self.state.item.id+'_'+item;
-            return(<EntityBlock entity_name={item} host_id={self.state.item.id} key={key}/>)
-            //console.log(item);
-        });
-        if(this.props.non_base == "true"){
-            return(
-                <div className="item">
-                    <div className="item_name" onClick={this.whenClicked}><ItemLink item={this.props.item} clicked={this.whenClicked} /></div>
-                    <div className="item_cp">
-                        <ButtonDeleteMini clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key}/>
-                    </div>
-                </div>
-                )
+        if(this.state.open == true){
+            var self=this;
+
+            for(var prop in this.state.item){
+                if(editable[prop]){
+                    item_additional_info.push(
+                        <div>{editable[prop]}:{this.state.item[prop]}</div>
+                    )
+                }
+            }
         }
+
+        var edit_properties_box = [];
+        var item = this.state.item;
+
+        if(this.state.editing == true){
+            edit_properties_box = <ControlsList editable={editable}  items={item}/>;
+            //edit_properties_box = <ButtonDiscard />;
+        }
+
         return(
             <div className="item">
-                <div className="item_name" onClick={this.whenClicked}><ItemLink item={this.props.item} clicked={this.whenClicked} /></div>
+                <div className="item_name"><ItemLink item={this.props.item} onClick={this.whenClicked} /></div>
                 <div className="item_cp">
-                    <ButtonEdit clicked={this.whenClickedCP} id={this.props.item.id} key={edit_key}/>
-                    <ButtonDelete clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key}/>
+                    <ButtonEdit clicked={this.whenClickedCP} id={this.props.item.id} key={edit_key} mini={this.props.non_base}/>
+                    <ButtonDelete clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key} mini={this.props.non_base}/>
                 </div>
-                {item_dependencies}
+                {item_additional_info}
+                {edit_properties_box}
             </div>
             )
     }
@@ -166,21 +274,11 @@ var MainList = React. createClass({
             this.setState({items: result});
         }.bind(this));
     },
-    whenListItemsClick: function(id){
-        //somehow call MainScreen width cur id
-        //this.props.itemclick(id);
-        //??? really need?
-        console.log(' whenListItemsClick'+ id);
-    },
     whenListItemsAction: function(action){
         /* 2do
          *  action 2 ajax
          * */
 
-        console.warn('whenListItemsCpAction'+ action['action']+' k='+action['id']);
-
-
-        //$.get('http://zend_test/main/index/no', function(result){
         $.get('http://zend_test/main/index/yes', function(result){
             if(result['response'] == true){
                 alert('Success');
@@ -190,20 +288,13 @@ var MainList = React. createClass({
         });
     },
     render: function(){
-        var items_arr = this.state.items;
+        var items_arr = this.state.items.data;
         var output =[];
-
         var self = this;
 
         for(var item in items_arr){
-            console.log(items_arr[position]);
-
-            console.log('MainList: '+this.props.dependencies);
             output.push(
-                <ListItems item={items_arr[item]} key={items_arr[item].id}
-                itemaction={self.whenListItemsAction} itemdisplay={self.whenListItemsClick}
-                dependencies={this.props.dependencies}
-                non_base={this.props.non_base} />);
+                <ListItem item={items_arr[item]} prototype={this.state.items.prototype} key={items_arr[item].id} non_base={this.props.non_base} />);
         }
 
         return(

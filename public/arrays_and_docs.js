@@ -108,6 +108,13 @@ screen_entities['rank'] = rank;
 screen_entities['position'] = position;
 
 
+var properties_types = [];
+
+properties_types['name'] = 'tiny_text';
+properties_types['name_min'] = 'tiny_text';
+properties_types['description'] = 'small_text';
+
+
 /*var test_rr = [
  {entity:'rank', screen:'base', name: '������', id: 151},
  {entity:'rank', screen:'base', name: '������', id: 153},
