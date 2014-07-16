@@ -17,10 +17,10 @@
 
 /* fonts */
 @base_font_size: 1em;
-
+@base_font_color: #428bca;
 
 body{
-    color: white;
+    color: @base_font_color;
 }
 
 div#header{
@@ -62,8 +62,6 @@ div.next{
     padding: @big;
     padding-left: 12px;
     margin-left: 8px;
-    color: #428bca;
-
     display: block;
     position: relative;
     cursor: pointer;
@@ -73,7 +71,6 @@ div.next{
     position: absolute;
     top: 14px;
     left: -4px;
-    color: #428bca;
     font-size: 9pt;
     cursor: pointer;
   }
@@ -86,7 +83,7 @@ div.next{
 div.MainList{
   overflow: hidden;
 
-  div.item{
+  div.item, div.item_attr{
     clear: both;
     float:left;
     margin: @min;
@@ -117,11 +114,15 @@ div.MainList{
     }
   }
 
-  div.item:hover{
-    background: @light_silver+20;
+  /*div.item:hover{
+    background: @light_silver+30;
     border: 1px solid @light_silver - 50;
     cursor: pointer;
-  }
+  }*/
+}
+
+.enlight{
+  background: @light_silver+30;
 }
 
 /* msg's*/
@@ -131,6 +132,7 @@ div.MainList{
 .alert-error{
   background: @dark_red;
   margin: @big;
+  color: white;
   width: @base_modal_width;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);

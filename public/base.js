@@ -20,6 +20,16 @@ var ErrorMsg = React.createClass({
 });
 
 
+var ButtonEditMini = React.createClass({
+    handleClick: function (e) {
+        var action = 'edit';
+        this.props.clicked(action);
+    },
+    render: function () {
+        //class="btn btn-sm btn-warning">
+        return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span></button> );
+    }
+});
 
 var ButtonEdit = React.createClass({
     handleClick: function (e) {
@@ -31,6 +41,18 @@ var ButtonEdit = React.createClass({
         return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span>  Редактировать</button> );
     }
 });
+
+var ButtonDeleteMini = React.createClass({
+    handleClick: function (e) {
+        var action = 'delete';
+        this.props.clicked(action);
+    },
+    render: function () {
+        //class="btn btn-xs btn-danger"> Удалить</a>
+        return ( <button className="ButtonDelete btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span></button> );
+    }
+});
+
 
 var ButtonDelete = React.createClass({
     handleClick: function (e) {
@@ -105,6 +127,16 @@ var ListItems = React.createClass({
             return(<EntityBlock entity_name={item} host_id={self.state.item.id} key={key}/>)
             //console.log(item);
         });
+        if(this.props.non_base == "true"){
+            return(
+                <div className="item">
+                    <div className="item_name" onClick={this.whenClicked}><ItemLink item={this.props.item} clicked={this.whenClicked} /></div>
+                    <div className="item_cp">
+                        <ButtonDeleteMini clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key}/>
+                    </div>
+                </div>
+                )
+        }
         return(
             <div className="item">
                 <div className="item_name" onClick={this.whenClicked}><ItemLink item={this.props.item} clicked={this.whenClicked} /></div>
@@ -167,7 +199,11 @@ var MainList = React. createClass({
             console.log(items_arr[position]);
 
             console.log('MainList: '+this.props.dependencies);
-            output.push(<ListItems item={items_arr[item]} key={items_arr[item].id} itemaction={self.whenListItemsAction} itemdisplay={self.whenListItemsClick} dependencies={this.props.dependencies} />);
+            output.push(
+                <ListItems item={items_arr[item]} key={items_arr[item].id}
+                itemaction={self.whenListItemsAction} itemdisplay={self.whenListItemsClick}
+                dependencies={this.props.dependencies}
+                non_base={this.props.non_base} />);
         }
 
         return(

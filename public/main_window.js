@@ -47,16 +47,19 @@ var FormEntRank = React. createClass({
 var FormEntRankPosition = React. createClass({
     render: function(){
         console.info(this.props.host_id);
-        return(<div className="next"><RecordsList /></div>)
+        return(
+            <div className="item_attr">Звания соответствующие должности:
+                <MainList source="positionsranks" host_id={this.props.host_id} non_base="true" />
+            </div>
+        )
     }
 });
 
 var EntityBlock = React. createClass({
     /* Router Class */
-
     render: function(){
         var class_name = this.props.entity_name;
-        //console.info(class_name);
+        var host_id = this.props.host_id;
         switch(class_name) {
             case 'rank':
                 return(<FormEntRank />)
@@ -65,11 +68,11 @@ var EntityBlock = React. createClass({
                 return(<FormEntPosition />)
                 break;
             case 'rank_position':
-                return(<FormEntRankPosition host_id={this.props.host_id} />)
+                return(<FormEntRankPosition host_id={host_id} />)
                 break;
 
         };
-        return(<div>&nbsp;</div>)
+        return(<div><ErrorMsg msg="Не определена конечная сущность" /></div>)
     }
 });
 
@@ -111,16 +114,6 @@ var BaseScreen = React. createClass({
                 <ErrorMsg msg={msg} />
             )
         }
-
-        /*this.state.entities[this.props.screen_name].map(function(ent){
-            //return(<EntityBlock entity_name={ent} key={ent} />);
-            console.log('ent='+ent);
-        });*/
-
-        /*for(var key in entities_arr){
-            render_entities.push(<EntityBlock entity_name={entities_arr[key]} key={key} />)
-
-        }*/
 
         return(<div>{render_entities}</div>)
     }

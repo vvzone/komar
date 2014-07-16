@@ -131,8 +131,25 @@ class IndexController extends AbstractActionController
     public function ranksAction(){
         $data_array = array(
             array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
-            array('name' => 'Сержант', 'id' => 2, 'order' => 2),
-            array('name' => 'Старший сержант', 'id' => 3, 'order' => 3)
+            array('name' => 'Ефрейтор', 'id' => 2, 'order' => 2),
+            array('name' => 'Младший сержант', 'id' => 3, 'order' => 3),
+            array('name' => 'Сержант', 'id' => 4, 'order' => 4),
+            array('name' => 'Старший сержант', 'id' => 5, 'order' => 5),
+            array('name' => 'Старшина', 'id' => 6, 'order' => 6),
+            array('name' => 'Прапорщик', 'id' => 7, 'order' => 7),
+            array('name' => 'Старший прапорщик', 'id' => 8, 'order' => 8),
+            array('name' => 'Младший лейтенант', 'id' => 9, 'order' => 9),
+            array('name' => 'Лейтенант', 'id' => 10, 'order' => 10),
+            array('name' => 'Старший лейтенант', 'id' => 11, 'order' => 11),
+            array('name' => 'Капитан', 'id' => 12, 'order' => 12),
+            array('name' => 'Майор', 'id' => 13, 'order' => 13),
+            array('name' => 'Подполковник', 'id' => 14, 'order' => 14),
+            array('name' => 'Полковник', 'id' => 15, 'order' => 15),
+            array('name' => 'Генерал-майор', 'id' => 16, 'order' => 16),
+            array('name' => 'Генерал-лейтенант', 'id' => 17, 'order' => 17),
+            array('name' => 'Генерал-полковник', 'id' => 18, 'order' => 18),
+            array('name' => 'Генерал армии', 'id' => 19, 'order' => 19),
+            array('name' => 'Маршал Российской Федерации', 'id' => 20, 'order' => 20)
         );
 
         $JsonModel = new JsonModel();
@@ -141,10 +158,51 @@ class IndexController extends AbstractActionController
     }
 
     public function positionsAction(){
+
         $data_array = array(
-            array('name' => 'Зам по тылу', 'id' => 1, 'order' => 1),
-            array('name' => 'Начальник пищеблока', 'id' => 2, 'order' => 2),
-            array('name' => 'Командир части', 'id' => 3, 'order' => 3)
+            array('name' => 'Командир полка', 'description'=> 'Описание тест описание тест тест описания тест', 'id' => 1, 'order' => 1),
+            array('name' => 'Начальник штаба полка', 'id' => 2, 'order' => 2),
+            array('name' => 'Начальник тыловой службы', 'id' => 3, 'order' => 3),
+            array('name' => 'Начальник финансовой службы', 'id' => 4, 'order' => 4),
+            array('name' => 'Заместитель командира полка по воспитательной части', 'id' => 5, 'order' => 5),
+            array('name' => 'Заместитель начальника штаба полка', 'id' => 6, 'order' => 7),
+            array('name' => 'Заместитель командира полка', 'id' => 7, 'order' => 6),
+            array('name' => 'Заместитель начальника тыловой службы', 'id' => 8, 'order' => 8),
+            array('name' => 'Заместитель начальника финансовой служб', 'id' => 9, 'order' => 9),
+            array('name' => 'Начальник пищеблока', 'id' => 10, 'order' => 10),
+            array('name' => '', 'id' => 11, 'order' => 11),
+            array('name' => '', 'id' => 12, 'order' => 12),
+            array('name' => '', 'id' => 13, 'order' => 13),
+            array('name' => '', 'id' => 14, 'order' => 14),
+            array('name' => '', 'id' => 15, 'order' => 15),
+            array('name' => '', 'id' => 16, 'order' => 16),
+            array('name' => '', 'id' => 17, 'order' => 17),
+            array('name' => '', 'id' => 18, 'order' => 18),
+            array('name' => '', 'id' => 19, 'order' => 19),
+            array('name' => '', 'id' => 20, 'order' => 20),
+            array('name' => '', 'id' => 21, 'order' => 21),
+            array('name' => '', 'id' => 22, 'order' => 22),
+            array('name' => '', 'id' => 23, 'order' => 23),
+            array('name' => '', 'id' => 24, 'order' => 24),
+            array('name' => '', 'id' => 25, 'order' => 25),
+        );
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
+
+    public function positionsranksAction(){
+        /*
+         * Предполагается что экшен возращает выборку соответтсвующих входящему post_id
+         * */
+
+        $data_array = array(
+            array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
+            array('name' => 'Сержант', 'id' => 2, 'order' => 2),
+            array('name' => 'Старший сержант', 'id' => 3, 'order' => 3),
+            array('name' => 'Лейтенант', 'id' => 4, 'order' => 3),
+            array('name' => 'Старший лейтенант', 'id' => 5, 'order' => 3)
         );
 
         $JsonModel = new JsonModel();
