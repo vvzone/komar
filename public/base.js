@@ -278,8 +278,12 @@ var ListItem = React.createClass({
         var item = this.state.item;
 
         if(this.state.editing == true){
-            edit_properties_box = <ControlsList editable={editable}  items={item}/>;
-            //edit_properties_box = <ButtonDiscard />;
+            edit_properties_box.push(<ControlsList editable={editable}  items={item}/>);
+            if(this.props.dependencies){
+                for(key in this.props.dependencies){
+                    edit_properties_box.push(<EntityBlock entity_name={this.props.dependencies[key]} host_id={this.props.item.id} />);
+                }
+            }
         }
 
         return(
@@ -332,7 +336,7 @@ var MainList = React. createClass({
 
         for(var item in items_arr){
             output.push(
-                <ListItem item={items_arr[item]} prototype={this.state.items.prototype} key={items_arr[item].id} non_base={this.props.non_base} />);
+                <ListItem item={items_arr[item]} prototype={this.state.items.prototype} key={items_arr[item].id} dependencies={this.props.dependencies} />);
         }
 
         return(
