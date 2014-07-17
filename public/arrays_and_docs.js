@@ -110,6 +110,7 @@ screen_entities['position'] = position;
 
 var properties_types = [];
 
+
 properties_types['name'] = 'tiny_text';
 properties_types['name_min'] = 'tiny_text';
 properties_types['description'] = 'small_text';

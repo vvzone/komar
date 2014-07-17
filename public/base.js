@@ -1,5 +1,5 @@
 /** @jsx React.DOM */
-/* som base elements */
+/* some base elements */
 
 var ErrorMsg = React.createClass({
     render: function () {
@@ -210,14 +210,6 @@ var ControlsList = React.createClass({
         var controls2 = [];
         var editable = this.props.editable;
 
-
-        /*console.info(this.state.items);
-        var controls2 = this.state.items.map(function(prop){
-
-            console.info('prop='+prop);
-            //<Control type={properties_types[type]} value={this.state.items[prop]} name={editable[prop]} discard={this.state.discard} />
-             //return(<CatLink screen={l} key={l.id} onClick={self.handleClick}/>)
-        });*/
         for(var prop in this.state.items){
             if(editable[prop]){
                 var type=prop;
