@@ -71,23 +71,42 @@ ButtonListBoxRight = React.createClass({
 
 
 var ListBoxLeft = React.createClass({
-    handleClick: function(event){
-        console.info(event);
+    getInitialState: function() {
+        return {
+            selected: []
+        }
     },
     handleClickButton: function(action){
+        var callback = [];
+        callback['action'] = action;
+        callback['id'] = this.state.selected;
+        console.log('this.props.items')
 
+        var callback_item=[];
+        /*this.props.items.map(function(i){
+            callback_item.push(i['id']);
+        });*/
+        callback_item = this.props.items[callback['id']-1]; /* Переделать в ассоциативный массив !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+
+        callback['item'] = callback_item;
+        console.log('callback[item]');
+        console.log(callback['item']);
+        this.props.callback(callback);
+    },
+    handleChange: function(event){
+        this.setState({selected: event.target.value});
     },
     render: function(){
         var list_box_items=[];
         for(var key in this.props.items){
-            console.warn('Info dispatch');
-            console.log('key'+key+' name'+this.props.items[key]['name']+' id='+this.props.items[key]['id']);
+            //console.warn('Info dispatch');
+            //console.log('key'+key+' name'+this.props.items[key]['name']+' id='+this.props.items[key]['id']);
             list_box_items.push(<option value={this.props.items[key]['id']} id={this.props.items[key]['id']} onClick={this.handleClick}>{this.props.items[key]['name']}</option>);
         }
 
         return(
             <div className="listBox">
-                <select multiple="" size="10">{list_box_items}</select><ButtonListBoxLeft clicked={this.handleClickButton} />
+                <select multiple="" size="10" onChange={this.handleChange}>{list_box_items}</select><ButtonListBoxLeft clicked={this.handleClickButton} />
             </div>
         )
     }
@@ -100,6 +119,42 @@ var ListBoxTwoSide = React.createClass({
             items_right: []
         }
     },
+    listChange: function(callback){
+
+        var current_list = [];
+        var target_list = [];
+
+        if(callback['action']=='move_left'){
+            current_list = this.state.items_left;
+            target_list = this.state.items_right;
+        }else{
+            current_list = this.state.items_right;
+            target_list = this.state.items_left;
+        }
+
+        console.log('current_list');
+        console.log(current_list);
+
+        for(var key in current_list){
+            console.log('delete key'+key+' current_list='+current_list[key][callback['id']]);
+            delete current_list[key][callback['id']];
+        }
+
+        for(var key in target_list){
+           console.log('add key'+key+' callback[item]='+callback['item']);
+           target_list[key][callback['id']] = callback['item'];
+        }
+
+        if(callback['action']=='move_left'){
+            this.setState({items_left: current_list});
+            this.setState({items_right: target_list});
+
+        }else{
+            this.setState({items_left: target_list});
+            this.setState({items_right: current_list});
+        }
+
+    },
     componentDidMount: function() {
 
         $.get('http://zend_test/main/index/'+this.props.source_left, function(result) {
@@ -109,7 +164,7 @@ var ListBoxTwoSide = React.createClass({
         $.get('http://zend_test/main/index/'+this.props.source_right, function(result) {
             this.setState({items_right: result.data});
         }.bind(this));
-        
+
     },
     render: function(){
         var combined = [];
@@ -120,8 +175,8 @@ var ListBoxTwoSide = React.createClass({
         console.warn('AUG RIGHT!!!');
         console.warn(this.state.items_right);*/
 
-        combined[0] = <ListBoxLeft items={this.state.items_left} />;
-        combined[1] = <ListBoxLeft items={this.state.items_right} />;
+        combined[0] = <ListBoxLeft items={this.state.items_left} callback={this.listChange} />;
+        combined[1] = <ListBoxLeft items={this.state.items_right} callback={this.listChange} />;
 
 
         return(
