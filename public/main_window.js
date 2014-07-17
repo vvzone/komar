@@ -71,18 +71,6 @@ ButtonListBoxRight = React.createClass({
 
 
 var ListBoxLeft = React.createClass({
-    getInitialState: function() {
-        return {
-            items: [],
-            selected: ''
-        }
-    },
-    componentDidMount: function() {
-      //  this.setState({item: this.props.items})
-        $.get('http://zend_test/main/index/'+this.props.source, function(result) {
-            this.setState({items_left: result.data});
-        }.bind(this));
-    },
     handleClick: function(event){
         console.info(event);
     },
@@ -91,9 +79,10 @@ var ListBoxLeft = React.createClass({
     },
     render: function(){
         var list_box_items=[];
-        for(var key in this.state.items){
-            //console.log('key'+key+' name'+this.props.items[key]['name']+' id='+this.props.items[key]['id']);
-            list_box_items.push(<option value={this.state.items[key]['id']} id={this.state.items[key]['id']} onClick={this.handleClick}>{this.state.items[key]['name']}</option>);
+        for(var key in this.props.items){
+            console.warn('Info dispatch');
+            console.log('key'+key+' name'+this.props.items[key]['name']+' id='+this.props.items[key]['id']);
+            list_box_items.push(<option value={this.props.items[key]['id']} id={this.props.items[key]['id']} onClick={this.handleClick}>{this.props.items[key]['name']}</option>);
         }
 
         return(
@@ -113,18 +102,27 @@ var ListBoxTwoSide = React.createClass({
     },
     componentDidMount: function() {
 
-       /* $.get('http://zend_test/main/index/'+this.props.source_left, function(result) {
+        $.get('http://zend_test/main/index/'+this.props.source_left, function(result) {
             this.setState({items_left: result.data});
         }.bind(this));
 
         $.get('http://zend_test/main/index/'+this.props.source_right, function(result) {
             this.setState({items_right: result.data});
-        }.bind(this));*/
+        }.bind(this));
+        
     },
     render: function(){
         var combined = [];
-        combined[0] = <ListBoxLeft items={this.state.items_left} source={this.props.source_left} />;
-        combined[1] = <ListBoxLeft items={this.state.items_right} source={this.props.source_right} />;
+
+        /*
+        console.warn('AUG LEFT!!!');
+        console.warn(this.state.items_left);
+        console.warn('AUG RIGHT!!!');
+        console.warn(this.state.items_right);*/
+
+        combined[0] = <ListBoxLeft items={this.state.items_left} />;
+        combined[1] = <ListBoxLeft items={this.state.items_right} />;
+
 
         return(
             <div className="two-way-list-box">{combined}</div>
