@@ -78,7 +78,10 @@ var ListBoxLeft = React.createClass({
         }
     },
     componentDidMount: function() {
-        this.setState({item: this.props.items})
+      //  this.setState({item: this.props.items})
+        $.get('http://zend_test/main/index/'+this.props.source, function(result) {
+            this.setState({items_left: result.data});
+        }.bind(this));
     },
     handleClick: function(event){
         console.info(event);
@@ -110,28 +113,18 @@ var ListBoxTwoSide = React.createClass({
     },
     componentDidMount: function() {
 
-        $.get('http://zend_test/main/index/'+this.props.source_left, function(result) {
+       /* $.get('http://zend_test/main/index/'+this.props.source_left, function(result) {
             this.setState({items_left: result.data});
         }.bind(this));
 
-        console.log('source_left');
-        console.log(this.props.source_left);
-        console.log('result');
-        console.log(this.state.items_left);
-
-        /*$.get('http://zend_test/main/index/'+this.props.source_right, function(result) {
+        $.get('http://zend_test/main/index/'+this.props.source_right, function(result) {
             this.setState({items_right: result.data});
         }.bind(this));*/
-
-        console.log('source_right');
-        console.log(this.props.source_right);
-        console.log('result');
-        console.log(this.state.items_right);
     },
     render: function(){
         var combined = [];
-        combined[0] = <ListBoxLeft items={this.state.items_left} />;
-        combined[1] = <ListBoxLeft items={this.state.items_right} />;
+        combined[0] = <ListBoxLeft items={this.state.items_left} source={this.props.source_left} />;
+        combined[1] = <ListBoxLeft items={this.state.items_right} source={this.props.source_right} />;
 
         return(
             <div className="two-way-list-box">{combined}</div>
