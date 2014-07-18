@@ -38,6 +38,7 @@
     PersonDocType -> base -> pass_doc_types -> pass_doc_types
     
     AddressType -> base -> address_types -> sys
+
     SexType -> base -> sex_types -> sys
     Country -> base -> countries -> sys
     
@@ -99,12 +100,15 @@ rank[0] = 'rank';
 var position = [];
 position[0] = 'position';
 //position[1] = 'rank_position';
+var pass_doc_types = [];
+pass_doc_types[0] = 'pass_doc_types';
 
 var screen_entities = {};
 
 screen_entities['test_screen'] = test_screen;
 screen_entities['sys'] = sys;
 screen_entities['rank'] = rank;
+screen_entities['pass_doc_types'] = pass_doc_types;
 screen_entities['position'] = position;
 
 
@@ -114,6 +118,10 @@ var properties_types = [];
 properties_types['name'] = 'tiny_text';
 properties_types['name_min'] = 'tiny_text';
 properties_types['description'] = 'small_text';
+
+/* pass_doc_types */
+properties_types['seriesMask'] = 'tiny_text';
+properties_types['numberMask'] = 'tiny_text';
 
 
 /*var test_rr = [

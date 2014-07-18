@@ -11,7 +11,6 @@ var MainScreen = React.createClass({
     }
 });
 
-
 var FormEntPosition = React. createClass({
     render: function(){
 
@@ -34,6 +33,17 @@ var FormEntRank = React. createClass({
             )
     }
 });
+
+var FormEntPassDocTypes = React. createClass({
+    render: function(){
+        return(
+            <div className="PassDocTypesBox">
+                <MainList source="passdoctypes" />
+            </div>
+            )
+    }
+});
+
 
 
 /*
@@ -233,6 +243,8 @@ var EntityBlock = React. createClass({
             case 'rank_position':
                 return(<FormEntRankPosition host_id={host_id} />)
                 break;
+            case 'pass_doc_types':
+                return(<FormEntPassDocTypes />)
 
         };
         var msg = "Не найден класс "+class_name;

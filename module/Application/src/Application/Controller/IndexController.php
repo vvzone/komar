@@ -301,6 +301,69 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
+
+    public function passdoctypesAction(){
+        /*
+         * Предполагается что экшен возращает выборку соответтсвующих входящему post_id
+         * */
+
+        $editable_array = array('name' => 'Название', 'isFull' => 'Полная идентификация',
+                                'isMain'=> 'Основной', 'seriesMask' => 'Маска серии', 'numberMask' => 'Маска номера', 'validPeriod' => '');
+        $prototype_array = array('editable_properties' => $editable_array);
+
+        $data_array = array(
+            array('id' => 1, 'name' => 'Паспорт', 'isFull'=> true, 'isMain' => true, 'isSeries' => true,
+            'seriesMask' => '', 'numberMask' => '', 'validPeriod' => ''),
+            array('id' => 2, 'name' => 'Водительские права', 'isFull'=> true, 'isMain' => true, 'isSeries' => true,
+                'seriesMask' => '', 'numberMask' => '', 'validPeriod' => ''),
+        );
+
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+
+
+            $full_data_array = $data_array;
+            $data_array = array();
+
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            //if($value['name'] == $query){
+                            //if($value['name'] == 'Сметчик'){
+                            $data_array[] = $full_data_array[$key];
+                            //$data_array = $request->getPost('data');
+                            //$data_array = $request->getContent();
+                        }
+                    }
+                }
+            }
+
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+
+
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
     public function yesAction(){
         $data_array['response'] = true;
         $JsonModel = new JsonModel();
