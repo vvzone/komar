@@ -133,6 +133,7 @@ class IndexController extends AbstractActionController
         $editable_array = array('name' => 'Название', 'name_min' => 'Сокращенное название', 'description'=> 'Описание');
         $prototype_array = array('editable_properties' => $editable_array);
 
+        //'id' => 1, 'info' => array(
         $data_array = array(
             array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
             array('name' => 'Ефрейтор', 'id' => 2, 'order' => 2),
