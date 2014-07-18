@@ -305,6 +305,7 @@ var MainList = React. createClass({
     /* Props
      *
      * source - server data-controller action (entity)
+     * 2 do: add-interface, msg for 0 results
      * */
     getInitialState: function() {
         return {
@@ -329,6 +330,10 @@ var MainList = React. createClass({
             }
         });
     },
+    searchReceived: function(results){
+        // exchange arrays
+        this.setState({items: results});
+    },
     render: function(){
         var items_arr = this.state.items.data;
         var output =[];
@@ -340,7 +345,10 @@ var MainList = React. createClass({
         }
 
         return(
-            <div className="MainList">{output}</div>
+            <div className="List">
+                <InstantSearch source={this.props.source} searchReceived={this.searchReceived}/>
+                <div className="MainList">{output}</div>
+            </div>
             )
     }
 });

@@ -51,7 +51,7 @@ ButtonListBoxLeft = React.createClass({
         if(this.props.mini == 'true'){
             return ( <button className="ButtonMoveLeft btn btn-xs btn-primary" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-chevron-left"></span></button> )
         }
-        return ( <button className="ButtonMoveLeft btn btn-xs btn-primary" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-chevron-left"></span></button> );
+        return ( <button className="ButtonMoveLeft btn btn-xs btn-link btn-block" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-chevron-left"></span></button> );
     }
 });
 
@@ -64,13 +64,12 @@ ButtonListBoxRight = React.createClass({
         if(this.props.mini == 'true'){
             return ( <button className="ButtonMoveRight btn btn-xs btn-primary" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-chevron-right"></span></button> )
         }
-        return ( <button className="ButtonMoveRight btn btn-xs btn-primary" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-chevron-right"></span></button> );
+        return ( <button className="ButtonMoveRight btn btn-xs btn-link btn-block" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-chevron-right"></span></button> );
     }
 });
 
 
-
-var ListBoxLeft = React.createClass({
+var ListBox = React.createClass({
     getInitialState: function() {
         return {
             selected: []
@@ -80,8 +79,6 @@ var ListBoxLeft = React.createClass({
         var callback = [];
         callback['action'] = action;
         callback['id'] = this.state.selected;
-        console.log('this.props.items')
-
         var callback_item=[];
         callback_item = this.props.items[callback['id']];
         callback['item'] = callback_item;
@@ -93,16 +90,27 @@ var ListBoxLeft = React.createClass({
     },
     render: function(){
         var list_box_items=[];
-
         for(var key in this.props.items){
-            console.warn('Info dispatch');
-            console.log('key'+key+' name'+this.props.items[key]['name']+' id='+this.props.items[key]['id']);
             list_box_items.push(<option key={this.props.items[key]['id']} value={this.props.items[key]['id']} id={this.props.items[key]['id']} onClick={this.handleClick}>{this.props.items[key]['name']}</option>);
         }
-
+        if(this.props.type == 'right'){
+            return( <div className="list_box">
+                <div className="list_box_select">
+                    <select multiple="" size="10" onChange={this.handleChange}>{list_box_items}</select>
+                </div>
+                <div className="list_box_cp">
+                    <ButtonListBoxLeft clicked={this.handleClickButton} />
+                </div>
+            </div>)
+        }
         return(
-            <div className="listBox">
-                <select multiple="" size="10" onChange={this.handleChange}>{list_box_items}</select><ButtonListBoxLeft clicked={this.handleClickButton} />
+            <div className="list_box">
+                <div className="list_box_select">
+                    <select multiple="" size="10" onChange={this.handleChange}>{list_box_items}</select>
+                </div>
+                <div className="list_box_cp">
+                    <ButtonListBoxRight clicked={this.handleClickButton} />
+                </div>
             </div>
         )
     }
@@ -168,8 +176,8 @@ var ListBoxTwoSide = React.createClass({
             delete items_right[id];
         }
 
-        combined[0] = <ListBoxLeft key="combo" items={items_left} callback={this.listChange} />;
-        combined[1] = <ListBoxLeft key="combo_right" items={items_right} callback={this.listChange} />;
+        combined[0] = <ListBox key="combo" items={items_left} callback={this.listChange} type="left" />;
+        combined[1] = <ListBox key="combo_right" items={items_right} callback={this.listChange} type="right" />;
 
         return(
             <div className="two-way-list-box">{combined}</div>
@@ -186,7 +194,8 @@ var FormEntRankPosition = React. createClass({
         source[1] = 'ranks';
 
         return(
-            <div className="item_attr">Звания соответствующие должности:
+            <div className="item_attr">
+                <div className="form_label">Звания соответствующие должности</div>
                 <ListBoxTwoSide source_left={source[0]} source_right={source[1]} />
             </div>
             )

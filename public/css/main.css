@@ -55,34 +55,49 @@ div.MainList {
     cursor: pointer;
   }*/
 }
-div.MainList div.item,
-div.MainList div.item_attr {
+div.MainList div.item {
   clear: both;
   float: left;
-  margin: 1px;
+  margin: 2px;
   padding: 5px;
   border-radius: 3px;
   border: 1px solid #d6e5ed;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
 }
-div.MainList div.item a,
-div.MainList div.item_attr a {
+div.MainList div.item a {
   text-decoration: none;
 }
 div.MainList div.item div.item_name,
-div.MainList div.item_attr div.item_name,
-div.MainList div.item div.item_cp,
-div.MainList div.item_attr div.item_cp {
+div.MainList div.item div.item_cp {
   float: left;
 }
-div.MainList div.item div.item_name,
-div.MainList div.item_attr div.item_name {
+div.MainList div.item div.item_name {
   min-width: 410px;
 }
-div.MainList div.item div.item_cp button,
-div.MainList div.item_attr div.item_cp button {
-  margin-left: 1px;
+div.MainList div.item div.item_cp button {
+  margin-left: 2px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+div.item_attr {
+  margin-top: 10px;
+}
+div.form_label {
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 5px;
+  max-width: 100%;
+}
+.form-control {
+  padding: 5px;
+}
+div.list_box {
+  float: left;
+}
+div.list_box div.list_box_select select {
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid #d6e5ed;
+  min-width: 307.5px;
 }
 .enlight {
   background: #f4ffff;

@@ -5,7 +5,8 @@
 @base_width: 1600px;
 @left_panel_width: 350px;
 
-@min: 1px;
+@min: 2px;
+@small: 3px;
 @med: 5px;
 @big: 10px;
 @huge: 20px;
@@ -83,12 +84,12 @@ div.next{
 div.MainList{
   overflow: hidden;
 
-  div.item, div.item_attr{
+  div.item{
     clear: both;
     float:left;
     margin: @min;
     padding: @med;
-    border-radius: 3px;
+    border-radius: @small;
     border: 1px solid @light_silver;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
 
@@ -119,6 +120,40 @@ div.MainList{
     border: 1px solid @light_silver - 50;
     cursor: pointer;
   }*/
+}
+
+div.item_attr{
+  margin-top: @big;
+}
+
+div.form_label{
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: @med;
+  max-width: 100%;
+}
+
+.form-control{
+  padding: @med;
+}
+
+div.list_box{
+  float: left;
+
+  div.list_box_select{
+    select{
+      padding: @small;
+      border-radius: @small;
+      border: 1px solid @light_silver;
+      min-width: @base_modal_width/4;
+    }
+  }
+
+
+  div.ListBoxCP{
+
+  }
+
 }
 
 .enlight{

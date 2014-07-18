@@ -133,7 +133,6 @@ class IndexController extends AbstractActionController
         $editable_array = array('name' => 'Название', 'name_min' => 'Сокращенное название', 'description'=> 'Описание');
         $prototype_array = array('editable_properties' => $editable_array);
 
-        //'id' => 1, 'info' => array(
         $data_array = array(
             array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
             array('name' => 'Ефрейтор', 'id' => 2, 'order' => 2),
@@ -180,22 +179,42 @@ class IndexController extends AbstractActionController
             array('name' => 'Заместитель начальника тыловой службы', 'id' => 8, 'order' => 8),
             array('name' => 'Заместитель начальника финансовой служб', 'id' => 9, 'order' => 9),
             array('name' => 'Начальник пищеблока', 'id' => 10, 'order' => 10),
-            array('name' => '', 'id' => 11, 'order' => 11),
-            array('name' => '', 'id' => 12, 'order' => 12),
-            array('name' => '', 'id' => 13, 'order' => 13),
-            array('name' => '', 'id' => 14, 'order' => 14),
-            array('name' => '', 'id' => 15, 'order' => 15),
-            array('name' => '', 'id' => 16, 'order' => 16),
-            array('name' => '', 'id' => 17, 'order' => 17),
-            array('name' => '', 'id' => 18, 'order' => 18),
-            array('name' => '', 'id' => 19, 'order' => 19),
-            array('name' => '', 'id' => 20, 'order' => 20),
-            array('name' => '', 'id' => 21, 'order' => 21),
-            array('name' => '', 'id' => 22, 'order' => 22),
-            array('name' => '', 'id' => 23, 'order' => 23),
-            array('name' => '', 'id' => 24, 'order' => 24),
-            array('name' => '', 'id' => 25, 'order' => 25),
+            array('name' => 'Начальник пожарной службы', 'id' => 11, 'order' => 11),
+            array('name' => 'Заместитель начальника пожарной службы', 'id' => 12, 'order' => 12),
+            array('name' => 'Начальник медицинской службы', 'id' => 13, 'order' => 13),
+            array('name' => 'Старший врач', 'id' => 14, 'order' => 14),
+            array('name' => 'Врач', 'id' => 15, 'order' => 15),
+            array('name' => 'Медсестра', 'id' => 16, 'order' => 16),
+            array('name' => 'Пожарный', 'id' => 17, 'order' => 17),
+            array('name' => 'Бухгалтер', 'id' => 18, 'order' => 18),
+            array('name' => 'Сметчик', 'id' => 19, 'order' => 19),
+            array('name' => 'Повар', 'id' => 20, 'order' => 20),
+            array('name' => 'Водитель', 'id' => 21, 'order' => 21),
+            array('name' => 'Сварщик', 'id' => 22, 'order' => 22),
+            array('name' => 'Инженер КИПиА', 'id' => 23, 'order' => 23),
+            array('name' => 'Монтажник', 'id' => 24, 'order' => 24),
+            array('name' => 'Программист', 'id' => 25, 'order' => 25),
         );
+
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() & ($request->getPost('data'))){
+            $query = $request->getPost('data');
+
+            $full_data_array = $data_array;
+            $data_array = array();
+
+            foreach($full_data_array as $key => $value){
+                if($value['name'] == $query){
+                    $data_array[] = $full_data_array[$key];
+                }
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
 
         $response = array('prototype' => $prototype_array, 'data' => $data_array);
 
