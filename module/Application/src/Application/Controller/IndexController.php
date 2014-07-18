@@ -156,6 +156,43 @@ class IndexController extends AbstractActionController
             array('name' => 'Маршал Российской Федерации', 'id' => 20, 'order' => 20)
         );
 
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+
+
+            $full_data_array = $data_array;
+            $data_array = array();
+
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            //if($value['name'] == $query){
+                            //if($value['name'] == 'Сметчик'){
+                            $data_array[] = $full_data_array[$key];
+                            //$data_array = $request->getPost('data');
+                            //$data_array = $request->getContent();
+                        }
+                    }
+                }
+            }
+
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+
+
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+
         $response = array('prototype' => $prototype_array, 'data' => $data_array);
 
         $JsonModel = new JsonModel();
@@ -198,18 +235,36 @@ class IndexController extends AbstractActionController
 
 
         $request = $this->getRequest();
-        if ($request->isXmlHttpRequest() & ($request->getPost('data'))){
-            $query = $request->getPost('data');
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+
 
             $full_data_array = $data_array;
             $data_array = array();
 
-            foreach($full_data_array as $key => $value){
-                if($value['name'] == $query){
-                    $data_array[] = $full_data_array[$key];
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            //if($value['name'] == $query){
+                            //if($value['name'] == 'Сметчик'){
+                            $data_array[] = $full_data_array[$key];
+                            //$data_array = $request->getPost('data');
+                            //$data_array = $request->getContent();
+                        }
+                    }
                 }
             }
+
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+
             $response = array('prototype' => $prototype_array, 'data' => $data_array);
+
 
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
