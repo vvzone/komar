@@ -118,7 +118,7 @@ var ControlTinyText = React.createClass({
             <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} />
         </div>)
     }
-})
+});
 
 var ControlSmallText = React.createClass({
     getInitialState: function() {
@@ -148,7 +148,19 @@ var ControlSmallText = React.createClass({
             <textarea className="form-control" id={id} value={this.state.value} onChange={this.handleChange} />
         </div>)
     }
-})
+});
+
+var ControlBoolSelect = React.createClass({
+    render: function(){
+        var selected = '';
+        return(
+            <select value={selected}>
+                    <option value="true">Да</option>
+                    <option value="false">Нет</option>
+            </select>
+        )
+    }
+});
 
 /* Controls: text, selector, search */
 
@@ -179,7 +191,6 @@ var Control = React.createClass({
         var value = this.props.value;
         var name = this.props.name;
         var discard = this.props.discard;
-        console.info('dis-2:'+this.state.discard);
 
         switch (type) {
             case('tiny_text'):
@@ -187,6 +198,9 @@ var Control = React.createClass({
                 break;
             case('small_text'):
                 return(<ControlSmallText value={value} name={name} discard={discard} />)
+                break;
+            case('bool_select'):
+                return(<ControlBoolSelect value={value} name={name} discard={discard} />)
                 break;
         }
 
@@ -280,8 +294,8 @@ var ListItem = React.createClass({
         if(this.state.editing == true){
             edit_properties_box.push(<ControlsList editable={editable}  items={item}/>);
             if(this.props.dependencies){
-                for(key in this.props.dependencies){
-                    edit_properties_box.push(<EntityBlock entity_name={this.props.dependencies[key]} host_id={this.props.item.id} />);
+                for(var key in this.props.dependencies){
+                    edit_properties_box.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
                 }
             }
         }

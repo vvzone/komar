@@ -101,6 +101,9 @@ var CatTreeLinksList = React. createClass({
         if(Object.prototype.toString.call(this.state.links) === '[object Array]'){
             var self = this;
             var links_output = this.state.links.map(function(l){
+                if(l.isNotScreen && l.childNodes==null){
+                    return(<li><div className="tree_not_link">{l.name}</div></li>);
+                }
                 if(!l.isNonIndependent){
                     return(<CatLink screen={l} key={l.id} onClick={self.handleClick}/>)
                 }

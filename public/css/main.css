@@ -44,6 +44,10 @@ div.next {
   font-size: 9pt;
   cursor: pointer;
 }
+.nav > li div.tree_not_link {
+  color: #595959;
+  padding: 10px;
+}
 .well ul.cattree {
   margin-left: 10px;
 }

@@ -99,17 +99,46 @@ rank[0] = 'rank';
 
 var position = [];
 position[0] = 'position';
-//position[1] = 'rank_position';
+
 var pass_doc_types = [];
 pass_doc_types[0] = 'pass_doc_types';
 
-var screen_entities = {};
+var address_types =[];
+address_types[0] = 'address_types';
 
+var countries = [];
+countries[0] = 'countries';
+
+var region_types = [];
+region_types[0] = 'region_types';
+
+var regions = [];
+regions[0] = 'regions';
+
+var location_types = [];
+location_types[0] = 'location_types';
+
+var street_types = [];
+street_types[0] = 'street_types';
+
+
+var sex_types = [];
+sex_types[0] = 'sex_types';
+
+var screen_entities = {};
 screen_entities['test_screen'] = test_screen;
 screen_entities['sys'] = sys;
 screen_entities['rank'] = rank;
 screen_entities['pass_doc_types'] = pass_doc_types;
 screen_entities['position'] = position;
+screen_entities['address_types'] = address_types;
+screen_entities['countries'] = countries;
+screen_entities['region_types'] = region_types;
+screen_entities['regions'] = regions;
+screen_entities['location_types'] = location_types;
+screen_entities['street_types'] = street_types;
+screen_entities['sex_types'] = sex_types;
+
 
 
 var properties_types = [];
@@ -123,6 +152,19 @@ properties_types['description'] = 'small_text';
 properties_types['seriesMask'] = 'tiny_text';
 properties_types['numberMask'] = 'tiny_text';
 
+/* address_types */
+properties_types['priority'] = 'tiny_text';
+
+/* countries */
+properties_types['code'] = 'tiny_text';
+properties_types['fullname'] = 'small_text';
+
+/* ? many */
+properties_types['shortname'] = 'tiny_text';
+
+
+
+/* */
 
 /*var test_rr = [
  {entity:'rank', screen:'base', name: '������', id: 151},

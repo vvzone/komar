@@ -19,7 +19,7 @@ class IndexController extends AbstractActionController
     {
         return new ViewModel();
     }
-    
+
     public function ajaxAction(){
 
         /*
@@ -27,32 +27,38 @@ class IndexController extends AbstractActionController
          * isNotScreen - no screen output
          * */
 
+        $sys = array(
+            array('id' => 10501, 'category' => 'base', 'entity' => 'countries', 'screen' => 'countries', 'name' => 'Страны'),
+            array('id' => 10502, 'category' => 'base', 'entity' => 'address_types', 'screen' => 'address_types', 'name' => 'Типы адреса'),
+            array('id' => 10503, 'category' => 'base', 'entity' => 'region_types', 'screen' => 'region_types', 'name' => 'Типы региона'),
+            array('id' => 10504, 'category' => 'base', 'entity' => 'regions', 'screen' => 'regions', 'name' => 'Регионы'),
+            array('id' => 10505, 'category' => 'base', 'entity' => 'location_types', 'screen' => 'location_types', 'name' => 'Типы нас. пункта'),
+            array('id' => 10506, 'category' => 'base', 'entity' => 'street_types', 'screen' => 'street_types', 'name' => 'Типы улиц'),
+            array('id' => 10507, 'category' => 'base', 'entity' => 'sex_types', 'screen' => 'sex_types', 'name' => 'Типы пола служащего'),
+        );
+
+        $sys_docs = array(
+            array('id' => 10601, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'period_types', 'name' => 'Типы периодов'),
+            array('id' => 10602, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'enumeration_types', 'name' => 'Типы нумерации'),
+            array('id' => 10603, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'doc_types', 'name' => 'Типы документов'),
+            array('id' => 10604, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'node_types', 'name' => 'Типы узлов маршрута'),
+            array('id' => 10605, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'name' => 'Типы аттрибутов'),
+            array('id' => 10606, 'category' => 'base', 'entity' => 'enumeration', 'screen' => 'enumeration', 'name' => 'Нумерация'),
+        );
+
+        /*BASE 1 LVL */
         $array_base = array(
             array('id' => 101, 'category' => 'base', 'entity' => 'rank', 'screen' => 'rank', 'name' => 'Звания'),
             array('id' => 102, 'category' => 'base', 'entity' => 'position', 'screen' => 'position', 'name' => 'Должности'),
             array('id' => 103, 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'position', 'name' => 'Соответствие звания должности',
                 'isNonIndependent' => true ),
             array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => 'Типы удостоверяющих личность документов'),
-            array('id' => 105, 'category' => 'base', 'entity' => 'sys', 'screen' => 'sys', 'name' => 'Основные настройки'),
-            array('id' => 106, 'category' => 'base', 'entity' => 'address_types', 'screen' => 'sys', 'name' => 'Типы адреса',
-                'isNonIndependent' => true ),
-            array('id' => 107, 'category' => 'base', 'entity' => 'sex_types', 'screen' => 'sys', 'name' => 'Пол',
-                'isNonIndependent' => true ),
-            array('id' => 108, 'category' => 'base', 'entity' => 'countries', 'screen' => 'sys', 'name' => 'Страны',
-                'isNonIndependent' => true ),
-            array('id' => 109, 'category' => 'base', 'entity' => 'sys_docs', 'screen' => 'sys_docs', 'name' => 'Настройки документов'),
-            array('id' => 110, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'sys_docs', 'name' => 'Типы периодов',
-                'isNonIndependent' => true ),
-            array('id' => 111, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'sys_docs', 'name' => 'Типы нумерации',
-                'isNonIndependent' => true ),
-            array('id' => 112, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'sys_docs', 'name' => 'Типы документов',
-                'isNonIndependent' => true ),
-            array('id' => 113, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'sys_docs', 'name' => 'Типы узлов маршрута',
-                'isNonIndependent' => true ),
-            array('id' => 114, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'sys_docs', 'name' => 'Типы аттрибутов',
-                'isNonIndependent' => true ),
-            array('id' => 115, 'category' => 'base', 'entity' => 'enumeration', 'screen' => 'sys_docs', 'name' => 'Нумерация',
-                'isNonIndependent' => true ),
+            array('id' => 105, 'category' => 'base', 'entity' => 'sys', 'screen' => 'sys', 'name' => 'Основные настройки', 'isNotScreen' => true,
+                'childNodes' => $sys),
+            array('id' => 106, 'category' => 'base', 'entity' => 'sys_docs', 'screen' => 'sys_docs', 'name' => 'Настройки документов', 'isNotScreen' => true,
+                'childNodes' => $sys_docs
+            ),
+
         );
 
         $array_staff = array(
@@ -119,8 +125,8 @@ class IndexController extends AbstractActionController
         );*/
 
         $JsonModel = new JsonModel();
-        //$JsonModel->setVariables($data_array);
-        $JsonModel->setVariables($array_base);
+        $JsonModel->setVariables($data_array);
+        //$JsonModel->setVariables($array_base);
         return $JsonModel;
     }
 
@@ -358,6 +364,319 @@ class IndexController extends AbstractActionController
 
         $response = array('prototype' => $prototype_array, 'data' => $data_array);
 
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+    public function addresstypesAction(){
+        $editable_array = array('name' => 'Название', 'priority' => 'Приоритет');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Регистрации', 'priority'=> 1),
+            array('id' => 2, 'name' => 'Проживания', 'priority'=> 2),
+            array('id' => 3, 'name' => 'Почтовый', 'priority'=> 3),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+    public function countriesAction(){
+        $editable_array = array('code' => 'Код', 'name' => 'Название', 'fullname' => 'Полное название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'code' => 'ABH', 'name' => 'Абхазия', 'fullname'=> 'Республика Абхазия'),
+            array('id' => 2, 'code' => 'AUS', 'name' => 'Австралия', 'fullname'=> 'Австралия'),
+            array('id' => 3, 'code' => 'AUT', 'name' => 'Австрия', 'fullname'=> 'Австрийская Республика'),
+            array('id' => 4, 'code' => 'AZE', 'name' => 'Азербайджан', 'fullname'=> 'Республика Азербайджан'),
+            array('id' => 5, 'code' => 'ALB', 'name' => 'Албания', 'fullname'=> 'Республика Албания'),
+            array('id' => 6, 'code' => 'DZA', 'name' => 'Алжир', 'fullname'=> 'Алжирская Народная Демократическая Республика'),
+            array('id' => 7, 'code' => 'ASM', 'name' => 'Американское Самоа', 'fullname'=> 'Американское Самоа'),
+            array('id' => 8, 'code' => 'AIA', 'name' => 'Ангилья', 'fullname'=> 'Ангилья'),
+            array('id' => 9, 'code' => 'AGO', 'name' => 'Ангола', 'fullname'=> 'Республика Ангола'),
+            array('id' => 10, 'code' => 'AND', 'name' => 'Андорра', 'fullname'=> 'Княжество Андорра'),
+            array('id' => 11, 'code' => 'ATA', 'name' => 'Антарктида', 'fullname'=> 'Антарктида'),
+            array('id' => 12, 'code' => 'ATG', 'name' => 'Антигуа и Барбуда', 'fullname'=> 'Антигуа и Барбуда'),
+            //array('id' => 12, 'code' => '', 'name' => '', 'fullname'=> ''),
+
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+    public function regiontypesAction(){
+        $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Республика', 'shortname'=> 'респ.'),
+            array('id' => 2, 'name' => 'Край', 'shortname'=> 'к-1.'),
+            array('id' => 3, 'name' => 'Область', 'shortname'=> 'обл.'),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+    public function regionsAction(){
+        $editable_array = array('code' => 'Код субьекта РФ', 'region_type' => 'Тип региона', 'name' => 'Название', 'description' => 'Описание');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'code' => '1', 'region_type' => 1, 'name' => 'Республика Адыгея', 'description'=> ''),
+            array('id' => 2, 'code' => '2', 'region_type' => 1, 'name' => 'Республика Башкортостан', 'description'=> ''),
+            array('id' => 3, 'code' => '3', 'region_type' => 1, 'name' => 'Республика Бурятия', 'description'=> ''),
+            array('id' => 4, 'code' => '4', 'region_type' => 1, 'name' => 'Республика Алтай', 'description'=> ''),
+            array('id' => 5, 'code' => '5', 'region_type' => 1, 'name' => 'Республика Дагестан', 'description'=> ''),
+            array('id' => 6, 'code' => '6', 'region_type' => 1, 'name' => 'Республика Ингушетия', 'description'=> ''),
+            array('id' => 7, 'code' => '7', 'region_type' => 1, 'name' => 'Кабардино-Балкарская Республика', 'description'=> ''),
+            array('id' => 8, 'code' => '8', 'region_type' => 1, 'name' => 'Республика Калмыкия', 'description'=> ''),
+            array('id' => 9, 'code' => '9', 'region_type' => 1, 'name' => 'Республика Карачаево-Черкесия', 'description'=> ''),
+            array('id' => 10, 'code' => '10', 'region_type' => 1, 'name' => 'Республика Карелия', 'description'=> ''),
+            array('id' => 11, 'code' => '11', 'region_type' => 1, 'name' => 'Республика Коми', 'description'=> ''),
+            array('id' => 12, 'code' => '12', 'region_type' => 1, 'name' => 'Республика Марий Эл', 'description'=> ''),
+            array('id' => 13, 'code' => '13', 'region_type' => 1, 'name' => 'Республика Мордовия', 'description'=> ''),
+            array('id' => 14, 'code' => '14', 'region_type' => 1, 'name' => 'Республика Саха (Якутия)', 'description'=> ''),
+            array('id' => 15, 'code' => '15', 'region_type' => 1, 'name' => 'Республика Северная Осетия-Алания', 'description'=> ''),
+            array('id' => 16, 'code' => '16', 'region_type' => 1, 'name' => 'Республика Татарстан', 'description'=> ''),
+            array('id' => 17, 'code' => '17', 'region_type' => 1, 'name' => 'Республика Тыва', 'description'=> ''),
+            array('id' => 18, 'code' => '18', 'region_type' => 1, 'name' => 'Удмуртская Республика', 'description'=> ''),
+            array('id' => 19, 'code' => '19', 'region_type' => 1, 'name' => 'Республика Хакасия', 'description'=> ''),
+            array('id' => 20, 'code' => '20', 'region_type' => 1, 'name' => 'Чувашская Республика', 'description'=> ''),
+            array('id' => 21, 'code' => '21', 'region_type' => 2, 'name' => 'Алтайский край', 'description'=> ''),
+            array('id' => 22, 'code' => '22', 'region_type' => 2, 'name' => 'Краснодарский край', 'description'=> ''),
+            array('id' => 23, 'code' => '23', 'region_type' => 2, 'name' => 'Красноярский край', 'description'=> ''),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+    public function locationtypesAction(){
+        $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Город', 'shortname'=> 'г.'),
+            array('id' => 2, 'name' => 'Поселок городского типа', 'shortname'=> 'п.г.т.'),
+            array('id' => 3, 'name' => 'Рабочий посёлок', 'shortname'=> 'р.п.'),
+            array('id' => 4, 'name' => 'Курортный посёлок', 'shortname'=> 'к.п.'),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+    public function streettypesAction(){
+        $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Аллея', 'shortname'=> 'алл.'),
+            array('id' => 2, 'name' => 'Бульвар', 'shortname'=> 'бул.'),
+            array('id' => 3, 'name' => 'Проезд', 'shortname'=> 'п-зд.'),
+            array('id' => 4, 'name' => 'Переулок', 'shortname'=> 'пер.'),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+
+    public function sextypesAction(){
+        $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Мужской', 'shortname'=> 'м'),
+            array('id' => 2, 'name' => 'Женский', 'shortname'=> 'ж'),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
