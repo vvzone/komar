@@ -48,8 +48,14 @@ div.next {
   color: #595959;
   padding: 10px;
 }
-.well ul.cattree {
+ul.cattree {
   margin-left: 10px;
+}
+div.tree_node {
+  border: 1px solid silver;
+  padding: 10px;
+  /*background: silver;*/
+  width: auto;
 }
 div.MainList {
   overflow: hidden;

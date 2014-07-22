@@ -7,50 +7,66 @@ var EntityBlock = React. createClass({
      * entity_name = '',
      * host - for dependencies (whole array of item, inc id, and all fields)
      * */
-    render: function(){
+    render: function () {
         var class_name = this.props.entity_name;
         var host = this.props.item;
-        switch(class_name) {
+
+        var entity;
+        switch (class_name) {
             case 'rank':
-                return(<FormEntRank />)
+                return(<FormEntRank />);
                 break;
             case 'position':
-                return(<FormEntPosition />)
+                return(<FormEntPosition />);
                 break;
             case 'rank_position':
-                return(<FormEntRankPosition host_id={host.id} />)
+                return(<FormEntRankPosition host_id={host.id} />);
                 break;
             case 'pass_doc_types':
-                return(<FormEntPassDocTypes />)
+                return(<FormEntPassDocTypes />);
                 break;
             case 'address_types':
-                return(<FormEntAddressTypes />)
+                return(<FormEntAddressTypes />);
                 break;
             case 'countries':
-                return(<FormEntCountries />)
+                return(<FormEntCountries />);
                 break;
             case 'region_types':
-                return(<FormEntRegionTypes />)
+                return(<FormEntRegionTypes />);
                 break;
             case 'region_types_selector':
-                return(<FormSelectorRegionTypes selected={host.region_type} />)
+                return(<FormSelectorRegionTypes selected={host.region_type} />);
                 break;
             case 'regions':
-                return(<FormEntRegions />)
+                return(<FormEntRegions />);
                 break;
             case 'location_types':
-                return(<FormEntLocationTypes />)
+                return(<FormEntLocationTypes />);
                 break;
             case 'street_types':
-                return(<FormEntStreetTypes />)
+                return(<FormEntStreetTypes />);
                 break;
             case 'sex_types':
-                return(<FormEntSexTypes />)
+                return(<FormEntSexTypes />);
                 break;
             case 'commander_types':
-                return(<FormEntCommanderTypes />)
+                return(<FormEntCommanderTypes />);
                 break;
-
+            case 'period_types':
+                return(<FormEntPeriodTypes />);
+                break;
+            case 'period_types_selector':
+                return(<FormSelectorPeriodTypes selected={host.period_type} />);
+                break;
+            case 'enumeration_types':
+                return(<FormEntEnumerationTypes />);
+                break;
+            case 'doc_kinds':
+                return(<FormEntDocKinds />);
+                break;
+            case 'doc_types':
+                return(<FormEntDocTypes />);
+                break;
         };
         var msg = "Не найден класс "+class_name;
         return(<div><ErrorMsg msg={msg} /></div>)
@@ -182,6 +198,60 @@ var FormEntCommanderTypes = React. createClass({
     }
 });
 
+var FormEntPeriodTypes = React. createClass({
+    render: function(){
+        return(
+            <div className="PeriodTypesBox">
+                <MainList source="periodtypes" />
+            </div>
+            )
+    }
+});
+
+var FormSelectorPeriodTypes = React. createClass({
+    render: function(){
+        return(
+            <div className="selector PeriodTypes">
+                <label>Тип периода:</label><SimpleSelect source="periodtypes" selected={this.props.selected} />
+            </div>
+            )
+    }
+});
+
+var FormEntEnumerationTypes = React. createClass({
+    render: function(){
+        var dependencies = [];
+        dependencies[0] = 'period_types_selector';
+        var dependencies_place = [];
+        dependencies_place[0] = 3;
+        return(
+            <div className="EnumerationTypesBox">
+                <MainList source="enumerationtypes" dependencies={dependencies} dependencies_place={dependencies_place} />
+            </div>
+            )
+    }
+});
+
+var FormEntDocKinds = React. createClass({
+    render: function(){
+        return(
+            <div className="DocKindsBox">
+                <MainTree source="dockinds" />
+            </div>
+            )
+    }
+});
+
+
+var FormEntDocTypes = React. createClass({
+    render: function(){
+        return(
+            <div className="DocTypesBox">
+                <MainList source="doctypes" />
+            </div>
+            )
+    }
+});
 
 
 

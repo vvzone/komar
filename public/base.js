@@ -224,6 +224,7 @@ var Control = React.createClass({
     }
 });
 
+/*
 var ControlsList = React.createClass({
     getInitialState: function() {
         return {
@@ -251,7 +252,7 @@ var ControlsList = React.createClass({
         };
         return(<form role="form" className="ControlsBox">{controls}<ButtonSave /><ButtonDiscard clicked={this.childrensDiscardChanges}/></form>)
     }
-})
+});*/
 
 var ListItem = React.createClass({
     /*
@@ -294,7 +295,7 @@ var ListItem = React.createClass({
         if(this.state.open == true){
             var self=this;
 
-            for(var prop in this.state.item){
+            for(var prop in this.state.item){ // onClick output short info
                 if(editable[prop]){
                     item_additional_info.push(
                         <div>{editable[prop]}:{this.state.item[prop]}</div>
@@ -304,15 +305,45 @@ var ListItem = React.createClass({
         }
 
         var edit_properties_box = [];
-        var item = this.state.item;
+        var items = this.state.item;
 
         if(this.state.editing == true){
-            edit_properties_box.push(<ControlsList editable={editable}  items={item}/>);
-            if(this.props.dependencies){
-                for(var key in this.props.dependencies){
-                    edit_properties_box.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
+            var controls = [];
+            var counter = 0;
+            var dependencies_place = this.props.dependencies_place;
+            var counter_trigger = [];
+
+            // 2-do: //fix this
+            if(Object.prototype.toString.call(dependencies_place) === '[object Array]'){
+                    for(var key in dependencies_place){
+                        counter_trigger[dependencies_place[key]] = dependencies_place[key];
+                    }
+            }
+
+            for(var prop in items){
+                if(Object.prototype.toString.call(dependencies_place) === '[object Array]'){
+                    if(counter==counter_trigger[counter]){
+                        controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
+                    }
+                }
+                if(editable[prop]){
+                    var type=prop;
+                    controls.push(
+                        <Control type={properties_types[type]} value={items[prop]} name={editable[prop]} />
+                    )
+                    //console.log('type:'+type);
+                    //console.log('control chosen:'+properties_types[type]);
+                }
+                counter++;
+            };
+            if(Object.prototype.toString.call(dependencies_place) != '[object Array]'){
+                if(this.props.dependencies){
+                    for(var key in this.props.dependencies){
+                        controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
+                    }
                 }
             }
+            edit_properties_box.push(<form role="form" className="ControlsBox">{controls}<ButtonSave /></form>);
         }
 
         return(
@@ -342,9 +373,13 @@ var MainList = React. createClass({
         }
     },
     componentDidMount: function() {
+
         $.get('http://zend_test/main/index/'+this.props.source, function(result) {
-            this.setState({items: result});
-        }.bind(this));
+                this.setState({items: result});
+        }.bind(this))
+        .error(function() {
+                alert("Network Error.");
+        })
     },
     whenListItemsAction: function(action){
         /* 2do
@@ -364,13 +399,21 @@ var MainList = React. createClass({
         this.setState({items: results});
     },
     render: function(){
-        var items_arr = this.state.items.data;
+        var items_arr =  [];
+        items_arr = this.state.items.data;
         var output =[];
         var self = this;
 
+        /*if(items_arr.length<1){
+            var msg = 'Раздел пуст.';
+            //return(<InfoMessage msg={msg}/>);
+            return(<div>{msg}</div>);
+        }*/
+
         for(var item in items_arr){
             output.push(
-                <ListItem item={items_arr[item]} prototype={this.state.items.prototype} key={items_arr[item].id} dependencies={this.props.dependencies} />);
+                <ListItem item={items_arr[item]} prototype={this.state.items.prototype} key={items_arr[item].id}
+                dependencies={this.props.dependencies} dependencies_place={this.props.dependencies_place}/>);
         }
 
         return(

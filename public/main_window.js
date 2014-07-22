@@ -54,10 +54,14 @@ var BaseScreen = React. createClass({
                 return(<EntityBlock entity_name={ent} key={ent} />);
             });
         }else{
-            var msg = 'Страница '+ this.props.screen_name +  " не найдена. Возможно не указана в arrays_and_docs?";
+            /*  пробовать найти класс все равно*/
+
+            return(<EntityBlock entity_name={this.props.screen_name} key={this.props.screen_name} />);
+
+            /*var msg = 'Страница '+ this.props.screen_name +  " не найдена. Возможно не указана в arrays_and_docs?";
             return(
                 <ErrorMsg msg={msg} />
-            )
+            )*/
         }
 
         return(<div>{render_entities}</div>)

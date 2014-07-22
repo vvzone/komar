@@ -38,12 +38,15 @@ class IndexController extends AbstractActionController
         );
 
         $sys_docs = array(
-            array('id' => 10601, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'period_types', 'name' => 'Типы периодов'),
-            array('id' => 10602, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'enumeration_types', 'name' => 'Типы нумерации'),
-            array('id' => 10603, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'doc_types', 'name' => 'Типы документов'),
-            array('id' => 10604, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'node_types', 'name' => 'Типы узлов маршрута'),
-            array('id' => 10605, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'name' => 'Типы аттрибутов'),
-            array('id' => 10606, 'category' => 'base', 'entity' => 'enumeration', 'screen' => 'enumeration', 'name' => 'Нумерация'),
+            array('id' => 106010, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'period_types', 'name' => 'Типы периодов'),
+            array('id' => 106020, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'enumeration_types', 'name' => 'Типы нумерации'),
+            array('id' => 106021, 'category' => 'base', 'entity' => 'doc_kinds', 'screen' => 'doc_kinds', 'name' => 'Виды документов'),
+            array('id' => 106022, 'category' => 'base', 'entity' => 'doc_secrecy_type', 'screen' => 'doc_secrecy_type', 'name' => 'Типы секретности документа'),
+            array('id' => 106023, 'category' => 'base', 'entity' => 'doc_urgency', 'screen' => 'doc_urgency', 'name' => 'Типы срочности документа'),
+            array('id' => 106030, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'doc_types', 'name' => 'Типы документов'),
+            array('id' => 106040, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'node_types', 'name' => 'Типы узлов маршрута'),
+            array('id' => 106050, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'name' => 'Типы аттрибутов'),
+            array('id' => 106060, 'category' => 'base', 'entity' => 'enumeration', 'screen' => 'enumeration', 'name' => 'Нумерация'),
         );
 
         /*BASE 1 LVL */
@@ -188,7 +191,7 @@ class IndexController extends AbstractActionController
                 $data_array = $full_data_array;
             }
 
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
 
 
             $JsonModel = new JsonModel();
@@ -196,7 +199,7 @@ class IndexController extends AbstractActionController
             return $JsonModel;
         }
 
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -262,7 +265,7 @@ class IndexController extends AbstractActionController
                 $data_array = $full_data_array;
             }
 
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
 
 
             $JsonModel = new JsonModel();
@@ -270,7 +273,7 @@ class IndexController extends AbstractActionController
             return $JsonModel;
         }
 
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -293,7 +296,7 @@ class IndexController extends AbstractActionController
             array('name' => 'Старший лейтенант', 'id' => 5, 'order' => 3)
         );
 
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -345,7 +348,7 @@ class IndexController extends AbstractActionController
                 $data_array = $full_data_array;
             }
 
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
 
 
             $JsonModel = new JsonModel();
@@ -353,7 +356,7 @@ class IndexController extends AbstractActionController
             return $JsonModel;
         }
 
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -389,12 +392,12 @@ class IndexController extends AbstractActionController
             if(!$query){
                 $data_array = $full_data_array;
             }
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
             return $JsonModel;
         }
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
@@ -440,12 +443,12 @@ class IndexController extends AbstractActionController
             if(!$query){
                 $data_array = $full_data_array;
             }
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
             return $JsonModel;
         }
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
@@ -480,12 +483,12 @@ class IndexController extends AbstractActionController
             if(!$query){
                 $data_array = $full_data_array;
             }
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
             return $JsonModel;
         }
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
@@ -540,12 +543,12 @@ class IndexController extends AbstractActionController
             if(!$query){
                 $data_array = $full_data_array;
             }
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
             return $JsonModel;
         }
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
@@ -581,12 +584,12 @@ class IndexController extends AbstractActionController
             if(!$query){
                 $data_array = $full_data_array;
             }
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
             return $JsonModel;
         }
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
@@ -622,12 +625,12 @@ class IndexController extends AbstractActionController
             if(!$query){
                 $data_array = $full_data_array;
             }
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
             return $JsonModel;
         }
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
@@ -662,12 +665,12 @@ class IndexController extends AbstractActionController
             if(!$query){
                 $data_array = $full_data_array;
             }
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
             return $JsonModel;
         }
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
@@ -702,16 +705,162 @@ class IndexController extends AbstractActionController
             if(!$query){
                 $data_array = $full_data_array;
             }
-            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
             $JsonModel = new JsonModel();
             $JsonModel->setVariables($response);
             return $JsonModel;
         }
-        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
 
+    }
+
+
+    public function periodtypesAction(){
+        $editable_array = array('name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'День'),
+            array('id' => 2, 'name' => 'Месяц'),
+            array('id' => 3, 'name' => 'Год'),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+    public function enumerationtypesAction(){
+        $editable_array = array('name' => 'Название', 'mask' => 'Маска', 'isPeriodic' => 'Признак переодичности сброса',
+            'period_type' => 'Тип переода для сброса счетчика', 'period_length' => 'Длительность периода', 'start_date' => 'Начало действия',
+            'min_index' => 'Стартовое значение при сбросе', 'isDraft' => 'Черновик');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Черновики', 'mask' => 'Ч%y-%n', 'isPeriodic' => true, 'period_type' => 3,
+                'period_length' => 1, 'start_date' => '01.01.2014','min_index' => 0, 'isDraft' => ''),
+
+            array('id' => 2, 'name' => 'Исходящие документы', 'mask' => 'И%y-%n', 'isPeriodic' => true, 'period_type' => 3,
+                'period_length' => 1, 'start_date' => '01.01.2014','min_index' => 0, 'isDraft' => ''),
+
+            array('id' => 3, 'name' => 'Секретные', 'mask' => 'С%y-%n', 'isPeriodic' => true, 'period_type' => 3,
+                'period_length' => 1, 'start_date' => '01.01.2014','min_index' => 0, 'isDraft' => false)
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+    }
+
+    public function dockindsAction(){
+        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'isService' => 'Служебный документ');
+        $prototype_array = array('editable_properties' => $editable_array);
+
+        $combat = array(
+            array('id' => 1001, 'parent_id' => 100, 'name' => 'Боевой приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1002, 'parent_id' => 100, 'name' => 'Боевой приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+        );
+
+        $economic = array(
+            array('id' => 1101, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1102, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+        );
+
+        $child_1 = array(
+            array('id' => 100, 'parent_id' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'isService' => false,
+                'childNodes' => $combat),
+            array('id' => 110, 'parent_id' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'isService' => false,
+                'childNodes' => $economic)
+        );
+
+        $data_array = array(
+            array('id' => 1, 'parent_id' => null, 'name' => 'Сигналы', 'shortname'=> 'С', 'isService' => false),
+            array('id' => 2, 'parent_id' => null, 'name' => 'Приказы', 'shortname'=> 'П', 'isService' => false,
+                'childNodes' => $child_1),
+            array('id' => 3, 'parent_id' => null, 'name' => 'Служебные', 'shortname'=> 'сист.', 'isService' => true,),
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
     }
 
     public function yesAction(){
