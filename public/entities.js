@@ -47,6 +47,9 @@ var EntityBlock = React. createClass({
             case 'sex_types':
                 return(<FormEntSexTypes />)
                 break;
+            case 'commander_types':
+                return(<FormEntCommanderTypes />)
+                break;
 
         };
         var msg = "Не найден класс "+class_name;
@@ -169,8 +172,15 @@ var FormEntSexTypes = React. createClass({
     }
 });
 
-
-
+var FormEntCommanderTypes = React. createClass({
+    render: function(){
+        return(
+            <div className="CommanderTypesBox">
+                <MainList source="commandertypes" />
+            </div>
+            )
+    }
+});
 
 
 

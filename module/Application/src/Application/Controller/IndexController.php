@@ -58,6 +58,7 @@ class IndexController extends AbstractActionController
             array('id' => 106, 'category' => 'base', 'entity' => 'sys_docs', 'screen' => 'sys_docs', 'name' => 'Настройки документов', 'isNotScreen' => true,
                 'childNodes' => $sys_docs
             ),
+            array('id' => 107, 'category' => 'base', 'entity' => 'commander_types', 'screen' => 'commander_types', 'name' => 'Тип руководства подразделения'),
 
         );
 
@@ -177,11 +178,7 @@ class IndexController extends AbstractActionController
                 }else{
                     foreach($full_data_array as $key => $value){
                         if(strstr($value['name'], $query)){
-                            //if($value['name'] == $query){
-                            //if($value['name'] == 'Сметчик'){
                             $data_array[] = $full_data_array[$key];
-                            //$data_array = $request->getPost('data');
-                            //$data_array = $request->getContent();
                         }
                     }
                 }
@@ -255,11 +252,7 @@ class IndexController extends AbstractActionController
                 }else{
                     foreach($full_data_array as $key => $value){
                         if(strstr($value['name'], $query)){
-                            //if($value['name'] == $query){
-                            //if($value['name'] == 'Сметчик'){
                             $data_array[] = $full_data_array[$key];
-                            //$data_array = $request->getPost('data');
-                            //$data_array = $request->getContent();
                         }
                     }
                 }
@@ -314,13 +307,15 @@ class IndexController extends AbstractActionController
          * */
 
         $editable_array = array('name' => 'Название', 'isFull' => 'Полная идентификация',
-                                'isMain'=> 'Основной', 'seriesMask' => 'Маска серии', 'numberMask' => 'Маска номера', 'validPeriod' => '');
+                                'isMain'=> 'Основной', 'isSeries' => 'Используется серия документа', 'seriesMask' => 'Маска серии', 'numberMask' => 'Маска номера', 'validPeriod' => '');
         $prototype_array = array('editable_properties' => $editable_array);
 
         $data_array = array(
             array('id' => 1, 'name' => 'Паспорт', 'isFull'=> true, 'isMain' => true, 'isSeries' => true,
             'seriesMask' => '', 'numberMask' => '', 'validPeriod' => ''),
             array('id' => 2, 'name' => 'Водительские права', 'isFull'=> true, 'isMain' => true, 'isSeries' => true,
+                'seriesMask' => '', 'numberMask' => '', 'validPeriod' => ''),
+            array('id' => 3, 'name' => 'Загранпаспорт гражданина РФ', 'isFull'=> true, 'isMain' => false, 'isSeries' => true,
                 'seriesMask' => '', 'numberMask' => '', 'validPeriod' => ''),
         );
 
@@ -340,11 +335,7 @@ class IndexController extends AbstractActionController
                 }else{
                     foreach($full_data_array as $key => $value){
                         if(strstr($value['name'], $query)){
-                            //if($value['name'] == $query){
-                            //if($value['name'] == 'Сметчик'){
                             $data_array[] = $full_data_array[$key];
-                            //$data_array = $request->getPost('data');
-                            //$data_array = $request->getContent();
                         }
                     }
                 }
@@ -650,6 +641,46 @@ class IndexController extends AbstractActionController
         $data_array = array(
             array('id' => 1, 'name' => 'Мужской', 'shortname'=> 'м'),
             array('id' => 2, 'name' => 'Женский', 'shortname'=> 'ж'),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+
+    }
+
+    public function commandertypesAction(){
+        $editable_array = array('name' => 'Название', 'priority' => 'Приоритет');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Командир', 'priority'=> 1),
+            array('id' => 2, 'name' => 'Начальник', 'priority'=> 2),
+            array('id' => 3, 'name' => 'Ответственный исполнитель за обработку корреспонденции', 'priority'=> 3),
         );
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){

@@ -151,13 +151,29 @@ var ControlSmallText = React.createClass({
 });
 
 var ControlBoolSelect = React.createClass({
+    getInitialState: function() {
+        return {
+            value: '',
+            discard: undefined
+        };
+    },
+    componentDidMount: function() {
+        this.setState({value: this.props.value});
+    },
+    handleChange: function(event){
+        this.setState({value: event.target.value});
+    },
     render: function(){
-        var selected = '';
+        var id = 'bool_select_'+this.props.name;
+        var selected = this.state.value;
         return(
-            <select value={selected}>
-                    <option value="true">Да</option>
-                    <option value="false">Нет</option>
-            </select>
+            <div className="form-group">
+                <label htmlFor={id}>{this.props.name}</label>
+                <select value={selected} id={id} onChange={this.handleChange}>
+                        <option value="true">Да</option>
+                        <option value="false">Нет</option>
+                </select>
+            </div>
         )
     }
 });
@@ -217,7 +233,6 @@ var ControlsList = React.createClass({
     },
     childrensDiscardChanges: function(){
         this.setState({discard: this.state.discard==true? false : true});
-        console.info('dis-1:'+this.state.discard);
     },
     render: function(){
         var controls = [];

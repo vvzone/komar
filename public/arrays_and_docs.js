@@ -125,6 +125,10 @@ street_types[0] = 'street_types';
 var sex_types = [];
 sex_types[0] = 'sex_types';
 
+var commander_types = [];
+commander_types[0] = 'commander_types';
+
+
 var screen_entities = {};
 screen_entities['test_screen'] = test_screen;
 screen_entities['sys'] = sys;
@@ -138,6 +142,7 @@ screen_entities['regions'] = regions;
 screen_entities['location_types'] = location_types;
 screen_entities['street_types'] = street_types;
 screen_entities['sex_types'] = sex_types;
+screen_entities['commander_types'] = commander_types;
 
 
 
@@ -152,6 +157,10 @@ properties_types['description'] = 'small_text';
 properties_types['seriesMask'] = 'tiny_text';
 properties_types['numberMask'] = 'tiny_text';
 
+properties_types['isFull'] = 'bool_select';
+properties_types['isMain'] = 'bool_select';
+properties_types['isSeries'] = 'bool_select';
+
 /* address_types */
 properties_types['priority'] = 'tiny_text';
 
@@ -161,6 +170,8 @@ properties_types['fullname'] = 'small_text';
 
 /* ? many */
 properties_types['shortname'] = 'tiny_text';
+
+/* */
 
 
 
