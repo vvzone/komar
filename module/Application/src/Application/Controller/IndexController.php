@@ -863,6 +863,60 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
+    public function dockinds2Action(){
+        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'isService' => 'Служебный документ');
+        $prototype_array = array('editable_properties' => $editable_array);
+
+        $combat = array(
+            array('id' => 1001, 'parent_id' => 100, 'name' => 'Боевой приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1002, 'parent_id' => 100, 'name' => 'Боевой приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+        );
+
+        $economic = array(
+            array('id' => 1101, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1102, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+        );
+
+        $child_1 = array(
+            array('id' => 100, 'parent_id' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'isService' => false,
+                'children' => $combat),
+            array('id' => 110, 'parent_id' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'isService' => false,
+                'children' => $economic)
+        );
+
+        $data_array = array('id' => 1, 'parent_id' => null, 'name' => 'Сигналы', 'shortname'=> 'С', 'isService' => false, 'children' => $child_1);
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $full_data_array = $data_array;
+            $data_array = array();
+            if($query){
+                $strlen = strlen($query);
+                if($strlen < 4){
+                    $data_array = $full_data_array;
+                }else{
+                    foreach($full_data_array as $key => $value){
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
+                    }
+                }
+            }
+            if(!$query){
+                $data_array = $full_data_array;
+            }
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+            $JsonModel = new JsonModel();
+            $JsonModel->setVariables($response);
+            return $JsonModel;
+        }
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
+
     public function yesAction(){
         $data_array['response'] = true;
         $JsonModel = new JsonModel();
