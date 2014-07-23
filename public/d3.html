@@ -3,13 +3,13 @@
   <head>
     <meta charset="utf-8">
     <title>D3 - TEST</title>  
-    <script src="react.js"></script>
+    <!--<script src="react.js"></script>
     <script src="build/JSXTransformer.js"></script>
     <!--<link href="css/bootstrap.min.css" rel="stylesheet" media="all" />
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="all" />
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="all" />-->
-    <script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
-    <script src="d3.min.js" charset="utf-8"></script>
+    <!--<script src="http://code.jquery.com/jquery-1.10.0.min.js"></script>-->
+    <script src="d3.js" charset="utf-8"></script>
     <link href="css/main.css" rel="stylesheet" media="all" />
   </head>
   <body>
@@ -33,13 +33,12 @@
 
 </style>
 <body>
-<script src="http://d3js.org/d3.v3.min.js"></script>
 <script type="text/javascript">
 
 var diameter = 960;
 
 var tree = d3.layout.tree()
-    .size([360, diameter / 2 - 120])
+    .size([90, diameter / 2 - 120])
     .separation(function(a, b) { return (a.parent == b.parent ? 1 : 2) / a.depth; });
 
 var diagonal = d3.svg.diagonal.radial()
@@ -55,6 +54,7 @@ var svg = d3.select("body").append("svg")
 d3.json("http://zend_test/main/index/dockinds2", function(error, root) {
   var nodes = tree.nodes(root),
       links = tree.links(nodes);
+      links = tree.children('childNodes');
 
   var link = svg.selectAll(".link")
       .data(links)

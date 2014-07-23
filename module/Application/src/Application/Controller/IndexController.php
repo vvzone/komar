@@ -879,12 +879,12 @@ class IndexController extends AbstractActionController
 
         $child_1 = array(
             array('id' => 100, 'parent_id' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'isService' => false,
-                'children' => $combat),
+                'childNodes' => $combat),
             array('id' => 110, 'parent_id' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'isService' => false,
-                'children' => $economic)
+                'childNodes' => $economic)
         );
 
-        $data_array = array('id' => 1, 'parent_id' => null, 'name' => 'Сигналы', 'shortname'=> 'С', 'isService' => false, 'children' => $child_1);
+        $data_array = array('id' => 1, 'parent_id' => null, 'name' => 'Сигналы', 'shortname'=> 'С', 'isService' => false, 'childNodes' => $child_1);
 
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
