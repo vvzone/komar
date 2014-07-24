@@ -150,39 +150,43 @@ var MainTree = React.createClass({
         // var droppedOn = this.itemAddInArrayById(droppedOn_Id);
 
         var clean_items = this.itemRemoveFromArrayById(dragged.id);
-        //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.node, clean_items);
+        var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.node, clean_items);
 
         //this.setState({items: new_items});
 
-        console.log('clean_items');
-        console.log(clean_items);
-        this.setState({items: clean_items});
+        //console.log('clean_items');
+        //console.log(clean_items);
+        //this.setState({items: clean_items});
+
+        console.log('===========[NEW_ITEMS]===========');
+        console.log(new_items);
+        console.log('===========+++++++++++===========');
+        this.setState({items: new_items});
     },
     itemRemoveFromArrayById: function(value){
         var array = this.state.items;
         var catcher = [];
         for(var i = 0; i < array.length; i++){
             if(array[i]){
-                console.log('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' value= '+value);
+                console.warn('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' value= '+value);
                 if(array[i].id == value){
-                    console.log('array[i].id');
-                    console.log(array[i].id);
-
-                    console.warn('=========delete==========');
+                    console.warn('array[i].id');
+                    console.warn(array[i].id);
+                    console.error('=========delete==========');
                     console.warn(array[i]);
                     console.warn('=========================');
                     delete array[i];
                     return array;
                 }
                 else{
-                    console.log('else');
-                    console.log(array[i]['childNodes']);
+                    console.warn('else');
+                    console.warn(array[i]['childNodes']);
                     if(array[i]['childNodes']){
-                        console.log('anyway childNodes:');
-                        console.log(array[i]['childNodes'])
+                        console.warn('anyway childNodes:');
+                        console.warn(array[i]['childNodes'])
                         for(var k = 0; k < array[i].childNodes.length; k++){
                             if(array[i]['childNodes'][k].id == value){
-                                console.warn('=========delete==========');
+                                console.error('=========delete==========');
                                 console.warn(array[i]['childNodes'][k]);
                                 console.warn('=========================');
                                 delete array[i]['childNodes'][k];
@@ -196,7 +200,80 @@ var MainTree = React.createClass({
         return array;
     },
     itemAddInArrayById: function(value, new_child, clean_items){
-       /* var array = clean_items;
+        var array = {};
+        new_child.parent_id = parseInt(value);
+        //array = this.state.items;
+        array = clean_items;
+        var catcher = [];
+        for(var i = 0; i < array.length; i++){
+            if(array[i]){
+                console.info('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' value= '+value);
+                if(array[i].id == value){
+                    console.info('array[i].id');
+                    console.info(array[i].id);
+
+                    if(array[i]['childNodes']){
+                        console.info('====add===add====add====');
+                        console.info('array[i].childNodes');
+                        console.info(array[i].childNodes);
+                        console.info('new_child');
+                        console.info(new_child);
+
+                        var num = array[i]['childNodes'].length;
+                        num++;
+                        console.info('num= '+num);
+
+
+                        var childs = {}; // truly magic
+                        childs = array[i]['childNodes'];
+                        childs.push(new_child);
+
+                        console.info('childs');
+                        console.info(childs);
+
+                        array[i]['childNodes'].push(new_child);
+                        console.info('after push');
+                        console.info(array[i]['childNodes']);
+                        console.info('array');
+                        console.info(array[i].childNodes);
+                        console.info('=========================');
+                        return array;
+                        break;
+                    }else{
+                        console.info('==========[ADD]===========');
+                        array[i]['childNodes'] = [];
+                        array[i]['childNodes'].push(new_child);
+                        break;
+                    }
+                }
+                else{
+                    console.log('else');
+                    //console.log(array[i]['childNodes']);
+
+                    if(array[i]['childNodes']){
+                        console.log('anyway childNodes:');
+                        console.log(array[i]['childNodes']);
+                        for(var k = 0; k < array[i].childNodes.length; k++){
+                            if(array[i]['childNodes'][k].id == value){
+
+                                console.info('===========FINDED');
+                                var childs = {};
+                                childs = array[i]['childNodes'][k]['childNodes'];
+                                childs.push(new_child);
+                                
+                                array[i]['childNodes'][k]['childNodes'].push(new_child);
+                                //delete array[i]['childNodes'][k];
+                                //return array;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return array;
+    },
+    /*itemAddInArrayById: function(value, new_child, clean_items){
+        var array = clean_items;
         var catcher = [];
         for(var i = 0; i < array.length; i++){
             if(array[i].id == value){
@@ -210,8 +287,8 @@ var MainTree = React.createClass({
                 }
             }
         }
-        return array;*/
-    },
+        return array;
+    },*/
     componentWillMount: function() {
         window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
     },
@@ -250,6 +327,9 @@ var MainTree = React.createClass({
     },
     render: function(){
         var tree = [];
+        /*console.info('RENDER STATE ITEMS');
+        console.info(this.state.items);
+        console.info('==================');*/
         //tree = this.state.items;
         var tree_output = [];
         if(Object.prototype.toString.call(this.state.items) === '[object Array]'){
