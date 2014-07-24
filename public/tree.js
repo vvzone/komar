@@ -16,7 +16,7 @@ var TreeNode = React.createClass({
     },
     dragStart: function(e) {
         this.dragged = e.currentTarget;
-        console.log(e.currentTarget);
+        //console.log(e.currentTarget);
         e.dataTransfer.effectAllowed = 'move';
         // Firefox requires dataTransfer data to be set
         e.dataTransfer.setData("text/html", e.currentTarget);
@@ -61,7 +61,7 @@ var TreeNode = React.createClass({
 
         var movedNode = {
             dragged: storage['dragged'],
-            droppedOn: droppedOn
+            droppedOn_id: droppedOn.id
         };
 
         var customEvent = new CustomEvent("TreeNodeMove",  {
@@ -71,15 +71,13 @@ var TreeNode = React.createClass({
 
         console.info('dispatch event');
 
-        //this.getDOMNode().dispatchEvent(customEvent);
+        this.getDOMNode().dispatchEvent(customEvent);
 
         //throw event instead
-        this.props.moveNode(movedNode);
+        //this.props.moveNode(movedNode);
     },
     render: function () {
         var className = "";
-
-        var self=this;
 
         var style = {};
         if (!this.state.visible) {
@@ -106,7 +104,7 @@ var TreeNode = React.createClass({
                         key={node_key}
                         id={this.props.node.id} >
                         <span onClick={this.toggle} className={className}></span>
-                        <TreeNodeBox item={this.props.node} moveNode={self.moveNode}/>
+                        <TreeNodeBox item={this.props.node}/>
                     </div>
                     <div className="tree_childs" style={style}>
                         <MainTree source={null} childs={this.props.node.childNodes}/>
@@ -124,7 +122,7 @@ var TreeNode = React.createClass({
                 onDragLeave={this.dragLeave}
                 onDrop={this.drop}
                 id={this.props.node.id}>
-                    <TreeNodeBox item={this.props.node} moveNode={self.moveNode}/>
+                    <TreeNodeBox item={this.props.node}/>
                 </div>
             </li>
         );
@@ -143,9 +141,36 @@ var MainTree = React.createClass({
         };
     },
     handleMyEvent: function(event){
-      //alert('handle event');
-        //console.info('event');
-        //console.info(event);
+        console.info(event);
+        var items = [];
+        items = this.state.items;
+        var droppedOn_Id = event.detail.movedNode.droppedOn_id;
+
+        var droppedOn = this.getItemById(droppedOn_Id);
+        console.log('droppedOn');
+        console.log(droppedOn);
+    },
+    getItemById: function(value){
+        var array = this.state.items;
+        var catcher = [];
+        for(var i = 0; i < array.length; i++){
+            //console.log('array[i]');
+            //console.log(array[i]);
+            if(array[i].id == value){
+                catcher.push(array[i]);
+            }
+            if(array[i]['childNodes'] !=  undefined){
+                var array_childs = array[i].childNodes;
+                //console.log('have childs='+array_childs.length);
+                for(var k = 0; k < array_childs.length; k++){
+                    //console.log('array[k].id = '+ array_childs[k].id);
+                    if(array_childs[k].id == value){
+                        catcher.push(array_childs[k]);
+                    }
+                }
+            }
+        }
+        return catcher.length == 1 ? catcher[0] : catcher;
     },
     componentWillMount: function() {
         window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
@@ -190,7 +215,7 @@ var MainTree = React.createClass({
         if(Object.prototype.toString.call(this.state.items) === '[object Array]'){
             var self = this;
             tree_output = this.state.items.map(function(node){
-                return(<TreeNode key={node.id} node={node} moveNode={this.moveNode} />)
+                return(<TreeNode key={node.id} node={node} />)
             });
             return(<ul className="tree">{tree_output}</ul>);
         }

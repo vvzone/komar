@@ -234,6 +234,7 @@ var FormEntEnumerationTypes = React. createClass({
 
 var FormEntDocKinds = React. createClass({
     render: function(){
+        console.log('MAIN TREE CALL');
         return(
             <div className="DocKindsBox">
                 <MainTree source="dockinds" />
