@@ -147,20 +147,8 @@ var MainTree = React.createClass({
         var droppedOn_Id = event.detail.movedNode.droppedOn_id;
         var dragged =  event.detail.movedNode.dragged;
 
-        // var droppedOn = this.itemAddInArrayById(droppedOn_Id);
-
         var clean_items = this.itemRemoveFromArrayById(dragged.id);
         var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.node, clean_items);
-
-        //this.setState({items: new_items});
-
-        //console.log('clean_items');
-        //console.log(clean_items);
-        //this.setState({items: clean_items});
-
-        console.log('===========[NEW_ITEMS]===========');
-        console.log(new_items);
-        console.log('===========+++++++++++===========');
         this.setState({items: new_items});
     },
     itemRemoveFromArrayById: function(value){
@@ -168,127 +156,69 @@ var MainTree = React.createClass({
         var catcher = [];
         for(var i = 0; i < array.length; i++){
             if(array[i]){
-                console.warn('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' value= '+value);
                 if(array[i].id == value){
-                    console.warn('array[i].id');
-                    console.warn(array[i].id);
-                    console.error('=========delete==========');
-                    console.warn(array[i]);
-                    console.warn('=========================');
                     delete array[i];
                     return array;
-                }
+                }/*
                 else{
-                    console.warn('else');
-                    console.warn(array[i]['childNodes']);
                     if(array[i]['childNodes']){
-                        console.warn('anyway childNodes:');
-                        console.warn(array[i]['childNodes'])
-                        for(var k = 0; k < array[i].childNodes.length; k++){
-                            if(array[i]['childNodes'][k].id == value){
-                                console.error('=========delete==========');
-                                console.warn(array[i]['childNodes'][k]);
-                                console.warn('=========================');
-                                delete array[i]['childNodes'][k];
+                        for(var d = 0; d < array[i].childNodes.length; d++){
+                            if(array[i]['childNodes'][d].id == value){
+                                delete array[i]['childNodes'][d];
                                 return array;
                             }
                         }
                     }
-                }
+                }*/
             }
         }
         return array;
     },
-    itemAddInArrayById: function(value, new_child, clean_items){
+    itemAddInArrayById: function(droppedOn_Id, new_child, clean_items){
         var array = {};
-        new_child.parent_id = parseInt(value);
-        //array = this.state.items;
+        new_child.parent_id = parseInt(droppedOn_Id);
         array = clean_items;
         var catcher = [];
         for(var i = 0; i < array.length; i++){
             if(array[i]){
-                console.info('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' value= '+value);
-                if(array[i].id == value){
-                    console.info('array[i].id');
-                    console.info(array[i].id);
-
+                console.info('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' droppedOn_Id= '+droppedOn_Id);
+                if(array[i].id == droppedOn_Id){
                     if(array[i]['childNodes']){
-                        console.info('====add===add====add====');
-                        console.info('array[i].childNodes');
-                        console.info(array[i].childNodes);
-                        console.info('new_child');
-                        console.info(new_child);
-
-                        var num = array[i]['childNodes'].length;
-                        num++;
-                        console.info('num= '+num);
-
-
                         var childs = {}; // truly magic
                         childs = array[i]['childNodes'];
                         childs.push(new_child);
-
-                        console.info('childs');
-                        console.info(childs);
-
                         array[i]['childNodes'].push(new_child);
-                        console.info('after push');
-                        console.info(array[i]['childNodes']);
-                        console.info('array');
-                        console.info(array[i].childNodes);
-                        console.info('=========================');
                         return array;
                         break;
                     }else{
-                        console.info('==========[ADD]===========');
                         array[i]['childNodes'] = [];
                         array[i]['childNodes'].push(new_child);
                         break;
                     }
-                }
+                }/*
                 else{
-                    console.log('else');
-                    //console.log(array[i]['childNodes']);
-
-                    if(array[i]['childNodes']){
-                        console.log('anyway childNodes:');
-                        console.log(array[i]['childNodes']);
-                        for(var k = 0; k < array[i].childNodes.length; k++){
-                            if(array[i]['childNodes'][k].id == value){
-
-                                console.info('===========FINDED');
+                    console.info("array[i]['childNodes'].length = "+ array[i]['childNodes'].length);
+                    console.info(array[i]['childNodes']);
+                    if(array[i]['childNodes'] && array[i]['childNodes'].length>0){
+                        for(var addKey = 0; addKey < array[i].childNodes.length; addKey++){
+                            if(array[i]['childNodes'][addKey].id == droppedOn_Id){
                                 var childs = {};
-                                childs = array[i]['childNodes'][k]['childNodes'];
+                                childs = array[i]['childNodes'][addKey]['childNodes'];
                                 childs.push(new_child);
-                                
-                                array[i]['childNodes'][k]['childNodes'].push(new_child);
-                                //delete array[i]['childNodes'][k];
-                                //return array;
+                                array[i]['childNodes'][addKey]['childNodes'].push(new_child);
+                                return array;
+                                break;
                             }
                         }
+                    }else{
+                        array[i]['childNodes'][addKey]['childNodes'] = [];
+                        array[i]['childNodes'][addKey]['childNodes'].push(new_child);
                     }
-                }
+                }*/
             }
         }
         return array;
     },
-    /*itemAddInArrayById: function(value, new_child, clean_items){
-        var array = clean_items;
-        var catcher = [];
-        for(var i = 0; i < array.length; i++){
-            if(array[i].id == value){
-                array[i]['childNodes'].push(new_child);
-            }
-            if(array[i]['childNodes'] !=  undefined){
-                for(var k = 0; k < array[i].childNodes.length; k++){
-                    if(array[i]['childNodes'][k].id == value){
-                        array[i]['childNodes'][k]['childNodes'].push(new_child);
-                    }
-                }
-            }
-        }
-        return array;
-    },*/
     componentWillMount: function() {
         window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
     },
