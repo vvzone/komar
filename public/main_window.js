@@ -75,7 +75,7 @@ var MainWindow = React.createClass({
             screen_name: ''
         };
     },
-    handleMyEvent: function(e) {;
+    handleMyEvent: function(e) {
         this.setState({screen_name: e.detail.screen_name});
     },
     componentWillMount: function() {

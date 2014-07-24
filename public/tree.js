@@ -17,9 +17,9 @@ var TreeNode = React.createClass({
     dragStart: function(e) {
         this.dragged = e.currentTarget;
         console.log(e.currentTarget);
-        //e.dataTransfer.effectAllowed = 'move';
+        e.dataTransfer.effectAllowed = 'move';
         // Firefox requires dataTransfer data to be set
-        //e.dataTransfer.setData("text/html", e.currentTarget);
+        e.dataTransfer.setData("text/html", e.currentTarget);
 
         //console.info('===this====');
         //console.info(this.state.node);
@@ -27,7 +27,7 @@ var TreeNode = React.createClass({
                     node: this.state.node};
 
         storage['dragged'] = data;
-        e.dataTransfer.setData("text/html", e.currentTarget);
+        //e.dataTransfer.setData("text/html", e.currentTarget);
         //e.dataTransfer.setData('text', id);
     },
     dragOver: function(e) {
@@ -47,25 +47,37 @@ var TreeNode = React.createClass({
     },
     drop: function(e){
         e.preventDefault();
+        console.warn('DROP');
         var droppedOn = e.currentTarget;
 
         /*//var parentDroppedOn = $(droppedOn).parent().parent().parent().find('div.tree_box_node');
         console.info('parentDroppedOn');
         console.info(parentDroppedOn);*/
-        if(droppedOn.id == storage['dragged']['id'] || droppedOn.id){
+        if(droppedOn.id == storage['dragged']['id']){ //add same parent check
+            console.warn('stop');
             return
         }
         $(droppedOn).append('<div>'+droppedOn.id+' dragged='+storage['dragged']['id']+'</div>');
 
-        var movedNode = {};
+        var movedNode = {
+            dragged: storage['dragged'],
+            droppedOn: droppedOn
+        };
+
+        var customEvent = new CustomEvent("TreeNodeMove",  {
+            detail: {movedNode: movedNode},
+            bubbles: true
+        });
+
+        console.info('dispatch event');
+
+        this.getDOMNode().dispatchEvent(customEvent);
 
         //throw event instead
         //this.props.moveNode(movedNode);
     },
     render: function () {
         var className = "";
-
-        var self = this;
 
         var style = {};
         if (!this.state.visible) {
@@ -128,6 +140,26 @@ var MainTree = React.createClass({
             items: [] //array!!
         };
     },
+    handleMyEvent: function(){
+      alert('handle event');
+    },
+    componentWillMount: function() {
+        window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
+    },
+    componentWillUnmount: function() {
+        window.removeEventListener("TreeNodeMove", this.handleMyEvent, true);
+    },
+    componentDidMount: function() {
+        if(this.props.childs!=null){
+            this.setState({items: this.props.childs});
+        }else{
+            $.get('http://zend_test/main/index/dockinds', function (result) {
+                var items = [];
+                items = result.data;
+                this.setState({items: items});
+            }.bind(this));
+        }
+    },
     moveNode: function(movedNode){
 
         alert('main_move_node');
@@ -146,17 +178,6 @@ var MainTree = React.createClass({
         var newItemsArrange = {};
         this.setState({items: newItemsArrange});
         //save to database*/
-    },
-    componentDidMount: function() {
-        if(this.props.childs!=null){
-            this.setState({items: this.props.childs});
-        }else{
-            $.get('http://zend_test/main/index/dockinds', function (result) {
-                var items = [];
-                items = result.data;
-                this.setState({items: items});
-            }.bind(this));
-        }
     },
     render: function(){
         var tree = [];
