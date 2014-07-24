@@ -147,42 +147,48 @@ var MainTree = React.createClass({
         var droppedOn_Id = event.detail.movedNode.droppedOn_id;
         var dragged =  event.detail.movedNode.dragged;
 
-        var clean_items = this.itemRemoveFromArrayById(dragged.id);
+        var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.node, droppedOn_Id);
         var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.node, clean_items);
         this.setState({items: new_items});
     },
-    itemRemoveFromArrayById: function(value){
+    itemRemoveFromArrayById: function(value, node, droppedOn_Id){
         var array = this.state.items;
         var catcher = [];
         for(var i = 0; i < array.length; i++){
             if(array[i]){
-                if(array[i].id == value){
-                    delete array[i];
-                    return array;
-                }/*
-                else{
-                    if(array[i]['childNodes']){
-                        for(var d = 0; d < array[i].childNodes.length; d++){
-                            if(array[i]['childNodes'][d].id == value){
-                                delete array[i]['childNodes'][d];
-                                return array;
-                            }
-                        }
-                    }
-                }*/
+                //console.warn('value= '+value+' node.parent_id= '+node.parent_id+' droppedOn_Id= '+droppedOn_Id);
+                //if(node.parent_id != droppedOn_Id){
+
+                    if(array[i].id == value){
+                        delete array[i];
+                        return array;
+                    }/*
+                     else{
+                     if(array[i]['childNodes']){
+                     for(var d = 0; d < array[i].childNodes.length; d++){
+                     if(array[i]['childNodes'][d].id == value){
+                     delete array[i]['childNodes'][d];
+                     return array;
+                     }
+                     }
+                     }
+                     }*/
+                //}
             }
         }
         return array;
     },
     itemAddInArrayById: function(droppedOn_Id, new_child, clean_items){
         var array = {};
+        var old_parent = new_child.parent_id;
         new_child.parent_id = parseInt(droppedOn_Id);
         array = clean_items;
         var catcher = [];
         for(var i = 0; i < array.length; i++){
             if(array[i]){
                 console.info('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' droppedOn_Id= '+droppedOn_Id);
-                if(array[i].id == droppedOn_Id){
+                if(array[i].id == droppedOn_Id ){
+                    //old_parent!=droppedOn_Id
                     if(array[i]['childNodes']){
                         var childs = {}; // truly magic
                         childs = array[i]['childNodes'];
@@ -195,7 +201,8 @@ var MainTree = React.createClass({
                         array[i]['childNodes'].push(new_child);
                         break;
                     }
-                }/*
+                }
+                /*
                 else{
                     console.info("array[i]['childNodes'].length = "+ array[i]['childNodes'].length);
                     console.info(array[i]['childNodes']);
