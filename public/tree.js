@@ -57,7 +57,7 @@ var TreeNode = React.createClass({
             console.warn('stop');
             return
         }
-        $(droppedOn).append('<div>'+droppedOn.id+' dragged='+storage['dragged']['id']+'</div>');
+        //$(droppedOn).append('<div>'+droppedOn.id+' dragged='+storage['dragged']['id']+'</div>');
 
         var movedNode = {
             dragged: storage['dragged'],
@@ -150,21 +150,45 @@ var MainTree = React.createClass({
         // var droppedOn = this.itemAddInArrayById(droppedOn_Id);
 
         var clean_items = this.itemRemoveFromArrayById(dragged.id);
-        var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.node, clean_items);
+        //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.node, clean_items);
 
-        this.setState({items: new_items});
+        //this.setState({items: new_items});
+
+        console.log('clean_items');
+        console.log(clean_items);
+        this.setState({items: clean_items});
     },
     itemRemoveFromArrayById: function(value){
         var array = this.state.items;
         var catcher = [];
         for(var i = 0; i < array.length; i++){
-            if(array[i].id == value){
-                delete array[i];
-            }
-            if(array[i]['childNodes'] !=  undefined){
-                for(var k = 0; k < array[i].childNodes.length; k++){
-                    if(array[i]['childNodes'][k].id == value){
-                        delete array[i]['childNodes'][k];
+            if(array[i]){
+                console.log('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' value= '+value);
+                if(array[i].id == value){
+                    console.log('array[i].id');
+                    console.log(array[i].id);
+
+                    console.warn('=========delete==========');
+                    console.warn(array[i]);
+                    console.warn('=========================');
+                    delete array[i];
+                    return array;
+                }
+                else{
+                    console.log('else');
+                    console.log(array[i]['childNodes']);
+                    if(array[i]['childNodes']){
+                        console.log('anyway childNodes:');
+                        console.log(array[i]['childNodes'])
+                        for(var k = 0; k < array[i].childNodes.length; k++){
+                            if(array[i]['childNodes'][k].id == value){
+                                console.warn('=========delete==========');
+                                console.warn(array[i]['childNodes'][k]);
+                                console.warn('=========================');
+                                delete array[i]['childNodes'][k];
+                                return array;
+                            }
+                        }
                     }
                 }
             }
@@ -172,7 +196,7 @@ var MainTree = React.createClass({
         return array;
     },
     itemAddInArrayById: function(value, new_child, clean_items){
-        var array = clean_items;
+       /* var array = clean_items;
         var catcher = [];
         for(var i = 0; i < array.length; i++){
             if(array[i].id == value){
@@ -186,7 +210,7 @@ var MainTree = React.createClass({
                 }
             }
         }
-        return array;
+        return array;*/
     },
     componentWillMount: function() {
         window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
