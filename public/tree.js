@@ -145,32 +145,48 @@ var MainTree = React.createClass({
         var items = [];
         items = this.state.items;
         var droppedOn_Id = event.detail.movedNode.droppedOn_id;
+        var dragged =  event.detail.movedNode.dragged;
 
-        var droppedOn = this.getItemById(droppedOn_Id);
-        console.log('droppedOn');
-        console.log(droppedOn);
+        // var droppedOn = this.itemAddInArrayById(droppedOn_Id);
+
+        var clean_items = this.itemRemoveFromArrayById(dragged.id);
+        var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.node, clean_items);
+
+        this.setState({items: new_items});
     },
-    getItemById: function(value){
+    itemRemoveFromArrayById: function(value){
         var array = this.state.items;
         var catcher = [];
         for(var i = 0; i < array.length; i++){
-            //console.log('array[i]');
-            //console.log(array[i]);
             if(array[i].id == value){
-                catcher.push(array[i]);
+                delete array[i];
             }
             if(array[i]['childNodes'] !=  undefined){
-                var array_childs = array[i].childNodes;
-                //console.log('have childs='+array_childs.length);
-                for(var k = 0; k < array_childs.length; k++){
-                    //console.log('array[k].id = '+ array_childs[k].id);
-                    if(array_childs[k].id == value){
-                        catcher.push(array_childs[k]);
+                for(var k = 0; k < array[i].childNodes.length; k++){
+                    if(array[i]['childNodes'][k].id == value){
+                        delete array[i]['childNodes'][k];
                     }
                 }
             }
         }
-        return catcher.length == 1 ? catcher[0] : catcher;
+        return array;
+    },
+    itemAddInArrayById: function(value, new_child, clean_items){
+        var array = clean_items;
+        var catcher = [];
+        for(var i = 0; i < array.length; i++){
+            if(array[i].id == value){
+                array[i]['childNodes'].push(new_child);
+            }
+            if(array[i]['childNodes'] !=  undefined){
+                for(var k = 0; k < array[i].childNodes.length; k++){
+                    if(array[i]['childNodes'][k].id == value){
+                        array[i]['childNodes'][k]['childNodes'].push(new_child);
+                    }
+                }
+            }
+        }
+        return array;
     },
     componentWillMount: function() {
         window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
