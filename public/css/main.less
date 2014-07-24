@@ -81,16 +81,47 @@ div.next{
   }
 }
 
+span.glyphicon{
+  cursor: pointer;
+}
+
 ul.cattree{
   margin-left: 10px;
 }
 
-div.tree_node{
-  border: 1px solid silver;
-  padding: @big;
-  /*background: silver;*/
-  width: auto;
+ul.tree{
+  list-style-type: none;
+  padding: @min;
+
+  div.tree_childs{
+    margin-left: @med*6;
+  }
+
+div.tree_over_node{
+  border: 1px solid @base_font_color;
+  background: @light_silver;
 }
+
+  div.tree_box_node{
+      clear: both;
+      border: 1px solid silver;
+      padding: @big;
+      width: auto;
+      margin-left: @med*3;
+      display: inline-block;
+      border-radius: @small;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+
+    span.tree_box_node_name{
+      margin-left: @med;
+    }
+  }
+
+  .placeholder { background: rgb(255,240,120);}
+  //.placeholder:before {content: "Drop here"; color: rgb(225,210,90);}
+}
+
+
 
 div.MainList{
   overflow: hidden;

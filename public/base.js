@@ -75,6 +75,13 @@ var ButtonDelete = React.createClass({
 });
 
 
+var TreeNodeBox = React.createClass({
+    render: function(){
+        var key='tree_box_name'+this.props.item.id;
+        return(<span className="tree_box_node_name" key={key}>{this.props.item.name}</span>)
+    }
+});
+
 var ItemLink = React. createClass({
     /*
      * props: name, clicked(), id
@@ -86,7 +93,7 @@ var ItemLink = React. createClass({
         this.props.onClick(this.props.item);
     },
     render: function(){
-        return(<a href={this.props.item.id} onClick={this.handleClick}>{this.props.item.name}</a>)
+        return(<a draggable="false" href={this.props.item.id} onClick={this.handleClick}>{this.props.item.name}</a>)
     }
 });
 

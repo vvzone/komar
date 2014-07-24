@@ -48,14 +48,38 @@ div.next {
   color: #595959;
   padding: 10px;
 }
+span.glyphicon {
+  cursor: pointer;
+}
 ul.cattree {
   margin-left: 10px;
 }
-div.tree_node {
+ul.tree {
+  list-style-type: none;
+  padding: 2px;
+}
+ul.tree div.tree_childs {
+  margin-left: 30px;
+}
+ul.tree div.tree_over_node {
+  border: 1px solid #428bca;
+  background: #d6e5ed;
+}
+ul.tree div.tree_box_node {
+  clear: both;
   border: 1px solid silver;
   padding: 10px;
-  /*background: silver;*/
   width: auto;
+  margin-left: 15px;
+  display: inline-block;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+}
+ul.tree div.tree_box_node span.tree_box_node_name {
+  margin-left: 5px;
+}
+ul.tree .placeholder {
+  background: #fff078;
 }
 div.MainList {
   overflow: hidden;
