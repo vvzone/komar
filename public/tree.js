@@ -87,6 +87,9 @@ var TreeNode = React.createClass({
         //throw event instead
         //this.props.moveNode(movedNode);
     },
+    nodeControlClicked: function(action){
+        alert(action);
+    },
     render: function () {
         var className = "";
 
@@ -120,9 +123,9 @@ var TreeNode = React.createClass({
                         <TreeNodeBox item={this.props.node}/>
                     </div>
                     <div className="tree_box_node_controls">
-                        <ButtonAdd mini="true" />
-                        <ButtonEdit mini="true" />
-                        <ButtonDelete mini="true" />
+                        <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
+                        <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
+                        <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
                     </div>
                     <div className="tree_childs" style={style}>
                         <MainTree source={null} childs={this.props.node.childNodes}/>
@@ -133,7 +136,6 @@ var TreeNode = React.createClass({
         }
         return(
             <li style={style}>
-
                     <div className="tree_box_node"
                     draggable="true"
                     onDragEnd={this.dragEnd}
@@ -145,9 +147,9 @@ var TreeNode = React.createClass({
                         <TreeNodeBox item={this.props.node}/>
                     </div>
                 <div className="tree_box_node_controls">
-                    <ButtonAdd mini="true" />
-                    <ButtonEdit mini="true" />
-                    <ButtonDelete mini="true" />
+                    <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
+                    <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
+                    <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
                 </div>
             </li>
         );

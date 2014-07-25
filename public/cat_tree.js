@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 
+
 var CatLink = React. createClass({
     getInitialState: function() {
         return {
