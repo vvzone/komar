@@ -15,6 +15,7 @@
 /* colors */
 @dark_red: #d00a03;
 @light_silver: #d6e5ed;
+@warning_color: #ec9a25;
 
 /* fonts */
 @base_font_size: 1em;
@@ -253,5 +254,35 @@ div.list_box{
   strong{
     font-size: @base_font_size+0.2;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  }
+  .modal-header{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
+
+  .modal-footer{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
+}
+
+.alert-warning{
+  background: @dark_red;
+  color: white;
+  font-size: @base_font_size+0.5;
+  border-color: @dark_red+20;
+
+  .modal-header{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
+
+  .modal-footer{
+    border: none;
+    text-align: center;
+    padding: @big;
   }
 }

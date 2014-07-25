@@ -163,3 +163,29 @@ div.list_box div.list_box_select select {
   font-size: 1.2em;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
+.alert-error .modal-header {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+.alert-error .modal-footer {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+.alert-warning {
+  background: #d00a03;
+  color: white;
+  font-size: 1.5em;
+  border-color: #e41e17;
+}
+.alert-warning .modal-header {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+.alert-warning .modal-footer {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}

@@ -30,14 +30,9 @@ var TreeNode = React.createClass({
         // Firefox requires dataTransfer data to be set
         e.dataTransfer.setData("text/html", e.currentTarget);
 
-        //console.info('===this====');
-        //console.info(this.state.node);
         var data = {id: e.currentTarget.id,
                     node: this.state.node};
-
         storage['dragged'] = data;
-        //e.dataTransfer.setData("text/html", e.currentTarget);
-        //e.dataTransfer.setData('text', id);
     },
     dragOver: function(e) {
         e.preventDefault(); // necessary!
@@ -61,14 +56,10 @@ var TreeNode = React.createClass({
         $(this.over).removeClass('tree_over_node');
         var droppedOn = e.currentTarget;
 
-        /*//var parentDroppedOn = $(droppedOn).parent().parent().parent().find('div.tree_box_node');
-        console.info('parentDroppedOn');
-        console.info(parentDroppedOn);*/
         if(droppedOn.id == storage['dragged']['id']){ //add same parent check
             console.warn('stop');
             return
         }
-        //$(droppedOn).append('<div>'+droppedOn.id+' dragged='+storage['dragged']['id']+'</div>');
 
         var movedNode = {
             dragged: storage['dragged'],
@@ -81,24 +72,25 @@ var TreeNode = React.createClass({
         });
 
         console.info('dispatch event');
-
         this.getDOMNode().dispatchEvent(customEvent);
-
-        //throw event instead
-        //this.props.moveNode(movedNode);
     },
     nodeControlClicked: function(action){
-        alert(action);
+        var customEvent = new CustomEvent("modalWindowOpen",  {
+            detail: {
+                action: action,
+                entity: 'doc_kind_node_edit'
+                    },
+            bubbles: true
+        });
+        this.getDOMNode().dispatchEvent(customEvent);
     },
     render: function () {
         var className = "";
-
         var style = {};
         if (!this.state.visible) {
             style.display = "none";
         }
 
-        //if (this.props.node.childNodes != null) {
         if (this.props.node.childNodes != null) {
             if(this.props.node.childNodes.length>0){
             className = "glyphicon togglable";
@@ -108,6 +100,11 @@ var TreeNode = React.createClass({
                 className += " glyphicon-plus";
             }
             var node_key = 'tree_box_node'+this.props.node.id;
+
+            var host = this.props.node.id;
+            var childrens = this.props.node.childNodes.map(function(child){
+                return child.id;
+            });
             return(
                 <li>
                     <div className="tree_box_node"
@@ -122,6 +119,7 @@ var TreeNode = React.createClass({
                         <span onClick={this.toggle} className={className}></span>
                         <TreeNodeBox item={this.props.node}/>
                     </div>
+                        <DrawLines host={host} childrens={childrens} />
                     <div className="tree_box_node_controls">
                         <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
                         <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
@@ -160,7 +158,6 @@ var TreeNode = React.createClass({
 });
 
 
-
 var MainTree = React.createClass({
     getInitialState: function() {
         return {
@@ -183,24 +180,10 @@ var MainTree = React.createClass({
         var catcher = [];
         for(var i = 0; i < array.length; i++){
             if(array[i]){
-                //console.warn('value= '+value+' node.parent_id= '+node.parent_id+' droppedOn_Id= '+droppedOn_Id);
-                //if(node.parent_id != droppedOn_Id){
-
                     if(array[i].id == value){
                         delete array[i];
                         return array;
-                    }/*
-                     else{
-                     if(array[i]['childNodes']){
-                     for(var d = 0; d < array[i].childNodes.length; d++){
-                     if(array[i]['childNodes'][d].id == value){
-                     delete array[i]['childNodes'][d];
-                     return array;
-                     }
-                     }
-                     }
-                     }*/
-                //}
+                    }
             }
         }
         return array;
@@ -229,26 +212,6 @@ var MainTree = React.createClass({
                         break;
                     }
                 }
-                /*
-                else{
-                    console.info("array[i]['childNodes'].length = "+ array[i]['childNodes'].length);
-                    console.info(array[i]['childNodes']);
-                    if(array[i]['childNodes'] && array[i]['childNodes'].length>0){
-                        for(var addKey = 0; addKey < array[i].childNodes.length; addKey++){
-                            if(array[i]['childNodes'][addKey].id == droppedOn_Id){
-                                var childs = {};
-                                childs = array[i]['childNodes'][addKey]['childNodes'];
-                                childs.push(new_child);
-                                array[i]['childNodes'][addKey]['childNodes'].push(new_child);
-                                return array;
-                                break;
-                            }
-                        }
-                    }else{
-                        array[i]['childNodes'][addKey]['childNodes'] = [];
-                        array[i]['childNodes'][addKey]['childNodes'].push(new_child);
-                    }
-                }*/
             }
         }
         return array;
@@ -270,31 +233,8 @@ var MainTree = React.createClass({
             }.bind(this));
         }
     },
-    moveNode: function(movedNode){
-
-        alert('main_move_node');
-        console.info('this.state.items');
-        console.info(this.state.items);
-        /*var items = this.state.items;
-
-        //delete items[movedNode.dragged_id];
-
-        items.map(function(tree){
-            if(){
-
-            }
-        });
-
-        var newItemsArrange = {};
-        this.setState({items: newItemsArrange});
-        //save to database*/
-    },
     render: function(){
         var tree = [];
-        /*console.info('RENDER STATE ITEMS');
-        console.info(this.state.items);
-        console.info('==================');*/
-        //tree = this.state.items;
         var tree_output = [];
         if(Object.prototype.toString.call(this.state.items) === '[object Array]'){
             var self = this;

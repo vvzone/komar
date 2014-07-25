@@ -88,6 +88,56 @@ var MainWindow = React.createClass({
         window.removeEventListener("catLinkClick", this.handleMyEvent, true);
     },
     render: function(){
-        return(<div><BaseScreen screen_name={this.state.screen_name} /></div>)
+        return(<div>
+            <BaseScreen screen_name={this.state.screen_name} />
+            <ModalWindowRouter />
+        </div>)
     }
 });
+
+var ModalWindowRouter = React.createClass({
+    getInitialState: function() {
+        return {
+            action: '',
+            entity: ''
+        };
+    },
+    modalOpen: function(event) {
+        this.setState({
+            action: event.detail.action,
+            entity: event.detail.entity
+        });
+    },
+    modalClose: function(){
+        this.setState({
+            action: '',
+            entity: ''
+        });
+    },
+    componentWillMount: function() {
+        window.addEventListener("modalWindowOpen", this.modalOpen, true);
+        window.addEventListener("modalWindowClose", this.modalClose, true);
+    },
+    componentWillUnmount: function() {
+        window.removeEventListener("modalWindowOpen", this.modalOpen, true);
+        window.addEventListener("modalWindowClose", this.modalClose, true);
+    },
+    render: function(){
+        switch(this.state.action){
+            case 'add':
+                return(<ModalWindowAdd />);
+            break;
+            case 'edit':
+                return(<ModalWindowEdit entity={this.state.entity} />);
+            break;
+            case 'delete':
+                return(<ModalWindowDelete />);
+            break;
+            case 'save':
+                return(<ModalWindowSave />);
+            break;
+        }
+        return(<div>&nbsp;</div>);
+    }
+});
+
