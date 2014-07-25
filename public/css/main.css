@@ -61,22 +61,36 @@ ul.tree {
 ul.tree div.tree_childs {
   margin-left: 30px;
 }
+ul.tree .btn-mini {
+  font-size: 10px;
+  padding: 1px 4px;
+}
 ul.tree div.tree_over_node {
   border: 1px solid #428bca;
   background: #d6e5ed;
 }
 ul.tree div.tree_box_node {
   clear: both;
-  border: 1px solid silver;
-  padding: 10px;
-  width: auto;
-  margin-left: 15px;
   display: inline-block;
+  float: left;
+  padding: 12px;
+  margin: 5px;
+  margin-left: 35px;
+  margin-bottom: 15px;
+  width: auto;
+  min-width: 170px;
+  border: 1px solid silver;
   border-radius: 3px;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  cursor: move;
 }
 ul.tree div.tree_box_node span.tree_box_node_name {
   margin-left: 5px;
+}
+ul.tree div.tree_box_node_controls {
+  float: left;
+  margin-left: -65px;
+  margin-top: -5px;
 }
 ul.tree .placeholder {
   background: #fff078;

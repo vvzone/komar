@@ -97,24 +97,58 @@ ul.tree{
     margin-left: @med*6;
   }
 
+  .btn-mini{
+    font-size: @big;
+    padding: 1px 4px;
+  }
+
 div.tree_over_node{
   border: 1px solid @base_font_color;
   background: @light_silver;
 }
 
   div.tree_box_node{
-      clear: both;
-      border: 1px solid silver;
-      padding: @big;
-      width: auto;
-      margin-left: @med*3;
-      display: inline-block;
-      border-radius: @small;
-      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+    clear: both;
+    display: inline-block;
+    float: left;
+
+    padding: @big+@min;
+    margin: @med;
+    margin-left: @med*7;
+    margin-bottom: @med*3;
+    width: auto;
+    min-width: @big*17;
+
+    border: 1px solid silver;
+    border-radius: @small;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+
+    cursor: move;
+
 
     span.tree_box_node_name{
       margin-left: @med;
     }
+
+    div.tree_box_node_item{
+
+    }
+  }
+
+
+  div.tree_box_node_controls{
+    float: left;
+    margin-left: -@big*6.5;
+    margin-top: -5px;
+
+    .ButtonDelete{
+
+    }
+    .ButtonEdit{
+
+    }
+
+
   }
 
   .placeholder { background: rgb(255,240,120);}
@@ -201,6 +235,8 @@ div.list_box{
 .enlight{
   background: @light_silver+30;
 }
+
+
 
 /* msg's*/
 

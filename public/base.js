@@ -26,12 +26,25 @@ var ButtonDiscard = React.createClass({
     },
     render: function () {
         if(this.props.mini == 'true'){
-            return ( <button className="ButtonDiscard btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span></button> )
+            return ( <button className="ButtonDiscard btn btn-xs btn-danger btn-mini" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span></button> )
         }
         return ( <button className="ButtonDiscard btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ban-circle"></span>  Сброс</button> );
     }
 });
 
+
+var ButtonAdd = React.createClass({
+    handleClick: function (e) {
+        var action = 'add';
+        this.props.clicked(action);
+    },
+    render: function () {
+        if(this.props.mini == 'true'){
+            return ( <button className="ButtonSave btn btn-xs btn-success btn-mini" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-plus"></span></button> )
+        }
+        return ( <button className="ButtonSave btn btn-xs btn-success" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-plus"></span>  Добавить</button> );
+    }
+});
 
 var ButtonSave = React.createClass({
     handleClick: function (e) {
@@ -40,7 +53,7 @@ var ButtonSave = React.createClass({
     },
     render: function () {
         if(this.props.mini == 'true'){
-            return ( <button className="ButtonSave btn btn-xs btn-success" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ok"></span></button> )
+            return ( <button className="ButtonSave btn btn-xs btn-success btn-mini" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ok"></span></button> )
         }
         return ( <button className="ButtonSave btn btn-xs btn-success" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-ok"></span>  Сохранить</button> );
     }
@@ -53,7 +66,7 @@ var ButtonEdit = React.createClass({
     },
     render: function () {
         if(this.props.mini == 'true'){
-            return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span></button> )
+            return ( <button className="ButtonEdit btn btn-xs btn-warning btn-mini" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span></button> )
         }
         return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span>  Редактировать</button> );
     }
@@ -68,17 +81,9 @@ var ButtonDelete = React.createClass({
     },
     render: function () {
         if(this.props.mini == 'true'){
-            return ( <button className="ButtonDelete btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span></button> );
+            return ( <button className="ButtonDelete btn btn-xs btn-danger btn-mini" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span></button> );
         }
         return ( <button className="ButtonDelete btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span>  Удалить</button> );
-    }
-});
-
-
-var TreeNodeBox = React.createClass({
-    render: function(){
-        var key='tree_box_name'+this.props.item.id;
-        return(<span className="tree_box_node_name" key={key}>{this.props.item.name}</span>)
     }
 });
 

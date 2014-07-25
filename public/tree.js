@@ -2,6 +2,15 @@
 
 var storage = {};
 
+
+var TreeNodeBox = React.createClass({
+    render: function(){
+        var key='tree_box_name'+this.props.item.id;
+        return(<span className="tree_box_node_name" key={key}>{this.props.item.name}</span>)
+    }
+});
+
+
 var TreeNode = React.createClass({
     getInitialState: function () {
         return {
@@ -44,10 +53,12 @@ var TreeNode = React.createClass({
     },
     dragEnd: function(e) {
         e.preventDefault(); // necessary!
+        $(this.over).removeClass('tree_over_node');
     },
     drop: function(e){
         e.preventDefault();
         console.warn('DROP');
+        $(this.over).removeClass('tree_over_node');
         var droppedOn = e.currentTarget;
 
         /*//var parentDroppedOn = $(droppedOn).parent().parent().parent().find('div.tree_box_node');
@@ -84,7 +95,9 @@ var TreeNode = React.createClass({
             style.display = "none";
         }
 
+        //if (this.props.node.childNodes != null) {
         if (this.props.node.childNodes != null) {
+            if(this.props.node.childNodes.length>0){
             className = "glyphicon togglable";
             if (this.state.visible) {
                 className += " glyphicon-minus";
@@ -95,34 +108,46 @@ var TreeNode = React.createClass({
             return(
                 <li>
                     <div className="tree_box_node"
-                        draggable="true"
-                        onDrop={this.drop}
-                        onDragEnd={this.dragEnd}
-                        onDragStart={this.dragStart}
-                        onDragOver={this.dragOver}
-                        onDragLeave={this.dragLeave}
-                        key={node_key}
-                        id={this.props.node.id} >
+                    draggable="true"
+                    onDrop={this.drop}
+                    onDragEnd={this.dragEnd}
+                    onDragStart={this.dragStart}
+                    onDragOver={this.dragOver}
+                    onDragLeave={this.dragLeave}
+                    key={node_key}
+                    id={this.props.node.id} >
                         <span onClick={this.toggle} className={className}></span>
                         <TreeNodeBox item={this.props.node}/>
+                    </div>
+                    <div className="tree_box_node_controls">
+                        <ButtonAdd mini="true" />
+                        <ButtonEdit mini="true" />
+                        <ButtonDelete mini="true" />
                     </div>
                     <div className="tree_childs" style={style}>
                         <MainTree source={null} childs={this.props.node.childNodes}/>
                     </div>
                 </li>
                 );
+          }
         }
         return(
             <li style={style}>
-                <div className="tree_box_node"
-                draggable="true"
-                onDragEnd={this.dragEnd}
-                onDragStart={this.dragStart}
-                onDragOver={this.dragOver}
-                onDragLeave={this.dragLeave}
-                onDrop={this.drop}
-                id={this.props.node.id}>
-                    <TreeNodeBox item={this.props.node}/>
+
+                    <div className="tree_box_node"
+                    draggable="true"
+                    onDragEnd={this.dragEnd}
+                    onDragStart={this.dragStart}
+                    onDragOver={this.dragOver}
+                    onDragLeave={this.dragLeave}
+                    onDrop={this.drop}
+                    id={this.props.node.id}>
+                        <TreeNodeBox item={this.props.node}/>
+                    </div>
+                <div className="tree_box_node_controls">
+                    <ButtonAdd mini="true" />
+                    <ButtonEdit mini="true" />
+                    <ButtonDelete mini="true" />
                 </div>
             </li>
         );
