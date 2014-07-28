@@ -20,6 +20,16 @@ class IndexController extends AbstractActionController
         return new ViewModel();
     }
 
+
+    public function testAction(){
+
+        $data_array = 'Запрос к базе';
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
+
     public function ajaxAction(){
 
         /*
