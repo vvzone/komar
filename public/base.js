@@ -103,22 +103,12 @@ var ItemLink = React. createClass({
 });
 
 var ControlTinyText = React.createClass({
+    mixins: [ControlsMixin],
     getInitialState: function() {
         return {
             value: this.props.value,
             discard: this.props.discard
         };
-    },
-    componentWillMount: function() {
-        this.setState({value: this.props.value});
-        this.setState({discard: this.props.discard});
-    },
-    handleChange: function(event){
-        this.setState({value: event.target.value});
-
-        var property = {};
-        property[this.props.name] = event.target.value;
-        this.props.callback(property);
     },
     render: function(){
         var id = 'tiny_control_'+this.props.russian_name;
@@ -132,21 +122,12 @@ var ControlTinyText = React.createClass({
 });
 
 var ControlSmallText = React.createClass({
+    mixins: [ControlsMixin],
     getInitialState: function() {
         return {
             value: '',
             discard: undefined
         };
-    },
-    discardChanges: function(){
-        this.setState({value: this.props.value});
-    },
-    componentDidMount: function() {
-        this.setState({value: this.props.value});
-        this.setState({discard: this.props.discard});
-    },
-    handleChange: function(event){
-        this.setState({value: event.target.value});
     },
     render: function(){
         var id = 'small_control_'+this.props.russian_name;
@@ -159,17 +140,12 @@ var ControlSmallText = React.createClass({
 });
 
 var ControlBoolSelect = React.createClass({
+    mixins: [ControlsMixin],
     getInitialState: function() {
         return {
             value: '',
             discard: undefined
         };
-    },
-    componentDidMount: function() {
-        this.setState({value: this.props.value});
-    },
-    handleChange: function(event){
-        this.setState({value: event.target.value});
     },
     render: function(){
         var id = 'bool_select_'+this.props.russian_name;

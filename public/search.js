@@ -1,7 +1,5 @@
 /** @jsx React.DOM */
 
-
-
 var SearchBox = React.createClass({
     doSearch:function(){
         var query=this.refs.searchInput.getDOMNode().value; // this is the search text
