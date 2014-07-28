@@ -165,7 +165,6 @@ var ControlBoolSelect = React.createClass({
 /* Controls: text, selector, search */
 
 
-
 var ControlRouter = React.createClass({
     /* Router  fix this as soon as some free time ;)
      * ---
@@ -259,11 +258,8 @@ var ListItem = React.createClass({
     whenClicked: function(){
         this.setState({open: this.state.open==true? false: true});
     },
-    componentDidMount: function() {
+    componentWillMount: function() {
         this.setState({item: this.props.item});
-    },
-    itemAdditionalInfo : function(){
-
     },
     whenClickedCP: function(action){
 
@@ -297,7 +293,17 @@ var ListItem = React.createClass({
         if(this.state.editing == true){
             var controls = [];
             var counter = 0;
-            var dependencies_place = this.props.dependencies_place;
+
+            edit_properties_box =
+               <ItemEditBox
+            item={this.state.item}
+            prototype={this.props.prototype}
+            key={this.state.item.id}
+            dependencies={this.props.dependencies}
+            dependencies_place={this.props.dependencies_place}
+               />;
+
+            /*var dependencies_place = this.props.dependencies_place;
             var counter_trigger = [];
 
             // 2-do: //fix this
@@ -328,7 +334,8 @@ var ListItem = React.createClass({
                     }
                 }
             }
-            edit_properties_box.push(<form role="form" className="ControlsBox">{controls}<ButtonSave /></form>);
+            edit_properties_box.push(<form role="form" className="ControlsBox">{controls}<ButtonSave /></form>);*/
+
         }
 
         return(
@@ -358,7 +365,7 @@ var MainList = React. createClass({
         }
     },
     componentDidMount: function() {
-        if(this.props.current_id!=''){
+        if(this.props.current_id){
             $.get('http://zend_test/main/index/'+this.props.source+'/currend_id/'+this.props.current_id, function(result) {
                     this.setState({items: result});
                 }.bind(this))
@@ -404,8 +411,13 @@ var MainList = React. createClass({
 
         for(var item in items_arr){
             output.push(
-                <ListItem item={items_arr[item]} prototype={this.state.items.prototype} key={items_arr[item].id}
-                dependencies={this.props.dependencies} dependencies_place={this.props.dependencies_place}/>);
+                <ListItem
+                item={items_arr[item]}
+                prototype={this.state.items.prototype}
+                key={items_arr[item].id}
+                dependencies={this.props.dependencies}
+                dependencies_place={this.props.dependencies_place}
+                />);
         }
 
         return(
@@ -417,7 +429,7 @@ var MainList = React. createClass({
     }
 });
 
-var ListItemEdit = React.createClass({
+var ItemEditBox = React.createClass({
     getInitialState: function() {
         return {
             item: [],
@@ -433,15 +445,8 @@ var ListItemEdit = React.createClass({
     },
     itemUpdate: function(property){
         var current_item = this.state.item;
-
-        console.log('property');
-        console.log(property);
-
         for(var key in property){
-            console.log('key= '+ key);
             current_item[key] = property[key];
-            console.log('old current_item['+key+']= '+ current_item[key]);
-            console.log('new property['+key+']= '+ property[key]);
         }
         current_item[property.name] = property.value;
         this.setState({item: current_item});
@@ -453,12 +458,7 @@ var ListItemEdit = React.createClass({
         window.removeEventListener("saveButtonClick", this.saveForm, true);
     },
     render: function(){
-        var delete_key= 'delete/'+this.props.item.id;
-        var edit_key= 'edit/'+this.props.item.id;
-
-        var item_additional_info = [];
         var editable = this.props.prototype.editable_properties;
-
         var edit_properties_box = [];
         var items = this.state.item;
 
@@ -536,7 +536,7 @@ var MainItemEdit = React. createClass({
     render: function(){
         var controls ='';
         if(this.state.item.data){
-            controls = <ListItemEdit
+            controls = <ItemEditBox
             item={this.state.item.data}
             prototype={this.state.item.prototype}
             key={this.state.item.data.id}

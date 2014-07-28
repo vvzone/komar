@@ -11,17 +11,6 @@ var MainScreen = React.createClass({
     }
 });
 
-
-
-/*
- var MainDropDown = React. createClass({
-
- });
- */
-
-
-
-
 var BaseScreen = React. createClass({
     getInitialState: function() {
         return {

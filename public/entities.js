@@ -247,7 +247,6 @@ var FormEntDocKinds = React. createClass({
     }
 });
 
-
 var TreeDocKinds = React. createClass({
     render: function(){
         return(
@@ -258,7 +257,6 @@ var TreeDocKinds = React. createClass({
     }
 });
 
-
 var FormEntDocTypes = React. createClass({
     render: function(){
         return(
@@ -268,9 +266,6 @@ var FormEntDocTypes = React. createClass({
             )
     }
 });
-
-
-
 
 var FormEntRankPosition = React. createClass({
     render: function(){

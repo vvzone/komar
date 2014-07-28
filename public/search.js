@@ -12,7 +12,6 @@ var SearchBox = React.createClass({
     }
 });
 
-
 var InstantSearch = React.createClass({
     /*getInitialState: function() {
         return {
