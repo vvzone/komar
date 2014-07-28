@@ -109,28 +109,24 @@ var ControlTinyText = React.createClass({
             discard: this.props.discard
         };
     },
-    discardChanges: function(){
-        this.setState({value: this.props.value});
-    },
-    componentDidMount: function() {
+    componentWillMount: function() {
         this.setState({value: this.props.value});
         this.setState({discard: this.props.discard});
     },
-    componentWillReceiveProps: function(prop){
-        this.discardChanges();
-    },
     handleChange: function(event){
         this.setState({value: event.target.value});
-        var property = [];
-        property[this.props.name] = this.props.value;
+
+        var property = {};
+        property[this.props.name] = event.target.value;
         this.props.callback(property);
     },
     render: function(){
-        var id = 'tiny_control_'+this.props.name;
-        console.info('this.state.discard='+this.state.discard);
+        var id = 'tiny_control_'+this.props.russian_name;
+        //console.info('this.state.discard='+this.state.discard);
+        console.info(this.props);
         return(<div className="form-group">
-            <label htmlFor={id}>{this.props.name}</label>
-            <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} />
+            <label htmlFor={id}>{this.props.russian_name}</label>
+            <input type="text" className="form-control" name={this.props.name} value={this.state.value} onChange={this.handleChange} />
         </div>)
     }
 });
@@ -149,18 +145,15 @@ var ControlSmallText = React.createClass({
         this.setState({value: this.props.value});
         this.setState({discard: this.props.discard});
     },
-    componentWillReceiveProps: function(prop){
-        this.discardChanges();
-    },
     handleChange: function(event){
         this.setState({value: event.target.value});
     },
     render: function(){
-        var id = 'small_control_'+this.props.name;
+        var id = 'small_control_'+this.props.russian_name;
         console.info('this.state.discard'+this.state.discard);
         return(<div className="form-group">
-            <label htmlFor={id}>{this.props.name}</label>
-            <textarea className="form-control" id={id} value={this.state.value} onChange={this.handleChange} />
+            <label htmlFor={id}>{this.props.russian_name}</label>
+            <textarea className="form-control" id={id} name={this.props.name} value={this.state.value} onChange={this.handleChange} />
         </div>)
     }
 });
@@ -179,12 +172,12 @@ var ControlBoolSelect = React.createClass({
         this.setState({value: event.target.value});
     },
     render: function(){
-        var id = 'bool_select_'+this.props.name;
+        var id = 'bool_select_'+this.props.russian_name;
         var selected = this.state.value;
         return(
             <div className="form-group">
-                <label htmlFor={id}>{this.props.name}</label>
-                <select value={selected} id={id} onChange={this.handleChange}>
+                <label htmlFor={id}>{this.props.russian_name}</label>
+                <select value={selected} name={this.props.name} id={id} onChange={this.handleChange}>
                         <option value="true">Да</option>
                         <option value="false">Нет</option>
                 </select>
@@ -197,8 +190,8 @@ var ControlBoolSelect = React.createClass({
 
 
 
-var Control = React.createClass({
-    /* Router
+var ControlRouter = React.createClass({
+    /* Router  fix this as soon as some free time ;)
      * ---
      * props: value, type (route)
      *
@@ -210,8 +203,8 @@ var Control = React.createClass({
         };
     },
     componentDidMount: function() {
-        this.setState({value: this.props.value});
-        this.setState({discard: this.props.discard});
+        //this.setState({value: this.props.value});
+        //this.setState({discard: this.props.discard});
     },
     componentWillReceiveProps: function(prop){
         this.setState({discard: prop.discard});
@@ -223,18 +216,18 @@ var Control = React.createClass({
         var type = this.props.type;
         var value = this.props.value;
         var name = this.props.name;
+        var russian_name = this.props.russian_name;
         var discard = this.props.discard;
         var self = this;
-
         switch (type) {
             case('tiny_text'):
-                return(<ControlTinyText value={value} name={name} discard={discard} callback={self.callBack} />)
+                return(<ControlTinyText value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                 break;
             case('small_text'):
-                return(<ControlSmallText value={value} name={name} discard={discard} callback={self.callBack} />)
+                return(<ControlSmallText value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                 break;
             case('bool_select'):
-                return(<ControlBoolSelect value={value} name={name} discard={discard} callback={self.callBack} />)
+                return(<ControlBoolSelect value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                 break;
         }
 
@@ -347,10 +340,8 @@ var ListItem = React.createClass({
                 if(editable[prop]){
                     var type=prop;
                     controls.push(
-                        <Control type={properties_types[type]} value={items[prop]} name={editable[prop]} />
-                    )
-                    //console.log('type:'+type);
-                    //console.log('control chosen:'+properties_types[type]);
+                        <ControlRouter type={properties_types[type]} value={items[prop]} name={editable[prop]} />
+                    );
                 }
                 counter++;
             };
@@ -461,14 +452,22 @@ var ListItemEdit = React.createClass({
         this.setState({item: this.props.item});
     },
     saveForm: function(){
-
+        console.info('item to save');
+        console.info(this.state.item);
     },
     itemUpdate: function(property){
-
-        alert('callBack'); ///!!!!!! working
         var current_item = this.state.item;
-        current_item[property.name] = property.value;
 
+        console.log('property');
+        console.log(property);
+
+        for(var key in property){
+            console.log('key= '+ key);
+            current_item[key] = property[key];
+            console.log('old current_item['+key+']= '+ current_item[key]);
+            console.log('new property['+key+']= '+ property[key]);
+        }
+        current_item[property.name] = property.value;
         this.setState({item: current_item});
     },
     componentWillMount: function() {
@@ -507,8 +506,13 @@ var ListItemEdit = React.createClass({
                 }
                 if(editable[prop]){
                     var type=prop;
+                    /*console.error('-----=*=------');
+                    console.info('type= '+type);
+                    console.info('prop= '+prop);
+                    console.info('editable[prop]= '+editable[prop]);
+                    console.error('-----=*=------');*/
                     controls.push(
-                        <Control type={properties_types[type]} value={items[prop]} name={editable[prop]} callback={this.itemUpdate} />
+                        <ControlRouter type={properties_types[type]} value={items[prop]} name={type} russian_name={editable[prop]} callback={this.itemUpdate} />
                     );
                 }
                 counter++;

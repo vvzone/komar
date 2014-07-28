@@ -49,9 +49,16 @@ var ModalWindowEdit = React.createClass({
     handleExternalHide: function () {
         this.refs.modal.hide();
     },
+    throwSave: function(){
+        var customEvent = new CustomEvent("saveButtonClick",  {
+            detail: {id: this.props.current_id},
+            bubbles: true
+        });
+        this.getDOMNode().dispatchEvent(customEvent);
+    },
     render: function(){
         var buttons = [
-            {type: 'success', text: 'Сохранить', handler: this.handleDoingNothing},
+            {type: 'success', text: 'Сохранить', handler: this.throwSave},
             {type: 'danger', text: 'Отмена', handler: this.handleExternalHide}
         ];
         var header = "Редактировать "; //+this.entity.name;
@@ -89,9 +96,12 @@ var ModalWindowDelete = React.createClass({
     handleExternalHide: function () {
         this.refs.modal.hide();
     },
+    throwDelete: function(){
+
+    },
     render: function(){
         var buttons = [
-            {type: 'success', text: 'Удалить', handler: this.handleDoingNothing},
+            {type: 'success', text: 'Удалить', handler: this.throwDelete},
             {type: 'default', text: 'Отмена', handler: this.handleExternalHide}
         ];
         var header = "Вы уверены?"; //+this.entity.name;
