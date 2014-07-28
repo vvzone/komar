@@ -78,7 +78,8 @@ var TreeNode = React.createClass({
         var customEvent = new CustomEvent("modalWindowOpen",  {
             detail: {
                 action: action,
-                entity: 'doc_kind_node_edit'
+                entity: 'doc_kind_edit',
+                current_id: this.props.node.id
                     },
             bubbles: true
         });
@@ -101,10 +102,6 @@ var TreeNode = React.createClass({
             }
             var node_key = 'tree_box_node'+this.props.node.id;
 
-            var host = this.props.node.id;
-            var childrens = this.props.node.childNodes.map(function(child){
-                return child.id;
-            });
             return(
                 <li>
                     <div className="tree_box_node"
@@ -119,7 +116,6 @@ var TreeNode = React.createClass({
                         <span onClick={this.toggle} className={className}></span>
                         <TreeNodeBox item={this.props.node}/>
                     </div>
-                        <DrawLines host={host} childrens={childrens} />
                     <div className="tree_box_node_controls">
                         <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
                         <ButtonEdit mini="true" clicked={this.nodeControlClicked} />

@@ -9,7 +9,8 @@ var EntityBlock = React. createClass({
      * */
     render: function () {
         var class_name = this.props.entity_name;
-        var host = this.props.item;
+        var current_id = this.props.item;
+        console.log('Entity current_id= '+ current_id);
 
         var entity;
         switch (class_name) {
@@ -20,7 +21,7 @@ var EntityBlock = React. createClass({
                 return(<FormEntPosition />);
                 break;
             case 'rank_position':
-                return(<FormEntRankPosition host_id={host.id} />);
+                return(<FormEntRankPosition host_id={current_id} />);
                 break;
             case 'pass_doc_types':
                 return(<FormEntPassDocTypes />);
@@ -35,7 +36,7 @@ var EntityBlock = React. createClass({
                 return(<FormEntRegionTypes />);
                 break;
             case 'region_types_selector':
-                return(<FormSelectorRegionTypes selected={host.region_type} />);
+                return(<FormSelectorRegionTypes selected={current_id} />);
                 break;
             case 'regions':
                 return(<FormEntRegions />);
@@ -56,13 +57,16 @@ var EntityBlock = React. createClass({
                 return(<FormEntPeriodTypes />);
                 break;
             case 'period_types_selector':
-                return(<FormSelectorPeriodTypes selected={host.period_type} />);
+                return(<FormSelectorPeriodTypes selected={current_id} />);
                 break;
             case 'enumeration_types':
                 return(<FormEntEnumerationTypes />);
                 break;
             case 'doc_kinds':
-                return(<FormEntDocKinds />);
+                return(<TreeDocKinds />);
+                break;
+            case 'doc_kind_edit':
+                return(<FormEntDocKinds current_id={current_id} />);
                 break;
             case 'doc_types':
                 return(<FormEntDocTypes />);
@@ -234,7 +238,18 @@ var FormEntEnumerationTypes = React. createClass({
 
 var FormEntDocKinds = React. createClass({
     render: function(){
-        console.log('MAIN TREE CALL');
+        console.log('(1)current_id='+this.props.current_id);
+        return(
+            <div className="DocKindsBox">
+                <MainItemEdit source="dockindscurrent" current_id={this.props.current_id} />
+            </div>
+            )
+    }
+});
+
+
+var TreeDocKinds = React. createClass({
+    render: function(){
         return(
             <div className="DocKindsBox">
                 <MainTree source="dockinds" />

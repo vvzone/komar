@@ -863,6 +863,60 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
+    public function dockindscurrentAction(){
+
+        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'isService' => 'Служебный документ');
+        $prototype_array = array('editable_properties' => $editable_array);
+
+
+        $combat = array(
+            array('id' => 1001, 'parent_id' => 100, 'name' => 'Боевой приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1002, 'parent_id' => 100, 'name' => 'Боевой приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+        );
+
+        $economic = array(
+            array('id' => 1101, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1102, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+        );
+
+        $child_1 = array(
+            array('id' => 100, 'parent_id' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'isService' => false,
+                'childNodes' => $combat),
+            array('id' => 110, 'parent_id' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'isService' => false,
+                'childNodes' => $economic)
+        );
+
+        $data_array = array(
+            array('id' => 1, 'parent_id' => null, 'name' => 'Сигналы', 'shortname'=> 'С', 'isService' => false),
+            array('id' => 2, 'parent_id' => null, 'name' => 'Приказы', 'shortname'=> 'П', 'isService' => false,
+                'childNodes' => $child_1),
+            array('id' => 3, 'parent_id' => null, 'name' => 'Служебные', 'shortname'=> 'сист.', 'isService' => true,)
+        );
+
+        $request = $this->getRequest();
+        /* Поиск по массиву */
+
+
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+
+            $query = $request->getContent();
+
+            //var_dump($query);
+
+            foreach($data_array as $value){
+                if($query == $value['id']){
+                    $data_array = $value;
+                }
+            }
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+    }
+
+
     public function dockinds2Action(){
         $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'isService' => 'Служебный документ');
         $prototype_array = array('editable_properties' => $editable_array);

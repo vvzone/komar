@@ -56,17 +56,21 @@ var ModalWindowEdit = React.createClass({
         ];
         var header = "Редактировать "; //+this.entity.name;
 
+        console.log('modal and current:');
+        console.log(this.props.current_id);
+
         return(
             /* Entity */
             // 2 do: BaseWindow,
             // entity form refactoring
+
             <ModalWindowBase
             ref="modal"
             show={false}
             header={header}
             buttons={buttons}
             >
-            {this}
+                <EntityBlock entity_name={this.props.entity} item={this.props.current_id} />
             </ModalWindowBase>
             );
 
@@ -173,35 +177,3 @@ var ModalWindowDeleteConfirmation = React.createClass({
     }
 });
 
-
-var DrawLines =  React.createClass({
-    getInitialState: function() {
-        return {
-            host: '',
-            childs: []
-        }
-    },
-    componentDidMount: function() {
-        this.setState({
-            host: this.props.host,
-            childs: this.props.childrens
-        });
-    },
-    render: function(){
-        return(
-            <Line start={start} end={end} />
-            );
-    }
-
-});
-
-
-var Line =  React.createClass({
-    render: function(){
-        
-        return(
-
-        );
-    }
-
-});

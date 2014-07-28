@@ -121,6 +121,9 @@ var ControlTinyText = React.createClass({
     },
     handleChange: function(event){
         this.setState({value: event.target.value});
+        var property = [];
+        property[this.props.name] = this.props.value;
+        this.props.callback(property);
     },
     render: function(){
         var id = 'tiny_control_'+this.props.name;
@@ -209,26 +212,29 @@ var Control = React.createClass({
     componentDidMount: function() {
         this.setState({value: this.props.value});
         this.setState({discard: this.props.discard});
-
     },
     componentWillReceiveProps: function(prop){
         this.setState({discard: prop.discard});
+    },
+    callBack: function(property){
+        this.props.callback(property);
     },
     render: function () {
         var type = this.props.type;
         var value = this.props.value;
         var name = this.props.name;
         var discard = this.props.discard;
+        var self = this;
 
         switch (type) {
             case('tiny_text'):
-                return(<ControlTinyText value={value} name={name} discard={discard} />)
+                return(<ControlTinyText value={value} name={name} discard={discard} callback={self.callBack} />)
                 break;
             case('small_text'):
-                return(<ControlSmallText value={value} name={name} discard={discard} />)
+                return(<ControlSmallText value={value} name={name} discard={discard} callback={self.callBack} />)
                 break;
             case('bool_select'):
-                return(<ControlBoolSelect value={value} name={name} discard={discard} />)
+                return(<ControlBoolSelect value={value} name={name} discard={discard} callback={self.callBack} />)
                 break;
         }
 
@@ -385,19 +391,26 @@ var MainList = React. createClass({
         }
     },
     componentDidMount: function() {
-
-        $.get('http://zend_test/main/index/'+this.props.source, function(result) {
-                this.setState({items: result});
-        }.bind(this))
-        .error(function() {
-                alert("Network Error.");
-        })
+        if(this.props.current_id!=''){
+            $.get('http://zend_test/main/index/'+this.props.source+'/currend_id/'+this.props.current_id, function(result) {
+                    this.setState({items: result});
+                }.bind(this))
+                .error(function() {
+                    alert("Network Error.");
+                })
+        }else{
+            $.get('http://zend_test/main/index/'+this.props.source, function(result) {
+                    this.setState({items: result});
+                }.bind(this))
+                .error(function() {
+                    alert("Network Error.");
+                })
+        }
     },
     whenListItemsAction: function(action){
         /* 2do
          *  action 2 ajax
          * */
-
         $.get('http://zend_test/main/index/yes', function(result){
             if(result['response'] == true){
                 alert('Success');
@@ -435,4 +448,126 @@ var MainList = React. createClass({
             </div>
             )
     }
+});
+
+var ListItemEdit = React.createClass({
+    getInitialState: function() {
+        return {
+            item: [],
+            item_dependencies: []
+        }
+    },
+    componentDidMount: function() {
+        this.setState({item: this.props.item});
+    },
+    saveForm: function(){
+
+    },
+    itemUpdate: function(property){
+
+        alert('callBack'); ///!!!!!! working
+        var current_item = this.state.item;
+        current_item[property.name] = property.value;
+
+        this.setState({item: current_item});
+    },
+    componentWillMount: function() {
+        window.addEventListener("saveButtonClick", this.saveForm, true);
+    },
+    componentWillUnmount: function() {
+        window.removeEventListener("saveButtonClick", this.saveForm, true);
+    },
+    render: function(){
+        var delete_key= 'delete/'+this.props.item.id;
+        var edit_key= 'edit/'+this.props.item.id;
+
+        var item_additional_info = [];
+        var editable = this.props.prototype.editable_properties;
+
+        var edit_properties_box = [];
+        var items = this.state.item;
+
+            var controls = [];
+            var counter = 0;
+            var dependencies_place = this.props.dependencies_place;
+            var counter_trigger = [];
+
+            // 2-do: //fix this
+            if(Object.prototype.toString.call(dependencies_place) === '[object Array]'){
+                for(var key in dependencies_place){
+                    counter_trigger[dependencies_place[key]] = dependencies_place[key];
+                }
+            }
+
+            for(var prop in items){
+                if(Object.prototype.toString.call(dependencies_place) === '[object Array]'){
+                    if(counter==counter_trigger[counter]){
+                        controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} callback={this.itemUpdate} />);
+                    }
+                }
+                if(editable[prop]){
+                    var type=prop;
+                    controls.push(
+                        <Control type={properties_types[type]} value={items[prop]} name={editable[prop]} callback={this.itemUpdate} />
+                    );
+                }
+                counter++;
+            };
+            if(Object.prototype.toString.call(dependencies_place) != '[object Array]'){
+                if(this.props.dependencies){
+                    for(var key in this.props.dependencies){
+                        controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
+                    }
+                }
+            }
+            edit_properties_box.push(<form role="form" className="ControlsBox">{controls}</form>);
+        return(
+            <div className="item">
+                {edit_properties_box}
+            </div>
+            )
+    }
+});
+
+var MainItemEdit = React. createClass({
+    getInitialState: function() {
+        return {
+            item: []
+        }
+    },
+    componentDidMount: function() {
+        console.log('current=' + this.props.current_id);
+        var self = this;
+
+        $.ajax({
+            type: "POST",
+            url: 'http://zend_test/main/index/' + this.props.source,
+            data: ''+this.props.current_id+'',
+            success: function(response){
+                console.info('response');
+                console.info(response);
+                self.setState({item : response});
+            }
+        })
+         .error(function () {
+             alert("Network Error.");
+         });
+    },
+    render: function(){
+        var controls ='';
+        if(this.state.item.data){
+            controls = <ListItemEdit
+            item={this.state.item.data}
+            prototype={this.state.item.prototype}
+            key={this.state.item.data.id}
+            dependencies={this.props.dependencies}
+            dependencies_place={this.props.dependencies_place}/>;
+        }
+        return(
+            <div>
+                {controls}
+            </div>
+        );
+    }
+
 });

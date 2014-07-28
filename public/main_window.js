@@ -99,19 +99,24 @@ var ModalWindowRouter = React.createClass({
     getInitialState: function() {
         return {
             action: '',
-            entity: ''
+            entity: '',
+            current_id: ''
         };
     },
     modalOpen: function(event) {
         this.setState({
             action: event.detail.action,
-            entity: event.detail.entity
+            entity: event.detail.entity,
+            current_id: event.detail.current_id
         });
+        console.log('event.detail');
+        console.log(event.detail);
     },
     modalClose: function(){
         this.setState({
             action: '',
-            entity: ''
+            entity: '',
+            current_id: ''
         });
     },
     componentWillMount: function() {
@@ -128,7 +133,9 @@ var ModalWindowRouter = React.createClass({
                 return(<ModalWindowAdd />);
             break;
             case 'edit':
-                return(<ModalWindowEdit entity={this.state.entity} />);
+                console.log('edit and state:');
+                console.log(this.state.current_id);
+                return(<ModalWindowEdit entity={this.state.entity} current_id={this.state.current_id} />);
             break;
             case 'delete':
                 return(<ModalWindowDelete />);
