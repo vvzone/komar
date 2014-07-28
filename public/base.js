@@ -3,7 +3,6 @@
 
 var ErrorMsg = React.createClass({
     render: function () {
-        //class="btn btn-sm btn-warning">
         var message = '';
         var header = '';
         (this.props.header == undefined)? header= 'Ошибка' : header = this.props.header;
@@ -112,8 +111,6 @@ var ControlTinyText = React.createClass({
     },
     render: function(){
         var id = 'tiny_control_'+this.props.russian_name;
-        //console.info('this.state.discard='+this.state.discard);
-        console.info(this.props);
         return(<div className="form-group">
             <label htmlFor={id}>{this.props.russian_name}</label>
             <input type="text" className="form-control" name={this.props.name} value={this.state.value} onChange={this.handleChange} />
@@ -131,7 +128,6 @@ var ControlSmallText = React.createClass({
     },
     render: function(){
         var id = 'small_control_'+this.props.russian_name;
-        console.info('this.state.discard'+this.state.discard);
         return(<div className="form-group">
             <label htmlFor={id}>{this.props.russian_name}</label>
             <textarea className="form-control" id={id} name={this.props.name} value={this.state.value} onChange={this.handleChange} />
@@ -177,10 +173,6 @@ var ControlRouter = React.createClass({
             discard: false
         };
     },
-    componentDidMount: function() {
-        //this.setState({value: this.props.value});
-        //this.setState({discard: this.props.discard});
-    },
     componentWillReceiveProps: function(prop){
         this.setState({discard: prop.discard});
     },
@@ -209,36 +201,6 @@ var ControlRouter = React.createClass({
         return(<div></div>)
     }
 });
-
-/*
-var ControlsList = React.createClass({
-    getInitialState: function() {
-        return {
-            items: this.props.items,
-            discard: false
-        };
-    },
-    childrensDiscardChanges: function(){
-        this.setState({discard: this.state.discard==true? false : true});
-    },
-    render: function(){
-        var controls = [];
-        var controls2 = [];
-        var editable = this.props.editable;
-
-        for(var prop in this.state.items){
-            if(editable[prop]){
-                var type=prop;
-                controls.push(
-                    <Control type={properties_types[type]} value={this.state.items[prop]} name={editable[prop]} discard={this.state.discard} />
-                )
-                console.log('type:'+type);
-                console.log('control chosen:'+properties_types[type]);
-            }
-        };
-        return(<form role="form" className="ControlsBox">{controls}<ButtonSave /><ButtonDiscard clicked={this.childrensDiscardChanges}/></form>)
-    }
-});*/
 
 var ListItem = React.createClass({
     /*
@@ -302,40 +264,6 @@ var ListItem = React.createClass({
             dependencies={this.props.dependencies}
             dependencies_place={this.props.dependencies_place}
                />;
-
-            /*var dependencies_place = this.props.dependencies_place;
-            var counter_trigger = [];
-
-            // 2-do: //fix this
-            if(Object.prototype.toString.call(dependencies_place) === '[object Array]'){
-                    for(var key in dependencies_place){
-                        counter_trigger[dependencies_place[key]] = dependencies_place[key];
-                    }
-            }
-
-            for(var prop in items){
-                if(Object.prototype.toString.call(dependencies_place) === '[object Array]'){
-                    if(counter==counter_trigger[counter]){
-                        controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
-                    }
-                }
-                if(editable[prop]){
-                    var type=prop;
-                    controls.push(
-                        <ControlRouter type={properties_types[type]} value={items[prop]} name={editable[prop]} />
-                    );
-                }
-                counter++;
-            };
-            if(Object.prototype.toString.call(dependencies_place) != '[object Array]'){
-                if(this.props.dependencies){
-                    for(var key in this.props.dependencies){
-                        controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
-                    }
-                }
-            }
-            edit_properties_box.push(<form role="form" className="ControlsBox">{controls}<ButtonSave /></form>);*/
-
         }
 
         return(
@@ -482,11 +410,6 @@ var ItemEditBox = React.createClass({
                 }
                 if(editable[prop]){
                     var type=prop;
-                    /*console.error('-----=*=------');
-                    console.info('type= '+type);
-                    console.info('prop= '+prop);
-                    console.info('editable[prop]= '+editable[prop]);
-                    console.error('-----=*=------');*/
                     controls.push(
                         <ControlRouter type={properties_types[type]} value={items[prop]} name={type} russian_name={editable[prop]} callback={this.itemUpdate} />
                     );
