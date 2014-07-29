@@ -152,7 +152,7 @@ var ListBoxTwoSide = React.createClass({
         }
     },
     componentDidMount: function() {
-        $.get('http://zend_test/main/index/'+this.props.source_left, function(result) {
+        $.get('http://zend_test/main/'+this.props.source_left, function(result) {
             var arr = [];
             for(var item in result.data){
                 arr[result.data[item]['id']] = result.data[item];
@@ -160,7 +160,7 @@ var ListBoxTwoSide = React.createClass({
             this.setState({items_left: arr});
         }.bind(this));
 
-        $.get('http://zend_test/main/index/'+this.props.source_right, function(result) {
+        $.get('http://zend_test/main/'+this.props.source_right, function(result) {
             var arr = [];
             for(var item in result.data){
                 arr[result.data[item]['id']] = result.data[item];

@@ -90,13 +90,13 @@ var CurrentClassMixin = function () {
                 return(<MainList source={source} entity={entity} dependencies={dependencies} dependencies_place={dependencies_place} />);
             }
         },
-        editMainRoute: function(source, entity, dependencies, dependencies_place){
+        editMainTreeRoute: function(source, entity, dependencies, dependencies_place){
             if(entity['current_id']){
                 console.log('MainItemEdit');
                 return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} dependencies_place={dependencies_place} />);
             }else{
                 console.log('^=^=MainTree=^=^');
-                return(<MainList source={source} entity={entity} dependencies={dependencies} dependencies_place={dependencies_place} />);
+                return(<MainTree source={source} entity={entity} dependencies={dependencies} dependencies_place={dependencies_place} />);
             }
         }
     }
@@ -109,7 +109,7 @@ var FormEntPositions = React. createClass({
         var dependencies = [];
         dependencies[0] = 'rank_position';
 
-        var output = this.editMainListRoute('positions', this.props.entity, null, null);
+        var output = this.editMainListRoute('positions', this.props.entity, dependencies, null);
         return(
             <div className="PositionBox">
                 {output}
@@ -193,9 +193,11 @@ var FormSelectorRegionTypes = React. createClass({
 var FormEntRegions = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
+        var dependencies_place = [];
+        dependencies_place[0] = 2;
         var dependencies = [];
         dependencies[0] = 'region_types_selector';
-        var output = this.editMainListRoute('regions', this.props.entity, dependencies, null);
+        var output = this.editMainListRoute('regions', this.props.entity, dependencies, dependencies_place);
         return(
             <div className="RegionsBox">
                 {output}
@@ -207,9 +209,10 @@ var FormEntRegions = React. createClass({
 var FormEntLocationTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
+        var output = this.editMainListRoute('locationtypes', this.props.entity, null, null);
         return(
             <div className="LocationTypesBox">
-                <MainList source="locationtypes" current_id={this.props.entity} />
+                {output}
             </div>
             )
     }
@@ -218,9 +221,10 @@ var FormEntLocationTypes = React. createClass({
 var FormEntStreetTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
+        var output = this.editMainListRoute('streettypes', this.props.entity, null, null);
         return(
             <div className="StreetTypesBox">
-                <MainList source="streettypes" current_id={this.props.entity} />
+                {output}
             </div>
             )
     }
@@ -229,9 +233,10 @@ var FormEntStreetTypes = React. createClass({
 var FormEntSexTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
+        var output = this.editMainListRoute('sextypes', this.props.entity, null, null);
         return(
             <div className="SexTypesBox">
-                <MainList source="sextypes" current_id={this.props.entity} />
+                {output}
             </div>
             )
     }
@@ -240,9 +245,10 @@ var FormEntSexTypes = React. createClass({
 var FormEntCommanderTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
+        var output = this.editMainListRoute('commandertypes', this.props.entity, null, null);
         return(
             <div className="CommanderTypesBox">
-                <MainList source="commandertypes" current_id={this.props.entity} />
+                {output}
             </div>
             )
     }
@@ -251,9 +257,10 @@ var FormEntCommanderTypes = React. createClass({
 var FormEntPeriodTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
+        var output = this.editMainListRoute('periodtypes', this.props.entity, null, null);
         return(
             <div className="PeriodTypesBox">
-                <MainList source="periodtypes" current_id={this.props.entity} />
+                {output}
             </div>
             )
     }
@@ -277,9 +284,10 @@ var FormEntEnumerationTypes = React. createClass({
         dependencies[0] = 'period_types_selector';
         var dependencies_place = [];
         dependencies_place[0] = 3;
+        var output = this.editMainListRoute('enumerationtypes', this.props.entity, dependencies, dependencies_place);
         return(
             <div className="EnumerationTypesBox">
-                <MainList source="enumerationtypes" dependencies={dependencies} dependencies_place={dependencies_place} current_id={this.props.entity} />
+                {output}
             </div>
             )
     }
@@ -288,16 +296,10 @@ var FormEntEnumerationTypes = React. createClass({
 var FormEntDocKinds = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        if(this.props.entity){
-            return(
-                <div className="DocKindsBox">
-                    <MainItemEdit source="dockinds" current_id={this.props.entity} />
-                </div>
-            )
-        }
+        var output = this.editMainTreeRoute('dockinds', this.props.entity, null, null);
         return(
             <div className="DocKindsBox">
-                <MainTree source="dockinds" />
+                {output}
             </div>
         )
     }
@@ -306,9 +308,10 @@ var FormEntDocKinds = React. createClass({
 var TreeDocKinds = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
+        var output = this.editMainTreeRoute('dockinds', this.props.entity, null, null);
         return(
             <div className="DocKindsBox">
-                <MainTree source="dockinds" />
+                {output}
             </div>
             )
     }

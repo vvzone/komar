@@ -180,7 +180,7 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
-    public function instantSearch($query, $data_array){
+    public function instantSearch($query, $data_array, $id = null){
         $full_data_array = $data_array;
         $data_array = array();
 
@@ -190,9 +190,9 @@ class IndexController extends AbstractActionController
                 $data_array = $full_data_array;
             }else{
                 foreach($full_data_array as $key => $value){
-                    if(strstr($value['name'], $query)){
-                        $data_array[] = $full_data_array[$key];
-                    }
+                        if(strstr($value['name'], $query)){
+                            $data_array[] = $full_data_array[$key];
+                        }
                 }
             }
         }
@@ -204,11 +204,14 @@ class IndexController extends AbstractActionController
     }
 
     public function searchArray($array, $current_id){
+
         foreach($array as $item){
             if($current_id == $item['id']){
-                return array($item);
-            }elseif(isset($item['childNodes'])){
-                $this->searchArray($item['childNodes'], $current_id);
+                return $item;
+            }else{
+                if(isset($item['childNodes'])){
+                    return $result = $this->searchArray($item['childNodes'], $current_id);
+                }
             }
         }
     }
@@ -673,7 +676,7 @@ class IndexController extends AbstractActionController
 
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         if($current_id){
-            $data_array = $this->searchArray($data_array, $current_id);
+            $data_array = $this->searchArray($data_array, $current_id, $id = true);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);

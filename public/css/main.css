@@ -151,6 +151,12 @@ div.list_box div.list_box_select select {
   background: #f4ffff;
 }
 /* msg's*/
+.modal-dialog {
+  width: 650px;
+}
+.modal-body {
+  overflow: hidden;
+}
 .alert-error {
   background: #d00a03;
   margin: 10px;
