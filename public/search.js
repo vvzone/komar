@@ -22,7 +22,7 @@ var InstantSearch = React.createClass({
     startSearch: function(query){
         $.ajax({
             type: "POST",
-            url: 'http://zend_test/main/index/'+this.props.source,
+            url: 'http://zend_test/main/'+this.props.source,
             data: query,
             success: function(data) {
                         //this.setState({items: data})

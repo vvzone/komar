@@ -8,3 +8,4 @@ Array.prototype.getObjectsById = function(x){
   }
   return catcher.length == 1 ? catcher[0] : catcher;
 }
+

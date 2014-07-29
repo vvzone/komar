@@ -43,7 +43,7 @@ var SimpleSelect = React.createClass({
 
         this.setState({selected: this.props.selected})
 
-        $.get('http://zend_test/main/index/'+this.props.source, function(result) {
+        $.get('http://zend_test/main/'+this.props.source, function(result) {
             var arr = [];
             for(var item in result.data){
                 arr[result.data[item]['id']] = result.data[item];
