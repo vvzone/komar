@@ -86,7 +86,7 @@ var CatTreeLinksList = React. createClass({
             this.setState({links: links})
         }else{
             //console.log('ajax!');
-            $.get('http://zend_test/main/index/ajax', function(result) {
+            $.get('http://zend_test/main/ajax', function(result) {
                 var links = [];
                 links = result;
                 this.setState({links: links});

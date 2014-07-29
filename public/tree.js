@@ -222,7 +222,7 @@ var MainTree = React.createClass({
         if(this.props.childs!=null){
             this.setState({items: this.props.childs});
         }else{
-            $.get('http://zend_test/main/index/dockinds', function (result) {
+            $.get('http://zend_test/main/dockinds', function (result) {
                 var items = [];
                 items = result.data;
                 this.setState({items: items});

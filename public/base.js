@@ -125,16 +125,16 @@ var ListItem = React.createClass({
     },
     whenClickedCP: function(action){
 
-        this.setState({open: this.state.open==true? false: false});
+        /*this.setState({open: this.state.open==true? false: false});
         if(action == 'edit'){
             this.setState({editing: this.state.editing==true? false: true});
-        }
+        }*/
 
-        if(action == 'delete'){
+        if(action){
             var customEvent = new CustomEvent("modalWindowOpen",  {
                 detail: {
                     action: action,
-                    entity: 'doc_kind_edit',
+                    entity: this.props.source,
                     current_id: this.props.item.id
                 },
                 bubbles: true
@@ -206,14 +206,14 @@ var MainList = React. createClass({
     },
     componentDidMount: function() {
         if(this.props.current_id){
-            $.get('http://zend_test/main/index/'+this.props.source+'/currend_id/'+this.props.current_id, function(result) {
+            $.get('http://zend_test/main/'+this.props.source+'/currend_id/'+this.props.current_id, function(result) {
                     this.setState({items: result});
                 }.bind(this))
                 .error(function() {
                     alert("Network Error.");
                 })
         }else{
-            $.get('http://zend_test/main/index/'+this.props.source, function(result) {
+            $.get('http://zend_test/main/'+this.props.source, function(result) {
                     this.setState({items: result});
                 }.bind(this))
                 .error(function() {
@@ -225,7 +225,7 @@ var MainList = React. createClass({
         /* 2do
          *  action 2 ajax
          * */
-        $.get('http://zend_test/main/index/yes', function(result){
+        $.get('http://zend_test/main/yes', function(result){
             if(result['response'] == true){
                 alert('Success');
             }else{
@@ -243,15 +243,29 @@ var MainList = React. createClass({
         var output =[];
         var self = this;
 
-        for(var item in items_arr){
-            output.push(
-                <ListItem
-                item={items_arr[item]}
-                prototype={this.state.items.prototype}
-                key={items_arr[item].id}
-                dependencies={this.props.dependencies}
-                dependencies_place={this.props.dependencies_place}
+
+        for (var item in items_arr) {
+            if(this.props.current_id){
+                output.push(
+                <ListItemEdit
+                    item={items_arr[item]}
+                    prototype={this.state.items.prototype}
+                    key={items_arr[item].id}
+                    dependencies={this.props.dependencies}
+                    dependencies_place={this.props.dependencies_place}
+                    source={this.props.source}
                 />);
+            }else{
+                output.push(
+                <ListItem
+                    item={items_arr[item]}
+                    prototype={this.state.items.prototype}
+                    key={items_arr[item].id}
+                    dependencies={this.props.dependencies}
+                    dependencies_place={this.props.dependencies_place}
+                    source={this.props.source}
+                />);
+            }
         }
 
         return(
@@ -350,7 +364,7 @@ var MainItemEdit = React. createClass({
 
         $.ajax({
             type: "POST",
-            url: 'http://zend_test/main/index/' + this.props.source,
+            url: 'http://zend_test/main/' + this.props.source+'/'+this.props.current_id,
             data: ''+this.props.current_id+'',
             success: function(response){
                 console.info('response');

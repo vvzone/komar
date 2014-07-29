@@ -125,22 +125,8 @@ class IndexController extends AbstractActionController
                 'childNodes' => $array_unit),
         );
 
-
-        /*
-        $data_array = array(
-        array('id' => '101', 'category' => 'base', 'entity' => 'rank', 'screen' => 'rank', 'name' => 'Звания'),
-        array('id' => '109', 'category' => 'base', 'entity' => 'position', 'screen' => 'position', 'name' => 'Должность'),
-        array('id' => '110', 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'position', 'name' => 'Соответствие звания должности'),
-        array('id' => '111', 'category' => 'base', 'entity' => 'test_entity', 'screen' => 'testscreen', 'name' => 'Тест',
-        'childNodes' => array(
-        array('id' => '121', 'category' => 'base', 'entity' => 'child_test1', 'screen' => 'testscreen', 'name' => 'child1'),
-        array('id' => '122', 'category' => 'base', 'entity' => 'child_test2', 'screen' => 'testscreen', 'name' => 'child2')
-        ))
-        );*/
-
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
-        //$JsonModel->setVariables($array_base);
         return $JsonModel;
     }
 
@@ -179,34 +165,12 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
 
-
-            $full_data_array = $data_array;
-            $data_array = array();
-
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-
-
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -214,6 +178,39 @@ class IndexController extends AbstractActionController
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
+    }
+
+    public function instantSearch($query, $data_array){
+        $full_data_array = $data_array;
+        $data_array = array();
+
+        if($query){
+            $strlen = strlen($query);
+            if($strlen < 4){
+                $data_array = $full_data_array;
+            }else{
+                foreach($full_data_array as $key => $value){
+                    if(strstr($value['name'], $query)){
+                        $data_array[] = $full_data_array[$key];
+                    }
+                }
+            }
+        }
+
+        if(!$query){
+            $data_array = $full_data_array;
+        }
+        return $data_array;
+    }
+
+    public function searchArray($array, $current_id){
+        foreach($array as $item){
+            if($current_id == $item['id']){
+                return array($item);
+            }elseif(isset($item['childNodes'])){
+                $this->searchArray($item['childNodes'], $current_id);
+            }
+        }
     }
 
     public function positionsAction(){
@@ -253,34 +250,12 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
 
-
-            $full_data_array = $data_array;
-            $data_array = array();
-
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-
-
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -305,6 +280,11 @@ class IndexController extends AbstractActionController
             array('name' => 'Лейтенант', 'id' => 4, 'order' => 3),
             array('name' => 'Старший лейтенант', 'id' => 5, 'order' => 3)
         );
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
 
@@ -336,34 +316,12 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
 
-
-            $full_data_array = $data_array;
-            $data_array = array();
-
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-
-
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -382,31 +340,18 @@ class IndexController extends AbstractActionController
             array('id' => 2, 'name' => 'Проживания', 'priority'=> 2),
             array('id' => 3, 'name' => 'Почтовый', 'priority'=> 3),
         );
+
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -433,31 +378,18 @@ class IndexController extends AbstractActionController
             //array('id' => 12, 'code' => '', 'name' => '', 'fullname'=> ''),
 
         );
+
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -473,31 +405,18 @@ class IndexController extends AbstractActionController
             array('id' => 2, 'name' => 'Край', 'shortname'=> 'к-1.'),
             array('id' => 3, 'name' => 'Область', 'shortname'=> 'обл.'),
         );
+
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -536,28 +455,14 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -577,28 +482,14 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -618,28 +509,14 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -658,28 +535,14 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -698,28 +561,14 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -736,31 +585,18 @@ class IndexController extends AbstractActionController
             array('id' => 2, 'name' => 'Месяц'),
             array('id' => 3, 'name' => 'Год'),
         );
+
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -783,31 +619,18 @@ class IndexController extends AbstractActionController
             array('id' => 3, 'name' => 'Секретные', 'mask' => 'С%y-%n', 'isPeriodic' => true, 'period_type' => 3,
                 'period_length' => 1, 'start_date' => '01.01.2014','min_index' => 0, 'isDraft' => false)
         );
+
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -845,28 +668,14 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -904,20 +713,14 @@ class IndexController extends AbstractActionController
         );
 
         $request = $this->getRequest();
-        /* Поиск по массиву */
-
-
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
-
             $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
 
-            //var_dump($query);
-
-            foreach($data_array as $value){
-                if($query == $value['id']){
-                    $data_array = $value;
-                }
-            }
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -953,28 +756,14 @@ class IndexController extends AbstractActionController
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
-            $full_data_array = $data_array;
-            $data_array = array();
-            if($query){
-                $strlen = strlen($query);
-                if($strlen < 4){
-                    $data_array = $full_data_array;
-                }else{
-                    foreach($full_data_array as $key => $value){
-                        if(strstr($value['name'], $query)){
-                            $data_array[] = $full_data_array[$key];
-                        }
-                    }
-                }
-            }
-            if(!$query){
-                $data_array = $full_data_array;
-            }
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-            $JsonModel = new JsonModel();
-            $JsonModel->setVariables($response);
-            return $JsonModel;
+            $data_array = $this->instantSearch($query, $data_array);
         }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
