@@ -9,13 +9,14 @@ var EntityBlock = React. createClass({
      * */
       render: function () {
         var class_name = this.props.entity_name;
-        var current_id = this.props.item.id;
+        var current_id = this.props.item;
 
         var entity = {};
         entity['name'] = this.props.entity_name;
         entity['value'] = this.props.value;
+        entity['current_id'] = this.props.item;
         entity['item'] = this.props.item;
-        entity['prop_name'] = this.props.name;
+        entity['db_prop_name'] = this.props.db_prop_name;
 
 
        console.log('===ACCEPTED===');

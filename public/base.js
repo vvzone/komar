@@ -195,7 +195,7 @@ var ItemEditBox = React.createClass({
 
                             controls.push(<EntityBlock
                             entity_name={counter_trigger[counter].class_name}
-                            name={counter_trigger[counter].db_prop_name}
+                            db_prop_name={counter_trigger[counter].db_prop_name}
                             item={item}
                             current_id={prop[counter_trigger[counter].db_prop_name]}
                             callback={this.itemUpdate} />);
