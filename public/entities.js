@@ -124,7 +124,7 @@ var CurrentClassMixin = function () {
                 return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} />);
             }else{
                 console.log('^=^=MainTree=^=^');
-                return(<MainTree source={source} entity={entity} dependencies={dependencies} />);
+                return(<MainTree source={source} entity={entity} tree_dependency={dependencies} />); //real arg is tree_dependency
             }
         },
         handleCallback: function(callback){
@@ -350,8 +350,15 @@ var FormEntDocKinds = React. createClass({
 
 var TreeDocKinds = React. createClass({
     mixins: [CurrentClassMixin],
+
     render: function(){
-        var output = this.editMainTreeRoute('dockinds', this.props.entity, null); //MainTree !!!
+        var tree_dependency = {};
+        tree_dependency = {
+            //class_name: 'doc_types', // 2do: class for mini-list
+            source: 'doctypes',
+            id_name_in_dependency: 'doc_kind_id'
+        };
+        var output = this.editMainTreeRoute('dockinds', this.props.entity, tree_dependency); //MainTree !!!
         return(
             <div className="DocKindsBox">
                 {output}

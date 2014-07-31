@@ -15,7 +15,8 @@ var TreeNode = React.createClass({
     getInitialState: function () {
         return {
             visible: true,
-            node: this.props.node
+            node: this.props.node,
+            open: false
         };
     },
     componentDidMount: function(){
@@ -86,11 +87,53 @@ var TreeNode = React.createClass({
         });
         this.getDOMNode().dispatchEvent(customEvent);
     },
+    whenClicked: function(){
+        this.setState({open: this.state.open==true? false: true});
+    },
+    getNodeTreeDependency: function(){
+        //if(this.props.tree_dependency){
+        //get doc_types_items;
+        var ulr = 'http://zend_test/main/'
+            + this.props.tree_dependency.source
+            + '/search/'
+            + this.props.tree_dependency.id_name_in_dependency
+            + this.props.node.id;
+        var data = '';
+
+        $.get(url, function (result) {
+            var dependency_items = [];
+            dependency_items = result.data;
+            //this.setState({dependency_items: dependency_items});
+            data = result.data;
+        }.bind(this));
+        return data;
+        //tree_dependency = this.props.tree_dependency.class_name+ 'search for '+ this.props.tree_dependency.id_name_in_dependency+' ='+this.props.node.id;
+        //}
+    },
     render: function () {
         var className = "";
         var style = {};
         if (!this.state.visible) {
             style.display = "none";
+        }
+
+        /*if(this.props.tree_dependency){
+            //get doc_types_items;
+            tree_dependency = this.props.tree_dependency.class_name+ 'search for '+ this.props.tree_dependency.id_name_in_dependency+' ='+this.props.node.id;
+        }
+        /* */
+        if(this.state.open == true){
+
+            var dependency_items = this.getNodeTreeDependency;
+            var self=this;
+
+            for(var item in dependency_items){ // onClick output short info
+                //if(editable[prop]){
+                    tree_dependency.push(
+                        <div>{dependency_items.name}</div>
+                    );
+                //}
+            }
         }
 
         if (this.props.node.childNodes != null) {
@@ -102,7 +145,7 @@ var TreeNode = React.createClass({
                 className += " glyphicon-plus";
             }
             var node_key = 'tree_box_node'+this.props.node.id;
-
+            var tree_dependency ='';
             return(
                 <li>
                     <div className="tree_box_node"
@@ -116,6 +159,7 @@ var TreeNode = React.createClass({
                     id={this.props.node.id} >
                         <span onClick={this.toggle} className={className}></span>
                         <TreeNodeBox item={this.props.node}/>
+                        <div><div onClick={this.whenClicked}>Click</div>{tree_dependency}</div>
                     </div>
                     <div className="tree_box_node_controls">
                         <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
@@ -123,7 +167,7 @@ var TreeNode = React.createClass({
                         <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
                     </div>
                     <div className="tree_childs" style={style}>
-                        <MainTree source={null} childs={this.props.node.childNodes}/>
+                        <MainTree source={null} childs={this.props.node.childNodes} tree_dependency={this.props.tree_dependency}/>
                     </div>
                 </li>
                 );
@@ -139,7 +183,7 @@ var TreeNode = React.createClass({
                     onDragLeave={this.dragLeave}
                     onDrop={this.drop}
                     id={this.props.node.id}>
-                        <TreeNodeBox item={this.props.node}/>
+                        <TreeNodeBox item={this.props.node} tree_dependency={tree_dependency}/>
                     </div>
                 <div className="tree_box_node_controls">
                     <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
@@ -158,7 +202,8 @@ var TreeNode = React.createClass({
 var MainTree = React.createClass({
     getInitialState: function() {
         return {
-            items: [] //array!!
+            items: [], //array!!
+            dependency_items: []
         };
     },
     handleMyEvent: function(event){
@@ -236,7 +281,7 @@ var MainTree = React.createClass({
         if(Object.prototype.toString.call(this.state.items) === '[object Array]'){
             var self = this;
             tree_output = this.state.items.map(function(node){
-                return(<TreeNode key={node.id} node={node} />)
+                return(<TreeNode key={node.id} node={node} tree_dependency={this.props.tree_dependency}/>)
             });
             return(<ul className="tree">{tree_output}</ul>);
         }

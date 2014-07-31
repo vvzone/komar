@@ -203,14 +203,29 @@ class IndexController extends AbstractActionController
         return $data_array;
     }
 
-    public function searchArray($array, $current_id){
+    public function searchArray($array, $current_id, $search_pole_name = null){
 
-        foreach($array as $item){
-            if($current_id == $item['id']){
-                return $item;
-            }else{
-                if(isset($item['childNodes'])){
-                    return $result = $this->searchArray($item['childNodes'], $current_id);
+        if(!isset($search_pole_name)){
+            foreach($array as $item){
+                if($current_id == $item['id']){
+                    return $item;
+                }else{
+                    if(isset($item['childNodes'])){
+                        return $result = $this->searchArray($item['childNodes'], $current_id);
+                    }
+                }
+            }
+        }else{
+            foreach($array as $item){
+                /*echo 'search_pole_name= '.$search_pole_name."\n";
+                echo '$item[$search_pole_name]= '.$item[$search_pole_name]."\n";
+                echo '$current_id= '.$current_id."\n";*/
+                if($current_id == $item[$search_pole_name]){
+                    return $item;
+                }else{
+                    if(isset($item['childNodes'])){
+                        return $result = $this->searchArray($item['childNodes'], $current_id, $search_pole_name);
+                    }
                 }
             }
         }
@@ -482,6 +497,7 @@ class IndexController extends AbstractActionController
             array('id' => 3, 'name' => 'Рабочий посёлок', 'shortname'=> 'р.п.'),
             array('id' => 4, 'name' => 'Курортный посёлок', 'shortname'=> 'к.п.'),
         );
+
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
@@ -676,7 +692,7 @@ class IndexController extends AbstractActionController
 
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         if($current_id){
-            $data_array = $this->searchArray($data_array, $current_id, $id = true);
+            $data_array = $this->searchArray($data_array, $current_id);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -703,7 +719,7 @@ class IndexController extends AbstractActionController
 
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         if($current_id){
-            $data_array = $this->searchArray($data_array, $current_id, $id = true);
+            $data_array = $this->searchArray($data_array, $current_id);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -730,7 +746,7 @@ class IndexController extends AbstractActionController
 
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         if($current_id){
-            $data_array = $this->searchArray($data_array, $current_id, $id = true);
+            $data_array = $this->searchArray($data_array, $current_id);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -759,10 +775,17 @@ class IndexController extends AbstractActionController
             $data_array = $this->instantSearch($query, $data_array);
         }
 
+        /* <REST> ------  */
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
-        if($current_id){
-            $data_array = $this->searchArray($data_array, $current_id, $id = true);
+        $current_property = $this->getEvent()->getRouteMatch()->getParam('property', 0);
+
+        if($current_property!=''){
+            $data_array = $this->searchArray($data_array, $current_id, $current_property);
+        }elseif($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
         }
+
+        /* </REST> ------  */
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
