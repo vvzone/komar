@@ -13,8 +13,7 @@ var ListItem = React.createClass({
         return {
             item: [],
             item_dependencies: [],
-            open: false,
-            editing: false
+            open: false
         }
     },
     whenClicked: function(){
@@ -24,19 +23,13 @@ var ListItem = React.createClass({
         this.setState({item: this.props.item});
     },
     whenClickedCP: function(action){
-
-        /*this.setState({open: this.state.open==true? false: false});
-        if(action == 'edit'){
-            this.setState({editing: this.state.editing==true? false: true});
-        }*/
-
         if(action){
             var customEvent = new CustomEvent("modalWindowOpen",  {
                 detail: {
                     action: action,
-                    entity: this.props.entity.name,
-                    item: this.state.item,
                     source: this.props.source,
+                    entity: this.props.entity.entity_name,
+                    item: this.state.item,
                     current_id: this.props.item.id
                 },
                 bubbles: true
@@ -105,21 +98,17 @@ var MainList = React. createClass({
         this.setState({items: results});
     },
     render: function () {
-        var items_arr = [];
-        items_arr = this.state.items.data;
         var output = [];
-        var self = this;
 
-
-        for (var item in items_arr) {
+        for (var item in this.state.items.data) {
             output.push(
                 <ListItem
-                item={items_arr[item]}
-                prototype={this.state.items.prototype}
-                key={items_arr[item].id}
-                dependencies={this.props.dependencies}
-                source={this.props.source}
-                entity={this.props.entity}
+                    source={this.props.source}
+                    item={this.state.items.data[item]}
+                    prototype={this.state.items.prototype}
+                    key={this.state.items.data[item].id}
+                    entity={this.props.entity}
+                    dependencies={this.props.dependencies}
                 />);
         }
 
@@ -155,7 +144,7 @@ var ItemEditBox = React.createClass({
         for (var key in property) {
             current_item[key] = property[key];
         }
-        current_item[property.name] = property.value;
+        current_item[property.db_prop_name] = property.value;
         this.setState({item: current_item});
     },
     componentWillMount: function () {
@@ -194,11 +183,11 @@ var ItemEditBox = React.createClass({
                             console.log(this.props.item);
 
                             controls.push(<EntityBlock
-                            entity_name={counter_trigger[counter].class_name}
-                            db_prop_name={counter_trigger[counter].db_prop_name}
-                            item={item}
-                            current_id={prop[counter_trigger[counter].db_prop_name]}
-                            callback={this.itemUpdate} />);
+                                entity_name={counter_trigger[counter].class_name}
+                                db_prop_name={counter_trigger[counter].db_prop_name}
+                                item={item}
+                                current_id={prop[counter_trigger[counter].db_prop_name]}
+                                callback={this.itemUpdate} />);
                         }
                 }
 

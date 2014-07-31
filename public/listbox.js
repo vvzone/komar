@@ -43,8 +43,8 @@ var SimpleSelect = React.createClass({
     handleChange: function(event){
         this.setState({value: event.target.value});
         var property = {};
-        console.error(this.props.entity.prop_name);
-        property[this.props.entity.prop_name] = event.target.value;
+        console.error(this.props.entity.db_prop_name);
+        property[this.props.entity.db_prop_name] = event.target.value;
         this.props.callback(property);
     },
     componentDidMount: function() {

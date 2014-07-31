@@ -12,11 +12,11 @@ var EntityBlock = React. createClass({
         var current_id = this.props.item;
 
         var entity = {};
-        entity['name'] = this.props.entity_name;
-        entity['value'] = this.props.value;
+        entity['entity_name'] = this.props.entity_name;
+        entity['db_prop_name'] = this.props.db_prop_name;
         entity['current_id'] = this.props.item;
         entity['item'] = this.props.item;
-        entity['db_prop_name'] = this.props.db_prop_name;
+
 
 
        console.log('===ACCEPTED===');
@@ -25,7 +25,7 @@ var EntityBlock = React. createClass({
 
 
 
-        switch (entity['name']) {
+        switch (class_name) {
             case 'ranks':
                 return(<FormEntRanks entity={entity}  callback={this.handleCallback} />);
                 break;

@@ -62,17 +62,17 @@ var MainWindow = React.createClass({
             screen_name: ''
         };
     },
-    handleMyEvent: function(e) {
+    handleCatLinkClick: function(e) {
         this.setState({screen_name: e.detail.screen_name});
     },
     componentWillMount: function() {
         if(this.props.screen_name!=null){
             this.setState({screen_name: this.props.screen_name});
         }
-        window.addEventListener("catLinkClick", this.handleMyEvent, true);
+        window.addEventListener("catLinkClick", this.handleCatLinkClick, true);
     },
     componentWillUnmount: function() {
-        window.removeEventListener("catLinkClick", this.handleMyEvent, true);
+        window.removeEventListener("catLinkClick", this.handleCatLinkClick, true);
     },
     render: function(){
         return(<div>
