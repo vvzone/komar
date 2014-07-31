@@ -9,12 +9,15 @@ var EntityBlock = React. createClass({
      * */
       render: function () {
         var class_name = this.props.entity_name;
-        var current_id = this.props.item;
+        var current_id = this.props.current_id;
 
         var entity = {};
         entity['entity_name'] = this.props.entity_name;
         entity['db_prop_name'] = this.props.db_prop_name;
-        entity['current_id'] = this.props.item;
+
+        entity['current_id'] = this.props.item; //нужно для хранения current_id для REST запросов вида /entity/{id}
+
+        //entity['current_id'] = this.props.current_id;
         entity['item'] = this.props.item;
 
 
@@ -48,7 +51,7 @@ var EntityBlock = React. createClass({
                 return(<FormEntRegionTypes entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'region_types_selector':
-                return(<FormSelectorRegionTypes selected={entity.current_id} entity={entity}  callback={this.handleCallback} />);
+                return(<SelectorRegionTypes selected={current_id} entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'regions':
                 return(<FormEntRegions entity={entity}  callback={this.handleCallback} />);
@@ -69,7 +72,7 @@ var EntityBlock = React. createClass({
                 return(<FormEntPeriodTypes entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'period_types_selector':
-                return(<FormSelectorPeriodTypes selected={entity.current_id} entity={entity}  callback={this.handleCallback} />);
+                return(<SelectorPeriodTypes selected={current_id} entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'enumeration_types':
                 return(<FormEntEnumerationTypes entity={entity}  callback={this.handleCallback} />);
@@ -84,13 +87,13 @@ var EntityBlock = React. createClass({
                 return(<FormEntDocSecrecyTypes entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'doc_secrecy_types_selector':
-                return(<FormSelectorDocSecrecyTypes selected={entity.current_id} entity={entity}  callback={this.handleCallback} />);
+                return(<SelectorDocSecrecyTypes selected={current_id} entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'doc_urgency_types':
                 return(<FormEntDocUrgencyTypes entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'doc_urgency_types_selector':
-                return(<FormSelectorDocUrgencyTypes selected={entity.current_id} entity={entity}  callback={this.handleCallback} />);
+                return(<SelectorDocUrgencyTypes selected={current_id} entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'doc_types':
                 return(<FormEntDocTypes entity={entity}  callback={this.handleCallback} />);
@@ -210,7 +213,7 @@ var FormEntRegionTypes = React. createClass({
     }
 });
 
-var FormSelectorRegionTypes = React. createClass({
+var SelectorRegionTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
         return(
@@ -302,7 +305,7 @@ var FormEntPeriodTypes = React. createClass({
     }
 });
 
-var FormSelectorPeriodTypes = React. createClass({
+var SelectorPeriodTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
         return(
@@ -369,13 +372,13 @@ var FormEntDocSecrecyTypes = React. createClass({
     }
 });
 
-var FormSelectorDocSecrecyTypes = React. createClass({
+var SelectorDocSecrecyTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
         return(
             <div className="selector DocSecrecyTypes">
                 <label>Секретность</label>
-                <SimpleSelect source="docsecrecytypes" selected={this.props.current_id} entity={this.props.entity} callback={this.handleCallback} />
+                <SimpleSelect source="docsecrecytypes" selected={this.props.selected} entity={this.props.entity} callback={this.handleCallback} />
             </div>
             )
     }
@@ -393,13 +396,13 @@ var FormEntDocUrgencyTypes = React. createClass({
     }
 });
 
-var FormSelectorDocUrgencyTypes = React. createClass({
+var SelectorDocUrgencyTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
         return(
             <div className="selector DocurgencyTypes">
                 <label>Срочность</label>
-                <SimpleSelect source="docurgencytypes" selected={this.props.current_id} entity={this.props.entity} callback={this.handleCallback}/>
+                <SimpleSelect source="docurgencytypes" selected={this.props.selected} entity={this.props.entity} callback={this.handleCallback}/>
             </div>
             )
     }

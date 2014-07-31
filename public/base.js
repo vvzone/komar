@@ -160,7 +160,7 @@ var ItemEditBox = React.createClass({
 
         var controls = [];
         var counter = 0;
-        var counter_trigger = {};
+        var dependencies_by_place = {};
 
         // 2-do: //fix this
         // dependencies arrays are nightmare
@@ -169,25 +169,26 @@ var ItemEditBox = React.createClass({
         dependencies = this.props.dependencies;
         if (Object.prototype.toString.call(dependencies) === '[object Object]') {
             for(var key in dependencies){
-                var new_key = dependencies[key].place;
-                counter_trigger[new_key] = dependencies[key];
+                var place_key = dependencies[key].place;
+                dependencies_by_place[place_key] = dependencies[key];
             }
         }
 
+        var self = this;
         for (var prop in item) {
             if (Object.prototype.toString.call(dependencies) === '[object Object]') {
-                if (typeof counter_trigger[counter] !== 'undefined' && typeof counter_trigger[counter].place !== 'undefined') {
-                        if (counter == counter_trigger[counter].place) {
+                if (typeof dependencies_by_place[counter] !== 'undefined' && typeof dependencies_by_place[counter].place !== 'undefined') {
+                        if (counter == dependencies_by_place[counter].place) {
 
                             console.log('========this.props.item========');
                             console.log(this.props.item);
 
                             controls.push(<EntityBlock
-                                entity_name={counter_trigger[counter].class_name}
-                                db_prop_name={counter_trigger[counter].db_prop_name}
+                                entity_name={dependencies_by_place[counter].class_name}
+                                db_prop_name={dependencies_by_place[counter].db_prop_name}
                                 item={item}
-                                current_id={prop[counter_trigger[counter].db_prop_name]}
-                                callback={this.itemUpdate} />);
+                                current_id={this.props.item[dependencies_by_place[counter].db_prop_name]}
+                                callback={self.itemUpdate} />);
                         }
                 }
 
