@@ -51,8 +51,8 @@ class IndexController extends AbstractActionController
             array('id' => 106010, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'period_types', 'name' => 'Типы периодов'),
             array('id' => 106020, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'enumeration_types', 'name' => 'Типы нумерации'),
             array('id' => 106021, 'category' => 'base', 'entity' => 'doc_kinds', 'screen' => 'doc_kinds', 'name' => 'Виды документов'),
-            array('id' => 106022, 'category' => 'base', 'entity' => 'doc_secrecy_type', 'screen' => 'doc_secrecy_type', 'name' => 'Типы секретности документа'),
-            array('id' => 106023, 'category' => 'base', 'entity' => 'doc_urgency', 'screen' => 'doc_urgency', 'name' => 'Типы срочности документа'),
+            array('id' => 106022, 'category' => 'base', 'entity' => 'doc_secrecy_types', 'screen' => 'doc_secrecy_types', 'name' => 'Типы секретности документа'),
+            array('id' => 106023, 'category' => 'base', 'entity' => 'doc_urgency_types', 'screen' => 'doc_urgency_types', 'name' => 'Типы срочности документа'),
             array('id' => 106030, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'doc_types', 'name' => 'Типы документов'),
             array('id' => 106040, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'node_types', 'name' => 'Типы узлов маршрута'),
             array('id' => 106050, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'name' => 'Типы аттрибутов'),
@@ -685,34 +685,14 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
-    public function dockindscurrentAction(){
-
-        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'isService' => 'Служебный документ');
+    public function docsecrecytypesAction(){
+        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'singleNumeration' => 'Единая нумерация');
         $prototype_array = array('editable_properties' => $editable_array);
 
-
-        $combat = array(
-            array('id' => 1001, 'parent_id' => 100, 'name' => 'Боевой приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
-            array('id' => 1002, 'parent_id' => 100, 'name' => 'Боевой приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
-        );
-
-        $economic = array(
-            array('id' => 1101, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
-            array('id' => 1102, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
-        );
-
-        $child_1 = array(
-            array('id' => 100, 'parent_id' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'isService' => false,
-                'childNodes' => $combat),
-            array('id' => 110, 'parent_id' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'isService' => false,
-                'childNodes' => $economic)
-        );
-
         $data_array = array(
-            array('id' => 1, 'parent_id' => null, 'name' => 'Сигналы', 'shortname'=> 'С', 'isService' => false),
-            array('id' => 2, 'parent_id' => null, 'name' => 'Приказы', 'shortname'=> 'П', 'isService' => false,
-                'childNodes' => $child_1),
-            array('id' => 3, 'parent_id' => null, 'name' => 'Служебные', 'shortname'=> 'сист.', 'isService' => true,)
+            array('id' => 1, 'name' => 'Для Служебного Пользования', 'shortname'=> 'ДПС', 'singleNumeration' => false),
+            array('id' => 2, 'name' => 'Секретно', 'shortname'=> 'С', 'singleNumeration' => true),
+            array('id' => 3, 'name' => 'Совершенно Секретно', 'shortname'=> 'СС', 'singleNumeration' => true),
         );
 
         $request = $this->getRequest();
@@ -723,7 +703,7 @@ class IndexController extends AbstractActionController
 
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         if($current_id){
-            $data_array = $this->searchArray($data_array, $current_id);
+            $data_array = $this->searchArray($data_array, $current_id, $id = true);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -732,29 +712,15 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
-
-    public function dockinds2Action(){
-        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'isService' => 'Служебный документ');
+    public function docurgencytypesAction(){
+        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)');
         $prototype_array = array('editable_properties' => $editable_array);
 
-        $combat = array(
-            array('id' => 1001, 'parent_id' => 100, 'name' => 'Боевой приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
-            array('id' => 1002, 'parent_id' => 100, 'name' => 'Боевой приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+        $data_array = array(
+            array('id' => 1, 'name' => 'Не срочно', 'shortname'=> 'НС' ),
+            array('id' => 2, 'name' => 'Очень Срочно', 'shortname'=> 'ОС'),
+            array('id' => 3, 'name' => 'Супер Срочно', 'shortname'=> 'СС'),
         );
-
-        $economic = array(
-            array('id' => 1101, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
-            array('id' => 1102, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
-        );
-
-        $child_1 = array(
-            array('id' => 100, 'parent_id' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'isService' => false,
-                'childNodes' => $combat),
-            array('id' => 110, 'parent_id' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'isService' => false,
-                'childNodes' => $economic)
-        );
-
-        $data_array = array('id' => 1, 'parent_id' => null, 'name' => 'Сигналы', 'shortname'=> 'С', 'isService' => false, 'childNodes' => $child_1);
 
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
@@ -764,12 +730,43 @@ class IndexController extends AbstractActionController
 
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         if($current_id){
-            $data_array = $this->searchArray($data_array, $current_id);
+            $data_array = $this->searchArray($data_array, $current_id, $id = true);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
-        $JsonModel->setVariables($data_array);
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+    }
+
+    public function doctypesAction(){
+        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'code' => 'Код',
+        'header' => 'Заголовок', 'isService' => 'Служебный', 'secrecy_type' => 'Секретность', 'urgency_type' => 'Срочность');
+        $prototype_array = array('editable_properties' => $editable_array);
+
+        $data_array = array(
+            array('id' => 1, 'doc_kind_id' => 1, 'name' => 'Воздушная тревога', 'shortname'=> 'С-ВТ', 'code' => '555',
+                'header' => 'Воздушная тревога!', 'isService' => false, 'secrecy_type' => 2, 'urgency_type' => 3),
+            array('id' => 2, 'doc_kind_id' => 110, 'name' => 'Приказ на списание', 'shortname'=> 'ПхСп', 'code' => '1001',
+                'header' => '', 'isService' => false, 'secrecy_type' => 1, 'urgency_type' => 1),
+            array('id' => 3, 'doc_kind_id' => null, 'name' => 'Добавление объекта картографии', 'shortname'=> 'СК-Д', 'code' => '2001',
+                'header' => 'Добавление объекта на общую карту', 'isService' => true, 'secrecy_type' => 1, 'urgency_type' => 1),
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id, $id = true);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
         return $JsonModel;
     }
 

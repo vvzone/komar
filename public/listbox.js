@@ -33,16 +33,22 @@ var SimpleSelect = React.createClass({
     /*
     * props: selected, source
     * */
-    getInitialState: function() {
+     getInitialState: function() {
         return {
             options: [],
             selected: ''
         }
     },
+
+    handleChange: function(event){
+        this.setState({value: event.target.value});
+        var property = {};
+        console.error(this.props.entity.prop_name);
+        property[this.props.entity.prop_name] = event.target.value;
+        this.props.callback(property);
+    },
     componentDidMount: function() {
-
         this.setState({selected: this.props.selected})
-
         $.get('http://zend_test/main/'+this.props.source, function(result) {
             var arr = [];
             for(var item in result.data){
@@ -67,7 +73,7 @@ var SimpleSelect = React.createClass({
             </option>);
         }
 
-        return(<select value={selected}>{options}</select>)
+        return(<select value={selected} onChange={this.handleChange}>{options}</select>)
     }
 });
 

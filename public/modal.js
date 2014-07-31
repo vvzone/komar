@@ -106,6 +106,25 @@ var ModalWindowDelete = React.createClass({
         ];
         var header = "Вы уверены?"; //+this.entity.name;
 
+        console.log('Delete');
+        console.log(this.props);
+
+        var msg = "Будет удален обьект «" +  this.props.item.name + "»";
+        if(this.props.item.childNodes){
+            var childs = '';
+            /*var childNodes = this.props.item.childNodes;
+            console.log('this.props.item.childNodes');
+            console.log(this.props.item.childNodes);
+            for(var key in childNodes){
+
+                childs = childs + childNodes[key].name +', ';
+            }*/
+            //msg = msg + 'Следующие дочерние обьекты будут удалены: '+childs;
+            msg = msg + ', а также все дочерние обьекты.';
+        }else{
+            msg = msg + '.'
+        }
+
         return(
             /* Entity */
             // 2 do: BaseWindow,
@@ -115,6 +134,7 @@ var ModalWindowDelete = React.createClass({
             show={false}
             header={header}
             buttons={buttons}
+            msg={msg}
             >
             </ModalWindowDeleteConfirmation>
             );
@@ -155,6 +175,7 @@ var ModalWindowBase = React.createClass({
     }
 });
 
+
 var ModalWindowDeleteConfirmation = React.createClass({
     mixins: [BootstrapModalMixin],
     componentDidMount: function() {
@@ -169,6 +190,12 @@ var ModalWindowDeleteConfirmation = React.createClass({
                 );
         });
 
+        var msg ='';
+        if(this.props.msg){
+            msg = <div className="modal-body">
+                     {this.props.msg}
+                </div>;
+        }
         return(
             <div className="modal fade">
                 <div className="modal-dialog">
@@ -177,6 +204,7 @@ var ModalWindowDeleteConfirmation = React.createClass({
                              {this.renderCloseButton()}
                             <strong>{this.props.header}</strong>
                         </div>
+                        {msg}
                         <div className="modal-footer">
                        {buttons}
                         </div>

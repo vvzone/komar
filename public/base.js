@@ -29,18 +29,13 @@ var ListItem = React.createClass({
         if(action == 'edit'){
             this.setState({editing: this.state.editing==true? false: true});
         }*/
-        console.log('==============*==============');
-        console.log('this.props');
-        console.log(this.props);
-        console.log(action);
-        console.log('action');
-        console.log('==============*==============');
 
         if(action){
             var customEvent = new CustomEvent("modalWindowOpen",  {
                 detail: {
                     action: action,
                     entity: this.props.entity.name,
+                    item: this.state.item,
                     source: this.props.source,
                     current_id: this.props.item.id
                 },
@@ -141,6 +136,7 @@ var MainList = React. createClass({
                 key={items_arr[item].id}
                 dependencies={this.props.dependencies}
                 dependencies_place={this.props.dependencies_place}
+                new_dependencies={this.props.new_dependencies}
                 source={this.props.source}
                 entity={this.props.entity}
                 />);
@@ -170,6 +166,10 @@ var ItemEditBox = React.createClass({
         console.info(this.state.item);
     },
     itemUpdate: function (property) {
+        console.info('itemUpdate');
+        console.log('property')
+        console.log(property);
+
         var current_item = this.state.item;
         for (var key in property) {
             current_item[key] = property[key];
@@ -191,21 +191,65 @@ var ItemEditBox = React.createClass({
         var controls = [];
         var counter = 0;
         var dependencies_place = this.props.dependencies_place;
-        var counter_trigger = [];
+        var counter_trigger = {};
 
+        var sub_entity = {};
         // 2-do: //fix this
-        if (Object.prototype.toString.call(dependencies_place) === '[object Array]') {
+        // dependencies arrays are nightmare
+
+        /*if (Object.prototype.toString.call(dependencies_place) === '[object Array]') {
             for (var key in dependencies_place) {
                 counter_trigger[dependencies_place[key]] = dependencies_place[key];
+                sub_entity[dependencies_place[key]] = this.props.dependencies[key];
+
+            }
+        }*/
+
+        var new_dependencies = {};
+        new_dependencies = this.props.new_dependencies;
+
+        console.log('this.props.new_dependencies ' + this.props.new_dependencies);
+        console.log(this.props.new_dependencies);
+
+        if (Object.prototype.toString.call(new_dependencies) === '[object Object]') {
+            for(var key in new_dependencies){
+                //counter_trigger[new_dependencies[key].place] = new_dependencies[key];
+                var new_key = new_dependencies[key].place;
+                counter_trigger[new_key] = new_dependencies[key];
             }
         }
+        //new_dependencies={this.props.new_dependencies}
+        console.info('items');
+        console.info(items);
+
+        console.warn('counter_trigger');
+        console.warn(counter_trigger);
+
+        console.info('editable');
+        console.info(editable);
 
         for (var prop in items) {
-            if (Object.prototype.toString.call(dependencies_place) === '[object Array]') {
-                if (counter == counter_trigger[counter]) {
-                    console.log('this.props.dependencies[key]= ' + this.props.dependencies[key]);
-                    console.log(this.props.dependencies);
-                    controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} callback={this.itemUpdate} />);
+            if (Object.prototype.toString.call(new_dependencies) === '[object Object]') {
+                var test = counter_trigger[counter];
+
+                //var trigger = counter_trigger[counter].place;
+                //console.log('test');
+                //console.log(test);
+
+                //var place = counter_trigger;
+
+                if (typeof test !== 'undefined') {
+                    if (typeof test.place !== 'undefined') {
+                        /*console.log('counter_trigger['+counter+'].place');
+                         console.log(Object.prototype.toString.call(counter_trigger[counter].place));*/
+                        if (counter == test.place) {
+                            /*console.error('counter_trigger[counter].class_name');
+                             console.error(counter_trigger[counter].class_name);
+                             console.error('counter_trigger[counter].db_prop_name');
+                             console.error(counter_trigger[counter].db_prop_name);*/
+                            controls.push(<EntityBlock entity_name={counter_trigger[counter].class_name} name={counter_trigger[counter].db_prop_name} item={this.props.item} callback={this.itemUpdate} />);
+                        }
+                    }
                 }
             }
             if (editable[prop]) {
@@ -224,6 +268,9 @@ var ItemEditBox = React.createClass({
                     controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
                 }
             }
+        }
+        if(controls.length == 0){
+            return(<ErrorMsg msg="Не найдено ни одного контрола" />);
         }
         edit_properties_box.push(<form role="form" className="ControlsBox">{controls}</form>);
         return(
@@ -265,11 +312,12 @@ var MainItemEdit = React. createClass({
         var key ='edit_'+this.props.entity.name+'_'+1;
         if(this.state.item.data){
             controls = <ItemEditBox
-            item={this.state.item.data[0]}
+            item={this.state.item.data}
             prototype={this.state.item.prototype}
             key={key}
             dependencies={this.props.dependencies}
             dependencies_place={this.props.dependencies_place}
+            new_dependencies={this.props.new_dependencies}
             entity={this.props.entity}
             />;
         }

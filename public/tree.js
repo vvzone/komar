@@ -79,6 +79,7 @@ var TreeNode = React.createClass({
             detail: {
                 action: action,
                 entity: 'doc_kind_edit',
+                item: this.props.node,
                 current_id: this.props.node.id
                     },
             bubbles: true

@@ -178,6 +178,8 @@ properties_types['period_length'] = 'tiny_text';
 properties_types['start_date'] = 'tiny_text'; /* Заменить на календарь! */
 properties_types['min_index'] = 'tiny_text';
 properties_types['isDraft'] = 'bool_select';
+properties_types['singleNumeration'] = 'bool_select';
+properties_types['isService'] = 'bool_select';
 
 
 

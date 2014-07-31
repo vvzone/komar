@@ -23,9 +23,7 @@ var BaseScreen = React. createClass({
             this.setState({screen_name: 'welcome'})
         }
         this.setState({screen_name: this.props.screen_name});
-
         var entities = screen_entities;
-
         this.setState({entities: entities});
     },
     render: function(){
@@ -89,14 +87,16 @@ var ModalWindowRouter = React.createClass({
         return {
             action: '',
             entity: '',
-            current_id: ''
+            current_id: '',
+            item: ''
         };
     },
     modalOpen: function(event) {
         this.setState({
             action: event.detail.action,
             entity: event.detail.entity,
-            current_id: event.detail.current_id
+            current_id: event.detail.current_id,
+            item: event.detail.item
         });
         console.log('event.detail');
         console.log(event.detail);
@@ -105,7 +105,8 @@ var ModalWindowRouter = React.createClass({
         this.setState({
             action: '',
             entity: '',
-            current_id: ''
+            current_id: '',
+            item: ''
         });
     },
     componentWillMount: function() {
@@ -127,7 +128,7 @@ var ModalWindowRouter = React.createClass({
                 return(<ModalWindowEdit entity={this.state.entity} current_id={this.state.current_id} />);
             break;
             case 'delete':
-                return(<ModalWindowDelete />);
+                return(<ModalWindowDelete entity={this.state.entity} current_id={this.state.current_id} item={this.state.item} />);
             break;
             case 'save':
                 return(<ModalWindowSave />);

@@ -190,6 +190,11 @@ div.list_box div.list_box_select select {
   text-align: center;
   padding: 10px;
 }
+.alert-warning .modal-body {
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8em;
+}
 .alert-warning .modal-footer {
   border: none;
   text-align: center;
