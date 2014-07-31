@@ -38,6 +38,7 @@
     PersonDocType -> base -> pass_doc_types -> pass_doc_types
     
     AddressType -> base -> address_types -> sys
+
     SexType -> base -> sex_types -> sys
     Country -> base -> countries -> sys
     
@@ -98,15 +99,91 @@ rank[0] = 'rank';
 
 var position = [];
 position[0] = 'position';
-//position[1] = 'rank_position';
+
+var pass_doc_types = [];
+pass_doc_types[0] = 'pass_doc_types';
+
+var address_types =[];
+address_types[0] = 'address_types';
+
+var countries = [];
+countries[0] = 'countries';
+
+var region_types = [];
+region_types[0] = 'region_types';
+
+var regions = [];
+regions[0] = 'regions';
+
+var location_types = [];
+location_types[0] = 'location_types';
+
+var street_types = [];
+street_types[0] = 'street_types';
+
+
+var sex_types = [];
+sex_types[0] = 'sex_types';
+
+var commander_types = [];
+commander_types[0] = 'commander_types';
+
 
 var screen_entities = {};
-
 screen_entities['test_screen'] = test_screen;
 screen_entities['sys'] = sys;
 screen_entities['rank'] = rank;
+screen_entities['pass_doc_types'] = pass_doc_types;
 screen_entities['position'] = position;
+screen_entities['address_types'] = address_types;
+screen_entities['countries'] = countries;
+screen_entities['region_types'] = region_types;
+screen_entities['regions'] = regions;
+screen_entities['location_types'] = location_types;
+screen_entities['street_types'] = street_types;
+screen_entities['sex_types'] = sex_types;
+screen_entities['commander_types'] = commander_types;
 
+
+
+var properties_types = [];
+
+
+properties_types['name'] = 'tiny_text';
+properties_types['name_min'] = 'tiny_text';
+properties_types['description'] = 'small_text';
+
+/* pass_doc_types */
+properties_types['seriesMask'] = 'tiny_text';
+properties_types['numberMask'] = 'tiny_text';
+
+properties_types['isFull'] = 'bool_select';
+properties_types['isMain'] = 'bool_select';
+properties_types['isSeries'] = 'bool_select';
+
+/* address_types */
+properties_types['priority'] = 'tiny_text';
+
+/* countries */
+properties_types['code'] = 'tiny_text';
+properties_types['fullname'] = 'small_text';
+
+/* ? many */
+properties_types['shortname'] = 'tiny_text';
+
+/* docs */
+properties_types['mask'] = 'tiny_text';
+properties_types['isPeriodic'] = 'bool_select';
+properties_types['period_length'] = 'tiny_text';
+properties_types['start_date'] = 'tiny_text'; /* Заменить на календарь! */
+properties_types['min_index'] = 'tiny_text';
+properties_types['isDraft'] = 'bool_select';
+properties_types['singleNumeration'] = 'bool_select';
+properties_types['isService'] = 'bool_select';
+
+
+
+/* */
 
 /*var test_rr = [
  {entity:'rank', screen:'base', name: '������', id: 151},

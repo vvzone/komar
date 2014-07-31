@@ -44,8 +44,56 @@ div.next {
   font-size: 9pt;
   cursor: pointer;
 }
-.well ul.cattree {
+.nav > li div.tree_not_link {
+  color: #595959;
+  padding: 10px;
+}
+span.glyphicon {
+  cursor: pointer;
+}
+ul.cattree {
   margin-left: 10px;
+}
+ul.tree {
+  list-style-type: none;
+  padding: 2px;
+}
+ul.tree div.tree_childs {
+  margin-left: 30px;
+}
+ul.tree .btn-mini {
+  font-size: 10px;
+  padding: 1px 4px;
+}
+ul.tree div.tree_over_node {
+  border: 1px solid #428bca;
+  background: #d6e5ed;
+}
+ul.tree div.tree_box_node {
+  clear: both;
+  display: inline-block;
+  float: left;
+  padding: 12px;
+  margin: 5px;
+  margin-left: 35px;
+  margin-bottom: 15px;
+  width: auto;
+  min-width: 170px;
+  border: 1px solid silver;
+  border-radius: 3px;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  cursor: move;
+}
+ul.tree div.tree_box_node span.tree_box_node_name {
+  margin-left: 5px;
+}
+ul.tree div.tree_box_node_controls {
+  float: left;
+  margin-left: -65px;
+  margin-top: -5px;
+}
+ul.tree .placeholder {
+  background: #fff078;
 }
 div.MainList {
   overflow: hidden;
@@ -55,44 +103,64 @@ div.MainList {
     cursor: pointer;
   }*/
 }
-div.MainList div.item,
-div.MainList div.item_attr {
+div.MainList div.item {
   clear: both;
   float: left;
-  margin: 1px;
+  margin: 2px;
   padding: 5px;
   border-radius: 3px;
   border: 1px solid #d6e5ed;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
 }
-div.MainList div.item a,
-div.MainList div.item_attr a {
+div.MainList div.item a {
   text-decoration: none;
 }
 div.MainList div.item div.item_name,
-div.MainList div.item_attr div.item_name,
-div.MainList div.item div.item_cp,
-div.MainList div.item_attr div.item_cp {
+div.MainList div.item div.item_cp {
   float: left;
 }
-div.MainList div.item div.item_name,
-div.MainList div.item_attr div.item_name {
-  min-width: 307.5px;
+div.MainList div.item div.item_name {
+  min-width: 410px;
 }
-div.MainList div.item div.item_cp button,
-div.MainList div.item_attr div.item_cp button {
-  margin-left: 1px;
+div.MainList div.item div.item_cp button {
+  margin-left: 2px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+div.item_attr {
+  margin-top: 10px;
+}
+div.form_label {
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 5px;
+  max-width: 100%;
+}
+.form-control {
+  padding: 5px;
+}
+div.list_box {
+  float: left;
+}
+div.list_box div.list_box_select select {
+  padding: 3px;
+  border-radius: 3px;
+  border: 1px solid #d6e5ed;
+  min-width: 307.5px;
 }
 .enlight {
   background: #f4ffff;
 }
 /* msg's*/
+.modal-dialog {
+  width: 650px;
+}
+.modal-body {
+  overflow: hidden;
+}
 .alert-error {
   background: #d00a03;
   margin: 10px;
   color: white;
-  width: 1230px;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
   font-size: 1em;
@@ -100,4 +168,35 @@ div.MainList div.item_attr div.item_cp button {
 .alert-error strong {
   font-size: 1.2em;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.alert-error .modal-header {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+.alert-error .modal-footer {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+.alert-warning {
+  background: #d00a03;
+  color: white;
+  font-size: 1.5em;
+  border-color: #e41e17;
+}
+.alert-warning .modal-header {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+.alert-warning .modal-body {
+  text-align: center;
+  padding: 10px;
+  font-size: 0.8em;
+}
+.alert-warning .modal-footer {
+  border: none;
+  text-align: center;
+  padding: 10px;
 }

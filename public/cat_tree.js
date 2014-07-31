@@ -1,5 +1,6 @@
 /** @jsx React.DOM */
 
+
 var CatLink = React. createClass({
     getInitialState: function() {
         return {
@@ -85,7 +86,7 @@ var CatTreeLinksList = React. createClass({
             this.setState({links: links})
         }else{
             //console.log('ajax!');
-            $.get('http://zend_test/main/index/ajax', function(result) {
+            $.get('http://zend_test/main/ajax', function(result) {
                 var links = [];
                 links = result;
                 this.setState({links: links});
@@ -100,7 +101,10 @@ var CatTreeLinksList = React. createClass({
         var links = this.state.links;
         if(Object.prototype.toString.call(this.state.links) === '[object Array]'){
             var self = this;
-            var links_output = this.state.links.map(function(l){
+            links_output = this.state.links.map(function(l){
+                if(l.isNotScreen && l.childNodes==null){
+                    return(<li><div className="tree_not_link">{l.name}</div></li>);
+                }
                 if(!l.isNonIndependent){
                     return(<CatLink screen={l} key={l.id} onClick={self.handleClick}/>)
                 }

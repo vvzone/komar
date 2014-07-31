@@ -1,88 +1,8 @@
 /** @jsx React.DOM */
-/* som base elements */
-
-var ErrorMsg = React.createClass({
-    render: function () {
-        //class="btn btn-sm btn-warning">
-        var message = '';
-        var header = '';
-        (this.props.header == undefined)? header= 'Ошибка' : header = this.props.header;
-        (this.props.msg == undefined)? message= 'Неизвестная ошибка': message = this.props.msg;
-
-        return (
-            <div className="alert alert-error">
-                <a href="#" className="close" data-dismiss="alert">&times;</a>
-                <strong>{header}</strong>
-                <br />{message}
-            </div>
-            );
-    }
-});
+/* some base elements */
 
 
-var ButtonEditMini = React.createClass({
-    handleClick: function (e) {
-        var action = 'edit';
-        this.props.clicked(action);
-    },
-    render: function () {
-        //class="btn btn-sm btn-warning">
-        return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span></button> );
-    }
-});
-
-var ButtonEdit = React.createClass({
-    handleClick: function (e) {
-        var action = 'edit';
-        this.props.clicked(action);
-    },
-    render: function () {
-        //class="btn btn-sm btn-warning">
-        return ( <button className="ButtonEdit btn btn-xs btn-warning" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-pencil"></span>  Редактировать</button> );
-    }
-});
-
-var ButtonDeleteMini = React.createClass({
-    handleClick: function (e) {
-        var action = 'delete';
-        this.props.clicked(action);
-    },
-    render: function () {
-        //class="btn btn-xs btn-danger"> Удалить</a>
-        return ( <button className="ButtonDelete btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span></button> );
-    }
-});
-
-
-var ButtonDelete = React.createClass({
-    handleClick: function (e) {
-        var action = 'delete';
-        this.props.clicked(action);
-    },
-    render: function () {
-        //class="btn btn-xs btn-danger"> Удалить</a>
-        return ( <button className="ButtonDelete btn btn-xs btn-danger" type="button" onClick={this.handleClick}><span className="glyphicon glyphicon-remove"></span>  Удалить</button> );
-    }
-});
-
-
-var ItemLink = React. createClass({
-    /*
-     * props: name, clicked(), id
-     *
-     * */
-
-    handleClick: function(e){
-        e.preventDefault();
-        this.props.onClick(this.props.item);
-    },
-    render: function(){
-        return(<a href={this.props.item.id} onClick={this.handleClick}>{this.props.item.name}</a>)
-    }
-});
-
-
-var ListItems = React.createClass({
+var ListItem = React.createClass({
     /*
      * <ListItem item=[] key='' action={this.whenListItemsAction} />
      * props:
@@ -91,60 +11,63 @@ var ListItems = React.createClass({
      * */
     getInitialState: function() {
         return {
-            item: this.props.item,
-            item_dependencies: []
+            item: [],
+            item_dependencies: [],
+            open: false
         }
     },
     whenClicked: function(){
-        this.props.itemdisplay(this.props.item.id);
+        this.setState({open: this.state.open==true? false: true});
+    },
+    componentWillMount: function() {
+        this.setState({item: this.props.item});
     },
     whenClickedCP: function(action){
-        var itaction = [];
-        itaction['action'] = action;
-        itaction['id'] = this.props.item.id;
-        console.log('whenClicked'+itaction['action']+' action[id]='+ itaction['id']);
-
-        if(action == 'edit'){
-            /*$.get('http://zend_test/main/index/'+this.props.source, function(result) {
-                this.setState({items: result});
-            }.bind(this));*/
-            this.setState({item_dependencies: this.props.dependencies});
-            console.log('dependencies='+this.props.dependencies);
+        if(action){
+            var customEvent = new CustomEvent("modalWindowOpen",  {
+                detail: {
+                    action: action,
+                    source: this.props.source,
+                    entity: this.props.entity.entity_name,
+                    item: this.state.item,
+                    current_id: this.props.item.id
+                },
+                bubbles: true
+            });
+            this.getDOMNode().dispatchEvent(customEvent);
         }
-        //this.props.itemaction(itaction);
     },
     render: function(){
         var delete_key= 'delete/'+this.props.item.id;
         var edit_key= 'edit/'+this.props.item.id;
 
-        console.log(this.state);
-        var item_dependencies = [];
-        var self=this;
-        item_dependencies = this.state.item_dependencies.map(function(item){
+        var item_additional_info = [];
+        var editable = this.props.prototype.editable_properties;
 
-            //console.log('this.props.item.id'+this.props.item.id);
-            var key = self.state.item.id+'_'+item;
-            return(<EntityBlock entity_name={item} host_id={self.state.item.id} key={key}/>)
-            //console.log(item);
-        });
-        if(this.props.non_base == "true"){
-            return(
-                <div className="item">
-                    <div className="item_name" onClick={this.whenClicked}><ItemLink item={this.props.item} clicked={this.whenClicked} /></div>
-                    <div className="item_cp">
-                        <ButtonDeleteMini clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key}/>
-                    </div>
-                </div>
-                )
+        if(this.state.open == true){
+            var self=this;
+
+            for(var prop in this.state.item){ // onClick output short info
+                if(editable[prop]){
+                    item_additional_info.push(
+                        <div>{editable[prop]}:{this.state.item[prop]}</div>
+                    )
+                }
+            }
         }
+
+        var edit_properties_box = [];
+        var items = this.state.item;
+
         return(
             <div className="item">
-                <div className="item_name" onClick={this.whenClicked}><ItemLink item={this.props.item} clicked={this.whenClicked} /></div>
+                <div className="item_name"><ItemLink item={this.props.item} onClick={this.whenClicked} /></div>
                 <div className="item_cp">
-                    <ButtonEdit clicked={this.whenClickedCP} id={this.props.item.id} key={edit_key}/>
-                    <ButtonDelete clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key}/>
+                    <ButtonEdit clicked={this.whenClickedCP} id={this.props.item.id} key={edit_key} mini={this.props.non_base}/>
+                    <ButtonDelete clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key} mini={this.props.non_base}/>
                 </div>
-                {item_dependencies}
+                {item_additional_info}
+                {edit_properties_box}
             </div>
             )
     }
@@ -155,6 +78,7 @@ var MainList = React. createClass({
     /* Props
      *
      * source - server data-controller action (entity)
+     * 2 do: add-interface, msg for 0 results
      * */
     getInitialState: function() {
         return {
@@ -162,52 +86,177 @@ var MainList = React. createClass({
         }
     },
     componentDidMount: function() {
-        $.get('http://zend_test/main/index/'+this.props.source, function(result) {
-            this.setState({items: result});
-        }.bind(this));
+       $.get('http://zend_test/main/'+this.props.source, function(result) {
+                    this.setState({items: result});
+                }.bind(this))
+                .error(function() {
+                    alert("Network Error.");
+                })
     },
-    whenListItemsClick: function(id){
-        //somehow call MainScreen width cur id
-        //this.props.itemclick(id);
-        //??? really need?
-        console.log(' whenListItemsClick'+ id);
+    searchReceived: function(results){
+        // exchange arrays
+        this.setState({items: results});
     },
-    whenListItemsAction: function(action){
-        /* 2do
-         *  action 2 ajax
-         * */
+    render: function () {
+        var output = [];
 
-        console.warn('whenListItemsCpAction'+ action['action']+' k='+action['id']);
-
-
-        //$.get('http://zend_test/main/index/no', function(result){
-        $.get('http://zend_test/main/index/yes', function(result){
-            if(result['response'] == true){
-                alert('Success');
-            }else{
-                alert('Error');
-            }
-        });
-    },
-    render: function(){
-        var items_arr = this.state.items;
-        var output =[];
-
-        var self = this;
-
-        for(var item in items_arr){
-            console.log(items_arr[position]);
-
-            console.log('MainList: '+this.props.dependencies);
+        for (var item in this.state.items.data) {
             output.push(
-                <ListItems item={items_arr[item]} key={items_arr[item].id}
-                itemaction={self.whenListItemsAction} itemdisplay={self.whenListItemsClick}
-                dependencies={this.props.dependencies}
-                non_base={this.props.non_base} />);
+                <ListItem
+                    source={this.props.source}
+                    item={this.state.items.data[item]}
+                    prototype={this.state.items.prototype}
+                    key={this.state.items.data[item].id}
+                    entity={this.props.entity}
+                    dependencies={this.props.dependencies}
+                />);
         }
 
         return(
-            <div className="MainList">{output}</div>
+            <div className="List">
+                <InstantSearch source={this.props.source} searchReceived={this.searchReceived}/>
+                <div className="MainList">{output}</div>
+            </div>
             )
     }
+});
+
+var ItemEditBox = React.createClass({
+    getInitialState: function () {
+        return {
+            item: [],
+            item_dependencies: []
+        }
+    },
+    componentDidMount: function () {
+        this.setState({item: this.props.item});
+    },
+    saveForm: function () {
+        console.info('item to save');
+        console.info(this.state.item);
+    },
+    itemUpdate: function (property) {
+        console.info('itemUpdate');
+        console.log('property')
+        console.log(property);
+
+        var current_item = this.state.item;
+        for (var key in property) {
+            current_item[key] = property[key];
+        }
+        current_item[property.db_prop_name] = property.value;
+        this.setState({item: current_item});
+    },
+    componentWillMount: function () {
+        window.addEventListener("saveButtonClick", this.saveForm, true);
+    },
+    componentWillUnmount: function () {
+        window.removeEventListener("saveButtonClick", this.saveForm, true);
+    },
+    render: function () {
+        var editable = this.props.prototype.editable_properties;
+
+        var item = this.state.item;
+
+        var controls = [];
+        var counter = 0;
+        var dependencies_by_place = {};
+
+        // 2-do: //fix this
+        // dependencies arrays are nightmare
+
+        var dependencies = {};
+        dependencies = this.props.dependencies;
+        if (Object.prototype.toString.call(dependencies) === '[object Object]') {
+            for(var key in dependencies){
+                var place_key = dependencies[key].place;
+                dependencies_by_place[place_key] = dependencies[key];
+            }
+        }
+
+        var self = this;
+        for (var prop in item) {
+            if (Object.prototype.toString.call(dependencies) === '[object Object]') {
+                if (typeof dependencies_by_place[counter] !== 'undefined' && typeof dependencies_by_place[counter].place !== 'undefined') {
+                        if (counter == dependencies_by_place[counter].place) {
+
+                            console.log('========this.props.item========');
+                            console.log(this.props.item);
+
+                            controls.push(<EntityBlock
+                                entity_name={dependencies_by_place[counter].class_name}
+                                db_prop_name={dependencies_by_place[counter].db_prop_name}
+                                item={item}
+                                current_id={this.props.item[dependencies_by_place[counter].db_prop_name]}
+                                callback={self.itemUpdate} />);
+                        }
+                }
+
+            }
+            if (editable[prop]) {
+                var type = prop;
+                controls.push(
+                    <ControlRouter type={properties_types[type]} value={item[prop]} name={type} russian_name={editable[prop]} callback={this.itemUpdate} key={editable[prop]} />
+                );
+            }
+            counter++;
+        }
+
+        if(controls.length == 0){
+            return(<ErrorMsg msg="Не найдено ни одного контрола" />);
+        }
+
+        var edit_properties_box = [];
+        edit_properties_box.push(<form role="form" className="ControlsBox">{controls}</form>);
+        return(
+            <div className="item">
+                {edit_properties_box}
+            </div>
+            )
+    }
+});
+
+var MainItemEdit = React. createClass({
+    getInitialState: function() {
+        return {
+            item: []
+        }
+    },
+    componentWillMount: function() {
+        var self = this;
+        $.ajax({
+            type: "POST",
+            url: 'http://zend_test/main/' + this.props.source+'/'+this.props.entity.current_id,
+            data: ''+this.props.entity.current_id+'',
+            success: function(response){
+                console.info('response');
+                console.info(response);
+                self.setState({item : response});
+            }
+        })
+         .error(function () {
+             alert("Network Error.");
+         });
+    },
+    render: function(){
+        var controls ='';
+        console.log('this.state.item');
+        console.log(this.state.item);
+        var key ='edit_'+this.props.entity.name+'_'+1;
+        if(this.state.item.data){
+            controls = <ItemEditBox
+            item={this.state.item.data}
+            prototype={this.state.item.prototype}
+            key={key}
+            dependencies={this.props.dependencies}
+            entity={this.props.entity}
+            />;
+        }
+        return(
+            <div>
+                {controls}
+            </div>
+        );
+    }
+
 });

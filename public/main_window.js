@@ -11,71 +11,6 @@ var MainScreen = React.createClass({
     }
 });
 
-
-var FormEntPosition = React. createClass({
-    render: function(){
-
-        var dependencies = [];
-        //dependencies[0] = 'FormEntRankPosition';
-        //dependencies[1] = 'FormEntRank';
-        dependencies[0] = 'rank_position';
-        return(
-            <div className="PositionBox">
-                <MainList source="positions" dependencies={dependencies} />
-            </div>
-            )
-    }
-});
-
-var FormEntRank = React. createClass({
-    render: function(){
-        return(
-            <div className="RankBox">
-                <MainList source="ranks" />
-            </div>
-            )
-    }
-});
-
-
-/*
- var MainDropDown = React. createClass({
-
- });
- */
-
-var FormEntRankPosition = React. createClass({
-    render: function(){
-        console.info(this.props.host_id);
-        return(
-            <div className="item_attr">Звания соответствующие должности:
-                <MainList source="positionsranks" host_id={this.props.host_id} non_base="true" />
-            </div>
-        )
-    }
-});
-
-var EntityBlock = React. createClass({
-    /* Router Class */
-    render: function(){
-        var class_name = this.props.entity_name;
-        var host_id = this.props.host_id;
-        switch(class_name) {
-            case 'rank':
-                return(<FormEntRank />)
-                break;
-            case 'position':
-                return(<FormEntPosition />)
-                break;
-            case 'rank_position':
-                return(<FormEntRankPosition host_id={host_id} />)
-                break;
-
-        };
-        return(<div><ErrorMsg msg="Не определена конечная сущность" /></div>)
-    }
-});
-
 var BaseScreen = React. createClass({
     getInitialState: function() {
         return {
@@ -88,9 +23,7 @@ var BaseScreen = React. createClass({
             this.setState({screen_name: 'welcome'})
         }
         this.setState({screen_name: this.props.screen_name});
-
         var entities = screen_entities;
-
         this.setState({entities: entities});
     },
     render: function(){
@@ -106,13 +39,16 @@ var BaseScreen = React. createClass({
             console.info('yes');
             render_entities =this.state.entities[this.props.screen_name].map(function(ent){
                 return(<EntityBlock entity_name={ent} key={ent} />);
-                //console.log('ent='+ent);
             });
         }else{
-            var msg = 'Страница '+ this.props.screen_name +  ' не найдена';
+            /*  пробовать найти класс все равно*/
+
+            return(<EntityBlock entity_name={this.props.screen_name} key={this.props.screen_name} />);
+
+            /*var msg = 'Страница '+ this.props.screen_name +  " не найдена. Возможно не указана в arrays_and_docs?";
             return(
                 <ErrorMsg msg={msg} />
-            )
+            )*/
         }
 
         return(<div>{render_entities}</div>)
@@ -126,16 +62,79 @@ var MainWindow = React.createClass({
             screen_name: ''
         };
     },
-    handleMyEvent: function(e) {;
+    handleCatLinkClick: function(e) {
         this.setState({screen_name: e.detail.screen_name});
     },
     componentWillMount: function() {
-        window.addEventListener("catLinkClick", this.handleMyEvent, true);
+        if(this.props.screen_name!=null){
+            this.setState({screen_name: this.props.screen_name});
+        }
+        window.addEventListener("catLinkClick", this.handleCatLinkClick, true);
     },
     componentWillUnmount: function() {
-        window.removeEventListener("catLinkClick", this.handleMyEvent, true);
+        window.removeEventListener("catLinkClick", this.handleCatLinkClick, true);
     },
     render: function(){
-        return(<div><BaseScreen screen_name={this.state.screen_name} /></div>)
+        return(<div>
+            <BaseScreen screen_name={this.state.screen_name} />
+            <ModalWindowRouter />
+        </div>)
     }
 });
+
+var ModalWindowRouter = React.createClass({
+    getInitialState: function() {
+        return {
+            action: '',
+            entity: '',
+            current_id: '',
+            item: ''
+        };
+    },
+    modalOpen: function(event) {
+        this.setState({
+            action: event.detail.action,
+            entity: event.detail.entity,
+            current_id: event.detail.current_id,
+            item: event.detail.item
+        });
+        console.log('event.detail');
+        console.log(event.detail);
+    },
+    modalClose: function(){
+        this.setState({
+            action: '',
+            entity: '',
+            current_id: '',
+            item: ''
+        });
+    },
+    componentWillMount: function() {
+        window.addEventListener("modalWindowOpen", this.modalOpen, true);
+        window.addEventListener("modalWindowClose", this.modalClose, true);
+    },
+    componentWillUnmount: function() {
+        window.removeEventListener("modalWindowOpen", this.modalOpen, true);
+        window.addEventListener("modalWindowClose", this.modalClose, true);
+    },
+    render: function(){
+        switch(this.state.action){
+            case 'add':
+                return(<ModalWindowAdd />);
+            break;
+            case 'edit':
+                console.log('edit and state:');
+                console.log(this.state.current_id);
+                return(<ModalWindowEdit entity={this.state.entity} current_id={this.state.current_id} />);
+            break;
+            case 'delete':
+                return(<ModalWindowDelete entity={this.state.entity} current_id={this.state.current_id} item={this.state.item} />);
+            break;
+            case 'save':
+                return(<ModalWindowSave />);
+            break;
+        }
+        return(<div>&nbsp;</div>);
+    }
+});
+

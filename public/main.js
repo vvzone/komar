@@ -1,6 +1,15 @@
 /** @jsx React.DOM */
 
 
+/*
+React.renderComponent(
+    <Search entity_name='positions' />,
+    document.getElementById('main_top')
+);
+
+*/
+
+
 React.renderComponent(
     <CatScreen cat="base"/>,
     document.getElementById('left_panel')
@@ -8,6 +17,12 @@ React.renderComponent(
 
 
 React.renderComponent(
-    <MainWindow />,
-    document.getElementById('main_window')
+    <MainWindow screen_name="doc_types" />, //screen_name="doc_kinds"
+    document.getElementById('main_main')
 );
+
+
+
+
+
+

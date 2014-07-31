@@ -5,7 +5,8 @@
 @base_width: 1600px;
 @left_panel_width: 350px;
 
-@min: 1px;
+@min: 2px;
+@small: 3px;
 @med: 5px;
 @big: 10px;
 @huge: 20px;
@@ -14,6 +15,7 @@
 /* colors */
 @dark_red: #d00a03;
 @light_silver: #d6e5ed;
+@warning_color: #ec9a25;
 
 /* fonts */
 @base_font_size: 1em;
@@ -74,21 +76,97 @@ div.next{
     font-size: 9pt;
     cursor: pointer;
   }
+  div.tree_not_link{
+    color: #595959;
+    padding: @big;
+  }
 }
 
-.well ul.cattree{
+span.glyphicon{
+  cursor: pointer;
+}
+
+ul.cattree{
   margin-left: 10px;
 }
+
+ul.tree{
+  list-style-type: none;
+  padding: @min;
+
+  div.tree_childs{
+    margin-left: @med*6;
+  }
+
+  .btn-mini{
+    font-size: @big;
+    padding: 1px 4px;
+  }
+
+div.tree_over_node{
+  border: 1px solid @base_font_color;
+  background: @light_silver;
+}
+
+  div.tree_box_node{
+    clear: both;
+    display: inline-block;
+    float: left;
+
+    padding: @big+@min;
+    margin: @med;
+    margin-left: @med*7;
+    margin-bottom: @med*3;
+    width: auto;
+    min-width: @big*17;
+
+    border: 1px solid silver;
+    border-radius: @small;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+
+    cursor: move;
+
+
+    span.tree_box_node_name{
+      margin-left: @med;
+    }
+
+    div.tree_box_node_item{
+
+    }
+  }
+
+
+  div.tree_box_node_controls{
+    float: left;
+    margin-left: -@big*6.5;
+    margin-top: -5px;
+
+    .ButtonDelete{
+
+    }
+    .ButtonEdit{
+
+    }
+
+
+  }
+
+  .placeholder { background: rgb(255,240,120);}
+  //.placeholder:before {content: "Drop here"; color: rgb(225,210,90);}
+}
+
+
 
 div.MainList{
   overflow: hidden;
 
-  div.item, div.item_attr{
+  div.item{
     clear: both;
     float:left;
     margin: @min;
     padding: @med;
-    border-radius: 3px;
+    border-radius: @small;
     border: 1px solid @light_silver;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
 
@@ -101,7 +179,7 @@ div.MainList{
     }
 
     div.item_name{
-      min-width: @base_modal_width/4;
+      min-width: @base_modal_width/3;
     }
 
 
@@ -121,19 +199,60 @@ div.MainList{
   }*/
 }
 
+div.item_attr{
+  margin-top: @big;
+}
+
+div.form_label{
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: @med;
+  max-width: 100%;
+}
+
+.form-control{
+  padding: @med;
+}
+
+div.list_box{
+  float: left;
+
+  div.list_box_select{
+    select{
+      padding: @small;
+      border-radius: @small;
+      border: 1px solid @light_silver;
+      min-width: @base_modal_width/4;
+    }
+  }
+
+
+  div.ListBoxCP{
+
+  }
+
+}
+
 .enlight{
   background: @light_silver+30;
 }
 
+
+
 /* msg's*/
 
 @base_modal_width: @base_width - @left_panel_width - @big*2;
+.modal-dialog{
+  width: @big*65;
+}
+.modal-body{
+  overflow: hidden;
+}
 
 .alert-error{
   background: @dark_red;
   margin: @big;
   color: white;
-  width: @base_modal_width;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
   font-size: @base_font_size;
@@ -141,5 +260,41 @@ div.MainList{
   strong{
     font-size: @base_font_size+0.2;
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  }
+  .modal-header{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
+
+  .modal-footer{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
+}
+
+.alert-warning{
+  background: @dark_red;
+  color: white;
+  font-size: @base_font_size+0.5;
+  border-color: @dark_red+20;
+
+  .modal-header{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
+
+  .modal-body{
+    text-align: center;
+    padding: @big;
+    font-size: 0.8em;
+  }
+
+  .modal-footer{
+    border: none;
+    text-align: center;
+    padding: @big;
   }
 }
