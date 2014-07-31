@@ -9,12 +9,18 @@ var EntityBlock = React. createClass({
      * */
       render: function () {
         var class_name = this.props.entity_name;
-        var current_id = this.props.item;
+        var current_id = this.props.item.id;
 
         var entity = {};
         entity['name'] = this.props.entity_name;
-        entity['current_id'] = this.props.item;
+        entity['value'] = this.props.value;
+        entity['item'] = this.props.item;
         entity['prop_name'] = this.props.name;
+
+
+       console.log('===ACCEPTED===');
+       console.log('==this.props==');
+       console.log(this.props);
 
 
 
@@ -99,22 +105,22 @@ var EntityBlock = React. createClass({
 
 var CurrentClassMixin = function () {
     return {
-        editMainListRoute: function(source, entity, dependencies, dependencies_place, new_dependencies){
+        editMainListRoute: function(source, entity, dependencies){
             if(entity['current_id']){
                 console.log('MainItemEdit');
-                return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} dependencies_place={dependencies_place} new_dependencies={new_dependencies} />);
+                return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} />);
             }else{
                 console.log('*=*=MainList=*=*');
-                return(<MainList source={source} entity={entity} dependencies={dependencies} dependencies_place={dependencies_place} new_dependencies={new_dependencies} />);
+                return(<MainList source={source} entity={entity} dependencies={dependencies} />);
             }
         },
-        editMainTreeRoute: function(source, entity, dependencies, dependencies_place, new_dependencies){
+        editMainTreeRoute: function(source, entity, dependencies){
             if(entity['current_id']){
                 console.log('MainItemEdit');
-                return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} dependencies_place={dependencies_place} new_dependencies={new_dependencies} />);
+                return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} />);
             }else{
                 console.log('^=^=MainTree=^=^');
-                return(<MainTree source={source} entity={entity} dependencies={dependencies} dependencies_place={dependencies_place} new_dependencies={new_dependencies} />);
+                return(<MainTree source={source} entity={entity} dependencies={dependencies} />);
             }
         },
         handleCallback: function(callback){
@@ -128,9 +134,13 @@ var FormEntPositions = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
         var dependencies = [];
-        dependencies[0] = 'rank_position';
+        dependencies[0] = {
+            class_name: 'rank_position',
+            place: 2,
+            db_prop_name: 'region_type'
+        };
 
-        var output = this.editMainListRoute('positions', this.props.entity, dependencies, null);
+        var output = this.editMainListRoute('positions', this.props.entity, dependencies);
         return(
             <div className="PositionBox">
                 {output}
@@ -142,7 +152,7 @@ var FormEntPositions = React. createClass({
 var FormEntRanks = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('ranks', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('ranks', this.props.entity, null);
         return(
             <div className="RankBox">
                  {output}
@@ -154,7 +164,7 @@ var FormEntRanks = React. createClass({
 var FormEntPassDocTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('passdoctypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('passdoctypes', this.props.entity, null);
         return(
             <div className="PassDocTypesBox">
                 {output}
@@ -166,7 +176,7 @@ var FormEntPassDocTypes = React. createClass({
 var FormEntAddressTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('addresstypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('addresstypes', this.props.entity, null);
         return(
             <div className="AddressBox">
                 {output}
@@ -178,7 +188,7 @@ var FormEntAddressTypes = React. createClass({
 var FormEntCountries = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('countries', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('countries', this.props.entity, null);
         return(
             <div className="CountriesBox">
                 {output}
@@ -190,7 +200,7 @@ var FormEntCountries = React. createClass({
 var FormEntRegionTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('regiontypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('regiontypes', this.props.entity, null);
         return(
             <div className="RegionTypesBox">
                 {output}
@@ -214,11 +224,15 @@ var FormSelectorRegionTypes = React. createClass({
 var FormEntRegions = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var dependencies_place = [];
-        dependencies_place[0] = 2;
-        var dependencies = [];
-        dependencies[0] = 'region_types_selector';
-        var output = this.editMainListRoute('regions', this.props.entity, dependencies, dependencies_place, null);
+
+        var dependencies ={};
+        dependencies[0] = {
+            class_name: 'region_types_selector',
+            place: 2,
+            db_prop_name: 'region_type'
+        };
+
+        var output = this.editMainListRoute('regions', this.props.entity, dependencies);
         return(
             <div className="RegionsBox">
                 {output}
@@ -230,7 +244,7 @@ var FormEntRegions = React. createClass({
 var FormEntLocationTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('locationtypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('locationtypes', this.props.entity, null);
         return(
             <div className="LocationTypesBox">
                 {output}
@@ -242,7 +256,7 @@ var FormEntLocationTypes = React. createClass({
 var FormEntStreetTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('streettypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('streettypes', this.props.entity, null);
         return(
             <div className="StreetTypesBox">
                 {output}
@@ -254,7 +268,7 @@ var FormEntStreetTypes = React. createClass({
 var FormEntSexTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('sextypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('sextypes', this.props.entity, null);
         return(
             <div className="SexTypesBox">
                 {output}
@@ -266,7 +280,7 @@ var FormEntSexTypes = React. createClass({
 var FormEntCommanderTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('commandertypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('commandertypes', this.props.entity, null);
         return(
             <div className="CommanderTypesBox">
                 {output}
@@ -278,7 +292,7 @@ var FormEntCommanderTypes = React. createClass({
 var FormEntPeriodTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('periodtypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('periodtypes', this.props.entity, null);
         return(
             <div className="PeriodTypesBox">
                 {output}
@@ -301,11 +315,15 @@ var FormSelectorPeriodTypes = React. createClass({
 var FormEntEnumerationTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var dependencies = [];
-        dependencies[0] = 'period_types_selector';
-        var dependencies_place = [];
-        dependencies_place[0] = 3;
-        var output = this.editMainListRoute('enumerationtypes', this.props.entity, dependencies, dependencies_place, null);
+
+        var dependencies = {};
+        dependencies[0] = {
+            class_name: 'period_types_selector',
+            place: 3,
+            db_prop_name: 'period_type'
+        };
+
+        var output = this.editMainListRoute('enumerationtypes', this.props.entity, dependencies);
         return(
             <div className="EnumerationTypesBox">
                 {output}
@@ -317,7 +335,7 @@ var FormEntEnumerationTypes = React. createClass({
 var FormEntDocKinds = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainTreeRoute('dockinds', this.props.entity, null, null, null);
+        var output = this.editMainTreeRoute('dockinds', this.props.entity, null);
         return(
             <div className="DocKindsBox">
                 {output}
@@ -329,7 +347,7 @@ var FormEntDocKinds = React. createClass({
 var TreeDocKinds = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainTreeRoute('dockinds', this.props.entity, null, null, null); //MainTree !!!
+        var output = this.editMainTreeRoute('dockinds', this.props.entity, null); //MainTree !!!
         return(
             <div className="DocKindsBox">
                 {output}
@@ -341,7 +359,7 @@ var TreeDocKinds = React. createClass({
 var FormEntDocSecrecyTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('docsecrecytypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('docsecrecytypes', this.props.entity, null);
         return(
             <div className="DocSecrecyTypesBox">
                 {output}
@@ -356,7 +374,7 @@ var FormSelectorDocSecrecyTypes = React. createClass({
         return(
             <div className="selector DocSecrecyTypes">
                 <label>Секретность</label>
-                <SimpleSelect source="docsecrecytypes" selected={this.props.entity.current_id} entity={this.props.entity} callback={this.handleCallback} />
+                <SimpleSelect source="docsecrecytypes" selected={this.props.current_id} entity={this.props.entity} callback={this.handleCallback} />
             </div>
             )
     }
@@ -365,7 +383,7 @@ var FormSelectorDocSecrecyTypes = React. createClass({
 var FormEntDocUrgencyTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('docurgencytypes', this.props.entity, null, null, null);
+        var output = this.editMainListRoute('docurgencytypes', this.props.entity, null);
         return(
             <div className="DocUrgencyTypesBox">
                 {output}
@@ -380,7 +398,7 @@ var FormSelectorDocUrgencyTypes = React. createClass({
         return(
             <div className="selector DocurgencyTypes">
                 <label>Срочность</label>
-                <SimpleSelect source="docurgencytypes" selected={this.props.entity.current_id} entity={this.props.entity} callback={this.handleCallback}/>
+                <SimpleSelect source="docurgencytypes" selected={this.props.current_id} entity={this.props.entity} callback={this.handleCallback}/>
             </div>
             )
     }
@@ -392,28 +410,20 @@ var FormEntDocTypes = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
 
-        var dependencies = [];
-        dependencies[0] = 'doc_secrecy_types_selector';
-        dependencies[1] = 'doc_urgency_types_selector';
-
-        var dependencies_place = [];
-        dependencies_place[0] = 5;
-        dependencies_place[1] = 6;
-
-        var new_dependencies = {};
-        new_dependencies[0] = {
+        var dependencies = {};
+        dependencies[0] = {
             class_name: 'doc_secrecy_types_selector',
             place: 5,
             db_prop_name: 'secrecy_type'
         };
 
-        new_dependencies[1] = {
+        dependencies[1] = {
             class_name: 'doc_urgency_types_selector',
             place: 6,
             db_prop_name: 'urgency_type'
         };
 
-        var output = this.editMainListRoute('doctypes', this.props.entity, dependencies, dependencies_place, new_dependencies);
+        var output = this.editMainListRoute('doctypes', this.props.entity, dependencies);
 
         return(
             <div className="DocTypesBox">

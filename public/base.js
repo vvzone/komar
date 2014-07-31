@@ -66,23 +66,6 @@ var ListItem = React.createClass({
         var edit_properties_box = [];
         var items = this.state.item;
 
-        /* Old-style INLINE EDITING
-
-        if(this.state.editing == true){
-
-            var controls = [];
-            var counter = 0;
-
-            edit_properties_box =
-               <ItemEditBox
-            item={this.state.item}
-            prototype={this.props.prototype}
-            key={this.state.item.id}
-            dependencies={this.props.dependencies}
-            dependencies_place={this.props.dependencies_place}
-               />;
-        }*/
-
         return(
             <div className="item">
                 <div className="item_name"><ItemLink item={this.props.item} onClick={this.whenClicked} /></div>
@@ -135,8 +118,6 @@ var MainList = React. createClass({
                 prototype={this.state.items.prototype}
                 key={items_arr[item].id}
                 dependencies={this.props.dependencies}
-                dependencies_place={this.props.dependencies_place}
-                new_dependencies={this.props.new_dependencies}
                 source={this.props.source}
                 entity={this.props.entity}
                 />);
@@ -185,93 +166,57 @@ var ItemEditBox = React.createClass({
     },
     render: function () {
         var editable = this.props.prototype.editable_properties;
-        var edit_properties_box = [];
-        var items = this.state.item;
+
+        var item = this.state.item;
 
         var controls = [];
         var counter = 0;
-        var dependencies_place = this.props.dependencies_place;
         var counter_trigger = {};
 
-        var sub_entity = {};
         // 2-do: //fix this
         // dependencies arrays are nightmare
 
-        /*if (Object.prototype.toString.call(dependencies_place) === '[object Array]') {
-            for (var key in dependencies_place) {
-                counter_trigger[dependencies_place[key]] = dependencies_place[key];
-                sub_entity[dependencies_place[key]] = this.props.dependencies[key];
-
-            }
-        }*/
-
-        var new_dependencies = {};
-        new_dependencies = this.props.new_dependencies;
-
-        console.log('this.props.new_dependencies ' + this.props.new_dependencies);
-        console.log(this.props.new_dependencies);
-
-        if (Object.prototype.toString.call(new_dependencies) === '[object Object]') {
-            for(var key in new_dependencies){
-                //counter_trigger[new_dependencies[key].place] = new_dependencies[key];
-                var new_key = new_dependencies[key].place;
-                counter_trigger[new_key] = new_dependencies[key];
+        var dependencies = {};
+        dependencies = this.props.dependencies;
+        if (Object.prototype.toString.call(dependencies) === '[object Object]') {
+            for(var key in dependencies){
+                var new_key = dependencies[key].place;
+                counter_trigger[new_key] = dependencies[key];
             }
         }
-        //new_dependencies={this.props.new_dependencies}
-        console.info('items');
-        console.info(items);
 
-        console.warn('counter_trigger');
-        console.warn(counter_trigger);
+        for (var prop in item) {
+            if (Object.prototype.toString.call(dependencies) === '[object Object]') {
+                if (typeof counter_trigger[counter] !== 'undefined' && typeof counter_trigger[counter].place !== 'undefined') {
+                        if (counter == counter_trigger[counter].place) {
 
-        console.info('editable');
-        console.info(editable);
+                            console.log('========this.props.item========');
+                            console.log(this.props.item);
 
-        for (var prop in items) {
-            if (Object.prototype.toString.call(new_dependencies) === '[object Object]') {
-                var test = counter_trigger[counter];
-
-                //var trigger = counter_trigger[counter].place;
-                //console.log('test');
-                //console.log(test);
-
-                //var place = counter_trigger;
-
-                if (typeof test !== 'undefined') {
-                    if (typeof test.place !== 'undefined') {
-                        /*console.log('counter_trigger['+counter+'].place');
-                         console.log(Object.prototype.toString.call(counter_trigger[counter].place));*/
-                        if (counter == test.place) {
-                            /*console.error('counter_trigger[counter].class_name');
-                             console.error(counter_trigger[counter].class_name);
-                             console.error('counter_trigger[counter].db_prop_name');
-                             console.error(counter_trigger[counter].db_prop_name);*/
-                            controls.push(<EntityBlock entity_name={counter_trigger[counter].class_name} name={counter_trigger[counter].db_prop_name} item={this.props.item} callback={this.itemUpdate} />);
+                            controls.push(<EntityBlock
+                            entity_name={counter_trigger[counter].class_name}
+                            name={counter_trigger[counter].db_prop_name}
+                            item={item}
+                            current_id={prop[counter_trigger[counter].db_prop_name]}
+                            callback={this.itemUpdate} />);
                         }
-                    }
                 }
+
             }
             if (editable[prop]) {
                 var type = prop;
-                console.log('editable['+prop+']');
-                console.log(editable[prop]);
                 controls.push(
-                    <ControlRouter type={properties_types[type]} value={items[prop]} name={type} russian_name={editable[prop]} callback={this.itemUpdate} key={editable[prop]} />
+                    <ControlRouter type={properties_types[type]} value={item[prop]} name={type} russian_name={editable[prop]} callback={this.itemUpdate} key={editable[prop]} />
                 );
             }
             counter++;
-        };
-        if (Object.prototype.toString.call(dependencies_place) != '[object Array]') {
-            if (this.props.dependencies) {
-                for (var key in this.props.dependencies) {
-                    controls.push(<EntityBlock entity_name={this.props.dependencies[key]} item={this.props.item} />);
-                }
-            }
         }
+
         if(controls.length == 0){
             return(<ErrorMsg msg="Не найдено ни одного контрола" />);
         }
+
+        var edit_properties_box = [];
         edit_properties_box.push(<form role="form" className="ControlsBox">{controls}</form>);
         return(
             <div className="item">
@@ -289,8 +234,6 @@ var MainItemEdit = React. createClass({
     },
     componentWillMount: function() {
         var self = this;
-        //console.log('MAIN ITEM EDIT this.props');
-        //console.log(this.props);
         $.ajax({
             type: "POST",
             url: 'http://zend_test/main/' + this.props.source+'/'+this.props.entity.current_id,
@@ -316,8 +259,6 @@ var MainItemEdit = React. createClass({
             prototype={this.state.item.prototype}
             key={key}
             dependencies={this.props.dependencies}
-            dependencies_place={this.props.dependencies_place}
-            new_dependencies={this.props.new_dependencies}
             entity={this.props.entity}
             />;
         }
