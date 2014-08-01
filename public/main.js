@@ -17,7 +17,7 @@ React.renderComponent(
 
 
 React.renderComponent(
-    <MainWindow screen_name="doc_types" />, //screen_name="doc_kinds"
+    <MainWindow screen_name="doc_kinds" />, //screen_name="doc_kinds"
     document.getElementById('main_main')
 );
 

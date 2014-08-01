@@ -354,7 +354,6 @@ var TreeDocKinds = React. createClass({
     render: function(){
         var tree_dependency = {};
         tree_dependency = {
-            //class_name: 'doc_types', // 2do: class for mini-list
             source: 'doctypes',
             id_name_in_dependency: 'doc_kind_id'
         };
