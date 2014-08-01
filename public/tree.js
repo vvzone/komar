@@ -91,24 +91,20 @@ var TreeNode = React.createClass({
         this.setState({open: this.state.open==true? false: true});
     },
     getNodeTreeDependency: function(){
-        //if(this.props.tree_dependency){
-        //get doc_types_items;
-        var ulr = 'http://zend_test/main/'
-            + this.props.tree_dependency.source
-            + '/search/'
-            + this.props.tree_dependency.id_name_in_dependency
-            + this.props.node.id;
-        var data = '';
-
+        if(typeof this.props.tree_dependency.id_name_in_dependency !== 'undefined' ){
+            var ulr = 'http://zend_test/main/'
+                + this.props.tree_dependency.source
+                + '/search/'
+                + this.props.tree_dependency.id_name_in_dependency
+                + this.props.node.id;
+            var data = '';
+        }
         $.get(url, function (result) {
             var dependency_items = [];
             dependency_items = result.data;
-            //this.setState({dependency_items: dependency_items});
             data = result.data;
         }.bind(this));
         return data;
-        //tree_dependency = this.props.tree_dependency.class_name+ 'search for '+ this.props.tree_dependency.id_name_in_dependency+' ='+this.props.node.id;
-        //}
     },
     render: function () {
         var className = "";
@@ -281,7 +277,7 @@ var MainTree = React.createClass({
         if(Object.prototype.toString.call(this.state.items) === '[object Array]'){
             var self = this;
             tree_output = this.state.items.map(function(node){
-                return(<TreeNode key={node.id} node={node} tree_dependency={this.props.tree_dependency}/>)
+                return(<TreeNode key={node.id} node={node} tree_dependency={self.props.tree_dependency} />)
             });
             return(<ul className="tree">{tree_output}</ul>);
         }
