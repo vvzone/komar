@@ -16,7 +16,8 @@ var TreeNode = React.createClass({
         return {
             visible: true,
             node: this.props.node,
-            open: false
+            open: false,
+            dependency_items: []
         };
     },
     componentDidMount: function(){
@@ -91,20 +92,23 @@ var TreeNode = React.createClass({
         this.setState({open: this.state.open==true? false: true});
     },
     getNodeTreeDependency: function(){
-        if(typeof this.props.tree_dependency.id_name_in_dependency !== 'undefined' ){
-            var ulr = 'http://zend_test/main/'
+        if(typeof this.props.tree_dependency.id_name_in_dependency != 'undefined' ){
+            var url = 'http://zend_test/main/'
                 + this.props.tree_dependency.source
                 + '/search/'
                 + this.props.tree_dependency.id_name_in_dependency
+                + '/'
                 + this.props.node.id;
             var data = '';
+            console.info('url: '+url);
+
+            $.get(url, function (result) {
+                var dependency_items = [];
+                dependency_items = result.data;
+                data = result.data;
+            }.bind(this));
+            return data;
         }
-        $.get(url, function (result) {
-            var dependency_items = [];
-            dependency_items = result.data;
-            data = result.data;
-        }.bind(this));
-        return data;
     },
     render: function () {
         var className = "";
@@ -113,11 +117,16 @@ var TreeNode = React.createClass({
             style.display = "none";
         }
 
-        /*if(this.props.tree_dependency){
-            //get doc_types_items;
-            tree_dependency = this.props.tree_dependency.class_name+ 'search for '+ this.props.tree_dependency.id_name_in_dependency+' ='+this.props.node.id;
+        var dependency_box = '';
+        console.info(this.props.tree_dependency);
+
+        if(typeof this.props.tree_dependency != 'undefined'){
+            if(this.props.had_dependeny_items){
+                dependency_box = <div><div onClick={this.whenClicked}>Click</div>{tree_dependency}</div>;
+            }
         }
-        /* */
+
+        /*
         if(this.state.open == true){
 
             var dependency_items = this.getNodeTreeDependency;
@@ -130,7 +139,7 @@ var TreeNode = React.createClass({
                     );
                 //}
             }
-        }
+        }*/
 
         if (this.props.node.childNodes != null) {
             if(this.props.node.childNodes.length>0){
@@ -155,7 +164,7 @@ var TreeNode = React.createClass({
                     id={this.props.node.id} >
                         <span onClick={this.toggle} className={className}></span>
                         <TreeNodeBox item={this.props.node}/>
-                        <div><div onClick={this.whenClicked}>Click</div>{tree_dependency}</div>
+                        {dependency_box}
                     </div>
                     <div className="tree_box_node_controls">
                         <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
@@ -264,18 +273,48 @@ var MainTree = React.createClass({
         if(this.props.childs!=null){
             this.setState({items: this.props.childs});
         }else{
-            $.get('http://zend_test/main/dockinds', function (result) {
+            var url = 'http://zend_test/main/' + this.props.source;
+            $.get(url, function (result) {
                 var items = [];
                 items = result.data;
                 this.setState({items: items});
             }.bind(this));
         }
     },
+    checkDidIdOwnDependency: function(node_id){
+        var url = 'http://zend_test/main/'
+            + this.props.tree_dependency.source
+            +'/check/'
+            + this.props.tree_dependency.id_name_in_dependency
+            + '/'
+            + node_id;
+
+        console.log('checkDidIdOwnDependency, url: '+url);
+
+        $.get(url, function (result) {
+            var items = [];
+            items = result.data;
+            this.setState({items: items});
+        }.bind(this));
+    },
     render: function(){
         var tree = [];
         var tree_output = [];
         if(Object.prototype.toString.call(this.state.items) === '[object Array]'){
             var self = this;
+
+            var dependency_owners_id = {};
+            if(this.props.tree_dependency){
+                dependency_owners_id = this.state.items.map(function(node){
+                    var o_node = self.checkDidIdOwnDependency(node.id);
+                    if(o_node == true){
+                        return node.id
+                    }
+                });
+            }
+            console.log('dependency_owners_id');
+            console.log(dependency_owners_id);
+
             tree_output = this.state.items.map(function(node){
                 return(<TreeNode key={node.id} node={node} tree_dependency={self.props.tree_dependency} />)
             });

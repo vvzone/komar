@@ -93,6 +93,24 @@ return array(
                             ),
                         ),
                     ),
+                    'check'=> array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:action][/:sub_action[/:property[/:id]]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'sub_action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]*',
+                                'property'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                            ),
+                            'defaults' => array(
+                                'id' => '',
+                                'property' => '',
+                                'sub_action' => ''
+                            ),
+                        ),
+                    ),
                 ),
             ),            
         ),

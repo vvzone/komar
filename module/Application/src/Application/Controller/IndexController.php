@@ -219,7 +219,10 @@ class IndexController extends AbstractActionController
             foreach($array as $item){
                 /*echo 'search_pole_name= '.$search_pole_name."\n";
                 echo '$item[$search_pole_name]= '.$item[$search_pole_name]."\n";
-                echo '$current_id= '.$current_id."\n";*/
+                echo '$current_id= '.$current_id."\n";
+                foreach($item as $key => $value){
+                    echo $key."=>".$value."<br />";
+                }*/
                 if($current_id == $item[$search_pole_name]){
                     return $item;
                 }else{
@@ -229,6 +232,32 @@ class IndexController extends AbstractActionController
                 }
             }
         }
+    }
+
+    public function checkArray($array, $current_id, $search_pole_name = null){
+
+        if(!isset($search_pole_name)){
+            foreach($array as $item){
+                if($current_id == $item['id']){
+                    return true;
+                }else{
+                    if(isset($item['childNodes'])){
+                        return $result = $this->checkArray($item['childNodes'], $current_id);
+                    }
+                }
+            }
+        }else{
+            foreach($array as $item){
+                if($current_id == $item[$search_pole_name]){
+                    return true;
+                }else{
+                    if(isset($item['childNodes'])){
+                        return $result = $this->checkArray($item['childNodes'], $current_id, $search_pole_name);
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public function positionsAction(){
@@ -778,16 +807,27 @@ class IndexController extends AbstractActionController
         /* <REST> ------  */
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         $current_property = $this->getEvent()->getRouteMatch()->getParam('property', 0);
+        $current_sub_action = $this->getEvent()->getRouteMatch()->getParam('sub_action', 0);
 
-        if($current_property!=''){
-            $data_array = $this->searchArray($data_array, $current_id, $current_property);
-        }elseif($current_id){
-            $data_array = $this->searchArray($data_array, $current_id);
+        //echo 'sub_action='.$current_sub_action;
+
+        if($current_sub_action == 'check'){
+            $data_array = $this->checkArray($data_array, $current_id, $current_property);
+        }else{
+            if($current_property!=''){
+                $data_array = $this->searchArray($data_array, $current_id, $current_property);
+            }elseif($current_id){
+                $data_array = $this->searchArray($data_array, $current_id);
+            }
         }
 
         /* </REST> ------  */
 
-        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        if($current_sub_action == 'check'){
+            $response = array('response'=> true, 'data' => $data_array);
+        }else{
+            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        }
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
