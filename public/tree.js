@@ -80,7 +80,7 @@ var TreeNode = React.createClass({
         var customEvent = new CustomEvent("modalWindowOpen",  {
             detail: {
                 action: action,
-                entity: 'doc_kind_edit',
+                entity: 'doc_type_groups_edit',
                 item: this.props.node,
                 current_id: this.props.node.id
                     },

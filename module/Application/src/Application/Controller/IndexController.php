@@ -50,7 +50,7 @@ class IndexController extends AbstractActionController
         $sys_docs = array(
             array('id' => 106010, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'period_types', 'name' => 'Типы периодов'),
             array('id' => 106020, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'enumeration_types', 'name' => 'Типы нумерации'),
-            array('id' => 106021, 'category' => 'base', 'entity' => 'doc_kinds', 'screen' => 'doc_kinds', 'name' => 'Виды документов'),
+            array('id' => 106021, 'category' => 'base', 'entity' => 'doc_type_groups', 'screen' => 'doc_type_groups', 'name' => 'Группы типов документов'),
             array('id' => 106022, 'category' => 'base', 'entity' => 'doc_secrecy_types', 'screen' => 'doc_secrecy_types', 'name' => 'Типы секретности документа'),
             array('id' => 106023, 'category' => 'base', 'entity' => 'doc_urgency_types', 'screen' => 'doc_urgency_types', 'name' => 'Типы срочности документа'),
             array('id' => 106030, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'doc_types', 'name' => 'Типы документов'),
@@ -203,26 +203,10 @@ class IndexController extends AbstractActionController
         return $data_array;
     }
 
-    public function searchArray($array, $current_id, $search_pole_name = null){
 
-        if(!isset($search_pole_name)){
-            foreach($array as $item){
-                if($current_id == $item['id']){
-                    return $item;
-                }else{
-                    if(isset($item['childNodes'])){
-                        return $result = $this->searchArray($item['childNodes'], $current_id);
-                    }
-                }
-            }
-        }else{
-            foreach($array as $item){
-                /*echo 'search_pole_name= '.$search_pole_name."\n";
-                echo '$item[$search_pole_name]= '.$item[$search_pole_name]."\n";
-                echo '$current_id= '.$current_id."\n";
-                foreach($item as $key => $value){
-                    echo $key."=>".$value."<br />";
-                }*/
+    public function baseSearchArray($array, $current_id, $search_pole_name){
+        foreach($array as $item){
+            if(!is_array($item[$search_pole_name])){ //если поле не массив
                 if($current_id == $item[$search_pole_name]){
                     return $item;
                 }else{
@@ -230,6 +214,30 @@ class IndexController extends AbstractActionController
                         return $result = $this->searchArray($item['childNodes'], $current_id, $search_pole_name);
                     }
                 }
+            }else{ //если поле массив значений (связная таблица)
+                $entries_array = false;
+                foreach($item[$search_pole_name] as $value){
+                    if($current_id == $value){
+                        $entries_array[$current_id] = $item;
+                    }
+                }
+                return $entries_array;
+            }
+        }
+    }
+
+    public function searchArray($array, $current_id, $search_pole_name = null){
+        if(!isset($search_pole_name)){
+            return $this->baseSearchArray($array, $current_id, 'id');
+        }else{ //если задано название поля
+            if(!is_array($current_id)){ // current_id не массив
+                return $this->baseSearchArray($array, $current_id, $search_pole_name);
+            }else{ //current_id - массив значений
+                $tree_array = array();
+                foreach($current_id as $id){
+                    $tree_array[$id] = $this->baseSearchArray($array, $id, $search_pole_name);
+                }
+                return $tree_array;
             }
         }
     }
@@ -689,7 +697,7 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
-    public function dockindsAction(){
+    public function doctypegroupsAction(){
         $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'isService' => 'Служебный документ');
         $prototype_array = array('editable_properties' => $editable_array);
 
@@ -699,8 +707,8 @@ class IndexController extends AbstractActionController
         );
 
         $economic = array(
-            array('id' => 1101, 'parent_id' => 110, 'name' => 'Приказы о ремонте', 'shortname'=> 'ПБ', 'isService' => false),
-            array('id' => 1102, 'parent_id' => 110, 'name' => 'Приказы о списании', 'shortname'=> 'ПХ', 'isService' => false)
+            array('id' => 1101, 'parent_id' => 110, 'name' => 'Персонал', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1102, 'parent_id' => 110, 'name' => 'Материальная часть', 'shortname'=> 'ПХ', 'isService' => false)
         );
 
         $child_1 = array(
@@ -790,18 +798,41 @@ class IndexController extends AbstractActionController
     }
 
     public function doctypesAction(){
+        /*
+         * Генерируется из таблиц DocTypeGroupContent и DocTypeGroups
+         * */
+
         $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'code' => 'Код',
         'header' => 'Заголовок', 'isService' => 'Служебный', 'secrecy_type' => 'Секретность', 'urgency_type' => 'Срочность');
         $prototype_array = array('editable_properties' => $editable_array);
 
-        $data_array = array(
+        /*$data_array = array(
             array('id' => 1, 'doc_kind_id' => 1, 'name' => 'Воздушная тревога', 'shortname'=> 'С-ВТ', 'code' => '555',
                 'header' => 'Воздушная тревога!', 'isService' => false, 'secrecy_type' => 2, 'urgency_type' => 3),
             array('id' => 2, 'doc_kind_id' => 110, 'name' => 'Приказ на списание', 'shortname'=> 'ПхСп', 'code' => '1001',
                 'header' => '', 'isService' => false, 'secrecy_type' => 1, 'urgency_type' => 1),
             array('id' => 3, 'doc_kind_id' => null, 'name' => 'Добавление объекта картографии', 'shortname'=> 'СК-Д', 'code' => '2001',
                 'header' => 'Добавление объекта на общую карту', 'isService' => true, 'secrecy_type' => 1, 'urgency_type' => 1),
+        );*/
+
+        $data_doc_type_contents = array(
+            array('id' => 1, 'doc_type_id' =>  1, 'doc_group_id' => 1),
+            array('id' => 2, 'doc_type_id' =>  2, 'doc_group_id' => 110),
+            array('id' => 3, 'doc_type_id' =>  3, 'doc_group_id' => null),
         );
+
+        $data_array = array(
+            array('id' => 1, 'doc_group_id' => array(1001, 1002), 'name' => 'Воздушная тревога', 'shortname'=> 'С-ВТ', 'code' => '555',
+                'header' => 'Воздушная тревога!', 'isService' => false, 'secrecy_type' => 2, 'urgency_type' => 3),
+
+            /*
+            array('id' => 2, 'doc_kind_id' => 110, 'name' => 'Приказ на списание', 'shortname'=> 'ПхСп', 'code' => '1001',
+                'header' => '', 'isService' => false, 'secrecy_type' => 1, 'urgency_type' => 1),
+            array('id' => 3, 'doc_kind_id' => null, 'name' => 'Добавление объекта картографии', 'shortname'=> 'СК-Д', 'code' => '2001',
+                'header' => 'Добавление объекта на общую карту', 'isService' => true, 'secrecy_type' => 1, 'urgency_type' => 1),*/
+        );
+
+
 
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
@@ -818,10 +849,10 @@ class IndexController extends AbstractActionController
 
         if($current_sub_action == 'check'){
             $data_array = $this->checkArray($data_array, $current_id, $current_property);
-        }elseif($current_sub_action == 'dependency'){
+        }/*elseif($current_sub_action == 'dependency'){
             echo 'dependencies query= '.$query;
-            $data_array = $this->searchDependencies($query, $data_array, $current_property);
-        }
+            $data_array = $this->searchDependencies($query, $data_array, $current_property); //на входе массив id-групп (query)
+        }*/
         else{
             if($current_property!=''){
                 $data_array = $this->searchArray($data_array, $current_id, $current_property);

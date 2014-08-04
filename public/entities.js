@@ -77,11 +77,11 @@ var EntityBlock = React. createClass({
             case 'enumeration_types':
                 return(<FormEntEnumerationTypes entity={entity}  callback={this.handleCallback} />);
                 break;
-            case 'doc_kinds':
-                return(<TreeDocKinds entity={entity}  callback={this.handleCallback} />);
+            case 'doc_type_groups':
+                return(<TreeDocTypeGroups entity={entity}  callback={this.handleCallback} />);
                 break;
-            case 'doc_kind_edit':
-                return(<FormEntDocKinds entity={entity}  callback={this.handleCallback} />);
+            case 'doc_type_groups_edit':
+                return(<FormEntDocTypeGroups entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'doc_secrecy_types':
                 return(<FormEntDocSecrecyTypes entity={entity}  callback={this.handleCallback} />);
@@ -336,10 +336,10 @@ var FormEntEnumerationTypes = React. createClass({
     }
 });
 
-var FormEntDocKinds = React. createClass({
+var FormEntDocTypeGroups = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainTreeRoute('dockinds', this.props.entity, null);
+        var output = this.editMainTreeRoute('doctypegroups', this.props.entity, null);
         return(
             <div className="DocKindsBox">
                 {output}
@@ -348,16 +348,17 @@ var FormEntDocKinds = React. createClass({
     }
 });
 
-var TreeDocKinds = React. createClass({
+var TreeDocTypeGroups = React. createClass({
     mixins: [CurrentClassMixin],
 
     render: function(){
         var tree_dependency = {};
         tree_dependency = {
             source: 'doctypes',
-            id_name_in_dependency: 'doc_kind_id'
+            id_name_in_dependency: 'doc_kind_id',
+            russian_name: 'Типы документов'
         };
-        var output = this.editMainTreeRoute('dockinds', this.props.entity, tree_dependency); //MainTree !!!
+        var output = this.editMainTreeRoute('doctypegroups', this.props.entity, tree_dependency); //MainTree !!!
         return(
             <div className="DocKindsBox">
                 {output}
