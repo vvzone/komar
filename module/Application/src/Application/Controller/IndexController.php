@@ -234,6 +234,10 @@ class IndexController extends AbstractActionController
         }
     }
 
+    public function searchDependencies($values_array, $array, $search_pole_name){
+
+    }
+
     public function checkArray($array, $current_id, $search_pole_name = null){
 
         if(!isset($search_pole_name)){
@@ -690,13 +694,13 @@ class IndexController extends AbstractActionController
         $prototype_array = array('editable_properties' => $editable_array);
 
         $combat = array(
-            array('id' => 1001, 'parent_id' => 100, 'name' => 'Боевой приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
-            array('id' => 1002, 'parent_id' => 100, 'name' => 'Боевой приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+            array('id' => 1001, 'parent_id' => 100, 'name' => 'Общевойсковые', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1002, 'parent_id' => 100, 'name' => 'Индивидуальные', 'shortname'=> 'ПХ', 'isService' => false)
         );
 
         $economic = array(
-            array('id' => 1101, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 1', 'shortname'=> 'ПБ', 'isService' => false),
-            array('id' => 1102, 'parent_id' => 110, 'name' => 'Хозяйственный приказ вида 2', 'shortname'=> 'ПХ', 'isService' => false)
+            array('id' => 1101, 'parent_id' => 110, 'name' => 'Приказы о ремонте', 'shortname'=> 'ПБ', 'isService' => false),
+            array('id' => 1102, 'parent_id' => 110, 'name' => 'Приказы о списании', 'shortname'=> 'ПХ', 'isService' => false)
         );
 
         $child_1 = array(
@@ -723,6 +727,7 @@ class IndexController extends AbstractActionController
         if($current_id){
             $data_array = $this->searchArray($data_array, $current_id);
         }
+
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
@@ -813,7 +818,11 @@ class IndexController extends AbstractActionController
 
         if($current_sub_action == 'check'){
             $data_array = $this->checkArray($data_array, $current_id, $current_property);
-        }else{
+        }elseif($current_sub_action == 'dependency'){
+            echo 'dependencies query= '.$query;
+            $data_array = $this->searchDependencies($query, $data_array, $current_property);
+        }
+        else{
             if($current_property!=''){
                 $data_array = $this->searchArray($data_array, $current_id, $current_property);
             }elseif($current_id){
