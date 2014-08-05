@@ -182,6 +182,8 @@ properties_types['singleNumeration'] = 'bool_select';
 properties_types['isService'] = 'bool_select';
 
 
+var config_search = [];
+
 
 /* */
 

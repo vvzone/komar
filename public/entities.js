@@ -136,6 +136,19 @@ var CurrentClassMixin = function () {
 }()
 
 
+
+var FormEntRanks = React. createClass({
+    mixins: [CurrentClassMixin],
+    render: function(){
+        var output = this.editMainListRoute('ranks', this.props.entity, null);
+        return(
+            <div className="RankBox">
+                 {output}
+            </div>
+            )
+    }
+});
+
 var FormEntPositions = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
@@ -143,7 +156,7 @@ var FormEntPositions = React. createClass({
         dependencies[0] = {
             class_name: 'rank_position',
             place: 2,
-            db_prop_name: 'region_type'
+            db_prop_name: 'id'
         };
 
         var output = this.editMainListRoute('positions', this.props.entity, dependencies);
@@ -155,13 +168,18 @@ var FormEntPositions = React. createClass({
     }
 });
 
-var FormEntRanks = React. createClass({
+var FormEntRankPosition = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
-        var output = this.editMainListRoute('ranks', this.props.entity, null);
+        console.log('FormEntRankPosition');
+        var source = [];
+        source[0] = 'positionsranks';
+        source[1] = 'ranks';
+
         return(
-            <div className="RankBox">
-                 {output}
+            <div className="item_attr">
+                <div className="form_label">Звания соответствующие должности</div>
+                <ListBoxTwoSide source_left={source[0]} source_right={source[1]} callback={this.handleCallback} />
             </div>
             )
     }
@@ -442,23 +460,6 @@ var FormEntDocTypes = React. createClass({
         return(
             <div className="DocTypesBox">
                 {output}
-            </div>
-            )
-    }
-});
-
-var FormEntRankPosition = React. createClass({
-    mixins: [CurrentClassMixin],
-    render: function(){
-        console.info(this.props.host_id);
-        var source = [];
-        source[0] = 'positionsranks';
-        source[1] = 'ranks';
-
-        return(
-            <div className="item_attr">
-                <div className="form_label">Звания соответствующие должности</div>
-                <ListBoxTwoSide source_left={source[0]} source_right={source[1]} callback={this.handleCallback} />
             </div>
             )
     }

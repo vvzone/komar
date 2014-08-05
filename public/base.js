@@ -78,8 +78,8 @@ var MainList = React. createClass({
     /* Props
      *
      * source - server data-controller action (entity)
-     * host - id or other value for search dependency
-     * host_name - name of pole for search
+     * entity.host.id - id or other value for search dependency
+     * entity.db_prop_name - name of pole for search
      *
      * 2 do: add-interface, msg for 0 results
      * */
@@ -135,9 +135,12 @@ var MainList = React. createClass({
                 />);
         }
 
+        var instant_search_box = [];
+        instant_search_box[0] = <InstantSearch source={this.props.source} searchReceived={this.searchReceived}/>;
+
         return(
             <div className="List">
-                <InstantSearch source={this.props.source} searchReceived={this.searchReceived}/>
+                {instant_search_box}
                 <div className="MainList">{output}</div>
             </div>
             )
@@ -192,17 +195,22 @@ var ItemEditBox = React.createClass({
 
         var dependencies = {};
         dependencies = this.props.dependencies;
-        if (Object.prototype.toString.call(dependencies) === '[object Object]') {
+
+        console.info('Object.prototype.toString.call(dependencies)='+Object.prototype.toString.call(dependencies));
+        console.info('typeof(dependencies)'+typeof(dependencies));
+        //if (Object.prototype.toString.call(dependencies) === '[object Object]') {
+        if (typeof(dependencies) == 'object') {
             for(var key in dependencies){
                 var place_key = dependencies[key].place;
+                console.info('place_key= '+place_key);
                 dependencies_by_place[place_key] = dependencies[key];
             }
         }
 
         var self = this;
         for (var prop in item) {
-            if (Object.prototype.toString.call(dependencies) === '[object Object]') {
-                if (typeof dependencies_by_place[counter] !== 'undefined' && typeof dependencies_by_place[counter].place !== 'undefined') {
+            if (typeof(dependencies) == 'object') {
+                if (typeof dependencies_by_place[counter] != 'undefined' && typeof dependencies_by_place[counter].place != 'undefined') {
                         if (counter == dependencies_by_place[counter].place) {
 
                             console.log('========this.props.item========');
@@ -264,19 +272,27 @@ var MainItemEdit = React. createClass({
             });
     },
     render: function(){
-        var controls ='';
+        var controls = [];
         console.log('this.state.item');
         console.log(this.state.item);
+        console.log('this.props.dependencies');
+        console.log(this.props.dependencies);
+
         var key ='edit_'+this.props.entity.name+'_'+1;
         if(this.state.item.data){
-            controls = <ItemEditBox
-            item={this.state.item.data}
+            controls[0] = <ItemEditBox
+            item={this.state.item.data[0]}
             prototype={this.state.item.prototype}
             key={key}
             dependencies={this.props.dependencies}
             entity={this.props.entity}
             />;
         }
+        /*
+        if(this.state.item.data.length>1){
+            var msg = "От сервера получено более одного обьекта. Ожидался один. \n";
+            controls[1] = <Error msg={msg}/>;
+        }*/
         return(
             <div>
                 {controls}
