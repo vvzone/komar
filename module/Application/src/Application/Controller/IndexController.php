@@ -205,25 +205,37 @@ class IndexController extends AbstractActionController
 
 
     public function baseSearchArray($array, $current_id, $search_pole_name){
+        $result = array();
+
+        //echo "foreach\n";
         foreach($array as $item){
             if(!is_array($item[$search_pole_name])){ //если поле не массив
                 if($current_id == $item[$search_pole_name]){
-                    return $item;
+                    /*echo "1\n";
+                    echo "current_id= ".$current_id.' search_pole_value='.$item[$search_pole_name]."\n";*/
+                    //ret $item;
+                    $result[] = $item;
                 }else{
+                    /*echo "2-error\n";
+                    echo "current_id= ".$current_id.' search_pole_value='.$item[$search_pole_name]."\n";*/
                     if(isset($item['childNodes'])){
-                        return $result = $this->searchArray($item['childNodes'], $current_id, $search_pole_name);
+                        //echo "2-success\n";
+                        $result[] = $this->baseSearchArray($item['childNodes'], $current_id, $search_pole_name);
                     }
                 }
             }else{ //если поле массив значений (связная таблица)
-                $entries_array = false;
+                //echo "3\n";
                 foreach($item[$search_pole_name] as $value){
                     if($current_id == $value){
-                        $entries_array[] = $item;
+                        $result[] = $item;
                     }
                 }
-                return $entries_array;
             }
         }
+        if(count($result)>0){
+            return $result;
+        }
+        return null;
     }
 
     public function searchArray($array, $current_id, $search_pole_name = null){
@@ -231,6 +243,7 @@ class IndexController extends AbstractActionController
             return $this->baseSearchArray($array, $current_id, 'id');
         }else{ //если задано название поля
             if(!is_array($current_id)){ // current_id не массив
+                //echo "search, current_id not array \n";
                 return $this->baseSearchArray($array, $current_id, $search_pole_name);
             }else{ //current_id - массив значений
                 $tree_array = array();
@@ -806,15 +819,6 @@ class IndexController extends AbstractActionController
         'header' => 'Заголовок', 'isService' => 'Служебный', 'secrecy_type' => 'Секретность', 'urgency_type' => 'Срочность');
         $prototype_array = array('editable_properties' => $editable_array);
 
-        /*$data_array = array(
-            array('id' => 1, 'doc_kind_id' => 1, 'name' => 'Воздушная тревога', 'shortname'=> 'С-ВТ', 'code' => '555',
-                'header' => 'Воздушная тревога!', 'isService' => false, 'secrecy_type' => 2, 'urgency_type' => 3),
-            array('id' => 2, 'doc_kind_id' => 110, 'name' => 'Приказ на списание', 'shortname'=> 'ПхСп', 'code' => '1001',
-                'header' => '', 'isService' => false, 'secrecy_type' => 1, 'urgency_type' => 1),
-            array('id' => 3, 'doc_kind_id' => null, 'name' => 'Добавление объекта картографии', 'shortname'=> 'СК-Д', 'code' => '2001',
-                'header' => 'Добавление объекта на общую карту', 'isService' => true, 'secrecy_type' => 1, 'urgency_type' => 1),
-        );*/
-
         $data_doc_type_contents = array(
             array('id' => 1, 'doc_type_id' =>  1, 'doc_group_id' => 1),
             array('id' => 2, 'doc_type_id' =>  2, 'doc_group_id' => 110),
@@ -824,12 +828,10 @@ class IndexController extends AbstractActionController
         $data_array = array(
             array('id' => 1, 'doc_group_id' => array(1001, 1002), 'name' => 'Воздушная тревога', 'shortname'=> 'С-ВТ', 'code' => '555',
                 'header' => 'Воздушная тревога!', 'isService' => false, 'secrecy_type' => 2, 'urgency_type' => 3),
-
-            /*
-            array('id' => 2, 'doc_kind_id' => 110, 'name' => 'Приказ на списание', 'shortname'=> 'ПхСп', 'code' => '1001',
+            array('id' => 2, 'doc_group_id' => 110, 'name' => 'Приказ на списание', 'shortname'=> 'ПхСп', 'code' => '1001',
                 'header' => '', 'isService' => false, 'secrecy_type' => 1, 'urgency_type' => 1),
-            array('id' => 3, 'doc_kind_id' => null, 'name' => 'Добавление объекта картографии', 'shortname'=> 'СК-Д', 'code' => '2001',
-                'header' => 'Добавление объекта на общую карту', 'isService' => true, 'secrecy_type' => 1, 'urgency_type' => 1),*/
+            array('id' => 3, 'doc_group_id' => null, 'name' => 'Добавление объекта картографии', 'shortname'=> 'СК-Д', 'code' => '2001',
+                'header' => 'Добавление объекта на общую карту', 'isService' => true, 'secrecy_type' => 1, 'urgency_type' => 1),
         );
 
 
@@ -857,9 +859,11 @@ class IndexController extends AbstractActionController
         $property = $this->getEvent()->getRouteMatch()->getParam('property', 0);
         $sub_action = $this->getEvent()->getRouteMatch()->getParam('sub_action', 0);
 
-        /*echo 'current_id='.$id."\n";
-        echo 'current_property='.$property."\n";
-        echo 'current_sub_action='.$sub_action."\n";*/
+        /*
+            echo 'current_id='.$id."\n";
+            echo 'current_property='.$property."\n";
+            echo 'current_sub_action='.$sub_action."\n";
+        */
 
         if($id){
             //echo "\nid\n";
@@ -867,6 +871,7 @@ class IndexController extends AbstractActionController
                 //echo "sub_action\n";
                 switch($sub_action){
                     case('search'):
+                        //echo "case_search\n";
                         return $this->searchArray($data_array, $id, $property);
                     break;
                     case('check'):
@@ -877,6 +882,7 @@ class IndexController extends AbstractActionController
                         //echo "\n what's wrong with dependency?\n";
                     break;
                 }
+                //echo "case not found\n";
                 return $this->searchArray($data_array, $id, $property);
             }
             return $data_array = $this->searchArray($data_array, $id);
