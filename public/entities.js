@@ -355,7 +355,7 @@ var TreeDocTypeGroups = React. createClass({
         var tree_dependency = {};
         tree_dependency = {
             source: 'doctypes',
-            id_name_in_dependency: 'doc_kind_id',
+            id_name_in_dependency: 'doc_group_id',
             russian_name: 'Типы документов'
         };
         var output = this.editMainTreeRoute('doctypegroups', this.props.entity, tree_dependency); //MainTree !!!

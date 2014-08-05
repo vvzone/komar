@@ -293,7 +293,7 @@ var MainTree = React.createClass({
                 success: function(result) {
                     items = result.data;
                     this.setState({items: items});
-                    /*items.map(function(item){
+                    items.map(function(item){ //????
                         items_ids_for_check.push(item.id);
                     });
 
@@ -310,14 +310,14 @@ var MainTree = React.createClass({
 
                             console.log('item');
                             console.log(item);
-                            return item;
+                            return item.id;
                         }),
                         success: function(data) {
                             console.log('dependencies data received: ');
                             console.log(data);
                         }.bind(this),
                         dataType: 'json'
-                    });*/
+                    });
 
                 }.bind(this),
                 dataType: 'json'
