@@ -78,6 +78,9 @@ var MainList = React. createClass({
     /* Props
      *
      * source - server data-controller action (entity)
+     * host - id or other value for search dependency
+     * host_name - name of pole for search
+     *
      * 2 do: add-interface, msg for 0 results
      * */
     getInitialState: function() {
@@ -86,12 +89,30 @@ var MainList = React. createClass({
         }
     },
     componentDidMount: function() {
-       $.get('http://zend_test/main/'+this.props.source, function(result) {
-                    this.setState({items: result});
-                }.bind(this))
-                .error(function() {
-                    alert("Network Error.");
-                })
+        var url = '';
+        console.error('this.props');
+        console.log('this.props');
+        console.log(this.props);
+        if(this.props.entity.host){
+            var pole_name = 'id';
+            if(this.props.entity.db_prop_name){
+                pole_name = this.props.entity.db_prop_name;
+            }
+            url = 'http://zend_test/main/'
+                + this.props.source
+                +'/search/'
+                + pole_name+'/'
+                + this.props.entity.host.id;
+        }else{
+            url = 'http://zend_test/main/'+this.props.source;
+        }
+
+        $.get(url, function(response) {
+                this.setState({items: response});
+            }.bind(this))
+            .error(function() {
+                alert("Network Error.");
+            });
     },
     searchReceived: function(results){
         // exchange arrays
@@ -100,6 +121,8 @@ var MainList = React. createClass({
     render: function () {
         var output = [];
 
+        console.log('this.state.items.data');
+        console.log(this.state.items.data);
         for (var item in this.state.items.data) {
             output.push(
                 <ListItem
@@ -139,6 +162,8 @@ var ItemEditBox = React.createClass({
         console.info('itemUpdate');
         console.log('property')
         console.log(property);
+
+
 
         var current_item = this.state.item;
         for (var key in property) {
@@ -234,9 +259,9 @@ var MainItemEdit = React. createClass({
                 self.setState({item : response});
             }
         })
-         .error(function () {
-             alert("Network Error.");
-         });
+            .error(function () {
+                alert("Network Error.");
+            });
     },
     render: function(){
         var controls ='';

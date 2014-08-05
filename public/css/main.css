@@ -87,6 +87,14 @@ ul.tree div.tree_box_node {
 ul.tree div.tree_box_node span.tree_box_node_name {
   margin-left: 5px;
 }
+ul.tree div.tree_box_node div.dependency_open_link {
+  float: right;
+  padding-top: 3px;
+  font-size: 0.9em;
+}
+ul.tree div.tree_box_node div.tree_dependency_box {
+  margin: 5px;
+}
 ul.tree div.tree_box_node_controls {
   float: left;
   margin-left: -65px;

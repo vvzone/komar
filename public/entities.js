@@ -15,7 +15,9 @@ var EntityBlock = React. createClass({
         entity['entity_name'] = this.props.entity_name;
         entity['db_prop_name'] = this.props.db_prop_name;
 
-        entity['current_id'] = this.props.item; //нужно для хранения current_id для REST запросов вида /entity/{id}
+        entity['host'] = this.props.host; //для вывода списка в дереве
+
+        entity['current_id'] = this.props.item; //для редактирования, нужно для хранения current_id для REST запросов вида /entity/{id}
 
         //entity['current_id'] = this.props.current_id;
         entity['item'] = this.props.item;
@@ -355,8 +357,9 @@ var TreeDocTypeGroups = React. createClass({
         var tree_dependency = {};
         tree_dependency = {
             source: 'doctypes',
+            entity_name: 'doc_types',
             id_name_in_dependency: 'doc_group_id',
-            russian_name: 'Типы документов'
+            russian_name: 'типы документов'
         };
         var output = this.editMainTreeRoute('doctypegroups', this.props.entity, tree_dependency); //MainTree !!!
         return(

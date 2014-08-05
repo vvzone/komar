@@ -218,7 +218,7 @@ class IndexController extends AbstractActionController
                 $entries_array = false;
                 foreach($item[$search_pole_name] as $value){
                     if($current_id == $value){
-                        $entries_array[$current_id] = $item;
+                        $entries_array[] = $item;
                     }
                 }
                 return $entries_array;
@@ -235,7 +235,7 @@ class IndexController extends AbstractActionController
             }else{ //current_id - массив значений
                 $tree_array = array();
                 foreach($current_id as $id){
-                    $tree_array[$id] = $this->baseSearchArray($array, $id, $search_pole_name);
+                    $tree_array = $this->baseSearchArray($array, $id, $search_pole_name);
                 }
                 return $tree_array;
             }
@@ -841,36 +841,47 @@ class IndexController extends AbstractActionController
         }
 
         /* <REST> ------  */
-        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
-        $current_property = $this->getEvent()->getRouteMatch()->getParam('property', 0);
         $current_sub_action = $this->getEvent()->getRouteMatch()->getParam('sub_action', 0);
-
-        //echo 'sub_action='.$current_sub_action;
-
-        if($current_sub_action == 'check'){
-            $data_array = $this->checkArray($data_array, $current_id, $current_property);
-        }/*elseif($current_sub_action == 'dependency'){
-            echo 'dependencies query= '.$query;
-            $data_array = $this->searchDependencies($query, $data_array, $current_property); //на входе массив id-групп (query)
-        }*/
-        else{
-            if($current_property!=''){
-                $data_array = $this->searchArray($data_array, $current_id, $current_property);
-            }elseif($current_id){
-                $data_array = $this->searchArray($data_array, $current_id);
-            }
-        }
-
+        $data_array = $this->restApi($data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         /* </REST> ------  */
 
-        if($current_sub_action == 'check'){
-            $response = array('response'=> true, 'data' => $data_array);
-        }else{
-            $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
-        }
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
         return $JsonModel;
+    }
+
+    public function restApi(array $data_array, $query =null){
+
+        $id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        $property = $this->getEvent()->getRouteMatch()->getParam('property', 0);
+        $sub_action = $this->getEvent()->getRouteMatch()->getParam('sub_action', 0);
+
+        /*echo 'current_id='.$id."\n";
+        echo 'current_property='.$property."\n";
+        echo 'current_sub_action='.$sub_action."\n";*/
+
+        if($id){
+            //echo "\nid\n";
+            if($sub_action){
+                //echo "sub_action\n";
+                switch($sub_action){
+                    case('search'):
+                        return $this->searchArray($data_array, $id, $property);
+                    break;
+                    case('check'):
+                        return $this->checkArray($data_array, $id, $property);
+                    break;
+                    case('dependency'):
+                        //return $this->searchDependencies($data_array, $query, $property);
+                        //echo "\n what's wrong with dependency?\n";
+                    break;
+                }
+                return $this->searchArray($data_array, $id, $property);
+            }
+            return $data_array = $this->searchArray($data_array, $id);
+        }
+
     }
 
     public function yesAction(){

@@ -2,6 +2,55 @@
 
 var storage = {};
 
+var TreeClassMixin = function () {
+    return{
+        dragStart: function(e) {
+            this.dragged = e.currentTarget;
+            e.dataTransfer.effectAllowed = 'move';
+            // Firefox requires dataTransfer data to be set
+            e.dataTransfer.setData("text/html", e.currentTarget);
+            var data = {id: e.currentTarget.id,
+                node: this.state.node};
+            storage['dragged'] = data;
+        },
+        dragOver: function(e) {
+            e.preventDefault(); // necessary!
+            this.over = e.currentTarget;
+            if(this.over == this.dragged){
+                return;
+            }
+            $(this.over).addClass('tree_over_node');
+        },
+        dragLeave: function(e){
+            e.preventDefault(); // necessary!
+            $(this.over).removeClass('tree_over_node');
+        },
+        dragEnd: function(e) {
+            e.preventDefault(); // necessary!
+            $(this.over).removeClass('tree_over_node');
+        },
+        drop: function(e){
+            e.preventDefault();
+            console.warn('DROP');
+            $(this.over).removeClass('tree_over_node');
+            var droppedOn = e.currentTarget;
+
+            if(droppedOn.id == storage['dragged']['id']){ //add same parent check
+                console.warn('stop');
+                return
+            }
+            var movedNode = {
+                dragged: storage['dragged'],
+                droppedOn_id: droppedOn.id
+            };
+            var customEvent = new CustomEvent("TreeNodeMove",  {
+                detail: {movedNode: movedNode},
+                bubbles: true
+            });
+            this.getDOMNode().dispatchEvent(customEvent);
+        }
+    }
+}()
 
 var TreeNodeBox = React.createClass({
     render: function(){
@@ -12,69 +61,28 @@ var TreeNodeBox = React.createClass({
 
 
 var TreeNode = React.createClass({
+    mixins: [TreeClassMixin],
     getInitialState: function () {
         return {
             visible: true,
             node: this.props.node,
             open: false,
-            dependency_items: []
+            dependency_items: [],
         };
+    },
+    closeState: function(e){
+        if(this.props.node.id!=e.detail.id){
+            this.setState({open: false});
+        }
     },
     componentDidMount: function(){
         if(this.props.node.childNodes!=null){
             this.setState({visible: false});
         }
+        window.addEventListener("closeWhoOpenEvent", this.closeState, true);
     },
-    dragStart: function(e) {
-        this.dragged = e.currentTarget;
-        //console.log(e.currentTarget);
-        e.dataTransfer.effectAllowed = 'move';
-        // Firefox requires dataTransfer data to be set
-        e.dataTransfer.setData("text/html", e.currentTarget);
-
-        var data = {id: e.currentTarget.id,
-                    node: this.state.node};
-        storage['dragged'] = data;
-    },
-    dragOver: function(e) {
-        e.preventDefault(); // necessary!
-        this.over = e.currentTarget;
-        if(this.over == this.dragged){
-            return;
-        }
-        $(this.over).addClass('tree_over_node');
-    },
-    dragLeave: function(e){
-        e.preventDefault(); // necessary!
-        $(this.over).removeClass('tree_over_node');
-    },
-    dragEnd: function(e) {
-        e.preventDefault(); // necessary!
-        $(this.over).removeClass('tree_over_node');
-    },
-    drop: function(e){
-        e.preventDefault();
-        console.warn('DROP');
-        $(this.over).removeClass('tree_over_node');
-        var droppedOn = e.currentTarget;
-
-        if(droppedOn.id == storage['dragged']['id']){ //add same parent check
-            console.warn('stop');
-            return
-        }
-
-        var movedNode = {
-            dragged: storage['dragged'],
-            droppedOn_id: droppedOn.id
-        };
-
-        var customEvent = new CustomEvent("TreeNodeMove",  {
-            detail: {movedNode: movedNode},
-            bubbles: true
-        });
-
-        console.info('dispatch event');
-        this.getDOMNode().dispatchEvent(customEvent);
+    componentWillUnmount: function () {
+        window.removeEventListener("closeWhoOpenEvent", this.closeState, true);
     },
     nodeControlClicked: function(action){
         var customEvent = new CustomEvent("modalWindowOpen",  {
@@ -90,6 +98,13 @@ var TreeNode = React.createClass({
     },
     whenClicked: function(){
         this.setState({open: this.state.open==true? false: true});
+        var closeWhoOpenEvent = new CustomEvent("closeWhoOpenEvent",  {
+            detail: {
+                id: this.props.node.id
+            },
+            bubbles: true
+        });
+        this.getDOMNode().dispatchEvent(closeWhoOpenEvent);
     },
     getNodeTreeDependency: function(){
         console.info('===getNodeTreeDependency===');
@@ -118,15 +133,36 @@ var TreeNode = React.createClass({
             style.display = "none";
         }
 
-        var dependency_box = '';
+        var dependency_box = [];
+        console.info('this.props.tree_dependency');
         console.info(this.props.tree_dependency);
 
         if(typeof this.props.tree_dependency != 'undefined'){
-            if(this.props.had_dependeny_items){
-                dependency_box = <div><div onClick={this.whenClicked}>Click</div>{tree_dependency}</div>;
+            //if(this.props.had_dependeny_items){
+            className = 'glyphicon';
+            if (this.state.open == true) {
+                className += " glyphicon-chevron-left";
+            } else {
+                className += " glyphicon-chevron-right";
             }
-        }
+                dependency_box[0] = <div className="dependency_open_link"><span className={className} onClick={this.whenClicked}></span></div>;
 
+
+            if(this.state.open == true){
+                dependency_box[1] =
+                    <div className="tree_dependency_box">
+                        <div className="dependencies_list">
+                            <EntityBlock
+                                entity_name = {this.props.tree_dependency.entity_name}
+                                db_prop_name={this.props.tree_dependency.id_name_in_dependency}
+                                host={this.props.node} />
+                        </div>
+                    </div>;
+            }
+                //dependency_box dependency_open_link + tree_dependency_box;
+            //}
+            //{this.props.tree_dependency.russian_name}
+        }
         /*
         if(this.state.open == true){
 
@@ -190,6 +226,7 @@ var TreeNode = React.createClass({
                     onDrop={this.drop}
                     id={this.props.node.id}>
                         <TreeNodeBox item={this.props.node} tree_dependency={tree_dependency}/>
+                        {dependency_box}
                     </div>
                 <div className="tree_box_node_controls">
                     <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
@@ -201,6 +238,13 @@ var TreeNode = React.createClass({
     },
     toggle: function () {
         this.setState({visible: !this.state.visible});
+        var closeWhoOpenEvent = new CustomEvent("closeWhoOpenEvent",  {
+            detail: {
+                id: this.props.node.id
+            },
+            bubbles: true
+        });
+        this.getDOMNode().dispatchEvent(closeWhoOpenEvent);
     }
 });
 
@@ -368,8 +412,8 @@ var MainTree = React.createClass({
             console.log(dependency_owners_id);*/
 
             tree_output = this.state.items.map(function(node){
-                console.log('self.props.tree_dependency');
-                console.log(self.props.tree_dependency);
+                //console.log('self.props.tree_dependency');
+                //console.log(self.props.tree_dependency);
                 return(<TreeNode key={node.id} node={node} tree_dependency={self.props.tree_dependency} />)
             });
             return(<ul className="tree">{tree_output}</ul>);
