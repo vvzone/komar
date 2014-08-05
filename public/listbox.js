@@ -108,7 +108,16 @@ var ListBox = React.createClass({
     render: function(){
         var list_box_items=[];
         for(var key in this.props.items){
-            list_box_items.push(<option key={this.props.items[key]['id']} value={this.props.items[key]['id']} id={this.props.items[key]['id']} onClick={this.handleClick}>{this.props.items[key]['name']}</option>);
+            list_box_items.push(
+                <option
+                key={this.props.items[key]['id']}
+                value={this.props.items[key]['id']}
+                id={this.props.items[key]['id']}
+                onClick={this.handleClick}
+                >
+                {this.props.items[key]['name']}
+                </option>
+            );
         }
         if(this.props.type == 'right'){
             return( <div className="list_box">
@@ -165,20 +174,22 @@ var ListBoxTwoSide = React.createClass({
         }
     },
     componentDidMount: function() {
-        $.get('http://zend_test/main/'+this.props.source_left, function(result) {
-            var arr = [];
-            for(var item in result.data){
-                arr[result.data[item]['id']] = result.data[item];
-            }
-            this.setState({items_left: arr});
-        }.bind(this));
-
+        var arr_items_2_select = [];
         $.get('http://zend_test/main/'+this.props.source_right, function(result) {
             var arr = [];
             for(var item in result.data){
                 arr[result.data[item]['id']] = result.data[item];
             }
+            arr_items_2_select = arr;
             this.setState({items_right: arr});
+        }.bind(this));
+
+        $.get('http://zend_test/main/'+this.props.source_left, function(result) {
+            var arr = [];
+            for(var item in result.data){
+                arr[result.data[item]['id']] = arr_items_2_select[result.data[item]['id']];
+            }
+            this.setState({items_left: arr});
         }.bind(this));
 
     },
@@ -193,8 +204,8 @@ var ListBoxTwoSide = React.createClass({
             delete items_right[id];
         }
 
-        combined[0] = <ListBox key="combo" items={items_left} callback={this.listChange} type="left" />;
-        combined[1] = <ListBox key="combo_right" items={items_right} callback={this.listChange} type="right" />;
+        combined[0] = <ListBox key="combo" key_prefix="left" items={items_left} callback={this.listChange} type="left" />;
+        combined[1] = <ListBox key="combo_right" key_prefix="right" items={items_right} callback={this.listChange} type="right" />;
 
         return(
             <div className="two-way-list-box">{combined}</div>

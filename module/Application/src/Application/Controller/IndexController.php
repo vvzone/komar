@@ -346,11 +346,19 @@ class IndexController extends AbstractActionController
         $prototype_array = array('editable_properties' => $editable_array);
 
         $data_array = array(
-            array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
-            array('name' => 'Сержант', 'id' => 2, 'order' => 2),
-            array('name' => 'Старший сержант', 'id' => 3, 'order' => 3),
-            array('name' => 'Лейтенант', 'id' => 4, 'order' => 3),
-            array('name' => 'Старший лейтенант', 'id' => 5, 'order' => 3)
+            1 => array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
+            2 => array('name' => 'Сержант', 'id' => 2, 'order' => 2),
+            3 => array('name' => 'Старший сержант', 'id' => 3, 'order' => 3),
+            4 => array('name' => 'Лейтенант', 'id' => 4, 'order' => 3),
+            5 => array('name' => 'Старший лейтенант', 'id' => 5, 'order' => 3)
+        );
+
+        $data_array = array(
+            array('id' => 4, 'order' => 1), //id, rank_id, pos_id, order
+            array('id' => 5, 'order' => 2),
+            array('id' => 6, 'order' => 3),
+            array('id' => 7, 'order' => 4),
+            array('id' => 8, 'order' => 5)
         );
 
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
@@ -843,7 +851,6 @@ class IndexController extends AbstractActionController
         }
 
         /* <REST> ------  */
-        $current_sub_action = $this->getEvent()->getRouteMatch()->getParam('sub_action', 0);
         $data_array = $this->restApi($data_array);
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         /* </REST> ------  */

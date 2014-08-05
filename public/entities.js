@@ -179,7 +179,7 @@ var FormEntRankPosition = React. createClass({
         return(
             <div className="item_attr">
                 <div className="form_label">Звания соответствующие должности</div>
-                <ListBoxTwoSide source_left={source[0]} source_right={source[1]} callback={this.handleCallback} />
+                <ListBoxTwoSide source_left={source[0]} source_right={source[1]} entity={this.props.entity} callback={this.handleCallback} />
             </div>
             )
     }
