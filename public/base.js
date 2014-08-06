@@ -148,6 +148,13 @@ var MainList = React. createClass({
 });
 
 var ItemEditBox = React.createClass({
+    /*
+    * Props:
+    * item - item array
+    * prototype.editable_properties - from server
+    * dependencies - from entity
+    *
+    * */
     getInitialState: function () {
         return {
             item: [],
@@ -162,12 +169,7 @@ var ItemEditBox = React.createClass({
         console.info(this.state.item);
     },
     itemUpdate: function (property) {
-        console.info('itemUpdate');
-        console.log('property')
-        console.log(property);
-
-
-
+        //console.info('itemUpdate');
         var current_item = this.state.item;
         for (var key in property) {
             current_item[key] = property[key];
@@ -192,13 +194,11 @@ var ItemEditBox = React.createClass({
 
         // 2-do: //fix this
         // dependencies arrays are nightmare
-
         var dependencies = {};
         dependencies = this.props.dependencies;
 
-        console.info('Object.prototype.toString.call(dependencies)='+Object.prototype.toString.call(dependencies));
-        console.info('typeof(dependencies)'+typeof(dependencies));
-        //if (Object.prototype.toString.call(dependencies) === '[object Object]') {
+        //console.info('Object.prototype.toString.call(dependencies)='+Object.prototype.toString.call(dependencies));
+        //console.info('typeof(dependencies)'+typeof(dependencies));
         if (typeof(dependencies) == 'object') {
             for(var key in dependencies){
                 var place_key = dependencies[key].place;
@@ -212,10 +212,6 @@ var ItemEditBox = React.createClass({
             if (typeof(dependencies) == 'object') {
                 if (typeof dependencies_by_place[counter] != 'undefined' && typeof dependencies_by_place[counter].place != 'undefined') {
                         if (counter == dependencies_by_place[counter].place) {
-
-                            console.log('========this.props.item========');
-                            console.log(this.props.item);
-
                             controls.push(<EntityBlock
                                 entity_name={dependencies_by_place[counter].class_name}
                                 db_prop_name={dependencies_by_place[counter].db_prop_name}
@@ -224,7 +220,6 @@ var ItemEditBox = React.createClass({
                                 callback={self.itemUpdate} />);
                         }
                 }
-
             }
             if (editable[prop]) {
                 var type = prop;
@@ -273,11 +268,6 @@ var MainItemEdit = React. createClass({
     },
     render: function(){
         var controls = [];
-        console.log('this.state.item');
-        console.log(this.state.item);
-        console.log('this.props.dependencies');
-        console.log(this.props.dependencies);
-
         var key ='edit_'+this.props.entity.name+'_'+1;
         if(this.state.item.data){
             controls[0] = <ItemEditBox
@@ -288,11 +278,6 @@ var MainItemEdit = React. createClass({
             entity={this.props.entity}
             />;
         }
-        /*
-        if(this.state.item.data.length>1){
-            var msg = "От сервера получено более одного обьекта. Ожидался один. \n";
-            controls[1] = <Error msg={msg}/>;
-        }*/
         return(
             <div>
                 {controls}

@@ -192,6 +192,18 @@ var ListBoxTwoSide = React.createClass({
             this.setState({items_left: arr});
         }.bind(this));
 
+        //add listener because it's another table, so this is need to save separately, but with post current_id
+        /*
+        * save:
+        * to source+left
+        * this.state.items_left
+        * for
+        * this.props.entity.current_id.id
+        *
+        * only add new, remove those who not send but in db on server-side
+        *
+        * */
+
     },
     render: function(){
         var combined = [];
@@ -207,6 +219,8 @@ var ListBoxTwoSide = React.createClass({
         combined[0] = <ListBox key="combo" key_prefix="left" items={items_left} callback={this.listChange} type="left" />;
         combined[1] = <ListBox key="combo_right" key_prefix="right" items={items_right} callback={this.listChange} type="right" />;
 
+        console.info('LIST BOX PROPS');
+        console.info(this.props);
         return(
             <div className="two-way-list-box">{combined}</div>
         )

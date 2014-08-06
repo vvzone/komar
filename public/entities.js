@@ -38,7 +38,7 @@ var EntityBlock = React. createClass({
                 return(<FormEntPositions entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'rank_position':
-                return(<FormEntRankPosition host_id={current_id} callback={this.handleCallback} />);
+                return(<FormEntRankPosition host_id={current_id} entity={entity}  callback={this.handleCallback} />);
                 break;
             case 'pass_doc_types':
                 return(<FormEntPassDocTypes entity={entity}  callback={this.handleCallback} />);
