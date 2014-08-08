@@ -1,0 +1,158 @@
+/** @jsx React.DOM */
+/* some base elements */
+
+
+var ItemEditBox = React.createClass({
+    getInitialState: function () {
+        return {
+            item: [],
+            item_dependencies: []
+        }
+    },
+    componentDidMount: function () {
+        this.setState({item: this.props.item});
+    },
+    saveForm: function () {
+        console.info('item to save');
+        console.info(this.state.item);
+    },
+    itemUpdate: function (property) {
+        console.info('itemUpdate');
+        console.log('property')
+        console.log(property);
+
+
+
+        var current_item = this.state.item;
+        for (var key in property) {
+            current_item[key] = property[key];
+        }
+        current_item[property.db_prop_name] = property.value;
+        this.setState({item: current_item});
+    },
+    componentWillMount: function () {
+        window.addEventListener("saveButtonClick", this.saveForm, true);
+    },
+    componentWillUnmount: function () {
+        window.removeEventListener("saveButtonClick", this.saveForm, true);
+    },
+    render: function () {
+        var editable = this.props.prototype.editable_properties;
+
+        var item = this.state.item;
+
+        var controls = [];
+        var counter = 0;
+        var dependencies_by_place = {};
+
+        // 2-do: //fix this
+        // dependencies arrays are nightmare
+
+        var dependencies = {};
+        dependencies = this.props.dependencies;
+
+        console.info('Object.prototype.toString.call(dependencies)='+Object.prototype.toString.call(dependencies));
+        console.info('typeof(dependencies)'+typeof(dependencies));
+        //if (Object.prototype.toString.call(dependencies) === '[object Object]') {
+        if (typeof(dependencies) == 'object') {
+            for(var key in dependencies){
+                var place_key = dependencies[key].place;
+                console.info('place_key= '+place_key);
+                dependencies_by_place[place_key] = dependencies[key];
+            }
+        }
+
+        var self = this;
+        for (var prop in item) {
+            if (typeof(dependencies) == 'object') {
+                if (typeof dependencies_by_place[counter] != 'undefined' && typeof dependencies_by_place[counter].place != 'undefined') {
+                        if (counter == dependencies_by_place[counter].place) {
+
+                            console.log('========this.props.item========');
+                            console.log(this.props.item);
+
+                            controls.push(<EntityBlock
+                                entity_name={dependencies_by_place[counter].class_name}
+                                db_prop_name={dependencies_by_place[counter].db_prop_name}
+                                item={item}
+                                current_id={this.props.item[dependencies_by_place[counter].db_prop_name]}
+                                callback={self.itemUpdate} />);
+                        }
+                }
+
+            }
+            if (editable[prop]) {
+                var type = prop;
+                controls.push(
+                    <ControlRouter type={properties_types[type]} value={item[prop]} name={type} russian_name={editable[prop]} callback={this.itemUpdate} key={editable[prop]} />
+                );
+            }
+            counter++;
+        }
+
+        if(controls.length == 0){
+            return(<ErrorMsg msg="Не найдено ни одного контрола" />);
+        }
+
+        var edit_properties_box = [];
+        edit_properties_box.push(<form role="form" className="ControlsBox">{controls}</form>);
+        return(
+            <div className="item">
+                {edit_properties_box}
+            </div>
+            )
+    }
+});
+
+var MainItemEdit = React. createClass({
+    getInitialState: function() {
+        return {
+            item: []
+        }
+    },
+    componentWillMount: function() {
+        var self = this;
+        $.ajax({
+            type: "POST",
+            url: 'http://zend_test/main/' + this.props.source+'/'+this.props.entity.current_id,
+            data: ''+this.props.entity.current_id+'',
+            success: function(response){
+                console.info('response');
+                console.info(response);
+                self.setState({item : response});
+            }
+        })
+            .error(function () {
+                alert("Network Error.");
+            });
+    },
+    render: function(){
+        var controls = [];
+        console.log('this.state.item');
+        console.log(this.state.item);
+        console.log('this.props.dependencies');
+        console.log(this.props.dependencies);
+
+        var key ='edit_'+this.props.entity.name+'_'+1;
+        if(this.state.item.data){
+            controls[0] = <ItemEditBox
+            item={this.state.item.data[0]}
+            prototype={this.state.item.prototype}
+            key={key}
+            dependencies={this.props.dependencies}
+            entity={this.props.entity}
+            />;
+        }
+        /*
+        if(this.state.item.data.length>1){
+            var msg = "От сервера получено более одного обьекта. Ожидался один. \n";
+            controls[1] = <Error msg={msg}/>;
+        }*/
+        return(
+            <div>
+                {controls}
+            </div>
+        );
+    }
+
+});
