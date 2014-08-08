@@ -16,9 +16,6 @@ var ItemEditBox = React.createClass({
             item_dependencies: []
         }
     },
-    componentDidMount: function () {
-        this.setState({item: this.props.item});
-    },
     saveForm: function () {
         console.info('item to save');
         console.info(this.state.item);
@@ -34,6 +31,7 @@ var ItemEditBox = React.createClass({
     },
     componentWillMount: function () {
         window.addEventListener("saveButtonClick", this.saveForm, true);
+        this.setState({item: this.props.item});
     },
     componentWillUnmount: function () {
         window.removeEventListener("saveButtonClick", this.saveForm, true);
@@ -62,8 +60,9 @@ var ItemEditBox = React.createClass({
             }
         }
 
+        console.log('Editable');
         var self = this;
-        for (var prop in item) {
+        for (var prop in editable) { // старое item - ошибочно так как выводило только не undefined поля текущего экземпляра обьекта
             if (typeof(dependencies) == 'object') {
                 if (typeof dependencies_by_place[counter] != 'undefined' && typeof dependencies_by_place[counter].place != 'undefined') {
                         if (counter == dependencies_by_place[counter].place) {
@@ -124,9 +123,14 @@ var MainItemEdit = React. createClass({
     render: function(){
         var controls = [];
         var key ='edit_'+this.props.entity.name+'_'+1;
+        var item = [];
         if(this.state.item.data){
+            item = this.state.item.data[0];
+        }
+
+        if(this.state.item.prototype){ //старое item.data - может быть и undefined для add-action
             controls[0] = <ItemEditBox
-            item={this.state.item.data[0]}
+            item={item}
             prototype={this.state.item.prototype}
             key={key}
             dependencies={this.props.dependencies}
