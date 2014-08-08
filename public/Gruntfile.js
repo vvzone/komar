@@ -1,0 +1,85 @@
+//Стандартный экспорт модуля в nodejs
+module.exports = function(grunt) {
+  // Инициализация конфига GruntJS
+  grunt.initConfig({
+
+    //Настройки различных модулей GruntJS, их нужно предварительно установить через менеджер пакетов npm, или добавить в файл package.json перед запуском npm install
+
+    //Склеивание файлов
+      concat: {
+          options: {
+            separator: ';',
+          },
+          js: {
+            src: src: ['/js/app/*.js', 'js/app/**/*.js'],
+            dest: '../pre_production/js/concant.js',
+          },
+          css: {
+            src: ['/css/*.css'],
+            dest: '../pre_production/css/style.css',
+          },
+      },
+      //Убираем консоль
+      removelogging: {
+          dist: {
+            src: "../pre_production/js/concant.js",
+            dest: "../pre_production/js/concant-clean.js",
+
+            options: {
+              // see below for options. this is optional.
+            }
+          }
+      },
+      //Приводим JSX в JS
+      react: {
+          single_file_output: {
+            files: {
+              '../pre_production/js/jsx_to_js_output.js': '../pre_production/js/concant-clean.js'
+            }
+          },
+      },      
+      //Минимизация     
+      uglify: {
+          options: {
+            mangle: false
+          },
+          my_target: {
+            files: {
+              '../pre_production/js/jsx_to_js_output.min.js': ['../pre_production/js/jsx_to_js_output.js']
+            }
+          }
+      },
+      // Сливаем и минимизируем стили
+      cssmin: {
+          add_banner: {
+            options: {
+              banner: '/* Moskit minified ad concatenated css file */'
+            },
+            files: {
+              '../production/css/style.css': ['../pre_production/css/style.css']
+            }
+       },
+       obfuscator: {
+            files: '../pre_production/js/jsx_to_js_output.min.js',
+            entry: '../pre_production/js/jsx_to_js_output.min.js',
+            out: '../production/obfuscated.js',
+            strings: true,
+            root: __dirname
+          }         
+       }        
+      
+
+  });
+
+  //Загрузка модулей, которые предварительно установлены
+
+  grunt.loadNpmTasks('grunt-contrib-concat');
+  grunt.loadNpmTasks('grunt-remove-logging');
+  grunt.loadNpmTasks('grunt-react');
+  grunt.loadNpmTasks('grunt-contrib-uglify');
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-obfuscator');
+
+  //Эти задания будут выполнятся сразу же когда вы в консоли напечатание grunt, и нажмете Enter
+  grunt.registerTask('default', ['concat', 'removelogging', 'react', 'uglify', 'cssmin', 'obfuscator']);
+};
