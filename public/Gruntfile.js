@@ -35,6 +35,17 @@ module.exports = function(grunt) {
           },
       },
       //”бираем консоль
+      removeLoggingCalls: {
+          // the files inside which you want to remove the console statements
+           files: ['pre_production/js/concant.js'],         
+           options: {
+              methods: ['log', 'info', 'assert'], 
+              strategy: function(consoleStatement) {
+                  return ''; 
+              }
+          }
+      },      
+      /*
       removelogging: {
           dist: {
             src: "pre_production/js/concant.js",
@@ -44,7 +55,7 @@ module.exports = function(grunt) {
               // see below for options. this is optional.
             }
           }
-      },
+      },*/
       //ѕриводим JSX в JS
       react: {
           single_file_output: {
@@ -89,12 +100,13 @@ module.exports = function(grunt) {
   //«агрузка модулей, которые предварительно установлены
 
   grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-remove-logging');
+  //grunt.loadNpmTasks('grunt-remove-logging');
+  grunt.loadNpmTasks('grunt-remove-logging-calls');
   grunt.loadNpmTasks('grunt-react');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-obfuscator');
 
   //Ёти задани€ будут выполн€тс€ сразу же когда вы в консоли напечатание grunt, и нажмете Enter
-  grunt.registerTask('default', ['concat', 'removelogging', 'react', 'uglify', 'cssmin', 'obfuscator']);
+  grunt.registerTask('default', ['concat', 'removeLoggingCalls',  'react', 'uglify', 'cssmin', 'obfuscator']); //'removelogging',
 };
