@@ -19,7 +19,7 @@ var ModalWindowAdd = React.createClass({
         ];
         var header = "Новая запись в "; //+this.entity.name;
 
-        var content = <EntityBlock entity_name={this.props.entity} />; //<ItemEditBox />;
+        var content = <EntityBlock entity_name={this.props.entity} item={this.props.current_id} />; //очень плохое решение с передачей в виде отдельных свойств
         return(
             /* Entity */
             // 2 do: BaseWindow,

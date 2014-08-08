@@ -44,7 +44,7 @@ React.renderComponent(
 
 
 React.renderComponent(
-    MainWindow({screen_name: "doc_type_groups"}), //screen_name="doc_kinds"
+    MainWindow({screen_name: "ranks"}), //screen_name="doc_kinds"
     document.getElementById('main_main')
 );
 

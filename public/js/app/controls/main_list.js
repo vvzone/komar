@@ -116,8 +116,26 @@ var MainList = React. createClass({
         // exchange arrays
         this.setState({items: results});
     },
+    whenClickedCP: function(action){
+        if(action){
+            console.info('this.props.entity');
+            console.info(this.props.entity);
+            var customEvent = new CustomEvent("modalWindowOpen",  {
+                detail: {
+                    action: action,
+                    source: this.props.source,
+                    entity: this.props.entity.entity_name// check this!
+                    /*item: this.state.item, // undefined
+                    current_id: this.props.item.id //undefined*/
+                },
+                bubbles: true
+            });
+            this.getDOMNode().dispatchEvent(customEvent);
+        }
+    },
     render: function () {
         var output = [];
+        var self = this;
 
         console.log('this.state.items.data');
         console.log(this.state.items.data);
@@ -133,12 +151,15 @@ var MainList = React. createClass({
                 />);
         }
 
+        var list_header = [];
         var instant_search_box = [];
-        instant_search_box[0] = <InstantSearch source={this.props.source} searchReceived={this.searchReceived}/>;
+        instant_search_box[0] = <div className="InstantSeacrh"><InstantSearch source={this.props.source} searchReceived={this.searchReceived}/></div>;
 
+        list_header[0] = instant_search_box;
+        list_header[1] = <div className="ButtonAdd"><ButtonAdd clicked={self.whenClickedCP}/></div>;
         return(
             <div className="List">
-                {instant_search_box}
+                <div className="ListHeader">{list_header}</div>
                 <div className="MainList">{output}</div>
             </div>
             )

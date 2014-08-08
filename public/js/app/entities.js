@@ -112,9 +112,18 @@ var EntityBlock = React. createClass({
 var CurrentClassMixin = function () {
     return {
         editMainListRoute: function(source, entity, dependencies){
+            console.log('entity[current_id]');
+            console.log(entity['current_id']);
+
             if(entity['current_id']){
                 console.log('MainItemEdit');
-                return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} />);
+
+                if(entity['current_id'] == 'new'){
+                    delete entity['current_id'];
+                    return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} />);
+                }else{
+                    return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} />);
+                }
             }else{
                 console.log('*=*=MainList=*=*');
                 return(<MainList source={source} entity={entity} dependencies={dependencies} />);
@@ -141,6 +150,8 @@ var FormEntRanks = React. createClass({
     mixins: [CurrentClassMixin],
     render: function(){
         var output = this.editMainListRoute('ranks', this.props.entity, null);
+        console.log('FormEntRanks->this.props.entity');
+        console.log(this.props.entity);
         return(
             <div className="RankBox">
                  {output}

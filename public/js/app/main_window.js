@@ -120,17 +120,20 @@ var ModalWindowRouter = React.createClass({
     render: function(){
         switch(this.state.action){
             case 'add':
-                return(<ModalWindowAdd />);
+                console.log('modal->add');
+                return(<ModalWindowAdd entity={this.state.entity} item="new" current_id="new" />);
             break;
             case 'edit':
-                console.log('edit and state:');
+                console.log('modal->edit and state:');
                 console.log(this.state.current_id);
                 return(<ModalWindowEdit entity={this.state.entity} current_id={this.state.current_id} />);
             break;
             case 'delete':
+                console.log('modal->delete');
                 return(<ModalWindowDelete entity={this.state.entity} current_id={this.state.current_id} item={this.state.item} />);
             break;
             case 'save':
+                console.log('modal->save');
                 return(<ModalWindowSave />);
             break;
         }

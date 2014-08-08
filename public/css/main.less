@@ -167,48 +167,71 @@ div.tree_over_node{
   //.placeholder:before {content: "Drop here"; color: rgb(225,210,90);}
 }
 
+@item_name : @base_modal_width/3 + @huge*1.5;
+@item_cp : @big*18;
+@list_item_width: @item_name + @item_cp+@huge;
 
+div.List{
+  width: @list_item_width + @big;
 
-div.MainList{
-  overflow: hidden;
+  div.ListHeader{
+    padding: 3px;
 
-  div.item{
-    clear: both;
-    float:left;
-    margin: @min;
-    padding: @med;
-    border-radius: @small;
-    border: 1px solid @light_silver;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
-
-    a{
-      text-decoration: none;
-    }
-
-    div.item_name, div.item_cp{
+    div{
       float: left;
     }
 
-    div.item_name{
-      min-width: @base_modal_width/3;
-    }
-
-
-    div.item_cp{
-
-      button{
-        margin-left: @min;
-        text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-      }
+    div.ButtonAdd{
+      float: right;
     }
   }
 
-  /*div.item:hover{
-    background: @light_silver+30;
-    border: 1px solid @light_silver - 50;
-    cursor: pointer;
-  }*/
+  div.MainList{
+    clear: both;
+    overflow: hidden;
+
+    div.item{
+      clear: both;
+      float:left;
+      margin: @min;
+      padding: @med;
+      border-radius: @small;
+      border: 1px solid @light_silver;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+      min-width: @list_item_width;
+
+      a{
+        text-decoration: none;
+      }
+
+      div.item_name, div.item_cp{
+        float: left;
+      }
+
+
+      div.item_name{
+        min-width: @item_name;
+      }
+
+      div.item_cp{
+        min-width: @item_cp;
+
+        button{
+          margin-left: @min;
+          text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+        }
+      }
+    }
+
+    /*div.item:hover{
+      background: @light_silver+30;
+      border: 1px solid @light_silver - 50;
+      cursor: pointer;
+    }*/
+  }
+
 }
+
 
 div.item_attr{
   margin-top: @big;

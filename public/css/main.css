@@ -103,15 +103,28 @@ ul.tree div.tree_box_node_controls {
 ul.tree .placeholder {
   background: #fff078;
 }
-div.MainList {
+div.List {
+  width: 650px;
+}
+div.List div.ListHeader {
+  padding: 3px;
+}
+div.List div.ListHeader div {
+  float: left;
+}
+div.List div.ListHeader div.ButtonAdd {
+  float: right;
+}
+div.List div.MainList {
+  clear: both;
   overflow: hidden;
   /*div.item:hover{
-    background: @light_silver+30;
-    border: 1px solid @light_silver - 50;
-    cursor: pointer;
-  }*/
+      background: @light_silver+30;
+      border: 1px solid @light_silver - 50;
+      cursor: pointer;
+    }*/
 }
-div.MainList div.item {
+div.List div.MainList div.item {
   clear: both;
   float: left;
   margin: 2px;
@@ -119,18 +132,22 @@ div.MainList div.item {
   border-radius: 3px;
   border: 1px solid #d6e5ed;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  min-width: 640px;
 }
-div.MainList div.item a {
+div.List div.MainList div.item a {
   text-decoration: none;
 }
-div.MainList div.item div.item_name,
-div.MainList div.item div.item_cp {
+div.List div.MainList div.item div.item_name,
+div.List div.MainList div.item div.item_cp {
   float: left;
 }
-div.MainList div.item div.item_name {
-  min-width: 410px;
+div.List div.MainList div.item div.item_name {
+  min-width: 440px;
 }
-div.MainList div.item div.item_cp button {
+div.List div.MainList div.item div.item_cp {
+  min-width: 180px;
+}
+div.List div.MainList div.item div.item_cp button {
   margin-left: 2px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
