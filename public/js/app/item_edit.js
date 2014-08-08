@@ -39,7 +39,10 @@ var ItemEditBox = React.createClass({
     render: function () {
         var editable = this.props.prototype.editable_properties;
 
-        var item = this.state.item; //может быть и undefined для новых
+        var item = null;
+        if(this.state.item){
+            var item = this.state.item; //может быть и undefined для новых
+        }
 
         var controls = [];
         var counter = 0;
