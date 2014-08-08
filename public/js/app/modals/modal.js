@@ -19,6 +19,7 @@ var ModalWindowAdd = React.createClass({
         ];
         var header = "Новая запись в "; //+this.entity.name;
 
+        var content = <ItemEditBox />;
         return(
             /* Entity */
             // 2 do: BaseWindow,
@@ -29,8 +30,7 @@ var ModalWindowAdd = React.createClass({
             header={header}
             buttons={buttons}
             >
-                <p>I'm the content.</p>
-                <p>That's about it, really.</p>
+            {content}
             </ModalWindowBase>
             );
 
