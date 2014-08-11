@@ -182,12 +182,16 @@ var ListBoxTwoSide = React.createClass({
             this.setState({items_left: current_list});
             this.setState({items_right: target_list});
         }
+
+        callback['entity'] = this.props.entity; //как вариант source_left - ибо всегда левый селект
+
+        this.props.callback('ListBoxTwoSide callback:');
+        this.props.callback(callback);
     },
     componentDidMount: function() {
         var arr_items_2_select = [];
 
         //всегда выполнять второй запрос только при удачном первом иначе голод и разруха
-
         $.get('http://zend_test/main/'+this.props.source_right, function(result) {
             var arr = [];
             for(var item in result.data){
@@ -203,7 +207,6 @@ var ListBoxTwoSide = React.createClass({
                 }
                 this.setState({items_left: arr});
             }.bind(this));
-
         }.bind(this));
 
         //add listener because it's another table, so this is need to save separately, but with post current_id
@@ -218,6 +221,17 @@ var ListBoxTwoSide = React.createClass({
         *
         * */
 
+    },
+    saveListBox: function(){
+      //триггер сейва формы
+
+        var source = this.props.source_left;
+        var post = [];
+        post = this.state.items_left;
+
+        var current_id = ''; //???!!!! position_id, какое поле?
+        var url = '';
+        url = 'http://zend_test/main/'+ source +'/save/';
     },
     render: function(){
         var combined = [];
