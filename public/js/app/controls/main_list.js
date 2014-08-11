@@ -149,17 +149,19 @@ var MainList = React. createClass({
                     entity={this.props.entity}
                     dependencies={this.props.dependencies}
                 />);
+            console.log('item key='+this.state.items.data[item].id+"\n");
         }
 
-        var list_header = [];
-        var instant_search_box = [];
-        instant_search_box[0] = <div className="InstantSeacrh"><InstantSearch source={this.props.source} searchReceived={this.searchReceived}/></div>;
-
-        list_header[0] = instant_search_box;
-        list_header[1] = <div className="ButtonAdd"><ButtonAdd clicked={self.whenClickedCP}/></div>;
         return(
             <div className="List">
-                <div className="ListHeader">{list_header}</div>
+                <div className="ListHeader">
+                    <div className="InstantSeacrh">
+                        <InstantSearch key="instant_search" source={this.props.source} searchReceived={this.searchReceived}/>
+                    </div>
+                    <div className="ButtonAdd">
+                        <ButtonAdd key="button_add" clicked={self.whenClickedCP} />
+                    </div>;
+                </div>
                 <div className="MainList">{output}</div>
             </div>
             )
