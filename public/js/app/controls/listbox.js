@@ -99,9 +99,14 @@ var ListBox = React.createClass({
         var callback_item=[];
         callback_item = this.props.items[callback['id']];
         callback['item'] = callback_item;
-        this.props.callback(callback);
+        this.props.callback(callback); //они оба передадут коллбэк
         console.log('listbox update');
         //this.forceUpdate();
+
+
+        if(this.props.primary){
+            //this.props.callback(callback); //дописать условия коллбэка
+        }
     },
     handleChange: function(event){
         this.setState({selected: event.target.value});
