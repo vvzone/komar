@@ -186,8 +186,7 @@ var ListBoxTwoSide = React.createClass({
     componentDidMount: function() {
         var arr_items_2_select = [];
 
-        //проблема в том что второй запросы выполняется параллельно с первым.
-        //если не успевает придти первый ответ, то дальнейшая логика ломается.
+        //всегда выполнять второй запрос только при удачном первом иначе голод и разруха
 
         $.get('http://zend_test/main/'+this.props.source_right, function(result) {
             var arr = [];
@@ -196,14 +195,15 @@ var ListBoxTwoSide = React.createClass({
             }
             arr_items_2_select = arr;
             this.setState({items_right: arr});
-        }.bind(this));
 
-        $.get('http://zend_test/main/'+this.props.source_left, function(result) {
-            var arr = [];
-            for(var item in result.data){
-                arr[result.data[item]['id']] = arr_items_2_select[result.data[item]['id']];
-            }
-            this.setState({items_left: arr});
+            $.get('http://zend_test/main/'+this.props.source_left, function(result) {
+                var arr = [];
+                for(var item in result.data){
+                    arr[result.data[item]['id']] = arr_items_2_select[result.data[item]['id']];
+                }
+                this.setState({items_left: arr});
+            }.bind(this));
+
         }.bind(this));
 
         //add listener because it's another table, so this is need to save separately, but with post current_id
@@ -222,12 +222,7 @@ var ListBoxTwoSide = React.createClass({
     render: function(){
         var combined = [];
         var items_left = this.state.items_left;
-        console.info('this.state.items_left typeof='+typeof(this.state.items_left));
-        console.info(this.state.items_left);
         var items_right = this.state.items_right;
-        console.info('this.state.items_right typeof='+typeof(this.state.items_right));
-        console.info(this.state.items_right);
-
 
         for(var id in items_left){
             console.log('id='+id);
