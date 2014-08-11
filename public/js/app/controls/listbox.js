@@ -100,14 +100,24 @@ var ListBox = React.createClass({
         callback_item = this.props.items[callback['id']];
         callback['item'] = callback_item;
         this.props.callback(callback);
-        this.forceUpdate();
+        console.log('listbox update');
+        //this.forceUpdate();
     },
     handleChange: function(event){
         this.setState({selected: event.target.value});
     },
     render: function(){
         var list_box_items=[];
+
+        /*console.log('list-box whole array:');
+        console.info(this.props.items);*/
+
         for(var key in this.props.items){
+
+            /*console.info('key='+key);
+            console.info('this.props.items['+key+']:');
+            console.info(this.props.items[key]);*/
+
             list_box_items.push(
                 <option
                 key={this.props.items[key]['id']}
@@ -175,6 +185,10 @@ var ListBoxTwoSide = React.createClass({
     },
     componentDidMount: function() {
         var arr_items_2_select = [];
+
+        //проблема в том что второй запросы выполняется параллельно с первым.
+        //если не успевает придти первый ответ, то дальнейшая логика ломается.
+
         $.get('http://zend_test/main/'+this.props.source_right, function(result) {
             var arr = [];
             for(var item in result.data){
@@ -208,14 +222,18 @@ var ListBoxTwoSide = React.createClass({
     render: function(){
         var combined = [];
         var items_left = this.state.items_left;
+        console.info('this.state.items_left typeof='+typeof(this.state.items_left));
+        console.info(this.state.items_left);
         var items_right = this.state.items_right;
+        console.info('this.state.items_right typeof='+typeof(this.state.items_right));
+        console.info(this.state.items_right);
+
 
         for(var id in items_left){
             console.log('id='+id);
             console.log('2 delete='+items_right[id]);
             delete items_right[id];
         }
-
         combined[0] = <ListBox key="combo" key_prefix="left" items={items_left} callback={this.listChange} type="left" />;
         combined[1] = <ListBox key="combo_right" key_prefix="right" items={items_right} callback={this.listChange} type="right" />;
 

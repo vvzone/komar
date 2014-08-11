@@ -21,13 +21,17 @@ var ItemEditBox = React.createClass({
         console.info(this.state.item);
     },
     itemUpdate: function (property) {
-        //console.info('itemUpdate');
+        console.info('itemUpdate');
         var current_item = this.state.item;
         for (var key in property) {
             current_item[key] = property[key];
         }
         current_item[property.db_prop_name] = property.value;
         this.setState({item: current_item});
+    },
+    itemUpdateDependency: function(e){
+        alert('Dependency Update');
+        console.log(e);
     },
     componentWillMount: function () {
         window.addEventListener("saveButtonClick", this.saveForm, true);
@@ -74,7 +78,7 @@ var ItemEditBox = React.createClass({
                                 db_prop_name={dependencies_by_place[counter].db_prop_name}
                                 item={item}
                                 current_id={this.props.item[dependencies_by_place[counter].db_prop_name]}
-                                callback={self.itemUpdate} />);
+                                callback={self.itemUpdateDependency} />);
                         }
                 }
             }
@@ -109,19 +113,19 @@ var MainItemEdit = React. createClass({
     },
     componentWillMount: function() {
         var self = this;
+
         $.ajax({
             type: "POST",
-            url: 'http://zend_test/main/' + this.props.source+'/'+this.props.entity.current_id,
-            data: ''+this.props.entity.current_id+'',
-            success: function(response){
+            url: 'http://zend_test/main/' + this.props.source + '/' + this.props.entity.current_id,
+            data: '' + this.props.entity.current_id + '',
+            success: function (response) {
                 console.info('response');
                 console.info(response);
-                self.setState({item : response});
+                self.setState({item: response});
             }
-        })
-            .error(function () {
-                alert("Network Error.");
-            });
+        }).error(function () {
+            alert("Network Error.");
+        });
     },
     render: function(){
         var controls = [];

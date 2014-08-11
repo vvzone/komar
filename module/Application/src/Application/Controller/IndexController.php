@@ -168,12 +168,22 @@ class IndexController extends AbstractActionController
             $data_array = $this->instantSearch($query, $data_array);
         }
 
+
+        /*
+         * old-style
+         * */
+        /*
         $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         if($current_id){
             $data_array = $this->searchArray($data_array, $current_id);
         }
 
         $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        */
+        /* <REST> ------  */
+        $data_array = $this->restApi($data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        /* </REST> ------  */
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
@@ -345,13 +355,13 @@ class IndexController extends AbstractActionController
         $editable_array = array();
         $prototype_array = array('editable_properties' => $editable_array);
 
-        $data_array = array(
+        /*$data_array = array(
             1 => array('name' => 'Рядовой', 'id' => 1, 'order' => 1),
             2 => array('name' => 'Сержант', 'id' => 2, 'order' => 2),
             3 => array('name' => 'Старший сержант', 'id' => 3, 'order' => 3),
             4 => array('name' => 'Лейтенант', 'id' => 4, 'order' => 3),
             5 => array('name' => 'Старший лейтенант', 'id' => 5, 'order' => 3)
-        );
+        );*/
 
         $data_array = array(
             array('id' => 4, 'order' => 1), //id, rank_id, pos_id, order
@@ -865,12 +875,15 @@ class IndexController extends AbstractActionController
         $id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
         $property = $this->getEvent()->getRouteMatch()->getParam('property', 0);
         $sub_action = $this->getEvent()->getRouteMatch()->getParam('sub_action', 0);
+        $action = $this->getEvent()->getRouteMatch()->getParam('action', 0);
 
         /*
             echo 'current_id='.$id."\n";
             echo 'current_property='.$property."\n";
             echo 'current_sub_action='.$sub_action."\n";
+            echo 'ACTION='.$action."\n";
         */
+
 
         if($id){
             //echo "\nid\n";
@@ -893,6 +906,12 @@ class IndexController extends AbstractActionController
                 return $this->searchArray($data_array, $id, $property);
             }
             return $data_array = $this->searchArray($data_array, $id);
+        }else{ //only action
+            if($sub_action == 'new'){
+                // ibn fact this is not a sub_action. it's second argument
+                return $data_array = null;
+            }
+            return $data_array;
         }
 
     }

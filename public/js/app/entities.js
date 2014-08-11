@@ -119,7 +119,7 @@ var CurrentClassMixin = function () {
                 console.log('MainItemEdit');
 
                 if(entity['current_id'] == 'new'){
-                    delete entity['current_id'];
+                    entity['current_id'] = 'new';
                     return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} />);
                 }else{
                     return(<MainItemEdit source={source} entity={entity} dependencies={dependencies} />);
