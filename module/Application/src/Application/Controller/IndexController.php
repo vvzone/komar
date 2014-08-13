@@ -870,6 +870,115 @@ class IndexController extends AbstractActionController
         return $JsonModel;
     }
 
+    /*
+     * 5.4.9	Типы атрибутов
+Таблица: AttributeType
+Содержит информацию о правилах заполнения атрибутов (мета-данные).
+
+№	Поле	Тип	Описание
+1	ID	Integer	Идентификатор объекта
+2	Name	Varchar(20)
+3	Description	Varchar(100)	Название типа документа
+4	BaseAttrTypeID	Integer	Идентификатор базового типа
+5	VerifyMetod	Integer	Идентификатор метода верификации
+
+     * */
+    public function attributetypesAction(){
+        /*
+         * Лимиты присылает Андрюха вместе с base_attr_type
+         * Слишком запутанно. На потом.
+         * */
+        $base_attr_type = array(0 => 'Целое', 1 => 'Вещественное', 2 => 'Текст', 3 => 'Булевый', 4 => 'Дата', 5 => 'Время', 6 => 'Дата/время', 7 => 'Список',8=> 'Составной');
+        $attribute_type_limits = array(
+            1 => array('тип' => 'обьект'),
+        );
+
+        $attribute_type_list_values = array(
+            array()
+        );
+
+        $editable_array = array(
+            'name' => 'Название',
+            'description' => 'Описание типа атрибута',
+            'base_attr_type' => 'Базовый тип',
+            //'verify_method' => 'Метод верификации',
+            'attribute_type_limits' => 'Лимиты'
+        );
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array(
+                'id' => 1,
+                'name' => 'Положительный целый (к)',
+                'description' => 'Описание типа атрибута',
+                'base_attr_type' => $base_attr_type,
+                'verify_method' => 1,
+                'attribute_type_limits' => $attribute_type_limits,
+                //'attribute_type_list_values' => null/
+            ),
+            array(
+                'id' => 2,
+                'name' => 'Материальная ответственность',
+                'description' => '',
+                'base_attr_type' => 8, //список
+                'verify_method' => 2,
+                'attribute_type_limits' => array('class' => 'attribute_type_list_values', 'param' => array('id'=> 0))
+            ),
+            array(
+                'id' => 3,
+                'name' => 'Положительный целый (б)',
+                'description' => 'Описание типа атрибута',
+                'base_attr_type' => array('class' => 'base_attr_type', 'param' => 0),
+                'verify_method' => 1,
+                'attribute_type_limits' => array('class' => 'attribute_type_limits_int', 'param' => array('id'=> 1))
+                //'attribute_type_list_values' => null/
+            ),
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        /* <REST> ------  */
+        $data_array = $this->restApi($data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        /* </REST> ------  */
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+    }
+
+    public function routenodetypesAction(){
+        $editable_array = array(
+            'name' => 'Название',
+        );
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Автор'),
+            array('id' => 2, 'name' => 'Соредактор'),
+            array('id' => 3, 'name' => 'Визирующий'),
+            array('id' => 4, 'name' => 'Утверждающий'),
+            array('id' => 5, 'name' => 'Исполнитель')
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        /* <REST> ------  */
+        $data_array = $this->restApi($data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        /* </REST> ------  */
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($response);
+        return $JsonModel;
+    }
+
     public function restApi(array $data_array, $query =null){
 
         $id = $this->getEvent()->getRouteMatch()->getParam('id', 0);

@@ -2,7 +2,7 @@
 
 
 var EntityBlock = React. createClass({
-    /* Router Class
+    /* Router Class (& Factory)
      * props:
      * entity_name = '',
      * host - for dependencies (whole array of item, inc id, and all fields)
