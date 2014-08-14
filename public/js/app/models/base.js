@@ -1,3 +1,30 @@
+// List of API URLs.
+
+
+var URLs = {
+    ranks: function() {
+        return "/api/ranks";
+    },
+    rank: function(id) {
+        return "/api/ranks/"+ id;
+    },
+    positions: function() {
+        return "/api/positions";
+    },
+    position: function(id) {
+        return "/api/positions/"+ id;
+    }
+    /*subscriptions: function(userId, id) {
+     return "/api/users/"+ userId +"/subscriptions/" + id;
+     }*/
+};
+
+//apiUrl добавить
+var apiUrl = function(type) {
+    return URLs[type] ?
+        URLs[type].apply(this, [].slice.call(arguments, 1)) :
+        undefined;
+};
 
 var Rank = Backbone.Model.extend({
     defaults: {
@@ -41,33 +68,6 @@ var Positions = Backbone.Collection.extend({
     }
 });
 
-// List of API URLs.
-var URLs = {
-    ranks: function() {
-        return "/api/ranks";
-    },
-    rank: function(id) {
-        return "/api/ranks/"+ id;
-    },
-    positions: function() {
-        return "/api/positions";
-    },
-    position: function(id) {
-        return "/api/positions/"+ id;
-    }
-    /*subscriptions: function(userId, id) {
-        return "/api/users/"+ userId +"/subscriptions/" + id;
-    }*/
-};
-
-
-//apiUrl добавить
-var apiUrl = function(type) {
-    return URLs[type] ?
-        URLs[type].apply(this, [].slice.call(arguments, 1)) :
-        undefined;
-};
-
 var PositionView = Backbone.View.extend({
     initialize: function() {
         this.ranks = new Ranks(
@@ -95,11 +95,5 @@ var PositionRanks = Backbone.Model.extend({
         //this.name = new Rank;
         //this.name.url = '/position/' + this.id+'/ranks/' ;
         //this.name.on("reset", this.updateCounts);
-    }
-});
-
-var RouteNodeType = Backbone.Model.extend({
-    defaults: {
-        name: null
     }
 });
