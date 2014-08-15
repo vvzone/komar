@@ -8,6 +8,7 @@ require.config({
         jsx: './libs/jsx/JSXTransformer',
         react: './libs/react/react'
     },
+    urlArgs: "v=" +  (new Date()).getTime(), //remove for production
     shim: {
         jquery: {
             exports: '$'
@@ -20,12 +21,22 @@ require.config({
             deps:["jquery", "underscore"],
             exports: 'Backbone'
         }
-    }
+    },
+    catchError: true
 });
+
+
+require.onError = function (err) {
+    console.log(err.requireType);
+    console.log('modules: ' + err.requireModules);
+    throw err;
+};
 
 require(["app"], function (App) {
     App.init();
 });
+
+
 
 /*
 require([
