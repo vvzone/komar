@@ -39,10 +39,18 @@ define(
            if(view){
                if(id){
                    require(['view/'+view], function(ViewItem){
+                       console.log('getting view/'+view);
+                       console.log('returned ViewItem-obj:');
+                       console.log(ViewItem);
+
+                       ViewItem.initialize();
                    });
                }else{
-                   require(['view/'+view+'_collection'], function(ViewCollection){
-
+                   require(['view/'+view+'_list'], function(ViewCollection){
+                       console.log('getting view/'+view+'_list (collection)');
+                       console.log('returned ViewCollection-obj:');
+                       console.log(ViewCollection);
+                       ViewCollection.initialize();
                    });
                }
            }

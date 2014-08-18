@@ -6,7 +6,8 @@ require.config({
         backbone: './libs/backbone/backbone',
         bootstrap: './libs/bootstrap/bootstrap.min',
         jsx: './libs/jsx/JSXTransformer',
-        react: './libs/react/react'
+        react: './libs/react/react',
+        apiUrl: 'apiUrl'
     },
     urlArgs: "v=" +  (new Date()).getTime(), //remove for production
     shim: {
