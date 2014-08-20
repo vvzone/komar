@@ -38,17 +38,17 @@ define(
 
            if(view){
                if(id){
-                   require(['view/'+view], function(ViewItem){
-                       console.log('getting view/'+view);
-                       console.log('returned ViewItem-obj:');
+                   console.log('getting module views/'+view);
+                   require(['views/'+view], function(ViewItem){
+                       console.log('module returned ViewItem-obj:');
                        console.log(ViewItem);
 
-                       ViewItem.initialize();
+                       //ViewItem.initialize();
                    });
                }else{
-                   require(['view/'+view+'_list'], function(ViewCollection){
-                       console.log('getting view/'+view+'_list (collection)');
-                       console.log('returned ViewCollection-obj:');
+                   console.log('getting module views/'+view+'_list (collection)');
+                   require(['views/'+view+'_list'], function(ViewCollection){
+                       console.log('module returns ViewCollection-obj:');
                        console.log(ViewCollection);
 
                        //ViewCollection.initialize(); //-second time init (auto)
