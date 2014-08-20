@@ -16,7 +16,7 @@ define(
             }
         });
 
-        return new Positions;
+        return Positions;
     }
 );
 

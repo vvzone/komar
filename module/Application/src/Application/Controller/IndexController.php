@@ -344,7 +344,18 @@ class IndexController extends AbstractActionController
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($response);
+
         return $JsonModel;
+
+        /*
+        $view = new ViewModel(array(
+            'message' => 'Hello world',
+        ));
+
+        // Disable layouts; use this view model in the MVC event instead
+        $view->setTerminal(true);
+
+        return $view;*/
     }
 
     public function positionsranksAction(){

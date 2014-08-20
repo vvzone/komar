@@ -50,7 +50,8 @@ define(
                        console.log('getting view/'+view+'_list (collection)');
                        console.log('returned ViewCollection-obj:');
                        console.log(ViewCollection);
-                       ViewCollection.initialize();
+
+                       //ViewCollection.initialize(); //-second time init (auto)
                    });
                }
            }

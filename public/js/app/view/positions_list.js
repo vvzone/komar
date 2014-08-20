@@ -6,23 +6,38 @@ define(
         'backbone',
         'react',
         'apiUrl',
-        'models/positions_collection'
-    ],function($, _, Backbone, React, apiUrl, Positions){
-
+        'models/positions_collection',
+        'view/position'
+    ],function($, _, Backbone, React, apiUrl, PositionsCollection, PositionView){
 
         var PositionsListView = Backbone.View.extend({
-            el: 'main_main',
-            template: '<div class="widget-container">Test</div>',
+            el: '#main_main', // 2-do: extend from base-class
+            tagName: 'ul',
             initialize: function() {
-                this.positions = Positions.fetch();
-                // this.get('positions'), {url: apiUrl('positions', this.id)}
+                /*
+                var response = Positions.fetch();
+                this.collection = response; //['responseJSON'];
+                */
+                this.render();
             },
             render: function(){
-                this.$el.html(this.template);
+                this.collection.each(function(position){
+                    var positionView = new PositionView({ model: position });
+                });
+
             }
         });
 
-        return new PositionsListView(); //PositionsListView;
+        var Positions = new PositionsCollection;
+        var p = Positions.fetch();
+        //var PositionsList = new PositionsListView;
+
+        p.done(function () {
+            var PositionsList = new PositionsListView({collection: Positions});
+            PositionsList.render();
+        });
+
+        //return ; //PositionsListView;
     }
 );
 

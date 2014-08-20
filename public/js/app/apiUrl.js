@@ -8,18 +8,20 @@ define(
 
     ],function($, _, Backbone, React){
 
+        var host = 'http://127.0.0.1:1337';
+        var prefix = '/api/catalogs';
         var URLs = {
             ranks: function() {
-                return "/api/ranks";
+                return host + prefix + "/ranks";
             },
             rank: function(id) {
-                return "/api/ranks/"+ id;
+                return host + prefix + "/ranks/"+ id;
             },
             positions: function() {
-                return "/api/positions";
+                return host + prefix + "/positions";
             },
             position: function(id) {
-                return "/api/positions/"+ id;
+                return host + prefix + "/positions/"+ id;
             }
             /*subscriptions: function(userId, id) {
              return "/api/users/"+ userId +"/subscriptions/" + id;
