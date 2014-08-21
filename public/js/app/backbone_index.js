@@ -5,7 +5,9 @@ require.config({
         underscore: './libs/underscore/underscore-min',
         backbone: './libs/backbone/backbone',
         bootstrap: './libs/bootstrap/bootstrap.min',
-        jsx: './libs/jsx/JSXTransformer',
+        //jsx: './libs/jsx/JSXTransformer',
+        JSXTransformer: './libs/jsx/JSXTransformer',
+        jsx: './libs/jsx/jsx',
         react: './libs/react/react',
         apiUrl: 'apiUrl'
     },

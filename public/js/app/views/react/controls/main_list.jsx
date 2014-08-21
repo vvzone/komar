@@ -1,5 +1,14 @@
 /** @jsx React.DOM */
 
+define(
+    'views/react/controls/main_list',
+    [
+        'jquery',
+        'underscore',
+        'backbone',
+        'react'
+    ],function($, _, Backbone, React){
+
 var ListItem = React.createClass({
     /*
      * <ListItem item=[] key='' action={this.whenListItemsAction} />
@@ -167,3 +176,8 @@ var MainList = React. createClass({
             )
     }
 });
+
+    return MainList;
+/* </require-js> */
+    }
+);

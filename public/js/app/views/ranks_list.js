@@ -6,8 +6,8 @@ define(
         'backbone',
         'react',
         'models/ranks_collection',
-        'views/rank',
-        
+        'views/rank'
+
     ],function($, _, Backbone, React, RanksCollection, RankView){
 
         console.log('module views/ranks_list loaded');
@@ -27,7 +27,7 @@ define(
                 console.log('render, this.collection:');
                 console.log(this.collection);
 
-                require(['views/react/controls/main_list'], function(MainList){
+                require(['react','jsx!views/react/controls/main_list'], function(React, MainList){
                     console.log('module returns MainList obj:');
                     console.log(MainList);
                 });
