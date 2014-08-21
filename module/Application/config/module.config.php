@@ -112,7 +112,35 @@ return array(
                         ),
                     ),
                 ),
-            ),            
+            ),
+            'api' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/api/catalogs',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Catalogs',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:action[/:id]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                                'id' => '',
+                            )
+                        )
+                    )
+                )
+            )
         ),
     ),
     'service_manager' => array(
@@ -136,7 +164,8 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController'
+            'Application\Controller\Index' => 'Application\Controller\IndexController',
+            'Application\Controller\Catalogs' => 'Application\Controller\CatalogsController'
         ),
     ),
     'view_manager' => array(
