@@ -28,14 +28,16 @@ define(
                 console.log(this.collection);
 
                 //require(['react','jsx!views/react/controls/main_list'], function(React, MainList){
+
+                /*
                 require(['jsx!views/react/controls/main_list'], function(MainList){
                     console.log('module returns MainList obj:');
                     console.log(MainList);
 
 
                 });
-
-                /* -- render with backbone view
+                */
+                /* -- render with backbone view*/
 
                 this.collection.each(function(rank){
                     console.log('collection.each, current model:');
@@ -43,7 +45,7 @@ define(
                     var rankView = new RankView({ model: rank });
                     rankView.render();
                 });
-                */
+                
 
             }
         });

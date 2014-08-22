@@ -2,11 +2,10 @@
 
 define(
     //'views/react/controls/main_list',
-    'jsx!js/app/views/react/controls/main_list.jsx',
+    'views/react/search',
     [
         'jquery',
-        'react',
-        'jsx!js/app/views/react/search.jsx'
+        'react'
     ],function($, React){
 
         var SearchBox = React.createClass({

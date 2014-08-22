@@ -30,7 +30,6 @@ var ButtonDiscard = React.createClass({
     }
 });
 
-
 var ButtonAdd = React.createClass({
     handleClick: function (e) {
         var action = 'add';
