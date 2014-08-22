@@ -6,10 +6,14 @@ require.config({
         backbone: './libs/backbone/backbone',
         bootstrap: './libs/bootstrap/bootstrap.min',
         //jsx: './libs/jsx/JSXTransformer',
-        JSXTransformer: './libs/jsx/JSXTransformer',
         jsx: './libs/jsx/jsx',
+        JSXTransformer: './libs/jsx/JSXTransformer',
+        text: './libs/text',
         react: './libs/react/react',
         apiUrl: 'apiUrl'
+    },
+    jsx: {
+        fileExtension: '.jsx'
     },
     urlArgs: "v=" +  (new Date()).getTime(), //remove for production
     shim: {

@@ -1,13 +1,11 @@
-/** @jsx React.DOM */
 
 define(
     'views/react/controls/main_list',
     [
         'jquery',
-        'underscore',
-        'backbone',
-        'react'
-    ],function($, _, Backbone, React){
+        'react',
+        'jsx!views/react/search'
+    ],function($, React, InstantSearch){
 
 var ListItem = React.createClass({
     /*
@@ -177,7 +175,8 @@ var MainList = React. createClass({
     }
 });
 
-    return MainList;
+    /*return MainList;*/
+        return MainList;
 /* </require-js> */
     }
 );
