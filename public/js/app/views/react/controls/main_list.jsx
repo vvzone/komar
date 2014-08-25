@@ -5,7 +5,7 @@ define(
         'jquery',
         'react',
         'jsx!views/react/search',
-        'jsx!views/react/controls/list_item',
+        //'jsx!views/react/controls/list_item',
         'jsx!views/react/base/btn_add',
         'jsx!views/react/base/btn_edit',
         'jsx!views/react/base/btn_delete',
@@ -27,58 +27,38 @@ var MainList = React. createClass({
         }
     },
     componentDidMount: function() {
-        var url = '';
-        console.info('MainList, mount, this.props');
-        console.log(this.props);
-        if(this.props.entity.host){
-            var pole_name = 'id';
-            if(this.props.entity.db_prop_name){
-                pole_name = this.props.entity.db_prop_name;
-            }
-            url = 'http://zend_test/main/'
-                + this.props.source
-                +'/search/'
-                + pole_name+'/'
-                + this.props.entity.host.id;
-        }else{
-            url = 'http://zend_test/main/'+this.props.source;
-        }
-
-        $.get(url, function(response) {
-                this.setState({items: response});
-            }.bind(this))
-            .error(function() {
-                alert("Network Error.");
-            });
+        console.log('componentDidMount, props.collection:');
+        console.log(this.props.collection);
+        this.setState({items: this.props.collection})
     },
     searchReceived: function(results){
-        // exchange arrays
         this.setState({items: results});
     },
     whenClickedCP: function(action){
+        /*
         if(action){
             console.info('MainList, whenClickedCP, this.props.entity');
             console.info(this.props.entity);
+
             var customEvent = new CustomEvent("modalWindowOpen",  {
                 detail: {
                     action: action,
                     source: this.props.source,
                     entity: this.props.entity.entity_name// check this!
-                    /*item: this.state.item, // undefined
-                    current_id: this.props.item.id //undefined*/
                 },
                 bubbles: true
             });
             this.getDOMNode().dispatchEvent(customEvent);
-        }
+        }*/
     },
     render: function () {
         var output = [];
         var self = this;
+        console.log('MainList -> render, this.state.items');
+        console.log(this.state.items);
 
-        console.log('this.state.items.data');
-        console.log(this.state.items.data);
-        for (var item in this.state.items.data) {
+
+        /*for (var item in this.state.items.data) {
             output.push(
                 <ListItem
                     source={this.props.source}
@@ -88,8 +68,7 @@ var MainList = React. createClass({
                     entity={this.props.entity}
                     dependencies={this.props.dependencies}
                 />);
-            console.log('item key='+this.state.items.data[item].id+"\n");
-        }
+        }*/
 
         return(
             <div className="List">
@@ -113,9 +92,5 @@ var MainList = React. createClass({
         };
 
         return MainList;
-    /*return MainList;*/
-
-        /*return MainList;*/
-/* </require-js> */
     }
 );

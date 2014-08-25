@@ -18,13 +18,14 @@ define(
                 name: null,
                 order: null
             },
-            pole_names: {
+            attr_rus_names: {
                 name: 'Название',
                 short_name: 'Сокр. название',
                 description: 'Описание',
-                order: 'Порядок',
+                /*order: 'Порядок',*/
                 is_officer: 'Офицер'
             },
+            attr_dependencies: null, //for recursive objects
             url: function() {
                 return apiUrl('rank', this.id);
             }
