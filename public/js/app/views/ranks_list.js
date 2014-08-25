@@ -60,8 +60,8 @@ define(
                     self.collection.each(function(rank){
                         console.log('collection.each, current model:');
                         console.log(rank);
-                        var rankView = new RankView({ model: rank });
-                        rankView.render();
+                        new RankView({ model: rank});
+                        /*rankView.render();*/
                     });
                 });
                 /* -- render with backbone view*/

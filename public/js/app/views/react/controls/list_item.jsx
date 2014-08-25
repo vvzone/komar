@@ -25,7 +25,10 @@ define(
             },
             whenClickedCP: function(action){
                 console.log('whenClickedCP, action -'+action);
-                /*if(action){
+
+                if(action){
+                    this.props.action(action);
+                    /*
                     var customEvent = new CustomEvent("modalWindowOpen",  {
                         detail: {
                             action: action,
@@ -36,8 +39,8 @@ define(
                         },
                         bubbles: true
                     });
-                    this.getDOMNode().dispatchEvent(customEvent);
-                }*/
+                    this.getDOMNode().dispatchEvent(customEvent);*/
+                }
             },
             render: function(){
                 console.log('ListItem render, item');
@@ -92,7 +95,7 @@ define(
                 var edit_form = <div className="EditItemForm">{editable_controls}</div>;
                 return(
                     <div className="item" key={'item'+this.state.model.get('id')}>
-                        <div className="item_name">{this.state.model.get('name')}</div>
+                        <div className="item_name" clicked={this.whenClicked}>{this.state.model.get('name')}</div>
                         <div className="item_cp">
                             <ButtonEdit clicked={this.whenClickedCP} id={this.state.model.get('id')} key={'edit' +this.props.model.get('id')} mini="false" />
                             <ButtonDelete clicked={this.whenClickedCP} id={this.state.model.get('id')} key={'delete'+this.props.model.get('id')} mini="false" />
