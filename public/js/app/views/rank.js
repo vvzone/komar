@@ -9,7 +9,7 @@ define(
     ],function($, _, Backbone, React, ListItem){
 
         var RankView = Backbone.View.extend({
-            el: $("div#main_list"),
+            tagName: 'li',
             /*template: _.template($("#template-movie").html()),*/
             initialize: function() {
                 console.log('views/rank initialization');
@@ -25,13 +25,26 @@ define(
             render: function() {
                 console.info('RankView render... model:');
                 console.info(this.model);
+                console.error('*this*');
+                console.log(this);
+                console.warn('trying find container');
+                console.info($(this.el));
+
                 var self = this;
-                React.renderComponent(new ListItem({
+                this.$el.html('test');
+
+                return(
+                    new ListItem({
+                            model: self.model,
+                            key: 'item'+this.model.get('id'),
+                            action: this.clickedCP
+                        })
+                    );
+               /* React.renderComponent(new ListItem({
                     model: self.model,
                     key: 'item'+this.model.get('id'),
                     action: this.clickedCP
-                }), document.getElementById("main_list"));
-
+                }), this.$el.html);*/
             }
         });
 

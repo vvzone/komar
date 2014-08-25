@@ -35,7 +35,7 @@ define(
                 console.log('this.template()');
                 console.log(this.template);
 
-                $(this.el).html(this.template);
+                //$(this.el).html(this.template);
 
                 //require(['react','jsx!views/react/controls/main_list'], function(React, MainList){
 
@@ -60,7 +60,9 @@ define(
                     self.collection.each(function(rank){
                         console.log('collection.each, current model:');
                         console.log(rank);
-                        new RankView({ model: rank});
+                        var ReactRankView = new RankView({ model: rank});
+
+                        React.renderComponent((ReactRankView), self.$el.html.append());
                         /*rankView.render();*/
                     });
                 });
