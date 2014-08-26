@@ -60,7 +60,10 @@ define(
                     self.collection.each(function(rank){
                         console.log('collection.each, current model:');
                         console.log(rank);
+
                         var ReactRankView = new RankView({ model: rank});
+
+                        // Избавиться от вида RankView;
 
                         React.renderComponent((ReactRankView), self.$el.html.append());
                         /*rankView.render();*/

@@ -9,6 +9,25 @@ define(
         'jsx!views/react/base/btn_delete',
         'models/rank'
     ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, Rank){
+
+        var MainList = React.createClass({
+            componentWillMount: function(){
+                //2-do: search
+            },
+            render: function(){
+                var collection = this.props.collection;
+                var items = collection.map(function(model){
+                    console.log('MainList -> collection.map, model:');
+                    console.log(model);
+
+                    return <ListItem model={model} />
+                });
+                return(
+                    <ul>{items}</ul>
+                    );
+            }
+        });
+
         var ListItem = React.createClass({
             getInitialState: function(){
                 return {
@@ -27,7 +46,10 @@ define(
                 console.log('whenClickedCP, action -'+action);
 
                 if(action){
-                    this.props.action(action);
+                    //this.props.action(action);
+                    if(action == 'delete'){
+                        console.log('ListItem -> delete -> id = '+this.model.get('id'));
+                    }
                     /*
                     var customEvent = new CustomEvent("modalWindowOpen",  {
                         detail: {
@@ -39,7 +61,8 @@ define(
                         },
                         bubbles: true
                     });
-                    this.getDOMNode().dispatchEvent(customEvent);*/
+                    this.getDOMNode().dispatchEvent(customEvent);
+                    */
                 }
             },
             render: function(){
@@ -105,6 +128,6 @@ define(
                 );
             }
         });
-        return ListItem;
+        return MainList;
     }
 );
