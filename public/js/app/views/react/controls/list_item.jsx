@@ -13,6 +13,13 @@ define(
         var MainList = React.createClass({
             componentWillMount: function(){
                 //2-do: search
+                console.log('MainList WillMount');
+            },
+            actionHandle: function(action){
+                if(action == 'delete'){
+                    //console.log('MainList -> delete -> id = '+this.state.model.get('id'));
+                    //this.state.model.destroy;
+                }
             },
             render: function(){
                 var collection = this.props.collection;
@@ -40,76 +47,33 @@ define(
             componentWillMount: function(){
                 console.log('ListItem WillMount, model:');
                 console.log(this.props.model);
-                this.setState({model: this.props.model});
+                //this.setState({model: this.props.model});
             },
             whenClickedCP: function(action){
                 console.log('whenClickedCP, action -'+action);
-
                 if(action){
                     //this.props.action(action);
                     if(action == 'delete'){
-                        console.log('ListItem -> delete -> id = '+this.model.get('id'));
+                        console.log('ListItem -> delete -> id = '+this.props.model.get('id'));
+                        //var thisInCollection = this.state.model.collection.get(this.state.model.get('id'));
+                        //thisInCollection.remove();
+                        this.props.model.destroy();
                     }
-                    /*
-                    var customEvent = new CustomEvent("modalWindowOpen",  {
-                        detail: {
-                            action: action,
-                            source: this.props.source,
-                            entity: this.props.entity.entity_name,
-                            item: this.state.item,
-                            current_id: this.props.item.id
-                        },
-                        bubbles: true
-                    });
-                    this.getDOMNode().dispatchEvent(customEvent);
-                    */
                 }
             },
             render: function(){
                 console.log('ListItem render, item');
-                console.log(this.state.model);
+                console.log(this.props.model);
 
-                var editable = this.state.model.attr_rus_names;
-                /*var delete_key= 'delete/'+this.props.item.id;
-                var edit_key= 'edit/'+this.props.item.id;
+                var editable = this.props.model.attr_rus_names;
 
-                var item_additional_info = [];
-                var editable = this.props.prototype.editable_properties;
-
-                if(this.state.open == true){
-                    var self=this;
-
-                    for(var prop in this.state.item){ // onClick output short info
-                        if(editable[prop]){
-                            item_additional_info.push(
-                                <div>{editable[prop]}:{this.state.item[prop]}</div>
-                            )
-                        }
-                    }
-                }
-
-                var edit_properties_box = [];
-                var items = this.state.item;
-
-                return(
-                    <div className="item">
-                        <div className="item_name"><ItemLink item={this.props.item} onClick={this.whenClicked} /></div>
-                        <div className="item_cp">
-                            <ButtonEdit clicked={this.whenClickedCP} id={this.props.item.id} key={edit_key} mini={this.props.non_base}/>
-                            <ButtonDelete clicked={this.whenClickedCP} id={this.props.item.id} key={delete_key} mini={this.props.non_base}/>
-                        </div>
-                {item_additional_info}
-                {edit_properties_box}
-                    </div>
-                    )*/
-                //var self = this;
                 var editable_controls = [];
                 if(this.state.open == true){
                     for(var attr in editable){
                         editable_controls.push(
                             <div className="Edit_Form">
                                 <div className="control_name">{editable[attr]}</div>
-                                <div className="control">{this.state.model.get(attr)}</div>
+                                <div className="control">{this.props.model.get(attr)}</div>
                             </div>
                         );
                     }
@@ -117,11 +81,11 @@ define(
 
                 var edit_form = <div className="EditItemForm">{editable_controls}</div>;
                 return(
-                    <div className="item" key={'item'+this.state.model.get('id')}>
-                        <div className="item_name" clicked={this.whenClicked}>{this.state.model.get('name')}</div>
+                    <div className="item" key={'item'+this.props.model.get('id')}>
+                        <div className="item_name" clicked={this.whenClicked}>{this.props.model.get('name')}</div>
                         <div className="item_cp">
-                            <ButtonEdit clicked={this.whenClickedCP} id={this.state.model.get('id')} key={'edit' +this.props.model.get('id')} mini="false" />
-                            <ButtonDelete clicked={this.whenClickedCP} id={this.state.model.get('id')} key={'delete'+this.props.model.get('id')} mini="false" />
+                            <ButtonEdit clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'edit' +this.props.model.get('id')} mini="false" />
+                            <ButtonDelete clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'delete'+this.props.model.get('id')} mini="false" />
                         </div>
                     {edit_form}
                     </div>

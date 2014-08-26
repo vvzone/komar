@@ -40,11 +40,6 @@ define(
                             action: this.clickedCP
                         })
                     );
-               /* React.renderComponent(new ListItem({
-                    model: self.model,
-                    key: 'item'+this.model.get('id'),
-                    action: this.clickedCP
-                }), this.$el.html);*/
             }
         });
 

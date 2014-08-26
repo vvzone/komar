@@ -23,8 +23,13 @@ define(
                 console.log('init, this.collection:');
                 console.log(this.collection);
 
-                this.collection.bind('reset', this.render);
+                this.collection.bind('destroy', this.aughtung());
+                this.collection.bind('change', this.render());
+                this.collection.bind('reset', this.render());
                 this.render();
+            },
+            aughtung: function(){
+              console.log('RanksListView -> receive "destroy"');
             },
             render: function(){
                 console.log('render, this.collection:');
@@ -46,17 +51,21 @@ define(
 
 
                 });*/
-                /*
-                require(['jsx!views/react/controls/main_list'], function(MainList){
-                    console.log('module returns MainList obj:');
-                    console.info(MainList);
-                    console.log('trying set collection 2 obj:');
-                    console.info(self.collection);
-                    React.renderComponent(new MainList({
-                        collection: self.collection
-                    }), document.getElementById("main_main"));
-                });*/
                 $(document).ready(function(){
+                     require(['jsx!views/react/controls/list_item'], function(MainList){
+                         console.log('module returns MainList obj:');
+                         console.info(MainList);
+                         console.log('trying set collection 2 obj:');
+                         console.info(self.collection);
+
+                         React.renderComponent(
+                             new MainList({
+                                    collection: self.collection
+                                }), document.getElementById("main_main")
+                         );
+                     });
+
+                    /*
                     self.collection.each(function(rank){
                         console.log('collection.each, current model:');
                         console.log(rank);
@@ -64,11 +73,11 @@ define(
                         var ReactRankView = new RankView({ model: rank});
 
                         // Избавиться от вида RankView;
-
                         React.renderComponent((ReactRankView), self.$el.html.append());
-                        /*rankView.render();*/
                     });
+                    */
                 });
+
                 /* -- render with backbone view*/
                 /*
                 this.collection.each(function(rank){

@@ -30,12 +30,10 @@ define(
         };
 
         //apiUrl добавить
-        var apiUrl = function(type) {
+        return function(type) {
             return URLs[type] ?
                 URLs[type].apply(this, [].slice.call(arguments, 1)) :
                 undefined;
         };
-
-        return apiUrl;
     }
 );

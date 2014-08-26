@@ -26,6 +26,22 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
+    public function remove($array){
+        $id = null;
+        $id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+
+        if($id!=null){
+            $new_array = array();
+
+            foreach($array as $key => $item){
+                if($item['id'] != $id){
+                    $new_array[] = $item;
+                }
+            }
+            return $new_array;
+        }
+    }
+
     public function ranksAction(){
 
         /*
@@ -33,8 +49,20 @@ class CatalogsController extends AbstractActionController
          * */
         $data_array = array(
             array('id' => 1, 'name' => 'Рядовой', 'short_name' => 'ряд.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),
-            array('id' => 2, 'name' => 'Ефрейтор','short_name' => 'ефр.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null)
+            array('id' => 2, 'name' => 'Ефрейтор','short_name' => 'ефр.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),
+            array('id' => 3, 'name' => 'Младший сержарт','short_name' => 'мл. серж.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),
+            array('id' => 4, 'name' => 'Сержант','short_name' => 'серж.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),
+            array('id' => 5, 'name' => 'Старший сержант','short_name' => 'ст. сержант', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null)
         );
+
+        $request = $this->getRequest();
+
+        if($request->isPost()){
+
+        }
+        if($request->isDelete()){
+            $data_array = $this->remove($data_array);
+        }
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);

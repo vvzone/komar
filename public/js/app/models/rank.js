@@ -28,7 +28,15 @@ define(
             attr_dependencies: null, //for recursive objects
             url: function() {
                 return apiUrl('rank', this.id);
+            },
+            initialize: function(){
+                console.info('Model init');
+                this.on('destroy', this.baDaBum);
+            },
+            baDaBum: function(){
+                console.warn('KABOOM!');
             }
+
         });
 
         return Rank;

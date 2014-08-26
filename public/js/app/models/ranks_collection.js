@@ -15,6 +15,13 @@ define(
             model: Rank,
             url: function() {
                 return apiUrl('ranks');
+            },
+            initialize: function(){
+                this.on('destroy', this.liluDallas);
+
+            },
+            liluDallas: function(){
+                console.warn('Multi-passport!');
             }
         });
 
