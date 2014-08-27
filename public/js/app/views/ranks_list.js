@@ -23,22 +23,25 @@ define(
                 console.log('init, this.collection:');
                 console.log(this.collection);
 
-                this.collection.bind('destroy', this.aughtung());
-                this.collection.bind('change', this.render());
-                this.collection.bind('reset', this.render());
+                this.collection.bind('destroy', this.destroy, this);
+                /*this.collection.bind('change', this.render());
+                this.collection.bind('reset', this.render());*/
                 this.render();
             },
-            aughtung: function(){
-              console.log('RanksListView -> receive "destroy"');
+            destroy: function(event){
+                console.log('RanksListView -> receive "destroy", event:');
+                console.log(event);
+                console.log('collection before remove:');
+                console.log(this.collection);
+                this.render();
+                //this.collection.remove(this.collection.get(event.id));
+                //console.log('collection after remove:');
+                //console.log(this.collection);
             },
             render: function(){
                 console.log('render, this.collection:');
                 console.log(this.collection);
                 var self = this;
-                console.log('this.el:');
-                console.log(this.$el);
-                console.log('this.template()');
-                console.log(this.template);
 
                 //$(this.el).html(this.template);
 
@@ -53,14 +56,12 @@ define(
                 });*/
                 $(document).ready(function(){
                      require(['jsx!views/react/controls/list_item'], function(MainList){
-                         console.log('module returns MainList obj:');
-                         console.info(MainList);
                          console.log('trying set collection 2 obj:');
                          console.info(self.collection);
 
                          React.renderComponent(
                              new MainList({
-                                    collection: self.collection
+                                    collection: self.collection,
                                 }), document.getElementById("main_main")
                          );
                      });
