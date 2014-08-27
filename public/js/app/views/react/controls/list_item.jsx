@@ -7,8 +7,9 @@ define(
         'jsx!views/react/base/btn_add',
         'jsx!views/react/base/btn_edit',
         'jsx!views/react/base/btn_delete',
+        'jsx!views/react/base/error_msg',
         'models/rank'
-    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, Rank){
+    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg,Rank){
 
         var MainList = React.createClass({
             componentWillMount: function(){
@@ -38,7 +39,9 @@ define(
         var ListItem = React.createClass({
             getInitialState: function(){
                 return {
-                    open: false
+                    open: false,
+                    edited: false,
+                    action_error: null
                 }
             },
             whenClicked: function(){
@@ -52,12 +55,28 @@ define(
             whenClickedCP: function(action){
                 console.log('whenClickedCP, action -'+action);
                 if(action){
-                    //this.props.action(action);
                     if(action == 'delete'){
                         console.log('ListItem -> delete -> id = '+this.props.model.get('id'));
-                        //var thisInCollection = this.state.model.collection.get(this.state.model.get('id'));
-                        //thisInCollection.remove();
-                        this.props.model.destroy();
+                        var self = this;
+                        this.props.model.destroy({
+                            wait: true,
+                            error:
+                                function(model, response) {
+                                    self.setState({
+                                        action_error: {
+                                            response: response,
+                                            model: model
+                                        }
+                                     });
+                                }
+                        });
+
+                    }
+                    if(action == 'edit'){
+                        this.setState({
+                            edited: this.state.edited==true? false: true,
+                            open: false
+                        });
                     }
                 }
             },
@@ -68,7 +87,7 @@ define(
                 var editable = this.props.model.attr_rus_names;
 
                 var editable_controls = [];
-                if(this.state.open == true){
+                if(this.state.edited == true){
                     for(var attr in editable){
                         editable_controls.push(
                             <div className="Edit_Form">
@@ -80,6 +99,11 @@ define(
                 }
 
                 var edit_form = <div className="EditItemForm">{editable_controls}</div>;
+
+                var error_box = '';
+                if(this.state.action_error){
+                    error_box = <ErrorMsg msg={this.state.action_error.response}/>;
+                }
                 return(
                     <div className="item" key={'item'+this.props.model.get('id')}>
                         <div className="item_name" clicked={this.whenClicked}>{this.props.model.get('name')}</div>
@@ -87,6 +111,7 @@ define(
                             <ButtonEdit clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'edit' +this.props.model.get('id')} mini="false" />
                             <ButtonDelete clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'delete'+this.props.model.get('id')} mini="false" />
                         </div>
+                    {error_box}
                     {edit_form}
                     </div>
                 );

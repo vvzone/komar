@@ -23,20 +23,10 @@ define(
                 console.log('init, this.collection:');
                 console.log(this.collection);
 
-                this.collection.bind('destroy', this.destroy, this);
-                /*this.collection.bind('change', this.render());
-                this.collection.bind('reset', this.render());*/
+                this.collection.bind('destroy', this.render, this);
+                this.collection.bind('change', this.render, this);
+                this.collection.bind('reset', this.render, this);
                 this.render();
-            },
-            destroy: function(event){
-                console.log('RanksListView -> receive "destroy", event:');
-                console.log(event);
-                console.log('collection before remove:');
-                console.log(this.collection);
-                this.render();
-                //this.collection.remove(this.collection.get(event.id));
-                //console.log('collection after remove:');
-                //console.log(this.collection);
             },
             render: function(){
                 console.log('render, this.collection:');
