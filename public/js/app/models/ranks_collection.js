@@ -17,8 +17,7 @@ define(
                 return apiUrl('ranks');
             },
             initialize: function(){
-                this.on('destroy', this.liluDallas);
-
+                this.on('destroy', this.liluDallas, this);
             },
             liluDallas: function(){
                 console.warn('Multi-passport!');

@@ -13,15 +13,11 @@ define(
 
         var MainList = React.createClass({
             componentWillMount: function(){
-                //2-do: search
                 console.log('MainList WillMount');
             },
-            actionHandle: function(action){
-                if(action == 'delete'){
-                    //console.log('MainList -> delete -> id = '+this.state.model.get('id'));
-                    //this.state.model.destroy;
-                }
-            },
+            //2-do:
+            // * search
+            // * filter
             render: function(){
                 var collection = this.props.collection;
                 var items = collection.map(function(model){

@@ -32,18 +32,6 @@ define(
                 console.log('render, this.collection:');
                 console.log(this.collection);
                 var self = this;
-
-                //$(this.el).html(this.template);
-
-                //require(['react','jsx!views/react/controls/main_list'], function(React, MainList){
-
-                /*
-                require(['jsx!views/react/controls/main_list'], function(MainList){
-                    console.log('module returns MainList obj:');
-                    console.log(MainList);
-
-
-                });*/
                 $(document).ready(function(){
                      require(['jsx!views/react/controls/list_item'], function(MainList){
                          console.log('trying set collection 2 obj:');
@@ -51,33 +39,11 @@ define(
 
                          React.renderComponent(
                              new MainList({
-                                    collection: self.collection,
+                                    collection: self.collection
                                 }), document.getElementById("main_main")
                          );
                      });
-
-                    /*
-                    self.collection.each(function(rank){
-                        console.log('collection.each, current model:');
-                        console.log(rank);
-
-                        var ReactRankView = new RankView({ model: rank});
-
-                        // Избавиться от вида RankView;
-                        React.renderComponent((ReactRankView), self.$el.html.append());
-                    });
-                    */
                 });
-
-                /* -- render with backbone view*/
-                /*
-                this.collection.each(function(rank){
-                    console.log('collection.each, current model:');
-                    console.log(rank);
-                    var rankView = new RankView({ model: rank });
-                    rankView.render();
-                });
-                */
             }
         });
 
