@@ -8,8 +8,9 @@ define(
         'jsx!views/react/base/btn_edit',
         'jsx!views/react/base/btn_delete',
         'jsx!views/react/base/error_msg',
-        'models/rank'
-    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg,Rank){
+        'models/rank',
+        'event_bus'
+    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, Rank, EventBus){
 
         var MainList = React.createClass({
             componentWillMount: function(){
@@ -68,11 +69,18 @@ define(
                         });
 
                     }
+
                     if(action == 'edit'){
+
+                        this.el = $(document).find('global_modal');
+
+                        EventBus.trigger('item-edit', this.props.model);
+
+                        /*
                         this.setState({
                             edited: this.state.edited==true? false: true,
                             open: false
-                        });
+                        });*/
                     }
                 }
             },

@@ -10,7 +10,8 @@ require.config({
         JSXTransformer: './libs/jsx/JSXTransformer',
         text: './libs/text',
         react: './libs/react/react',
-        apiUrl: 'apiUrl'
+        apiUrl: 'apiUrl',
+        event_bus: 'event_bus'
     },
     jsx: {
         fileExtension: '.jsx'
