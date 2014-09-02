@@ -15,6 +15,7 @@ define(
         var EventBus = {
         };
         _.extend(EventBus, Backbone.Events);
+
         return EventBus;
     }
 );

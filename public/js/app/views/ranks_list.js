@@ -6,9 +6,10 @@ define(
         'backbone',
         'react',
         'models/ranks_collection',
-        'views/rank'
+        'views/rank',
+        'event_bus'
 
-    ],function($, _, Backbone, React, RanksCollection, RankView){
+    ],function($, _, Backbone, React, RanksCollection, RankView, EventBus){
 
         console.log('module views/ranks_list loaded');
 
@@ -27,6 +28,7 @@ define(
                 this.collection.bind('change', this.render, this);
                 this.collection.bind('reset', this.render, this);
                 this.render();
+                EventBus.trigger('error', 'test error', 'test header');
             },
             render: function(){
                 console.log('render, this.collection:');
