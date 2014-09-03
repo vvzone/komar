@@ -5,29 +5,33 @@ define(
         'underscore',
         'backbone',
         'react',
-        'jsx!views/react/base/error_msg',
+        'jsx!views/react/modals/error',
+        'jsx!views/react/modals/edit',
         'router', // Request router.js
         'event_bus'
     ],
-    function($, _, Backbone, React, ErrorMsg, Router, EventBus){
+    function($, _, Backbone, React, ModalWindowError, ModalWindowEdit, Router, EventBus){
     var init = function(){
         // Pass in our Router module and call it's initialize function
         console.log('app initialization...');
         Router.initialize();
 
-        EventBus.on('error', function(msg, header){
-            console.warn('EventBus <on.error>');
-            console.warn('msg');
-            console.warn(msg);
-            console.warn('header');
-            console.warn(header);
-
+        EventBus.on('error', function(header, msg, response){
             React.renderComponent(
-                 new ErrorMsg({
-                 header: header,
-                 msg: msg
+                 ModalWindowError({
+                     header: header,
+                     msg: msg,
+                     response: response
                  }), document.getElementById("global_modal")
              );
+        });
+
+        EventBus.on('item-edit', function(model){
+            React.renderComponent(
+                ModalWindowEdit({
+                    model: model
+                }), document.getElementById("global_modal")
+            );
         });
 
 

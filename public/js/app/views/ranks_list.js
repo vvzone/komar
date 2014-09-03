@@ -28,7 +28,6 @@ define(
                 this.collection.bind('change', this.render, this);
                 this.collection.bind('reset', this.render, this);
                 this.render();
-                EventBus.trigger('error', 'test error', 'test header');
             },
             render: function(){
                 console.log('render, this.collection:');
@@ -54,6 +53,7 @@ define(
         var p = Ranks.fetch({
             error: function(obj, response){
                 console.warn('error, response: '+response);
+                EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
             },
             success: function(){
                 console.info('success & Current collection:');

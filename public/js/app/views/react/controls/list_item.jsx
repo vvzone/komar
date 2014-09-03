@@ -72,8 +72,7 @@ define(
 
                     if(action == 'edit'){
 
-                        this.el = $(document).find('global_modal');
-
+                        //this.el = $(document).find('global_modal');
                         EventBus.trigger('item-edit', this.props.model);
 
                         /*
@@ -106,7 +105,9 @@ define(
 
                 var error_box = '';
                 if(this.state.action_error){
-                    error_box = <ErrorMsg msg={this.state.action_error.response}/>;
+                    //EventBus.trigger('error', 'Ошибка вида', 'Произошла ошиба вывода. Обратитесь к администратору.');
+                    EventBus.trigger('error', 'Ошибка', this.state.action_error.response);
+                    //error_box = <ErrorMsg msg={this.state.action_error.response}/>;
                 }
                 return(
                     <div className="item" key={'item'+this.props.model.get('id')}>
