@@ -27,6 +27,9 @@ define(
         });
 
         EventBus.on('item-edit', function(model){
+            console.info('EventBus -> item-edit, model:');
+            console.log(model);
+            $('#global_modal').html(''); //remove faded 
             React.renderComponent(
                 ModalWindowEdit({
                     model: model

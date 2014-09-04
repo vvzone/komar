@@ -35,8 +35,8 @@ define(
                 ];
                 var header = "Редактировать "; //+this.entity.name;
 
-                console.log('modal and current:');
-                console.log(this.props.current_id);
+                console.log('ModalWindowEdit, this.props.model:');
+                console.log(this.props.model);
 
                 return(
                     /* Entity */

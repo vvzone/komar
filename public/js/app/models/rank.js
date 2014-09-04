@@ -16,6 +16,7 @@ define(
             defaults: {
                 id: null,
                 name: null,
+                is_officer: false,
                 order: null
             },
             attr_rus_names: {

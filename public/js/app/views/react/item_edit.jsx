@@ -4,8 +4,10 @@ define(
         'jquery',
         'react',
         'jsx!views/react/modals/bootstrap_modal_mixin',
-        'event_bus'
-    ],function($, React, BootstrapModal, EventBus){
+        'event_bus',
+        'views/react/controls/controls_config',
+        'jsx!views/react/controls/controls'
+    ],function($, React, BootstrapModal, EventBus, ControlsConfig, ControlRouter){
 
         var ItemEditBox = React.createClass({
             /*
@@ -20,23 +22,32 @@ define(
              * */
             getInitialState: function () {
                 return {
-                    item: [],
+                    model: [],
                     item_dependencies: []
                 }
             },
             saveForm: function () {
                 //this.props.model.save;
                 console.info('item to save');
-                console.info(this.state.item);
+                console.info(this.state.model);
+                this.state.model.save();
             },
             itemUpdate: function (property) {
                 console.info('itemUpdate');
-                var current_item = this.state.item;
+                var current_item = this.state.model;
+                console.log('property:');
+                console.log(property);
+
                 for (var key in property) {
-                    current_item[key] = property[key];
+                    console.log('property[key]');
+                    console.log(property[key]);
+                    console.log('current_item[key] old='+current_item.attributes[key]);
+                    current_item.attributes[key] = property[key];
+                    console.log('current_item[key] now='+current_item.attributes[key]);
                 }
-                current_item[property.db_prop_name] = property.value;
-                this.setState({item: current_item});
+                //current_item[property.db_prop_name] = property.value;
+                //current_item[property.db_prop_name] = property.value;
+                //this.setState({model: current_item}); не нужно так как обновляется модель
             },
             itemUpdateDependency: function(e){
                 alert('Dependency Update');
@@ -44,28 +55,40 @@ define(
             },
             componentWillMount: function () {
                 window.addEventListener("saveButtonClick", this.saveForm, true);
-                this.setState({item: this.props.item});
+                this.setState({model: this.props.model});
             },
             componentWillUnmount: function () {
                 window.removeEventListener("saveButtonClick", this.saveForm, true);
             },
             render: function () {
-                var editable = this.props.prototype.editable_properties;
-
-                var item = null;
-                if(this.state.item){
-                    var item = this.state.item; //может быть и undefined для новых
-                }
+                //var editable = this.props.prototype.editable_properties;
+                var model = this.state.model;
+                console.log('ItemEditBox -> model:');
+                console.log(model);
 
                 var controls = [];
                 var counter = 0;
                 var dependencies_by_place = {};
 
+
+                for(var prop in model.attr_rus_names){
+                    console.log('prop='+prop);
+                    console.log('ControlsConfig[prop]='+ControlsConfig[prop]);
+                    console.log('model.attributes[prop]='+model.attributes[prop]);
+                    controls.push(
+                        <ControlRouter
+                        type={ControlsConfig[prop]}
+                        value={model.attributes[prop]}
+                        name={prop}
+                        russian_name={model.attr_rus_names[prop]}
+                        callback={this.itemUpdate} key={prop} />
+                    );
+                }
+
                 // 2-do: //fix this
                 // dependencies arrays are nightmare
                 var dependencies = {};
                 dependencies = this.props.dependencies;
-
                 //console.info('Object.prototype.toString.call(dependencies)='+Object.prototype.toString.call(dependencies));
                 //console.info('typeof(dependencies)'+typeof(dependencies));
                 if (typeof(dependencies) == 'object') {
@@ -77,6 +100,7 @@ define(
                 }
 
                 console.log('Editable');
+                /*
                 var self = this;
                 for (var prop in editable) { // старое item - ошибочно так как выводило только не undefined поля текущего экземпляра обьекта
                     if (typeof(dependencies) == 'object') {
@@ -98,19 +122,19 @@ define(
                         );
                     }
                     counter++;
-                }
+                }*/
 
-                if(controls.length == 0){
+                /*if(controls.length == 0){
                     EventBus.trigger('error', 'Ошибка', 'Не найдено ни одного контрола');
                     return(<ErrorMsg msg="Не найдено ни одного контрола" />);
-                }
+                }*/
 
                 var edit_box = [];
                 edit_box.push(<form role="form" className="ControlsBox">{controls}</form>);
 
                 return(
                     <div className="item">
-                {edit_box}
+                        {edit_box}
                     </div>
                     )
             }
@@ -124,9 +148,11 @@ define(
             },
             render: function(){
                 //<ItemEditBox item={this.props.model} />
+                console.log('MainItemEdit, this.props.model:');
+                console.log(this.props.model);
                 return(
                     <div>
-                        <ItemEditBox item={this.props.model} />
+                        <ItemEditBox model={this.props.model} />
                     </div>
                     );
             }
