@@ -5,8 +5,9 @@ define(
     [
         'jquery',
         'react',
-        'jsx!views/react/modals/base'
-    ],function($, React, ModalWindowBase){
+        'jsx!views/react/modals/base',
+        'jsx!views/react/item_edit'
+    ],function($, React, ModalWindowBase, MainItemEdit){
 
         var ModalWindowEdit = React.createClass({
             getInitialState: function() {
@@ -48,7 +49,7 @@ define(
                     header={header}
                     buttons={buttons}
                     >
-                        <EntityBlock entity_name={this.props.entity} item={this.props.current_id} />
+                        <MainItemEdit model={this.props.model} />
                     </ModalWindowBase>
                     );
 
