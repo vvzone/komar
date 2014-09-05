@@ -12,7 +12,7 @@ define(
         var ItemEditBox = React.createClass({
             /*
              * Props:
-             * old: <<<<<<<<<<<<<<
+             * old: <<<<<<<<<<<<
              * item - item array
              * prototype.editable_properties - from server
              * dependencies - from entity

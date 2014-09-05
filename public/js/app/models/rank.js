@@ -9,9 +9,7 @@ define(
     ],function($, _, Backbone, React, apiUrl){
 
         console.log('models/rank loaded');
-        /*
-        * id:1, is_officer:false, name:"Рядовой", short_name:null, description:null, created_at:1408439617871, deleted_at:null
-        * */
+
         var Rank = Backbone.Model.extend({
             defaults: {
                 id: null,

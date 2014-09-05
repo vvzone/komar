@@ -8,20 +8,32 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
+        console.log('models/position loaded');
+
         var Position = Backbone.Model.extend({
             defaults: {
                 id: null,
                 name: null,
-                name_min: null,
-                description: null
+                short_name: null,
+                description: null,
+                allowed_ranks: null
             },
-            pole_names: {
-               name: 'Название',
-               name_min: 'Сокращенное название',
-               description: 'Описание'
+            attr_rus_names: {
+                name: 'Название',
+                short_name: 'Сокр. название',
+                description: 'Описание',
+                allowed_ranks: 'Соответсвующие звания'
             },
+            attr_dependencies: 'ranks', //for recursive objects
             url: function() {
                 return apiUrl('position', this.id);
+            },
+            initialize: function(){
+                console.info('Model init');
+                this.on('destroy', this.baDaBum);
+            },
+            baDaBum: function(){
+                console.warn('KABOOM!');
             }
         });
 

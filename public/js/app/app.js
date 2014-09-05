@@ -29,7 +29,10 @@ define(
         EventBus.on('item-edit', function(model){
             console.info('EventBus -> item-edit, model:');
             console.log(model);
-            $('#global_modal').html(''); //remove faded 
+            //$('#global_modal').html(''); //remove faded
+            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+            console.log('unmount='+unmount);
+            $('#global_modal').html('');
             React.renderComponent(
                 ModalWindowEdit({
                     model: model

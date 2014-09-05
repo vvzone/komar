@@ -73,15 +73,22 @@ class CatalogsController extends AbstractActionController
 
     public function positionsAction(){
 
+        $ranks_array =array(
+            array('id' => 1, 'name' => 'Рядовой', 'short_name' => 'ряд.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),
+            array('id' => 2, 'name' => 'Ефрейтор','short_name' => 'ефр.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null)
+        );
+
         $data_array = array(
-            array('id' => 1, 'name' => ''),
-            array('id' => 2, 'name' => '')
+            array('id' => 1, 'name' => 'Начальник Штаба', 'short_name' => 'Нач.штаба', 'allowed_ranks' => $ranks_array),
+            array('id' => 2, 'name' => 'Начальник пищеблока', 'short_name' => 'Нач. пищеблока', 'allowed_ranks' => $ranks_array)
         );
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
         return $JsonModel;
     }
+
+
 
     public function boilplateAction(){
 
