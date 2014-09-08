@@ -6,8 +6,8 @@ define(
         'jsx!views/react/modals/bootstrap_modal_mixin',
         'event_bus',
         'views/react/controls/controls_config',
-        'jsx!views/react/controls/controls'
-    ],function($, React, BootstrapModal, EventBus, ControlsConfig, ControlRouter){
+        'jsx!views/react/controls/controls_router'
+    ],function($, React, BootstrapModal, EventBus, ControlsConfig, ControlsRouter){
 
         var ItemEditBox = React.createClass({
             /*
@@ -76,13 +76,44 @@ define(
                     console.log('ControlsConfig[prop]='+ControlsConfig[prop]);
                     console.log('model.attributes[prop]='+model.attributes[prop]);
                     if(typeof(model.attr_dependencies[prop])!='undefined'){
-                        console.warn('dependency from ['+model.attr_dependencies[prop] +']');
-                        controls.push(
 
-                        );
+                        console.warn(prop+' have dependency from ['+model.attr_dependencies[prop] +']');
+
+                        require(['models/'+model.attr_dependencies[prop]+'_collection'], function(DependencyCollectionClass){
+                            var dependency_array = {};
+                            var DependencyCollection = new DependencyCollectionClass;
+                            DependencyCollection.fetch({
+                                error: function(obj, response){
+                                    console.warn('error, response: '+response);
+                                    EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
+                                },
+                                success: function(){
+                                    console.info('success & Current collection:');
+                                    console.info(DependencyCollection.toJSON());
+                                    dependency_array = DependencyCollection.toJSON();
+                                    controls.push(
+                                        <ControlsRouter
+                                        type={ControlsConfig[prop]}
+                                        value={model.attributes[prop]}
+                                        dependency_array = {dependency_array}
+                                        name={prop}
+                                        russian_name={model.attr_rus_names[prop]}
+                                        callback={this.itemUpdate} key={prop} />
+                                    );
+                                }
+                            });
+
+                            //ViewCollection.initialize(); //-second time init (auto)
+                        });
+
+                        var dependency_model_name = '';
+
+                        /*controls.push(
+
+                        );*/
                     }else{
                         controls.push(
-                            <ControlRouter
+                            <ControlsRouter
                             type={ControlsConfig[prop]}
                             value={model.attributes[prop]}
                             name={prop}

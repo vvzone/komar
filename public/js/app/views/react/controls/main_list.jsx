@@ -1,96 +1,127 @@
-
 define(
     'views/react/controls/main_list',
     [
         'jquery',
         'react',
         'jsx!views/react/search',
-        //'jsx!views/react/controls/list_item',
         'jsx!views/react/base/btn_add',
         'jsx!views/react/base/btn_edit',
         'jsx!views/react/base/btn_delete',
-        'models/rank'
-    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, Rank){
+        'jsx!views/react/base/error_msg',
+        //'models/rank',
+        'event_bus'
+    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, EventBus){
 
-var MainList = React. createClass({
-    /* Props
-     *
-     * source - server data-controller action (entity)
-     * entity.host.id - id or other value for search dependency
-     * entity.db_prop_name - name of pole for search
-     *
-     * 2 do: add-interface, msg for 0 results
-     * */
-    getInitialState: function() {
-        return {
-            items: []
-        }
-    },
-    componentDidMount: function() {
-        console.log('componentDidMount, props.collection:');
-        console.log(this.props.collection);
-        this.setState({items: this.props.collection})
-    },
-    searchReceived: function(results){
-        this.setState({items: results});
-    },
-    whenClickedCP: function(action){
-        /*
-        if(action){
-            console.info('MainList, whenClickedCP, this.props.entity');
-            console.info(this.props.entity);
+        var MainList = React.createClass({
+            componentWillMount: function(){
+                console.log('MainList WillMount');
+            },
+            //2-do:
+            // * search
+            // * filter
+            render: function(){
+                var collection = this.props.collection;
+                var items = collection.map(function(model){
+                    console.log('MainList -> collection.map, model:');
+                    console.log(model);
 
-            var customEvent = new CustomEvent("modalWindowOpen",  {
-                detail: {
-                    action: action,
-                    source: this.props.source,
-                    entity: this.props.entity.entity_name// check this!
-                },
-                bubbles: true
-            });
-            this.getDOMNode().dispatchEvent(customEvent);
-        }*/
-    },
-    render: function () {
-        var output = [];
-        var self = this;
-        console.log('MainList -> render, this.state.items');
-        console.log(this.state.items);
+                    return <ListItem model={model} />
+                });
+                return(
+                    <ul>{items}</ul>
+                    );
+            }
+        });
 
+        var ListItem = React.createClass({
+            getInitialState: function(){
+                return {
+                    open: false,
+                    edited: false,
+                    action_error: null
+                }
+            },
+            whenClicked: function(){
+                this.setState({open: this.state.open==true? false: true});
+            },
+            componentWillMount: function(){
+                console.log('ListItem WillMount, model:');
+                console.log(this.props.model);
+                //this.setState({model: this.props.model});
+            },
+            whenClickedCP: function(action){
+                console.log('whenClickedCP, action -'+action);
+                if(action){
+                    if(action == 'delete'){
+                        console.log('ListItem -> delete -> id = '+this.props.model.get('id'));
+                        var self = this;
+                        this.props.model.destroy({
+                            wait: true,
+                            error:
+                                function(model, response) {
+                                    self.setState({
+                                        action_error: {
+                                            response: response,
+                                            model: model
+                                        }
+                                     });
+                                }
+                        });
 
-        /*for (var item in this.state.items.data) {
-            output.push(
-                <ListItem
-                    source={this.props.source}
-                    item={this.state.items.data[item]}
-                    prototype={this.state.items.prototype}
-                    key={this.state.items.data[item].id}
-                    entity={this.props.entity}
-                    dependencies={this.props.dependencies}
-                />);
-        }*/
+                    }
 
-        return(
-            <div className="List">
-                <div className="ListHeader">
-                    <div className="InstantSeacrh">
-                        <InstantSearch key="instant_search" source={this.props.source} searchReceived={this.searchReceived}/>
+                    if(action == 'edit'){
+
+                        //this.el = $(document).find('global_modal');
+                        EventBus.trigger('item-edit', this.props.model);
+
+                        /*
+                        this.setState({
+                            edited: this.state.edited==true? false: true,
+                            open: false
+                        });*/
+                    }
+                }
+            },
+            render: function(){
+                console.log('ListItem render, item');
+                console.log(this.props.model);
+
+                var editable = this.props.model.attr_rus_names;
+
+                var editable_controls = [];
+                if(this.state.edited == true){
+                    for(var attr in editable){
+                        editable_controls.push(
+                            <div className="Edit_Form">
+                                <div className="control_name">{editable[attr]}</div>
+                                <div className="control">{this.props.model.get(attr)}</div>
+                            </div>
+                        );
+                    }
+                }
+
+                var edit_form = <div className="EditItemForm">{editable_controls}</div>;
+
+                var error_box = '';
+                if(this.state.action_error){
+                    //EventBus.trigger('error', 'Ошибка вида', 'Произошла ошиба вывода. Обратитесь к администратору.');
+                    EventBus.trigger('error', 'Ошибка', this.state.action_error.response);
+                    //error_box = <ErrorMsg msg={this.state.action_error.response}/>;
+                }
+                return(
+                    <div className="item" key={'item'+this.props.model.get('id')}>
+                        <div className="item_name" clicked={this.whenClicked}>{this.props.model.get('name')}</div>
+                        <div className="item_cp">
+                            <ButtonEdit clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'edit' +this.props.model.get('id')} mini="false" />
+                            <ButtonDelete clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'delete'+this.props.model.get('id')} mini="false" />
+                        </div>
+                    {error_box}
+                    {edit_form}
                     </div>
-                    <div className="ButtonAdd">
-                        <ButtonAdd key="button_add" clicked={self.whenClickedCP} />
-                    </div>;
-                </div>
-                <div className="MainList">{output}</div>
-            </div>
-            )
-    }
-});
-
-        var init = function(test){
-            console.info('AUG TEST');
-            //React.renderComponent(<MainList entity={collection}/>, document.getElementById("main_container"));
-        };
-
+                );
+            }
+        });
         return MainList;
     }
 );
