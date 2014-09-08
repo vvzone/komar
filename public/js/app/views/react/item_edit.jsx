@@ -75,20 +75,27 @@ define(
                     console.log('prop='+prop);
                     console.log('ControlsConfig[prop]='+ControlsConfig[prop]);
                     console.log('model.attributes[prop]='+model.attributes[prop]);
-                    controls.push(
-                        <ControlRouter
-                        type={ControlsConfig[prop]}
-                        value={model.attributes[prop]}
-                        name={prop}
-                        russian_name={model.attr_rus_names[prop]}
-                        callback={this.itemUpdate} key={prop} />
-                    );
+                    if(typeof(model.attr_dependencies[prop])!='undefined'){
+                        console.warn('dependency from ['+model.attr_dependencies[prop] +']');
+                        controls.push(
+
+                        );
+                    }else{
+                        controls.push(
+                            <ControlRouter
+                            type={ControlsConfig[prop]}
+                            value={model.attributes[prop]}
+                            name={prop}
+                            russian_name={model.attr_rus_names[prop]}
+                            callback={this.itemUpdate} key={prop} />
+                        );
+                    }
                 }
 
                 // 2-do: //fix this
                 // dependencies arrays are nightmare
-                var dependencies = {};
-                dependencies = this.props.dependencies;
+               /* var dependencies = {};
+                dependencies = model.attr_dependencies;
                 //console.info('Object.prototype.toString.call(dependencies)='+Object.prototype.toString.call(dependencies));
                 //console.info('typeof(dependencies)'+typeof(dependencies));
                 if (typeof(dependencies) == 'object') {
@@ -97,7 +104,7 @@ define(
                         console.info('place_key= '+place_key);
                         dependencies_by_place[place_key] = dependencies[key];
                     }
-                }
+                }*/
 
                 console.log('Editable');
                 /*

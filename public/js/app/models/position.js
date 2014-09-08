@@ -24,7 +24,7 @@ define(
                 description: 'Описание',
                 allowed_ranks: 'Соответсвующие звания'
             },
-            attr_dependencies: 'ranks', //for recursive objects
+            attr_dependencies: {'allowed_ranks': 'ranks'}, //for recursive objects
             url: function() {
                 return apiUrl('position', this.id);
             },

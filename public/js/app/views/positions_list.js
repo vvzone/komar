@@ -51,6 +51,7 @@ define(
         var Positions = new PositionsCollection;
         console.log('trying fetch collection...');
         var p = Positions.fetch({
+            data: {recursive: 1},
             error: function(obj, response){
                 console.warn('error, response: '+response);
                 EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
