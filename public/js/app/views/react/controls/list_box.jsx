@@ -143,27 +143,18 @@ define(
                 this.props.callback('ListBoxTwoSide callback:');
                 this.props.callback(callback);
             },
-            componentDidMount: function() {
+            componentWillMount: function() {
                 var arr_items_2_select = [];
-
                 //всегда выполнять второй запрос только при удачном первом иначе голод и разруха
-
-                $.get('http://zend_test/main/'+this.props.source_right, function(result) {
-                    var arr = [];
-                    for(var item in result.data){
-                        arr[result.data[item]['id']] = result.data[item];
-                    }
-                    arr_items_2_select = arr;
-                    this.setState({items_right: arr});
-
-                    $.get('http://zend_test/main/'+this.props.source_left, function(result) {
-                        var arr = [];
-                        for(var item in result.data){
-                            arr[result.data[item]['id']] = arr_items_2_select[result.data[item]['id']];
-                        }
-                        this.setState({items_left: arr});
-                    }.bind(this));
-                }.bind(this));
+                console.info('ListBoxTwoSide->mounting...');
+                console.log('this.props.items_left:');
+                console.log(this.props.items_left);
+                console.log('this.props.items_right:');
+                console.log(this.props.items_right);
+                this.setState({
+                    items_left: this.props.items_left,
+                    items_right: this.props.items_right
+                });
 
                 //add listener because it's another table, so this is need to save separately, but with post current_id
                 /*
@@ -181,13 +172,6 @@ define(
             saveListBox: function(){
                 //триггер сейва формы
 
-                var source = this.props.source_left;
-                var post = [];
-                post = this.state.items_left;
-
-                var current_id = ''; //???!!!! position_id, какое поле?
-                var url = '';
-                url = 'http://zend_test/main/'+ source +'/save/';
             },
             render: function(){
                 var combined = [];
@@ -196,7 +180,7 @@ define(
 
                 for(var id in items_left){
                     console.log('id='+id);
-                    console.log('2 delete='+items_right[id]);
+                    console.log('clear same id from items_right='+items_right[id]);
                     delete items_right[id];
                 }
                 combined[0] = <ListBox key="combo" key_prefix="left" items={items_left} callback={this.listChange} type="left" />;

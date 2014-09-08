@@ -33,11 +33,18 @@ define(
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
             $('#global_modal').html('');
+
             React.renderComponent(
                 ModalWindowEdit({
                     model: model
                 }), document.getElementById("global_modal")
             );
+        });
+
+        EventBus.on('modal_close', function(){ // 2-do!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+            console.log('unmount='+unmount);
+            $('#global_modal').html('');
         });
 
 

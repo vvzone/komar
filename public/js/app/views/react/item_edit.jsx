@@ -78,8 +78,12 @@ define(
                     if(typeof(model.attr_dependencies[prop])!='undefined'){
 
                         console.warn(prop+' have dependency from ['+model.attr_dependencies[prop] +']');
-
-                        require(['models/'+model.attr_dependencies[prop]+'_collection'], function(DependencyCollectionClass){
+                        require([
+                            'models/'+model.attr_dependencies[prop]+'_collection',
+                            'jsx!views/react/controls/controls_router',
+                            'event_bus'
+                        ], function(DependencyCollectionClass, ControlsRouter, EventBus){
+                            console.log('loading dependency module...');
                             var dependency_array = {};
                             var DependencyCollection = new DependencyCollectionClass;
                             DependencyCollection.fetch({
@@ -91,6 +95,8 @@ define(
                                     console.info('success & Current collection:');
                                     console.info(DependencyCollection.toJSON());
                                     dependency_array = DependencyCollection.toJSON();
+                                    console.log('PUSH!');
+                                    EventBus.trigger('error', 'Ошибка', 'Тест.');
                                     controls.push(
                                         <ControlsRouter
                                         type={ControlsConfig[prop]}
@@ -102,15 +108,9 @@ define(
                                     );
                                 }
                             });
-
                             //ViewCollection.initialize(); //-second time init (auto)
                         });
 
-                        var dependency_model_name = '';
-
-                        /*controls.push(
-
-                        );*/
                     }else{
                         controls.push(
                             <ControlsRouter

@@ -28,6 +28,9 @@ define(
                     discard: false
                 };
             },
+            componentWillMount: function(){
+                console.log('ControlRouter -> '+this.props.name+'->'+this.props.type);
+            },
             componentWillReceiveProps: function(prop){
                 this.setState({discard: prop.discard});
             },
@@ -56,6 +59,7 @@ define(
                         return(<SimpleSelect value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                         break;
                     case('list_box'):
+                        console.log('control_router->list_box');
                         return(<ListBox items_left={value} items_right={dependency_array}
                         name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                         break
