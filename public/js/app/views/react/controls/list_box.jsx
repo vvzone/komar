@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 define(
-    'views/react/controls/controls',
+    'views/react/controls/list_box',
     [
         'jquery',
         'react',

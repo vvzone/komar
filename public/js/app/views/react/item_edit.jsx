@@ -23,7 +23,7 @@ define(
             getInitialState: function () {
                 return {
                     model: [],
-                    item_dependencies: []
+                    dependency_array: null
                 }
             },
             saveForm: function () {
@@ -55,7 +55,39 @@ define(
             },
             componentWillMount: function () {
                 window.addEventListener("saveButtonClick", this.saveForm, true);
-                this.setState({model: this.props.model});
+
+                var self = this;
+                for(var prop in this.props.model.attr_rus_names){
+                    if(typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                        console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
+                        require([
+                            'models/'+this.props.model.attr_dependencies[prop]+'_collection'
+                        ], function(DependencyCollectionClass){
+                                console.log('loading dependency module...');
+                                var dependency_array = {};
+                                var DependencyCollection = new DependencyCollectionClass;
+                                DependencyCollection.fetch({
+                                    error: function(obj, response){
+                                        console.warn('error, response: '+response);
+                                        EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
+                                    },
+                                    success: function(){
+                                        console.info('success & Current collection:');
+                                        console.info(DependencyCollection.toJSON());
+                                        dependency_array = DependencyCollection.toJSON();
+                                        self.setState({
+                                            dependency_array: dependency_array
+                                        });
+                                    }
+                                });
+                           }
+                        );
+                    }
+                };
+
+                this.setState({
+                    model: this.props.model
+                });
             },
             componentWillUnmount: function () {
                 window.removeEventListener("saveButtonClick", this.saveForm, true);
@@ -75,42 +107,20 @@ define(
                     console.log('prop='+prop);
                     console.log('ControlsConfig[prop]='+ControlsConfig[prop]);
                     console.log('model.attributes[prop]='+model.attributes[prop]);
-                    if(typeof(model.attr_dependencies[prop])!='undefined'){
+                    if(typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                        if(this.state.dependency_array != null){
+                            console.log('this.state.dependency_array');
+                            console.log(this.state.dependency_array);
 
-                        console.warn(prop+' have dependency from ['+model.attr_dependencies[prop] +']');
-                        require([
-                            'models/'+model.attr_dependencies[prop]+'_collection',
-                            'jsx!views/react/controls/controls_router',
-                            'event_bus'
-                        ], function(DependencyCollectionClass, ControlsRouter, EventBus){
-                            console.log('loading dependency module...');
-                            var dependency_array = {};
-                            var DependencyCollection = new DependencyCollectionClass;
-                            DependencyCollection.fetch({
-                                error: function(obj, response){
-                                    console.warn('error, response: '+response);
-                                    EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
-                                },
-                                success: function(){
-                                    console.info('success & Current collection:');
-                                    console.info(DependencyCollection.toJSON());
-                                    dependency_array = DependencyCollection.toJSON();
-                                    console.log('PUSH!');
-                                    EventBus.trigger('error', 'Ошибка', 'Тест.');
                                     controls.push(
                                         <ControlsRouter
                                         type={ControlsConfig[prop]}
                                         value={model.attributes[prop]}
-                                        dependency_array = {dependency_array}
+                                        dependency_array = {this.state.dependency_array}
                                         name={prop}
                                         russian_name={model.attr_rus_names[prop]}
-                                        callback={this.itemUpdate} key={prop} />
-                                    );
-                                }
-                            });
-                            //ViewCollection.initialize(); //-second time init (auto)
-                        });
-
+                                        callback={this.itemUpdate} key={prop} />);
+                        }
                     }else{
                         controls.push(
                             <ControlsRouter
