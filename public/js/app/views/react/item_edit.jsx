@@ -102,7 +102,6 @@ define(
                 var counter = 0;
                 var dependencies_by_place = {};
 
-
                 for(var prop in model.attr_rus_names){
                     console.log('prop='+prop);
                     console.log('ControlsConfig[prop]='+ControlsConfig[prop]);
@@ -133,50 +132,10 @@ define(
                     }
                 }
 
-                // 2-do: //fix this
-                // dependencies arrays are nightmare
-               /* var dependencies = {};
-                dependencies = model.attr_dependencies;
-                //console.info('Object.prototype.toString.call(dependencies)='+Object.prototype.toString.call(dependencies));
-                //console.info('typeof(dependencies)'+typeof(dependencies));
-                if (typeof(dependencies) == 'object') {
-                    for(var key in dependencies){
-                        var place_key = dependencies[key].place;
-                        console.info('place_key= '+place_key);
-                        dependencies_by_place[place_key] = dependencies[key];
-                    }
-                }*/
-
-                console.log('Editable');
-                /*
-                var self = this;
-                for (var prop in editable) { // старое item - ошибочно так как выводило только не undefined поля текущего экземпляра обьекта
-                    if (typeof(dependencies) == 'object') {
-                        if (typeof dependencies_by_place[counter] != 'undefined' && typeof dependencies_by_place[counter].place != 'undefined') {
-                            if (counter == dependencies_by_place[counter].place) {
-                                controls.push(<EntityBlock
-                                entity_name={dependencies_by_place[counter].class_name}
-                                db_prop_name={dependencies_by_place[counter].db_prop_name}
-                                item={item}
-                                current_id={this.props.item[dependencies_by_place[counter].db_prop_name]}
-                                callback={self.itemUpdateDependency} />);
-                            }
-                        }
-                    }
-                    if (editable[prop]) {
-                        var type = prop;
-                        controls.push(
-                            <ControlRouter type={properties_types[type]} value={item[prop]} name={type} russian_name={editable[prop]} callback={this.itemUpdate} key={editable[prop]} />
-                        );
-                    }
-                    counter++;
-                }*/
-
-                /*if(controls.length == 0){
+                if(controls.length == 0){
                     EventBus.trigger('error', 'Ошибка', 'Не найдено ни одного контрола');
                     return(<ErrorMsg msg="Не найдено ни одного контрола" />);
-                }*/
-
+                }
                 var edit_box = [];
                 edit_box.push(<form role="form" className="ControlsBox">{controls}</form>);
 
