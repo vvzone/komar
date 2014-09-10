@@ -30,7 +30,19 @@ define(
                 //this.props.model.save;
                 console.info('item to save');
                 console.info(this.state.model);
-                this.state.model.save();
+                console.warn('this');
+                console.warn(this);
+                var self = this;
+                this.state.model.save(null, {
+                    success:  function(model, response){
+                        console.info('item_edit -> save success! trigger!');
+                        //EventBus.trigger('modal_close');
+                        self.props.callback('save');
+                    },
+                    error: function(model, response){
+                        EventBus.trigger('error', 'Ошибка', 'Изменения не были приняты. Ответ сервера:', response);
+                    }
+                });
             },
             itemUpdate: function (property) {
                 console.info('itemUpdate');
@@ -39,11 +51,13 @@ define(
                 console.log(property);
 
                 for (var key in property) {
-                    console.log('property[key]');
+                    console.log('property[key], key='+key);
                     console.log(property[key]);
-                    console.log('current_item[key] old='+current_item.attributes[key]);
+                    console.log('current_item['+key+'] old:');
+                    console.log(current_item.attributes[key]);
                     current_item.attributes[key] = property[key];
-                    console.log('current_item[key] now='+current_item.attributes[key]);
+                    console.log('current_item['+key+'] now:');
+                    console.log(current_item.attributes[key]);
                 }
                 //current_item[property.db_prop_name] = property.value;
                 //current_item[property.db_prop_name] = property.value;
@@ -110,7 +124,6 @@ define(
                         if(this.state.dependency_array != null){
                             console.log('this.state.dependency_array');
                             console.log(this.state.dependency_array);
-
                                     controls.push(
                                         <ControlsRouter
                                         type={ControlsConfig[prop]}

@@ -41,11 +41,11 @@ define(
             );
         });
 
-        EventBus.on('modal_close', function(){ // 2-do!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        /*EventBus.on('modal_close', function(){ // 2-do!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
-            $('#global_modal').html('');
-        });
+            //$('#global_modal').html('');
+        });*/
 
 
         //EventBus.trigger('error', 'test error');

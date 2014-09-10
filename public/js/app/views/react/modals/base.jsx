@@ -5,8 +5,9 @@ define(
     [
         'jquery',
         'react',
-        'jsx!views/react/modals/bootstrap_modal_mixin'
-    ],function($, React, BootstrapModalMixin){
+        'jsx!views/react/modals/bootstrap_modal_mixin',
+        'event_bus'
+    ],function($, React, BootstrapModalMixin, EventBus){
 
         var ModalWindowBase = React.createClass({
             mixins: [BootstrapModalMixin],

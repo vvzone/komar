@@ -28,6 +28,11 @@ define(
                 });
                 this.getDOMNode().dispatchEvent(customEvent);
             },
+            callback: function(action){
+                if(action == 'save'){
+                    this.refs.modal.hide();
+                }
+            },
             render: function(){
                 var buttons = [
                     {type: 'success', text: 'Сохранить', handler: this.throwSave},
@@ -49,7 +54,7 @@ define(
                     header={header}
                     buttons={buttons}
                     >
-                        <MainItemEdit model={this.props.model} />
+                        <MainItemEdit model={this.props.model} callback={this.callback} />
                     </ModalWindowBase>
                     );
 

@@ -140,7 +140,7 @@ define(
                 console.info('callback:');
                 console.log(callback);
 
-                // чо за херня какой то бред
+                // чо за херня какой то бред - не бред, удаление из списка при мув-лефт-райт
                 console.log('delete from current_list['+callback['id']+']');
                 console.log('current_list:');
                 console.log(current_list);
@@ -159,8 +159,18 @@ define(
 
                 callback['entity'] = this.props.entity; //как вариант source_left - ибо всегда левый селект
 
-                this.props.callback('ListBoxTwoSide callback:');
-                this.props.callback(callback);
+
+                var callback_new = [];
+                console.info('ListBoxTwoSide > listChange: available props');
+                console.log(this.props);
+
+                var desorted_array = [];
+                for(var key in this.state.items_left){
+                    desorted_array.push(this.state.items_left[key]);
+                }
+                callback_new[this.props.name] = desorted_array;
+                //this.props.callback('ListBoxTwoSide callback:');
+                this.props.callback(callback_new);
             },
             componentWillMount: function() {
                 var arr_items_2_select = [];
