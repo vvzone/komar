@@ -48,6 +48,13 @@ div.next {
   color: #595959;
   padding: 10px;
 }
+.btn-default > span {
+  float: left;
+}
+.btn-default > .timer_box {
+  float: right;
+  margin-left: 4px;
+}
 span.glyphicon {
   cursor: pointer;
 }
@@ -183,31 +190,43 @@ div.list_box div.list_box_select select {
   overflow: hidden;
 }
 .alert-success {
-  background: #46a346;
   margin: 10px;
   color: white;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
-  font-size: 1em;
 }
 .alert-success strong {
-  font-size: 1.2em;
+  /*font-size: @base_font_size+0.2;*/
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
 .alert-success .modal-header {
+  background: #3cb778;
   border: none;
   text-align: center;
-  padding: 10px;
+}
+.alert-success .modal-header > span.glyphicon {
+  font-size: 40px;
+  padding: 2px;
 }
 .alert-success .modal-body {
+  background: #fff;
+  /*font-size: @base_font_size;*/
+  color: #46a346;
   border: none;
   text-align: center;
-  padding: 10px;
+  padding: 0;
+}
+.alert-success .modal-body > .header {
+  padding-top: 25px;
+}
+.alert-success .modal-body > strong {
+  display: block;
+  padding-top: 10px;
 }
 .alert-success .modal-footer {
+  background: #fff;
   border: none;
   text-align: center;
-  padding: 10px;
 }
 .alert-error {
   background: #d00006;

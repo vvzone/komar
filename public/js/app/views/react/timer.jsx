@@ -25,7 +25,8 @@ define(
             componentWillReceiveProps: function(){
                 clearInterval(this.interval);
                 this.setState({
-                    secondsElapsed: 0
+                    secondsElapsed: 0,
+                    stop_timer: true
                 });
             },
             tick: function() {
@@ -41,7 +42,7 @@ define(
             render: function () {
                 var remaining = '';
                 if(this.state.secondsElapsed>0){
-                    remaining =this.state.secondsElapsed + ' сек.';
+                    remaining = this.state.secondsElapsed + ' сек.';
                 }
                 return(
                     <div className="timer_box">{remaining}</div>

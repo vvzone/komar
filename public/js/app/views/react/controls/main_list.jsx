@@ -59,7 +59,7 @@ define(
                             wait: true,
                             success: function(){
                                 var name = self.props.model.attributes['name'];
-                                EventBus.trigger('success', 'Успех!', 'Обьект '+name+' удален.');
+                                EventBus.trigger('success', 'Обьект «'+name+'» удален.');
                             },
                             error:
                                 function(model, response) {

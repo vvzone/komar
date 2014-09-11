@@ -32,27 +32,28 @@ define(
             render: function () {
                 var buttons =
                         <button type="button" className={'btn btn-default'} onClick={this.hide} key="default">
-                            Закрыть {this.state.timer} <Timer timer="3" stop_timer={this.state.stop_timer} callback={this.callback} />
+                            Закрыть <Timer timer="5" stop_timer={this.state.stop_timer} callback={this.callback} />
                         </button>;
 
 
                 var msg ='';
                 var header = '';
+                var top = <div className="modal-header">
+                    <span className="glyphicon glyphicon-ok-sign" onClick={this.hide}></span>
+                                    {this.renderCloseButton()}
+                </div>;
 
                 if(this.props.header){
                     if(this.props.header.length>0){
-                        header = <div className="modal-header">
-                                    {this.renderCloseButton()}
-                                    <strong>{this.props.header}</strong>
-                                 </div>;
+                       header= <div className="header"><strong>{this.props.header}</strong></div>;
                     }
                 }
-
                 if(this.props.msg){
-                    msg = <div className="modal-body"><strong>
-                     {this.props.msg}
-                    </strong></div>;
+                    msg = <div className="msg">{this.props.msg}</div>;
                 }
+                var main_msg = <div className="modal-body">
+                {header}
+                {msg}</div>;
                 var response = '';
                 if(this.props.response){
                     response = <div className="modal-body">Ответ сервера: {this.props.response}</div>;
@@ -61,8 +62,8 @@ define(
                     <div className="modal fade" onClick={this.cancelTimer}>
                         <div className="modal-dialog">
                             <div className="modal-content alert-success">
-                                    {header}
-                                    {msg}
+                                    {top}
+                                    {main_msg}
                                     {response}
                                 <div className="modal-footer">
                                     {buttons}
