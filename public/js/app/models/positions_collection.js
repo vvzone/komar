@@ -17,7 +17,14 @@ define(
                 return apiUrl('positions');
             },
             initialize: function(){
-                this.on('destroy', this.liluDallas, this);
+                /*this.on('change', function(){
+                    console.info('Collection Change! > fetch');
+                    this.fetch();
+                }, this);*/
+
+                this.on('destroy', function(){
+                    this.liluDallas;
+                }, this);
             },
             liluDallas: function(){
                 console.warn('Multi-passport!');

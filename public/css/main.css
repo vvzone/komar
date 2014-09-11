@@ -182,8 +182,35 @@ div.list_box div.list_box_select select {
 .modal-body {
   overflow: hidden;
 }
+.alert-success {
+  background: #46a346;
+  margin: 10px;
+  color: white;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  font-size: 1em;
+}
+.alert-success strong {
+  font-size: 1.2em;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+.alert-success .modal-header {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+.alert-success .modal-body {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
+.alert-success .modal-footer {
+  border: none;
+  text-align: center;
+  padding: 10px;
+}
 .alert-error {
-  background: #d00a03;
+  background: #d00006;
   margin: 10px;
   color: white;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
@@ -205,10 +232,10 @@ div.list_box div.list_box_select select {
   padding: 10px;
 }
 .alert-warning {
-  background: #d00a03;
+  background: #d00006;
   color: white;
   font-size: 1.5em;
-  border-color: #e41e17;
+  border-color: #e4141a;
 }
 .alert-warning .modal-header {
   border: none;

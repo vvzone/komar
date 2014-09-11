@@ -13,7 +13,8 @@
 
 
 /* colors */
-@dark_red: #d00a03;
+@dark_red: #d00006;
+@dark_green: #46a346;
 @light_silver: #d6e5ed;
 @warning_color: #ec9a25;
 
@@ -281,6 +282,36 @@ div.list_box{
 }
 .modal-body{
   overflow: hidden;
+}
+
+.alert-success{
+  background: @dark_green;
+  margin: @big;
+  color: white;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  font-size: @base_font_size;
+
+  strong{
+    font-size: @base_font_size+0.2;
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  }
+  .modal-header{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
+  .modal-body{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
+
+  .modal-footer{
+    border: none;
+    text-align: center;
+    padding: @big;
+  }
 }
 
 .alert-error{

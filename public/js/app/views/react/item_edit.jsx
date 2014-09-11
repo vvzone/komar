@@ -32,12 +32,13 @@ define(
                 console.info(this.state.model);
                 console.warn('this');
                 console.warn(this);
-                var self = this;
+                var mySelf = this;
+
                 this.state.model.save(null, {
                     success:  function(model, response){
-                        console.info('item_edit -> save success! trigger!');
-                        //EventBus.trigger('modal_close');
-                        self.props.callback('save');
+                        console.info('item_edit -> save success!');
+                        mySelf.props.callback('save');
+                        mySelf.state.model.collection.fetch();
                     },
                     error: function(model, response){
                         EventBus.trigger('error', 'Ошибка', 'Изменения не были приняты. Ответ сервера:', response);
@@ -97,7 +98,7 @@ define(
                            }
                         );
                     }
-                };
+                }
 
                 this.setState({
                     model: this.props.model
@@ -166,13 +167,16 @@ define(
                     item: []
                 }
             },
+            callback: function(callback){
+                this.props.callback(callback);
+            },
             render: function(){
                 //<ItemEditBox item={this.props.model} />
                 console.log('MainItemEdit, this.props.model:');
                 console.log(this.props.model);
                 return(
                     <div>
-                        <ItemEditBox model={this.props.model} />
+                        <ItemEditBox model={this.props.model} callback={this.callback} />
                     </div>
                     );
             }

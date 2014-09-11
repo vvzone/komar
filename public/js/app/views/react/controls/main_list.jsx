@@ -57,6 +57,10 @@ define(
                         var self = this;
                         this.props.model.destroy({
                             wait: true,
+                            success: function(){
+                                var name = self.props.model.attributes['name'];
+                                EventBus.trigger('success', 'Успех!', 'Обьект '+name+' удален.');
+                            },
                             error:
                                 function(model, response) {
                                     self.setState({

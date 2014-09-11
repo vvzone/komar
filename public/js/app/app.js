@@ -6,11 +6,12 @@ define(
         'backbone',
         'react',
         'jsx!views/react/modals/error',
+        'jsx!views/react/modals/success',
         'jsx!views/react/modals/edit',
         'router', // Request router.js
         'event_bus'
     ],
-    function($, _, Backbone, React, ModalWindowError, ModalWindowEdit, Router, EventBus){
+    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, Router, EventBus){
     var init = function(){
         // Pass in our Router module and call it's initialize function
         console.log('app initialization...');
@@ -41,12 +42,15 @@ define(
             );
         });
 
-        /*EventBus.on('modal_close', function(){ // 2-do!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-            console.log('unmount='+unmount);
-            //$('#global_modal').html('');
-        });*/
-
+        EventBus.on('success', function(header, msg, response){
+            React.renderComponent(
+                ModalWindowSuccess({
+                    header: header,
+                    msg: msg,
+                    response: response
+                }), document.getElementById("global_modal")
+            );
+        });
 
         //EventBus.trigger('error', 'test error');
 

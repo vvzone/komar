@@ -196,7 +196,7 @@ define(
                 }
 
                 for(var id in sorted_by_id_items_left){
-                    console.warn('clear same id from items_right['+id+']='+items_right[id]['name']);
+                    console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
                     delete sorted_by_id_items_right[id];
                 }
 

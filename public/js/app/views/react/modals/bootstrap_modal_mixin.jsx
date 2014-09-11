@@ -71,6 +71,11 @@ define(
                 hide: function () {
                     console.log('HIDE');
                     $(this.getDOMNode()).modal('hide');
+
+                    var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+                    console.log('MIXIN unmount='+unmount);
+                    $('#global_modal').html('');
+
                     /*var customEvent = new CustomEvent("modalWindowClose");
                     this.getDOMNode().dispatchEvent(customEvent);*/
                 },

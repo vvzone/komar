@@ -31,6 +31,9 @@ define(
             initialize: function(){
                 console.info('Model init');
                 this.on('destroy', this.baDaBum);
+                /*this.on('change', function(){
+                    console.error('model -> change');
+                }, this);*/
             },
             baDaBum: function(){
                 console.warn('KABOOM!');
