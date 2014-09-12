@@ -32,7 +32,7 @@ define(
             componentDidMount: function () {
                 var self = this;
                 EventBus.on('windows-close', function(){
-                    console.log('windows-close catch');
+                    console.log('windows-close catch by window-EDIT');
                     self.refs.modal.hide();
                 });
             },

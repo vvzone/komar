@@ -19,10 +19,15 @@ define(
                 componentDidMount: function() {
                     this.show();
                     var self = this;
-                    EventBus.on('windows-close', function(){
-                        console.log('windows-close catch');
+                    this.on('windows-close', function(){
+                        console.log('windows-close catch by window-DELETE CONFIRMATION');
                         self.hide();
-                    });
+                    }, self);
+                },
+                componentWillUnmount: function(){
+                    var self = this;
+                    console.warn('Unmounting React DELETE CONFIRMATION');
+                    this.off('windows-close');
                 },
                 throwDelete: function(){
                     console.log('throwDelete');

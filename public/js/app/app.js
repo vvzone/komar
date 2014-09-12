@@ -21,6 +21,9 @@ define(
 
         EventBus.on('error', function(header, msg, response){
             EventBus.trigger('windows-close');
+            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+            console.log('unmount='+unmount);
+            $('#global_modal').html('');
             React.renderComponent(
                  ModalWindowError({
                      header: header,
@@ -33,6 +36,7 @@ define(
         EventBus.on('item-add', function(model){
             console.info('EventBus -> item-add, model:');
             console.log(model);
+            EventBus.trigger('windows-close');
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
             $('#global_modal').html('');
