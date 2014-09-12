@@ -15,6 +15,7 @@ define(
                 };
             },
             componentDidMount: function() {
+                console.log('this.props.timer-'+this.props.timer);
                 if(this.props.timer){
                     this.setState({
                         secondsElapsed: this.props.timer
@@ -30,7 +31,7 @@ define(
                 });
             },
             tick: function() {
-                if(this.state.secondsElapsed>0){
+                if(this.state.secondsElapsed>1){
                     this.setState({secondsElapsed: this.state.secondsElapsed - 1});
                 }else{
                     this.props.callback('timer!');

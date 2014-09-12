@@ -30,9 +30,11 @@ define(
                 this.hide();
             },
             render: function () {
+                console.log('this.state.timer');
+                console.log(this.state.timer);
                 var buttons =
                         <button type="button" className={'btn btn-default'} onClick={this.hide} key="default">
-                            Закрыть <Timer timer="5" stop_timer={this.state.stop_timer} callback={this.callback} />
+                            Закрыть <Timer timer="3" stop_timer={this.state.stop_timer} callback={this.callback} />
                         </button>;
 
 

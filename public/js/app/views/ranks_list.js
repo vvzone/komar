@@ -53,7 +53,7 @@ define(
         var p = Ranks.fetch({
             error: function(obj, response){
                 console.warn('error, response: '+response);
-                EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
+                EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию', response);
             },
             success: function(){
                 console.info('success & Current collection:');

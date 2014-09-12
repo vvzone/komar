@@ -193,7 +193,8 @@ div.list_box div.list_box_select select {
   margin: 10px;
   color: white;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  /*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);*/
+  font-size: 1em;
 }
 .alert-success strong {
   /*font-size: @base_font_size+0.2;*/
@@ -218,6 +219,7 @@ div.list_box div.list_box_select select {
 }
 .alert-success .modal-body > .header {
   padding-top: 25px;
+  padding-bottom: 10px;
 }
 .alert-success .modal-body > strong {
   display: block;
@@ -233,19 +235,45 @@ div.list_box div.list_box_select select {
   margin: 10px;
   color: white;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  /*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);*/
   font-size: 1em;
 }
 .alert-error strong {
-  font-size: 1.2em;
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  font-size: 1em;
+  /*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);*/
+}
+.alert-error .server-log {
+  padding: 10px;
+  overflow: hidden;
+  background: #fff;
+  color: #d00006;
 }
 .alert-error .modal-header {
   border: none;
   text-align: center;
-  padding: 10px;
+}
+.alert-error .modal-header > span.glyphicon {
+  font-size: 40px;
+  padding: 2px;
+}
+.alert-error .modal-body {
+  background: #fff;
+  /*font-size: @base_font_size;*/
+  color: #d00006;
+  border: none;
+  text-align: center;
+  padding: 0;
+}
+.alert-error .modal-body > .header {
+  padding-top: 25px;
+  padding-bottom: 10px;
+}
+.alert-error .modal-body > strong {
+  display: block;
+  padding-top: 10px;
 }
 .alert-error .modal-footer {
+  background: #fff;
   border: none;
   text-align: center;
   padding: 10px;
@@ -255,16 +283,21 @@ div.list_box div.list_box_select select {
   color: white;
   font-size: 1.5em;
   border-color: #e4141a;
+  /*
+  .modal-body{
+    text-align: center;
+    padding: @big;
+    font-size: 0.8em;
+  }*/
 }
 .alert-warning .modal-header {
   border: none;
   text-align: center;
   padding: 10px;
 }
-.alert-warning .modal-body {
-  text-align: center;
-  padding: 10px;
-  font-size: 0.8em;
+.alert-warning .modal-header > span.glyphicon {
+  font-size: 40px;
+  padding: 2px;
 }
 .alert-warning .modal-footer {
   border: none;

@@ -6,8 +6,9 @@ define(
         'jquery',
         'react',
         'jsx!views/react/modals/base',
-        'jsx!views/react/modals/delete_confirmation'
-    ],function($, React, ModalWindowBase, ModalWindowDeleteConfirmation){
+        'jsx!views/react/modals/delete_confirmation',
+        'event_bus'
+    ],function($, React, ModalWindowBase, ModalWindowDeleteConfirmation, EventBus){
 
         var ModalWindowDelete = React.createClass({
             getInitialState: function() {
@@ -23,6 +24,13 @@ define(
             },
             throwDelete: function(){
 
+            },
+            componentDidMount: function () {
+                var self = this;
+                EventBus.on('windows-close', function(){
+                    console.log('windows-close catch');
+                    self.refs.modal.hide();
+                });
             },
             render: function(){
                 var buttons = [

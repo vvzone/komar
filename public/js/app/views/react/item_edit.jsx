@@ -39,9 +39,10 @@ define(
                         console.info('item_edit -> save success!');
                         mySelf.props.callback('save');
                         mySelf.state.model.collection.fetch();
+                        EventBus.trigger('success', 'Изменения сохранены.');
                     },
                     error: function(model, response){
-                        EventBus.trigger('error', 'Ошибка', 'Изменения не были приняты. Ответ сервера:', response);
+                        EventBus.trigger('error', 'Ошибка', 'Не удалось сохранить изменения', response);
                     }
                 });
             },

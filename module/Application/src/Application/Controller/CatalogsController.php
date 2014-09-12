@@ -67,7 +67,7 @@ class CatalogsController extends AbstractActionController
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
 
-        //$this->getResponse()->setStatusCode(404);
+        $this->getResponse()->setStatusCode(404);
         return $JsonModel;
     }
 

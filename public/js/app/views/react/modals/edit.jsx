@@ -6,8 +6,9 @@ define(
         'jquery',
         'react',
         'jsx!views/react/modals/base',
-        'jsx!views/react/item_edit'
-    ],function($, React, ModalWindowBase, MainItemEdit){
+        'jsx!views/react/item_edit',
+        'event_bus'
+    ],function($, React, ModalWindowBase, MainItemEdit, EventBus){
 
         var ModalWindowEdit = React.createClass({
             getInitialState: function() {
@@ -27,6 +28,13 @@ define(
                     bubbles: true
                 });
                 this.getDOMNode().dispatchEvent(customEvent);
+            },
+            componentDidMount: function () {
+                var self = this;
+                EventBus.on('windows-close', function(){
+                    console.log('windows-close catch');
+                    self.refs.modal.hide();
+                });
             },
             callback: function(action){
                 if(action == 'save'){

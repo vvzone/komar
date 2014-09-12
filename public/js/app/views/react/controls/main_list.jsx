@@ -53,6 +53,8 @@ define(
                 console.log('whenClickedCP, action -'+action);
                 if(action){
                     if(action == 'delete'){
+                        EventBus.trigger('item-delete', this.props.model);
+                        /*
                         console.log('ListItem -> delete -> id = '+this.props.model.get('id'));
                         var self = this;
                         this.props.model.destroy({
@@ -70,7 +72,7 @@ define(
                                         }
                                      });
                                 }
-                        });
+                        });*/
 
                     }
 
