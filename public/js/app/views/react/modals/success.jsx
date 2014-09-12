@@ -26,7 +26,7 @@ define(
                 });
             },
             callback: function(){
-                console.log('callback catch');
+                console.log('modal window callback, hide');
                 this.hide();
             },
             render: function () {
