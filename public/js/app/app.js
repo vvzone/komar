@@ -21,8 +21,8 @@ define(
 
         EventBus.on('error', function(header, msg, response){
             EventBus.trigger('windows-close');
-            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-            console.log('unmount='+unmount);
+            /*var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+            console.log('unmount='+unmount);*/
             $('#global_modal').html('');
             React.renderComponent(
                  ModalWindowError({
@@ -51,7 +51,7 @@ define(
         EventBus.on('item-edit', function(model){
             console.info('EventBus -> item-edit, model:');
             console.log(model);
-            //$('#global_modal').html(''); //remove faded
+            EventBus.trigger('windows-close');
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
             $('#global_modal').html('');
@@ -66,7 +66,7 @@ define(
         EventBus.on('item-delete', function(model){
             console.info('EventBus -> item-delete, model:');
             console.log(model);
-            //$('#global_modal').html(''); //remove faded
+            EventBus.trigger('windows-close');
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
             $('#global_modal').html('');
@@ -79,10 +79,7 @@ define(
         });
 
         EventBus.on('success', function(header, msg){
-            /*var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-            console.log('unmount='+unmount);
-            $('#global_modal').html('');*/
-
+            console.info('EventBus -> success');
             EventBus.trigger('windows-close');
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);

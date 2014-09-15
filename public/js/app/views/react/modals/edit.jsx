@@ -4,11 +4,13 @@ define(
     'views/react/modals/edit',
     [
         'jquery',
+        'underscore',
+        'backbone',
         'react',
         'jsx!views/react/modals/base',
         'jsx!views/react/item_edit',
         'event_bus'
-    ],function($, React, ModalWindowBase, MainItemEdit, EventBus){
+    ],function($, _, Backbone, React, ModalWindowBase, MainItemEdit, EventBus){
 
         var ModalWindowEdit = React.createClass({
             getInitialState: function() {
@@ -31,10 +33,14 @@ define(
             },
             componentDidMount: function () {
                 var self = this;
-                EventBus.on('windows-close', function(){
-                    console.log('windows-close catch by window-EDIT');
+                _.extend($(this.getDOMNode()), Backbone.Events);
+                EventBus.once('windows-close', function(){
+                    console.error('windows-close catch by window-EDIT');
                     self.refs.modal.hide();
-                });
+                }, self);
+            },
+            componentWillUnmount: function(){
+                console.warn('Unmounting React EDIT');
             },
             callback: function(action){
                 if(action == 'save'){

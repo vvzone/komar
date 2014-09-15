@@ -4,10 +4,12 @@ define(
     'views/react/modals/delete_confirmation',
     [
         'jquery',
+        'underscore',
+        'backbone',
         'react',
         'jsx!views/react/modals/bootstrap_modal_mixin',
         'event_bus'
-    ],function($, React, BootstrapModalMixin, EventBus){
+    ],function($, _, Backbone, React, BootstrapModalMixin, EventBus){
 
         var ModalWindowDeleteConfirmation = React.createClass({
                 mixins: [BootstrapModalMixin],
@@ -19,7 +21,8 @@ define(
                 componentDidMount: function() {
                     this.show();
                     var self = this;
-                    this.on('windows-close', function(){
+                    _.extend($(this.getDOMNode()), Backbone.Events);
+                    EventBus.once('windows-close', function(){
                         console.log('windows-close catch by window-DELETE CONFIRMATION');
                         self.hide();
                     }, self);
@@ -27,26 +30,21 @@ define(
                 componentWillUnmount: function(){
                     var self = this;
                     console.warn('Unmounting React DELETE CONFIRMATION');
-                    this.off('windows-close');
+                    //$(this.getDOMNode()).off('windows-close');
                 },
                 throwDelete: function(){
                     console.log('throwDelete');
                     var self = this;
+                    var name = self.props.model.attributes['name'];
                     this.props.model.destroy({
                         wait: true,
                         success: function(){
-                            var name = self.props.model.attributes['name'];
                             self.hide();
                             EventBus.trigger('success', 'Обьект «'+name+'» удален.');
                         },
                         error:
                             function(model, response) {
-                                self.setState({
-                                    action_error: {
-                                        response: response,
-                                        model: model
-                                    }
-                                });
+                                EventBus.trigger('error', 'Ошибка', 'Обьект «'+name+'» не был удален.', response);
                             }
                     });
                 },

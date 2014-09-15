@@ -37,8 +37,16 @@ define(
                 this.state.model.save(null, {
                     success:  function(model, response){
                         console.info('item_edit -> save success!');
-                        mySelf.props.callback('save');
-                        mySelf.state.model.collection.fetch();
+                        //mySelf.props.callback('save');
+                        mySelf.state.model.collection.fetch({
+                            success: function(){
+                                //sync
+                                //EventBus.trigger('success', 'Изменения синхронизированы.');
+                            },
+                            error: function(){
+                                EventBus.trigger('error', 'Ошибка', 'Изменения сохранены, однако, при попытке синхронизироваться с сервером возникла ошибка.', response);
+                            }
+                        });
                         EventBus.trigger('success', 'Изменения сохранены.');
                     },
                     error: function(model, response){

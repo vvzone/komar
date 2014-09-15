@@ -4,10 +4,13 @@ define(
     'views/react/modals/success',
     [
         'jquery',
+        'underscore',
+        'backbone',
         'react',
         'jsx!views/react/modals/bootstrap_modal_mixin',
-        'jsx!views/react/timer'
-    ],function($, React, BootstrapModalMixin, Timer){
+        'jsx!views/react/timer',
+        'event_bus'
+    ],function($, _, Backbone, React, BootstrapModalMixin, Timer, EventBus){
 
         var ModalWindowSuccess = React.createClass({
             mixins: [BootstrapModalMixin],
@@ -18,12 +21,21 @@ define(
             },
             componentDidMount: function() {
                 this.show();
+                _.extend($(this.getDOMNode()), Backbone.Events);
+                EventBus.once('windows-close', function(){
+                    console.error('windows-close catch by window-SUCCESS');
+                    this.hide();
+                }, this);
             },
             cancelTimer: function(){
                 console.log('cancelTimer!');
                 this.setState({
                     stop_timer: true
                 });
+            },
+            componentWillUnmount: function(){
+                console.warn('Success, unmount, throw window close');
+                EventBus.trigger('windows-close');
             },
             callback: function(){
                 console.log('modal window callback, hide');
