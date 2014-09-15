@@ -103,3 +103,18 @@
 [$$]2014-09-01 17:03:34,189 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
 [$$]2014-09-01 17:03:34,192 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
 [$$]2014-09-01 17:03:34,685 INFO mosquito.Main [main] Ready to go!
+[$$]2014-09-15 17:10:22,494 INFO mosquito.Main [main] Running application with arguments : {}
+[$$]2014-09-15 17:10:22,500 INFO mosquito.Main [main] Main modules init!
+[$$]2014-09-15 17:10:31,871 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
+[$$]2014-09-15 17:10:31,871 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
+[$$]2014-09-15 17:10:31,879 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
+[$$]2014-09-15 17:10:31,878 INFO task_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-09-15 17:10:31,909 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-09-15 17:10:32,310 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-09-15 17:10:32,330 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-09-15 17:10:32,343 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
+[$$]2014-09-15 17:10:32,403 INFO bmethods.BmethodCache [main] Got 0 bmethods.
+[$$]2014-09-15 17:10:32,407 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
+[$$]2014-09-15 17:10:32,408 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
+[$$]2014-09-15 17:10:32,410 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-09-15 17:10:33,138 INFO mosquito.Main [main] Ready to go!
