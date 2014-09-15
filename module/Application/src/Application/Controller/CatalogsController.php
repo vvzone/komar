@@ -15,7 +15,7 @@ use Zend\View\Model\JsonModel;
 
 class CatalogsController extends AbstractActionController
 {
-    public function ajaxAction(){
+    public function menusAction(){
 
         /*
          * isNonIndependent - output only in the parent screen

@@ -4,7 +4,7 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        './models/collections'
+        'models/collections'
     ],
     function($, _, Backbone, Collections){
 

@@ -12,6 +12,12 @@ define(
         var host = 'http://zend_test';
         var prefix = '/api/catalogs';
         var URLs = {
+            menus: function(){
+                return host + prefix + "/menus";
+            },
+            menu: function(id){
+                return host + prefix + "/menus/"+id;
+            },
             ranks: function() {
                 return host + prefix + "/ranks";
             },
