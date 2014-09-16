@@ -14,12 +14,12 @@ define(
                 return {
                     visible: true,
                     click: undefined,
-                    screen: []
+                    model: []
                 };
             },
             componentWillMount: function() {
                 console.log('CatLink mount');
-                if(this.props.screen.childNodes!=null){
+                if(this.props.model.get('childNodes')!=null){
                     this.setState({visible: false});
                 }
             },
@@ -31,8 +31,8 @@ define(
                 this.getDOMNode().dispatchEvent(customEvent);
             },
             render: function(){
-                var link = this.props.screen;
-                var src = './react/get/screen/'+link.screen;
+                var model = this.props.model;
+                var src = './react/get/screen/'+model.get('name');
 
                 var className = "";
                 var style = {};
@@ -40,34 +40,34 @@ define(
                     style.display = "none";
                 }
 
-                if(link.childNodes!=null){
+                if(model.get('childNodes')!=null){
                     className = "glyphicon togglable";
                     if (this.state.visible) {
                         className += " glyphicon-minus";
                     } else {
                         className += " glyphicon-plus";
                     }
-                    if(link.is_not_screen!=null){
+                    if(model.get('is_not_screen')!=null){
                         return(
                             <li>
                                 <span onClick={this.toggle} className={className}></span>
-                                <div className="childs" onClick={this.toggle}>{link.name}</div>
-                                <div style={style}><CatTreeLinksList source={null} childs={link.childNodes}/></div>
+                                <div className="childs" onClick={this.toggle}>{model.get('name')}</div>
+                                <div style={style}><CatTreeLinksList source={null} childs={model.get('childNodes')}/></div>
                             </li>
                             );
                     }
                     return(
                         <li><span onClick={this.toggle} className={className}></span>
-                            <a className="childs" href={src}>{link.name}</a>
+                            <a className="childs" href={src}>{model.get('name')}</a>
                             <div style={style}>
-                                <CatTreeLinksList source={null} childs={link.childNodes}/>
+                                <CatTreeLinksList source={null} childs={model.get('childNodes')}/>
                             </div>
                         </li>
                         );
                 }
 
                 return(
-                    <li style={style}><ItemLink item={link} onClick={this.whenClicked}/></li>
+                    <li style={style}><ItemLink item={model} onClick={this.whenClicked}/></li>
                     );
 
             },
@@ -108,16 +108,16 @@ define(
                 //if(Object.prototype.toString.call(this.state.links) == '[object Array]'){
                     console.info(Object.prototype.toString.call(this.state.links));
                     var self = this;
-                    links_output = this.state.links.map(function(l){
-                        console.log('l');
-                        console.log(l);
-                        if(l.get('is_not_screen')==true && l.get('childNodes')==null){
+                    links_output = this.state.links.map(function(link_model){
+                        console.log('link_model');
+                        console.log(link_model);
+                        if(link_model.get('is_not_screen')==true && link_model.get('childNodes')==null){
                             console.log('cat_tree > render > not_link');
-                            return(<li><div className="tree_not_link">{l.get('rus_name')}</div></li>);
+                            return(<li><div className="tree_not_link">{link_model.get('rus_name')}</div></li>);
                         }
-                        if(l.get('is_non_independent')!=true){
+                        if(link_model.get('is_non_independent')!=true){
                             console.log('cat_tree > render > link');
-                            return(<CatLink screen={l} key={l.get('id')} onClick={self.handleClick}/>)
+                            return(<CatLink model={link_model} key={link_model.get('id')} onClick={self.handleClick}/>)
                         }
                     });
                     return(
