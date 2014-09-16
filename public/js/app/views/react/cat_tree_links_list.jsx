@@ -47,7 +47,6 @@ define(
                     } else {
                         className += " glyphicon-plus";
                     }
-
                     if(link.is_not_screen!=null){
                         return(
                             <li>
@@ -112,13 +111,13 @@ define(
                     links_output = this.state.links.map(function(l){
                         console.log('l');
                         console.log(l);
-                        if(l.is_not_screen==true && l.childNodes==null){
+                        if(l.get('is_not_screen')==true && l.get('childNodes')==null){
                             console.log('cat_tree > render > not_link');
-                            return(<li><div className="tree_not_link">{l.rus_name}</div></li>);
+                            return(<li><div className="tree_not_link">{l.get('rus_name')}</div></li>);
                         }
-                        if(l.attributes.is_non_independent!=true){
+                        if(l.get('is_non_independent')!=true){
                             console.log('cat_tree > render > link');
-                            return(<CatLink screen={l} key={l.id} onClick={self.handleClick}/>)
+                            return(<CatLink screen={l} key={l.get('id')} onClick={self.handleClick}/>)
                         }
                     });
                     return(
