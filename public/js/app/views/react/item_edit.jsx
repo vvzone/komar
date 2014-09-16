@@ -81,8 +81,8 @@ define(
                 window.addEventListener("saveButtonClick", this.saveForm, true);
 
                 var self = this;
-                for(var prop in this.props.model.attr_rus_names){
-                    if(typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                for(var prop in this.props.model.get('attr_rus_names')){
+                    if(typeof(this.props.model.attr_dependencies[prop])!='undefined' && this.props.model.attr_dependencies!=null){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
                         require([
                             'models/'+this.props.model.attr_dependencies[prop]+'_collection'

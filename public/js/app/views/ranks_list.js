@@ -34,7 +34,7 @@ define(
                 console.log(this.collection);
                 var self = this;
                 $(document).ready(function(){
-                     require(['jsx!views/react/controls/list_item'], function(MainList){
+                     require(['jsx!views/react/controls/main_list'], function(MainList){
                          console.log('trying set collection 2 obj:');
                          console.info(self.collection);
 

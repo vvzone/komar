@@ -4,8 +4,9 @@ define(
     'views/react/item_link',
     [
         'jquery',
-        'react'
-    ],function($, React){
+        'react',
+        'event_bus'
+    ],function($, React, EventBus){
         var ItemLink = React. createClass({
             /*
              * props: name, clicked(), id
@@ -13,7 +14,8 @@ define(
              * */
 
             handleClick: function(e){
-                e.preventDefault();
+                /*e.preventDefault();*/
+                EventBus.trigger(this.props.model.get('entity'));
                 //this.props.onClick(this.props.model);
             },
             render: function(){

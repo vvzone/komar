@@ -35,7 +35,7 @@ define(
 
         var initialize = function(view, id, param){
             console.log('view initialization...');
-
+            var ViewCollection = 'undefined';
            if(view){
                if(id){
                    console.log('getting module views/'+view);
@@ -47,12 +47,21 @@ define(
                    });
                }else{
                    console.log('getting module views/'+view+'_list (collection)');
-                   require(['views/'+view+'_list'], function(ViewCollection){
-                       console.log('module returns ViewCollection-obj:');
-                       console.log(ViewCollection);
 
-                       //ViewCollection.initialize(); //-second time init (auto)
-                   });
+                   console.info('dynamic variable stat');
+                   console.info(window['views/'+view+'_list']);
+
+                   if(window['views/'+view+'_list']!='undefined'){
+                       console.log('NO registered variable '+'views/'+view+'_list');
+                       require(['views/'+view+'_list'], function(ViewCollection){
+                           console.log('module returns ViewCollection-obj:');
+                           console.log(ViewCollection);
+
+                           //ViewCollection.initialize(); //-second time init (auto)
+                       });
+                   }else{
+                       console.log('already HAVE registered variable '+'views/'+view+'_list');
+                   }
                }
            }
 

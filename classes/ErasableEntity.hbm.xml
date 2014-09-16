@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+ "-//Hibernate/Hibernate Mapping DTD//EN"
+ "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd"> 
+
+<hibernate-mapping package="com.spt.mosquito.core.pojos.orm.entity">
+   <class name="com.spt.mosquito.core.pojos.orm.entity.base.ErasableEntity" table="erasable_entity" dynamic-update="true" dynamic-insert="true">
+      <id name="id" type="long" column="id">
+         <generator class="native"/>
+      </id>
+      <property name="createdAt" column="created_at" type="timestamp"/>
+      <property name="deletedAt" column="deleted_at" type="timestamp"/>
+	  
+	  <joined-subclass name="Client" table="client">
+        <key column="id"/>
+		<property name="isInternal" column="is_internal" type="boolean"/>
+		<property name="identNumber" type="string">
+		  <column name="ident_number" length="10"/>
+		</property>
+		<property name="fullName" type="string">
+		  <column name="full_name" length="120"/>
+		</property>
+		
+		<joined-subclass name="Person" table="person">
+          <key column="id"/>
+		  <property name="name" type="string">
+		    <column name="name" length="30"/>
+		  </property>
+		  <property name="patronymic" type="string">
+		    <column name="patronymic" length="30"/>
+		  </property>
+		  <property name="family" type="string">
+		    <column name="family" length="30"/>
+		  </property>
+		  <property name="birthDate" column="birth_date" type="calendar_date"/>
+		  <property name="birthPlace" type="string">
+		    <column name="birth_place" length="50"/>
+		  </property>
+		  <many-to-one name="sex" column="sex" class="SexType"/>
+		  <property name="inn" type="string">
+		    <column name="inn" length="12"/>
+		  </property>
+		  <property name="citizenship" type="string">
+		    <column name="citizenship" length="50"/>
+		  </property>
+	    </joined-subclass>
+		
+		<joined-subclass name="Unit" table="unit">
+          <key column="id"/>
+		  <property name="ownNumeration" column="own_numeration" type="boolean"/>
+		  <property name="isLegal" column="is_legal" type="boolean"/>
+	    </joined-subclass>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="SexType" table="sex_type">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="10"/>
+		</property>
+        <property name="shortName" type="string">
+		  <column name="short_name" length="2"/>
+		</property>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="SimpleMethod" table="simple_method">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="20"/>
+		</property>
+        <property name="jsBody" column="js_body" type="string"/>
+        <property name="scope" type="string">
+			<column name="scope" length="25"/>
+		</property>
+		
+		<joined-subclass name="BMethod" table="bmethod">
+          <key column="id"/>
+          <property name="description" type="string">
+			<column name="description" length="200"/>
+		  </property>
+          <property name="result" type="string">
+			<column name="result" length="50"/>
+		  </property>
+		  <set name="arguments" cascade="all" fetch="join">
+            <key column="bmethod"/>
+            <one-to-many class="BMethodArgument"/>
+          </set>
+	    </joined-subclass>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="BMethodArgument" table="bmethod_argument">
+        <key column="id"/>
+		<many-to-one name="bMethod" column="bmethod" class="BMethod" lazy="false"/>
+        <property name="name" type="string">
+		  <column name="name" length="20"/>
+		</property>
+        <property name="description" type="string">
+		  <column name="description" length="200"/>
+		</property>
+        <property name="argType" type="string">
+		  <column name="arg_type" length="20"/>
+		</property>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="Legals" table="legals">
+        <key column="id"/>
+		<many-to-one name="unit" column="unit" class="Unit"/>
+        <property name="startDate" column="start_date" type="calendar_date"/>
+        <property name="ogrn" type="string">
+		  <column name="ogrn" length="13"/>
+		</property>
+        <property name="inn" type="string">
+		  <column name="inn" length="10"/>
+		</property>
+        <property name="kpp" type="string">
+		  <column name="kpp" length="9"/>
+		</property>
+        <property name="account" type="string">
+		  <column name="account" length="25"/>
+		</property>
+        <property name="bank" type="string">
+		  <column name="bank" length="200"/>
+		</property>
+        <property name="corrAccount" type="string">
+		  <column name="corr_account" length="25"/>
+		</property>
+        <property name="bic" type="string">
+		  <column name="bic" length="9"/>
+		</property>
+        <property name="okpo" type="string">
+		  <column name="okpo" length="16"/>
+		</property>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="SecrecyType" table="secrecy_type">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="100"/>
+		</property>
+        <property name="shortName" type="string">
+		  <column name="short_name" length="20"/>
+		</property>
+        <property name="singleNumeration" column="single_numeration" type="boolean"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="UrgencyType" table="urgency_type">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="100"/>
+		</property>
+        <property name="shortName" type="string">
+		  <column name="short_name" length="20"/>
+		</property>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="DocumentTypeGroup" table="document_type_group">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="100"/>
+		</property>
+        <property name="shortName" type="string">
+		  <column name="short_name" length="20"/>
+		</property>
+        <property name="isService" column="is_service" type="boolean"/>
+		<many-to-one name="parent" column="parent" class="DocumentTypeGroup"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="DocumentType" table="document_type">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="100"/>
+		</property>
+        <property name="shortName" type="string">
+		  <column name="short_name" length="20"/>
+		</property>
+        <property name="code" column="code" type="int"/>
+        <property name="defaultHeader" type="string">
+		  <column name="default_header" length="50"/>
+		</property>
+		<many-to-one name="secrecyType" column="secrecy_type" class="SecrecyType"/>
+		<many-to-one name="urgencyType" column="urgency_type" class="UrgencyType"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="DocumentTypeGroupContent" table="document_type_group_content">
+        <key column="id"/>
+		<many-to-one name="documentTypeGroup" column="document_type_group" class="DocumentTypeGroup"/>
+		<many-to-one name="documentType" column="document_type" class="DocumentType"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="AttributeType" table="attribute_type">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="20"/>
+		</property>
+        <property name="machineName" type="string">
+		  <column name="machine_name" length="20"/>
+		</property>
+        <property name="description" type="string">
+		  <column name="description" length="100"/>
+		</property>
+		<many-to-one name="verificationMethod" column="verification_method" class="BMethod"/>
+		<set name="constants" cascade="all" fetch="join">
+          <key column="attribute_type"/>
+          <one-to-many class="AttributeTypeConstant"/>
+        </set>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="AttributeTypeConstant" table="attribute_type_constant">
+        <key column="id"/>
+		<many-to-one name="attributeType" column="attribute_type" class="AttributeType"/>
+        <property name="priority" column="priority" type="int"/>
+        <property name="constantValue" column="constant_value" type="string"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="DocumentAttributeType" table="document_attribute_type">
+        <key column="id"/>
+		<many-to-one name="documentType" column="document_type" class="DocumentType"/>
+		<many-to-one name="attributeType" column="attribute_type" class="AttributeType"/>
+        <property name="minCount" column="min_count" type="int"/>
+        <property name="maxCount" column="max_count" type="int"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="AttributeTypeCompositeStructure" table="attribute_type_composite_structure">
+        <key column="id"/>
+		<many-to-one name="composite" column="composite" class="AttributeType"/>
+		<many-to-one name="primitive" column="primitive" class="AttributeType"/>
+        <property name="minCount" column="min_count" type="int"/>
+        <property name="maxCount" column="max_count" type="int"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="Document" table="document">
+        <key column="id"/>
+		<many-to-one name="documentType" column="document_type" class="DocumentType"/>
+        <property name="documentState" column="document_state" type="int"/>
+        <property name="author" column="author" type="long"/>
+        <property name="documentNumber" type="string">
+		  <column name="document_number" length="20"/>
+		</property>
+        <property name="sender" column="sender" type="long"/>
+        <property name="receiver" column="receiver" type="long"/>
+        <property name="header" type="string">
+		  <column name="header" length="50"/>
+		</property>
+        <property name="incomingDocumentNumber" type="string">
+		  <column name="incoming_document_number" length="20"/>
+		</property>
+        <property name="incomingDocumentDate" column="incoming_document_date" type="calendar_date"/>
+		<many-to-one name="parentDocument" column="parent_document" class="Document"/>
+		<many-to-one name="secrecyType" column="secrecy_type" class="SecrecyType"/>
+		<many-to-one name="urgencyType" column="urgency_type" class="UrgencyType"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="DocumentAttribute" table="document_attribute">
+        <key column="id"/>
+		<many-to-one name="document" column="document" class="Document"/>
+		<many-to-one name="attributeType" column="attribute_type" class="AttributeType"/>
+		<many-to-one name="compositeAttribute" column="composite_attribute" class="DocumentAttribute"/>
+        <property name="arrayIndex" column="array_index" type="int"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="PrimitiveAttributeData" table="primitive_attribute_data">
+        <key column="id"/>
+		<many-to-one name="primitiveAttribute" column="primitive_attribute" class="DocumentAttribute"/>
+        <property name="data" column="data" type="text"/>
+        <property name="lastChange" column="last_change" type="timestamp"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="DocumentAttributeHistory" table="document_attribute_history">
+        <key column="id"/>
+		<many-to-one name="documentAttributeStructure" column="document_attribute_structure" class="DocumentAttribute"/>
+        <property name="oldData" column="old_data" type="text"/>
+		<many-to-one name="author" column="author" class="Client"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="Rank" table="rank">
+        <key column="id"/>
+		<property name="isOfficer" column="is_officer" type="boolean"/>
+		<property name="name" type="string">
+		  <column name="name" length="50"/>
+		</property>
+		<property name="shortName" type="string">
+		  <column name="short_name" length="10"/>
+		</property>
+		<property name="description" type="string">
+		  <column name="description" length="250"/>
+		</property>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="RankGroup" table="rank_group">
+        <key column="id"/>
+		<property name="name" type="string">
+		  <column name="name" length="50"/>
+		</property>
+		<property name="description" type="string">
+		  <column name="description" length="250"/>
+		</property>
+		<many-to-one name="parent" column="parent" class="RankGroup"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="RankGroupStructure" table="rank_group_structure">
+        <key column="id"/>
+		<many-to-one name="group" column="groupe" class="RankGroup"/>
+		<many-to-one name="rank" column="rank" class="Rank"/>
+		<property name="priority" column="priority" type="int"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="NotificationType" table="notification_type">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="50"/>
+		</property>
+        <property name="machineName" type="string">
+		  <column name="machine_name" length="50"/>
+		</property>
+        <property name="description" type="string">
+		  <column name="description" length="200"/>
+		</property>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="Notification" table="notification">
+        <key column="id"/>
+		<many-to-one name="notificationType" column="notification_type" class="NotificationType"/>
+		<many-to-one name="recipientClient" column="recipient_client" class="Client"/>
+		<property name="message" type="string">
+		  <column name="message" length="255"/>
+		</property>
+		<set name="attachments" cascade="all" fetch="join">
+          <key column="notification"/>
+          <one-to-many class="NotificationAttachment"/>
+        </set>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="NotificationAttachment" table="notification_attachment">
+        <key column="id"/>
+		<many-to-one name="notification" column="notification" class="Notification"/>
+		<property name="attachName" type="string">
+		  <column name="attach_name" length="20"/>
+		</property>
+		<property name="variable" column="variable" type="long"/>
+		<property name="variableType" type="string">
+		  <column name="variable_type" length="20"/>
+		</property>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="ScheduleTask" table="schedule_task">
+        <key column="id"/>
+        <property name="name" type="string">
+		  <column name="name" length="50"/>
+		</property>
+        <property name="isClosed" column="is_closed" type="boolean"/>
+        <property name="isInterrupted" column="is_interrupted" type="boolean"/>
+		<many-to-one name="method" column="method" class="BMethod"/>
+		<set name="arguments" cascade="all" fetch="join">
+          <key column="schedule_task"/>
+          <one-to-many class="ScheduleTaskArgument"/>
+        </set>
+		
+		<joined-subclass name="ScheduleTaskSingle" table="schedule_task_single">
+          <key column="id"/>
+		  <property name="callTs" column="call_ts" type="timestamp"/>
+	    </joined-subclass>
+		
+		<joined-subclass name="ScheduleTaskInterval" table="schedule_task_interval">
+          <key column="id"/>
+		  <property name="intervalMs" column="interval_ms" type="long"/>
+		  <property name="startFromTs" column="start_from_ts" type="timestamp"/>
+		  <property name="isRunning" column="is_running" type="boolean"/>
+		  
+		  <joined-subclass name="ScheduleTaskIntervalLimited" table="schedule_task_interval_limited">
+            <key column="id"/>
+		    <property name="beforeTs" column="before_ts" type="timestamp"/>
+	      </joined-subclass>
+		  
+		  <joined-subclass name="ScheduleTaskIntervalFixed" table="schedule_task_interval_fixed">
+            <key column="id"/>
+		    <property name="calls" column="calls" type="int"/>
+		    <property name="callsMax" column="calls_max" type="int"/>
+	      </joined-subclass>
+	    </joined-subclass>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="ScheduleTaskArgument" table="schedule_task_argument">
+        <key column="id"/>
+		<many-to-one name="scheduleTask" column="schedule_task" class="ScheduleTask"/>
+		<property name="argumentKey" type="string">
+		  <column name="argument_key" length="50"/>
+		</property>
+		<property name="argumentValue" column="argument_value" type="string"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="EnumerationType" table="enumeration_type">
+        <key column="id"/>
+		<property name="name" type="string">
+		  <column name="name" length="100"/>
+		</property>
+		<property name="mask" type="string">
+		  <column name="mask" length="20"/>
+		</property>
+		<property name="startIndex" column="start_index" type="int"/>
+		<property name="isDraft" column="is_draft" type="boolean"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="Enumeration" table="enumeration">
+        <key column="id"/>
+		<many-to-one name="unit" column="unit" class="Unit"/>
+		<many-to-one name="enumType" column="enum_type" class="Enumeration"/>
+		<property name="currentIndex" column="current_index" type="int"/>
+		<property name="lastDrop" column="last_drop" type="timestamp"/>
+	  </joined-subclass>
+	  
+	  <joined-subclass name="UnitDocumentType" table="unit_document_type">
+        <key column="id"/>
+		<many-to-one name="documentType" column="document_type" class="DocumentType"/>
+		<many-to-one name="unit" column="unit" class="Unit"/>
+		<many-to-one name="enumeration" column="enumeration" class="Enumeration"/>
+		<many-to-one name="draftEnumeration" column="draft_enumeration" class="Enumeration"/>
+	  </joined-subclass>
+	  
+	  <!-- Вставлять новые классы сюда -->
+   </class>
+</hibernate-mapping>

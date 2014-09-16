@@ -5,8 +5,9 @@ define(
         'underscore',
         'backbone',
         'react',
-        'jsx!views/react/controls/list_item'
-    ],function($, _, Backbone, React, ListItem){
+        'apiUrl',
+        'models/position'
+    ],function($, _, Backbone, React, apiUrl, Rank){
 
         var RankView = Backbone.View.extend({
             tagName: 'li',

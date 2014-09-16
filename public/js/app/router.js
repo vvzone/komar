@@ -4,9 +4,10 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'models/collections'
+        'models/collections',
+        'views/menu_list'
     ],
-    function($, _, Backbone, Collections){
+    function($, _, Backbone, Collections, Menu){
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -23,12 +24,11 @@ define(
         },
         itemView : function(view, id, param){
             console.info('view='+view+' id='+id+' param='+param);
-
-            Collections.initialize(view, id, param);
+            //Collections.initialize(view, id, param);
         },
         collectionView: function(view){
-
-            console.info('collection='+view);
+            console.info('Router->collectionView: collection='+view);
+            //var MenuOutput = new Menu;
             Collections.initialize(view, null, null);
         }
     });

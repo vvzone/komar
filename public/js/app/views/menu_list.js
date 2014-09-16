@@ -14,7 +14,7 @@ define(
         console.log('module views/menu loaded');
 
         var MenuView = Backbone.View.extend({
-            el: $('div#main_main'), // 2-do: extend from base-class
+            //el: $('div#left_panel'), // 2-do: extend from base-class
             /*tagName: 'ul',*/
             template: '<div id="main_list_header"></div>' +
                 '<div id="menu_view"></div>',
@@ -41,7 +41,7 @@ define(
                          React.renderComponent(
                              new CatTree({
                                     collection: self.collection
-                                }), document.getElementById("main_main")
+                                }), document.getElementById("left_panel")
                          );
                      });
                 });

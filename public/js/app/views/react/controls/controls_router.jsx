@@ -6,12 +6,16 @@ define(
         'jquery',
         'react',
         'jsx!views/react/controls/controls_mixin',
+
         'jsx!views/react/controls/tiny_text',
         'jsx!views/react/controls/small_text',
         'jsx!views/react/controls/bool_select',
+
         'jsx!views/react/controls/list_box',
         'jsx!views/react/controls/simple_select'
-    ],function($, React, ControlsMixin, ControlTinyText, ControlSmallText, ControlBoolSelect, ListBox, SimpleSelect){
+    ],function($, React, ControlsMixin,
+               ControlTinyText, ControlSmallText, ControlBoolSelect,
+               ListBox, SimpleSelect){
 
         /* Controls: text, selector, search */
 

@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 define(
-    'views/react/controls/bool_text',
+    'views/react/controls/bool_select',
     [
         'jquery',
         'react',

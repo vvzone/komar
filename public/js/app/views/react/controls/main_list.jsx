@@ -93,7 +93,7 @@ define(
                 console.log('ListItem render, item');
                 console.log(this.props.model);
 
-                var editable = this.props.model.attr_rus_names;
+                var editable = this.props.model.get('attr_rus_names');
 
                 var editable_controls = [];
                 if(this.state.edited == true){
