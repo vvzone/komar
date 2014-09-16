@@ -5,7 +5,7 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
+        'apiUrl',
     ],function($, _, Backbone, React, apiUrl){
 
         console.log('models/menu loaded');
@@ -14,10 +14,13 @@ define(
             defaults: {
                 id: null,
                 name: null,
+                parent_id: null,
                 rus_name: null,
                 is_non_independent: false,
                 is_not_screen: false,
-                order: null
+                order: null,
+                childNodes: null,
+                items: null
             },
             attr_rus_names: {
                 name: 'Адрес',
@@ -31,6 +34,15 @@ define(
             },
             initialize: function(){
                 console.info('Model init');
+                if (Array.isArray(this.get('childNodes'))) {
+                    console.log('model init -> has child\'s');
+                    if(!MenuCollection){
+                        console.log('loading sub-collection for child\'s');
+                       var MenuCollection = require("models/menu_collection");
+                    }
+                    var ChildCollection = new MenuCollection(this.get('childNodes'));
+                    this.set({items: ChildCollection});
+                }
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){

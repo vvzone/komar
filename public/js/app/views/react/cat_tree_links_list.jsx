@@ -19,7 +19,7 @@ define(
             },
             componentWillMount: function() {
                 console.log('CatLink mount');
-                if(this.props.model.get('childNodes')!=null){
+                if(this.props.model.get('items')!=null){
                     this.setState({visible: false});
                 }
             },
@@ -40,7 +40,7 @@ define(
                     style.display = "none";
                 }
 
-                if(model.get('childNodes')!=null){
+                if(model.get('items')!=null){
                     className = "glyphicon togglable";
                     if (this.state.visible) {
                         className += " glyphicon-minus";
@@ -52,7 +52,7 @@ define(
                             <li>
                                 <span onClick={this.toggle} className={className}></span>
                                 <div className="childs" onClick={this.toggle}>{model.get('name')}</div>
-                                <div style={style}><CatTreeLinksList source={null} childs={model.get('childNodes')}/></div>
+                                <div style={style}><CatTreeLinksList source={null} childs={model.get('items')}/></div>
                             </li>
                             );
                     }
@@ -60,14 +60,14 @@ define(
                         <li><span onClick={this.toggle} className={className}></span>
                             <a className="childs" href={src}>{model.get('name')}</a>
                             <div style={style}>
-                                <CatTreeLinksList source={null} childs={model.get('childNodes')}/>
+                                <CatTreeLinksList source={null} childs={model.get('items')}/>
                             </div>
                         </li>
                         );
                 }
 
                 return(
-                    <li style={style}><ItemLink item={model} onClick={this.whenClicked}/></li>
+                    <li style={style}><ItemLink model={model} onClick={this.whenClicked}/></li>
                     );
 
             },
@@ -79,7 +79,7 @@ define(
         var CatTreeLinksList = React. createClass({
             getInitialState: function() {
                 return {
-                    links: [], //array!!
+                    collection: [], //array!!
                     screens: '',
                     entities: ''
                 };
@@ -87,14 +87,12 @@ define(
             componentDidMount: function() {
                 console.log('views/react/cat_tree_links_list loaded');
                 if(this.props.childs!=null){
-                    //array
-                    console.log('childrens');
-                    var links = [];
-                    var links = this.props.childs;
-                    this.setState({links: links})
+                    console.log('CatTreeLinksList -> render childrens');
+                    var collection = this.props.childs;
+                    this.setState({collection: collection})
                 }else{
                     this.setState({
-                        links: this.props.collection.models
+                        collection: this.props.collection
                     });
                 }
             },
@@ -103,21 +101,23 @@ define(
             },
             render: function(){
                 var links_output = [];
-                var links = this.state.links;
+                var collection = this.state.collection;
 
                 //if(Object.prototype.toString.call(this.state.links) == '[object Array]'){
-                    console.info(Object.prototype.toString.call(this.state.links));
+                    //console.info(Object.prototype.toString.call(this.state.collection));
                     var self = this;
-                    links_output = this.state.links.map(function(link_model){
+                    links_output = collection.map(function(model){
                         console.log('link_model');
-                        console.log(link_model);
-                        if(link_model.get('is_not_screen')==true && link_model.get('childNodes')==null){
-                            console.log('cat_tree > render > not_link');
-                            return(<li><div className="tree_not_link">{link_model.get('rus_name')}</div></li>);
+                        console.log(model);
+                        if(model.get('is_not_screen')==true && model.get('items')==null){
+                            console.log('cat_tree > render > not_link (is_not_screen==true & items==null)');
+                            console.log("model.get('name')="+model.get('name'));
+                            return(<li><div className="tree_not_link">{model.get('name')}</div></li>);
                         }
-                        if(link_model.get('is_non_independent')!=true){
-                            console.log('cat_tree > render > link');
-                            return(<CatLink model={link_model} key={link_model.get('id')} onClick={self.handleClick}/>)
+                        if(model.get('is_non_independent')!=true){
+                            console.log('cat_tree > render > link (is_non_independent!=true)');
+                            console.log("model.get('name')="+model.get('name'));
+                            return(<CatLink model={model} key={model.get('id')} onClick={self.handleClick}/>)
                         }
                     });
                     return(

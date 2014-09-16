@@ -31,12 +31,10 @@ class IndexController extends AbstractActionController
     }
 
     public function ajaxAction(){
-
         /*
          * isNonIndependent - output only in the parent screen
          * isNotScreen - no screen output
          * */
-
         $sys = array(
             array('id' => 10501, 'category' => 'base', 'entity' => 'countries', 'screen' => 'countries', 'name' => 'Страны'),
             array('id' => 10502, 'category' => 'base', 'entity' => 'address_types', 'screen' => 'address_types', 'name' => 'Типы адреса'),
@@ -112,7 +110,6 @@ class IndexController extends AbstractActionController
             array('id' => 406, 'category' => 'unit', 'entity' => 'unit_enumeration', 'screen' => 'unit', 'name' => 'Нумерация в подразделении',
                 'isNonIndependent' => true ),
         );
-
 
         $data_array = array(
             array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Базовые определения', 'isNotScreen' => true,
