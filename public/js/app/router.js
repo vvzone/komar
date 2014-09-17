@@ -4,10 +4,10 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'models/collections',
+        'models/collections_router',
         'views/menu_list'
     ],
-    function($, _, Backbone, Collections, Menu){
+    function($, _, Backbone, CollectionsRouter, Menu){
 
     var AppRouter = Backbone.Router.extend({
         routes: {
@@ -29,7 +29,7 @@ define(
         collectionView: function(view){
             console.info('Router->collectionView: collection='+view);
             //var MenuOutput = new Menu;
-            Collections.initialize(view, null, null);
+            CollectionsRouter.initialize(view, null, null);
         }
     });
 

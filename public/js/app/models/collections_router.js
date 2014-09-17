@@ -1,41 +1,41 @@
 define(
-    'models/collections',
+    'models/collections_router',
     [
         'jquery',
         'underscore',
-        'backbone'
+        'backbone',
+        'event_bus'
     ],
-    function($, _, Backbone){
-        /*
-        var AbstractCollection = Backbone.Collection.extend({
-        });*/
-
-        /*
-        var AppRouter = Backbone.Router.extend({
-            routes: {
-                '': 'home',
-                ':view/:id(/:param)': 'itemView',
-                ':view' : 'collectionView',
-                '*action': 'no_route'
-            },
-            home: function(){
-                console.log('home');
-            },
-            no_route: function(){
-                console.warn('no route');
-            },
-            itemView : function(view, id, param){
-                console.info('view='+view+' id='+id+' param='+param);
-            },
-            collectionView: function(view){
-
-                console.info('collection='+view);
-            }
-        });*/
-
+    function($, _, Backbone, EventBus){
         var initialize = function(view, id, param){
-            console.log('view initialization...');
+            console.log('collection_router initialization...');
             var ViewCollection = 'undefined';
+
+            switch(view){
+                case('ranks'):
+                    if(!RanksCollection){
+                        console.log('!RanksCollection -> require loading');
+                        var RanksCollection =require(['views/ranks_list'], function(RanksCollection){
+                            return RanksCollection;
+                        });
+                    }
+                    RanksCollection.initialize;
+                break;
+                case('positions'):
+                    if(!PositionsCollection){
+                        console.log('!PositionsCollection -> require loading');
+                        var PositionsCollection =require(['views/ranks_list'], function(PositionsCollection){
+                            return PositionsCollection;
+                        });
+                    }
+                    PositionsCollection.initialize;
+                break;
+                default:
+                    var msg = 'Вид для коллекции '+view+' не найден.';
+                    EventBus.trigger('error', '404', msg);
+                break;
+            }
+            /*
            if(view){
                if(id){
                    console.log('getting module views/'+view);
@@ -63,7 +63,7 @@ define(
                        console.log('already HAVE registered variable '+'views/'+view+'_list');
                    }
                }
-           }
+           }*/
 
         };
         return {

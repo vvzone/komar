@@ -13,13 +13,13 @@ define(
 
         console.log('module views/positions_list loaded');
 
-        var PositionsListView = Backbone.View.extend({
+        var ListView = Backbone.View.extend({
             el: '#main_main', // 2-do: extend from base-class
 
             template: '<div id="main_list_header"></div>' +
                 '<div id="main_list"></div>',
             initialize: function() {
-                console.log('PositionsListView initialization...');
+                console.log('ListView (backbone) initialization...');
                 _.bindAll(this, 'render');
                 console.log('init, this.collection:');
                 console.log(this.collection);
@@ -48,20 +48,24 @@ define(
             }
         });
 
-        var Positions = new PositionsCollection;
-        console.log('trying fetch collection...');
-        var p = Positions.fetch({
-            data: {recursive: 1},
-            error: function(obj, response){
-                console.warn('error, response: '+response);
-                EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
-            },
-            success: function(){
-                console.info('success & Current collection:');
-                console.info(Positions.toJSON());
-                var View = new PositionsListView({collection: Positions});
-            }
-        });
+        var PositionMainView = function(){
+            var Positions = new PositionsCollection;
+            console.log('trying fetch collection...');
+            var p = Positions.fetch({
+                data: {recursive: 1},
+                error: function(obj, response){
+                    console.warn('error, response: '+response);
+                    EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
+                },
+                success: function(){
+                    console.info('success & Current collection:');
+                    console.info(Positions.toJSON());
+                    var View = new PositionsListView({collection: Positions});
+                }
+            });
+        };
+
+        return PositionMainView;
     }
 );
 

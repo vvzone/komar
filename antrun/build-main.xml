@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<project name="maven-antrun-" default="main"  >
+<target name="main">
+  <echo message="Creating exe installer with NSIS"/>
+  <copy file="etc\nsis.script.nsi" tofile="target\nsis.script.nsi"/>
+  <copy file="etc\LICENSE" tofile="target\LICENSE"/>
+  <exec executable="native_package\nsis\makensis.exe">
+    <arg value="E:\wamp\www\mercurial\ServerEDO\target\nsis.script.nsi"/>
+  </exec>
+  <delete file="target\nsis.script.nsi"/>
+</target>
+</project>

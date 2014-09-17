@@ -45,8 +45,8 @@ define(
                 this.setState({open: this.state.open==true? false: true});
             },
             componentWillMount: function(){
-                console.log('ListItem WillMount, model:');
-                console.log(this.props.model);
+                /*console.log('ListItem WillMount, model:');
+                console.log(this.props.model);*/
                 //this.setState({model: this.props.model});
             },
             whenClickedCP: function(action){
