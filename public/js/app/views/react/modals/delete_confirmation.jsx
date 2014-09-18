@@ -23,7 +23,7 @@ define(
                     var self = this;
                     _.extend($(this.getDOMNode()), Backbone.Events);
                     EventBus.once('windows-close', function(){
-                        console.log('windows-close catch by window-DELETE CONFIRMATION');
+                        console.info('windows-close catch by window-DELETE CONFIRMATION');
                         self.hide();
                     }, self);
                 },

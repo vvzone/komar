@@ -79,9 +79,9 @@ define(
             },
             componentWillMount: function () {
                 window.addEventListener("saveButtonClick", this.saveForm, true);
-
                 var self = this;
-                for(var prop in this.props.model.get('attr_rus_names')){
+                for(var prop in this.props.model.attr_rus_names){
+                    console.log('mounting, prop: '+prop);
                     if(typeof(this.props.model.attr_dependencies[prop])!='undefined' && this.props.model.attr_dependencies!=null){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
                         require([

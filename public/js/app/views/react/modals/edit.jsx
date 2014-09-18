@@ -34,8 +34,9 @@ define(
             componentDidMount: function () {
                 var self = this;
                 _.extend($(this.getDOMNode()), Backbone.Events);
+
                 EventBus.once('windows-close', function(){
-                    console.error('windows-close catch by window-EDIT');
+                    console.info('windows-close catch by window-EDIT');
                     self.refs.modal.hide();
                 }, self);
             },

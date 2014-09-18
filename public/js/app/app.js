@@ -21,9 +21,11 @@ define(
 
         EventBus.on('error', function(header, msg, response){
             EventBus.trigger('windows-close');
-            /*var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-            console.log('unmount='+unmount);*/
+
+            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+            console.log('unmount='+unmount);
             $('#global_modal').html('');
+
             React.renderComponent(
                  ModalWindowError({
                      header: header,
@@ -37,6 +39,7 @@ define(
             console.info('EventBus -> item-add, model:');
             console.log(model);
             EventBus.trigger('windows-close');
+
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
             $('#global_modal').html('');
@@ -52,6 +55,7 @@ define(
             console.info('EventBus -> item-edit, model:');
             console.log(model);
             EventBus.trigger('windows-close');
+
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
             $('#global_modal').html('');
@@ -67,6 +71,7 @@ define(
             console.info('EventBus -> item-delete, model:');
             console.log(model);
             EventBus.trigger('windows-close');
+
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
             $('#global_modal').html('');
@@ -81,9 +86,11 @@ define(
         EventBus.on('success', function(header, msg){
             console.info('EventBus -> success');
             EventBus.trigger('windows-close');
+
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
             $('#global_modal').html('');
+
             React.renderComponent(
                 ModalWindowSuccess({
                     header: header,

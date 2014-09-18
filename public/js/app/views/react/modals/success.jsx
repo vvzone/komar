@@ -23,7 +23,7 @@ define(
                 this.show();
                 _.extend($(this.getDOMNode()), Backbone.Events);
                 EventBus.once('windows-close', function(){
-                    console.error('windows-close catch by window-SUCCESS');
+                    console.info('windows-close catch by window-SUCCESS');
                     this.hide();
                 }, this);
             },
