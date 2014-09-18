@@ -1,15 +1,13 @@
 define(
-    'views/positions_list',
+    'views/list',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
-        'models/positions_collection',
-        'views/position',
         'event_bus'
 
-    ],function($, _, Backbone, React, PositionsCollection, PositionView, EventBus){
+    ],function($, _, Backbone, React, EventBus){
 
         console.log('module views/positions_list loaded');
 
@@ -48,24 +46,31 @@ define(
             }
         });
 
-        var PositionMainView = function(){
-            var Positions = new PositionsCollection;
-            console.log('trying fetch collection...');
-            var p = Positions.fetch({
-                data: {recursive: 1},
-                error: function(obj, response){
-                    console.warn('error, response: '+response);
-                    EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
-                },
-                success: function(){
-                    console.info('success & Current collection:');
-                    console.info(Positions.toJSON());
-                    var View = new PositionsListView({collection: Positions});
-                }
-            });
-        };
+            var initialize = function(CollectionModule){
+                console.log('start loaded...');
+                var Collection = new CollectionModule;
+                console.log('CollectionModule');
+                console.log(CollectionModule);
+                console.log('Collection');
+                console.log(Collection);
+                console.log('trying fetch collection...');
+                var p = Collection.fetch({
+                    data: {recursive: 1},
+                    error: function(obj, response){
+                        console.warn('error, response: '+response);
+                        EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
+                    },
+                    success: function(){
+                        console.info('success & Current collection:');
+                        console.info(Collection.toJSON());
+                        var View = new ListView({collection: Collection});
+                    }
+                });
+            };
 
-        return PositionMainView;
+        return {
+            initialize: initialize
+        };
     }
 );
 

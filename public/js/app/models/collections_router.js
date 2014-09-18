@@ -4,9 +4,10 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'event_bus'
+        'event_bus',
+        'views/list'
     ],
-    function($, _, Backbone, EventBus){
+    function($, _, Backbone, EventBus, ListView){
         var initialize = function(view, id, param){
             console.log('collection_router initialization...');
             var ViewCollection = 'undefined';
@@ -14,27 +15,36 @@ define(
             switch(view){
                 case('ranks'):
                     if(!RanksCollection){
-                        console.log('!RanksCollection -> require loading');
-                        var RanksCollection =require(['views/ranks_list'], function(RanksCollection){
+                        console.warn('!RanksCollection -> require loading');
+                        var RanksCollection = require(['models/ranks_collection'], function(RanksCollection){
+                            console.log('loaded...');
+                            ListView.initialize(RanksCollection);
                             return RanksCollection;
                         });
+                    }else{
+                        console.warn('RanksCollection -> no needed to load');
+                        ListView.initialize(RanksCollection);
                     }
-                    RanksCollection.initialize;
                 break;
                 case('positions'):
                     if(!PositionsCollection){
-                        console.log('!PositionsCollection -> require loading');
-                        var PositionsCollection =require(['views/ranks_list'], function(PositionsCollection){
+                        console.warn('!PositionsCollection -> require loading');
+                        var PositionsCollection =require(['models/positions_collection'], function(PositionsCollection){
+                            console.log('loaded...');
+                            ListView.initialize(PositionsCollection);
                             return PositionsCollection;
                         });
+                    }else{
+                        console.warn('PositionsCollection -> no needed to load');
+                        ListView.initialize(PositionsCollection);
                     }
-                    PositionsCollection.initialize;
                 break;
                 default:
-                    var msg = 'Вид для коллекции '+view+' не найден.';
+                    var msg = 'Вид для коллекции '+view+' не задан.';
                     EventBus.trigger('error', '404', msg);
                 break;
             }
+
             /*
            if(view){
                if(id){

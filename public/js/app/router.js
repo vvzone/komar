@@ -5,10 +5,11 @@ define(
         'underscore',
         'backbone',
         'models/collections_router',
-        'views/menu_list'
+        //'views/menu_list'
     ],
-    function($, _, Backbone, CollectionsRouter, Menu){
+    function($, _, Backbone, CollectionsRouter){
 
+    //, Menu
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',

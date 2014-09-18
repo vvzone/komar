@@ -127,10 +127,11 @@ define(
                 var dependencies_by_place = {};
 
                 for(var prop in model.attr_rus_names){
-                    console.log('prop='+prop);
-                    console.log('ControlsConfig[prop]='+ControlsConfig[prop]);
-                    console.log('model.attributes[prop]='+model.attributes[prop]);
+                    console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
+                    console.log('model.attributes['+prop+']='+model.attributes[prop]);
                     if(typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                        console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
+                        console.log('this.state.dependency_array='+this.state.dependency_array);
                         if(this.state.dependency_array != null){
                             console.log('this.state.dependency_array');
                             console.log(this.state.dependency_array);
