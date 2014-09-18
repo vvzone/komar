@@ -4,12 +4,14 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'models/collections_router',
+        'models/collections_router'
         //'views/menu_list'
     ],
-    function($, _, Backbone, CollectionsRouter){
+    function($, _, Backbone, CollectionsRouter
+       //Menu
+        ){
 
-    //, Menu
+
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',

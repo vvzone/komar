@@ -114,7 +114,8 @@ define(
                             console.log("model.get('name')="+model.get('name'));
                             return(<li><div className="tree_not_link">{model.get('name')}</div></li>);
                         }
-                        if(model.get('is_non_independent')!=true){
+                        //if(model.get('is_non_independent')!=true){
+                        if(model.get('isNonIndependent')!=true){
                             console.log('cat_tree > render > link (is_non_independent!=true)');
                             console.log("model.get('name')="+model.get('name'));
                             return(<CatLink model={model} key={model.get('id')} onClick={self.handleClick}/>)

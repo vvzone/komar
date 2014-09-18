@@ -29,6 +29,12 @@ define(
             },
             position: function(id) {
                 return host + prefix + "/positions/"+ id;
+            },
+            doc_type_groups: function() {
+                return host + prefix + "/doctypegroups";
+            },
+            doc_type_group: function(id) {
+                return host + prefix + "/doctypegroups/"+ id;
             }
             /*subscriptions: function(userId, id) {
              return "/api/users/"+ userId +"/subscriptions/" + id;

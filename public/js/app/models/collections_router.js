@@ -5,9 +5,10 @@ define(
         'underscore',
         'backbone',
         'event_bus',
-        'views/list'
+        'views/list',
+        'views/tree'
     ],
-    function($, _, Backbone, EventBus, ListView){
+    function($, _, Backbone, EventBus, ListView, TreeView){
         var initialize = function(view, id, param){
             console.log('collection_router initialization...');
             var ViewCollection = 'undefined';
@@ -37,6 +38,19 @@ define(
                     }else{
                         console.warn('PositionsCollection -> no needed to load');
                         ListView.initialize(PositionsCollection);
+                    }
+                break;
+                case('doc_type_groups'):
+                    if(!DocTypeGroupsCollection){
+                        console.warn('!DocTypeGroupsCollection -> require loading');
+                        var DocTypeGroupsCollection =require(['models/doc_type_groups_collection'], function(DocTypeGroupsCollection){
+                            console.log('loaded...');
+                            TreeView.initialize(DocTypeGroupsCollection);
+                            return DocTypeGroupsCollection;
+                        });
+                    }else{
+                        console.warn('DocTypeGroupsCollection -> no needed to load');
+                        TreeView.initialize(DocTypeGroupsCollection);
                     }
                 break;
                 default:

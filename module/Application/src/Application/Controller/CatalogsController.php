@@ -250,6 +250,45 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
+    public function doctypegroupsAction(){
+        $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'is_service' => 'Служебный документ');
+        $prototype_array = array('editable_properties' => $editable_array);
+
+        $combat = array(
+            array('id' => 1001, 'parent_id' => 100, 'name' => 'Общевойсковые', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 1002, 'parent_id' => 100, 'name' => 'Индивидуальные', 'shortname'=> 'ПХ', 'is_service' => false)
+        );
+
+        $economic = array(
+            array('id' => 1101, 'parent_id' => 110, 'name' => 'Персонал', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 1102, 'parent_id' => 110, 'name' => 'Материальная часть', 'shortname'=> 'ПХ', 'is_service' => false)
+        );
+
+        $child_1 = array(
+            array('id' => 100, 'parent_id' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'is_service' => false,
+                'childNodes' => $combat),
+            array('id' => 110, 'parent_id' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'is_service' => false,
+                'childNodes' => $economic)
+        );
+
+        $data_array = array(
+            array('id' => 2, 'parent_id' => 1, 'name' => 'Сигналы', 'shortname'=> 'С', 'is_service' => false),
+            array('id' => 3, 'parent_id' => 1, 'name' => 'Приказы', 'shortname'=> 'П', 'is_service' => false,
+                'childNodes' => $child_1),
+            array('id' => 4, 'parent_id' => 1, 'name' => 'Служебные', 'shortname'=> 'сист.', 'is_service' => true,),
+        );
+
+        $new_data_array = array(
+            'id' => 1, 'parent_id' => null, 'name' => 'Группы типов документов', 'shortname'=> 'ПХ', 'is_service' => true,
+            'childNodes' => $data_array
+        );
+
+        //$response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($new_data_array);
+        return $JsonModel;
+    }
+
 
 
     public function boilplateAction(){
