@@ -34,8 +34,9 @@ define(
                 });
             },
             componentWillUnmount: function(){
-                console.warn('Success, unmount, throw window close');
-                EventBus.trigger('windows-close');
+                //console.warn('Success, unmount, throw window close');
+                console.warn('Unmounting React SUCCESS window');
+                //EventBus.trigger('windows-close');
             },
             callback: function(){
                 console.log('modal window callback, hide');

@@ -35,10 +35,11 @@ define(
                     this.setState({secondsElapsed: this.state.secondsElapsed - 1});
                 }else{
                     this.props.callback('timer!');
+                    clearInterval(this.interval);
                 }
             },
             componentWillUnmount: function() {
-                clearInterval(this.interval);
+                console.warn('Timer Unmount, nothing at all...');
             },
             render: function () {
                 var remaining = '';
