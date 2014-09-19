@@ -66,7 +66,6 @@ define(
                     if(array[i]){
                         console.info('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' droppedOn_Id= '+droppedOn_Id);
                         if(array[i].id == droppedOn_Id ){
-                            //old_parent!=droppedOn_Id
                             if(array[i]['childNodes']){
                                 var childs = {}; // truly magic
                                 childs = array[i]['childNodes'];
