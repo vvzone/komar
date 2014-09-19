@@ -10,22 +10,37 @@ define(
         'backbone',
         'react',
         'jsx!views/react/controls/tree_mixin',
-        'jsx!views/react/controls/tree_node_box'
+        'jsx!views/react/controls/tree_node_box',
+        'jsx!views/react/controls/tree_main',
 
-    ],function($, _, Backbone, React, TreeClassMixin){
+        'jsx!views/react/base/btn_add',
+        'jsx!views/react/base/btn_edit',
+        'jsx!views/react/base/btn_delete'
+
+
+        /*
+        * <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
+          <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
+          <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
+        *
+        * */
+    ],function($, _, Backbone, React,
+               TreeClassMixin, TreeNodeBox, MainTree,
+               ButtonAdd, ButtonEdit, ButtonDelete
+        ){
 
         var TreeNode = React.createClass({
             mixins: [TreeClassMixin],
             getInitialState: function () {
                 return {
                     visible: true,
-                    node: this.props.node,
+                    model: this.props.model,
                     open: false,
                     dependency_items: []
                 };
             },
             closeState: function(e){
-                if(this.props.node.id!=e.detail.id){
+                if(this.props.model.get('id')!=e.detail.id){
                     this.setState({open: false});
                 }
             },
@@ -42,19 +57,21 @@ define(
                 var customEvent = new CustomEvent("modalWindowOpen",  {
                     detail: {
                         action: action,
-                        entity: 'doc_type_groups_edit',
-                        item: this.props.node,
-                        current_id: this.props.node.id
+                        entity: 'doc_type_groups_edit', //FIX!!!
+                        model: this.props.model,
+                        current_id: this.props.model.get('id')
                     },
                     bubbles: true
                 });
+                console.log('nodeControlClicked > dispatch event:');
+                console.log(customEvent);
                 this.getDOMNode().dispatchEvent(customEvent);
             },
             whenClicked: function(){
                 this.setState({open: this.state.open==true? false: true});
                 var closeWhoOpenEvent = new CustomEvent("closeWhoOpenEvent",  {
                     detail: {
-                        id: this.props.node.id
+                        id: this.props.model.get('id')
                     },
                     bubbles: true
                 });
@@ -62,6 +79,8 @@ define(
             },
             getNodeTreeDependency: function(){
                 console.info('===getNodeTreeDependency===');
+                console.log('podpindosnost!');
+                /*
                 if(typeof this.props.tree_dependency.id_name_in_dependency != 'undefined' ){
                     var url = 'http://zend_test/main/'
                         + this.props.tree_dependency.source
@@ -78,7 +97,7 @@ define(
                         data = result.data;
                     }.bind(this));
                     return data;
-                }
+                }*/
             },
             render: function () {
                 var className = "";
@@ -87,10 +106,12 @@ define(
                     style.display = "none";
                 }
 
+
                 var dependency_box = [];
                 console.info('this.props.tree_dependency');
                 console.info(this.props.tree_dependency);
 
+                /*
                 if(typeof this.props.tree_dependency != 'undefined'){
                     //if(this.props.had_dependeny_items){
                     className = 'glyphicon';
@@ -114,16 +135,25 @@ define(
                             </div>;
                     }
                 }
+                */
 
-                if (this.props.node.childNodes != null) {
-                    if(this.props.node.childNodes.length>0){
+                if(!MainTree){
+                    var MainTree =require(['jsx!views/react/controls/tree_main'], function(MainTree){
+                        console.log('loaded...');
+                        return MainTree;
+                    });
+                }
+                console.log();
+
+                if (this.props.model.get('items')!= null) {
+                    if(this.props.model.get('items').length>0){
                         className = "glyphicon togglable";
                         if (this.state.visible) {
                             className += " glyphicon-minus";
                         } else {
                             className += " glyphicon-plus";
                         }
-                        var node_key = 'tree_box_node'+this.props.node.id;
+                        var node_key = 'tree_box_node'+this.props.model.get('id');
                         var tree_dependency ='';
                         return(
                             <li>
@@ -135,9 +165,9 @@ define(
                                 onDragOver={this.dragOver}
                                 onDragLeave={this.dragLeave}
                                 key={node_key}
-                                id={this.props.node.id} >
+                                id={this.props.model.get('id')} >
                                     <span onClick={this.toggle} className={className}></span>
-                                    <TreeNodeBox item={this.props.node}/>
+                                    <TreeNodeBox item={this.props.model}/>
                         {dependency_box}
                                 </div>
                                 <div className="tree_box_node_controls">
@@ -146,7 +176,7 @@ define(
                                     <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
                                 </div>
                                 <div className="tree_childs" style={style}>
-                                    <MainTree source={null} childs={this.props.node.childNodes} tree_dependency={this.props.tree_dependency}/>
+                                    <MainTree source={null} childs={this.props.model.get('items')} tree_dependency={this.props.model.get('attr_dependency')}/>
                                 </div>
                             </li>
                             );
@@ -161,8 +191,8 @@ define(
                         onDragOver={this.dragOver}
                         onDragLeave={this.dragLeave}
                         onDrop={this.drop}
-                        id={this.props.node.id}>
-                            <TreeNodeBox item={this.props.node} tree_dependency={tree_dependency}/>
+                        id={this.props.model.get('id')}>
+                            <TreeNodeBox model={this.props.model} tree_dependency={tree_dependency}/>
                         {dependency_box}
                         </div>
                         <div className="tree_box_node_controls">
@@ -177,7 +207,7 @@ define(
                 this.setState({visible: !this.state.visible});
                 var closeWhoOpenEvent = new CustomEvent("closeWhoOpenEvent",  {
                     detail: {
-                        id: this.props.node.id
+                        id: this.props.model.get('id')
                     },
                     bubbles: true
                 });
