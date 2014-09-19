@@ -36,11 +36,14 @@ define(
                     this.setState({open: false});
                 }
             },
-            componentDidMount: function(){
-                if(this.props.node.childNodes!=null){
+            componentWillMount: function(){
+                console.log('Node WillMount -> this.props.model:');
+                console.log(this.props.model);
+                if(this.props.model.get('childNodes')!=null){
                     this.setState({visible: false});
                 }
                 window.addEventListener("closeWhoOpenEvent", this.closeState, true);
+                console.log('Node WillMount -> add event =closeWhoOpenEvent=');
             },
             componentWillUnmount: function () {
                 window.removeEventListener("closeWhoOpenEvent", this.closeState, true);
@@ -100,8 +103,9 @@ define(
 
 
                 var dependency_box = [];
-                console.info('this.props.tree_dependency');
-                console.info(this.props.tree_dependency);
+                console.log('Node Render');
+                console.log('Node Render -> this.props.model');
+                console.log(this.props.model);
 
                 /*
                  if(typeof this.props.tree_dependency != 'undefined'){
@@ -129,16 +133,13 @@ define(
                  }
                  */
 
-                if(!MainTree){
-                    var MainTree =require(['jsx!views/react/controls/tree_main'], function(MainTree){
-                        console.log('loaded...');
-                        return MainTree;
-                    });
-                }
-                console.log();
+                var tree_dependency ='';
 
                 if (this.props.model.get('items')!= null) {
+                    console.info('Node Render -> this.props.model.get(items)!=null');
+                    console.log(this.props.model.get('items'));
                     if(this.props.model.get('items').length>0){
+                        console.log('this.props.model.get(items).length= '+this.props.model.get('items').length);
                         className = "glyphicon togglable";
                         if (this.state.visible) {
                             className += " glyphicon-minus";
@@ -146,7 +147,9 @@ define(
                             className += " glyphicon-plus";
                         }
                         var node_key = 'tree_box_node'+this.props.model.get('id');
-                        var tree_dependency ='';
+
+                        //<TreeNodeBox item={this.props.model} />
+                        //<MainTree source={null} childs={this.props.model.get('items')} tree_dependency={this.props.model.get('attr_dependency')} />
                         return(
                             <li>
                                 <div className="tree_box_node"
@@ -159,7 +162,7 @@ define(
                                 key={node_key}
                                 id={this.props.model.get('id')} >
                                     <span onClick={this.toggle} className={className}></span>
-                                    <TreeNodeBox item={this.props.model}/>
+                                    <TreeNodeBox model={this.props.model} />
                         {dependency_box}
                                 </div>
                                 <div className="tree_box_node_controls">
@@ -168,7 +171,7 @@ define(
                                     <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
                                 </div>
                                 <div className="tree_childs" style={style}>
-                                    <MainTree source={null} childs={this.props.model.get('items')} tree_dependency={this.props.model.get('attr_dependency')}/>
+                                    <div>MainTree child</div>
                                 </div>
                             </li>
                             );
@@ -218,7 +221,7 @@ define(
                 window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
             },
             componentDidMount: function() {
-                console.log('MainTree -> mounting');
+                console.log('MainTree DidMount');
                 if(this.props.childs!=null){
                     console.log('MainTree -> childrens');
                     this.setState({collection: this.props.childs});
