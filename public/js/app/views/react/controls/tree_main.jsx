@@ -211,7 +211,6 @@ define(
                             onDragLeave={this.dragLeave}
                             onDrop={this.drop}
                             id={this.props.model.get('id')}>
-                            W/out/childs
                                 <TreeNodeBox model={this.state.model} tree_dependency={tree_dependency}/>
                         {dependency_box}
                             </div>
@@ -239,7 +238,7 @@ define(
         var MainTree = React.createClass({
             /*
             * props:
-            *
+            * childs, collection (same)
             * */
             getInitialState: function() {
                 return {
@@ -248,7 +247,8 @@ define(
                 };
             },
             componentWillMount: function() {
-                window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
+                //this will throw all components handle
+                //window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
             },
             componentDidMount: function() {
                 console.log('MainTree DidMount');
@@ -260,17 +260,31 @@ define(
                 }
             },
             handleMyEvent: function(event){
+                console.info('MainTree -> TreeNodeMove (listener) catch...');
                 var items = [];
-                items = this.state.items;
+                items = this.state.collection;
                 var droppedOn_Id = event.detail.movedNode.droppedOn_id;
-                var dragged =  event.detail.movedNode.dragged;
-                var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.node, droppedOn_Id);
-                var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.node, clean_items);
-
-                this.setState({items: new_items}); //FIX -> collection
+                console.log('droppedOn_Id='+droppedOn_Id);
+                var dragged = event.detail.movedNode.dragged;
+                console.log('dragged:');
+                console.log(dragged);
+                var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id);
+                var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
+                console.info('current collection:');
+                console.log(this.state.collection);
+                console.info('change collection on: ');
+                console.log(new_items);
+                this.setState({collection: new_items}); //FIX -> collection
             },
-            itemRemoveFromArrayById: function(value, node, droppedOn_Id){
-                var array = this.state.items;
+            itemRemoveFromArrayById: function(value, model, droppedOn_Id){
+                var collection = this.state.collection;
+                console.log('collection, before remove moved:');
+                console.log(collection);
+                collection.remove(model);
+                console.warn('collection after remove moved');
+                console.log(collection);
+                /*
+                var array = this.state.collection;
                 var catcher = [];
                 for(var i = 0; i < array.length; i++){
                     if(array[i]){
@@ -281,6 +295,7 @@ define(
                     }
                 }
                 return array;
+                */
             },
             itemAddInArrayById: function(droppedOn_Id, new_child, clean_items){
                 var array = {};

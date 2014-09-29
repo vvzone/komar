@@ -9,6 +9,7 @@ define(
         'react'
 
     ],function($, _, Backbone, React){
+        var storage = {};
         var TreeClassMixin = function () {
             return{
                 dragStart: function(e) {
@@ -16,9 +17,14 @@ define(
                     e.dataTransfer.effectAllowed = 'move';
                     // Firefox requires dataTransfer data to be set
                     e.dataTransfer.setData("text/html", e.currentTarget);
+
                     var data = {id: e.currentTarget.id,
-                        node: this.state.node};
+                        model: this.state.model};
+                    console.log('dragStart -> data:');
+                    console.log(data);
                     storage['dragged'] = data;
+                    console.log('trying to save to storage... storage[dragged]:');
+                    console.log(storage['dragged']);
                 },
                 dragOver: function(e) {
                     e.preventDefault(); // necessary!
@@ -50,6 +56,9 @@ define(
                         dragged: storage['dragged'],
                         droppedOn_id: droppedOn.id
                     };
+
+                    console.log('movedNode');
+                    console.log(movedNode);
                     var customEvent = new CustomEvent("TreeNodeMove",  {
                         detail: {movedNode: movedNode},
                         bubbles: true
