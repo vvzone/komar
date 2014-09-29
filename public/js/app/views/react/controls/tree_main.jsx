@@ -247,6 +247,7 @@ define(
                 };
             },
             componentWillMount: function() {
+                console.warn('MainTree -> componentWillMount');
                 //this will throw all components handle
                 //window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
             },
@@ -258,8 +259,15 @@ define(
                 }else{
                     this.setState({collection: this.props.collection});
                 }
+                console.info('NEW COLLECTION');
+                console.info(this.state.collection);
+                console.warn('TreeNodeMove, $(this).on:');
+                console.warn($(this));
+                $(this).on('TreeNodeMove', function(){
+                    console.warn('Warn');
+                });
             },
-            handleMyEvent: function(event){
+            moved: function(event){
                 console.info('MainTree -> TreeNodeMove (listener) catch...');
                 var items = [];
                 items = this.state.collection;
@@ -340,7 +348,14 @@ define(
                 var self = this;
                 var collection = this.state.collection;
                 tree_output = this.state.collection.map(function(model){
-                        return(<TreeNode key={model.get('id')} model={model} tree_dependency={model.attr_dependencies} />)
+                        return(
+                            <TreeNode
+                            key={model.get('id')}
+                            model={model}
+                            tree_dependency={model.attr_dependencies}
+                            move={self.moved}
+                            />
+                            );
                         //return(<div>{model.get('name')}</div>)
                 });
                 return(<ul className="tree">{tree_output}</ul>);

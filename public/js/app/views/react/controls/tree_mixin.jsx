@@ -47,7 +47,6 @@ define(
                     console.warn('DROP');
                     $(this.over).removeClass('tree_over_node');
                     var droppedOn = e.currentTarget;
-
                     if(droppedOn.id == storage['dragged']['id']){ //add same parent check
                         console.warn('stop');
                         return
@@ -56,14 +55,11 @@ define(
                         dragged: storage['dragged'],
                         droppedOn_id: droppedOn.id
                     };
-
                     console.log('movedNode');
                     console.log(movedNode);
-                    var customEvent = new CustomEvent("TreeNodeMove",  {
-                        detail: {movedNode: movedNode},
-                        bubbles: true
-                    });
-                    this.getDOMNode().dispatchEvent(customEvent);
+                    console.log('Mixin -> Props:');
+                    console.log(this.props);
+                    this.props.move(movedNode);
                 }
             }
         }()
