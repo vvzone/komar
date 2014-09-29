@@ -273,8 +273,7 @@ class CatalogsController extends AbstractActionController
 
         $data_array = array(
             array('id' => 2, 'parent_id' => 1, 'name' => 'Сигналы', 'shortname'=> 'С', 'is_service' => false),
-            array('id' => 3, 'parent_id' => 1, 'name' => 'Приказы', 'shortname'=> 'П', 'is_service' => false,
-                'childNodes' => $child_1),
+            array('id' => 3, 'parent_id' => 1, 'name' => 'Приказы', 'shortname'=> 'П', 'is_service' => false), //                'childNodes' => $child_1
             array('id' => 4, 'parent_id' => 1, 'name' => 'Служебные', 'shortname'=> 'сист.', 'is_service' => true,),
         );
 

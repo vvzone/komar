@@ -154,15 +154,23 @@ define(
                         var childs = this.props.model.get('items');
                         console.info('childs --->:');
                         console.log(childs);
+                        child_box = <MainTree childs={childs} />;
+                        /*
                         child_box = childs.map(function(model){
+                            console.info('map ---- > model:');
+                            console.info(model);
+                            //return(<div>{model.get('name')}</div>);
                             return(
-                                <TreeNode
-                                    key={model.get('id')}
-                                    model={model}
-                                    tree_dependency={model.attr_dependencies}
-                                />
-                                )
+                                <div className="childNode" >
+                                    <TreeNode
+                                        key={model.get('id')}
+                                        model={model}
+                                        tree_dependency={model.attr_dependencies}
+                                    />
+                                </div>
+                                );
                         });
+                        */
                         return(
                             <li>
                                 <div className="tree_box_node"
@@ -191,27 +199,30 @@ define(
                             </li>
                             );
                     }
-                }
-                return(
-                    <li style={style}>
-                        <div className="tree_box_node"
-                        draggable="true"
-                        onDragEnd={this.dragEnd}
-                        onDragStart={this.dragStart}
-                        onDragOver={this.dragOver}
-                        onDragLeave={this.dragLeave}
-                        onDrop={this.drop}
-                        id={this.props.model.get('id')}>
-                            <TreeNodeBox model={this.props.model} tree_dependency={tree_dependency}/>
+                }else{
+                    console.warn('regular Node w/out childs:');
+                    return(
+                        <li style={style}>
+                            <div className="tree_box_node"
+                            draggable="true"
+                            onDragEnd={this.dragEnd}
+                            onDragStart={this.dragStart}
+                            onDragOver={this.dragOver}
+                            onDragLeave={this.dragLeave}
+                            onDrop={this.drop}
+                            id={this.props.model.get('id')}>
+                            W/out/childs
+                                <TreeNodeBox model={this.state.model} tree_dependency={tree_dependency}/>
                         {dependency_box}
-                        </div>
-                        <div className="tree_box_node_controls">
-                            <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
-                            <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
-                            <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
-                        </div>
-                    </li>
-                    );
+                            </div>
+                            <div className="tree_box_node_controls">
+                                <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
+                                <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
+                                <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
+                            </div>
+                        </li>
+                        );
+                }
             },
             toggle: function () {
                 this.setState({visible: !this.state.visible});
@@ -226,6 +237,10 @@ define(
         });
 
         var MainTree = React.createClass({
+            /*
+            * props:
+            *
+            * */
             getInitialState: function() {
                 return {
                     collection: [], //array!!
