@@ -271,9 +271,9 @@ define(
                 console.info('MainTree -> TreeNodeMove (listener) catch...');
                 var items = [];
                 items = this.state.collection;
-                var droppedOn_Id = event.detail.movedNode.droppedOn_id;
+                var droppedOn_Id = event.droppedOn_id;
                 console.log('droppedOn_Id='+droppedOn_Id);
-                var dragged = event.detail.movedNode.dragged;
+                var dragged = event.dragged;
                 console.log('dragged:');
                 console.log(dragged);
                 var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id);
@@ -291,6 +291,8 @@ define(
                 collection.remove(model);
                 console.warn('collection after remove moved');
                 console.log(collection);
+
+                //this.setState({collection: collection}); //fix this: force re-render on collectionchange
                 /*
                 var array = this.state.collection;
                 var catcher = [];

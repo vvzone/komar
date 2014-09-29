@@ -17,6 +17,10 @@ define(
                 return apiUrl('doc_type_groups');
             },
             initialize: function(){
+                this.on('change', function(){
+                    console.warn('!!!-Collection Changed-!!!');
+                    console.warn('models/doc_type_groups_collection');
+                }, this);
                 this.on('destroy', this.liluDallas, this);
             },
             liluDallas: function(){
