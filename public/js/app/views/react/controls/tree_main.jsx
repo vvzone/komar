@@ -150,6 +150,19 @@ define(
 
                         //<TreeNodeBox item={this.props.model} />
                         //<MainTree source={null} childs={this.props.model.get('items')} tree_dependency={this.props.model.get('attr_dependency')} />
+                        var child_box ='';
+                        var childs = this.props.model.get('items');
+                        console.info('childs --->:');
+                        console.log(childs);
+                        child_box = childs.map(function(model){
+                            return(
+                                <TreeNode
+                                    key={model.get('id')}
+                                    model={model}
+                                    tree_dependency={model.attr_dependencies}
+                                />
+                                )
+                        });
                         return(
                             <li>
                                 <div className="tree_box_node"
@@ -171,7 +184,9 @@ define(
                                     <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
                                 </div>
                                 <div className="tree_childs" style={style}>
-                                    <div>MainTree child</div>
+                                    <div>
+                                    {child_box}
+                                    </div>
                                 </div>
                             </li>
                             );
