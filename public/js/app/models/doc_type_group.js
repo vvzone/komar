@@ -35,11 +35,20 @@ define(
                     console.log('model init -> has child\'s');
                     if(!DocTypeGroupsCollection){
                         console.log('loading sub-collection for child\'s');
-                       var DocTypeGroupsCollection = require("models/doc_type_groups_collection");
+                        var DocTypeGroupsCollection = require("models/doc_type_groups_collection");
                     }
                     var ChildCollection = new DocTypeGroupsCollection(this.get('childNodes'));
                     this.set({items: ChildCollection});
                 }
+                /*else{
+                    console.log('model init -> NO child\'s EMPTY COLLECTION SET');
+                    if(!DocTypeGroupsCollection){
+                        console.log('loading sub-collection for child\'s');
+                        var DocTypeGroupsCollection = require("models/doc_type_groups_collection");
+                    }
+                    var ChildCollection = new DocTypeGroupsCollection(null);
+                    this.set({items: ChildCollection});
+                }*/
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){

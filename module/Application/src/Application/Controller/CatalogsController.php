@@ -187,27 +187,15 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
-    public function remove($array){
-        $id = null;
-        $id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
-
-        if($id!=null){
-            $new_array = array();
-
-            foreach($array as $key => $item){
-                if($item['id'] != $id){
-                    $new_array[] = $item;
-                }
-            }
-            return $new_array;
-        }
-    }
 
     public function ranksAction(){
 
         /*
          * [{id:1, is_officer:false, name:"Рядовой", short_name:null, description:null, created_at:1408439617871, deleted_at:null}]
          * */
+
+        $data_array = '';
+
         $data_array = array(
             array('id' => 1, 'name' => 'Рядовой', 'short_name' => 'ряд.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),
             array('id' => 2, 'name' => 'Ефрейтор','short_name' => 'ефр.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),
@@ -303,6 +291,21 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
+    public function remove($array){
+        $id = null;
+        $id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+
+        if($id!=null){
+            $new_array = array();
+
+            foreach($array as $key => $item){
+                if($item['id'] != $id){
+                    $new_array[] = $item;
+                }
+            }
+            return $new_array;
+        }
+    }
 }
 
 ?>

@@ -17,18 +17,21 @@ define(
             template: '<div id="main_list_header"></div>' +
                 '<div id="menu_view"></div>',
             initialize: function() {
-                console.log('MenuView initialization...');
+                console.info('TreeView initialization...');
                 _.bindAll(this, 'render');
                 console.log('init, this.collection:');
                 console.log(this.collection);
-
                 this.collection.bind('destroy', this.render, this);
-                this.collection.bind('change', this.render, this);
+                this.collection.bind('change', this.changeCollection, this);
                 this.collection.bind('reset', this.render, this);
                 this.render();
             },
+            changeCollection: function(){
+                console.warn('TreeView -> collection.change.event');
+                this.render;
+            },
             render: function(){
-                console.log('render, this.collection:');
+                console.log('TreeView -> render, this.collection:');
                 console.log(this.collection);
                 var self = this;
                 $(document).ready(function(){

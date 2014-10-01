@@ -292,6 +292,7 @@ define(
                 console.warn('collection after remove moved');
                 console.log(collection);
 
+                return collection;
                 //this.setState({collection: collection}); //fix this: force re-render on collectionchange
                 /*
                 var array = this.state.collection;
@@ -307,8 +308,39 @@ define(
                 return array;
                 */
             },
-            itemAddInArrayById: function(droppedOn_Id, new_child, clean_items){
-                var array = {};
+            itemAddInArrayById: function(droppedOn_Id, new_child_model, clean_items){
+
+                var dropped_on_model = '';
+                dropped_on_model = clean_items.get(droppedOn_Id);
+                console.log('dropped_on_model:');
+                console.log(dropped_on_model);
+
+                var dropped_on_childs_collection = dropped_on_model.get('items'); //may be null
+
+                if(dropped_on_childs_collection == null){
+                    //no collection-class present
+                    console.log('EMPTY COLLECTION ITEMS');
+                    var empty_collection = clean_items.clone();
+                    dropped_on_childs_collection = empty_collection.reset();
+                }else{
+
+                }
+                console.log('dropped_on_childs_collection');
+                console.log(dropped_on_childs_collection);
+
+                dropped_on_childs_collection.add(new_child_model);
+
+                console.log('dropped_on_childs_collection -> after add');
+                console.log(dropped_on_childs_collection);
+
+                dropped_on_model.set({items: dropped_on_childs_collection});
+                console.log('setting new items collection to model..., dropped_on_model:');
+                console.log(dropped_on_model);
+
+                var new_items = clean_items.add(dropped_on_model);
+
+                return new_items;
+                /*var array = {};
                 var old_parent = new_child.parent_id;
                 new_child.parent_id = parseInt(droppedOn_Id);
                 array = clean_items;
@@ -332,7 +364,7 @@ define(
                         }
                     }
                 }
-                return array;
+                return array;*/
             },
             componentWillUnmount: function() {
                 window.removeEventListener("TreeNodeMove", this.handleMyEvent, true);
