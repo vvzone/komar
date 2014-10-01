@@ -162,24 +162,6 @@ define(
                         child_box = childs.map(function(child){
                             return <TreeNode model={child} move={self.props.move}/>; //{child.get('name')}
                         });
-                        /*console.log('child_box');
-                        console.log(child_box);*/
-                        /*
-                        child_box = childs.map(function(model){
-                            console.info('map ---- > model:');
-                            console.info(model);
-                            //return(<div>{model.get('name')}</div>);
-                            return(
-                                <div className="childNode" >
-                                    <TreeNode
-                                        key={model.get('id')}
-                                        model={model}
-                                        tree_dependency={model.attr_dependencies}
-                                    />
-                                </div>
-                                );
-                        });
-                        */
                         return(
                             <li>
                                 <div className="tree_box_node"
@@ -252,6 +234,7 @@ define(
             getInitialState: function() {
                 return {
                     collection: [], //array!!
+                    processed_collection: [],
                     dependency_items: []
                 };
             },
@@ -291,10 +274,10 @@ define(
                 console.log(this.state.collection);
                 console.info('change collection on: ');
                 console.log(new_items);
-                this.setState({collection: new_items}); //FIX -> collection
+                //this.setState({collection: new_items}); //FIX -> collection
             },
             itemRemoveFromArrayById: function(value, model, droppedOn_Id){
-                //var collection = this.state.collection; WRONG! This is parent collection just accidentally
+                //var collection = this.state.collection; //WRONG! This is parent collection just accidentally
                 var collection = model.collection;
                 console.log('collection, before remove moved:');
                 console.log(collection);
@@ -318,17 +301,37 @@ define(
                 return array;
                 */
             },
+            searchForIdRecursive: function($collection){
+                
+            },
             itemAddInArrayById: function(droppedOn_Id, new_child_model, clean_items){
 
                 var dropped_on_model = '';
+                var collection = this.state.collection;
+                dropped_on_model = collection.map(
+                    function(model){
+                        if(model.get('id') == droppedOn_Id){
+                            return model;
+                        }else{
+                            if(model.get('items')!=null){
 
-                // /dropped_on_model = clean_items.get(droppedOn_Id); //WRONG! This is collection just accidentally
+                            }
+                        }
+                    }
+                );
+                for(var i=0; i<collection.length; i++){
+                    collection.get();
+                    if(model.get('items')!=null){
 
+                    }else{
+
+                    }
+                }
+                dropped_on_model = clean_items.get(droppedOn_Id); //WRONG! This is collection just accidentally
                 console.log('dropped_on_model:');
                 console.log(dropped_on_model);
 
                 var dropped_on_childs_collection = dropped_on_model.get('items'); //may be null
-
                 if(dropped_on_childs_collection == null){
                     //no collection-class present
                     console.log('EMPTY COLLECTION ITEMS');
@@ -341,7 +344,6 @@ define(
                 console.log(dropped_on_childs_collection);
 
                 dropped_on_childs_collection.add(new_child_model);
-
                 console.log('dropped_on_childs_collection -> after add');
                 console.log(dropped_on_childs_collection);
 
