@@ -95,6 +95,7 @@ define(
                  }*/
             },
             render: function () {
+                var self = this;
                 var className = "";
                 var style = {};
                 if (!this.state.visible) {
@@ -150,11 +151,19 @@ define(
 
                         //<TreeNodeBox item={this.props.model} />
                         //<MainTree source={null} childs={this.props.model.get('items')} tree_dependency={this.props.model.get('attr_dependency')} />
-                        var child_box ='';
+
                         var childs = this.props.model.get('items');
                         console.info('childs --->:');
                         console.log(childs);
-                        child_box = <MainTree childs={childs} />;
+                        //child_box = <MainTree childs={childs} />;
+
+                        var child_box ={} ;
+
+                        child_box = childs.map(function(child){
+                            return <TreeNode model={child} move={self.props.move}/>; //{child.get('name')}
+                        });
+                        /*console.log('child_box');
+                        console.log(child_box);*/
                         /*
                         child_box = childs.map(function(model){
                             console.info('map ---- > model:');
@@ -192,9 +201,9 @@ define(
                                     <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
                                 </div>
                                 <div className="tree_childs" style={style}>
-                                    <div>
+                                    <ul>
                                     {child_box}
-                                    </div>
+                                    </ul>
                                 </div>
                             </li>
                             );
@@ -276,7 +285,7 @@ define(
                 var dragged = event.dragged;
                 console.log('dragged:');
                 console.log(dragged);
-                var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id);
+                var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id); //bug with "no-same level node"
                 var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
                 console.info('current collection:');
                 console.log(this.state.collection);
@@ -285,7 +294,8 @@ define(
                 this.setState({collection: new_items}); //FIX -> collection
             },
             itemRemoveFromArrayById: function(value, model, droppedOn_Id){
-                var collection = this.state.collection;
+                //var collection = this.state.collection; WRONG! This is parent collection just accidentally
+                var collection = model.collection;
                 console.log('collection, before remove moved:');
                 console.log(collection);
                 collection.remove(model);
@@ -311,7 +321,9 @@ define(
             itemAddInArrayById: function(droppedOn_Id, new_child_model, clean_items){
 
                 var dropped_on_model = '';
-                dropped_on_model = clean_items.get(droppedOn_Id);
+
+                // /dropped_on_model = clean_items.get(droppedOn_Id); //WRONG! This is collection just accidentally
+
                 console.log('dropped_on_model:');
                 console.log(dropped_on_model);
 
