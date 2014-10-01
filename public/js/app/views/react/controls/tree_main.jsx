@@ -136,7 +136,8 @@ define(
 
                 var tree_dependency ='';
 
-                if (this.props.model.get('items')!= null) {
+                var current_childs = this.props.model.get('items');
+                if (current_childs != null & current_childs.length > 0) { // after tree-making this is may be not null
                     console.info('Node Render -> this.props.model.get(items)!=null');
                     console.log(this.props.model.get('items'));
                     if(this.props.model.get('items').length>0){
@@ -247,7 +248,7 @@ define(
                 console.log('MainTree DidMount');
                 if(this.props.childs!=null){
                     console.log('MainTree -> childrens');
-                    this.setState({collection: this.props.childs});
+                    this.setState({plain_collection: this.props.childs});
                 }else{
                     this.setState({plain_collection: this.props.collection});
                 }
@@ -301,8 +302,8 @@ define(
                 var dragged = event.dragged;
                 console.log('dragged:');
                 console.log(dragged);
-                var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id); //bug with "no-same level node"
-                var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
+                //var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id); //bug with "no-same level node"
+                //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
                 console.info('current collection:');
                 console.log(this.state.collection);
                 console.info('change collection on: ');
