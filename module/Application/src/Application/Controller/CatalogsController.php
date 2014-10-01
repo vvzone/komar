@@ -242,6 +242,7 @@ class CatalogsController extends AbstractActionController
         $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'is_service' => 'Служебный документ');
         $prototype_array = array('editable_properties' => $editable_array);
 
+        /*
         $combat = array(
             array('id' => 1001, 'parent_id' => 100, 'name' => 'Общевойсковые', 'shortname'=> 'ПБ', 'is_service' => false),
             array('id' => 1002, 'parent_id' => 100, 'name' => 'Индивидуальные', 'shortname'=> 'ПХ', 'is_service' => false)
@@ -270,10 +271,23 @@ class CatalogsController extends AbstractActionController
             'id' => 1, 'parent_id' => null, 'name' => 'Группы типов документов', 'shortname'=> 'ПХ', 'is_service' => true,
             'childNodes' => $data_array
         );
+        */
+        $super_new_array = array(
+            array('id' => 1, 'parent' => null, 'name' => 'Группы типов документов', 'shortname'=> 'ПХ', 'is_service' => true),
+            array('id' => 2, 'parent' => 1, 'name' => 'Сигналы', 'shortname'=> 'С', 'is_service' => false),
+            array('id' => 3, 'parent' => 1, 'name' => 'Приказы', 'shortname'=> 'П', 'is_service' => false),
+            array('id' => 4, 'parent' => 1, 'name' => 'Служебные', 'shortname'=> 'сист.', 'is_service' => true,),
+            array('id' => 100, 'parent' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 110, 'parent' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'is_service' => false),
+            array('id' => 1101, 'parent' => 110, 'name' => 'Персонал', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 1102, 'parent' => 110, 'name' => 'Материальная часть', 'shortname'=> 'ПХ', 'is_service' => false),
+            array('id' => 1001, 'parent' => 100, 'name' => 'Общевойсковые', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 1002, 'parent' => 100, 'name' => 'Индивидуальные', 'shortname'=> 'ПХ', 'is_service' => false)
+        );
 
         //$response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
         $JsonModel = new JsonModel();
-        $JsonModel->setVariables($new_data_array);
+        $JsonModel->setVariables($super_new_array);
         return $JsonModel;
     }
 

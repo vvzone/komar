@@ -234,7 +234,7 @@ define(
             getInitialState: function() {
                 return {
                     collection: [], //array!!
-                    processed_collection: [],
+                    plain_collection: [],
                     dependency_items: []
                 };
             },
@@ -249,7 +249,7 @@ define(
                     console.log('MainTree -> childrens');
                     this.setState({collection: this.props.childs});
                 }else{
-                    this.setState({collection: this.props.collection});
+                    this.setState({plain_collection: this.props.collection});
                 }
                 console.info('NEW COLLECTION');
                 console.info(this.state.collection);
@@ -258,6 +258,39 @@ define(
                 $(this).on('TreeNodeMove', function(){
                     console.warn('Warn');
                 });
+                var collection = this.makeTreeFromFlat(this.props.collection);
+                this.setState({collection: collection});
+            },
+            makeTreeFromFlat: function(collection){
+
+                var nodes = collection.map(function(model){
+                    return model;
+                });
+
+                var map = {}, node, roots = [];
+                for (var i = 0; i < nodes.length; i += 1) {
+                    node = nodes[i];
+                    node.set('items', []); //items = [];
+                    console.log('node');
+                    console.log(node);
+                    map[node.get('id')] = i; // use map to look-up the parents
+                    console.log('map['+node.get('id')+'] ='+i);
+                    console.log(map[node.get('id')]);
+                    if (node.get('parent')!= null) {
+                        var num = map[node.get('parent')];
+                        console.log('num='+num);
+                        //nodes[num].items.push(node);
+                        var items = nodes[num].get('items');
+                        items.push(node);
+                        nodes[num].set('items', items);
+
+                    } else {
+                        roots.push(node);
+                    }
+                }
+                console.log('Maked tree:');
+                console.log(roots);
+                return roots;
             },
             moved: function(event){
                 console.info('MainTree -> TreeNodeMove (listener) catch...');
@@ -302,7 +335,7 @@ define(
                 */
             },
             searchForIdRecursive: function($collection){
-                
+
             },
             itemAddInArrayById: function(droppedOn_Id, new_child_model, clean_items){
 
