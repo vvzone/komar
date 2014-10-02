@@ -137,7 +137,7 @@ define(
                 var tree_dependency ='';
 
                 var current_childs = this.props.model.get('items');
-                if (current_childs != null & current_childs.length > 0) { // after tree-making this is may be not null
+                if (current_childs != null && current_childs.length > 0) { // after tree-making this is may be not null
                     console.info('Node Render -> this.props.model.get(items)!=null');
                     console.log(this.props.model.get('items'));
                     if(this.props.model.get('items').length>0){
@@ -245,25 +245,24 @@ define(
                 //window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
             },
             componentDidMount: function() {
-                console.log('MainTree DidMount');
+                console.warn('MainTree -> componentDidMount');
                 if(this.props.childs!=null){
                     console.log('MainTree -> childrens');
                     this.setState({plain_collection: this.props.childs});
                 }else{
                     this.setState({plain_collection: this.props.collection});
                 }
-                console.info('NEW COLLECTION');
-                console.info(this.state.collection);
-                console.warn('TreeNodeMove, $(this).on:');
-                console.warn($(this));
-                $(this).on('TreeNodeMove', function(){
-                    console.warn('Warn');
-                });
-                var collection = this.makeTreeFromFlat(this.props.collection);
-                this.setState({collection: collection});
+
+                var collection = this.props.collection;
+                var tree = this.makeTreeFromFlat(collection);
+                /*var processed_collection = collection.reset();
+                processed_collection = collection(tree);
+                console.info('MainTree -> componentDidMount -> processed_collection:');
+                console.info(processed_collection);*/
+                //this.setState({collection: processed_collection});
+                this.setState({collection: tree});
             },
             makeTreeFromFlat: function(collection){
-
                 var nodes = collection.map(function(model){
                     return model;
                 });
@@ -271,15 +270,15 @@ define(
                 var map = {}, node, roots = [];
                 for (var i = 0; i < nodes.length; i += 1) {
                     node = nodes[i];
-                    node.set('items', []); //items = [];
-                    console.log('node');
-                    console.log(node);
+                    node.set({items: []}, {silent: true}); //items = [];
+                    //console.log('node');
+                    //console.log(node);
                     map[node.get('id')] = i; // use map to look-up the parents
-                    console.log('map['+node.get('id')+'] ='+i);
-                    console.log(map[node.get('id')]);
+                    //console.log('map['+node.get('id')+'] ='+i);
+                    //console.log(map[node.get('id')]);
                     if (node.get('parent')!= null) {
                         var num = map[node.get('parent')];
-                        console.log('num='+num);
+                        //console.log('num='+num);
                         //nodes[num].items.push(node);
                         var items = nodes[num].get('items');
                         items.push(node);
@@ -291,7 +290,12 @@ define(
                 }
                 console.log('Maked tree:');
                 console.log(roots);
-                return roots;
+                var tree_collection = collection.clone();
+                tree_collection.reset();
+                tree_collection.set(roots);
+                console.info('MainTree -> makeTreeFromFlat -> result collection:');
+                console.info(tree_collection);
+                return tree_collection;
             },
             moved: function(event){
                 console.info('MainTree -> TreeNodeMove (listener) catch...');
@@ -335,9 +339,6 @@ define(
                 return array;
                 */
             },
-            searchForIdRecursive: function($collection){
-
-            },
             itemAddInArrayById: function(droppedOn_Id, new_child_model, clean_items){
 
                 var dropped_on_model = '';
@@ -353,14 +354,6 @@ define(
                         }
                     }
                 );
-                for(var i=0; i<collection.length; i++){
-                    collection.get();
-                    if(model.get('items')!=null){
-
-                    }else{
-
-                    }
-                }
                 dropped_on_model = clean_items.get(droppedOn_Id); //WRONG! This is collection just accidentally
                 console.log('dropped_on_model:');
                 console.log(dropped_on_model);
