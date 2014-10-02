@@ -39,7 +39,9 @@ define(
             componentWillMount: function(){
                 console.log('Node WillMount -> this.props.model:');
                 console.log(this.props.model);
-                if(this.props.model.get('childNodes')!=null){
+                //if(this.props.model.get('childNodes')!=null){
+                var childs = this.props.model.get('items');
+                if(childs.length>0){
                     this.setState({visible: false});
                 }
                 window.addEventListener("closeWhoOpenEvent", this.closeState, true);
@@ -252,14 +254,8 @@ define(
                 }else{
                     this.setState({plain_collection: this.props.collection});
                 }
-
                 var collection = this.props.collection;
                 var tree = this.makeTreeFromFlat(collection);
-                /*var processed_collection = collection.reset();
-                processed_collection = collection(tree);
-                console.info('MainTree -> componentDidMount -> processed_collection:');
-                console.info(processed_collection);*/
-                //this.setState({collection: processed_collection});
                 this.setState({collection: tree});
             },
             makeTreeFromFlat: function(collection){
@@ -271,15 +267,9 @@ define(
                 for (var i = 0; i < nodes.length; i += 1) {
                     node = nodes[i];
                     node.set({items: []}, {silent: true}); //items = [];
-                    //console.log('node');
-                    //console.log(node);
                     map[node.get('id')] = i; // use map to look-up the parents
-                    //console.log('map['+node.get('id')+'] ='+i);
-                    //console.log(map[node.get('id')]);
                     if (node.get('parent')!= null) {
                         var num = map[node.get('parent')];
-                        //console.log('num='+num);
-                        //nodes[num].items.push(node);
                         var items = nodes[num].get('items');
                         items.push(node);
                         nodes[num].set('items', items);
@@ -325,19 +315,6 @@ define(
 
                 return collection;
                 //this.setState({collection: collection}); //fix this: force re-render on collectionchange
-                /*
-                var array = this.state.collection;
-                var catcher = [];
-                for(var i = 0; i < array.length; i++){
-                    if(array[i]){
-                        if(array[i].id == value){
-                            delete array[i];
-                            return array;
-                        }
-                    }
-                }
-                return array;
-                */
             },
             itemAddInArrayById: function(droppedOn_Id, new_child_model, clean_items){
 
