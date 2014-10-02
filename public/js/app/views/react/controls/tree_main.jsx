@@ -254,8 +254,11 @@ define(
                 }else{
                     this.setState({plain_collection: this.props.collection});
                 }
+                console.info('this.state.plain_collection:');
+                console.info(this.state.plain_collection);
                 var collection = this.props.collection;
-                var tree = this.makeTreeFromFlat(collection);
+                var clone = collection.clone();
+                var tree = this.makeTreeFromFlat(clone);
                 this.setState({collection: tree});
             },
             makeTreeFromFlat: function(collection){
@@ -266,10 +269,22 @@ define(
                 var map = {}, node, roots = [];
                 for (var i = 0; i < nodes.length; i += 1) {
                     node = nodes[i];
-                    node.set({items: []}, {silent: true}); //items = [];
+                    if(node.get('items')!=null){
+                        console.error('cleanup items');
+                        node.set('items', null);
+                    }
+
+                    if(node.get('items') == null){
+                        node.set({items: []}, {silent: true}); //items = [];
+                    }
+                    console.log('node');
+                    console.log(node);
                     map[node.get('id')] = i; // use map to look-up the parents
+                    console.log('map['+node.get('id')+'] ='+i);
+                    console.log(map[node.get('id')]);
                     if (node.get('parent')!= null) {
                         var num = map[node.get('parent')];
+                        console.log('num='+num);
                         var items = nodes[num].get('items');
                         items.push(node);
                         nodes[num].set('items', items);
@@ -294,33 +309,34 @@ define(
                 var dragged = event.dragged;
                 console.log('dragged:');
                 console.log(dragged);
-                var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id); //bug with "no-same level node"
-                var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
+
+                //var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id); //bug with "no-same level node"
+                //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
+                //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
+                var new_items = this.state.plain_collection;
+                var original_model = new_items.get(dragged.model.get('id'));
+                original_model.set('parent', droppedOn_Id);
                 console.info('Main Tree -> moved, current collection:');
                 console.log(this.state.collection);
-                var new_items_collection = this.makeTreeFromFlat(new_items);
+                console.log('flat new_items');
+                console.log(new_items);
+                var tree = this.makeTreeFromFlat(new_items);
                 console.info('Main Tree -> moved, changed collection: ');
-                console.log(new_items_collection);
-                this.setState({collection: new_items_collection}); //FIX -> collection
+                console.log(tree);
+                this.setState({collection: tree}); //FIX -> collection
             },
             itemRemoveFromArrayById: function(value, model, droppedOn_Id){
-                //var collection = this.state.collection;
                 var collection = this.state.plain_collection;
-                //var collection = model.collection;
-                console.log('collection, before remove moved:');
-                console.log(collection);
                 collection.remove(model);
                 console.warn('collection after remove moved');
                 console.log(collection);
-
                 return collection;
                 //this.setState({collection: collection}); //fix this: force re-render on collectionchange
             },
             itemAddInArrayById: function(droppedOn_Id, new_child_model, clean_items){
 
-                var dropped_on_model = '';
                 //var collection = this.state.collection;
-                var collection = this.state.plain_collection;
+                //var collection = this.state.plain_collection;
                 /*dropped_on_model = collection.map(
                     function(model){
                         if(model.get('id') == droppedOn_Id){
@@ -332,7 +348,11 @@ define(
                         }
                     }
                 );*/
-                dropped_on_model = clean_items.get(droppedOn_Id); //WRONG! This is collection just accidentally
+                new_child_model.set('parent', droppedOn_Id);
+                console.log('new_child_model:');
+                console.log(new_child_model);
+
+                var dropped_on_model = clean_items.get(droppedOn_Id); //WRONG! This is collection just accidentally
                 console.log('dropped_on_model:');
                 console.log(dropped_on_model);
 
