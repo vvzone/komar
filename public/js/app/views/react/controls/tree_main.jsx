@@ -196,7 +196,7 @@ define(
                 }else{
                     console.warn('regular Node w/out childs:');
                     return(
-                        <li style={style}>
+                        <li>
                             <div className="tree_box_node"
                             draggable="true"
                             onDragEnd={this.dragEnd}
@@ -270,7 +270,7 @@ define(
                 for (var i = 0; i < nodes.length; i += 1) {
                     node = nodes[i];
                     if(node.get('items')!=null){
-                        console.error('cleanup items');
+                        console.log('makeTreeFromFlat > cleanup items...');
                         node.set('items', null);
                     }
 
@@ -324,86 +324,6 @@ define(
                 console.info('Main Tree -> moved, changed collection: ');
                 console.log(tree);
                 this.setState({collection: tree}); //FIX -> collection
-            },
-            itemRemoveFromArrayById: function(value, model, droppedOn_Id){
-                var collection = this.state.plain_collection;
-                collection.remove(model);
-                console.warn('collection after remove moved');
-                console.log(collection);
-                return collection;
-                //this.setState({collection: collection}); //fix this: force re-render on collectionchange
-            },
-            itemAddInArrayById: function(droppedOn_Id, new_child_model, clean_items){
-
-                //var collection = this.state.collection;
-                //var collection = this.state.plain_collection;
-                /*dropped_on_model = collection.map(
-                    function(model){
-                        if(model.get('id') == droppedOn_Id){
-                            return model;
-                        }else{
-                            if(model.get('items')!=null){
-
-                            }
-                        }
-                    }
-                );*/
-                new_child_model.set('parent', droppedOn_Id);
-                console.log('new_child_model:');
-                console.log(new_child_model);
-
-                var dropped_on_model = clean_items.get(droppedOn_Id); //WRONG! This is collection just accidentally
-                console.log('dropped_on_model:');
-                console.log(dropped_on_model);
-
-                var dropped_on_childs_collection = dropped_on_model.get('items'); //may be null
-                if(dropped_on_childs_collection == null || dropped_on_childs_collection.length == 0){
-                    //no collection-class present
-                    console.log('EMPTY COLLECTION ITEMS');
-                    var empty_collection = clean_items.clone();
-                    dropped_on_childs_collection = empty_collection.reset();
-                }else{
-
-                }
-                console.log('dropped_on_childs_collection');
-                console.log(dropped_on_childs_collection);
-
-                dropped_on_childs_collection.add(new_child_model);
-                console.log('dropped_on_childs_collection -> after add');
-                console.log(dropped_on_childs_collection);
-
-                dropped_on_model.set({items: dropped_on_childs_collection});
-                console.log('setting new items collection to model..., dropped_on_model:');
-                console.log(dropped_on_model);
-
-                var new_items = clean_items.add(dropped_on_model);
-
-                return new_items;
-                /*var array = {};
-                var old_parent = new_child.parent_id;
-                new_child.parent_id = parseInt(droppedOn_Id);
-                array = clean_items;
-                var catcher = [];
-                for(var i = 0; i < array.length; i++){
-                    if(array[i]){
-                        console.info('array.length= '+array.length+' i='+i+' array[i].id='+array[i]['id']+' droppedOn_Id= '+droppedOn_Id);
-                        if(array[i].id == droppedOn_Id ){
-                            if(array[i]['childNodes']){
-                                var childs = {}; // truly magic
-                                childs = array[i]['childNodes'];
-                                childs.push(new_child);
-                                array[i]['childNodes'].push(new_child);
-                                return array;
-                                break;
-                            }else{
-                                array[i]['childNodes'] = [];
-                                array[i]['childNodes'].push(new_child);
-                                break;
-                            }
-                        }
-                    }
-                }
-                return array;*/
             },
             componentWillUnmount: function() {
                 window.removeEventListener("TreeNodeMove", this.handleMyEvent, true);
