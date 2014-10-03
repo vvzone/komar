@@ -51,6 +51,13 @@ define(
         properties_types['isService'] = 'bool_select';
         properties_types['is_service'] = 'bool_select';
 
+        /* doc_types */
+        properties_types['urgency_types'] = 'simple_select';
+        //properties_types['urgency_types'] = 'list_box';
+        properties_types['secrecy_types'] = 'simple_select';
+        //properties_types['secrecy_types'] = 'list_box';
+        //properties_types['attribute_types'] = '';
+
         return properties_types;
     }
 );

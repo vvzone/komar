@@ -30,11 +30,40 @@ define(
             position: function(id) {
                 return host + prefix + "/positions/"+ id;
             },
+            /* Типы док-ов */
+            doc_types: function() {
+                return host + prefix + "/doctypes";
+            },
+            doc_type: function(id) {
+                return host + prefix + "/doctypes/"+ id;
+            },
+            /* Срочность */
+            urgency_types: function() {
+                return host + prefix + "/docurgencytypes";
+            },
+            urgency_type: function(id) {
+                return host + prefix + "/docurgencytypes/"+ id;
+            },
+            /* Секретность */
+            secrecy_types: function() {
+                return host + prefix + "/docsecrecytypes";
+            },
+            secrecy_type: function(id) {
+                return host + prefix + "/docsecrecytypes/"+ id;
+            },
+            /* Группы типов док-ов */
             doc_type_groups: function() {
                 return host + prefix + "/doctypegroups";
             },
             doc_type_group: function(id) {
                 return host + prefix + "/doctypegroups/"+ id;
+            },
+            /* Типы атрибутов */
+            attribute_types: function() {
+                return host + prefix + "/attributetypes";
+            },
+            attribute_type: function(id) {
+                return host + prefix + "/attribute_types/"+ id;
             }
             /*subscriptions: function(userId, id) {
              return "/api/users/"+ userId +"/subscriptions/" + id;

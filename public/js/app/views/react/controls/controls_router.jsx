@@ -60,7 +60,7 @@ define(
                         return(<ControlBoolSelect value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                         break;
                     case('simple_select'):
-                        return(<SimpleSelect value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
+                        return(<SimpleSelect options={this.props.dependency_array} selected={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                         break;
                     case('list_box'):
                         console.log('control_router->list_box');

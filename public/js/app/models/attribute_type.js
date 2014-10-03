@@ -1,5 +1,5 @@
 define(
-    'models/doc_type',
+    'models/attribute_type',
     [
         'jquery',
         'underscore',
@@ -8,42 +8,34 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/doc_type loaded');
+        console.log('models/attribute_type loaded');
 
         var Model = Backbone.Model.extend({
             defaults: {
                 id: null,
                 name: null,
                 description: null,
-                urgency_types: null,
-                secrecy_types: null,
-                attributes_types: null
+                base_attr_type: null,
+                verification_type: null
             },
             attr_rus_names: {
                 name: 'Название',
                 description: 'Описание',
-                urgency_types: 'Срочность',
-                secrecy_types: 'Секретность',
-                attributes_types: 'Типы атрибутов'
+                base_attr_type: 'Базовый тип аттрибута',
+                verification_type: 'Тип верификации'
             },
-            attr_dependencies: {
-                'urgency_types': 'urgency_types',
-                'secrecy_types': 'secrecy_types',
-                'attribute_types': 'attribute_types'
-            }, //for recursive objects
+            attr_dependencies: [], //for recursive objects
             url: function() {
-                return apiUrl('doc_type', this.id);
+                return apiUrl('attribute_type', this.id);
             },
             initialize: function(){
                 console.info('Model init');
                 this.on('destroy', this.baDaBum);
-                /*this.on('change', function(){
-                    console.error('model -> change');
-                }, this);*/
             },
             baDaBum: function(){
                 console.warn('KABOOM!');
             }
+
         });
 
         return Model;

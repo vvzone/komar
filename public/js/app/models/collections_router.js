@@ -40,6 +40,45 @@ define(
                         ListView.initialize(PositionsCollection);
                     }
                 break;
+                case('secrecy_types'):
+                    if(!Collection){
+                        console.warn('!Collection -> require loading');
+                        var Collection =require(['models/secrecy_types_collection'], function(Collection){
+                            console.log('loaded...');
+                            ListView.initialize(Collection);
+                            return Collection;
+                        });
+                    }else{
+                        console.warn('Collection -> no needed to load');
+                        ListView.initialize(Collection);
+                    }
+                break;
+                case('urgency_types'):
+                    if(!Collection){
+                        console.warn('!Collection -> require loading');
+                        var Collection =require(['models/urgency_types_collection'], function(Collection){
+                            console.log('loaded...');
+                            ListView.initialize(Collection);
+                            return Collection;
+                        });
+                    }else{
+                        console.warn('Collection -> no needed to load');
+                        ListView.initialize(Collection);
+                    }
+                break;
+                case('doc_types'):
+                    if(!Collection){
+                        console.warn('!Collection -> require loading');
+                        var Collection =require(['models/doc_types_collection'], function(Collection){
+                            console.log('loaded...');
+                            ListView.initialize(Collection);
+                            return Collection;
+                        });
+                    }else{
+                        console.warn('Collection -> no needed to load');
+                        ListView.initialize(Collection);
+                    }
+                    break;
                 case('doc_type_groups'):
                     if(!DocTypeGroupsCollection){
                         console.warn('!DocTypeGroupsCollection -> require loading');

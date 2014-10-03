@@ -23,7 +23,7 @@ define(
             getInitialState: function () {
                 return {
                     model: [],
-                    dependency_array: null
+                    dependency_array: []
                 }
             },
             saveForm: function () {
@@ -84,12 +84,18 @@ define(
                     console.log('mounting, prop: '+prop);
                     if(typeof(this.props.model.attr_dependencies[prop])!='undefined' && this.props.model.attr_dependencies!=null){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
+                        var true_prop = prop;
                         require([
                             'models/'+this.props.model.attr_dependencies[prop]+'_collection'
                         ], function(DependencyCollectionClass){
                                 console.log('loading dependency module...');
-                                var dependency_array = {};
+                                console.log(self.props.model.attr_dependencies[true_prop]);
+                                //var dependency_array = {};
                                 var DependencyCollection = new DependencyCollectionClass;
+
+                                var dependency_array= self.state.dependency_array;
+                                var name = prop;
+
                                 DependencyCollection.fetch({
                                     error: function(obj, response){
                                         console.warn('error, response: '+response);
@@ -98,12 +104,20 @@ define(
                                     success: function(){
                                         console.info('success & Current collection:');
                                         console.info(DependencyCollection.toJSON());
-                                        dependency_array = DependencyCollection.toJSON();
+                                        var current_dependency = DependencyCollection.toJSON();
+                                        
+                                        //dependency_array.push(current_dependency);
+                                        console.warn('writing collection to dependency_array['+true_prop+']');
+                                        console.warn('this.props.model.attr_dependencies[prop] , ['+prop+']');
+                                        console.warn(self.props.model.attr_dependencies[prop]);
+                                        dependency_array.push(current_dependency);
+
                                         self.setState({
                                             dependency_array: dependency_array
                                         });
                                     }
                                 });
+
                            }
                         );
                     }
@@ -119,8 +133,11 @@ define(
             render: function () {
                 //var editable = this.props.prototype.editable_properties;
                 var model = this.state.model;
-                console.log('ItemEditBox -> model:');
+                console.info('ItemEditBox -> RENDER');
+                console.log('ItemEditBox, model:');
                 console.log(model);
+                console.log('ItemEditBox, this.state:');
+                console.log(this.state);
 
                 var controls = [];
                 var counter = 0;
@@ -131,15 +148,15 @@ define(
                     console.log('model.attributes['+prop+']='+model.attributes[prop]);
                     if(typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                         console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
-                        console.log('this.state.dependency_array='+this.state.dependency_array);
                         if(this.state.dependency_array != null){
-                            console.log('this.state.dependency_array');
-                            console.log(this.state.dependency_array);
+                            console.warn('call to ControlRouter');
+                            console.log('this.state.dependency_array['+prop+']');
+                            console.log(this.state.dependency_array[prop]);
                                     controls.push(
                                         <ControlsRouter
                                         type={ControlsConfig[prop]}
                                         value={model.attributes[prop]}
-                                        dependency_array = {this.state.dependency_array}
+                                        dependency_array = {this.state.dependency_array[prop]}
                                         name={prop}
                                         russian_name={model.attr_rus_names[prop]}
                                         callback={this.itemUpdate} key={prop} />);

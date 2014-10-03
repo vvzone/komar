@@ -11,10 +11,10 @@ define(
         'jsx!views/react/modals/delete_confirmation',
         'jsx!views/react/modals/add',
         'router', // Request router.js
-        'event_bus',
-        'views/menu_list'
+        'event_bus'
+        //, 'views/menu_list'
     ],
-    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus, Menu){
+    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus){ //, Menu
     var init = function(){
         // Pass in our Router module and call it's initialize function
         console.log('app initialization...');
