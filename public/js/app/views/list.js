@@ -35,7 +35,6 @@ define(
                     require(['jsx!views/react/controls/main_list'], function(MainList){
                         console.log('trying set collection 2 obj:');
                         console.info(self.collection);
-
                         React.renderComponent(
                             new MainList({
                                 collection: self.collection
@@ -55,7 +54,7 @@ define(
                 console.log(Collection);
                 console.log('trying fetch collection...');
                 var p = Collection.fetch({
-                    data: {recursive: 1},
+                    /*data: {recursive: 1},*/
                     error: function(obj, response){
                         console.warn('error, response: '+response);
                         EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);

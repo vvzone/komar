@@ -1,13 +1,14 @@
 define(
     'views/react/item_edit',
     [
+        'underscore',
         'jquery',
         'react',
         'jsx!views/react/modals/bootstrap_modal_mixin',
         'event_bus',
         'views/react/controls/controls_config',
         'jsx!views/react/controls/controls_router'
-    ],function($, React, BootstrapModal, EventBus, ControlsConfig, ControlsRouter){
+    ],function(_, $, React, BootstrapModal, EventBus, ControlsConfig, ControlsRouter){
 
         var ItemEditBox = React.createClass({
             /*
@@ -23,7 +24,7 @@ define(
             getInitialState: function () {
                 return {
                     model: [],
-                    dependency_array: []
+                    dependency_array: {}
                 }
             },
             saveForm: function () {
@@ -84,18 +85,43 @@ define(
                     console.log('mounting, prop: '+prop);
                     if(typeof(this.props.model.attr_dependencies[prop])!='undefined' && this.props.model.attr_dependencies!=null){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
-                        var true_prop = prop;
+
+                        var dependencies_models = {};
+                        dependencies_models['dependencies'] = this.props.model.attr_dependencies;
+                        //dependencies_models = this.props.model.attr_dependencies;
+
+                        //dependencies_models.each();
+                        _.each(dependencies_models['dependencies'], function(num, key){
+                            console.log('num='+num+'key='+key);
+                            dependencies_models['collections'] = {};
+                            require([
+                                'models/'+key+'_collection'
+                            ], function(collection){
+                                 console.log('key');
+                                 dependencies_models.collections[key] = collection;
+                            });
+                        });
+
+
+
+                        console.info('==============*================');
+                        console.info('==============*================');
+                        console.info(dependencies_models);
+
+                        _.each(dependencies_models.collections, function(num, key){
+                            dependencies_models['fetched'] = {};
+                            var Collection = dependencies_models.collection[key];
+                            dependencies_models.fetched[key ]= Collection.fetch();
+                        });
+                        /*
                         require([
                             'models/'+this.props.model.attr_dependencies[prop]+'_collection'
                         ], function(DependencyCollectionClass){
                                 console.log('loading dependency module...');
-                                console.log(self.props.model.attr_dependencies[true_prop]);
+                                console.log(self.props.model.attr_dependencies[prop]);
                                 //var dependency_array = {};
                                 var DependencyCollection = new DependencyCollectionClass;
-
                                 var dependency_array= self.state.dependency_array;
-                                var name = prop;
-
                                 DependencyCollection.fetch({
                                     error: function(obj, response){
                                         console.warn('error, response: '+response);
@@ -105,12 +131,13 @@ define(
                                         console.info('success & Current collection:');
                                         console.info(DependencyCollection.toJSON());
                                         var current_dependency = DependencyCollection.toJSON();
-                                        
+
                                         //dependency_array.push(current_dependency);
-                                        console.warn('writing collection to dependency_array['+true_prop+']');
+                                        console.warn('writing collection to dependency_array['+prop+']');
                                         console.warn('this.props.model.attr_dependencies[prop] , ['+prop+']');
                                         console.warn(self.props.model.attr_dependencies[prop]);
-                                        dependency_array.push(current_dependency);
+                                        //dependency_array.push(current_dependency);
+                                        dependency_array[prop] = current_dependency;
 
                                         self.setState({
                                             dependency_array: dependency_array
@@ -119,7 +146,7 @@ define(
                                 });
 
                            }
-                        );
+                        );*/
                     }
                 }
 

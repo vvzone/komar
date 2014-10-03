@@ -46,7 +46,7 @@ define(
             $('#global_modal').html('');
 
             React.renderComponent(
-                ModalWindowAdd({
+                ModalWindowEdit({
                     model: model
                 }), document.getElementById("global_modal")
             );

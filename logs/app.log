@@ -1,126 +1,8 @@
-[$$]2014-09-01 16:01:04,807 INFO mosquito.Main [main] Running application with arguments : {}
-[$$]2014-09-01 16:01:04,821 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-01 16:01:16,615 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
-[$$]2014-09-01 16:01:16,616 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
-[$$]2014-09-01 16:01:16,624 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-01 16:01:16,623 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
-[$$]2014-09-01 16:01:16,622 INFO task_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-01 16:01:16,895 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-01 16:01:16,922 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-01 16:01:16,927 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
-[$$]2014-09-01 16:01:16,989 INFO bmethods.BmethodCache [main] Got 0 bmethods.
-[$$]2014-09-01 16:01:16,993 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
-[$$]2014-09-01 16:01:16,996 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
-[$$]2014-09-01 16:01:16,998 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-01 16:01:17,638 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-01 16:03:41,358 INFO mosquito.Main [main] Running application with arguments : {}
-[$$]2014-09-01 16:03:41,368 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-01 16:03:50,766 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
-[$$]2014-09-01 16:03:50,766 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
-[$$]2014-09-01 16:03:50,775 INFO task_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-01 16:03:50,777 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-01 16:03:50,775 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
-[$$]2014-09-01 16:03:51,074 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-01 16:03:51,085 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-01 16:03:51,088 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
-[$$]2014-09-01 16:03:51,136 INFO bmethods.BmethodCache [main] Got 0 bmethods.
-[$$]2014-09-01 16:03:51,139 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
-[$$]2014-09-01 16:03:51,141 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
-[$$]2014-09-01 16:03:51,142 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-01 16:03:51,647 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-01 16:04:22,599 INFO mosquito.Main [main] Running application with arguments : {}
-[$$]2014-09-01 16:04:22,608 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-01 16:04:31,849 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
-[$$]2014-09-01 16:04:31,850 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
-[$$]2014-09-01 16:04:31,859 INFO task_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-01 16:04:31,860 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-01 16:04:31,859 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
-[$$]2014-09-01 16:04:32,096 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-01 16:04:32,105 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-01 16:04:32,109 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
-[$$]2014-09-01 16:04:32,163 INFO bmethods.BmethodCache [main] Got 0 bmethods.
-[$$]2014-09-01 16:04:32,166 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
-[$$]2014-09-01 16:04:32,170 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
-[$$]2014-09-01 16:04:32,172 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-01 16:04:32,643 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-01 16:05:16,189 INFO mosquito.Main [main] Running application with arguments : {}
-[$$]2014-09-01 16:05:16,198 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-01 16:05:25,557 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
-[$$]2014-09-01 16:05:25,557 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
-[$$]2014-09-01 16:05:25,563 INFO task_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-01 16:05:25,566 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
-[$$]2014-09-01 16:05:25,565 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-01 16:05:25,810 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-01 16:05:25,822 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-01 16:05:25,827 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
-[$$]2014-09-01 16:05:25,898 INFO bmethods.BmethodCache [main] Got 0 bmethods.
-[$$]2014-09-01 16:05:25,902 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
-[$$]2014-09-01 16:05:25,904 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
-[$$]2014-09-01 16:05:25,907 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-01 16:05:26,410 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-01 16:09:00,119 INFO mosquito.Main [main] Running application with arguments : {}
-[$$]2014-09-01 16:09:00,124 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-01 16:09:12,084 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
-[$$]2014-09-01 16:09:12,083 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
-[$$]2014-09-01 16:09:12,095 INFO task_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-01 16:09:12,098 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-01 16:09:12,096 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
-[$$]2014-09-01 16:09:12,302 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-01 16:09:12,316 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-01 16:09:12,323 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
-[$$]2014-09-01 16:09:12,389 INFO bmethods.BmethodCache [main] Got 0 bmethods.
-[$$]2014-09-01 16:09:12,395 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
-[$$]2014-09-01 16:09:12,401 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
-[$$]2014-09-01 16:09:12,407 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-01 16:09:12,906 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-01 16:30:21,288 INFO mosquito.Main [main] Running application with arguments : {}
-[$$]2014-09-01 16:30:21,294 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-01 16:30:29,891 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
-[$$]2014-09-01 16:30:29,891 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
-[$$]2014-09-01 16:30:29,898 INFO task_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-01 16:30:29,899 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-01 16:30:29,901 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
-[$$]2014-09-01 16:30:30,105 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-01 16:30:30,110 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-01 16:30:30,112 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
-[$$]2014-09-01 16:30:30,175 INFO bmethods.BmethodCache [main] Got 0 bmethods.
-[$$]2014-09-01 16:30:30,177 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
-[$$]2014-09-01 16:30:30,177 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
-[$$]2014-09-01 16:30:30,178 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-01 16:30:30,714 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-01 17:03:24,650 INFO mosquito.Main [main] Running application with arguments : {}
-[$$]2014-09-01 17:03:24,656 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-01 17:03:33,900 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
-[$$]2014-09-01 17:03:33,900 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
-[$$]2014-09-01 17:03:33,906 INFO task_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-01 17:03:33,907 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-01 17:03:33,906 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
-[$$]2014-09-01 17:03:34,123 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-01 17:03:34,131 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-01 17:03:34,134 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
-[$$]2014-09-01 17:03:34,184 INFO bmethods.BmethodCache [main] Got 0 bmethods.
-[$$]2014-09-01 17:03:34,187 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
-[$$]2014-09-01 17:03:34,189 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
-[$$]2014-09-01 17:03:34,192 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-01 17:03:34,685 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-15 17:10:22,494 INFO mosquito.Main [main] Running application with arguments : {}
-[$$]2014-09-15 17:10:22,500 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-15 17:10:31,871 INFO js_executor.JSContext [JSContext-4] Running JSContext-4
-[$$]2014-09-15 17:10:31,871 INFO js_executor.JSContext [JSContext-5] Running JSContext-5
-[$$]2014-09-15 17:10:31,879 INFO js_executor.JSExecutor [JSExecutor-3] Running JSExecutor with 2 threads
-[$$]2014-09-15 17:10:31,878 INFO task_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-15 17:10:31,909 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-15 17:10:32,310 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-15 17:10:32,330 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-15 17:10:32,343 INFO bmethods.BmethodCache [main] Uncaching bmethods - start.
-[$$]2014-09-15 17:10:32,403 INFO bmethods.BmethodCache [main] Got 0 bmethods.
-[$$]2014-09-15 17:10:32,407 INFO bmethods.BmethodCache [main] Uncached 0 bmethods.
-[$$]2014-09-15 17:10:32,408 INFO bmethods.BmethodCache [main] Uncaching bmethods - finish.
-[$$]2014-09-15 17:10:32,410 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-15 17:10:33,138 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-16 12:23:17,917 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-09-16 12:23:17,933 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-16 12:23:19,040 ERROR connector.ORMConnector [main] ORMConnector : connect()
+[$$]2014-09-16 12:22:28,238 INFO mosquito.Main [main] Running application with arguments : [C:\Users\Victor\AppData\Roaming\PostLink\Files\Медведев Андрей Васильевич\target\public, C:\Users\Victor\AppData\Roaming\PostLink\Files\Медведев Андрей Васильевич\target\mosquito.exe, C:\Users\Victor\AppData\Roaming\PostLink\Files\Медведев Андрей Васильевич\target\mosquito.jar, C:\Users\Victor\AppData\Roaming\PostLink\Files\Медведев Андрей Васильевич\target\lib] 
+[$$]2014-09-16 12:22:28,238 INFO mosquito.Main [main] Main modules init!
+[$$]2014-09-16 12:42:45,255 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-09-16 12:42:45,270 INFO mosquito.Main [main] Main modules init!
+[$$]2014-09-16 12:42:46,456 ERROR connector.ORMConnector [main] ORMConnector : connect()
 org.hibernate.exception.JDBCConnectionException: Error calling Driver#connect
 	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator$1$1.convert(BasicConnectionCreator.java:122) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
 	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.convertSqlException(BasicConnectionCreator.java:140) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
@@ -142,9 +24,9 @@ org.hibernate.exception.JDBCConnectionException: Error calling Driver#connect
 	at com.spt.mosquito.Main.modules(Main.java:76) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.runApplication(Main.java:44) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.main(Main.java:32) [mosquito.jar:0.1]
-Caused by: org.postgresql.util.PSQLException: �����: ���� ������ "mosquito" �� ����������
-	at org.postgresql.core.v3.ConnectionFactoryImpl.readStartupMessages(ConnectionFactoryImpl.java:464) ~[postgresql-8.4-702.jdbc4.jar:?]
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:112) ~[postgresql-8.4-702.jdbc4.jar:?]
+Caused by: org.postgresql.util.PSQLException: �����: ������������ "postgres" �� ������ �������� ����������� (�� ������)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:291) ~[postgresql-8.4-702.jdbc4.jar:?]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:108) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:66) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.jdbc2.AbstractJdbc2Connection.<init>(AbstractJdbc2Connection.java:125) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.jdbc3.AbstractJdbc3Connection.<init>(AbstractJdbc3Connection.java:30) ~[postgresql-8.4-702.jdbc4.jar:?]
@@ -155,14 +37,14 @@ Caused by: org.postgresql.util.PSQLException: �����: ���� ��
 	at org.postgresql.Driver.connect(Driver.java:267) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:55) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
 	... 17 more
-[$$]2014-09-16 12:23:19,072 ERROR mosquito.Main [main] Main : runApplication()
+[$$]2014-09-16 12:42:46,456 ERROR mosquito.Main [main] Main : runApplication()
 java.lang.ExceptionInInitializerError: ORM not started!
 	at com.spt.mosquito.Main.modules(Main.java:78) ~[mosquito.jar:0.1]
 	at com.spt.mosquito.Main.runApplication(Main.java:44) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.main(Main.java:32) [mosquito.jar:0.1]
-[$$]2014-09-16 12:23:35,857 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-09-16 12:23:35,857 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-16 12:23:37,339 ERROR connector.ORMConnector [main] ORMConnector : connect()
+[$$]2014-09-16 12:43:13,226 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-09-16 12:43:13,235 INFO mosquito.Main [main] Main modules init!
+[$$]2014-09-16 12:43:14,437 ERROR connector.ORMConnector [main] ORMConnector : connect()
 org.hibernate.exception.JDBCConnectionException: Error calling Driver#connect
 	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator$1$1.convert(BasicConnectionCreator.java:122) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
 	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.convertSqlException(BasicConnectionCreator.java:140) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
@@ -184,9 +66,9 @@ org.hibernate.exception.JDBCConnectionException: Error calling Driver#connect
 	at com.spt.mosquito.Main.modules(Main.java:76) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.runApplication(Main.java:44) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.main(Main.java:32) [mosquito.jar:0.1]
-Caused by: org.postgresql.util.PSQLException: �����: ���� ������ "mosquito" �� ����������
-	at org.postgresql.core.v3.ConnectionFactoryImpl.readStartupMessages(ConnectionFactoryImpl.java:464) ~[postgresql-8.4-702.jdbc4.jar:?]
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:112) ~[postgresql-8.4-702.jdbc4.jar:?]
+Caused by: org.postgresql.util.PSQLException: �����: ������������ "postgres" �� ������ �������� ����������� (�� ������)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:291) ~[postgresql-8.4-702.jdbc4.jar:?]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:108) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:66) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.jdbc2.AbstractJdbc2Connection.<init>(AbstractJdbc2Connection.java:125) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.jdbc3.AbstractJdbc3Connection.<init>(AbstractJdbc3Connection.java:30) ~[postgresql-8.4-702.jdbc4.jar:?]
@@ -197,101 +79,24 @@ Caused by: org.postgresql.util.PSQLException: �����: ���� ��
 	at org.postgresql.Driver.connect(Driver.java:267) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:55) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
 	... 17 more
-[$$]2014-09-16 12:23:37,417 ERROR mosquito.Main [main] Main : runApplication()
+[$$]2014-09-16 12:43:14,492 ERROR mosquito.Main [main] Main : runApplication()
 java.lang.ExceptionInInitializerError: ORM not started!
 	at com.spt.mosquito.Main.modules(Main.java:78) ~[mosquito.jar:0.1]
 	at com.spt.mosquito.Main.runApplication(Main.java:44) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.main(Main.java:32) [mosquito.jar:0.1]
-[$$]2014-09-16 12:25:15,276 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-09-16 12:25:15,276 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-16 12:25:26,804 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-09-16 12:25:26,804 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-16 12:25:26,804 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-09-16 12:25:26,804 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-16 12:25:26,804 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-09-16 12:25:27,087 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-16 12:25:27,118 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-16 12:25:27,134 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-09-16 12:25:27,134 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-09-16 12:25:27,150 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-09-16 12:25:27,150 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-09-16 12:25:27,165 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-16 12:25:27,649 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-16 12:43:18,883 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-09-16 12:43:18,889 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-16 12:43:27,683 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-09-16 12:43:27,683 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-09-16 12:43:27,690 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-16 12:43:27,690 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-09-16 12:43:27,692 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-16 12:43:27,913 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-16 12:43:27,920 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-16 12:43:27,924 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-09-16 12:43:27,927 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-09-16 12:43:27,931 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-09-16 12:43:27,933 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-09-16 12:43:27,935 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-16 12:43:28,373 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-16 12:54:49,552 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-09-16 12:54:49,567 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-16 12:54:58,657 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-09-16 12:54:58,657 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-09-16 12:54:58,672 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-16 12:54:58,672 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-16 12:54:58,672 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-09-16 12:54:58,938 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-16 12:54:58,954 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-16 12:54:58,954 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-09-16 12:54:58,954 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-09-16 12:54:58,970 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-09-16 12:54:58,970 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-09-16 12:54:58,970 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-16 12:54:59,391 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-30 11:41:58,874 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-09-30 11:41:58,905 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-30 11:42:11,588 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-09-30 11:42:11,588 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-09-30 11:42:11,651 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-30 11:42:11,651 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-09-30 11:42:11,666 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-30 11:42:12,010 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-30 11:42:12,042 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-30 11:42:12,057 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-09-30 11:42:12,057 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-09-30 11:42:12,073 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-09-30 11:42:12,073 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-09-30 11:42:12,073 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-30 11:42:12,759 INFO apps.MosquitoApp [main] Runup catalog counters: {address_types=0, addresses=0, attribute_type_composite_structures=0, attribute_type_constants=0, attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attribute_types=0, document_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, org_structures=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_structures=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_structures=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, rolees=0, routes=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-09-30 11:42:12,915 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-30 11:46:53,446 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-09-30 11:46:53,446 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-30 11:47:02,635 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-09-30 11:47:02,635 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-09-30 11:47:02,650 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-30 11:47:02,650 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-30 11:47:02,650 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-09-30 11:47:02,841 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-30 11:47:02,857 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-30 11:47:02,857 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-09-30 11:47:02,873 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-09-30 11:47:02,873 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-09-30 11:47:02,888 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-09-30 11:47:02,888 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-30 11:47:03,294 INFO apps.MosquitoApp [main] Runup catalog counters: {address_types=0, addresses=0, attribute_type_composite_structures=0, attribute_type_constants=0, attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attribute_types=0, document_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, org_structures=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_structures=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_structures=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, rolees=0, routes=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-09-30 11:47:03,387 INFO mosquito.Main [main] Ready to go!
-[$$]2014-09-30 11:52:21,947 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-09-30 11:52:21,947 INFO mosquito.Main [main] Main modules init!
-[$$]2014-09-30 11:52:32,369 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-09-30 11:52:32,369 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-09-30 11:52:32,385 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-09-30 11:52:32,385 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-09-30 11:52:32,385 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-09-30 11:52:32,635 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-09-30 11:52:32,651 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-09-30 11:52:32,667 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-09-30 11:52:32,667 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-09-30 11:52:32,682 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-09-30 11:52:32,682 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-09-30 11:52:32,682 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-09-30 11:52:33,072 INFO apps.MosquitoApp [main] Runup catalog counters: {address_types=0, addresses=0, attribute_type_composite_structures=0, attribute_type_constants=0, attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attribute_types=0, document_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, org_structures=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_structures=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_structures=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, rolees=0, routes=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-09-30 11:52:33,166 INFO mosquito.Main [main] Ready to go!
+[$$]2014-10-03 17:09:12,737 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-10-03 17:09:12,747 INFO mosquito.Main [main] Main modules init!
+[$$]2014-10-03 17:09:23,537 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-10-03 17:09:23,537 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-10-03 17:09:23,548 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-10-03 17:09:23,550 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-10-03 17:09:23,548 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-10-03 17:09:23,830 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-10-03 17:09:23,842 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-10-03 17:09:23,856 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-10-03 17:09:23,862 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-10-03 17:09:23,867 INFO commands.CommandMappingsCache [main] Got 0 commands.
+[$$]2014-10-03 17:09:23,872 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-10-03 17:09:23,875 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-10-03 17:09:24,374 INFO apps.MosquitoApp [main] Runup catalog counters: {address_types=0, addresses=0, attribute_type_constants=0, attribute_type_structures=0, attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attribute_types=0, document_attributes=0, document_history=0, document_states=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
+[$$]2014-10-03 17:09:24,552 INFO mosquito.Main [main] Ready to go!

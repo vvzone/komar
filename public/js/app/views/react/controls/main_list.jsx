@@ -19,6 +19,10 @@ define(
             //2-do:
             // * search
             // * filter
+            addItem: function(){
+                var new_model = this.props.collection.create();
+                EventBus.trigger('item-add', new_model);
+            },
             render: function(){
                 var collection = this.props.collection;
                 var items = collection.map(function(model){
@@ -28,7 +32,10 @@ define(
                     return <ListItem model={model} />
                 });
                 return(
-                    <ul>{items}</ul>
+                    <div className="MainList">
+                        <ButtonAdd clicked={this.addItem} />
+                        <ul>{items}</ul>
+                    </div>
                     );
             }
         });
