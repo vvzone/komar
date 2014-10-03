@@ -12,10 +12,9 @@ define(
 
         var Rank = Backbone.Model.extend({
             defaults: {
-                id: null,
                 name: null,
                 is_officer: false,
-                order: null
+                description: 'Без описания'
             },
             attr_rus_names: {
                 name: 'Название',
@@ -35,7 +34,6 @@ define(
             baDaBum: function(){
                 console.warn('KABOOM!');
             }
-
         });
 
         return Rank;

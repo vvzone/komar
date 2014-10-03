@@ -22,7 +22,11 @@ define(
                 return host + prefix + "/ranks";
             },
             rank: function(id) {
-                return host + prefix + "/ranks/"+ id;
+                if(id){
+                    return host + prefix + "/ranks/"+ id;
+                }else{
+                    return host + prefix + "/ranks";
+                }
             },
             positions: function() {
                 return host + prefix + "/positions";
@@ -77,9 +81,9 @@ define(
             var id = [].slice.call(arguments, 1);
             console.log('id = [].slice.call(arguments, 1)');
             console.log(id);
-                return URLs[type] ?
-                    URLs[type].apply(this, [].slice.call(arguments, 1)) :
-                    undefined;
+            return URLs[type] ?
+                URLs[type].apply(this, [].slice.call(arguments, 1)) :
+                undefined;
 
         };
     }

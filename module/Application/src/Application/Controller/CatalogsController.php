@@ -317,8 +317,6 @@ class CatalogsController extends AbstractActionController
                 'header' => 'Добавление объекта на общую карту', 'isService' => true, 'secrecy_types' => 1, 'urgency_types' => 1),
         );
 
-
-
         /*
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){

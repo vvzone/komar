@@ -8,9 +8,10 @@ define(
         'jsx!views/react/base/btn_edit',
         'jsx!views/react/base/btn_delete',
         'jsx!views/react/base/error_msg',
+        'jsx!views/react/base/info_msg',
         //'models/rank',
         'event_bus'
-    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, EventBus){
+    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, EventBus){
 
         var MainList = React.createClass({
             componentWillMount: function(){
@@ -20,7 +21,7 @@ define(
             // * search
             // * filter
             addItem: function(){
-                var new_model = this.props.collection.create();
+                var new_model = this.props.collection.create(null, {silent: true}); //!silent - don't force re-render before save model to server
                 EventBus.trigger('item-add', new_model);
             },
             render: function(){
@@ -31,6 +32,9 @@ define(
 
                     return <ListItem model={model} />
                 });
+                if(items.length<1){
+                    items = <li><InfoMsg msg="Нет записей." /></li>;
+                }
                 return(
                     <div className="MainList">
                         <ButtonAdd clicked={this.addItem} />
