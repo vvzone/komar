@@ -9,9 +9,10 @@ define(
         'jsx!views/react/base/btn_delete',
         'jsx!views/react/base/error_msg',
         'jsx!views/react/base/info_msg',
+        'jsx!views/react/search',
         //'models/rank',
         'event_bus'
-    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, EventBus){
+    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, Search, EventBus){
 
         var MainList = React.createClass({
             componentWillMount: function(){
@@ -37,6 +38,7 @@ define(
                 }
                 return(
                     <div className="MainList">
+                        <Search />
                         <ButtonAdd clicked={this.addItem} />
                         <ul>{items}</ul>
                     </div>

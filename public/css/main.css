@@ -12,12 +12,12 @@ div#header {
 div#left_panel {
   clear: both;
   float: left;
-  width: 345px;
+  width: 15%;
 }
 div#main_window {
   float: left;
   padding: 5px;
-  width: 1250px;
+  width: 65%;
 }
 div.next {
   clear: both;

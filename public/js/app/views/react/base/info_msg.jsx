@@ -26,7 +26,7 @@ define(
                 );
                 */
                 return(
-                    <a class="alert alert-info alert--finch" href="#">{message}</a>
+                    <div className="alert alert-info alert--finch">{message}</div>
                 )
             }
         });

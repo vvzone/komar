@@ -13,6 +13,8 @@ define(
 
         var Ranks = Backbone.Collection.extend({
             model: Rank,
+            collection_rus_name: 'Звания',
+            collection_name: 'ranks',
             url: function() {
                 return apiUrl('ranks');
             },
