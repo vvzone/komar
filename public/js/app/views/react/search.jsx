@@ -15,7 +15,7 @@ define(
             },
             render: function(){
                 return(
-                    <div><input type="text" ref="searchInput" placeholder="Поиск" value={this.props.query} onChange={this.doSearch} /></div>
+                    <div className="search"><input type="text" ref="searchInput" placeholder="Поиск" value={this.props.query} onChange={this.doSearch} /></div>
                     )
             }
         });

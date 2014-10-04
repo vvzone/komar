@@ -27,6 +27,12 @@ define(
             },
             render: function(){
                 var collection = this.props.collection;
+                if(collection.collection_rus_name){
+                    $('#main_top').html('<h2>Каталог &laquo;'+collection.collection_rus_name+'&raquo;</h2>');
+                }else{
+                    $('#main_top').html('<h2>Название каталога не задано.</h2>');
+                }
+
                 var items = collection.map(function(model){
                     console.log('MainList -> collection.map, model:');
                     console.log(model);
@@ -37,10 +43,12 @@ define(
                     items = <li><InfoMsg msg="Нет записей." /></li>;
                 }
                 return(
+                    <div className="List">
                     <div className="MainList">
                         <Search />
-                        <ButtonAdd clicked={this.addItem} />
+                        <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
                         <ul>{items}</ul>
+                    </div>
                     </div>
                     );
             }
@@ -129,7 +137,7 @@ define(
                     //error_box = <ErrorMsg msg={this.state.action_error.response}/>;
                 }
                 return(
-                    <div className="item" key={'item'+this.props.model.get('id')}>
+                    <li className="item" key={'item'+this.props.model.get('id')}>
                         <div className="item_name" clicked={this.whenClicked}>{this.props.model.get('name')}</div>
                         <div className="item_cp">
                             <ButtonEdit clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'edit' +this.props.model.get('id')} mini="false" />
@@ -137,7 +145,7 @@ define(
                         </div>
                     {error_box}
                     {edit_form}
-                    </div>
+                    </li>
                 );
             }
         });

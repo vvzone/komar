@@ -204,6 +204,8 @@ class CatalogsController extends AbstractActionController
             array('id' => 5, 'name' => 'Старший сержант','short_name' => 'ст. сержант', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null)
         );
 
+        $data_array = array();
+
         $request = $this->getRequest();
 
         if($request->isPost()){
@@ -239,7 +241,7 @@ class CatalogsController extends AbstractActionController
     }
 
 
-    public function docsecrecytypesAction(){
+    public function secrecytypesAction(){
         $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)', 'singleNumeration' => 'Единая нумерация');
         $prototype_array = array('editable_properties' => $editable_array);
 
@@ -266,7 +268,7 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
-    public function docurgencytypesAction(){
+    public function urgencytypesAction(){
         $editable_array = array('name' => 'Название', 'shortname' => 'Краткое обозначение (КОД)');
         $prototype_array = array('editable_properties' => $editable_array);
 

@@ -35,11 +35,6 @@ define(
                     require(['jsx!views/react/controls/main_list'], function(MainList){
                         console.log('trying set collection 2 obj:');
                         console.info(self.collection);
-
-                        if(self.collection.collection_rus_name){
-                            $('#main_top').html('<h2>'+self.collection.collection_rus_name+'</h2>');
-                        }
-
                         React.renderComponent(
                             new MainList({
                                 collection: self.collection

@@ -23,6 +23,7 @@ define(
                 /*order: 'Порядок',*/
                 is_officer: 'Офицер'
             },
+            model_name: 'rank',
             attr_dependencies: [], //for recursive objects
             url: function() {
                 return apiUrl('rank', this.id);

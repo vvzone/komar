@@ -3,6 +3,7 @@
 */
 
 @base_width: 1600px;
+@window_height: 1024px;
 @left_panel_width: 350px;
 
 @min: 2px;
@@ -15,7 +16,7 @@
 /* colors */
 @dark_red: #d00006;
 @dark_green: #46a346;
-@success_green: #3cb778;
+@success_green: #159553;
 @light_silver: #d6e5ed;
 @warning_color: #ec9a25;
 
@@ -28,11 +29,42 @@ body{
 }
 
 div#header{
-        background: deepskyblue;
+  background: #1dc5fd;
+  color: white;
+  font-size: 1.8em;
+  overflow: hidden;
+
+  div#logo{
+    float: left;
+    overflow: hidden;
+    width: 15%;
+    text-align: center;
+    padding-top: @big;
+    padding-bottom: @big;
+    background: deepskyblue;
+  }
+
+  div.header_login{
+    float: left;
+  }
 }
 
 div#main_container{
 
+}
+
+div#main_main{
+  padding-left: 15px;
+}
+div#main_top{
+  padding-left: 15px;
+
+  h2{
+    margin:0;
+    padding: @med;
+    padding-left: 0;
+    font-size: 1.5em;
+  }
 }
 
 div#left_panel{
@@ -52,6 +84,18 @@ div#main_window{
 
 div.next{
   clear: both;
+}
+
+div.well{
+  -webkit-border-radius: 4px!important;
+  -webkit-border-top-left-radius: 0px!important;
+  -webkit-border-top-right-radius: 0px!important;
+  -moz-border-radius: 4px!important;
+  -moz-border-radius-topleft: 0px!important;
+  -moz-border-radius-topright: 0px!important;
+  border-radius: 4px!important;
+  border-top-left-radius: 0px!important;
+  border-top-right-radius: 0px!important;
 }
 
 .nav > li{
@@ -190,7 +234,7 @@ div.tree_over_node{
 @list_item_width: @item_name + @item_cp+@huge;
 
 div.List{
-  width: @list_item_width + @big;
+  //width: @list_item_width + @big;
 
   div.ListHeader{
     padding: 3px;
@@ -207,8 +251,38 @@ div.List{
   div.MainList{
     clear: both;
     overflow: hidden;
+    width: @list_item_width+20px;
 
-    div.item{
+    ul{
+      padding:0;
+    }
+
+    div.search{
+      float: left;
+      padding: @min;
+
+      input{
+        padding: @med;
+        width: 350px;
+      }
+    }
+
+    div.btn_add{
+      float: right;
+      padding: @med;
+      padding-top: @med + @min;
+
+      button{
+        padding: @min*2 @big*3;
+      }
+    }
+
+    div{
+      padding: @min;
+    }
+
+    ul li.item{
+      list-style-type: none;
       clear: both;
       float:left;
       margin: @min;
@@ -216,19 +290,21 @@ div.List{
       border-radius: @small;
       border: 1px solid @light_silver;
       box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
-      min-width: @list_item_width;
+      /*min-width: @list_item_width;*/
+      width: 99%;
 
       a{
         text-decoration: none;
       }
 
       div.item_name, div.item_cp{
-        float: left;
+        float: right;
       }
 
 
       div.item_name{
         min-width: @item_name;
+        float:left;
       }
 
       div.item_cp{
@@ -239,6 +315,21 @@ div.List{
           text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
         }
       }
+    }
+
+    li{
+      margin: @min;
+      width: 99%;
+
+      .alert-info{
+        clear: both;
+        padding: @med*2;
+      }
+
+      span.msg{
+        padding-left: @big;
+      }
+
     }
 
     /*div.item:hover{
@@ -295,6 +386,7 @@ div.list_box{
 
 @base_modal_width: @base_width - @left_panel_width - @big*2;
 .modal-dialog{
+  margin-top: @window_height/2 - 400px;
   width: @big*65;
 }
 .modal-body{
@@ -302,19 +394,22 @@ div.list_box{
 }
 
 .alert-danger{
+}
 
+.alert-info{
+  clear: both;
 }
 
 .alert-success{
   margin: @big;
   color: white;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);*/
   /*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);*/
   font-size: @base_font_size;
 
   strong{
     /*font-size: @base_font_size+0.2;*/
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+    /*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);*/
   }
   .modal-header{
     background: @success_green;

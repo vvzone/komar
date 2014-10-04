@@ -13,6 +13,7 @@ define(
 
         var Collection = Backbone.Collection.extend({
             model: Model,
+            collection_name: 'doc_types',
             url: function() {
                 return apiUrl('doc_types');
             },

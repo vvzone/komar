@@ -26,7 +26,7 @@ define(
                 );
                 */
                 return(
-                    <div className="alert alert-info alert--finch">{message}</div>
+                    <div className="alert alert-info alert--finch"><span className="glyphicon glyphicon-info-sign" onClick={this.hide}></span><span className="msg">{message}</span></div>
                 )
             }
         });

@@ -7,7 +7,34 @@ body {
   color: #428bca;
 }
 div#header {
+  background: #1dc5fd;
+  color: white;
+  font-size: 1.8em;
+  overflow: hidden;
+}
+div#header div#logo {
+  float: left;
+  overflow: hidden;
+  width: 15%;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
   background: deepskyblue;
+}
+div#header div.header_login {
+  float: left;
+}
+div#main_main {
+  padding-left: 15px;
+}
+div#main_top {
+  padding-left: 15px;
+}
+div#main_top h2 {
+  margin: 0;
+  padding: 5px;
+  padding-left: 0;
+  font-size: 1.5em;
 }
 div#left_panel {
   clear: both;
@@ -21,6 +48,17 @@ div#main_window {
 }
 div.next {
   clear: both;
+}
+div.well {
+  -webkit-border-radius: 4px!important;
+  -webkit-border-top-left-radius: 0px!important;
+  -webkit-border-top-right-radius: 0px!important;
+  -moz-border-radius: 4px!important;
+  -moz-border-radius-topleft: 0px!important;
+  -moz-border-radius-topright: 0px!important;
+  border-radius: 4px!important;
+  border-top-left-radius: 0px!important;
+  border-top-right-radius: 0px!important;
 }
 .nav > li > a {
   padding-left: 10px;
@@ -114,9 +152,6 @@ ul.tree div.tree_box_node_controls {
 ul.tree .placeholder {
   background: #fff078;
 }
-div.List {
-  width: 650px;
-}
 div.List div.ListHeader {
   padding: 3px;
 }
@@ -129,13 +164,37 @@ div.List div.ListHeader div.ButtonAdd {
 div.List div.MainList {
   clear: both;
   overflow: hidden;
+  width: 660px;
   /*div.item:hover{
       background: @light_silver+30;
       border: 1px solid @light_silver - 50;
       cursor: pointer;
     }*/
 }
-div.List div.MainList div.item {
+div.List div.MainList ul {
+  padding: 0;
+}
+div.List div.MainList div.search {
+  float: left;
+  padding: 2px;
+}
+div.List div.MainList div.search input {
+  padding: 5px;
+  width: 350px;
+}
+div.List div.MainList div.btn_add {
+  float: right;
+  padding: 5px;
+  padding-top: 7px;
+}
+div.List div.MainList div.btn_add button {
+  padding: 4px 30px;
+}
+div.List div.MainList div {
+  padding: 2px;
+}
+div.List div.MainList ul li.item {
+  list-style-type: none;
   clear: both;
   float: left;
   margin: 2px;
@@ -143,24 +202,37 @@ div.List div.MainList div.item {
   border-radius: 3px;
   border: 1px solid #d6e5ed;
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
-  min-width: 640px;
+  /*min-width: @list_item_width;*/
+  width: 99%;
 }
-div.List div.MainList div.item a {
+div.List div.MainList ul li.item a {
   text-decoration: none;
 }
-div.List div.MainList div.item div.item_name,
-div.List div.MainList div.item div.item_cp {
+div.List div.MainList ul li.item div.item_name,
+div.List div.MainList ul li.item div.item_cp {
+  float: right;
+}
+div.List div.MainList ul li.item div.item_name {
+  min-width: 440px;
   float: left;
 }
-div.List div.MainList div.item div.item_name {
-  min-width: 440px;
-}
-div.List div.MainList div.item div.item_cp {
+div.List div.MainList ul li.item div.item_cp {
   min-width: 180px;
 }
-div.List div.MainList div.item div.item_cp button {
+div.List div.MainList ul li.item div.item_cp button {
   margin-left: 2px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+div.List div.MainList li {
+  margin: 2px;
+  width: 99%;
+}
+div.List div.MainList li .alert-info {
+  clear: both;
+  padding: 10px;
+}
+div.List div.MainList li span.msg {
+  padding-left: 10px;
 }
 div.item_attr {
   margin-top: 10px;
@@ -188,24 +260,28 @@ div.list_box div.list_box_select select {
 }
 /* msg's*/
 .modal-dialog {
+  margin-top: 112px;
   width: 650px;
 }
 .modal-body {
   overflow: hidden;
 }
+.alert-info {
+  clear: both;
+}
 .alert-success {
   margin: 10px;
   color: white;
-  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  /*box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);*/
   /*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);*/
   font-size: 1em;
 }
 .alert-success strong {
   /*font-size: @base_font_size+0.2;*/
-  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  /*text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);*/
 }
 .alert-success .modal-header {
-  background: #3cb778;
+  background: #159553;
   border: none;
   text-align: center;
 }
