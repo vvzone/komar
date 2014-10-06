@@ -13,10 +13,12 @@ define(
 
         var Collection = Backbone.Collection.extend({
             model: Model,
+            collection_rus_name: 'Типы документов',
             collection_name: 'doc_types',
             url: function() {
                 return apiUrl('doc_types');
             },
+
             initialize: function(){
                 /*this.on('change', function(){
                     console.info('Collection Change! > fetch');

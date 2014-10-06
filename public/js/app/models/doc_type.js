@@ -32,6 +32,7 @@ define(
                 'attribute_types': 'attribute_types'
             }, //for recursive objects
             model_name: 'doc_type',
+            model_rus_name: 'Тип документа',
             url: function() {
                 return apiUrl('doc_type', this.id);
             },
