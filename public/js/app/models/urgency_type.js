@@ -21,6 +21,8 @@ define(
                 short_name: 'Сокр. название'
             },
             attr_dependencies: [], //for recursive objects
+            model_name: 'urgency_type',
+            model_rus_name: 'Тип срочности',
             url: function() {
                 return apiUrl('urgency_type', this.id);
             },

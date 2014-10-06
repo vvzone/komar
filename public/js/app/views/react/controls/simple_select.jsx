@@ -49,7 +49,6 @@ define(
             },
             render: function(){
                 console.info('SimpleSelect -> Render');
-                console.log(this.state.options);
                 console.log(this.props);
                 var options = [];
                 var selected = 0;
@@ -68,7 +67,13 @@ define(
                     </option>);
                 }
 
-                return(<select value={selected} onChange={this.handleChange}>{options}</select>)
+                var select_name = 'select_'+this.props.name;
+                return(
+                    <div className="form-group">
+                        <label htmlFor={select_name}>{this.props.russian_name}</label>
+                        <select id={select_name} value={selected} onChange={this.handleChange} className="form-control">{options}</select>
+                    </div>
+                    )
             }
         });
 

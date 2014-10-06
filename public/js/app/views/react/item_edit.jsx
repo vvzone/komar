@@ -86,6 +86,7 @@ define(
                     if(typeof(this.props.model.attr_dependencies[prop])!='undefined' && this.props.model.attr_dependencies!=null){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
 
+                        /*
                         var dependencies_models = {};
                         dependencies_models['dependencies'] = this.props.model.attr_dependencies;
                         //dependencies_models = this.props.model.attr_dependencies;
@@ -113,15 +114,18 @@ define(
                             var Collection = dependencies_models.collection[key];
                             dependencies_models.fetched[key ]= Collection.fetch();
                         });
-                        /*
+                        */
+
                         require([
-                            'models/'+this.props.model.attr_dependencies[prop]+'_collection'
+                            'models/'+prop+'_collection'
                         ], function(DependencyCollectionClass){
-                                console.log('loading dependency module...');
-                                console.log(self.props.model.attr_dependencies[prop]);
+                                console.info('loading dependency module...');
+                                console.info(self.props.model.collection.collection_name);
                                 //var dependency_array = {};
                                 var DependencyCollection = new DependencyCollectionClass;
                                 var dependency_array= self.state.dependency_array;
+                                console.info('dependency_array before fetch:');
+                                console.info(dependency_array);
                                 DependencyCollection.fetch({
                                     error: function(obj, response){
                                         console.warn('error, response: '+response);
@@ -131,14 +135,11 @@ define(
                                         console.info('success & Current collection:');
                                         console.info(DependencyCollection.toJSON());
                                         var current_dependency = DependencyCollection.toJSON();
-
-                                        //dependency_array.push(current_dependency);
-                                        console.warn('writing collection to dependency_array['+prop+']');
-                                        console.warn('this.props.model.attr_dependencies[prop] , ['+prop+']');
-                                        console.warn(self.props.model.attr_dependencies[prop]);
-                                        //dependency_array.push(current_dependency);
-                                        dependency_array[prop] = current_dependency;
-
+                                        dependency_array[DependencyCollection.collection_name] = current_dependency;
+                                        console.info('current_dependency after fetch:');
+                                        console.info(current_dependency);
+                                        console.info('dependency array:');
+                                        console.info(dependency_array);
                                         self.setState({
                                             dependency_array: dependency_array
                                         });
@@ -146,7 +147,7 @@ define(
                                 });
 
                            }
-                        );*/
+                        );
                     }
                 }
 

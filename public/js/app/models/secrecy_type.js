@@ -23,6 +23,8 @@ define(
                 single_numeration: 'Единая нумерация'
             },
             attr_dependencies: [], //for recursive objects
+            model_name: 'secrecy_type',
+            model_rus_name: 'Тип секретности',
             url: function() {
                 return apiUrl('secrecy_type', this.id);
             },

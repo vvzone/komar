@@ -13,6 +13,8 @@ define(
 
         var Collection = Backbone.Collection.extend({
             model: Model,
+            collection_rus_name: 'Типы срочности',
+            collection_name: 'urgency_types',
             url: function() {
                 return apiUrl('urgency_types');
             },

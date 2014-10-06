@@ -45,19 +45,21 @@ define(
             },
             /* Срочность */
             urgency_types: function() {
-                return host + prefix + "/docurgencytypes";
+                //return host + prefix + "/docurgencytypes";
+                return host + prefix + "/urgencytypes";
             },
             urgency_type: function(id) {
-                return host + prefix + "/docurgencytypes/"+ id;
+                //return host + prefix + "/docurgencytypes/"+ id;
+                return host + prefix + "/urgencytypes/"+ id;
             },
             /* Секретность */
             secrecy_types: function() {
-                return host + prefix + "/docsecrecytypes";
-                //return host + prefix + "/secrecy_types";
+                //return host + prefix + "/docsecrecytypes";
+                return host + prefix + "/secrecy_types";
             },
             secrecy_type: function(id) {
-                return host + prefix + "/docsecrecytypes/"+ id;
-                //return host + prefix + "/secrecy_types/"+ id;
+                //return host + prefix + "/docsecrecytypes/"+ id;
+                return host + prefix + "/secrecy_types/"+ id;
             },
             /* Группы типов док-ов */
             doc_type_groups: function() {

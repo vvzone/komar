@@ -152,6 +152,9 @@ ul.tree div.tree_box_node_controls {
 ul.tree .placeholder {
   background: #fff078;
 }
+.lowercase {
+  text-transform: lowercase;
+}
 div.List div.ListHeader {
   padding: 3px;
 }
