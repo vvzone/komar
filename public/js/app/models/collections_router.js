@@ -27,17 +27,17 @@ define(
                         ListView.initialize(RanksCollection);
                     }
                 break;
-                case('positions'):
-                    if(!PositionsCollection){
-                        console.warn('!PositionsCollection -> require loading');
-                        var PositionsCollection =require(['models/positions_collection'], function(PositionsCollection){
+                case('posts'):
+                    if(!PostsCollection){
+                        console.warn('!PostsCollection -> require loading');
+                        var PostsCollection =require(['models/posts_collection'], function(PostsCollection){
                             console.log('loaded...');
-                            ListView.initialize(PositionsCollection);
-                            return PositionsCollection;
+                            ListView.initialize(PostsCollection);
+                            return PostsCollection;
                         });
                     }else{
-                        console.warn('PositionsCollection -> no needed to load');
-                        ListView.initialize(PositionsCollection);
+                        console.warn('PostsCollection -> no needed to load');
+                        ListView.initialize(PostsCollection);
                     }
                 break;
                 case('secrecy_types'):
@@ -92,6 +92,19 @@ define(
                         TreeView.initialize(DocTypeGroupsCollection);
                     }
                 break;
+                case('doc_type_groups_plain'):
+                    if(!DocTypeGroupsCollection){
+                        console.warn('!DocTypeGroupsCollection -> require loading');
+                        var DocTypeGroupsCollection =require(['models/doc_type_groups_collection'], function(DocTypeGroupsCollection){
+                            console.log('loaded...');
+                            ListView.initialize(DocTypeGroupsCollection);
+                            return DocTypeGroupsCollection;
+                        });
+                    }else{
+                        console.warn('DocTypeGroupsCollection -> no needed to load');
+                        ListView.initialize(DocTypeGroupsCollection);
+                    }
+                    break;
                 default:
                     var msg = 'Вид для коллекции '+view+' не задан.';
                     EventBus.trigger('error', '404', msg);

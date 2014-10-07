@@ -17,7 +17,7 @@ define(
                 };
             },
             render: function(){
-                var id = 'bool_select_'+this.props.russian_name;
+                var id = 'bool_select_'+this.props.name;
                 var selected = this.state.value;
                 if(selected == null){
                     selected = false;
@@ -25,7 +25,7 @@ define(
                 return(
                     <div className="form-group">
                         <label htmlFor={id}>{this.props.russian_name}</label>
-                        <select value={selected} name={this.props.name} id={id} onChange={this.handleChange}>
+                        <select value={selected} name={this.props.name} id={id} onChange={this.handleChange} className="form-control">
                             <option value="true">Да</option>
                             <option value="false">Нет</option>
                         </select>

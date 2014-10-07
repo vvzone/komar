@@ -13,6 +13,9 @@ define(
 
         var MenuCollection = Backbone.Collection.extend({
             model: DocTypeGroup,
+            collection_rus_name: 'Группы типов документов',
+            collection_name: 'doc_type_groups',
+            may_tree: true,
             url: function() {
                 return apiUrl('doc_type_groups');
             },

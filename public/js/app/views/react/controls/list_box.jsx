@@ -78,21 +78,36 @@ define(
                 /*console.log('list-box whole array:');
                  console.info(this.props.items);*/
 
-                for(var key in this.props.items){
+                console.info('ListBox props');
+                console.info(this.props);
 
-                    /*console.info('key='+key);
-                     console.info('this.props.items['+key+']:');
-                     console.info(this.props.items[key]);*/
+                var items;
+                (typeof this.props.items !='undefined')? items = this.props.items : items=[];
 
-                    list_box_items.push(
-                        <option
-                        key={this.props.items[key]['id']}
-                        value={this.props.items[key]['id']}
-                        id={this.props.items[key]['id']}
-                        onClick={this.handleClick}
-                        >
-                {this.props.items[key]['name']}
-                        </option>
+                console.log('items.length='+items.length);
+                console.log(items);
+                if(items.length>0){
+                    for(var key in this.props.items){
+
+                        /*console.info('key='+key);
+                         console.info('this.props.items['+key+']:');
+                         console.info(this.props.items[key]);*/
+                        list_box_items.push(
+                            <option
+                            key={this.props.items[key]['id']}
+                            value={this.props.items[key]['id']}
+                            id={this.props.items[key]['id']}
+                            onClick={this.handleClick}
+                            >
+                            {this.props.items[key]['name']}
+                            </option>
+                        );
+                    }
+                }else{
+                    return(
+                    <div className="list_box">
+                        <div className="empty_list_box">Нет.</div>
+                    </div>
                     );
                 }
                 if(this.props.type == 'right'){
@@ -176,28 +191,45 @@ define(
                 var arr_items_2_select = [];
                 //всегда выполнять второй запрос только при удачном первом иначе голод и разруха
                 console.info('ListBoxTwoSide->mounting...');
-                console.log('this.props.items_left:');
+                /*console.log('this.props.items_left:');
                 console.log(this.props.items_left);
                 console.log('this.props.items_right:');
-                console.log(this.props.items_right);
+                console.log(this.props.items_right);*/
 
-                var items_left = this.props.items_left;
-                var items_right = this.props.items_right;
 
-                var sorted_by_id_items_left = {};
-                for(var new_id_left in items_left){
-                    sorted_by_id_items_left[items_left[new_id_left]['id']] = items_left[new_id_left];
+                var items_left =[];
+                (typeof this.props.items_left!='undefined')? items_left = this.props.items_left:items_left = [];
+                console.info('items_left');
+                console.info(items_left);
+
+                var items_right = [];
+                (typeof this.props.items_right!='undefined')? items_right = this.props.items_right:items_right =[];
+
+                console.info('items_right');
+                console.info(items_right);
+
+                var sorted_by_id_items_left = [];
+                if(items_left.length > 0){
+                    
+                    for(var new_id_left in items_left){
+                        sorted_by_id_items_left[items_left[new_id_left]['id']] = items_left[new_id_left];
+                    }
                 }
 
                 //resort by id
-                var sorted_by_id_items_right = {};
-                for(var new_id in items_right){
-                    sorted_by_id_items_right[items_right[new_id]['id']] = items_right[new_id];
+                var sorted_by_id_items_right = [];
+                if(items_right.length > 0){
+
+                    for(var new_id in items_right){
+                        sorted_by_id_items_right[items_right[new_id]['id']] = items_right[new_id];
+                    }
                 }
 
-                for(var id in sorted_by_id_items_left){
-                    console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
-                    delete sorted_by_id_items_right[id];
+                if(sorted_by_id_items_left.length > 0 && sorted_by_id_items_right.length>0){
+                    for(var id in sorted_by_id_items_left){
+                        console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
+                        delete sorted_by_id_items_right[id];
+                    }
                 }
 
                 this.setState({
@@ -224,14 +256,26 @@ define(
             },
             render: function(){
                 var combined = [];
+
                 var items_left = this.state.items_left;
                 var items_right = this.state.items_right;
+                /*
+                var items_left = this.state.items_left;
+                var items_right = this.state.items_right;
+                */
 
-                combined[0] = <ListBox key="combo" key_prefix="left" items={items_left} callback={this.listChange} type="left" />;
-                combined[1] = <ListBox key="combo_right" key_prefix="right" items={items_right} callback={this.listChange} type="right" />;
+                console.warn('ListBoxTwoSide, items_left:');
+                console.warn(items_left);
+                console.warn('ListBoxTwoSide, items_right:');
+                console.warn(items_right);
 
-                console.info('ListBox props');
+                combined[0] = <div><label htmlFor="combo" >Текущие</label><ListBox key="combo" key_prefix="left" items={items_left} callback={this.listChange} type="left" /></div>;
+                combined[1] = <div><label htmlFor="combo-right" >Доступные</label><ListBox key="combo_right" key_prefix="right" items={items_right} callback={this.listChange} type="right" /></div>;
+
+                console.info('ListBoxTwoSide props');
                 console.info(this.props);
+                console.info('ListBoxTwoSide state');
+                console.info(this.state);
                 return(
                     <div className="two-way-list-box">{combined}</div>
                     )

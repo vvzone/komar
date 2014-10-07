@@ -25,6 +25,8 @@ define(
                 short_name: 'Краткое название',
                 is_service: 'Системная'
             },
+            model_name: 'doc_type_group',
+            model_rus_name: 'Группа типа документа',
             attr_dependencies: null, //for recursive objects
             url: function() {
                 return apiUrl('doc_type_group', this.id);

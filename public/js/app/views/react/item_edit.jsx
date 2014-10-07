@@ -83,7 +83,7 @@ define(
                 var self = this;
                 for(var prop in this.props.model.attr_rus_names){
                     console.log('mounting, prop: '+prop);
-                    if(typeof(this.props.model.attr_dependencies[prop])!='undefined' && this.props.model.attr_dependencies!=null){
+                    if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
 
                         /*
@@ -117,7 +117,7 @@ define(
                         */
 
                         require([
-                            'models/'+prop+'_collection'
+                            'models/'+this.props.model.attr_dependencies[prop]+'_collection'
                         ], function(DependencyCollectionClass){
                                 console.info('loading dependency module...');
                                 console.info(self.props.model.collection.collection_name);
@@ -135,7 +135,7 @@ define(
                                         console.info('success & Current collection:');
                                         console.info(DependencyCollection.toJSON());
                                         var current_dependency = DependencyCollection.toJSON();
-                                        dependency_array[DependencyCollection.collection_name] = current_dependency;
+                                        dependency_array[DependencyCollection.collection_name] = current_dependency; //this why field name in model, and dependency should be equivalent BAD! Decision, but required for require Js use
                                         console.info('current_dependency after fetch:');
                                         console.info(current_dependency);
                                         console.info('dependency array:');
@@ -174,7 +174,7 @@ define(
                 for(var prop in model.attr_rus_names){
                     console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
                     console.log('model.attributes['+prop+']='+model.attributes[prop]);
-                    if(typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                    if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                         console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
                         if(this.state.dependency_array != null){
                             console.warn('call to ControlRouter');

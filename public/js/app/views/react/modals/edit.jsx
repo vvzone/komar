@@ -53,10 +53,11 @@ define(
                     {type: 'success', text: 'Сохранить', handler: this.throwSave},
                     {type: 'danger', text: 'Отмена', handler: this.handleExternalHide}
                 ];
-                console.error('THERE IS!');
-                console.info(this.props);
                 //var obj = <span className="lowercase">{this.props.model.model_rus_name} «{this.props.model.get('name')}»</span>;
-                var header = <div>{this.props.model.model_rus_name} / {this.props.model.get('name')}</div>; //+this.entity.name;
+                //var obj_name = this.props.model.get('name');
+                var obj_name = '';
+                (this.props.model.get('name'))? obj_name =this.props.model.get('name'): obj_name='Новая запись';
+                var header = <div>{this.props.model.model_rus_name} / {obj_name}</div>; //+this.entity.name;
 
                 console.log('ModalWindowEdit, this.props.model:');
                 console.log(this.props.model);

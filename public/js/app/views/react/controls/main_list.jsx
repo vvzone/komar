@@ -42,9 +42,17 @@ define(
                 if(items.length<1){
                     items = <li><InfoMsg msg="Нет записей." /></li>;
                 }
+
+                var switch_view = '';
+                if(collection.may_tree){
+                    var view_as_plain_url ='#'+collection.collection_name;
+                    switch_view = <div className="switch_view">Отображать: [ Списком / <a href={view_as_plain_url} className="underline">Деревом</a> ]</div>;
+                }
+
                 return(
                     <div className="List">
                     <div className="MainList">
+                        {switch_view}
                         <Search />
                         <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
                         <ul>{items}</ul>

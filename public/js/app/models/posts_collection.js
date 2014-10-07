@@ -1,20 +1,22 @@
 define(
-    'models/positions_collection',
+    'models/posts_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/position'
-    ],function($, _, Backbone, React, apiUrl, Position){
+        'models/post'
+    ],function($, _, Backbone, React, apiUrl, Post){
 
-        console.log('models/positions_collection loaded');
+        console.log('models/post_collection loaded');
 
-        var Positions = Backbone.Collection.extend({
-            model: Position,
+        var Posts = Backbone.Collection.extend({
+            model: Post,
+            collection_rus_name: 'Должности',
+            collection_name: 'posts',
             url: function() {
-                return apiUrl('positions');
+                return apiUrl('posts');
             },
             initialize: function(){
                 /*this.on('change', function(){
@@ -31,7 +33,7 @@ define(
             }
         });
 
-        return Positions;
+        return Posts;
     }
 );
 

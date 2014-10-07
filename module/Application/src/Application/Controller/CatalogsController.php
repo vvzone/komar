@@ -97,8 +97,8 @@ class CatalogsController extends AbstractActionController
             array('id' => 106010, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'period_types', 'name' => 'Типы периодов'),
             array('id' => 106020, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'enumeration_types', 'name' => 'Типы нумерации'),
             array('id' => 106021, 'category' => 'base', 'entity' => 'doc_type_groups', 'screen' => 'doc_type_groups', 'name' => 'Группы типов документов'),
-            array('id' => 106022, 'category' => 'base', 'entity' => 'doc_secrecy_types', 'screen' => 'doc_secrecy_types', 'name' => 'Типы секретности документа'),
-            array('id' => 106023, 'category' => 'base', 'entity' => 'doc_urgency_types', 'screen' => 'doc_urgency_types', 'name' => 'Типы срочности документа'),
+            array('id' => 106022, 'category' => 'base', 'entity' => 'secrecy_types', 'screen' => 'doc_secrecy_types', 'name' => 'Типы секретности документа'),
+            array('id' => 106023, 'category' => 'base', 'entity' => 'urgency_types', 'screen' => 'doc_urgency_types', 'name' => 'Типы срочности документа'),
             array('id' => 106030, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'doc_types', 'name' => 'Типы документов'),
             array('id' => 106040, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'node_types', 'name' => 'Типы узлов маршрута'),
             array('id' => 106050, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'name' => 'Типы аттрибутов'),
@@ -108,7 +108,7 @@ class CatalogsController extends AbstractActionController
         /*BASE 1 LVL */
         $array_base = array(
             array('id' => 101, 'category' => 'base', 'entity' => 'ranks', 'screen' => 'ranks', 'name' => 'Звания'),
-            array('id' => 102, 'category' => 'base', 'entity' => 'positions', 'screen' => 'positions', 'name' => 'Должности'),
+            array('id' => 102, 'category' => 'base', 'entity' => 'posts', 'screen' => 'posts', 'name' => 'Должности'),
             array('id' => 103, 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'positions', 'name' => 'Соответствие звания должности',
                 'isNonIndependent' => true ),
             array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => 'Типы удостоверяющих личность документов'),
@@ -204,7 +204,7 @@ class CatalogsController extends AbstractActionController
             array('id' => 5, 'name' => 'Старший сержант','short_name' => 'ст. сержант', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null)
         );
 
-        $data_array = array();
+        //$data_array = array();
 
         $request = $this->getRequest();
 
@@ -222,7 +222,7 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
-    public function positionsAction(){
+    public function postsAction(){
 
         $ranks_array =array(
             array('id' => 1, 'name' => 'Рядовой', 'short_name' => 'ряд.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),

@@ -1,5 +1,5 @@
 define(
-    'models/position',
+    'models/post',
     [
         'jquery',
         'underscore',
@@ -8,7 +8,7 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/position loaded');
+        console.log('models/post loaded');
 
         var Position = Backbone.Model.extend({
             defaults: {
@@ -16,7 +16,7 @@ define(
                 name: null,
                 short_name: null,
                 description: null,
-                allowed_ranks: null
+                ranks: null
             },
             attr_rus_names: {
                 name: 'Название',
@@ -24,9 +24,12 @@ define(
                 description: 'Описание',
                 allowed_ranks: 'Соответсвующие звания'
             },
-            attr_dependencies: {'allowed_ranks': 'ranks'}, //for recursive objects
+            model_name: 'post',
+            model_rus_name: 'Должность',
+            attr_dependencies: {'allowed_ranks': 'allowed_ranks'}, //for recursive objects
+            /* there is may needed collection-file for every dependency, for use one dependency-entity for many controls */
             url: function() {
-                return apiUrl('position', this.id);
+                return apiUrl('post', this.id);
             },
             initialize: function(){
                 console.info('Model init');

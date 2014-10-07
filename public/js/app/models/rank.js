@@ -24,6 +24,7 @@ define(
                 is_officer: 'Офицер'
             },
             model_name: 'rank',
+            model_rus_name: 'Звание',
             attr_dependencies: [], //for recursive objects
             url: function() {
                 return apiUrl('rank', this.id);

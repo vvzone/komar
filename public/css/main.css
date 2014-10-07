@@ -102,6 +102,7 @@ ul.cattree {
 ul.tree {
   list-style-type: none;
   padding: 2px;
+  margin-top: 4px;
 }
 ul.tree div.tree_childs {
   margin-left: 30px;
@@ -112,7 +113,7 @@ ul.tree div.tree_childs ul {
 }
 ul.tree .btn-mini {
   font-size: 10px;
-  padding: 1px 4px;
+  padding: 1px 3px 3px;
 }
 ul.tree div.tree_over_node {
   border: 1px solid #428bca;
@@ -147,7 +148,7 @@ ul.tree div.tree_box_node div.tree_dependency_box {
 ul.tree div.tree_box_node_controls {
   float: left;
   margin-left: -65px;
-  margin-top: -5px;
+  margin-top: -4px;
 }
 ul.tree .placeholder {
   background: #fff078;
@@ -194,7 +195,7 @@ div.List div.MainList div.btn_add button {
   padding: 4px 30px;
 }
 div.List div.MainList div {
-  padding: 2px;
+  /*padding: @min;*/
 }
 div.List div.MainList ul li.item {
   list-style-type: none;
@@ -271,6 +272,14 @@ div.list_box div.list_box_select select {
 }
 .alert-info {
   clear: both;
+}
+.underline {
+  text-decoration: underline;
+}
+div.switch_view {
+  clear: both;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 .alert-success {
   margin: 10px;

@@ -339,19 +339,31 @@ define(
                 var tree = [];
                 var tree_output = {};
                 var self = this;
-                var collection = this.state.collection;
+                var collection = this.props.collection;
+                if(collection.collection_rus_name){
+                    $('#main_top').html('<h2>Каталог &laquo;'+collection.collection_rus_name+'&raquo;</h2>');
+                }else{
+                    $('#main_top').html('<h2>Название каталога не задано.</h2>');
+                }
+
+                var switch_view = '';
+                if(collection.may_tree){
+                    var view_as_plain_url ='#'+collection.collection_name+'_plain';
+                    switch_view = <div className="switch_view">Отображать: [ <a href={view_as_plain_url} className="underline">Списком</a> / Деревом ]</div>;
+                }
+
                 tree_output = this.state.collection.map(function(model){
                         return(
-                            <TreeNode
-                            key={model.get('id')}
-                            model={model}
-                            tree_dependency={model.attr_dependencies}
-                            move={self.moved}
-                            />
+                                <TreeNode
+                                key={model.get('id')}
+                                model={model}
+                                tree_dependency={model.attr_dependencies}
+                                move={self.moved}
+                                />
                             );
                         //return(<div>{model.get('name')}</div>)
                 });
-                return(<ul className="tree">{tree_output}</ul>);
+                return(<div>{switch_view}<ul className="tree">{tree_output}</ul></div>);
             }
         });
 

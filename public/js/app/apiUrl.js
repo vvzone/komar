@@ -28,11 +28,11 @@ define(
                     return host + prefix + "/ranks";
                 }
             },
-            positions: function() {
-                return host + prefix + "/positions";
+            posts: function() {
+                return host + prefix + "/posts";
             },
-            position: function(id) {
-                return host + prefix + "/positions/"+ id;
+            post: function(id) {
+                return host + prefix + "/posts/"+ id;
             },
             /* Типы док-ов */
             doc_types: function() {

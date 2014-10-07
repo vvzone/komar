@@ -150,6 +150,7 @@ ul.cattree{
 ul.tree{
   list-style-type: none;
   padding: @min;
+  margin-top: 4px;
 
   div.tree_childs{
     margin-left: @med*6;
@@ -162,7 +163,7 @@ ul.tree{
 
   .btn-mini{
     font-size: @big;
-    padding: 1px 4px;
+    padding: 1px 3px 3px;
   }
 
 div.tree_over_node{
@@ -213,7 +214,7 @@ div.tree_over_node{
   div.tree_box_node_controls{
     float: left;
     margin-left: -@big*6.5;
-    margin-top: -5px;
+    margin-top: -4px;
 
     .ButtonDelete{
 
@@ -256,7 +257,6 @@ div.List{
     clear: both;
     overflow: hidden;
     width: @list_item_width+20px;
-
     ul{
       padding:0;
     }
@@ -282,7 +282,7 @@ div.List{
     }
 
     div{
-      padding: @min;
+      /*padding: @min;*/
     }
 
     ul li.item{
@@ -403,7 +403,15 @@ div.list_box{
 .alert-info{
   clear: both;
 }
+.underline{
+  text-decoration: underline;
+}
 
+div.switch_view{
+  clear: both;
+  padding-top: @med;
+  padding-bottom: @med;
+}
 .alert-success{
   margin: @big;
   color: white;
