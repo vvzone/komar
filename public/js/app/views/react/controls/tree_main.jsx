@@ -266,31 +266,42 @@ define(
                     return model;
                 });
 
+                console.info('makeTreeFromFlat, received collection:');
+                console.info(collection);
+                console.info('makeTreeFromFlat, received nodes');
+                console.info(nodes);
+
                 var map = {}, node, roots = [];
-                for (var i = 0; i < nodes.length; i += 1) {
-                    node = nodes[i];
-                    if(node.get('items')!=null){
-                        console.log('makeTreeFromFlat > cleanup items...');
-                        node.set('items', null);
-                    }
+                for (var i = 0; i < _.size(nodes); i += 1) { //nodes.length
+                    console.warn('size' + _.size(nodes));
+                    console.log('map');
+                    console.log(map);
+                    if(typeof nodes[i] != 'undefined'){
+                        //check for trash in collection
+                        node = nodes[i];
+                        if(node.get('items')!=null){
+                            console.log('makeTreeFromFlat > cleanup items...');
+                            node.set({items: null}, {silent: true}); //?what tha f...?
+                        }
 
-                    if(node.get('items') == null){
-                        node.set({items: []}, {silent: true}); //items = [];
-                    }
-                    console.log('node');
-                    console.log(node);
-                    map[node.get('id')] = i; // use map to look-up the parents
-                    console.log('map['+node.get('id')+'] ='+i);
-                    console.log(map[node.get('id')]);
-                    if (node.get('parent')!= null) {
-                        var num = map[node.get('parent')];
-                        console.log('num='+num);
-                        var items = nodes[num].get('items');
-                        items.push(node);
-                        nodes[num].set('items', items);
+                        if(node.get('items') == null){
+                            node.set({items: []}, {silent: true}); //items = [];
+                        }
+                        console.log('node');
+                        console.log(node);
+                        map[node.get('id')] = i; // use map to look-up the parents подобное сохранение не позволит сохранять возврат при произвольной сортировке
+                        console.log('map['+node.get('id')+'] ='+i);
+                        console.log(map[node.get('id')]);
+                        if (node.get('parent')!= null) {
+                            var num = map[node.get('parent')]; //нет в мап
+                            console.log('num='+num);
+                            var items = nodes[num].get('items'); //так как нет в мап то num - undefined
+                            items.push(node);
+                            nodes[num].set('items', items);
 
-                    } else {
-                        roots.push(node);
+                        } else {
+                            roots.push(node);
+                        }
                     }
                 }
                 console.log('Maked tree:');
@@ -301,6 +312,10 @@ define(
                 console.info('MainTree -> makeTreeFromFlat -> result collection:');
                 console.info(tree_collection);
                 return tree_collection;
+            },
+            cleanOldRealationship: function(collection){
+                var cleaned = {};
+                return cleaned;
             },
             moved: function(event){
                 console.info('MainTree -> TreeNodeMove (listener) catch...');
@@ -314,16 +329,32 @@ define(
                 //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
                 //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
                 var new_items = this.state.plain_collection;
+                //var old_parent = new_items.where({items: dragged.model.get('parent_id')});
+
+                /*
+                var old_parent = new_items.get(dragged.model.get('parent'));
+                console.info('old_parent');
+                console.log(old_parent);
+                var old_parent_childs_collection = old_parent.get('items');
+                console.info('old_parent.get(items)');
+                console.log(old_parent_childs_collection);
+                old_parent_childs_collection.remove(dragged.model); //ONLY ONE! DO NOT CLEAN-UP WHILE COLLECTION
+                console.info('old_parent_childs_collection after remove');
+                console.log(old_parent_childs_collection);
+                */
+
                 var original_model = new_items.get(dragged.model.get('id'));
                 original_model.set('parent', droppedOn_Id);
                 console.info('Main Tree -> moved, current collection:');
                 console.log(this.state.collection);
                 console.log('flat new_items');
                 console.log(new_items);
+
+                //var cleaned_from_old_realtionship = this.cleanOldRelationship(new_items);
                 var tree = this.makeTreeFromFlat(new_items);
                 console.info('Main Tree -> moved, changed collection: ');
                 console.log(tree);
-                this.setState({collection: tree}); //FIX -> collection
+                //this.setState({collection: tree}); //FIX -> collection
             },
             componentWillUnmount: function() {
                 window.removeEventListener("TreeNodeMove", this.handleMyEvent, true);
