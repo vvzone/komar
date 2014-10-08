@@ -256,6 +256,26 @@ div.two-way-list-box div.list_box_container {
 div.two-way-list-box div.list_box_container > label {
   display: block;
 }
+div.list_box_outer_container {
+  overflow: hidden;
+  color: #428bca;
+  border: 1px solid silver;
+  border-radius: 3px;
+  padding: 5px;
+}
+div.list_box_outer_container div.label {
+  color: #428bca;
+  display: inline-block;
+  font-weight: 700;
+  margin-bottom: 10px;
+  max-width: 100%;
+  padding: 0;
+  font-size: 1.1em;
+}
+div.list_box_outer_container:focus {
+  border-color: #66afe9;
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0.75)inset, 0 0 8px rgba(102, 107, 233, 0.6);*/
+}
 div.list_box {
   float: left;
 }
@@ -263,13 +283,13 @@ div.list_box div.list_box_select select {
   padding: 3px;
   border-radius: 3px;
   border: 1px solid #d6e5ed;
-  min-width: 307.5px;
+  min-width: 302.5px;
 }
 div.list_box div.empty_list_box {
   padding: 3px;
   border-radius: 3px;
   border: 1px solid #d6e5ed;
-  min-width: 307.5px;
+  min-width: 302.5px;
   min-height: 178px;
 }
 .enlight {

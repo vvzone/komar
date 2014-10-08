@@ -297,7 +297,12 @@ define(
                 console.info('ListBoxTwoSide state');
                 console.info(this.state);
                 return(
-                    <div className="two-way-list-box">{combined}</div>
+                    <div className="form-group">
+                    <label htmlFor="list_box_outer_container">{this.props.russian_name}</label>
+                    <div className="list_box_outer_container">
+                        <div className="two-way-list-box">{combined}</div>
+                    </div>
+                    </div>
                     )
             }
         });

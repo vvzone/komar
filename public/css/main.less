@@ -19,6 +19,7 @@
 @success_green: #159553;
 @light_silver: #d6e5ed;
 @warning_color: #ec9a25;
+@blue_glow: #66afe9;
 
 /* fonts */
 @base_font_size: 1em;
@@ -376,6 +377,28 @@ div.two-way-list-box{
 
 }
 
+div.list_box_outer_container{
+  overflow: hidden;
+  color: @base_font_color;
+  border: 1px solid silver;
+  border-radius: @small;
+  padding: 5px;
+
+  div.label{
+    color: @base_font_color;
+    display: inline-block;
+    font-weight: 700;
+    margin-bottom: @big;
+    max-width: 100%;
+    padding: 0;
+    font-size: 1.1em;
+  }
+}
+
+div.list_box_outer_container:focus{
+  border-color: @blue_glow;
+  /*box-shadow: 0 1px 1px rgba(0, 0, 0.75)inset, 0 0 8px rgba(102, 107, 233, 0.6);*/
+}
 
 div.list_box{
   float: left;
@@ -385,7 +408,7 @@ div.list_box{
       padding: @small;
       border-radius: @small;
       border: 1px solid @light_silver;
-      min-width: @base_modal_width/4;
+      min-width: @base_modal_width/4 - @big/2;
     }
   }
 
@@ -393,7 +416,7 @@ div.list_box{
     padding: @small;
     border-radius: @small;
     border: 1px solid @light_silver;
-    min-width: @base_modal_width/4;
+    min-width: @base_modal_width/4 - @big/2;
     min-height: 178px;
   }
 
