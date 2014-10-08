@@ -238,6 +238,8 @@ div.tree_over_node{
   text-transform: lowercase;
 }
 
+
+
 div.List{
   //width: @list_item_width + @big;
 
@@ -361,6 +363,20 @@ div.form_label{
   padding: @med;
 }
 
+div.two-way-list-box{
+
+  div.list_box_container{
+    float: left;
+  }
+
+  div.list_box_container > label {
+    display: block;
+  }
+
+
+}
+
+
 div.list_box{
   float: left;
 
@@ -371,6 +387,14 @@ div.list_box{
       border: 1px solid @light_silver;
       min-width: @base_modal_width/4;
     }
+  }
+
+  div.empty_list_box{
+    padding: @small;
+    border-radius: @small;
+    border: 1px solid @light_silver;
+    min-width: @base_modal_width/4;
+    min-height: 178px;
   }
 
 

@@ -276,11 +276,21 @@ define(
 
                 console.warn('ListBoxTwoSide, state.items_left:');
                 console.warn(state_items_left);
+
+
                 console.warn('ListBoxTwoSide, state.items_right:');
                 console.warn(state_items_right);
 
-                combined[0] = <div><label htmlFor="combo" >Текущие</label><ListBox key="combo" key_prefix="left" items={state_items_left} callback={this.listChange} type="left" /></div>;
-                combined[1] = <div><label htmlFor="combo-right" >Доступные</label><ListBox key="combo_right" key_prefix="right" items={state_items_right} callback={this.listChange} type="right" /></div>;
+                combined[0] =
+                    <div className="list_box_container">
+                        <label htmlFor="combo" >Текущие</label>
+                        <ListBox key="combo" key_prefix="left" items={state_items_left} callback={this.listChange} type="left" />
+                    </div>;
+                combined[1] =
+                    <div className="list_box_container">
+                        <label htmlFor="combo-right" >Доступные</label>
+                        <ListBox key="combo_right" key_prefix="right" items={state_items_right} callback={this.listChange} type="right" />
+                    </div>;
 
                 console.info('ListBoxTwoSide props');
                 console.info(this.props);
