@@ -84,9 +84,9 @@ define(
                 var items;
                 (typeof this.props.items !='undefined')? items = this.props.items : items=[];
 
-                console.log('items.length='+items.length);
+                console.log('size(items)'+_.size(items));
                 console.log(items);
-                if(items.length>0){
+                if(_.size(items)>0){
                     for(var key in this.props.items){
 
                         /*console.info('key='+key);
@@ -132,6 +132,17 @@ define(
                     )
             }
         });
+
+
+/*
+        var ListBoxAssync = React.createClass({
+            callBack: function(callback){
+                this.props.callback(callback);
+            },
+            render: function(){
+                return(<ListBoxTwoSide items_left={this.props.item} />);
+            }
+        });*/
 
         var ListBoxTwoSide = React.createClass({
             getInitialState: function() {
@@ -187,7 +198,7 @@ define(
                 //this.props.callback('ListBoxTwoSide callback:');
                 this.props.callback(callback_new);
             },
-            componentWillMount: function() {
+            componentDidMount: function() {
                 var arr_items_2_select = [];
                 //всегда выполнять второй запрос только при удачном первом иначе голод и разруха
                 console.info('ListBoxTwoSide->mounting...');
@@ -195,47 +206,6 @@ define(
                 console.log(this.props.items_left);
                 console.log('this.props.items_right:');
                 console.log(this.props.items_right);*/
-
-
-                var items_left =[];
-                (typeof this.props.items_left!='undefined')? items_left = this.props.items_left:items_left = [];
-                console.info('items_left');
-                console.info(items_left);
-
-                var items_right = [];
-                (typeof this.props.items_right!='undefined')? items_right = this.props.items_right:items_right =[];
-
-                console.info('items_right');
-                console.info(items_right);
-
-                var sorted_by_id_items_left = [];
-                if(items_left.length > 0){
-                    
-                    for(var new_id_left in items_left){
-                        sorted_by_id_items_left[items_left[new_id_left]['id']] = items_left[new_id_left];
-                    }
-                }
-
-                //resort by id
-                var sorted_by_id_items_right = [];
-                if(items_right.length > 0){
-
-                    for(var new_id in items_right){
-                        sorted_by_id_items_right[items_right[new_id]['id']] = items_right[new_id];
-                    }
-                }
-
-                if(sorted_by_id_items_left.length > 0 && sorted_by_id_items_right.length>0){
-                    for(var id in sorted_by_id_items_left){
-                        console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
-                        delete sorted_by_id_items_right[id];
-                    }
-                }
-
-                this.setState({
-                    items_left: sorted_by_id_items_left,
-                    items_right: sorted_by_id_items_right
-                });
 
                 //add listener because it's another table, so this is need to save separately, but with post current_id
                 /*
@@ -250,27 +220,67 @@ define(
                  * */
 
             },
-            saveListBox: function(){
-                //триггер сейва формы
+            calculateState: function(items_left, items_right){
+                console.log('CALCULON!!!1');
+                console.info('items_left');
+                console.info(items_left);
+                console.info('items_right');
+                console.info(items_right);
 
+                var sorted_by_id_items_left = {};
+                if(typeof items_left != 'undefined'){
+                    console.warn('items_left > 0, resort');
+                    for(var new_id_left in items_left){
+                        sorted_by_id_items_left[items_left[new_id_left]['id']] = items_left[new_id_left];
+                    }
+                }
+                console.info('sorted_by_id_items_left');
+                console.info(sorted_by_id_items_left);
+
+                //resort by id
+                var sorted_by_id_items_right = {};
+                if(typeof items_right != 'undefined'){
+                    console.warn('items_right > 0, resort');
+                    for(var new_id in items_right){
+                        sorted_by_id_items_right[items_right[new_id]['id']] = items_right[new_id];
+                    }
+                }
+                console.info('sorted_by_id_items_right');
+                console.info(sorted_by_id_items_right);
+
+                if(_.size(sorted_by_id_items_left) > 0 && _.size(sorted_by_id_items_right)>0){
+                    for(var id in sorted_by_id_items_left){
+                        console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
+                        delete sorted_by_id_items_right[id];
+                    }
+                    console.error('YEEEP!');
+
+                    this.setState({
+                        items_left: sorted_by_id_items_left,
+                        items_right: sorted_by_id_items_right
+                    });
+                }
+            },
+            componentWillReceiveProps: function(new_props){
+                console.info('componentWillReceiveProps');
+                console.warn(new_props);
+                if(_.size(new_props.items_left)> 0 && _.size(new_props.items_right)> 0){
+                    this.calculateState(new_props.items_left, new_props.items_right);
+                }
             },
             render: function(){
                 var combined = [];
 
-                var items_left = this.state.items_left;
-                var items_right = this.state.items_right;
-                /*
-                var items_left = this.state.items_left;
-                var items_right = this.state.items_right;
-                */
+                var state_items_left = this.state.items_left;
+                var state_items_right = this.state.items_right;
 
-                console.warn('ListBoxTwoSide, items_left:');
-                console.warn(items_left);
-                console.warn('ListBoxTwoSide, items_right:');
-                console.warn(items_right);
+                console.warn('ListBoxTwoSide, state.items_left:');
+                console.warn(state_items_left);
+                console.warn('ListBoxTwoSide, state.items_right:');
+                console.warn(state_items_right);
 
-                combined[0] = <div><label htmlFor="combo" >Текущие</label><ListBox key="combo" key_prefix="left" items={items_left} callback={this.listChange} type="left" /></div>;
-                combined[1] = <div><label htmlFor="combo-right" >Доступные</label><ListBox key="combo_right" key_prefix="right" items={items_right} callback={this.listChange} type="right" /></div>;
+                combined[0] = <div><label htmlFor="combo" >Текущие</label><ListBox key="combo" key_prefix="left" items={state_items_left} callback={this.listChange} type="left" /></div>;
+                combined[1] = <div><label htmlFor="combo-right" >Доступные</label><ListBox key="combo_right" key_prefix="right" items={state_items_right} callback={this.listChange} type="right" /></div>;
 
                 console.info('ListBoxTwoSide props');
                 console.info(this.props);
@@ -283,7 +293,6 @@ define(
         });
 
         return ListBoxTwoSide;
-
     }
 );
 
