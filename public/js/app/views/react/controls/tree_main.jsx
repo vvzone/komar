@@ -165,6 +165,8 @@ define(
                         child_box = childs.map(function(child){
                             return <TreeNode model={child} move={self.props.move}/>; //{child.get('name')}
                         });
+
+                        console.log('Render Node NAME = '+ this.props.model.get('name'));
                         return(
                             <li>
                                 <div className="tree_box_node"
@@ -195,6 +197,7 @@ define(
                     }
                 }else{
                     console.warn('regular Node w/out childs:');
+                    console.log('Render Node NAME = '+ this.props.model.get('name'));
                     return(
                         <li>
                             <div className="tree_box_node"
@@ -205,7 +208,7 @@ define(
                             onDragLeave={this.dragLeave}
                             onDrop={this.drop}
                             id={this.props.model.get('id')}>
-                                <TreeNodeBox model={this.state.model} tree_dependency={tree_dependency}/>
+                                <TreeNodeBox model={this.props.model} tree_dependency={tree_dependency}/>
                         {dependency_box}
                             </div>
                             <div className="tree_box_node_controls">
