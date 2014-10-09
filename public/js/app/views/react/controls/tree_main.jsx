@@ -262,7 +262,16 @@ define(
                 this.setState({collection: tree});
             },
             makeTreeFromFlat: function(collection){
-                var nodes = collection.map(function(model){
+
+                var sorted_collection = collection.sortBy(function(model){
+                    console.log('model.get(parent)='+model.get('parent'));
+                    return model.get('parent');
+                });
+
+                console.log('sorted_collection');
+                console.log(sorted_collection);
+
+                var nodes = sorted_collection.map(function(model){
                     return model;
                 });
 
@@ -354,7 +363,7 @@ define(
                 var tree = this.makeTreeFromFlat(new_items);
                 console.info('Main Tree -> moved, changed collection: ');
                 console.log(tree);
-                //this.setState({collection: tree}); //FIX -> collection
+                this.setState({collection: tree}); //FIX -> collection
             },
             componentWillUnmount: function() {
                 window.removeEventListener("TreeNodeMove", this.handleMyEvent, true);
