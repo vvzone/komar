@@ -26,7 +26,6 @@ define(
             getInitialState: function () {
                 return {
                     visible: true,
-                    model: this.props.model,
                     open: false,
                     dependency_items: []
                 };
@@ -266,13 +265,25 @@ define(
             },
             makeTreeFromFlat: function(collection){
 
+
+                var pre_sort = collection.groupBy(function(model){
+                   return model.get('parent');
+                });
+
+                console.info('pre_sort');
+                console.info(pre_sort);
+
                 var sorted_collection = collection.sortBy(function(model){
-                    console.log('model.get(parent)='+model.get('parent'));
+                    console.log(model.get('name')+'.get(parent)('+model.get('id')+')='+model.get('parent'));
                     return model.get('parent');
                 });
 
-                console.log('sorted_collection');
-                console.log(sorted_collection);
+                var slepok = sorted_collection.map(function(model){
+                    var record = model.get('name')+', id='+model.get('id')+' parent='+model.get('parent');
+                    return record;
+                });
+                console.log('slepok -> sorted_collection');
+                console.log(slepok);
 
                 var nodes = sorted_collection.map(function(model){
                     return model;
@@ -331,42 +342,50 @@ define(
             },
             moved: function(event){
                 console.info('MainTree -> TreeNodeMove (listener) catch...');
-                var droppedOn_Id = event.droppedOn_id;
+                var droppedOn_Id = event.droppedOn_id; //2
                 console.log('droppedOn_Id='+droppedOn_Id);
                 var dragged = event.dragged;
                 console.log('dragged:');
                 console.log(dragged);
-
-                //var clean_items = this.itemRemoveFromArrayById(dragged.id , dragged.model, droppedOn_Id); //bug with "no-same level node"
-                //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
-                //var new_items = this.itemAddInArrayById(droppedOn_Id , dragged.model, clean_items);
                 var new_items = this.state.plain_collection;
-                //var old_parent = new_items.where({items: dragged.model.get('parent_id')});
+                var slepok = new_items.map(function(model){
+                    var record = model.get('name')+', id='+model.get('id')+' parent='+model.get('parent');
+                    return record;
+                });
+                console.log('slepok -> plain_collection');
+                console.log(slepok);
 
-                /*
-                var old_parent = new_items.get(dragged.model.get('parent'));
-                console.info('old_parent');
-                console.log(old_parent);
-                var old_parent_childs_collection = old_parent.get('items');
-                console.info('old_parent.get(items)');
-                console.log(old_parent_childs_collection);
-                old_parent_childs_collection.remove(dragged.model); //ONLY ONE! DO NOT CLEAN-UP WHILE COLLECTION
-                console.info('old_parent_childs_collection after remove');
-                console.log(old_parent_childs_collection);
-                */
 
                 var original_model = new_items.get(dragged.model.get('id'));
+                console.log('new_items.get('+dragged.model.get('id')+')');
+
+                console.log('original_model, slepok:');
+                console.log(original_model.get('name')+', id='+original_model.get('id')+' parent='+original_model.get('parent'));
+
                 original_model.set('parent', droppedOn_Id);
+
+                console.log('original_model, slepok , after set parent='+droppedOn_Id);
+                console.log(original_model.get('name')+', id='+original_model.get('id')+' parent='+original_model.get('parent'));
+
                 console.info('Main Tree -> moved, current collection:');
                 console.log(this.state.collection);
                 console.log('flat new_items');
                 console.log(new_items);
 
-                //var cleaned_from_old_realtionship = this.cleanOldRelationship(new_items);
+                var slepok_2 = new_items.map(function(model){
+                    var record = model.get('name')+', id='+model.get('id')+' parent='+model.get('parent');
+                    return record;
+                });
+                console.log('slepok_2 -> plain_collection');
+                console.log(slepok_2);
+
                 var tree = this.makeTreeFromFlat(new_items);
                 console.info('Main Tree -> moved, changed collection: ');
                 console.log(tree);
-                this.setState({collection: tree}); //FIX -> collection
+                this.setState({
+                        collection: tree,
+                        plain_collection: new_items
+                    }); //FIX -> collection ,                        plain_collection: new_items
             },
             componentWillUnmount: function() {
                 window.removeEventListener("TreeNodeMove", this.handleMyEvent, true);

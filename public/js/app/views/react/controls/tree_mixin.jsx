@@ -19,7 +19,7 @@ define(
                     e.dataTransfer.setData("text/html", e.currentTarget);
 
                     var data = {id: e.currentTarget.id,
-                        model: this.state.model};
+                        model: this.props.model};
                     console.log('dragStart -> data:');
                     console.log(data);
                     storage['dragged'] = data;
