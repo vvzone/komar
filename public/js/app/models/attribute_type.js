@@ -57,6 +57,16 @@ define(
             attr_dependencies: {
                 attribute_type_childs: 'attribute_type_childs' //запрашиваем коллекцию
             }, //for recursive objects
+            hidden_fields:{
+                /* rules to show hidden fields:
+                 * field_name: {dependent_from_filed_name: value/array of values}
+                 */
+                listValues: {base_attr_type: 8},
+                max: {base_attr_type: [1,2,4,5,6,7]},
+                mix: {base_attr_type: [1,2,4,5,6,7]},
+                mask: {base_attr_type: 3},
+                length: {base_attr_type: [3]}
+            },
             url: function() {
                 return apiUrl('attribute_type', this.id);
             },

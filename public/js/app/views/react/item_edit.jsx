@@ -175,6 +175,12 @@ define(
                 for(var prop in model.attr_rus_names){
                     console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
                     console.log('model.attributes['+prop+']='+model.attributes[prop]);
+                    if(typeof model.hidden_fields != 'undefined'){
+                        if(model.hidden_fields[prop]){
+                            console.log('hidden field! search for rules of output!');
+                            var rule_obj = model.hidden_fields[prop];
+                        }
+                    }
                     if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                         console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
                         if(this.state.dependency_array != null){
