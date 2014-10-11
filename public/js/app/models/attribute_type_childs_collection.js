@@ -1,5 +1,5 @@
 define(
-    'models/attribute_types_collection',
+    'models/attribute_type_childs_collection',
     [
         'jquery',
         'underscore',
@@ -13,8 +13,8 @@ define(
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Типы атрибутов',
-            collection_name: 'attribute_types',
+            collection_rus_name: 'Доступные примитивы',
+            collection_name: 'attribute_type_childs',
             url: function() {
                 return apiUrl('attribute_types');
             },

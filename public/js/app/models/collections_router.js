@@ -109,6 +109,19 @@ define(
                     var msg = 'Вид для коллекции '+view+' не задан.';
                     EventBus.trigger('error', '404', msg);
                 break;
+                case('attribute_types'):
+                    if(!AttributeTypesCollection){
+                        console.warn('!AttributeTypesCollection -> require loading');
+                        var AttributeTypesCollection =require(['models/attribute_types_collection'], function(AttributeTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(AttributeTypesCollection);
+                            return AttributeTypesCollection;
+                        });
+                    }else{
+                        console.warn('AttributeTypesCollection -> no needed to load');
+                        ListView.initialize(AttributeTypesCollection);
+                    }
+                    break;
             }
 
             /*

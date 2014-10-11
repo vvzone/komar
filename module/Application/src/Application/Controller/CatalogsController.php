@@ -101,7 +101,7 @@ class CatalogsController extends AbstractActionController
             array('id' => 106023, 'category' => 'base', 'entity' => 'urgency_types', 'screen' => 'doc_urgency_types', 'name' => 'Типы срочности документа'),
             array('id' => 106030, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'doc_types', 'name' => 'Типы документов'),
             array('id' => 106040, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'node_types', 'name' => 'Типы узлов маршрута'),
-            array('id' => 106050, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'name' => 'Типы аттрибутов'),
+            array('id' => 106050, 'category' => 'base', 'entity' => 'attribute_types', 'screen' => 'attribute_types', 'name' => 'Типы аттрибутов'),
             array('id' => 106060, 'category' => 'base', 'entity' => 'enumeration', 'screen' => 'enumeration', 'name' => 'Нумерация'),
         );
 
@@ -186,6 +186,25 @@ class CatalogsController extends AbstractActionController
         $JsonModel->setVariables($data_array);
         return $JsonModel;
     }
+
+    /*public function attributetypesAction(){
+
+        $ranks_array =array(
+            array('id' => 1, 'name' => 'Рядовой', 'short_name' => 'ряд.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null),
+            array('id' => 2, 'name' => 'Ефрейтор','short_name' => 'ефр.', 'description' => null, 'is_officer' => null, 'created_at' => '1407439617871', 'deleted_at' => null)
+        );
+
+        $data_array = array(
+            array('id' => 1, 'name' => 'Начальник Штаба', 'short_name' => 'Нач.штаба', 'allowed_ranks' => $ranks_array),
+            array('id' => 2, 'name' => 'Начальник пищеблока', 'short_name' => 'Нач. пищеблока', 'allowed_ranks' => $ranks_array)
+        );
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        //$this->getResponse()->setStatusCode(404);
+        return $JsonModel;
+    }
+    */
 
 
     public function ranksAction(){
@@ -418,6 +437,108 @@ class CatalogsController extends AbstractActionController
             }
             return $new_array;
         }
+    }
+
+    public function attributetypesAction(){
+        /*
+         *       •	целое,  1
+                 •	вещественное, 2
+                 •	текст,  3
+                 •	булевский, 4
+                 •	Дата, 5
+                 •	Время,  6
+                 •	Дата/время, 7
+                 •	Список,8
+                 •	Составной9.
+         * */
+
+
+            $first =
+            array(
+                'id' => 1,
+                'name' => 'X',
+                'description' => 'Координата X',
+                'base_attr_type' => 2,
+                'verify_method' => null,
+                'listValues' => array(),
+                'max' => null,
+                'min' => null,
+                'mask' => null,
+                'length' => null,
+                'parents' => array(3), //уровень выше - точка
+                'all_parents' => array(3, 5), //точка и на уровень выше - маршрут
+                'attribute_type_childs' => null
+            );
+        $second =
+            array(
+                'id' => 2,
+                'name' => 'Y',
+                'description' => 'Координата Y',
+                'base_attr_type' => 2,
+                'verify_method' => null,
+                'listValues' => array(),
+                'max' => null,
+                'min' => null,
+                'mask' => null,
+                'length' => null,
+                'parents' => array(3),//уровень выше - точка
+                'all_parents' => array(3,5),//точка и на уровень выше - маршрут
+                'attribute_type_childs' => null
+            );
+        $third =
+            array(
+                'id' => 3,
+                'name' => 'Точка',
+                'description' => 'Точка на карте',
+                'base_attr_type' => 9, //составной
+                'verify_method' => null,
+                'listValues' => array(),
+                'max' => null, //не имеет собственного значения
+                'min' => null,
+                'mask' => null,
+                'length' => null,
+                'parents' => array(5),
+                'all_parents' => array(5),
+                'attribute_type_childs' => array($first, $second)  //$first, $second 1,2,3 x,y, название точки
+            );
+            $fourth=
+            array(
+                'id' => 4,
+                'name' => 'Название',
+                'description' => 'Тестовое наименование чего-либо',
+                'base_attr_type' => 3, //составной
+                'verify_method' => null,
+                'listValues' => array(),
+                'max' => null,
+                'min' => null,
+                'mask' => null,
+                'length' => 1024,
+                'parents' => array(5, 3),
+                'all_parents' => array(5, 3),
+                'attribute_type_childs' => null
+            );
+            $five =
+            array(
+                'id' => 5,
+                'name' => 'Маршрут',
+                'description' => 'Маршрут из нескольких точек на карте',
+                'base_attr_type' => 9, //составной
+                'verify_method' => null,
+                'listValues' => array(),
+                'max' => null,
+                'min' => null,
+                'mask' => null,
+                'length' => null,
+                'parents' => null,
+                'all_parents' => null,
+                'attribute_type_childs' => array($third, $fourth)//$third, $four 3,4 точка, название маршрута
+            );
+
+        $data_array = array($first, $second, $third, $fourth, $five);
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
     }
 }
 

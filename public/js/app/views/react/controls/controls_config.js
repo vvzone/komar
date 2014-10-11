@@ -11,7 +11,10 @@ define(
         properties_types['short_name'] = 'tiny_text';
         properties_types['description'] = 'small_text';
         properties_types['is_officer'] = 'bool_select';
+
         properties_types['allowed_ranks'] = 'list_box'; /* old name - allowed_ranks */
+        properties_types['attribute_type_childs'] = 'list_box'; /* old name - allowed_ranks */
+
 
         /* pass_doc_types */
         properties_types['seriesMask'] = 'tiny_text';

@@ -1,25 +1,24 @@
 define(
-    'models/attribute_types_collection',
+    'models/document_attribute_types_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/attribute_type'
+        'models/urgency_type'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/attribute_types_collection loaded');
+        console.log('models/document_attribute_types_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Типы атрибутов',
-            collection_name: 'attribute_types',
+            collection_rus_name: 'Атрибуты документа',
+            collection_name: 'document_attribute_types',
             url: function() {
-                return apiUrl('attribute_types');
+                return apiUrl('document_attribute_types');
             },
             initialize: function(){
-
                 this.on('destroy', this.liluDallas, this);
             },
             liluDallas: function(){

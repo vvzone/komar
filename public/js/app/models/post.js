@@ -16,7 +16,7 @@ define(
                 name: null,
                 short_name: null,
                 description: null,
-                ranks: null
+                allowed_ranks: null
             },
             attr_rus_names: {
                 name: 'Название',

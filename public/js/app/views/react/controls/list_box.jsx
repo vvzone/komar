@@ -5,8 +5,9 @@ define(
     [
         'jquery',
         'react',
-        'jsx!views/react/controls/controls_mixin'
-    ],function($, React, ControlsMixin){
+        'jsx!views/react/controls/controls_mixin',
+        'event_bus'
+    ],function($, React, ControlsMixin, EventBus){
         var ButtonListBoxLeft = React.createClass({
             handleClick: function (e) {
                 var action = 'move_left';
@@ -227,10 +228,17 @@ define(
                 console.info('items_right');
                 console.info(items_right);
 
+
                 var sorted_by_id_items_left = {};
                 if(typeof items_left != 'undefined'){
                     console.warn('items_left > 0, resort');
                     for(var new_id_left in items_left){
+                        if(typeof items_left[new_id_left]['id'] == 'undefined'){
+                            //throw error
+                            console.error('В контрол ListBox переданы данные неверного формата');
+                            //EventBus.trigger('error', 'Ошибка', 'В контрол ListBox переданы данные неверного формата');
+                        }
+                        console.warn(items_left[new_id_left]['id']);
                         sorted_by_id_items_left[items_left[new_id_left]['id']] = items_left[new_id_left];
                     }
                 }
@@ -242,6 +250,11 @@ define(
                 if(typeof items_right != 'undefined'){
                     console.warn('items_right > 0, resort');
                     for(var new_id in items_right){
+                        if(typeof items_right[new_id]['id'] == 'undefined'){
+                            //throw error
+                            console.error('В контрол ListBox переданы данные неверного формата');
+                            //EventBus.trigger('error', 'Ошибка', 'В контрол ListBox переданы данные неверного формата');
+                        }
                         sorted_by_id_items_right[items_right[new_id]['id']] = items_right[new_id];
                     }
                 }
@@ -253,7 +266,6 @@ define(
                         console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
                         delete sorted_by_id_items_right[id];
                     }
-                    console.error('YEEEP!');
 
                     this.setState({
                         items_left: sorted_by_id_items_left,

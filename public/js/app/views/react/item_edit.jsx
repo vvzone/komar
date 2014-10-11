@@ -116,6 +116,7 @@ define(
                         });
                         */
 
+                        console.log('loading models/'+this.props.model.attr_dependencies[prop]+'_collection');
                         require([
                             'models/'+this.props.model.attr_dependencies[prop]+'_collection'
                         ], function(DependencyCollectionClass){
