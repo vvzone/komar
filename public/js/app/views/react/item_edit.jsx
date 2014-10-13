@@ -78,6 +78,27 @@ define(
                 alert('Dependency Update');
                 console.log(e);
             },
+            callControlRouter: function(model, prop){
+                if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                    console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
+                    if(this.state.dependency_array != null){
+                        console.warn('call to ControlRouter');
+                        console.log('this.state.dependency_array['+prop+']');
+                        console.log(this.state.dependency_array[prop]);
+                            return this.controlRouterCallWithDependency(model, prop);
+                    }
+                }
+                return this.controlRouterCall(model, prop);
+            },
+            controlRouterCallWithDependency: function(model, prop){
+                return <ControlsRouter
+                type={ControlsConfig[prop]}
+                value={model.attributes[prop]}
+                dependency_array = {this.state.dependency_array[prop]}
+                name={prop}
+                russian_name={model.attr_rus_names[prop]}
+                callback={this.itemUpdate} key={prop} />;
+            },
             controlRouterCall: function(model, prop){
                 return <ControlsRouter
                 type={ControlsConfig[prop]}
@@ -188,36 +209,17 @@ define(
                                     }
                                 }
                             }
-                        }
-                    }else{
-                        //non-complex field
-                        if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
-                            console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
-                            if(this.state.dependency_array != null){
-                                //if(this.state.dependency_array['prop']!=null){
-                                console.warn('call to ControlRouter');
-                                console.log('this.state.dependency_array['+prop+']');
-                                console.log(this.state.dependency_array[prop]);
-                                controls.push(
-                                    <ControlsRouter
-                                    type={ControlsConfig[prop]}
-                                    value={model.attributes[prop]}
-                                    dependency_array = {this.state.dependency_array[prop]}
-                                    name={prop}
-                                    russian_name={model.attr_rus_names[prop]}
-                                    callback={this.itemUpdate} key={prop} />);
-                                //}
-                            }
                         }else{
+                            //have hidden_fields, but this is not that one
                             controls.push(
-                                <ControlsRouter
-                                type={ControlsConfig[prop]}
-                                value={model.attributes[prop]}
-                                name={prop}
-                                russian_name={model.attr_rus_names[prop]}
-                                callback={this.itemUpdate} key={prop} />
+                                this.callControlRouter(model, prop)
                             );
                         }
+                    }else{
+                        //does not have hidden_fields in model
+                        controls.push(
+                            this.callControlRouter(model, prop)
+                        );
                     }
                 }
 
