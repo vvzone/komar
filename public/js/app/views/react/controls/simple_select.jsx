@@ -24,8 +24,8 @@ define(
             handleChange: function(event){
                 this.setState({selected: event.target.value});
                 var property = {};
-                console.error(this.props.entity.db_prop_name);
-                property[this.props.entity.db_prop_name] = event.target.value;
+                console.error(this.props.name);
+                property[this.props.name] = event.target.value;
                 this.props.callback(property);
             },
             componentWillMount: function() {
@@ -63,7 +63,7 @@ define(
                     value={this.props.options[key]['id']}
                     id={this.props.options[key]['id']}
                     onClick={this.handleClick}>
-                {this.props.options[key]['name']}
+                    {this.props.options[key]['name']}
                     </option>);
                 }
 

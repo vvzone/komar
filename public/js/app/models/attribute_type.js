@@ -55,6 +55,7 @@ define(
             model_name: 'attribute_type',
             model_rus_name: 'Тип атрибута',
             attr_dependencies: {
+                base_attr_type: 'constant',
                 attribute_type_childs: 'attribute_type_childs' //запрашиваем коллекцию
             }, //for recursive objects
             hidden_fields:{

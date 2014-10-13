@@ -7,8 +7,9 @@ define(
         'jsx!views/react/modals/bootstrap_modal_mixin',
         'event_bus',
         'views/react/controls/controls_config',
-        'jsx!views/react/controls/controls_router'
-    ],function(_, $, React, BootstrapModal, EventBus, ControlsConfig, ControlsRouter){
+        'jsx!views/react/controls/controls_router',
+        'models/constants'
+    ],function(_, $, React, BootstrapModal, EventBus, ControlsConfig, ControlsRouter, Constants){
 
         var ItemEditBox = React.createClass({
             /*
@@ -72,7 +73,7 @@ define(
                 }
                 //current_item[property.db_prop_name] = property.value;
                 //current_item[property.db_prop_name] = property.value;
-                //this.setState({model: current_item}); не нужно так как обновляется модель
+                this.setState({model: current_item}); //не нужно так как обновляется модель - не факт ибо нет ре-рендера 
             },
             itemUpdateDependency: function(e){
                 alert('Dependency Update');
@@ -116,38 +117,51 @@ define(
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
 
                         console.log('loading models/'+this.props.model.attr_dependencies[prop]+'_collection');
-                        require([
-                            'models/'+this.props.model.attr_dependencies[prop]+'_collection'
-                        ], function(DependencyCollectionClass){
-                                console.info('loading dependency module...');
-                                console.info(self.props.model.collection.collection_name);
-                                //var dependency_array = {};
-                                var DependencyCollection = new DependencyCollectionClass;
-                                var dependency_array= self.state.dependency_array;
-                                console.info('dependency_array before fetch:');
-                                console.info(dependency_array);
-                                DependencyCollection.fetch({
-                                    error: function(obj, response){
-                                        console.warn('error, response: '+response);
-                                        EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
-                                    },
-                                    success: function(){
-                                        console.info('success & Current collection:');
-                                        console.info(DependencyCollection.toJSON());
-                                        var current_dependency = DependencyCollection.toJSON();
-                                        dependency_array[DependencyCollection.collection_name] = current_dependency; //this why field name in model, and dependency should be equivalent BAD! Decision, but required for require Js use
-                                        console.info('current_dependency after fetch:');
-                                        console.info(current_dependency);
-                                        console.info('dependency array:');
-                                        console.info(dependency_array);
-                                        self.setState({
-                                            dependency_array: dependency_array
-                                        });
-                                    }
-                                });
+                        if(this.props.model.attr_dependencies[prop]!='constant'){
+                            console.log('dependecy not a constant...');
+                            require([
+                                'models/'+this.props.model.attr_dependencies[prop]+'_collection'
+                            ], function(DependencyCollectionClass){
+                                    console.info('loading dependency module...');
+                                    console.info(self.props.model.collection.collection_name);
+                                    //var dependency_array = {};
+                                    var DependencyCollection = new DependencyCollectionClass;
+                                    var dependency_array= self.state.dependency_array;
+                                    console.info('dependency_array before fetch:');
+                                    console.info(dependency_array);
+                                    DependencyCollection.fetch({
+                                        error: function(obj, response){
+                                            console.warn('error, response: '+response);
+                                            EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
+                                        },
+                                        success: function(){
+                                            console.info('success & Current collection:');
+                                            console.info(DependencyCollection.toJSON());
+                                            var current_dependency = DependencyCollection.toJSON();
+                                            dependency_array[DependencyCollection.collection_name] = current_dependency; //this why field name in model, and dependency should be equivalent BAD! Decision, but required for require Js use
+                                            console.info('current_dependency after fetch:');
+                                            console.info(current_dependency);
+                                            console.info('dependency array:');
+                                            console.info(dependency_array);
+                                            self.setState({
+                                                dependency_array: dependency_array
+                                            });
+                                        }
+                                    });
 
-                           }
-                        );
+                                }
+                            );
+                        }else{
+                            if(typeof Constants[prop] != 'undefined'){
+                                var dep = {};
+                                dep[prop] = Constants[prop];
+                                self.setState({
+                                    dependency_array: dep
+                                })
+                            }else{
+                                EventBus.trigger('error', 'Ошибка', 'Зависимость определена как константа, но не найдена в списке констант.');
+                            }
+                        }
                     }
                 }
 
@@ -199,7 +213,7 @@ define(
                                             );
                                         }
                                     }
-                                    if(_.isString(rule_value) || _.isNumber(rule_value)){
+                                    else{ //if(_.isString(rule_value) || _.isNumber(rule_value)){
                                         if(model_value == rule_value){
                                             console.info('rule_value non array, output hidden field==');
                                             controls.push(

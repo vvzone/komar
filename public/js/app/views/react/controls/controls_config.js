@@ -1,9 +1,6 @@
 define(
     'views/react/controls/controls_config',
-    [
-        'jquery',
-        'react'
-    ],function($, React){
+    [],function(){
         var properties_types = [];
 
 
