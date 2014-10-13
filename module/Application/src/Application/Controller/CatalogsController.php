@@ -464,7 +464,7 @@ class CatalogsController extends AbstractActionController
                 'max' => null,
                 'min' => null,
                 'mask' => null,
-                'length' => null,
+                'max_length' => null,
                 'parents' => array(3), //уровень выше - точка
                 'all_parents' => array(3, 5), //точка и на уровень выше - маршрут
                 'attribute_type_childs' => null
@@ -480,7 +480,7 @@ class CatalogsController extends AbstractActionController
                 'max' => null,
                 'min' => null,
                 'mask' => null,
-                'length' => null,
+                'max_length' => null,
                 'parents' => array(3),//уровень выше - точка
                 'all_parents' => array(3,5),//точка и на уровень выше - маршрут
                 'attribute_type_childs' => null
@@ -496,7 +496,7 @@ class CatalogsController extends AbstractActionController
                 'max' => null, //не имеет собственного значения
                 'min' => null,
                 'mask' => null,
-                'length' => null,
+                'max_length' => null,
                 'parents' => array(5),
                 'all_parents' => array(5),
                 'attribute_type_childs' => array($first, $second)  //$first, $second 1,2,3 x,y, название точки
@@ -512,7 +512,7 @@ class CatalogsController extends AbstractActionController
                 'max' => null,
                 'min' => null,
                 'mask' => null,
-                'length' => 1024,
+                'max_length' => 1024,
                 'parents' => array(5, 3),
                 'all_parents' => array(5, 3),
                 'attribute_type_childs' => null
@@ -528,7 +528,7 @@ class CatalogsController extends AbstractActionController
                 'max' => null,
                 'min' => null,
                 'mask' => null,
-                'length' => null,
+                'max_length' => null,
                 'parents' => null,
                 'all_parents' => null,
                 'attribute_type_childs' => array($third, $fourth)//$third, $four 3,4 точка, название маршрута

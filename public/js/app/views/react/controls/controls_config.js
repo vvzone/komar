@@ -61,6 +61,18 @@ define(
         //properties_types['secrecy_types'] = 'list_box';
         //properties_types['attribute_types'] = '';
 
+        /* attribute types */
+        properties_types['base_attr_type'] = 'simple_select';
+        //properties_types['verification_type'] = 'simple_select';
+        properties_types['min'] = 'tiny_text';
+        properties_types['max'] = 'tiny_text';
+
+        //properties_types['listValue'] = 'list'; needed new!
+        properties_types['mask'] = 'tiny_text';
+        properties_types['max_length'] = 'tiny_text';
+        //properties_types['parents'] = 'info_list'; needed new!
+
+
         return properties_types;
     }
 );

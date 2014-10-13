@@ -78,6 +78,14 @@ define(
                 alert('Dependency Update');
                 console.log(e);
             },
+            controlRouterCall: function(model, prop){
+                return <ControlsRouter
+                type={ControlsConfig[prop]}
+                value={model.attributes[prop]}
+                name={prop}
+                russian_name={model.attr_rus_names[prop]}
+                callback={this.itemUpdate} key={prop} />;
+            },
             componentWillMount: function () {
                 window.addEventListener("saveButtonClick", this.saveForm, true);
                 var self = this;
@@ -85,36 +93,6 @@ define(
                     console.log('mounting, prop: '+prop);
                     if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
-
-                        /*
-                        var dependencies_models = {};
-                        dependencies_models['dependencies'] = this.props.model.attr_dependencies;
-                        //dependencies_models = this.props.model.attr_dependencies;
-
-                        //dependencies_models.each();
-                        _.each(dependencies_models['dependencies'], function(num, key){
-                            console.log('num='+num+'key='+key);
-                            dependencies_models['collections'] = {};
-                            require([
-                                'models/'+key+'_collection'
-                            ], function(collection){
-                                 console.log('key');
-                                 dependencies_models.collections[key] = collection;
-                            });
-                        });
-
-
-
-                        console.info('==============*================');
-                        console.info('==============*================');
-                        console.info(dependencies_models);
-
-                        _.each(dependencies_models.collections, function(num, key){
-                            dependencies_models['fetched'] = {};
-                            var Collection = dependencies_models.collection[key];
-                            dependencies_models.fetched[key ]= Collection.fetch();
-                        });
-                        */
 
                         console.log('loading models/'+this.props.model.attr_dependencies[prop]+'_collection');
                         require([
@@ -175,16 +153,48 @@ define(
                 for(var prop in model.attr_rus_names){
                     console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
                     console.log('model.attributes['+prop+']='+model.attributes[prop]);
+
+                    //Выводить скрытые поля для Добавления Нового
+
                     if(typeof model.hidden_fields != 'undefined'){
-                        if(model.hidden_fields[prop]){
-                            console.log('hidden field! search for rules of output!');
+                        console.log('had hidden fields...');
+                        if(typeof model.hidden_fields[prop] != 'undefined'){
+                            console.info('hidden field['+prop+']! search for rules of output!');
+                            console.log(model.hidden_fields[prop]);
                             var rule_obj = model.hidden_fields[prop];
+                            if(rule_obj){
+                                for(var field in rule_obj){
+                                    var rule_value = rule_obj[field];
+                                    var model_value = model.get(field);
+                                    console.log('model_value='+model_value+' rule_value='+rule_value);
+                                    if(_.isArray(rule_value)){
+                                        console.log('rule_value IsArray, output hidden field==');
+                                        //search in array
+                                        var check_array = _.indexOf(rule_value, model_value) > -1;
+                                        if(check_array === true){
+                                            console.info('had in array, render control...');
+                                            controls.push(
+                                                this.controlRouterCall(model, prop)
+                                            );
+                                        }
+                                    }
+                                    if(_.isString(rule_value) || _.isNumber(rule_value)){
+                                        if(model_value == rule_value){
+                                            console.info('rule_value non array, output hidden field==');
+                                            controls.push(
+                                                this.controlRouterCall(model, prop)
+                                            );
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
-                    if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
-                        console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
-                        if(this.state.dependency_array != null){
-                            //if(this.state.dependency_array['prop']!=null){
+                    }else{
+                        //non-complex field
+                        if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                            console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
+                            if(this.state.dependency_array != null){
+                                //if(this.state.dependency_array['prop']!=null){
                                 console.warn('call to ControlRouter');
                                 console.log('this.state.dependency_array['+prop+']');
                                 console.log(this.state.dependency_array[prop]);
@@ -196,17 +206,18 @@ define(
                                     name={prop}
                                     russian_name={model.attr_rus_names[prop]}
                                     callback={this.itemUpdate} key={prop} />);
-                            //}
+                                //}
+                            }
+                        }else{
+                            controls.push(
+                                <ControlsRouter
+                                type={ControlsConfig[prop]}
+                                value={model.attributes[prop]}
+                                name={prop}
+                                russian_name={model.attr_rus_names[prop]}
+                                callback={this.itemUpdate} key={prop} />
+                            );
                         }
-                    }else{
-                        controls.push(
-                            <ControlsRouter
-                            type={ControlsConfig[prop]}
-                            value={model.attributes[prop]}
-                            name={prop}
-                            russian_name={model.attr_rus_names[prop]}
-                            callback={this.itemUpdate} key={prop} />
-                        );
                     }
                 }
 

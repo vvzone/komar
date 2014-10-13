@@ -33,7 +33,7 @@ define(
                 max: null,
                 min: null,
                 mask: null,
-                length: null,
+                max_length: null,
                 parents: [], // [] _.size>0 массив атрибутов верхнего уровня, напр для точки - маршрут, треугольник и тп.
                 allParents: [],
                 attribute_type_childs: [], //[] массив атрибутов нижнего уровня, напр для точки - x, y.  в виде дерева с сервера при tree=1, или id при tree=0
@@ -48,7 +48,7 @@ define(
                 max: 'Максимальное значение',
                 min: 'Минимальное значение',
                 mask: 'Маска',
-                length: 'Длина строки',
+                max_length: 'Максимальная длина строки',
                 attribute_type_childs: 'Дочерние типы атрибутов'
                 /*parent: 'Состоит из типов атрибутов:'*/
             },
@@ -63,9 +63,9 @@ define(
                  */
                 listValues: {base_attr_type: 8},
                 max: {base_attr_type: [1,2,4,5,6,7]},
-                mix: {base_attr_type: [1,2,4,5,6,7]},
+                min: {base_attr_type: [1,2,4,5,6,7]},
                 mask: {base_attr_type: 3},
-                length: {base_attr_type: [3]}
+                max_length: {base_attr_type: [3]}
             },
             url: function() {
                 return apiUrl('attribute_type', this.id);
