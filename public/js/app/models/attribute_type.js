@@ -15,7 +15,7 @@ define(
                 id: null,
                 name: null,
                 description: null,
-                base_attr_type: null, // 3 - text, список - 8,
+                base_attr_type: 1, // 1 - для нового документа
                 verification_type: null, //id хранимой в БД функции верификации
                 listValues: [],
                 max: null,
@@ -74,6 +74,17 @@ define(
             },
             initialize: function(){
                 console.info('Model init');
+                /* инициализируем коллекцию для simple+lista */
+
+                if (Array.isArray(this.get('listValues'))) {
+                    if(!AttributeTypeListCollection){
+                        console.log('loading sub-collection for child\'s');
+                        var AttributeTypeListCollection = require("models/attribute_type_list_collection");
+                    }
+                    var AttributeTypeListCollectionEx = new AttributeTypeListCollection(this.get('listValues'));
+                    this.set({listValues: AttributeTypeListCollectionEx});
+                } //коллекция может быть и пустой для нового обьекта
+
                 /*
                 дерево тут не нужно
                 if (Array.isArray(this.get('childs'))) {
