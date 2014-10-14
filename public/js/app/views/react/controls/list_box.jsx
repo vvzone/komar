@@ -199,10 +199,22 @@ define(
                 //this.props.callback('ListBoxTwoSide callback:');
                 this.props.callback(callback_new);
             },
+            componentWillMount: function() {
+                //если сразу все ок.
+                console.info('ListBoxTwoSide-> WILL MOUNT');
+                console.log('this.props');
+                console.log(this.props);
+                if(_.size(this.props.items_left)> 0 && _.size(this.props.items_right)> 0){
+                    this.calculateState(this.props.items_left, this.props.items_right);
+                }
+                /*if(_.size(new_props.items_left)> 0 && _.size(new_props.items_right)> 0){
+                    this.calculateState(new_props.items_left, new_props.items_right);
+                }*/
+            },
             componentDidMount: function() {
                 var arr_items_2_select = [];
                 //всегда выполнять второй запрос только при удачном первом иначе голод и разруха
-                console.info('ListBoxTwoSide->mounting...');
+                console.info('ListBoxTwoSide-> DID MOUNT');
                 /*console.log('this.props.items_left:');
                 console.log(this.props.items_left);
                 console.log('this.props.items_right:');

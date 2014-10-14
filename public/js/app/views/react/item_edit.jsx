@@ -80,10 +80,16 @@ define(
                 console.log(e);
             },
             callControlRouter: function(model, prop){
+                // Коллекция может быть еще не получена и тогда это приведет к неправильному Контролл-Роуту
+                // коллекция ведь зависит от State
+                // а может и нет - хз
+
+                console.warn('...aughtung...');
+                console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
                 if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                     console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
                     if(this.state.dependency_array != null){
-                        console.warn('call to ControlRouter');
+                        console.error('call to ControlRouter -> this.controlRouterCallWithDependency');
                         console.log('this.state.dependency_array['+prop+']');
                         console.log(this.state.dependency_array[prop]);
                             return this.controlRouterCallWithDependency(model, prop);
@@ -92,6 +98,11 @@ define(
                 return this.controlRouterCall(model, prop);
             },
             controlRouterCallWithDependency: function(model, prop){
+                console.info('controlRouterCallWithDependency');
+                console.info('this.state.dependency_array['+prop+']');
+                console.info(this.state.dependency_array[prop]);
+                console.info('model.attributes['+prop+']');
+                console.info(model.attributes[prop]);
                 return <ControlsRouter
                 type={ControlsConfig[prop]}
                 value={model.attributes[prop]}
@@ -101,6 +112,9 @@ define(
                 callback={this.itemUpdate} key={prop} />;
             },
             controlRouterCall: function(model, prop){
+                console.info('controlRouterCall');
+                console.info('model.attributes['+prop+']');
+                console.info(model.attributes[prop]);
                 return <ControlsRouter
                 type={ControlsConfig[prop]}
                 value={model.attributes[prop]}
@@ -118,7 +132,7 @@ define(
 
                         console.log('loading models/'+this.props.model.attr_dependencies[prop]+'_collection');
                         if(this.props.model.attr_dependencies[prop]!='constant'){
-                            console.log('dependecy not a constant...');
+                            console.warn('current model.attr_dependencies['+prop+'] NOT constant');
                             require([
                                 'models/'+this.props.model.attr_dependencies[prop]+'_collection'
                             ], function(DependencyCollectionClass){
@@ -152,6 +166,7 @@ define(
                                 }
                             );
                         }else{
+                            console.warn('current model.attr_dependencies['+prop+'] == constant');
                             if(typeof Constants[prop] != 'undefined'){
                                 var dep = {};
                                 dep[prop] = Constants[prop];
@@ -194,8 +209,8 @@ define(
                     if(typeof model.hidden_fields != 'undefined'){
                         console.log('had hidden fields...');
                         if(typeof model.hidden_fields[prop] != 'undefined'){
-                            console.info('hidden field['+prop+']! search for rules of output!');
-                            console.log(model.hidden_fields[prop]);
+                            //console.info('hidden field['+prop+']! search for rules of output!');
+                            //console.log(model.hidden_fields[prop]);
                             var rule_obj = model.hidden_fields[prop];
                             if(rule_obj){
                                 for(var field in rule_obj){
@@ -213,16 +228,16 @@ define(
                                         for(var key in rule_value){
                                             //console.log('key='+key+' rule_value[key]='+rule_value[key]+' model_value='+model_value);
                                             if(rule_value[key] == model_value){
-                                                console.warn('if throw');
+                                                //console.warn('if throw');
                                                 check_array = true;
                                             }
                                         }
                                         //var check_array = _.indexOf(rule_value, model_value) > -1; - very strange bug
                                         //console.warn(check_array);
-                                        if(check_array === true){
+                                        if(check_array == true){
                                             //console.info('had in array, render control...['+prop+']');
                                             controls.push(
-                                                this.controlRouterCall(model, prop)
+                                                this.callControlRouter(model, prop)
                                             );
                                         }
                                     }
@@ -231,7 +246,7 @@ define(
                                         if(model_value == rule_value){
                                             console.info('rule_value non array, output hidden field['+prop+']==');
                                             controls.push(
-                                                this.controlRouterCall(model, prop)
+                                                this.callControlRouter(model, prop)
                                             );
                                         }
                                     }
