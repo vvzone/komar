@@ -73,7 +73,7 @@ define(
                 }
                 //current_item[property.db_prop_name] = property.value;
                 //current_item[property.db_prop_name] = property.value;
-                this.setState({model: current_item}); //не нужно так как обновляется модель - не факт ибо нет ре-рендера 
+                this.setState({model: current_item}); //не нужно так как обновляется модель - не факт ибо нет ре-рендера
             },
             itemUpdateDependency: function(e){
                 alert('Dependency Update');
@@ -201,21 +201,35 @@ define(
                                 for(var field in rule_obj){
                                     var rule_value = rule_obj[field];
                                     var model_value = model.get(field);
-                                    console.log('model_value='+model_value+' rule_value='+rule_value);
                                     if(_.isArray(rule_value)){
-                                        console.log('rule_value IsArray, output hidden field==');
+                                        console.log('rule_value=');
+                                        console.log(rule_value);
+                                        console.log('model_value=');
+                                        console.log(model_value);
+                                        console.log('rule_value IsArray, output hidden field['+prop+']==');
                                         //search in array
-                                        var check_array = _.indexOf(rule_value, model_value) > -1;
+
+                                        var check_array = false;
+                                        for(var key in rule_value){
+                                            console.log('key='+key+' rule_value[key]='+rule_value[key]+' model_value='+model_value);
+                                            if(rule_value[key] == model_value){
+                                                console.warn('if throw');
+                                                check_array = true;
+                                            }
+                                        }
+                                        //var check_array = _.indexOf(rule_value, model_value) > -1; - very strange bug
+                                        console.warn(check_array);
                                         if(check_array === true){
-                                            console.info('had in array, render control...');
+                                            console.info('had in array, render control...['+prop+']');
                                             controls.push(
                                                 this.controlRouterCall(model, prop)
                                             );
                                         }
                                     }
                                     else{ //if(_.isString(rule_value) || _.isNumber(rule_value)){
+                                        console.log('model_value='+model_value+' rule_value='+rule_value);
                                         if(model_value == rule_value){
-                                            console.info('rule_value non array, output hidden field==');
+                                            console.info('rule_value non array, output hidden field['+prop+']==');
                                             controls.push(
                                                 this.controlRouterCall(model, prop)
                                             );

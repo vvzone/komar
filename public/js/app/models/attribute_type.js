@@ -16,18 +16,6 @@ define(
                 name: null,
                 description: null,
                 base_attr_type: null, // 3 - text, список - 8,
-                /*
-                * Системные типы:
-                 •	целое,  1
-                 •	вещественное, 2
-                 •	текст,  3
-                 •	булевский, 4
-                 •	Дата, 5
-                 •	Время,  6
-                 •	Дата/время, 7
-                 •	Список,8
-                 •	Составной.
-                 * */
                 verification_type: null, //id хранимой в БД функции верификации
                 listValues: [],
                 max: null,
@@ -62,11 +50,23 @@ define(
                 /* rules to show hidden fields:
                  * field_name: {dependent_from_filed_name: value/array of values}
                  */
+                /*
+                 * Системные типы:
+                 •	целое,  1
+                 •	вещественное, 2
+                 •	текст,  3
+                 •	булевский, 4
+                 •	Дата, 5
+                 •	Время,  6
+                 •	Дата/время, 7
+                 •	Список,8
+                 •	Составной.
+                 * */
                 listValues: {base_attr_type: 8},
                 max: {base_attr_type: [1,2,4,5,6,7]},
                 min: {base_attr_type: [1,2,4,5,6,7]},
                 mask: {base_attr_type: 3},
-                max_length: {base_attr_type: [3]}
+                max_length: {base_attr_type: [3,4,5]}
             },
             url: function() {
                 return apiUrl('attribute_type', this.id);
