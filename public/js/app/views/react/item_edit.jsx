@@ -202,25 +202,25 @@ define(
                                     var rule_value = rule_obj[field];
                                     var model_value = model.get(field);
                                     if(_.isArray(rule_value)){
-                                        console.log('rule_value=');
+                                        /*console.log('rule_value=');
                                         console.log(rule_value);
                                         console.log('model_value=');
                                         console.log(model_value);
-                                        console.log('rule_value IsArray, output hidden field['+prop+']==');
+                                        console.log('rule_value IsArray, output hidden field['+prop+']==');*/
                                         //search in array
 
                                         var check_array = false;
                                         for(var key in rule_value){
-                                            console.log('key='+key+' rule_value[key]='+rule_value[key]+' model_value='+model_value);
+                                            //console.log('key='+key+' rule_value[key]='+rule_value[key]+' model_value='+model_value);
                                             if(rule_value[key] == model_value){
                                                 console.warn('if throw');
                                                 check_array = true;
                                             }
                                         }
                                         //var check_array = _.indexOf(rule_value, model_value) > -1; - very strange bug
-                                        console.warn(check_array);
+                                        //console.warn(check_array);
                                         if(check_array === true){
-                                            console.info('had in array, render control...['+prop+']');
+                                            //console.info('had in array, render control...['+prop+']');
                                             controls.push(
                                                 this.controlRouterCall(model, prop)
                                             );

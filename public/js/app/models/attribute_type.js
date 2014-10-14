@@ -66,7 +66,8 @@ define(
                 max: {base_attr_type: [1,2,4,5,6,7]},
                 min: {base_attr_type: [1,2,4,5,6,7]},
                 mask: {base_attr_type: 3},
-                max_length: {base_attr_type: [3,4,5]}
+                max_length: {base_attr_type: [3]}
+                , attribute_type_childs: {base_attr_type: [9]}
             },
             url: function() {
                 return apiUrl('attribute_type', this.id);
