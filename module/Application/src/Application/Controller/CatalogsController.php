@@ -522,15 +522,9 @@ class CatalogsController extends AbstractActionController
                 'id' => 5,
                 'name' => 'Маршрут',
                 'description' => 'Маршрут из нескольких точек на карте',
-                'base_attr_type' => 8, //составной
+                'base_attr_type' => 9, //составной
                 'verify_method' => null,
-                'listValues' => array(
-                    array('id' => 1, 'value' => 1, 'name'=> 'Вариант 1', 'description' => ''),
-                    array('id' => 2, 'value' => 2, 'name'=> 'Вариант 2', 'description' => ''),
-                    array('id' => 3, 'value' => 3, 'name'=> 'Вариант 3', 'description' => ''),
-                    array('id' => 4, 'value' => 4, 'name'=> 'Вариант 4', 'description' => ''),
-                    array('id' => 5, 'value' => 5, 'name'=> 'Вариант 5', 'description' => '')
-                ),
+                'listValues' => array(),
                 'max' => null,
                 'min' => null,
                 'mask' => null,
@@ -544,9 +538,15 @@ class CatalogsController extends AbstractActionController
                     'id' => 6,
                     'name' => 'Список',
                     'description' => 'Список с вариантами',
-                    'base_attr_type' => 9, //составной
+                    'base_attr_type' => 8, //список
                     'verify_method' => null,
-                    'listValues' => array(),
+                    'listValues' => array(
+                        array('id' => 1, 'value' => 1, 'name'=> 'Вариант 1', 'description' => ''),
+                        array('id' => 2, 'value' => 2, 'name'=> 'Вариант 2', 'description' => ''),
+                        array('id' => 3, 'value' => 3, 'name'=> 'Вариант 3', 'description' => ''),
+                        array('id' => 4, 'value' => 4, 'name'=> 'Вариант 4', 'description' => ''),
+                        array('id' => 5, 'value' => 5, 'name'=> 'Вариант 5', 'description' => '')
+                    ),
                     'max' => null,
                     'min' => null,
                     'mask' => null,
