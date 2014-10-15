@@ -5,8 +5,10 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+        'apiUrl',
+        'models/attribute_type_list_collection'
+
+    ],function($, _, Backbone, React, apiUrl, ListCollection){
 
         console.log('models/attribute_type loaded');
 
@@ -18,6 +20,7 @@ define(
                 base_attr_type: 1, // 1 - для нового документа
                 verification_type: null, //id хранимой в БД функции верификации
                 listValues: [],
+                /*list_values_collection: [],*/
                 max: null,
                 min: null,
                 mask: null,
@@ -32,7 +35,7 @@ define(
                 description: 'Описание',
                 base_attr_type: 'Базовый тип аттрибута',
                 verification_type: 'Тип верификации',
-                listValues: 'Варианты значений:',
+                listValues: 'Значения типа атрибута список',
                 max: 'Максимальное значение',
                 min: 'Минимальное значение',
                 mask: 'Маска',
@@ -62,40 +65,58 @@ define(
                  •	Список,8
                  •	Составной.
                  * */
-                listValues: {base_attr_type: 8},
+                attribute_type_list_values: {base_attr_type: 8},
                 max: {base_attr_type: [1,2,4,5,6,7]},
                 min: {base_attr_type: [1,2,4,5,6,7]},
                 mask: {base_attr_type: 3},
-                max_length: {base_attr_type: [3]}
-                , attribute_type_childs: {base_attr_type: [9]}
+                max_length: {base_attr_type: [3]},
+                attribute_type_childs: {base_attr_type: [9]}
             },
             url: function() {
                 return apiUrl('attribute_type', this.id);
             },
+            parse: function(response) {
+
+                // Check if response includes some nested collection data... our case 'nodes'
+                if (_.has(response, 'listValues')){
+                    console.info('response');
+                    console.info(response);
+
+                    // Check if this model has a property called nodes
+                    if (!_.has(this, 'listValues')) {  // It does not...
+                        // So instantiate a collection and pass in raw data
+                        this.listValues = new ListCollection(response.listValues);
+                    } else {
+                        // It does, so just reset the collection
+                        this.listValues.reset(response.listValues);
+                    }
+
+                    // Assuming the fetch gets this model id
+                    //this.listValues.url = 'path/' + response.id + '/nodes';  // Set model relative URL
+
+                    // Delete the nodes so it doesn't clutter our model attributes
+                    //delete response.listValues;
+                }
+
+                // Same for edge...
+
+                return response;
+            },
             initialize: function(){
                 console.info('Model init');
-                /* инициализируем коллекцию для simple+lista */
+                /* инициализируем коллекцию для simple_list */
 
-                if (Array.isArray(this.get('listValues'))) {
-                    if(!AttributeTypeListCollection){
-                        console.log('loading sub-collection for child\'s');
-                        var AttributeTypeListCollection = require("models/attribute_type_list_collection");
-                    }
-                    var AttributeTypeListCollectionEx = new AttributeTypeListCollection(this.get('listValues'));
-                    this.set({listValues: AttributeTypeListCollectionEx});
-                } //коллекция может быть и пустой для нового обьекта
-
+                //this.listValue = new ListCollection;
                 /*
-                дерево тут не нужно
-                if (Array.isArray(this.get('childs'))) {
-                    console.log('model init -> has child\'s');
-                    if(!AttributeTypeCollection){
-                        console.log('loading sub-collection for child\'s');
-                        var AttributeTypeCollection = require("models/attribute_types_collection");
-                    }
-                    var AttributeTypeCollection = new AttributeTypeCollection(this.get('childs'));
-                    this.set({items: AttributeTypeCollection});
-                }*/
+                var listValue = this.get('listValues');
+                if(listValue.length> 0){
+                    console.log(ListCollection);
+                    console.log(this.get('listValues'));
+                    var Collection =  new ListCollection(this.get('listValues'));
+                    this.set({listValues: Collection});
+                    //this.set({list_values_collection: Collection});
+                }
+                */
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){

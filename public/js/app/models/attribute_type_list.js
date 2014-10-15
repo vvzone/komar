@@ -8,19 +8,19 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/attribute_type loaded');
+        console.log('models/attribute_type_list loaded');
 
         var Model = Backbone.Model.extend({
             defaults: {
                 id: null,
                 name: null,
                 description: null,
-                code: null // maybe there is no  need in this... who knows?
+                value: null // maybe there is no  need in this... who knows?
             },
             attr_rus_names: {
                 name: 'Название',
                 description: 'Описание',
-                code: 'Код'
+                value: 'Значение'
                 /*parent: 'Состоит из типов атрибутов:'*/
             },
             model_name: 'attribute_type_list',

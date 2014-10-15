@@ -522,9 +522,15 @@ class CatalogsController extends AbstractActionController
                 'id' => 5,
                 'name' => 'Маршрут',
                 'description' => 'Маршрут из нескольких точек на карте',
-                'base_attr_type' => 9, //составной
+                'base_attr_type' => 8, //составной
                 'verify_method' => null,
-                'listValues' => array(),
+                'listValues' => array(
+                    array('id' => 1, 'value' => 1, 'name'=> 'Вариант 1', 'description' => ''),
+                    array('id' => 2, 'value' => 2, 'name'=> 'Вариант 2', 'description' => ''),
+                    array('id' => 3, 'value' => 3, 'name'=> 'Вариант 3', 'description' => ''),
+                    array('id' => 4, 'value' => 4, 'name'=> 'Вариант 4', 'description' => ''),
+                    array('id' => 5, 'value' => 5, 'name'=> 'Вариант 5', 'description' => '')
+                ),
                 'max' => null,
                 'min' => null,
                 'mask' => null,
@@ -533,8 +539,24 @@ class CatalogsController extends AbstractActionController
                 'all_parents' => null,
                 'attribute_type_childs' => array($third, $fourth)//$third, $four 3,4 точка, название маршрута
             );
+            $six =
+                array(
+                    'id' => 6,
+                    'name' => 'Список',
+                    'description' => 'Список с вариантами',
+                    'base_attr_type' => 9, //составной
+                    'verify_method' => null,
+                    'listValues' => array(),
+                    'max' => null,
+                    'min' => null,
+                    'mask' => null,
+                    'max_length' => null,
+                    'parents' => null,
+                    'all_parents' => null,
+                    'attribute_type_childs' => array($third, $fourth)//$third, $four 3,4 точка, название маршрута
+                );
 
-        $data_array = array($first, $second, $third, $fourth, $five);
+        $data_array = array($first, $second, $third, $fourth, $five, $six);
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
