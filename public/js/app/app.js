@@ -21,11 +21,11 @@ define(
         Router.initialize();
 
         EventBus.on('error', function(header, msg, response){
-            EventBus.trigger('windows-close');
+            /*EventBus.trigger('windows-close');
 
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
-            $('#global_modal').html('');
+            $('#global_modal').html('');*/
 
             React.renderComponent(
                  ModalWindowError({
@@ -39,17 +39,19 @@ define(
         EventBus.on('item-add', function(model){
             console.info('EventBus -> item-add, model:');
             console.log(model);
-            EventBus.trigger('windows-close');
+            /*EventBus.trigger('windows-close');
 
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
-            $('#global_modal').html('');
+            $('#global_modal').html('');*/
 
             React.renderComponent(
                 ModalWindowEdit({
                     model: model
-                }), document.getElementById("global_modal")
+                }), $('.modal_window:first') //document.getElementById("global_modal")
             );
+
+
         });
 
         EventBus.on('item-edit', function(model){
@@ -61,10 +63,13 @@ define(
             console.log('unmount='+unmount);
             $('#global_modal').html('');*/
 
+
+            console.info('$(.modal_window).filter(:last)');
+            console.info($('.modal_window').filter(':last'));
             React.renderComponent(
                 ModalWindowEdit({
                     model: model
-                }), document.getElementById("global_modal")
+                }), $('.modal_window').filter(':last')[0]  //document.getElementById("global_modal")
             );
         });
 

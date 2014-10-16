@@ -85,7 +85,7 @@ define(
                 // а может и нет - хз
 
                 console.warn('...aughtung...');
-                console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
+                //console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
                 if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                     console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]);
                     if(this.state.dependency_array != null){
@@ -127,9 +127,9 @@ define(
                 var self = this;
                 for(var prop in this.props.model.attr_rus_names){
                     console.log('mounting, prop: '+prop);
-                    if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                    if(this.props.model.attr_dependencies!=null){
+                      if(typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
-
                         console.log('loading models/'+this.props.model.attr_dependencies[prop]+'_collection');
                         if(this.props.model.attr_dependencies[prop]!='constant'){
                             console.warn('current model.attr_dependencies['+prop+'] NOT constant');
@@ -178,6 +178,7 @@ define(
                             }
                         }
                     }
+                    }
                 }
 
                 this.setState({
@@ -206,7 +207,7 @@ define(
 
                     //Выводить скрытые поля для Добавления Нового
 
-                    if(typeof model.hidden_fields != 'undefined'){
+                    if(typeof model.hidden_fields != 'undefined' && model.hidden_fields != null){
                         console.log('had hidden fields...');
                         if(typeof model.hidden_fields[prop] != 'undefined'){
                             //console.info('hidden field['+prop+']! search for rules of output!');
@@ -297,6 +298,7 @@ define(
                 return(
                     <div>
                         <ItemEditBox model={this.props.model} callback={this.callback} />
+                        <div className="modal_window"></div>
                     </div>
                     );
             }
