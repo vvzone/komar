@@ -57,12 +57,22 @@ define(
         EventBus.on('item-edit', function(model){
             console.info('EventBus -> item-edit, model:');
             console.log(model);
-            /*EventBus.trigger('windows-close');
+            //EventBus.trigger('windows-close');
 
-            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+
+            //var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+
+            //Селектор :last не срабатывает во второй раз, так как окно завершается в fade без физ удаления
+            /*
+
+
+            var dom_node = $('.modal_window').filter(':last')[0];
+
+            var unmount = React.unmountComponentAtNode(dom_node);
             console.log('unmount='+unmount);
-            $('#global_modal').html('');*/
-
+            //$('#global_modal').html('');
+            $(dom_node).html('');
+            */
 
             console.info('$(.modal_window).filter(:last)');
             console.info($('.modal_window').filter(':last'));
