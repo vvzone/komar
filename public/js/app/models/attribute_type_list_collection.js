@@ -19,7 +19,6 @@ define(
                     return apiUrl('attribute_types');
                 },
                 initialize: function(){
-
                     this.on('destroy', this.liluDallas, this);
                 },
                 liluDallas: function(){

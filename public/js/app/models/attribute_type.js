@@ -20,6 +20,7 @@ define(
                 base_attr_type: 1, // 1 - для нового документа
                 verification_type: null, //id хранимой в БД функции верификации
                 listValues: [],
+                list_values: [],
                 /*list_values_collection: [],*/
                 max: null,
                 min: null,
@@ -75,27 +76,54 @@ define(
             url: function() {
                 return apiUrl('attribute_type', this.id);
             },
-            parse: function(response) {
+            save: function (key, val, options) {
+                this.beforeSave(key, val, options);
+                return Backbone.Model.prototype.save.call(this, key, val, options);
+            },
+            beforeSave: function(key, val, options){
+                console.info('->beforeSave');
+                if (!_.has(this, 'listValues')) {
+                    /*var new_list_values = this.listValues.map(function(model){
+                        return model;
+                    });*/
+                    var new_list_values = this.model.get('listValues').map(function(model){
+                        return model;
+                    });
+
+                    console.info('new_list_values');
+                    console.info(new_list_values);
+                    this.model.set('listValues', new_list_values);
+                }
+            },
+            parse: function(response, xhr) {
+                console.info('parse call');
+                console.info('response');
+                console.log(response);
+                console.log('xhr');
+                console.log(xhr);
 
                 // Check if response includes some nested collection data... our case 'nodes'
                 if (_.has(response, 'listValues')){
-                    console.info('response');
-                    console.info(response);
+                    if(_.size(response.listValues)>0){
+                        // Check if this model has a property called nodes
+                        console.log('this');
+                        console.log(this);
 
-                    // Check if this model has a property called nodes
-                    if (!_.has(this, 'listValues')) {  // It does not...
-                        // So instantiate a collection and pass in raw data
-                        this.listValues = new ListCollection(response.listValues);
-                    } else {
-                        // It does, so just reset the collection
-                        this.listValues.reset(response.listValues);
+                        if (!_.has(this, 'listValues')) {  // It does not...
+                            // So instantiate a collection and pass in raw data
+                            //this.listValues = new ListCollection(response.listValues);
+                            this.listValues = new ListCollection(response.listValues);
+                        } else {
+                            // It does, so just reset the collection
+                            this.listValues.reset(response.listValues);
+                        }
+
+                        // Assuming the fetch gets this model id
+                        //this.listValues.url = 'path/' + response.id + '/nodes';  // Set model relative URL
+
+                        // Delete the nodes so it doesn't clutter our model attributes
+                        //delete response.listValues;
                     }
-
-                    // Assuming the fetch gets this model id
-                    //this.listValues.url = 'path/' + response.id + '/nodes';  // Set model relative URL
-
-                    // Delete the nodes so it doesn't clutter our model attributes
-                    //delete response.listValues;
                 }
 
                 // Same for edge...
@@ -104,19 +132,18 @@ define(
             },
             initialize: function(){
                 console.info('Model init');
-                /* инициализируем коллекцию для simple_list */
-
-                //this.listValue = new ListCollection;
-                /*
-                var listValue = this.get('listValues');
-                if(listValue.length> 0){
-                    console.log(ListCollection);
-                    console.log(this.get('listValues'));
-                    var Collection =  new ListCollection(this.get('listValues'));
-                    this.set({listValues: Collection});
-                    //this.set({list_values_collection: Collection});
+                if(_.has(this, 'listValues')){
+                    console.log('rewrite attr.listValues with collection...');
+                    this.set('listValues', this.listValues);
                 }
-                */
+                /*
+                if(this.model.get('listValues').length>0){
+                    console.log('parse -> resetting exiting collection');
+                    this.model.get('listValues').reset(response.listValues);
+                }else{
+                    console.log('parse -> set new collection');
+                    this.model.set('listValues', new ListCollection(response.listValues));
+                }*/
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){

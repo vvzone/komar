@@ -64,7 +64,7 @@ define(
         properties_types['min'] = 'tiny_text';
         properties_types['max'] = 'tiny_text';
 
-        properties_types['listValue'] = 'simple_list';
+        properties_types['listValues'] = 'simple_list';
         properties_types['mask'] = 'tiny_text';
         properties_types['max_length'] = 'tiny_text';
         //properties_types['parents'] = 'info_list'; needed new!
