@@ -55,11 +55,11 @@ define(
         EventBus.on('item-edit', function(model){
             console.info('EventBus -> item-edit, model:');
             console.log(model);
-            EventBus.trigger('windows-close');
+            /*EventBus.trigger('windows-close');
 
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
-            $('#global_modal').html('');
+            $('#global_modal').html('');*/
 
             React.renderComponent(
                 ModalWindowEdit({

@@ -12,10 +12,11 @@ define(
         'jsx!views/react/controls/bool_select',
 
         'jsx!views/react/controls/list_box',
-        'jsx!views/react/controls/simple_select'
+        'jsx!views/react/controls/simple_select',
+        'jsx!views/react/controls/simple_list'
     ],function($, React, ControlsMixin,
                ControlTinyText, ControlSmallText, ControlBoolSelect,
-               ListBox, SimpleSelect){
+               ListBox, SimpleSelect, SimpleList){
 
         /* Controls: text, selector, search */
 
@@ -60,13 +61,22 @@ define(
                         return(<ControlBoolSelect value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                         break;
                     case('simple_select'):
+                        console.info('control_router->simple_select, this.props:');
+                        console.info(this.props);
                         return(<SimpleSelect options={this.props.dependency_array} selected={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                         break;
                     case('list_box'):
                         console.log('control_router->list_box');
                         return(<ListBox items_left={value} items_right={dependency_array}
                         name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
-                        break
+                        break;
+                    case('simple_list'):
+                        console.log('control_router->simple_list');
+                        console.info(this.props);
+                        return(
+                            <SimpleList collection={value} callback={self.callBack} />
+                            );
+                        break;
                 }
 
                 return(<div></div>)

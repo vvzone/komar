@@ -6,9 +6,13 @@ define(
         'jquery',
         'react',
         'jsx!views/react/controls/controls_mixin',
+        'jsx!views/react/base/btn_add',
+        'jsx!views/react/base/btn_edit',
+        'jsx!views/react/base/btn_delete',
+        'jsx!views/react/base/error_msg',
         'jsx!views/react/base/info_msg',
         'event_bus'
-    ],function($, React, ControlsMixin, InfoMsg, EventBus){
+    ],function($, React, ControlsMixin, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, EventBus){
 
         /* Select */
 
