@@ -72,6 +72,12 @@ define(
                     console.log('HIDE');
                     $(this.getDOMNode()).modal('hide');
 
+                    var react_node = $(this.getDOMNode()).parent()[0];
+                    console.info(react_node);
+                    var unmount = React.unmountComponentAtNode(react_node);
+                    console.info(unmount);
+                    //$(this.getDOMNode()).html('');
+
                     /*var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
                     console.log('MIXIN unmount='+unmount);
                     $('#global_modal').html('');*/
