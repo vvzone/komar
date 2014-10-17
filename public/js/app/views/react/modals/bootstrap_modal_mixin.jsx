@@ -56,8 +56,15 @@ define(
                             $modal.on(bsModalEvents[prop], this.props[prop])
                         }
                     }.bind(this));
+                    var self = this;
+                    var this_node = $(this.getDOMNode());
+                    this_node.on('hide.bs.modal', function(){
+                        console.info('catch ON hide.bs.modal, by:');
+                        console.info(this_node);
 
-                    $(this.getDOMNode()).on('hide.bs.modal', this.unMountReactAfterHide);
+                        //self.unMountReactAfterHide(this_node); //исполнение приводит к закрытиию всех окон так как там не задан this_node, а начинается поиск
+                        //нет, не по этому ;)
+                    });
                 },
                 componentWillUnmount: function () {
                     console.log('bootsratp modal unmount');
@@ -71,16 +78,19 @@ define(
                         }
                     }.bind(this))
                 },
-                unMountReactAfterHide: function(){
-                    var react_node = $(this.getDOMNode()).parent()[0]; //возможно здесь нужно заменить на :last - не нужно здесь поиск не по имени класса
+                unMountReactAfterHide: function(node){
+                    var react_node = node.parent()[0]; //возможно здесь нужно заменить на :last - не нужно здесь поиск не по имени класса
+                    console.info('unMountReactAfterHide->react_node');
                     console.info(react_node);
                     var unmount = React.unmountComponentAtNode(react_node);
                     console.info(unmount);
                 },
                 hide: function () {
-                    console.log('HIDE');
-                    $(this.getDOMNode()).modal('hide');
-                    this.unMountReactAfterHide;
+                    console.log('(X) HIDE CATCH BY:');
+                    var this_node = $(this.getDOMNode());
+                    console.log(this_node);
+                    this_node.modal('hide');
+                    this.unMountReactAfterHide(this_node);
                 },
                 show: function () {
                     $(this.getDOMNode()).modal('show');

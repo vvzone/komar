@@ -22,8 +22,8 @@ define(
             },
             render: function(){
                 var buttons = [
-                    {type: 'success', text: 'Добавить', handler: this.handleDoingNothing},
-                    {type: 'danger', text: 'Отмена', handler: this.handleExternalHide}
+                    {type: 'success', text: 'Добавить', handler: this.handleDoingNothing}
+                    //,{type: 'danger', text: 'Отмена', handler: this.handleExternalHide}
                 ];
                 var header = "Новая запись в "; //+this.entity.name;
 

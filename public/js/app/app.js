@@ -23,10 +23,6 @@ define(
         EventBus.on('error', function(header, msg, response){
             EventBus.trigger('windows-close');
 
-            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-            console.log('unmount='+unmount);
-            $('#global_modal').html('');
-
             React.renderComponent(
                  ModalWindowError({
                      header: header,
@@ -39,16 +35,11 @@ define(
         EventBus.on('item-add', function(model){
             console.info('EventBus -> item-add, model:');
             console.log(model);
-            /*EventBus.trigger('windows-close');
-
-            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-            console.log('unmount='+unmount);
-            $('#global_modal').html('');*/
 
             React.renderComponent(
                 ModalWindowEdit({
                     model: model
-                }), $('.modal_window:first') //document.getElementById("global_modal")
+                }), $('.modal_window').filter(':last')[0] //document.getElementById("global_modal")
             );
 
 
@@ -57,22 +48,6 @@ define(
         EventBus.on('item-edit', function(model){
             console.info('EventBus -> item-edit, model:');
             console.log(model);
-            //EventBus.trigger('windows-close');
-
-
-            //var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-
-            //Селектор :last не срабатывает во второй раз, так как окно завершается в fade без физ удаления
-            /*
-
-
-            var dom_node = $('.modal_window').filter(':last')[0];
-
-            var unmount = React.unmountComponentAtNode(dom_node);
-            console.log('unmount='+unmount);
-            //$('#global_modal').html('');
-            $(dom_node).html('');
-            */
 
             console.info('$(.modal_window).filter(:last)');
             console.info($('.modal_window').filter(':last'));

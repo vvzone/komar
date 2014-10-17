@@ -22,10 +22,11 @@ define(
             componentDidMount: function() {
                 this.show();
                 _.extend($(this.getDOMNode()), Backbone.Events);
+                /*
                 EventBus.once('windows-close', function(){
                     console.info('windows-close catch by window-SUCCESS');
                     this.hide();
-                }, this);
+                }, this);*/
             },
             cancelTimer: function(){
                 console.log('cancelTimer!');

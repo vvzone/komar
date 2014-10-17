@@ -22,6 +22,11 @@ define(
                         </button>
                         );
                 });
+                buttons.push(
+                        <button type="button" className={'btn btn-default'} onClick={this.hide} key={'default'}>
+                            Отмена
+                        </button>
+                );
                 return(
                     <div className="modal fade">
                         <div className="modal-dialog">
