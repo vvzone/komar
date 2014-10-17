@@ -8,9 +8,9 @@ define(
 
     ],function($, _, Backbone, React){
 
-        //var host = 'http://127.0.0.1:1337';
-        var host = 'http://zend_test';
-        var local_server = true;
+        var host = 'http://127.0.0.1:1337';
+        //var host = 'http://zend_test';
+        var local_server = false;
         var prefix = '/api/catalogs';
         var URLs = {
             menus: function(){
@@ -125,14 +125,14 @@ define(
             /* Типы атрибутов документа*/
             document_attribute_types: function() {
                 var local = host + prefix + "/docattributetypes";
-                var production = host + prefix + "/document_attribute_types";
+                var production = host + prefix + "/attribute_types";
 
                 return (local_server)? local: production;
             },
             document_attribute_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
                 var local = host + prefix + "/docattributetypes/"+ id;
-                var production = host + prefix + "/document_attribute_types/"+ id;
+                var production = host + prefix + "/attribute_types/"+ id;
 
                 return (local_server)? local: production;
             }

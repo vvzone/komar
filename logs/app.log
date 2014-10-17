@@ -84,67 +84,35 @@ java.lang.ExceptionInInitializerError: ORM not started!
 	at com.spt.mosquito.Main.modules(Main.java:78) ~[mosquito.jar:0.1]
 	at com.spt.mosquito.Main.runApplication(Main.java:44) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.main(Main.java:32) [mosquito.jar:0.1]
-[$$]2014-10-03 17:09:12,737 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-03 17:09:12,747 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-03 17:09:23,537 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-03 17:09:23,537 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-03 17:09:23,548 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-03 17:09:23,550 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-03 17:09:23,548 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-03 17:09:23,830 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-03 17:09:23,842 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-03 17:09:23,856 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-03 17:09:23,862 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-03 17:09:23,867 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-03 17:09:23,872 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-03 17:09:23,875 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-03 17:09:24,374 INFO apps.MosquitoApp [main] Runup catalog counters: {address_types=0, addresses=0, attribute_type_constants=0, attribute_type_structures=0, attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attribute_types=0, document_attributes=0, document_history=0, document_states=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-03 17:09:24,552 INFO mosquito.Main [main] Ready to go!
-[$$]2014-10-04 14:55:49,874 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-04 14:55:49,884 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-04 14:56:00,133 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-04 14:56:00,133 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-04 14:56:00,145 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-04 14:56:00,145 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-04 14:56:00,149 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-04 14:56:00,484 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-04 14:56:00,494 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-04 14:56:00,507 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-04 14:56:00,513 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-04 14:56:00,519 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-04 14:56:00,525 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-04 14:56:00,528 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-04 14:56:01,093 INFO apps.MosquitoApp [main] Runup catalog counters: {address_types=0, addresses=0, attribute_type_constants=0, attribute_type_structures=0, attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attribute_types=0, document_attributes=0, document_history=0, document_states=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-04 14:56:01,269 INFO mosquito.Main [main] Ready to go!
-[$$]2014-10-04 14:56:43,479 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-04 14:56:43,485 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-04 14:56:52,453 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-04 14:56:52,453 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-04 14:56:52,461 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-04 14:56:52,461 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-04 14:56:52,463 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-04 14:56:52,642 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-04 14:56:52,647 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-04 14:56:52,649 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-04 14:56:52,651 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-04 14:56:52,654 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-04 14:56:52,655 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-04 14:56:52,656 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-04 14:56:53,071 INFO apps.MosquitoApp [main] Runup catalog counters: {address_types=0, addresses=0, attribute_type_constants=0, attribute_type_structures=0, attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attribute_types=0, document_attributes=0, document_history=0, document_states=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-04 14:56:53,254 INFO mosquito.Main [main] Ready to go!
-[$$]2014-10-10 10:23:18,104 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-10 10:23:18,135 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-10 10:23:30,196 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-10 10:23:30,196 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-10 10:23:30,227 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-10 10:23:30,227 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-10 10:23:30,227 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-10 10:23:30,603 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-10 10:23:30,603 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-10 10:23:30,618 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-10 10:23:30,618 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-10 10:23:30,634 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-10 10:23:30,634 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-10 10:23:30,634 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-10 10:23:31,369 INFO apps.MosquitoApp [main] Runup catalog counters: {address_types=0, addresses=0, attribute_type_constants=0, attribute_type_structures=0, attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attribute_types=0, document_attributes=0, document_history=0, document_states=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=1, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-10 10:23:31,570 INFO mosquito.Main [main] Ready to go!
+[$$]2014-10-17 17:40:29,736 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-10-17 17:40:29,746 INFO mosquito.Main [main] Main modules init!
+[$$]2014-10-17 17:40:40,269 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-10-17 17:40:40,269 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-10-17 17:40:40,281 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-10-17 17:40:40,281 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-10-17 17:40:40,282 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-10-17 17:40:40,527 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-10-17 17:40:40,537 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-10-17 17:40:40,542 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-10-17 17:40:40,548 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-10-17 17:40:40,555 INFO commands.CommandMappingsCache [main] Got 0 commands.
+[$$]2014-10-17 17:40:40,560 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-10-17 17:40:40,563 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-10-17 17:40:41,000 INFO apps.MosquitoApp [main] Runup catalog counters: {accounts=0, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_types=0, base_attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attributes=0, document_history=0, document_states=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
+[$$]2014-10-17 17:40:41,191 INFO mosquito.Main [main] Ready to go! (0.52)
+[$$]2014-10-17 18:10:12,791 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-10-17 18:10:12,801 INFO mosquito.Main [main] Main modules init!
+[$$]2014-10-17 18:10:22,295 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-10-17 18:10:22,295 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-10-17 18:10:22,305 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-10-17 18:10:22,305 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-10-17 18:10:22,305 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-10-17 18:10:22,530 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-10-17 18:10:22,540 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-10-17 18:10:22,540 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-10-17 18:10:22,540 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-10-17 18:10:22,550 INFO commands.CommandMappingsCache [main] Got 0 commands.
+[$$]2014-10-17 18:10:22,550 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-10-17 18:10:22,550 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-10-17 18:10:22,990 INFO apps.MosquitoApp [main] Runup catalog counters: {accounts=0, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_types=1, base_attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attributes=0, document_history=0, document_states=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=1, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
+[$$]2014-10-17 18:10:23,070 INFO mosquito.Main [main] Ready to go! (0.52)

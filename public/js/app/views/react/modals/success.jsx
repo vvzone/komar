@@ -59,9 +59,9 @@ define(
                 })[0];
                 console.info('last_window');
                 console.info(last_window);
-                //this.hide;
+                this.hide();
                 //$('.modal-backdrop').filter(':last').remove();
-                last_window.trigger('windows-close');
+                //last_window.trigger('windows-close');
             },
             render: function () {
                 console.log('this.state.timer');

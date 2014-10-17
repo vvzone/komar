@@ -469,6 +469,7 @@ class CatalogsController extends AbstractActionController
                 'all_parents' => array(3, 5), //точка и на уровень выше - маршрут
                 'attribute_type_childs' => null
             );
+
         $second =
             array(
                 'id' => 2,
@@ -555,6 +556,7 @@ class CatalogsController extends AbstractActionController
                     'all_parents' => null,
                     'attribute_type_childs' => array($third, $fourth)//$third, $four 3,4 точка, название маршрута
                 );
+
 
         $data_array = array($first, $second, $third, $fourth, $five, $six);
 
