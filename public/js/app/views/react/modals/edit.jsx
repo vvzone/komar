@@ -37,10 +37,17 @@ define(
             componentDidMount: function () {
                 var self = this;
 
-                var this_node = $(this.getDOMNode());
+                var this_node = $(self.getDOMNode()).parent()[0];
                 _.extend(this_node, Backbone.Events);
-                this_node.once('windows-close', function(){
+                console.info('this->mount, this_node for windows-close:');
+                console.info(this_node);
+                this_node.on('windows-close', function(){
                     console.info('windows-close catch by window-EDIT');
+                    console.info('this_node');
+                    console.info(this_node);
+                    //this.refs.modal.hide();
+
+                    React.unmountComponentAtNode($(self.getDOMNode()).parent().children('.modal_window')[0]);
                     self.refs.modal.hide();
                 }, self);
             },

@@ -76,7 +76,25 @@ define(
 
         EventBus.on('success', function(header, msg){
             console.info('EventBus -> success');
-            EventBus.trigger('windows-close');
+
+            //EventBus.trigger('windows-close');
+            //var last_window = $('.modal_window').filter(':last')[0];
+            var last_window = $('.modal_window').filter(function(index){
+
+                /*var length = $('.modal_window').length;
+                var previous_window_index = length-2; //because index starts from 0
+                console.log('$(.modal_window).filter().length='+length);
+                //console.log('$(.modal_window).filter().length -1 ='+length);
+                console.log('previous_window_index = '+previous_window_index+', index:');
+                console.log(index);
+                if(index = previous_window_index){
+                   return index;
+                }*/
+                return $('.modal_window', this).length-2;
+            })[0];
+            console.info('last_window');
+            console.info(last_window);
+            //last_window.trigger('windows-close');
 
             /*var unmount = React.unmountComponentAtNode($('.modal_window').filter(':last')[0]);
             console.log('unmount='+unmount);

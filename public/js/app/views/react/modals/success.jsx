@@ -43,11 +43,31 @@ define(
                 console.log('modal window callback, hide');
                 this.hide();
             },
+            hideParent: function(){
+                var last_window = $('.modal_window').filter(function(index){
+
+                    /*var length = $('.modal_window').length;
+                     var previous_window_index = length-2; //because index starts from 0
+                     console.log('$(.modal_window).filter().length='+length);
+                     //console.log('$(.modal_window).filter().length -1 ='+length);
+                     console.log('previous_window_index = '+previous_window_index+', index:');
+                     console.log(index);
+                     if(index = previous_window_index){
+                     return index;
+                     }*/
+                    return $('.modal_window', this).length-2;
+                })[0];
+                console.info('last_window');
+                console.info(last_window);
+                //this.hide;
+                //$('.modal-backdrop').filter(':last').remove();
+                last_window.trigger('windows-close');
+            },
             render: function () {
                 console.log('this.state.timer');
                 console.log(this.state.timer);
                 var buttons =
-                        <button type="button" className={'btn btn-default'} onClick={this.hide} key="default">
+                        <button type="button" className={'btn btn-default'} onClick={this.hideParent} key="default">
                             Закрыть <Timer timer="3" stop_timer={this.state.stop_timer} callback={this.callback} />
                         </button>;
 
@@ -55,7 +75,7 @@ define(
                 var msg ='';
                 var header = '';
                 var top = <div className="modal-header">
-                    <span className="glyphicon glyphicon-ok-sign" onClick={this.hide}></span>
+                    <span className="glyphicon glyphicon-ok-sign" onClick={this.hideParent}></span>
                                     {this.renderCloseButton()}
                 </div>;
 
