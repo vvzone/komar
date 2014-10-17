@@ -21,11 +21,11 @@ define(
         Router.initialize();
 
         EventBus.on('error', function(header, msg, response){
-            /*EventBus.trigger('windows-close');
+            EventBus.trigger('windows-close');
 
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
             console.log('unmount='+unmount);
-            $('#global_modal').html('');*/
+            $('#global_modal').html('');
 
             React.renderComponent(
                  ModalWindowError({
@@ -103,15 +103,15 @@ define(
             console.info('EventBus -> success');
             EventBus.trigger('windows-close');
 
-            var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
+            /*var unmount = React.unmountComponentAtNode($('.modal_window').filter(':last')[0]);
             console.log('unmount='+unmount);
-            $('#global_modal').html('');
+            $('.modal_window').filter(':last')[0].html('');*/
 
             React.renderComponent(
                 ModalWindowSuccess({
                     header: header,
                     msg: msg
-                }), document.getElementById("global_modal")
+                }), $('.modal_window').filter(':last')[0] //document.getElementById("global_modal")
             );
         });
 

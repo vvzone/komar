@@ -56,8 +56,11 @@ define(
                             $modal.on(bsModalEvents[prop], this.props[prop])
                         }
                     }.bind(this));
+
+                    $(this.getDOMNode()).on('hide.bs.modal', this.unMountReactAfterHide);
                 },
                 componentWillUnmount: function () {
+                    console.log('bootsratp modal unmount');
                     var $modal = $(this.getDOMNode())
                     handlerProps.forEach(function (prop) {
                         if (this[prop]) {
@@ -68,27 +71,22 @@ define(
                         }
                     }.bind(this))
                 },
-                hide: function () {
-                    console.log('HIDE');
-                    $(this.getDOMNode()).modal('hide');
-
-                    var react_node = $(this.getDOMNode()).parent()[0];
+                unMountReactAfterHide: function(){
+                    var react_node = $(this.getDOMNode()).parent()[0]; //возможно здесь нужно заменить на :last - не нужно здесь поиск не по имени класса
                     console.info(react_node);
                     var unmount = React.unmountComponentAtNode(react_node);
                     console.info(unmount);
-                    //$(this.getDOMNode()).html('');
-
-                    /*var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-                    console.log('MIXIN unmount='+unmount);
-                    $('#global_modal').html('');*/
-
-                    /*var customEvent = new CustomEvent("modalWindowClose");
-                    this.getDOMNode().dispatchEvent(customEvent);*/
+                },
+                hide: function () {
+                    console.log('HIDE');
+                    $(this.getDOMNode()).modal('hide');
+                    this.unMountReactAfterHide;
                 },
                 show: function () {
                     $(this.getDOMNode()).modal('show');
                 },
                 toggle: function () {
+                    console.info('modal -> toggle');
                     $(this.getDOMNode()).modal('toggle');
                 },
                 renderCloseButton: function () {
