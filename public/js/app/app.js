@@ -12,9 +12,9 @@ define(
         'jsx!views/react/modals/add',
         'router', // Request router.js
         'event_bus'
-        , 'views/menu_list'
+        //, 'views/menu_list'
     ],
-    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus, Menu){ //, Menu
+    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus){ //, Menu
     var init = function(){
         // Pass in our Router module and call it's initialize function
         console.log('app initialization...');
@@ -41,8 +41,6 @@ define(
                     model: model
                 }), $('.modal_window').filter(':last')[0] //document.getElementById("global_modal")
             );
-
-
         });
 
         EventBus.on('item-edit', function(model){
@@ -77,13 +75,17 @@ define(
         EventBus.on('success', function(header, msg){
             console.info('EventBus -> success');
 
-            var last_window = $('.modal_window').filter(function(index){
+            var last_window = $('.modal_window').filter(':last')[0];
+
+            var parent_window = $('.modal_window').filter(function(index){
                 return $('.modal_window', this).length-2;
             })[0];
             console.info('last_window');
             console.info(last_window);
+            console.info('parent_window');
+            console.info(parent_window);
 
-            var pre_last= $('.modal_window').filter(function(index){
+            var grandfather_window = $('.modal_window').filter(function(index){
                 return $('.modal_window', this).length-3;
             })[0];
 
@@ -97,17 +99,32 @@ define(
             console.log('unmount='+unmount);
             $('.modal_window').filter(':last')[0].html('');*/
 
-            var unmount = React.unmountComponentAtNode(last_window);
-            console.log('unmount='+unmount);
-            $('.modal_window').filter(last_window);
+            var test_window = $('.modal_window').filter(function(index){
+                return $('.modal_window', this).length-2;
+            });
+
+            console.log('test_window');
+            console.log(test_window);
+            //test_window.hide();
+
+            test_window.handleExternalHide;
+
+            /*
+            var unmount = React.unmountComponentAtNode(parent_window);
+            console.log('unmount='+unmount);*/
 
 
+
+            //$('.modal_window').filter(last_window)[0].html('');
+
+            /*
             React.renderComponent(
                 ModalWindowSuccess({
                     header: header,
                     msg: msg
-                }), pre_last //$('.modal_window').filter(':last')[0] //document.getElementById("global_modal")
+                }), parent_window//$('.modal_window').filter(':last')[0] //document.getElementById("global_modal")
             );
+            */
         });
 
         //EventBus.trigger('error', 'test error');

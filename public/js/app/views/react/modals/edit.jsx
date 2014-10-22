@@ -21,31 +21,25 @@ define(
             handleShowModal: function () {
                 this.refs.modal.show();
             },
-            /*
+
             handleExternalHide: function () {
                 console.info('->handleExternalHide');
                 console.info(this.refs);
                 this.refs.modal.hide();
                 //this.hide();
-            },*/
+            },
             throwSave: function(){
                 console.log('modal -> throwSave');
+
                 var customEvent = new CustomEvent("saveButtonClick",  {
                     detail: {id: this.props.current_id},
                     bubbles: true
                 });
 
                 console.log('dom node:');
-                //var pre_element = this.refs.item_edit.getDOMNode();
-
-                /*
-                var pre_element = this.refs.modal.getDOMNode();
-                var element = $(pre_element).parent()[0];
-                */
-                var element = $(this.refs.item_edit.getDOMNode()).find('.item')[0];
+                var element = $(this.refs.item_edit.getDOMNode()).find('.item')[0]; //call for ItemEdit not MainItemEdit
                 console.log(element);
-                element.trigger('saveButtonClick');
-                //this.getDOMNode().dispatchEvent(customEvent);
+                element.trigger('saveButtonClick', customEvent);
 
             },
             componentDidMount: function () {

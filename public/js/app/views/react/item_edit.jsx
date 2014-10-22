@@ -187,7 +187,7 @@ define(
                 });
             },
             componentWillUnmount: function () {
-                window.removeEventListener("saveButtonClick", this.saveForm, true);
+                //window.removeEventListener("saveButtonClick", this.saveForm, true);
             },
             render: function () {
                 //var editable = this.props.prototype.editable_properties;

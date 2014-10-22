@@ -59,9 +59,8 @@ define(
                     var self = this;
                     var this_node = $(this.getDOMNode());
                     this_node.on('hide.bs.modal', function(){
-                        console.info('catch ON hide.bs.modal, by:');
+                        console.info('BOOTSTRAP_MODAL_MIXIN catch ON hide.bs.modal, by:');
                         console.info(this_node);
-
                         //self.unMountReactAfterHide(this_node); //исполнение приводит к закрытиию всех окон так как там не задан this_node, а начинается поиск
                         //нет, не по этому ;)
                     });
