@@ -30,10 +30,8 @@ define(
             },
             saveForm: function () {
                 //this.props.model.save;
-                console.info('item to save');
+                console.info('saveForm-> item to save:');
                 console.info(this.state.model);
-                console.warn('this');
-                console.warn(this);
                 var mySelf = this;
 
                 this.state.model.save(null, {
@@ -121,8 +119,14 @@ define(
                 russian_name={model.attr_rus_names[prop]}
                 callback={this.itemUpdate} key={prop} />;
             },
+            componentDidMount: function(){
+                var cur_node = $(this.getDOMNode())[0];
+                _.extend(cur_node, Backbone.Events);
+                console.warn('=====================cur_node========================');
+                console.warn(cur_node);
+                cur_node.on('saveButtonClick', this.saveForm);
+            },
             componentWillMount: function () {
-                window.addEventListener("saveButtonClick", this.saveForm, true);
                 var self = this;
                 for(var prop in this.props.model.attr_rus_names){
                     console.log('mounting, prop: '+prop);
@@ -215,11 +219,6 @@ define(
                                     var rule_value = rule_obj[field];
                                     var model_value = model.get(field);
                                     if(_.isArray(rule_value)){
-                                        /*console.log('rule_value=');
-                                        console.log(rule_value);
-                                        console.log('model_value=');
-                                        console.log(model_value);
-                                        console.log('rule_value IsArray, output hidden field['+prop+']==');*/
                                         //search in array
 
                                         var check_array = false;

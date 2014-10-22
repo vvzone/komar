@@ -89,17 +89,21 @@ define(
                 }
             },
             parse: function(response, xhr) {
+                /*
                 console.info('parse call');
                 console.info('response');
                 console.log(response);
                 console.log('xhr');
                 console.log(xhr);
+                */
                 // Check if response includes some nested collection data... our case 'nodes'
                 if (_.has(response, 'listValues')){
                     if(_.size(response.listValues)>0){
                         // Check if this model has a property called nodes
+                        /*
                         console.log('this');
                         console.log(this);
+                        */
                         if (!_.has(this, 'listValues')) {  // It does not...
                             // So instantiate a collection and pass in raw data
                             //this.listValues = new ListCollection(response.listValues);

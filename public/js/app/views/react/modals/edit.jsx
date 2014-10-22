@@ -21,18 +21,32 @@ define(
             handleShowModal: function () {
                 this.refs.modal.show();
             },
+            /*
             handleExternalHide: function () {
                 console.info('->handleExternalHide');
                 console.info(this.refs);
                 this.refs.modal.hide();
                 //this.hide();
-            },
+            },*/
             throwSave: function(){
+                console.log('modal -> throwSave');
                 var customEvent = new CustomEvent("saveButtonClick",  {
                     detail: {id: this.props.current_id},
                     bubbles: true
                 });
-                this.getDOMNode().dispatchEvent(customEvent);
+
+                console.log('dom node:');
+                //var pre_element = this.refs.item_edit.getDOMNode();
+
+                /*
+                var pre_element = this.refs.modal.getDOMNode();
+                var element = $(pre_element).parent()[0];
+                */
+                var element = $(this.refs.item_edit.getDOMNode()).find('.item')[0];
+                console.log(element);
+                element.trigger('saveButtonClick');
+                //this.getDOMNode().dispatchEvent(customEvent);
+
             },
             componentDidMount: function () {
                 var self = this;
@@ -41,6 +55,8 @@ define(
                 _.extend(this_node, Backbone.Events);
                 console.info('this->mount, this_node for windows-close:');
                 console.info(this_node);
+
+                /*
                 this_node.on('windows-close', function(){
                     console.info('windows-close catch by window-EDIT');
                     console.info('this_node');
@@ -50,11 +66,14 @@ define(
                     React.unmountComponentAtNode($(self.getDOMNode()).parent().children('.modal_window')[0]);
                     self.refs.modal.hide();
                 }, self);
+                */
             },
             componentWillUnmount: function(){
                 console.warn('Unmounting React EDIT');
             },
             callback: function(action){
+                console.info('Modal Edit Window callback from MaiItemEdit..., action:');
+                console.info(action);
                 if(action == 'save'){
                     this.refs.modal.hide();
                 }
@@ -84,7 +103,7 @@ define(
                     header={header}
                     buttons={buttons}
                     >
-                        <MainItemEdit model={this.props.model} callback={this.callback} />
+                        <MainItemEdit ref="item_edit" model={this.props.model} callback={this.callback} />
                     </ModalWindowBase>
                     );
 

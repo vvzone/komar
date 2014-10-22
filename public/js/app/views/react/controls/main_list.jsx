@@ -34,8 +34,10 @@ define(
                 }
 
                 var items = collection.map(function(model){
+                    /*
                     console.log('MainList -> collection.map, model:');
                     console.log(model);
+                    */
 
                     return <ListItem model={model} />
                 });
@@ -119,8 +121,10 @@ define(
                 }
             },
             render: function(){
+                /*
                 console.log('ListItem render, item');
                 console.log(this.props.model);
+                */
 
                 var editable = this.props.model.get('attr_rus_names');
 

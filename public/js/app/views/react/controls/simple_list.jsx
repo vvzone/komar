@@ -28,8 +28,10 @@ define(
                 var collection = this.props.collection;
 
                 var items = collection.map(function(model){
-                    console.log('MainList -> collection.map, model:');
+                    /*
+                    console.log('SimpleList -> collection.map, model:');
                     console.log(model);
+                    */
 
                     return <SimpleListItem model={model} />
                 });
@@ -70,8 +72,10 @@ define(
                 }
             },
             render: function(){
-                console.log('ListItem render, item');
+                /*
+                console.log('SimpleListItem render, item');
                 console.log(this.props.model);
+                */
 
                 var editable = this.props.model.get('attr_rus_names');
                 var editable_controls = [];

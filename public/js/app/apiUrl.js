@@ -8,9 +8,12 @@ define(
 
     ],function($, _, Backbone, React){
 
-        var host = 'http://127.0.0.1:1337';
-        //var host = 'http://zend_test';
-        var local_server = false;
+        var local_server = true;
+
+        var andrey_host_url = 'http://127.0.0.1:1337';
+        var local_host_url = 'http://zend_test';
+        var host = (local_server)? local_host_url: andrey_host_url;
+
         var prefix = '/api/catalogs';
         var URLs = {
             menus: function(){
