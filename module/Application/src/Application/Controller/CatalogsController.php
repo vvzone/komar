@@ -700,7 +700,252 @@ class CatalogsController extends AbstractActionController
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
         return $JsonModel;
+    }
 
+    public function regiontypesAction(){
+        $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Республика', 'shortname'=> 'респ.'),
+            array('id' => 2, 'name' => 'Край', 'shortname'=> 'к-1.'),
+            array('id' => 3, 'name' => 'Область', 'shortname'=> 'обл.'),
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function regionsAction(){
+        $editable_array = array('code' => 'Код субьекта РФ', 'region_type' => 'Тип региона', 'name' => 'Название', 'description' => 'Описание');
+        $prototype_array = array('editable_properties' => $editable_array);
+
+        ///$type_republic =  array('id' => 1, 'name' => 'Республика', 'shortname'=> 'респ.');
+        $type_republic =  1;
+        //$type_region =  array('id' => 2, 'name' => 'Край', 'shortname'=> 'к-1.');
+        $type_region =  2;
+
+        $data_array = array(
+            array('id' => 1, 'code' => '1', 'region_types' => $type_republic, 'name' => 'Республика Адыгея', 'description'=> ''),
+            array('id' => 2, 'code' => '2', 'region_types' => $type_republic, 'name' => 'Республика Башкортостан', 'description'=> ''),
+            array('id' => 3, 'code' => '3', 'region_types' => $type_republic, 'name' => 'Республика Бурятия', 'description'=> ''),
+            array('id' => 4, 'code' => '4', 'region_types' => $type_republic, 'name' => 'Республика Алтай', 'description'=> ''),
+            array('id' => 5, 'code' => '5', 'region_types' => $type_republic, 'name' => 'Республика Дагестан', 'description'=> ''),
+            array('id' => 6, 'code' => '6', 'region_types' => $type_republic, 'name' => 'Республика Ингушетия', 'description'=> ''),
+            array('id' => 7, 'code' => '7', 'region_types' => $type_republic, 'name' => 'Кабардино-Балкарская Республика', 'description'=> ''),
+            array('id' => 8, 'code' => '8', 'region_types' => $type_republic, 'name' => 'Республика Калмыкия', 'description'=> ''),
+            array('id' => 9, 'code' => '9', 'region_types' => $type_republic, 'name' => 'Республика Карачаево-Черкесия', 'description'=> ''),
+            array('id' => 10, 'code' => '10', 'region_types' => $type_republic, 'name' => 'Республика Карелия', 'description'=> ''),
+            array('id' => 11, 'code' => '11', 'region_types' => $type_republic, 'name' => 'Республика Коми', 'description'=> ''),
+            array('id' => 12, 'code' => '12', 'region_types' => $type_republic, 'name' => 'Республика Марий Эл', 'description'=> ''),
+            array('id' => 13, 'code' => '13', 'region_types' => $type_republic, 'name' => 'Республика Мордовия', 'description'=> ''),
+            array('id' => 14, 'code' => '14', 'region_types' => $type_republic, 'name' => 'Республика Саха (Якутия)', 'description'=> ''),
+            array('id' => 15, 'code' => '15', 'region_types' => $type_republic, 'name' => 'Республика Северная Осетия-Алания', 'description'=> ''),
+            array('id' => 16, 'code' => '16', 'region_types' => $type_republic, 'name' => 'Республика Татарстан', 'description'=> ''),
+            array('id' => 17, 'code' => '17', 'region_types' => $type_republic, 'name' => 'Республика Тыва', 'description'=> ''),
+            array('id' => 18, 'code' => '18', 'region_types' => $type_republic, 'name' => 'Удмуртская Республика', 'description'=> ''),
+            array('id' => 19, 'code' => '19', 'region_types' => $type_republic, 'name' => 'Республика Хакасия', 'description'=> ''),
+            array('id' => 20, 'code' => '20', 'region_types' => $type_republic, 'name' => 'Чувашская Республика', 'description'=> ''),
+            array('id' => 21, 'code' => '21', 'region_types' => $type_region, 'name' => 'Алтайский край', 'description'=> ''),
+            array('id' => 22, 'code' => '22', 'region_types' => $type_region, 'name' => 'Краснодарский край', 'description'=> ''),
+            array('id' => 23, 'code' => '23', 'region_types' => $type_region, 'name' => 'Красноярский край', 'description'=> ''),
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function locationtypesAction(){
+        $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Город', 'short_name'=> 'г.'),
+            array('id' => 2, 'name' => 'Поселок городского типа', 'short_name'=> 'п.г.т.'),
+            array('id' => 3, 'name' => 'Рабочий посёлок', 'short_name'=> 'р.п.'),
+            array('id' => 4, 'name' => 'Курортный посёлок', 'short_name'=> 'к.п.'),
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function streettypesAction(){
+        $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Аллея', 'short_name'=> 'алл.'),
+            array('id' => 2, 'name' => 'Бульвар', 'short_name'=> 'бул.'),
+            array('id' => 3, 'name' => 'Проезд', 'short_name'=> 'п-зд.'),
+            array('id' => 4, 'name' => 'Переулок', 'short_name'=> 'пер.'),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function sextypesAction(){
+        $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Мужской', 'short_name'=> 'м'),
+            array('id' => 2, 'name' => 'Женский', 'short_name'=> 'ж'),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function commandertypesAction(){
+        $editable_array = array('name' => 'Название', 'priority' => 'Приоритет');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Командир', 'priority'=> 1),
+            array('id' => 2, 'name' => 'Начальник', 'priority'=> 2),
+            array('id' => 3, 'name' => 'Ответственный исполнитель за обработку корреспонденции', 'priority'=> 3),
+        );
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function periodtypesAction(){
+        $editable_array = array('name' => 'Название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'День'),
+            array('id' => 2, 'name' => 'Месяц'),
+            array('id' => 3, 'name' => 'Год'),
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function enumerationtypesAction(){
+        $editable_array = array('name' => 'Название', 'mask' => 'Маска', 'isPeriodic' => 'Признак переодичности сброса',
+            'period_type' => 'Тип переода для сброса счетчика', 'period_length' => 'Длительность периода', 'start_date' => 'Начало действия',
+            'min_index' => 'Стартовое значение при сбросе', 'isDraft' => 'Черновик');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Черновики', 'mask' => 'Ч%y-%n', 'is_periodic' => true, 'period_types' => 1,
+                'period_length' => 1, 'start_date' => '01.01.2014','start_index' => 0, 'is_draft' => ''),
+
+            array('id' => 2, 'name' => 'Исходящие документы', 'mask' => 'И%y-%n', 'is_periodic' => true, 'period_types' => 2,
+                'period_length' => 1, 'start_date' => '01.01.2014','start_index' => 0, 'is_draft' => ''),
+
+            array('id' => 3, 'name' => 'Секретные', 'mask' => 'С%y-%n', 'is_periodic' => true, 'period_types' => 3,
+                'period_length' => 1, 'start_date' => '01.01.2014','start_index' => 0, 'is_draft' => false)
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
     }
 
 }

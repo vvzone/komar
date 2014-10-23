@@ -161,9 +161,114 @@ define(
                         ListView.initialize(AddressTypesCollection);
                     }
                 break;
+                case('region_types'):
+                    if(!RegionTypesCollection){
+                        console.warn('!RegionTypesCollection -> require loading');
+                        var RegionTypesCollection =require(['models/region_types_collection'], function(RegionTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(RegionTypesCollection);
+                            return RegionTypesCollection;
+                        });
+                    }else{
+                        console.warn('RegionTypesCollection -> no needed to load');
+                        ListView.initialize(RegionTypesCollection);
+                    }
+                break;
+                case('regions'):
+                    if(!RegionsCollection){
+                        console.warn('!RegionsCollection -> require loading');
+                        var RegionsCollection =require(['models/regions_collection'], function(RegionsCollection){
+                            console.log('loaded...');
+                            ListView.initialize(RegionsCollection);
+                            return RegionsCollection;
+                        });
+                    }else{
+                        console.warn('RegionsCollection -> no needed to load');
+                        ListView.initialize(RegionsCollection);
+                    }
+                break;
+                case('location_types'):
+                    if(!LocationTypesCollection){
+                        console.warn('!LocationTypesCollection -> require loading');
+                        var LocationTypesCollection =require(['models/location_types_collection'], function(LocationTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(LocationTypesCollection);
+                            return LocationTypesCollection;
+                        });
+                    }else{
+                        console.warn('LocationTypesCollection -> no needed to load');
+                        ListView.initialize(LocationTypesCollection);
+                    }
+                break;
+                case('street_types'):
+                    if(!StreetTypesCollection){
+                        console.warn('!StreetTypesCollection -> require loading');
+                        var StreetTypesCollection =require(['models/street_types_collection'], function(StreetTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(StreetTypesCollection);
+                            return StreetTypesCollection;
+                        });
+                    }else{
+                        console.warn('StreetTypesCollection -> no needed to load');
+                        ListView.initialize(StreetTypesCollection);
+                    }
+                break;
+                case('sex_types'):
+                    if(!SexTypesCollection){
+                        console.warn('!SexTypesCollection -> require loading');
+                        var SexTypesCollection =require(['models/sex_types_collection'], function(SexTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(SexTypesCollection);
+                            return SexTypesCollection;
+                        });
+                    }else{
+                        console.warn('SexTypesCollection -> no needed to load');
+                        ListView.initialize(SexTypesCollection);
+                    }
+                break;
+                case('commander_types'):
+                    if(!CommanderTypesCollection){
+                        console.warn('!CommanderTypesCollection -> require loading');
+                        var CommanderTypesCollection =require(['models/commander_types_collection'], function(CommanderTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(CommanderTypesCollection);
+                            return CommanderTypesCollection;
+                        });
+                    }else{
+                        console.warn('CommanderTypesCollection -> no needed to load');
+                        ListView.initialize(CommanderTypesCollection);
+                    }
+                break;
+                /* Настройки документов */
+                case('period_types'):
+                    if(!PeriodTypesCollection){
+                        console.warn('!PeriodTypesCollection -> require loading');
+                        var PeriodTypesCollection =require(['models/period_types_collection'], function(PeriodTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(PeriodTypesCollection);
+                            return PeriodTypesCollection;
+                        });
+                    }else{
+                        console.warn('PeriodTypesCollection -> no needed to load');
+                        ListView.initialize(PeriodTypesCollection);
+                    }
+                break;
+                case('enumeration_types'):
+                    if(!EnumerationTypesCollection){
+                        console.warn('!EnumerationTypesCollection -> require loading');
+                        var EnumerationTypesCollection =require(['models/enumeration_types_collection'], function(EnumerationTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(EnumerationTypesCollection);
+                            return EnumerationTypesCollection;
+                        });
+                    }else{
+                        console.warn('EnumerationTypesCollection -> no needed to load');
+                        ListView.initialize(EnumerationTypesCollection);
+                    }
+                break;
             }
 
-            /*
+            /*enumeration_types
            if(view){
                if(id){
                    console.log('getting module views/'+view);

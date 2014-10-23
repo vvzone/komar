@@ -31,6 +31,8 @@ define(
         properties_types['code'] = 'tiny_text';
         properties_types['full_name'] = 'small_text';
 
+        properties_types['region_types'] = 'simple_select';
+
         /* ? many */
         properties_types['short_name'] = 'tiny_text';
 
@@ -39,6 +41,7 @@ define(
         properties_types['isPeriodic'] = 'bool_select';
         properties_types['is_periodic'] = 'bool_select';
 
+        properties_types['period_types'] = 'simple_select';
         properties_types['period_length'] = 'tiny_text';
         properties_types['start_date'] = 'tiny_text'; /* Заменить на календарь! */
         properties_types['min_index'] = 'tiny_text';
