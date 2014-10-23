@@ -948,6 +948,35 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
+    public function nodetypesAction(){
+        $editable_array = array(
+            'name' => 'Название',
+        );
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Автор'),
+            array('id' => 2, 'name' => 'Соредактор'),
+            array('id' => 3, 'name' => 'Визирующий'),
+            array('id' => 4, 'name' => 'Утверждающий'),
+            array('id' => 5, 'name' => 'Исполнитель')
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        /* <REST> ------  */
+        //$data_array = $this->restApi($data_array);
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        /* </REST> ------  */
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
+
 }
 
 ?>

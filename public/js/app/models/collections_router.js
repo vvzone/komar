@@ -266,6 +266,33 @@ define(
                         ListView.initialize(EnumerationTypesCollection);
                     }
                 break;
+                /* Реальная нумерация */
+                case('enumeration'):
+                    if(!EnumerationCollection){
+                        console.warn('!EnumerationCollection -> require loading');
+                        var EnumerationCollection =require(['models/enumeration_collection'], function(EnumerationCollection){
+                            console.log('loaded...');
+                            ListView.initialize(EnumerationCollection);
+                            return EnumerationCollection;
+                        });
+                    }else{
+                        console.warn('EnumerationCollection -> no needed to load');
+                        ListView.initialize(EnumerationCollection);
+                    }
+                break;
+                case('node_types'):
+                    if(!NodeTypesCollection){
+                        console.warn('!NodeTypesCollection -> require loading');
+                        var NodeTypesCollection =require(['models/node_types_collection'], function(NodeTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(NodeTypesCollection);
+                            return NodeTypesCollection;
+                        });
+                    }else{
+                        console.warn('NodeTypesCollection -> no needed to load');
+                        ListView.initialize(NodeTypesCollection);
+                    }
+                break;
             }
 
             /*enumeration_types

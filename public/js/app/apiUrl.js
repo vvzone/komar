@@ -287,6 +287,34 @@ define(
                 var production = host + prefix + "/enumeration_types/"+ id;
 
                 return (local_server)? local: production;
+            },
+            /* Фактическая E-нумерация */
+            enumerations: function() {
+                var local = host + prefix + "/enumerations";
+                var production = host + prefix + "/enumerations";
+
+                return (local_server)? local: production;
+            },
+            enumeration: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/enumerations/"+ id;
+                var production = host + prefix + "/enumerations/"+ id;
+
+                return (local_server)? local: production;
+            },
+            /* Node Types */
+            node_types: function() {
+                var local = host + prefix + "/nodetypes";
+                var production = host + prefix + "/node_types";
+
+                return (local_server)? local: production;
+            },
+            node_type: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/nodetypes/"+ id;
+                var production = host + prefix + "/node_types/"+ id;
+
+                return (local_server)? local: production;
             }
 
 
