@@ -1,5 +1,5 @@
 define(
-    'models/attribute_type_list',
+    'models/country',
     [
         'jquery',
         'underscore',
@@ -8,36 +8,36 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/attribute_type_list loaded');
+        console.log('models/country loaded');
 
         var Model = Backbone.Model.extend({
             defaults: {
                 id: null,
+                code: null,
                 name: null,
-                description: null,
-                value: null // maybe there is no  need in this... who knows?
+                full_name: null
             },
             attr_rus_names: {
                 name: 'Название',
-                value: 'Значение',
-                description: 'Описание'
-                /*parent: 'Состоит из типов атрибутов:'*/
+                code: 'Код',
+                full_name: 'Полное название'
             },
-            model_name: 'attribute_type_list',
-            model_rus_name: 'Тип атрибута, подтип - список',
-            attr_dependencies: null,
-            hidden_fields: null,
+            attr_dependencies: null, //for recursive objects
+            model_name: 'country',
+            model_rus_name: 'Страна',
             url: function() {
-                return apiUrl('attribute_type', this.id); //there is no url
+                return apiUrl('country', this.id);
             },
             initialize: function(){
                 console.info('Model init');
                 this.on('destroy', this.baDaBum);
+                /*this.on('change', function(){
+                    console.error('model -> change');
+                }, this);*/
             },
             baDaBum: function(){
                 console.warn('KABOOM!');
             }
-
         });
 
         return Model;

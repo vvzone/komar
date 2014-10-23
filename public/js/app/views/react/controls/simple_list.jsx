@@ -39,12 +39,17 @@ define(
                     items = <li><InfoMsg msg="Нет записей." /></li>;
                 }
 
+                if(this.props.collection.collection_rus_name){
+                    var control_name_box = <label className="control_name">{this.props.collection.collection_rus_name}</label>
+                }
+
                 return(
                     <div className="List">
-                        <div className="SimpleList">
-                            <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
-                            <ul>{items}</ul>
-                        </div>
+                            <div className="SimpleList">
+                                {control_name_box}
+                                <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
+                                <ul>{items}</ul>
+                            </div>
                     </div>
                     );
             }

@@ -29,10 +29,10 @@ define(
 
         /* countries */
         properties_types['code'] = 'tiny_text';
-        properties_types['fullname'] = 'small_text';
+        properties_types['full_name'] = 'small_text';
 
         /* ? many */
-        properties_types['shortname'] = 'tiny_text';
+        properties_types['short_name'] = 'tiny_text';
 
         /* docs */
         properties_types['mask'] = 'tiny_text';
@@ -55,6 +55,8 @@ define(
         properties_types['urgency_types'] = 'simple_select';
         //properties_types['urgency_types'] = 'list_box';
         properties_types['secrecy_types'] = 'simple_select';
+
+        properties_types['attribute_types'] = 'list_box';
         //properties_types['secrecy_types'] = 'list_box';
         //properties_types['attribute_types'] = '';
 
@@ -67,6 +69,7 @@ define(
         properties_types['listValues'] = 'simple_list';
         properties_types['mask'] = 'tiny_text';
         properties_types['max_length'] = 'tiny_text';
+        properties_types['value'] = 'tiny_text';
         //properties_types['parents'] = 'info_list'; needed new!
 
 

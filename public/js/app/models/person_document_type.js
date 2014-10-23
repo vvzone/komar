@@ -1,5 +1,5 @@
 define(
-    'models/doc_type',
+    'models/person_document_type',
     [
         'jquery',
         'underscore',
@@ -8,37 +8,33 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/doc_type loaded');
+        console.log('models/person_document_type loaded');
 
         var Model = Backbone.Model.extend({
             defaults: {
                 id: null,
                 name: null,
-                code: null,
                 description: null,
-                presentation: null,
-                urgency_types: null,
-                secrecy_types: null,
-                attribute_types: []
+                is_full: null,
+                is_main: null,
+                series_mask: null,
+                number_mask: null,
+                valid_period: null
             },
             attr_rus_names: {
                 name: 'Название',
-                code: 'Код',
                 description: 'Описание',
-                presentation: 'Представление для печати',
-                urgency_types: 'Срочность',
-                secrecy_types: 'Секретность',
-                attribute_types: 'Типы атрибутов'
+                is_full: 'Полная идентификация',
+                is_main: 'Основной документ',
+                series_mask: 'Маска серии',
+                number_mask: 'Маска номера',
+                valid_period: 'Длительность действия'
             },
-            attr_dependencies: {
-                'urgency_types': 'urgency_types',
-                'secrecy_types': 'secrecy_types',
-                'attribute_types': 'attribute_types'
-            }, //for recursive objects
-            model_name: 'doc_type',
-            model_rus_name: 'Тип документа',
+            attr_dependencies: null, //for recursive objects
+            model_name: 'person_document_type',
+            model_rus_name: 'Тип документа удостоверяющего личность',
             url: function() {
-                return apiUrl('doc_type', this.id);
+                return apiUrl('person_document_type', this.id);
             },
             initialize: function(){
                 console.info('Model init');

@@ -13,7 +13,7 @@ define(
 
             var Collection = Backbone.Collection.extend({
                 model: Model,
-                collection_rus_name: 'Список',
+                collection_rus_name: 'Варианты значений спискового атрибута',
                 collection_name: 'attribute_types',
                 url: function() {
                     return apiUrl('attribute_types');

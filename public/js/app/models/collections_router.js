@@ -121,7 +121,46 @@ define(
                         console.warn('AttributeTypesCollection -> no needed to load');
                         ListView.initialize(AttributeTypesCollection);
                     }
-                    break;
+                break;
+                case('person_document_types'):
+                    if(!PersonDocumentTypesCollection){
+                        console.warn('!PersonDocumentTypesCollection -> require loading');
+                        var PersonDocumentTypesCollection =require(['models/person_document_types_collection'], function(PersonDocumentTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(PersonDocumentTypesCollection);
+                            return PersonDocumentTypesCollection;
+                        });
+                    }else{
+                        console.warn('PersonDocumentTypesCollection -> no needed to load');
+                        ListView.initialize(PersonDocumentTypesCollection);
+                    }
+                break;
+                case('countries'):
+                    if(!CountriesCollection){
+                        console.warn('!CountriesCollection -> require loading');
+                        var CountriesCollection =require(['models/countries_collection'], function(CountriesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(CountriesCollection);
+                            return CountriesCollection;
+                        });
+                    }else{
+                        console.warn('CountriesCollection -> no needed to load');
+                        ListView.initialize(CountriesCollection);
+                    }
+                break;
+                case('address_types'):
+                    if(!AddressTypesCollection){
+                        console.warn('!AddressTypesCollection -> require loading');
+                        var AddressTypesCollection =require(['models/address_types_collection'], function(AddressTypesCollection){
+                            console.log('loaded...');
+                            ListView.initialize(AddressTypesCollection);
+                            return AddressTypesCollection;
+                        });
+                    }else{
+                        console.warn('AddressTypesCollection -> no needed to load');
+                        ListView.initialize(AddressTypesCollection);
+                    }
+                break;
             }
 
             /*

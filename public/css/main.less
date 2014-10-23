@@ -346,6 +346,111 @@ div.List{
     }*/
   }
 
+  div.SimpleList{
+    clear: both;
+    overflow: hidden;
+    width: @list_item_width/2 +20px;
+    border: 1px solid #ccc;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    border-radius: @min*2;
+    padding: @med;
+
+    label.control_name{
+
+    }
+
+    ul{
+      padding:0;
+    }
+
+    div.search{
+      float: left;
+      padding: @min;
+
+      input{
+        padding: @med;
+        width: 350px;
+      }
+    }
+
+    div.btn_add{
+      float: right;
+      padding: @med/2;
+      padding-top: (@med + @min)/2;
+
+      button{
+        padding: (@min*2)/2 (@big*3)/2;
+      }
+    }
+
+    div{
+      /*padding: @min;*/
+    }
+
+    ul li.item{
+      list-style-type: none;
+      clear: both;
+      float:left;
+      margin: @min;
+      padding: @med;
+      border-radius: @small;
+      border: 1px solid @light_silver;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+      /*min-width: @list_item_width;*/
+      width: 99%;
+
+      a{
+        text-decoration: none;
+      }
+
+      div.item_name, div.item_cp{
+        float: right;
+      }
+
+
+      div.item_name{
+        min-width: @item_name;
+        float:left;
+      }
+
+      div.item_cp{
+        /*min-width: @item_cp;*/
+
+        button{
+          margin-left: @min;
+          text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-xs, .btn-group-xs > .btn {
+          border-radius: 3px;
+          font-size: 8px;
+          line-height: 1.5;
+          padding: 3px 4px;
+        }
+      }
+    }
+
+    li{
+      margin: @min;
+      width: 99%;
+
+      .alert-info{
+        clear: both;
+        padding: @med*2;
+      }
+
+      span.msg{
+        padding-left: @big;
+      }
+
+    }
+
+    /*div.item:hover{
+      background: @light_silver+30;
+      border: 1px solid @light_silver - 50;
+      cursor: pointer;
+    }*/
+  }
 }
 
 

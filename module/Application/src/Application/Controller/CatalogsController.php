@@ -111,7 +111,7 @@ class CatalogsController extends AbstractActionController
             array('id' => 102, 'category' => 'base', 'entity' => 'posts', 'screen' => 'posts', 'name' => 'Должности'),
             array('id' => 103, 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'positions', 'name' => 'Соответствие звания должности',
                 'isNonIndependent' => true ),
-            array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => 'Типы удостоверяющих личность документов'),
+            array('id' => 104, 'category' => 'base', 'entity' => 'person_document_types', 'screen' => 'person_document_types', 'name' => 'Типы удостоверяющих личность документов'),
             array('id' => 105, 'category' => 'base', 'entity' => 'sys', 'screen' => 'sys', 'name' => 'Основные настройки', 'isNotScreen' => true,
                 'childNodes' => $sys),
             array('id' => 106, 'category' => 'base', 'entity' => 'sys_docs', 'screen' => 'sys_docs', 'name' => 'Настройки документов', 'isNotScreen' => true,
@@ -329,13 +329,52 @@ class CatalogsController extends AbstractActionController
             array('id' => 3, 'doc_type_id' =>  3, 'doc_group_id' => null),
         );
 
+        $third =
+            array(
+                'id' => 3,
+                'name' => 'Точка',
+                'description' => 'Точка на карте',
+                'base_attr_type' => 9, //составной
+                'verify_method' => null,
+                'listValues' => array(),
+                'max' => null, //не имеет собственного значения
+                'min' => null,
+                'mask' => null,
+                'max_length' => null,
+                'parents' => array(5),
+                'all_parents' => array(5),
+                'attribute_type_childs' => null  //$first, $second 1,2,3 x,y, название точки
+            );
+        $fourth=
+            array(
+                'id' => 4,
+                'name' => 'Название',
+                'description' => 'Тестовое наименование чего-либо',
+                'base_attr_type' => 3, //составной
+                'verify_method' => null,
+                'listValues' => array(),
+                'max' => null,
+                'min' => null,
+                'mask' => null,
+                'max_length' => 1024,
+                'parents' => array(5, 3),
+                'all_parents' => array(5, 3),
+                'attribute_type_childs' => null
+            );
+
+        $attributes_array = array($third, $fourth);
+        $attributes_array_else = array($fourth);
+
         $data_array = array(
             array('id' => 1, 'doc_group_id' => array(1001, 1002), 'name' => 'Воздушная тревога', 'shortname'=> 'С-ВТ', 'code' => '555',
-                'header' => 'Воздушная тревога!', 'isService' => false, 'secrecy_types' => 2, 'urgency_types' => 3),
+                'header' => 'Воздушная тревога!', 'is_service' => false, 'secrecy_types' => 2, 'urgency_types' => 3, 'attribute_types' => $attributes_array_else,
+                'presentation' => null),
             array('id' => 2, 'doc_group_id' => 110, 'name' => 'Приказ на списание', 'shortname'=> 'ПхСп', 'code' => '1001',
-                'header' => '', 'isService' => false, 'secrecy_types' => 1, 'urgency_types' => 1),
-            array('id' => 3, 'doc_group_id' => null, 'name' => 'Добавление объекта картографии', 'shortname'=> 'СК-Д', 'code' => '2001',
-                'header' => 'Добавление объекта на общую карту', 'isService' => true, 'secrecy_types' => 1, 'urgency_types' => 1),
+                'header' => '', 'is_service' => false, 'secrecy_types' => 1, 'urgency_types' => 1, 'attribute_types' => $attributes_array_else,
+                'presentation' => null),
+            array('id' => 3, 'doc_group_id' => null, 'name' => 'Добавление объекта картографии', 'shor_tname'=> 'СК-Д', 'code' => '2001',
+                'header' => 'Добавление объекта на общую карту', 'is_service' => true, 'secrecy_types' => 1, 'urgency_types' => 1, 'attribute_types' => $attributes_array,
+                'presentation' => null),
         );
 
         /*
@@ -408,8 +447,6 @@ class CatalogsController extends AbstractActionController
         $JsonModel->setVariables($super_new_array);
         return $JsonModel;
     }
-
-
 
     public function boilplateAction(){
 
@@ -557,13 +594,115 @@ class CatalogsController extends AbstractActionController
                     'attribute_type_childs' => array($third, $fourth)//$third, $four 3,4 точка, название маршрута
                 );
 
-
         $data_array = array($first, $second, $third, $fourth, $five, $six);
-
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
         return $JsonModel;
     }
+
+    public function persondoctypesAction(){
+        /*
+         * Предполагается что экшен возращает выборку соответтсвующих входящему post_id
+         * */
+
+        $editable_array = array('name' => 'Название', 'isFull' => 'Полная идентификация',
+            'isMain'=> 'Основной', 'isSeries' => 'Используется серия документа', 'seriesMask' => 'Маска серии', 'numberMask' => 'Маска номера', 'validPeriod' => '');
+        $prototype_array = array('editable_properties' => $editable_array);
+
+        $data_array = array(
+            array('id' => 1, 'name' => 'Паспорт', 'is_full'=> true, 'is_main' => true, 'is_series' => true,
+                'series_mask' => '', 'number_mask' => '', 'valid_period' => ''),
+            array('id' => 2, 'name' => 'Водительские права', 'is_full'=> true, 'is_main' => true, 'is_series' => true,
+                'series_mask' => '', 'number_mask' => '', 'valid_period' => ''),
+            array('id' => 3, 'name' => 'Загранпаспорт гражданина РФ', 'is_full'=> true, 'is_main' => false, 'is_series' => true,
+                'series_mask' => '', 'number_mask' => '', 'valid_period' => ''),
+        );
+
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        //$response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function countriesAction(){
+        $editable_array = array('code' => 'Код', 'name' => 'Название', 'fullname' => 'Полное название');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'code' => 'ABH', 'name' => 'Абхазия', 'full_name'=> 'Республика Абхазия'),
+            array('id' => 2, 'code' => 'AUS', 'name' => 'Австралия', 'full_name'=> 'Австралия'),
+            array('id' => 3, 'code' => 'AUT', 'name' => 'Австрия', 'full_name'=> 'Австрийская Республика'),
+            array('id' => 4, 'code' => 'AZE', 'name' => 'Азербайджан', 'full_name'=> 'Республика Азербайджан'),
+            array('id' => 5, 'code' => 'ALB', 'name' => 'Албания', 'full_name'=> 'Республика Албания'),
+            array('id' => 6, 'code' => 'DZA', 'name' => 'Алжир', 'full_name'=> 'Алжирская Народная Демократическая Республика'),
+            array('id' => 7, 'code' => 'ASM', 'name' => 'Американское Самоа', 'full_name'=> 'Американское Самоа'),
+            array('id' => 8, 'code' => 'AIA', 'name' => 'Ангилья', 'full_name'=> 'Ангилья'),
+            array('id' => 9, 'code' => 'AGO', 'name' => 'Ангола', 'full_name'=> 'Республика Ангола'),
+            array('id' => 10, 'code' => 'AND', 'name' => 'Андорра', 'full_name'=> 'Княжество Андорра'),
+            array('id' => 11, 'code' => 'ATA', 'name' => 'Антарктида', 'full_name'=> 'Антарктида'),
+            array('id' => 12, 'code' => 'ATG', 'name' => 'Антигуа и Барбуда', 'full_name'=> 'Антигуа и Барбуда'),
+            //array('id' => 12, 'code' => '', 'name' => '', 'fullname'=> ''),
+
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
+    public function addresstypesAction(){
+        $editable_array = array('name' => 'Название', 'priority' => 'Приоритет');
+        $prototype_array = array('editable_properties' => $editable_array);
+        $data_array = array(
+            array('id' => 1, 'name' => 'Регистрации', 'priority'=> 1),
+            array('id' => 2, 'name' => 'Проживания', 'priority'=> 2),
+            array('id' => 3, 'name' => 'Почтовый', 'priority'=> 3),
+        );
+
+        $request = $this->getRequest();
+        if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
+            $query = $request->getContent();
+            $data_array = $this->instantSearch($query, $data_array);
+        }
+
+        $current_id = $this->getEvent()->getRouteMatch()->getParam('id', 0);
+        if($current_id){
+            $data_array = $this->searchArray($data_array, $current_id);
+        }
+
+        $response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+
+    }
+
 }
 
 ?>

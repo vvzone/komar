@@ -238,6 +238,90 @@ div.List div.MainList li .alert-info {
 div.List div.MainList li span.msg {
   padding-left: 10px;
 }
+div.List div.SimpleList {
+  clear: both;
+  overflow: hidden;
+  width: 320px 20px;
+  border: 1px solid #ccc;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+  border-radius: 4px;
+  padding: 5px;
+  /*div.item:hover{
+      background: @light_silver+30;
+      border: 1px solid @light_silver - 50;
+      cursor: pointer;
+    }*/
+}
+div.List div.SimpleList ul {
+  padding: 0;
+}
+div.List div.SimpleList div.search {
+  float: left;
+  padding: 2px;
+}
+div.List div.SimpleList div.search input {
+  padding: 5px;
+  width: 350px;
+}
+div.List div.SimpleList div.btn_add {
+  float: right;
+  padding: 2.5px;
+  padding-top: 3.5px;
+}
+div.List div.SimpleList div.btn_add button {
+  padding: 2px 15px;
+}
+div.List div.SimpleList div {
+  /*padding: @min;*/
+}
+div.List div.SimpleList ul li.item {
+  list-style-type: none;
+  clear: both;
+  float: left;
+  margin: 2px;
+  padding: 5px;
+  border-radius: 3px;
+  border: 1px solid #d6e5ed;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  /*min-width: @list_item_width;*/
+  width: 99%;
+}
+div.List div.SimpleList ul li.item a {
+  text-decoration: none;
+}
+div.List div.SimpleList ul li.item div.item_name,
+div.List div.SimpleList ul li.item div.item_cp {
+  float: right;
+}
+div.List div.SimpleList ul li.item div.item_name {
+  min-width: 440px;
+  float: left;
+}
+div.List div.SimpleList ul li.item div.item_cp {
+  /*min-width: @item_cp;*/
+}
+div.List div.SimpleList ul li.item div.item_cp button {
+  margin-left: 2px;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+}
+div.List div.SimpleList ul li.item div.item_cp .btn-xs,
+div.List div.SimpleList ul li.item div.item_cp .btn-group-xs > .btn {
+  border-radius: 3px;
+  font-size: 8px;
+  line-height: 1.5;
+  padding: 3px 4px;
+}
+div.List div.SimpleList li {
+  margin: 2px;
+  width: 99%;
+}
+div.List div.SimpleList li .alert-info {
+  clear: both;
+  padding: 10px;
+}
+div.List div.SimpleList li span.msg {
+  padding-left: 10px;
+}
 div.item_attr {
   margin-top: 10px;
 }

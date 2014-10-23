@@ -71,28 +71,28 @@ define(
             },
             /* Срочность */
             urgency_types: function() {
-                var local = host + prefix + "/docurgencytypes";
+                var local = host + prefix + "/urgencytypes";
                 var production = host + prefix + "/urgency_types";
 
                 return (local_server)? local: production;
             },
             urgency_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/docurgencytypes/"+ id;
+                var local = host + prefix + "/urgencytypes/"+ id;
                 var production = host + prefix + "/urgency_types/"+ id;
 
                 return (local_server)? local: production;
             },
             /* Секретность */
             secrecy_types: function() {
-                var local = host + prefix + "/docsecrecytypes";
+                var local = host + prefix + "/secrecytypes";
                 var production = host + prefix + "/secrecy_types";
 
                 return (local_server)? local: production;
             },
             secrecy_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = + prefix + "/docsecrecytypes/"+ id;
+                var local = + prefix + "/secrecytypes/"+ id;
                 var production = host + prefix + "/secrecy_types/"+ id;
 
                 return (local_server)? local: production;
@@ -138,7 +138,49 @@ define(
                 var production = host + prefix + "/attribute_types/"+ id;
 
                 return (local_server)? local: production;
+            },
+            /* Типы документов удостоверяющих личность*/
+            person_document_types: function() {
+                var local = host + prefix + "/persondoctypes";
+                var production = host + prefix + "/person_document_type";
+
+                return (local_server)? local: production;
+            },
+            person_document_type: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/persondoctypes/"+ id;
+                var production = host + prefix + "/person_document_type/"+ id;
+
+                return (local_server)? local: production;
+            },
+            /* Страны */
+            countries: function() {
+                var local = host + prefix + "/countries";
+                var production = host + prefix + "/countryes";
+
+                return (local_server)? local: production;
+            },
+            country: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/countries/"+ id;
+                var production = host + prefix + "/countryes/"+ id;
+
+                return (local_server)? local: production;
+            },
+            address_types: function() {
+                var local = host + prefix + "/addresstypes";
+                var production = host + prefix + "/address_types";
+
+                return (local_server)? local: production;
+            },
+            address_type: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/addresstypes/"+ id;
+                var production = host + prefix + "/address_types/"+ id;
+
+                return (local_server)? local: production;
             }
+
             /*subscriptions: function(userId, id) {
              return "/api/users/"+ userId +"/subscriptions/" + id;
              }*/
