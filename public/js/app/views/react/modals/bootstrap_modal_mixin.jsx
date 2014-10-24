@@ -12,12 +12,15 @@ define(
             var handlerProps =
                 ['handleShow', 'handleShown', 'handleHide', 'handleHidden'];
 
+
             var bsModalEvents = {
                 handleShow: 'show.bs.modal',
                 handleShown: 'shown.bs.modal',
-                handleHide: 'hide.bs.modal',
+                handleHide: 'hide.bs.modal', //hide.bs.modal
                 handleHidden: 'hidden.bs.modal'
             };
+
+            //это фактически колбэки
 
             return {
                 propTypes: {
@@ -32,15 +35,17 @@ define(
                 },
                 getDefaultProps: function () {
                     return {
-                        backdrop: true,
-                        keyboard: true,
+                        backdrop: false,
+                        keyboard: false,
                         show: true,
                         remote: ''
                     }
                 },
                 componentDidMount: function () {
-                    console.warn('this.getDOMNode()');
+                    console.warn('BootstrapModalMixin -> DidMount -> this.getDOMNode()');
                     console.warn(this.getDOMNode());
+                    console.info('===============THIS MODAL===============');
+                    console.info(this);
 
                     var $modal = $(this.getDOMNode()).modal({
                         backdrop: this.props.backdrop,
@@ -49,21 +54,28 @@ define(
                         remote: this.props.remote
                     });
                     handlerProps.forEach(function (prop) {
+                        console.info('fucking prop is '+prop);
                         if (this[prop]) {
+                            console.log('this[prop]');
                             $modal.on(bsModalEvents[prop], this[prop])
                         }
                         if (this.props[prop]) {
+                            console.log('this.props[prop]');
                             $modal.on(bsModalEvents[prop], this.props[prop])
                         }
                     }.bind(this));
                     var self = this;
                     var this_node = $(this.getDOMNode());
+
+
                     this_node.on('hide.bs.modal', function(){
                         console.info('BOOTSTRAP_MODAL_MIXIN catch ON hide.bs.modal, by:');
                         console.info(this_node);
+
                         //self.unMountReactAfterHide(this_node); //исполнение приводит к закрытиию всех окон так как там не задан this_node, а начинается поиск
                         //нет, не по этому ;)
                     });
+
                 },
                 componentWillUnmount: function () {
                     console.log('bootsratp modal unmount');
@@ -90,6 +102,9 @@ define(
                     console.log(this_node);
                     this_node.modal('hide');
                     this.unMountReactAfterHide(this_node);
+                },
+                test: function(){
+                    alert('test');
                 },
                 show: function () {
                     $(this.getDOMNode()).modal('show');

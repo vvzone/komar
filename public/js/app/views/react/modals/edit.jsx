@@ -38,9 +38,9 @@ define(
 
                 console.log('dom node:');
                 var element = $(this.refs.item_edit.getDOMNode()).find('.item')[0]; //call for ItemEdit not MainItemEdit
+                this.refs.modal.hide();
                 console.log(element);
                 element.trigger('saveButtonClick', customEvent);
-
             },
             componentDidMount: function () {
                 var self = this;
@@ -87,12 +87,7 @@ define(
                 console.log(this.props.model);
 
                 return(
-                    /* Entity */
-                    // 2 do: BaseWindow,
-                    // entity form refactoring
-
-                    <ModalWindowBase
-                    ref="modal"
+                    <ModalWindowBase ref="modal"
                     show={false}
                     header={header}
                     buttons={buttons}

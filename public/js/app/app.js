@@ -12,9 +12,9 @@ define(
         'jsx!views/react/modals/add',
         'router', // Request router.js
         'event_bus'
-        , 'views/menu_list'
+        //, 'views/menu_list'
     ],
-    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus, Menu){ //, Menu
+    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus){ //, Menu
     var init = function(){
         // Pass in our Router module and call it's initialize function
         console.log('app initialization...');
@@ -107,7 +107,7 @@ define(
             console.log(test_window);
             //test_window.hide();
 
-            test_window.handleExternalHide;
+            //test_window.handleExternalHide;
 
             /*
             var unmount = React.unmountComponentAtNode(parent_window);
@@ -117,14 +117,14 @@ define(
 
             //$('.modal_window').filter(last_window)[0].html('');
 
-            /*
+
             React.renderComponent(
                 ModalWindowSuccess({
                     header: header,
                     msg: msg
-                }), parent_window//$('.modal_window').filter(':last')[0] //document.getElementById("global_modal")
+                }), last_window//$('.modal_window').filter(':last')[0] //document.getElementById("global_modal")
             );
-            */
+
         });
 
         //EventBus.trigger('error', 'test error');

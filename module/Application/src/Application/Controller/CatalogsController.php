@@ -497,7 +497,7 @@ class CatalogsController extends AbstractActionController
                 'description' => 'Координата X',
                 'base_attr_type' => 2,
                 'verify_method' => null,
-                'listValues' => array(),
+                'list_values' => array(),
                 'max' => null,
                 'min' => null,
                 'mask' => null,
@@ -514,7 +514,7 @@ class CatalogsController extends AbstractActionController
                 'description' => 'Координата Y',
                 'base_attr_type' => 2,
                 'verify_method' => null,
-                'listValues' => array(),
+                'list_values' => array(),
                 'max' => null,
                 'min' => null,
                 'mask' => null,
@@ -530,7 +530,7 @@ class CatalogsController extends AbstractActionController
                 'description' => 'Точка на карте',
                 'base_attr_type' => 9, //составной
                 'verify_method' => null,
-                'listValues' => array(),
+                'list_values' => array(),
                 'max' => null, //не имеет собственного значения
                 'min' => null,
                 'mask' => null,
@@ -546,7 +546,7 @@ class CatalogsController extends AbstractActionController
                 'description' => 'Тестовое наименование чего-либо',
                 'base_attr_type' => 3, //составной
                 'verify_method' => null,
-                'listValues' => array(),
+                'list_values' => array(),
                 'max' => null,
                 'min' => null,
                 'mask' => null,
@@ -562,7 +562,7 @@ class CatalogsController extends AbstractActionController
                 'description' => 'Маршрут из нескольких точек на карте',
                 'base_attr_type' => 9, //составной
                 'verify_method' => null,
-                'listValues' => array(),
+                'list_values' => array(),
                 'max' => null,
                 'min' => null,
                 'mask' => null,
@@ -578,7 +578,7 @@ class CatalogsController extends AbstractActionController
                     'description' => 'Список с вариантами',
                     'base_attr_type' => 8, //список
                     'verify_method' => null,
-                    'listValues' => array(
+                    'list_values' => array(
                         array('id' => 1, 'value' => 1, 'name'=> 'Вариант 1', 'description' => ''),
                         array('id' => 2, 'value' => 2, 'name'=> 'Вариант 2', 'description' => ''),
                         array('id' => 3, 'value' => 3, 'name'=> 'Вариант 3', 'description' => ''),
@@ -602,10 +602,10 @@ class CatalogsController extends AbstractActionController
 
     public function persondoctypesAction(){
         /*
-         * Предполагается что экшен возращает выборку соответтсвующих входящему post_id
+         * Предполагается что экшен возращает выборку соответствующих входящему post_id
          * */
 
-        $editable_array = array('name' => 'Название', 'isFull' => 'Полная идентификация',
+        $editable_array = array('name' => 'Название', 'is_full' => 'Полная идентификация',
             'isMain'=> 'Основной', 'isSeries' => 'Используется серия документа', 'seriesMask' => 'Маска серии', 'numberMask' => 'Маска номера', 'validPeriod' => '');
         $prototype_array = array('editable_properties' => $editable_array);
 

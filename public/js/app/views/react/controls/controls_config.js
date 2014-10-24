@@ -6,6 +6,8 @@ define(
 
         properties_types['name'] = 'tiny_text';
         properties_types['short_name'] = 'tiny_text';
+        properties_types['full_name'] = 'small_text';
+
         properties_types['description'] = 'small_text';
         properties_types['is_officer'] = 'bool_select';
 
@@ -29,7 +31,7 @@ define(
 
         /* countries */
         properties_types['code'] = 'tiny_text';
-        properties_types['full_name'] = 'small_text';
+
 
         properties_types['region_types'] = 'simple_select';
 
@@ -70,6 +72,7 @@ define(
         properties_types['max'] = 'tiny_text';
 
         properties_types['listValues'] = 'simple_list';
+        properties_types['list_values'] = 'simple_list';
         properties_types['mask'] = 'tiny_text';
         properties_types['max_length'] = 'tiny_text';
         properties_types['value'] = 'tiny_text';
