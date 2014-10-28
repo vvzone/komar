@@ -18,6 +18,9 @@ define(
                 region_type: null,
                 description: null
             },
+            attr_description:{
+                region_type: 'Объект типа региона'
+            },
             attr_rus_names: {
                 name: 'Название',
                 code: 'Код',

@@ -1,5 +1,5 @@
 define(
-    'models/doc_type_group',
+    'models/doc_type_group_tree',
     [
         'jquery',
         'underscore',
@@ -8,7 +8,7 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/doc_type_group');
+        console.log('models/doc_type_group_tree');
 
         var DocTypeGroup= Backbone.Model.extend({
             defaults: {
@@ -21,30 +21,29 @@ define(
                 items: null
             },
             attr_description: {
-                parent: 'Идентификатор родительского элемента',
-                children: 'Дочерние элементы на один уровень ниже',
-                items: 'Служебное поле клиентской части'
+                children: 'Дерево дочерних элементов '
             },
             attr_rus_names: {
                 name: 'Название',
                 short_name: 'Краткое название',
                 is_service: 'Системная'
             },
-            model_name: 'doc_type_group',
-            model_rus_name: 'Группа типа документа',
+            model_description: 'Возвращается в виде дерева',
+            model_name: 'doc_type_group_tree',
+            model_rus_name: 'Дерево групп типов документа',
             attr_dependencies: null, //for recursive objects
             url: function() {
                 return apiUrl('doc_type_group', this.id);
             },
             initialize: function(){
                 console.info('Model init');
-                if (Array.isArray(this.get('children'))) {
-                    console.log('model init -> has children');
+                if (Array.isArray(this.get('childNodes'))) {
+                    console.log('model init -> has child\'s');
                     if(!DocTypeGroupsCollection){
-                        console.log('loading sub-collection for children');
+                        console.log('loading sub-collection for child\'s');
                         var DocTypeGroupsCollection = require("models/doc_type_groups_collection");
                     }
-                    var ChildCollection = new DocTypeGroupsCollection(this.get('children'));
+                    var ChildCollection = new DocTypeGroupsCollection(this.get('childNodes'));
                     this.set({items: ChildCollection});
                 }
                 /*else{

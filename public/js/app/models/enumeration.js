@@ -19,6 +19,10 @@ define(
                 last_drop: null,
                 next_drop: null
             },
+            attr_description:{
+                unit: 'Обьект подарзделения',
+                enumeration_type: 'Объект типа нумерации'
+            },
             attr_rus_names: {
                 unit: 'Подразделение',
                 enumeration_type: 'Тип нумерации',
@@ -30,7 +34,7 @@ define(
                 unit: 'unit' //???fix this
             }, //for recursive objects
             model_name: 'enumeration',
-            model_rus_name: 'Нумерации',
+            model_rus_name: 'Нумерация',
             url: function() {
                 return apiUrl('enumeration', this.id);
             },

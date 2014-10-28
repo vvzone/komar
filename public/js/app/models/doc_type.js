@@ -21,6 +21,11 @@ define(
                 secrecy_types: null,
                 attribute_types: []
             },
+            attr_description: {
+                urgency_types: 'Объект типа срочности',
+                secrecy_types: 'Объект типа секретности',
+                attribute_types: 'Массив объектов типов атрибутов'
+            },
             attr_rus_names: {
                 name: 'Название',
                 code: 'Код',

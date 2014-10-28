@@ -18,6 +18,9 @@ define(
                 description: null,
                 allowed_ranks: null
             },
+            attr_description: {
+                allowed_ranks: 'Массив объектов типа ranks'
+            },
             attr_rus_names: {
                 name: 'Название',
                 short_name: 'Сокр. название',

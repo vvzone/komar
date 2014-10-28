@@ -1,5 +1,5 @@
 define(
-    'models/menu',
+    'models/menu_tree',
     [
         'jquery',
         'underscore',
@@ -8,7 +8,7 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/menu loaded');
+        console.log('models/menu_tree loaded');
 
         var Menu = Backbone.Model.extend({
             defaults: {
@@ -25,7 +25,7 @@ define(
             attr_description:{
                 parent: 'Идентификатор родителя',
                 is_not_screen: 'Признак того, что элемент не является ссылкой, а служит только для группировки',
-                children: 'Массив объектов дочерних элементов на один уровень ниже',
+                children: 'Дочерние элементы (Дерево)',
                 items: 'Служебное поле клиентской части'
             },
             attr_rus_names: {
@@ -35,7 +35,8 @@ define(
                 is_not_screen: 'Описательный'
             },
             attr_dependencies: null, //for recursive objects
-            model_name: 'menu',
+            model_description: 'Возвращается в виде дерева',
+            model_name: 'menu_tree',
             model_rus_name: 'Меню админки',
             url: function() {
                 return apiUrl('menu', this.id);

@@ -17,7 +17,8 @@ define(
                 short_name: null
             },
             attr_rus_names: {
-                name: 'Название'
+                name: 'Название',
+                short_name: 'Краткое название'
             },
             attr_dependencies: null, //for recursive objects
             model_name: 'period_type',

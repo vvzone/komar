@@ -6,6 +6,7 @@ define(
         'backbone',
         'models/collections_router'
         //'views/menu_list'
+        , 'service/documentate'
     ],
     function($, _, Backbone, CollectionsRouter
        //Menu
@@ -17,7 +18,8 @@ define(
             '': 'home',
             ':view/:id(/:param)': 'itemView',
             ':view' : 'collectionView',
-            '*action': 'no_route'
+            '*action': 'no_route',
+            'documentation': 'documentation'
         },
         home: function(){
             console.log('home');
@@ -33,6 +35,9 @@ define(
             console.info('Router->collectionView: collection='+view);
             //var MenuOutput = new Menu;
             CollectionsRouter.initialize(view, null, null);
+        },
+        documentation: function(){
+            console.log('trying to documentate...');
         }
     });
 

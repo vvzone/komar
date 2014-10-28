@@ -35,7 +35,7 @@ define(
                 },
                 getDefaultProps: function () {
                     return {
-                        backdrop: false,
+                        backdrop: false, //because of this shit!!! 2-do: detour somehow
                         keyboard: false,
                         show: true,
                         remote: ''

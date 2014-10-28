@@ -13,6 +13,50 @@ define(
             console.log('collection_router initialization...');
             var ViewCollection = 'undefined';
 
+            var route_collection_array = [
+                {ranks: 'list'},
+                {posts: 'list'}//,
+                //{},
+            ];
+
+            var search = _.each(route_collection_array, function(route_name, output_component){
+                if(route_name == view){
+                    if(!Collection){
+                        console.log('!Collection -> loading...');
+                        var collection_name = 'models/'+route_name+'_collection';
+                        console.log('try to load '+ collection_name);
+                        var Collection = require([collection_name], function(Collection){
+
+                            switch(output_component){
+                                case('list'):
+                                    console.log('will use ListView for collection output...');
+                                    ListView.initialize(Collection);
+                                    return Collection;
+                                break;
+                                case('tree'):
+                                    console.log('will use TreeView for collection output...');
+                                    TreeView.initialize(Collection);
+                                    return Collection;
+                                break;
+                                default:
+                                    console.error('can\'t resolve output type for collection '+collection_name);
+                                break
+                            }
+                        })
+                    }else{
+                        console.error('Collection already loaded O_O');
+                        console.info('current collection:');
+                        console.info(Collection);
+                    }
+                }
+            });
+
+            console.info('search');
+            console.info(search);
+
+
+
+
             switch(view){
                 case('ranks'):
                     if(!RanksCollection){

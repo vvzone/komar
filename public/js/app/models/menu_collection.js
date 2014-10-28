@@ -6,7 +6,7 @@ define(
         'backbone',
         'react',
         'apiUrl',
-        'models/menu'
+        'models/menu_tree'
     ],function($, _, Backbone, React, apiUrl, Menu){
 
         console.log('models/menu_collection loaded');
