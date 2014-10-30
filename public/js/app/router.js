@@ -4,11 +4,11 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'models/collections_router'
+        'models/collections_router',
+        'react'
         //'views/menu_list'
-        , 'service/documentate'
     ],
-    function($, _, Backbone, CollectionsRouter
+    function($, _, Backbone, CollectionsRouter, React
        //Menu
         ){
 
@@ -16,10 +16,11 @@ define(
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
-            ':view/:id(/:param)': 'itemView',
-            ':view' : 'collectionView',
-            '*action': 'no_route',
-            'documentation': 'documentation'
+            'documentation': 'documentation',
+            'react': 'react',
+            'admin/:view/:id(/:param)': 'itemView',
+            'admin/:view' : 'collectionView',
+            '*action': 'no_route'
         },
         home: function(){
             console.log('home');
@@ -38,6 +39,24 @@ define(
         },
         documentation: function(){
             console.log('trying to documentate...');
+
+            var Documentation = require(['service/documentate'], function(Documentation){
+               return Documentation;
+            });
+
+        },
+        react: function(){
+            console.log('route to react test module...');
+            var component_name = 'views/react/prototypes/levels';
+            
+            require(['jsx!'+component_name], function(Component){
+                React.renderComponent(
+                    new Component({
+                        collection: null
+                    }), document.getElementById("main_main")
+                );
+            });
+
         }
     });
 
