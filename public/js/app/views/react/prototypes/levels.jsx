@@ -4,26 +4,51 @@ define(
     'views/react/prototypes/levels',
     [
         'jquery',
+        'underscore',
         'react'
-    ],function($, React){
+    ],function($, _, React){
 
-        var Component = React.createClass({
+        var test_array = [
+            {}
+        ];
+
+        var ListTable, ListTableItem;
+
+        ListTable = React.createClass({
             getInitialState: function() {
                 return {
-                    item: null
+                    items: []
                 };
             },
-            componentDidMount: function() {
-                console.log('React-> ->DidMount');
+            componentWillMount: function() {
+                return console.log('ListTable mounting...');
             },
-            render: function () {
-                var output = 'LEVELS';
-                return(
-                    <div className="component">{output}</div>
-                );
+            componentDidMount: function() {
+                return _.extend(this, Events);
+            },
+            render: function() {
+                var list, output;
+                list = this.state.items;
+
+                _.sortBy(list, function(item){
+                    item.get('level'); 
+                });
+
+
+
+                output = list.map(function(item) {
+                    return <ListTableItem item={item} />;
+                });
+                return '<div>' + output + '</div>';
             }
         });
 
-        return Component;
+        ListTableItem = React.createClass({
+            render: function() {}
+
+        });
+
+
+        return ListTable;
     }
 );

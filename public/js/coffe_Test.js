@@ -22,7 +22,7 @@
       wrap = function(item) {
         var selected;
         selected = (this.selected = item.id) ? "selected" : "";
-        return "<div className=" + selected + " onClick=" + this.clickHandle + ">" + item.name + "</div>>";
+        return "<div className=" + selected + " onClick=" + this.clickHandle + ">" + item.name + "</div>";
       };
       _ref = this.props.menu_array;
       _results = [];

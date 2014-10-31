@@ -9,7 +9,7 @@ MenuBlock = React.createClass
   render:->
     wrap = (item)->
       selected = if this.selected = item.id then "selected" else ""
-      "<div className=#{selected} onClick=#{this.clickHandle}>#{item.name}</div>>"
+      "<div className=#{selected} onClick=#{this.clickHandle}>#{item.name}</div>"
     wrap item for item in this.props.menu_array;
 
 
