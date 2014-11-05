@@ -24,7 +24,7 @@ define(
                     onDragStart={this.dragStart}
                     onDragOver={this.dragOver}
                     onDragLeave={this.dragLeave}
-                    >{this.props.item.name}</div>
+                    >{this.props.model.get('name')}</div>
                 );
             }
         });
@@ -32,15 +32,12 @@ define(
         ListTable = React.createClass({
             getInitialState: function() {
                 return {
-                    items: []
+                    collection: []
                 };
             },
             componentWillMount: function() {
                 console.log('ListTable mounting...');
                 //test only
-                this.setState({
-                    items: node_levels
-                });
             },
             componentDidMount: function() {
                 //var componentNode = this.getDOMNode();
@@ -48,21 +45,20 @@ define(
                 this.on('test_event', function(data){
                     console.log('data='+data);
                 });
+
+                    this.setState({
+                        collection: this.props.collection
+                    });
             },
             render: function() {
                 var list, output;
-                list = this.state.items;
+                //list = this.state.items;
 
-                list = _.sortBy(list, function(item){
-                    //item.get('level');
-                    return item.level; //MODEL.GET!
-                });
+                console.info('this.state.collection');
+                console.log(this.state.collection);
 
-                console.info('list');
-                console.log(list);
-
-                output = list.map(function(item) {
-                    return <ListTableItem item={item} />;
+                output = this.state.collection.map(function(model) {
+                    return <ListTableItem model={model} />;
                 });
 
                 return <div>{output}</div>;

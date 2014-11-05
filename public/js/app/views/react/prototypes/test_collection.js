@@ -8,13 +8,13 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/commander_type loaded');
+        console.log('models/test_collection');
 
         var TestModel = Backbone.Model.extend({
             defaults: {
                 id: null,
                 route: null,
-                level: null,
+                level_order: null,
                 level_type: null,
                 name: null
             },
@@ -44,10 +44,13 @@ define(
 
         var TestCollection = Backbone.Collection.extend({
             model: TestModel,
-            collection_rus_name: 'Модель для тестирования',
+            collection_rus_name: 'Коллекция для тестирования',
             collection_name: 'test_collection',
             url: function() {
                 return apiUrl('test_collection');
+            },
+            comparator: function(model){
+                return model.get('level_order');
             },
             initialize: function(){
                 this.on('destroy', function(){
