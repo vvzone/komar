@@ -513,3 +513,14 @@ div.switch_view {
   text-align: center;
   padding: 10px;
 }
+div.level {
+  margin-top: 2px;
+  padding: 10px;
+  border: 1px solid #66afe9;
+  -webkit-border-radius: 4px!important;
+  -moz-border-radius: 4px!important;
+  border-radius: 4px!important;
+}
+div.level div.level_nodes {
+  padding: 10px;
+}

@@ -16,11 +16,9 @@ define(
     ],
     function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus){ //, Menu
     var init = function(){
-        // Pass in our Router module and call it's initialize function
-        console.log('app initialization...');
-        Router.initialize();
 
         EventBus.on('error', function(header, msg, response){
+            console.info('EventBus.on error catch');
             EventBus.trigger('windows-close');
 
             React.renderComponent(
@@ -126,6 +124,10 @@ define(
             );
 
         });
+
+        // Pass in our Router module and call it's initialize function
+        console.log('app initialization...');
+        Router.initialize();
 
         //EventBus.trigger('error', 'test error');
 

@@ -32,20 +32,20 @@ define(
                     if(this.over == this.dragged){
                         return;
                     }
-                    $(this.over).addClass('tree_over_node');
+                    $(this.over).addClass('over_node');
                 },
                 dragLeave: function(e){
                     e.preventDefault(); // necessary!
-                    $(this.over).removeClass('tree_over_node');
+                    $(this.over).removeClass('over_node');
                 },
                 dragEnd: function(e) {
                     e.preventDefault(); // necessary!
-                    $(this.over).removeClass('tree_over_node');
+                    $(this.over).removeClass('over_node');
                 },
                 drop: function(e){
                     e.preventDefault();
                     console.warn('DROP');
-                    $(this.over).removeClass('tree_over_node');
+                    $(this.over).removeClass('over_node');
                     var droppedOn = e.currentTarget;
                     if(droppedOn.id == storage['dragged']['id']){ //add same parent check
                         console.warn('stop');
