@@ -689,11 +689,14 @@ div.switch_view{
     padding: @min;
   }
   /*
+
   .modal-body{
     text-align: center;
     padding: @big;
     font-size: 0.8em;
-  }*/
+  }
+
+  */
 
   .modal-footer{
     border: none;
@@ -726,28 +729,39 @@ div.level{
 
     div{
       float: left;
+      display: table-cell;
+      vertical-align: middle;
 
       div.node_title{
-        width: 80px;
-        margin-top: 25px;
+        /*overflow: hidden;*/
+        display: inline-block;
+        vertical-align:middle;
+        width: 60px;
+        height: 35px;
+        /*margin-top: 15px;*/
         font-size: 0.8em;
         color: #ffffff;
         text-align: center;
-        background: url('/img/admin/blue_50_opacity.png');
-        border-radius: @big;
+        top: 50%;
+        /*background: url('/img/admin/blue_50_opacity.png');
+        border-radius: @big;*/
       }
     }
 
     div.node_abstract{
-      width: 80px;
-      height: 80px;
+      display: table-cell;
+      overflow: hidden;
+      width: 60px;
+      height: 60px;
       //background: url('/img/admin/node_abstract.png');
       background: url('/img/admin/node_abstract_dark.png');
     }
 
     div.node_real{
-      width: 80px;
-      height: 80px;
+      display: table-cell;
+      overflow: hidden;
+      width: 60px;
+      height: 60px;
       //background: url('/img/admin/node_real.png');
       background: url('/img/admin/node_real_dark.png');
     }

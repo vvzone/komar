@@ -62,10 +62,20 @@ define(
                 recipient_type: recipient_type[1], client: clients[2],
                 task: 'Проверить',
                 node_state: node_state[2],
+                period_type: 1, time_stamp: null, period_length: 1},
+            {id: 35609, node_level_id: 101, sort_order: 0,
+                recipient_type: recipient_type[3], client: clients[2],
+                task: 'Проверить',
+                node_state: node_state[2],
+                period_type: 1, time_stamp: null, period_length: 1},
+            {id: 3343209, node_level_id: 101, sort_order: 0,
+                recipient_type: recipient_type[2], client: clients[2],
+                task: 'Проверить',
+                node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1}
         ];
         var node_levels = [
-            {id: 101, route: 1, level_order: 1, level_type: level_types[0], name: 'Согласование 1', nodes: nodes[0]},
+            {id: 101, route: 1, level_order: 1, level_type: level_types[0], name: 'Согласование 1', nodes: [nodes[0], nodes[5], nodes[6]]},
             {id: 103, route: 1, level_order: 3, level_type: level_types[2], name: 'Исполняющие', nodes: [nodes[1], nodes[2]]},
             {id: 102, route: 1, level_order: 2, level_type: level_types[0], name: 'Согласование 2', nodes: [nodes[3], nodes[4]]}
         ];
