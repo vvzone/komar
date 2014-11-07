@@ -516,11 +516,36 @@ div.switch_view {
 div.level {
   margin-top: 2px;
   padding: 10px;
-  border: 1px solid #66afe9;
+  border: 1px solid #a6a6a6;
   -webkit-border-radius: 4px!important;
   -moz-border-radius: 4px!important;
   border-radius: 4px!important;
+  background: #faffff;
+  box-shadow: 1px 1px 1px rgba(199, 213, 244, 0.35);
 }
 div.level div.level_nodes {
-  padding: 10px;
+  /*padding: 10px;*/
+  overflow: hidden;
+}
+div.level div.level_nodes div {
+  float: left;
+}
+div.level div.level_nodes div div.node_title {
+  width: 80px;
+  margin-top: 25px;
+  font-size: 0.8em;
+  color: #ffffff;
+  text-align: center;
+  background: url('/img/admin/blue_50_opacity.png');
+  border-radius: 10px;
+}
+div.level div.level_nodes div.node_abstract {
+  width: 80px;
+  height: 80px;
+  background: url('/img/admin/node_abstract_dark.png');
+}
+div.level div.level_nodes div.node_real {
+  width: 80px;
+  height: 80px;
+  background: url('/img/admin/node_real_dark.png');
 }

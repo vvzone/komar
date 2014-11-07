@@ -16,16 +16,37 @@ define(
         var LevelNode, LevelNodes;
 
         LevelNode = React.createClass({
+            cutTitle: function(long, short){
+                if(long.length>55){
+                    if(short.length<55){ //очень мощное колдунство
+                        return short;
+                    }
+                    return short;
+                }
+                return long;
+            },
             render: function() {
                 var output;
-                return output =
-                    <div className="node"
+                var r_type = this.props.node.get('recipient_type');
+                var class_name = 'node_abstract';
+                var title = r_type.name;
+                console.log('r_type.name='+r_type.name);
+                if(r_type.code == 1 || r_type.code == 2){
+                    class_name = 'node_real';
+                    var client = this.props.node.get('client');
+                    if(r_type.code == 2){
+                        title = this.cutTitle(client.full_name, client.short_name);
+                    }
+                    title = this.cutTitle(''+client.full_name, ''+client.family_name);
+                }
+                return(
+                    <div className={class_name}
                          draggable="true"
                          onDrop={this.drop}
                          onDragEnd={this.dragEnd}
                          onDragStart={this.dragStart}
                          onDragOver={this.dragOver}
-                         onDragLeave={this.dragLeave}></div>;
+                         onDragLeave={this.dragLeave}><div className="node_title">{title}</div></div>);
             }
         });
 
@@ -34,7 +55,8 @@ define(
             render: function() {
                 var output;
                 output = this.props.nodes.map(function(node) {
-                    return <LevelNode nope={node} />;
+
+                    return <LevelNode node={node} />;
                 });
                 return <div classNames="level_node_box">{output}</div>
             }

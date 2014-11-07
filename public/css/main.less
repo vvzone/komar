@@ -20,6 +20,7 @@
 @light_silver: #d6e5ed;
 @warning_color: #ec9a25;
 @blue_glow: #66afe9;
+@light_grey_from_blue: #f3f7ff;
 
 /* fonts */
 @base_font_size: 1em;
@@ -705,16 +706,50 @@ div.switch_view{
 div.level{
   margin-top: @min;
   padding: @big;
-  border: 1px solid @blue_glow;
+  //border: 1px solid @blue_glow;
+  border: 1px solid #a6a6a6;
   -webkit-border-radius: 4px!important;
   -moz-border-radius: 4px!important;
   border-radius: 4px!important;
+  //background: @light_grey_from_blue;
+  background: #faffff;
+  //box-shadow: 0 1px 0 rgba(243, 247, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
+  box-shadow: 1px 1px 1px rgba(199, 213, 244, 0.35);
 
   div.level_name{
 
   }
 
   div.level_nodes{
-    padding: 10px;
+    /*padding: 10px;*/
+    overflow: hidden;
+
+    div{
+      float: left;
+
+      div.node_title{
+        width: 80px;
+        margin-top: 25px;
+        font-size: 0.8em;
+        color: #ffffff;
+        text-align: center;
+        background: url('/img/admin/blue_50_opacity.png');
+        border-radius: @big;
+      }
+    }
+
+    div.node_abstract{
+      width: 80px;
+      height: 80px;
+      //background: url('/img/admin/node_abstract.png');
+      background: url('/img/admin/node_abstract_dark.png');
+    }
+
+    div.node_real{
+      width: 80px;
+      height: 80px;
+      //background: url('/img/admin/node_real.png');
+      background: url('/img/admin/node_real_dark.png');
+    }
   }
 }
