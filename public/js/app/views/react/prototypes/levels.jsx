@@ -16,6 +16,7 @@ define(
         var LevelNode, LevelNodes;
 
         LevelNode = React.createClass({
+            mixins: [DragAndDropMixin],
             cutTitle: function(long, short){
                 if(long.length>55){
                     if(short.length<55){ //очень мощное колдунство
@@ -46,7 +47,9 @@ define(
                          onDragEnd={this.dragEnd}
                          onDragStart={this.dragStart}
                          onDragOver={this.dragOver}
-                         onDragLeave={this.dragLeave}><div className="node_title">{title}</div></div>);
+                         onDragLeave={this.dragLeave}>
+                            <div className="node_title">{title}</div>
+                    </div>);
             }
         });
 
@@ -54,8 +57,7 @@ define(
             componentWillMount: function() {},
             render: function() {
                 var output;
-                output = this.props.nodes.map(function(node) {
-
+                output = this.props.level_nodes_collection.map(function(node) {
                     return <LevelNode node={node} />;
                 });
                 return <div classNames="level_node_box">{output}</div>
@@ -63,12 +65,11 @@ define(
         });
 
         ListTableItem = React.createClass({
-            mixins: [DragAndDropMixin],
             render: function() {
                 return(
                     <div className="level">
                         <div className="level_name">{this.props.model.get('name')}</div>
-                        <div className="level_nodes"><LevelNodes nodes={this.props.model.get('nodes')} /></div>
+                        <div className="level_nodes"><LevelNodes level_nodes_collection={this.props.model.get('nodes')} /></div>
                     </div>
                 );
             }
@@ -77,7 +78,7 @@ define(
         var ListLevels = React.createClass({
             render: function(){
                 var output;
-                /* too much recursion? why?
+                /* too much recursion? why? because my name is muzzy!
                 output = _.each(this.props.levels_collection, function(model){
                     return <ListTableItem model={model} />;
                 });

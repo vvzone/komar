@@ -17,9 +17,8 @@ define(
                     e.dataTransfer.effectAllowed = 'move';
                     // Firefox requires dataTransfer data to be set
                     e.dataTransfer.setData("text/html", e.currentTarget);
-
-                    var data = {id: e.currentTarget.id,
-                        model: this.props.model};
+                    var data = {id: this.props.node.get('id'),
+                        model: this.props.node};
                     console.log('dragStart -> data:');
                     console.log(data);
                     storage['dragged'] = data;
