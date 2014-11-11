@@ -10,55 +10,58 @@ define(
     ],function($, _, Backbone, React){
 
         var storage = {};
+        var LEFT_BUTTON = 0;
+        var DRAG_THRESHOLD = 3;
+
         var DragAndDropClassMixin = function () {
             return{
-                dragStart: function(e) {
-                    this.dragged = e.currentTarget;
-                    e.dataTransfer.effectAllowed = 'move';
-                    // Firefox requires dataTransfer data to be set
-                    e.dataTransfer.setData("text/html", e.currentTarget);
-                    var data = {id: this.props.node.get('id'),
-                        model: this.props.node};
-                    console.log('dragStart -> data:');
-                    console.log(data);
-                    storage['dragged'] = data;
-                    console.log('trying to save to storage... storage[dragged]:');
-                    console.log(storage['dragged']);
-                },
-                dragOver: function(e) {
-                    e.preventDefault(); // necessary!
-                    this.over = e.currentTarget;
-                    if(this.over == this.dragged){
-                        return;
+                onMouseDown: function(event){
+                    console.log('onMouseDown');
+                    if(event.button == LEFT_BUTTON){
+                        event.stopPropagation();
                     }
-                    $(this.over).addClass('over_node');
+                    this.addEvents();
+                    var pageOffset = this.getDOMNode.getBoundingClientRect();
+                    this.setState({
+                        mouseDown: true,
+                        originX: event.pageX,
+                        originY: event.pageY,
+                        elementX: pageOffset.left,
+                        elementY:pageOffset.top
+                    });
                 },
-                dragLeave: function(e){
-                    e.preventDefault(); // necessary!
-                    $(this.over).removeClass('over_node');
-                },
-                dragEnd: function(e) {
-                    e.preventDefault(); // necessary!
-                    $(this.over).removeClass('over_node');
-                },
-                drop: function(e){
-                    e.preventDefault();
-                    console.warn('DROP');
-                    $(this.over).removeClass('over_node');
-                    var droppedOn = e.currentTarget;
-                    if(droppedOn.id == storage['dragged']['id']){ //add same parent check
-                        console.warn('stop');
-                        return
+                onMouseMove: function(event){
+                    var deltaX = event.pageX - this.state.originX;
+                    var deltaY = event.pageY - this.state.originY;
+                    var distance = Math.abs(deltaX) + Math.abs(deltaY);
+                    if(this.state.dragging == false && distance > DRAG_THRESHOLD ){
+                        this.setState({
+                            dragging: true
+                        });
+                        this.props.onDragStart(this.props.dragData);
                     }
-                    var movedNode = {
-                        dragged: storage['dragged'],
-                        droppedOn_id: droppedOn.id
-                    };
-                    console.log('movedNode');
-                    console.log(movedNode);
-                    console.log('Mixin -> Props:');
-                    console.log(this.props);
-                    this.props.move(movedNode);
+                    if(this.state.dragging){
+                        this.setState({
+                            left: this.state.elementX + deltaX + document.body.scrollLeft,
+                            top: this.state.elementY + deltaY + document.body.scrollTop
+                        });
+                    }
+                },
+                onMouseUp: function(){
+                    this.removeEvents();
+                    if(this.state.dragging){
+                        this.props.onDragStop();
+                        this.setState({
+                            dragging: false
+                        });
+                    }
+                },
+                addEvents: function(){
+                    //listeners for mouse_up, mouse_move
+                },
+                removeEvents: function(){
+                    //listeners for mouse_up, mouse_move
+
                 }
             }
         }()

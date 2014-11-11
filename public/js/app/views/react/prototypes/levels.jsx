@@ -7,16 +7,42 @@ define(
         'underscore',
         'backbone',
         'react',
-        'jsx!views/react/prototypes/levels_drag_and_drop_mixin',
-        ''
-    ],function($, _, Backbone, React, DragAndDropMixin){
+        'jsx!views/react/prototypes/levels_drag_and_drop_mixin'
+    ],function($, _, Backbone, React, DragAndDropClassMixin){
 
-        var ListTable, ListTableItem;
-
-        var LevelNode, LevelNodes;
-
-        LevelNode = React.createClass({
-            mixins: [DragAndDropMixin],
+        var LevelNode = React.createClass({
+            //Draggable
+            mixins: [DragAndDropClassMixin],
+            getInitialState: function(){
+                return({
+                   mouseDown: false,
+                   dragging: false
+                });
+            },
+            render: function() {
+                var output;
+                var r_type = this.props.node.get('recipient_type');
+                var class_name= "level_node" + ((r_type.code==1 || r_type.code==2)? " node_real": " node_abstract") + (this.state.dragging? " dragging": "");
+                var title = '';
+                return(
+                    <div className={class_name}
+                        onMouseDown={this.onMouseDown}
+                    >
+                            <div className="node_title">Title</div>
+                    </div>);
+            },
+            makeTitle: function(r_type){
+                var title = r_type.name;
+                var client;
+                console.log('r_type.name='+r_type.name);
+                if(r_type.code == 1 || r_type.code == 2){
+                    if(r_type.code == 2){
+                        title = this.cutTitle(client.full_name, client.short_name);
+                    }
+                    title = this.cutTitle(''+client.full_name, ''+client.family_name);
+                }
+                return title;
+            },
             cutTitle: function(long, short){
                 if(long.length>55){
                     if(short.length<55){ //очень мощное колдунство
@@ -25,51 +51,45 @@ define(
                     return short;
                 }
                 return long;
-            },
-            render: function() {
-                var output;
-                var r_type = this.props.node.get('recipient_type');
-                var class_name = 'node_abstract';
-                var title = r_type.name;
-                console.log('r_type.name='+r_type.name);
-                if(r_type.code == 1 || r_type.code == 2){
-                    class_name = 'node_real';
-                    var client = this.props.node.get('client');
-                    if(r_type.code == 2){
-                        title = this.cutTitle(client.full_name, client.short_name);
-                    }
-                    title = this.cutTitle(''+client.full_name, ''+client.family_name);
-                }
-                return(
-                    <div className={class_name}
-                         draggable="true"
-                         onDrop={this.drop}
-                         onDragEnd={this.dragEnd}
-                         onDragStart={this.dragStart}
-                         onDragOver={this.dragOver}
-                         onDragLeave={this.dragLeave}>
-                            <div className="node_title">{title}</div>
-                    </div>);
             }
         });
 
-        LevelNodes = React.createClass({
+        var LevelNodes = React.createClass({
             componentWillMount: function() {},
             render: function() {
                 var output;
                 output = this.props.level_nodes_collection.map(function(node) {
-                    return <LevelNode node={node} />;
+                    return (
+                        <LevelNode node={node}
+                            onDragStart={this.props.onDragStart}
+                            onDragStop={this.props.onDragStop}
+                            dragData={this.props.dragData}
+                        />
+                    );
                 });
                 return <div classNames="level_node_box">{output}</div>
             }
         });
 
-        ListTableItem = React.createClass({
+        var Level = React.createClass({
+            //DropTarget
+            getInitialState: function(){
+                return {
+                    hover: false
+                };
+            },
             render: function() {
                 return(
                     <div className="level">
                         <div className="level_name">{this.props.model.get('name')}</div>
-                        <div className="level_nodes"><LevelNodes level_nodes_collection={this.props.model.get('nodes')} /></div>
+                        <div className="level_nodes">
+                            <LevelNodes
+                                level_nodes_collection={this.props.model.get('nodes')}
+                                onDragStart={this.props.onDragStart}
+                                onDragStop={this.props.onDragStop}
+                                dragData={this.props.dragData}
+                            />
+                        </div>
                     </div>
                 );
             }
@@ -78,7 +98,7 @@ define(
         var ListLevels = React.createClass({
             render: function(){
                 var output;
-                /* too much recursion? why? because my name is muzzy!
+                /* too much recursion? why? - because my name is muzzy!
                 output = _.each(this.props.levels_collection, function(model){
                     return <ListTableItem model={model} />;
                 });
@@ -87,16 +107,15 @@ define(
                 output = this.props.levels_collection.map(function(model) {
                     console.log('level-model');
                     console.log(model);
-                    return <ListTableItem model={model} />;
+                    return <Level model={model} />;
                 });
 
 
                 return <div>{output}</div>;
             }
-
         });
 
-        ListTable = React.createClass({
+        var ListLevelsTable = React.createClass({
             getInitialState: function() {
                 return {
                     levels_collection: []
@@ -128,6 +147,6 @@ define(
             }
         });
 
-        return ListTable;
+        return ListLevelsTable;
     }
 );
