@@ -81,7 +81,11 @@ define(
             },
             render: function() {
                 return(
-                    <div className={this.classes()}>
+                    <div
+                        className={this.classes()}
+                        onMouseEnter={this.hoverTrue}
+                        onMouseLeave={this.hoverFalse}
+                    >
                         <div className="level_name">{this.props.level_model.get('name')}</div>
                         <div className="level_nodes">
                             <LevelNodes
@@ -95,19 +99,19 @@ define(
                 );
             },
             classes: function(){
-              console.info('...return classes...');
-              var classes =
+                var classes =
                   [
                       'level drop-target',
                       //"" + (this.props.target.accepts.join(' ')),
-                      this.active() ? 'active' : '',
+                      this.active()? 'active' : '',
                       //this.active() && this.props.currentDragItem.type === 'green' ? 'active-green' : '',
                       //this.active() && this.props.currentDragItem.type === 'blue' ? 'active-blue' : '',
-                      this.disabled() ? 'disabled' : '',
+                      this.disabled()? 'disabled' : '',
                       this.state.hover ? 'hover' : ''
                   ].join(' ');
-              console.info(classes);
-              return classes;
+                console.info('...return classes...');
+                console.info(classes);
+                return classes;
             },
             dragData: function(){
                 return {index: null};
@@ -115,19 +119,33 @@ define(
             active: function(){
                 //not current
 
-                var current_id = 5;//this.props.currentDragItem.get('id');
+                // may not work if this will not re-render for change in currentDragItem - always same disabled and active
+                var current_id = (this.props.currentDragItem)? this.props.currentDragItem.get('id'):null;
                 var level_nodes_collection = this.props.level_model.get('nodes');
                 var level_nodes_array = level_nodes_collection.toJSON();
                 var ids_array = _.pluck(level_nodes_array, 'id');
-
-                console.info('ids_array');
-                console.info(ids_array);
-
-                _.indexOf(ids_array, current_id);
-
+                return _.indexOf(ids_array, current_id)>-1;
             },
             disabled: function(){
                 //current
+                var current_id = (this.props.currentDragItem)? this.props.currentDragItem.get('id'):null;
+                var level_nodes_collection = this.props.level_model.get('nodes');
+                var level_nodes_array = level_nodes_collection.toJSON();
+                var ids_array = _.pluck(level_nodes_array, 'id');
+                console.info('_.indexOf('+ids_array+', '+current_id+')='+_.indexOf(ids_array, current_id));
+                return _.indexOf(ids_array, current_id)==-1;
+            },
+            hoverFalse: function(){
+                console.log('hoverFalse');
+                this.setState({
+                    hover: false
+                });
+            },
+            hoverTrue: function(){
+                console.log('hoverTrue');
+                this.setState({
+                    hover: true
+                });
             }
         });
 
