@@ -87,11 +87,10 @@ define(
             },
             render: function() {
                 return(
-                    <div
-                        className={this.classes()}
+                    <div className={this.classes()}
                         onMouseEnter={this.hoverTrue}
                         onMouseLeave={this.hoverFalse}
-                        onMouseUp: {this.onDrop}
+                        onMouseUp={this.onDrop}
                     >
                         <div className="level_name">{this.props.level_model.get('name')}</div>
                         <div className="level_nodes">
@@ -179,6 +178,8 @@ define(
                         />
                     );
                     //this.props.currentDragItem
+
+
                 });
 
                 return <div>{output}</div>;
