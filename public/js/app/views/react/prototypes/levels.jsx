@@ -64,11 +64,17 @@ define(
                         <LevelNode node={node}
                             onDragStart={self.props.onDragStart}
                             onDragStop={self.props.onDragStop}
-                            dragData={self.props.dragData}
+                            dragData={self.dragData}
                         />
                     );
                 });
                 return <div classNames="level_node_box">{output}</div>
+            },
+            dragData: function(){
+                return {
+                    type: null,
+                    index: null
+                };
             }
         });
 
@@ -85,6 +91,7 @@ define(
                         className={this.classes()}
                         onMouseEnter={this.hoverTrue}
                         onMouseLeave={this.hoverFalse}
+                        onMouseUp: {this.onDrop}
                     >
                         <div className="level_name">{this.props.level_model.get('name')}</div>
                         <div className="level_nodes">
@@ -92,7 +99,6 @@ define(
                                 level_nodes_collection={this.props.level_model.get('nodes')}
                                 onDragStart={this.props.onDragStart}
                                 onDragStop={this.props.onDragStop}
-                                dragData={this.props.dragData}
                             />
                         </div>
                     </div>
@@ -109,22 +115,18 @@ define(
                       this.disabled()? 'disabled' : '',
                       this.state.hover ? 'hover' : ''
                   ].join(' ');
-                console.info('...return classes...');
-                console.info(classes);
+                console.info('classes= '+classes);
                 return classes;
-            },
-            dragData: function(){
-                return {index: null};
             },
             active: function(){
                 //not current
-
                 // may not work if this will not re-render for change in currentDragItem - always same disabled and active
+
                 var current_id = (this.props.currentDragItem)? this.props.currentDragItem.get('id'):null;
                 var level_nodes_collection = this.props.level_model.get('nodes');
                 var level_nodes_array = level_nodes_collection.toJSON();
                 var ids_array = _.pluck(level_nodes_array, 'id');
-                return _.indexOf(ids_array, current_id)>-1;
+                return (_.indexOf(ids_array, current_id)==-1 && this.props.currentDragItem!= null)? true:false;
             },
             disabled: function(){
                 //current
@@ -133,19 +135,22 @@ define(
                 var level_nodes_array = level_nodes_collection.toJSON();
                 var ids_array = _.pluck(level_nodes_array, 'id');
                 console.info('_.indexOf('+ids_array+', '+current_id+')='+_.indexOf(ids_array, current_id));
-                return _.indexOf(ids_array, current_id)==-1;
+                return (_.indexOf(ids_array, current_id)!=-1 && this.props.currentDragItem!= null)? true:false;
             },
             hoverFalse: function(){
-                console.log('hoverFalse');
                 this.setState({
                     hover: false
                 });
             },
             hoverTrue: function(){
-                console.log('hoverTrue');
                 this.setState({
                     hover: true
                 });
+            },
+            onDrop: function(){
+                if(this.active()){
+                    return({index: this.props.index + 1});
+                }
             }
         });
 
@@ -159,15 +164,17 @@ define(
                 */
 
                 var self = this;
+                var _i = 0; // ?
                 output = this.props.levels_collection.map(function(level_model) {
                     console.log('level-model');
                     console.log(level_model);
                     return (
                         <Level
                             level_model={level_model}
-                            onDragStart={this.onDragStart}
-                            onDragStop={this.onDragStop}
-                            onDrop={this.onDrop}
+                            index={++_i}
+                            onDragStart={self.props.onDragStart}
+                            onDragStop={self.props.onDragStop}
+                            onDrop={self.props.onDrop}
                             currentDragItem={self.props.currentDragItem}
                         />
                     );
