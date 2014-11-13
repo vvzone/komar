@@ -25,11 +25,23 @@ define(
                 var class_name= "level_node" + ((r_type.code==1 || r_type.code==2)? " node_real": " node_abstract") + (this.state.dragging? " dragging": "");
                 var title = '';
                 return(
-                    <div className={class_name}
+                    <div
+                        style={this.style()}
+                        className={class_name}
                         onMouseDown={this.onMouseDown}
                     >
                             <div className="node_title">Title</div>
                     </div>);
+            },
+            style: function(){
+                if(this.state.dragging){
+                    return {
+                            position: 'absolute',
+                            left: this.state.left,
+                            top: this.state.top
+                        };
+                }
+                return {};
             },
             makeTitle: function(r_type){
                 var title = r_type.name;
@@ -70,8 +82,9 @@ define(
                 });
                 return <div classNames="level_node_box">{output}</div>
             },
-            dragData: function(){
+            dragData: function(node){
                 return {
+                    node: node,
                     type: null,
                     index: null
                 };
@@ -114,14 +127,14 @@ define(
                       this.disabled()? 'disabled' : '',
                       this.state.hover ? 'hover' : ''
                   ].join(' ');
-                console.info('classes= '+classes);
+                //console.info('classes= '+classes);
                 return classes;
             },
             active: function(){
                 //not current
                 // may not work if this will not re-render for change in currentDragItem - always same disabled and active
 
-                var current_id = (this.props.currentDragItem)? this.props.currentDragItem.get('id'):null;
+                var current_id = (this.props.currentDragItem)? this.props.currentDragItem.node.get('id'):null;
                 var level_nodes_collection = this.props.level_model.get('nodes');
                 var level_nodes_array = level_nodes_collection.toJSON();
                 var ids_array = _.pluck(level_nodes_array, 'id');
@@ -129,11 +142,11 @@ define(
             },
             disabled: function(){
                 //current
-                var current_id = (this.props.currentDragItem)? this.props.currentDragItem.get('id'):null;
+                var current_id = (this.props.currentDragItem)? this.props.currentDragItem.node.get('id'):null;
                 var level_nodes_collection = this.props.level_model.get('nodes');
                 var level_nodes_array = level_nodes_collection.toJSON();
                 var ids_array = _.pluck(level_nodes_array, 'id');
-                console.info('_.indexOf('+ids_array+', '+current_id+')='+_.indexOf(ids_array, current_id));
+                //console.info('_.indexOf('+ids_array+', '+current_id+')='+_.indexOf(ids_array, current_id));
                 return (_.indexOf(ids_array, current_id)!=-1 && this.props.currentDragItem!= null)? true:false;
             },
             hoverFalse: function(){
@@ -147,6 +160,14 @@ define(
                 });
             },
             onDrop: function(){
+                console.info('onDrop -> ');
+                console.info('this level=');
+                console.info(this.props.level_model);
+                console.info('this.props.currentDragItem.node');
+                console.info(this.props.currentDragItem.node);
+                var current_nodes_collection = this.props.level_model.get('nodes');
+
+                current_nodes_collection.add(this.props.currentDragItem.node); //check this!
                 if(this.active()){
                     return({index: this.props.index + 1});
                 }
@@ -230,6 +251,9 @@ define(
                 );
             },
             onDragStart: function(details){
+                console.info('onDragStart->setState->currentDragItem = details,');
+                console.info(details);
+
                 this.setState({
                     currentDragItem: details
                 });
@@ -240,9 +264,11 @@ define(
                 });
             },
             onDrop: function(target){
+                console.info('onDrop->(target)=');
+                console.info(target);
                 this.setState({
                     lastDrop: {
-                        source: this.state.currentDragItem,
+                        source: this.state.currentDragItem.node,
                         target: target
                     }
                 });

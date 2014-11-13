@@ -21,7 +21,9 @@ define(
                         event.stopPropagation();
                     }
                     this.addEvents();
-                    var pageOffset = this.getDOMNode.getBoundingClientRect();
+
+                    var pageOffset = this.getDOMNode().getBoundingClientRect();
+
                     this.setState({
                         mouseDown: true,
                         originX: event.pageX,
@@ -38,7 +40,8 @@ define(
                         this.setState({
                             dragging: true
                         });
-                        this.props.onDragStart(this.props.dragData);
+                        console.log('drag start...');
+                        this.props.onDragStart(this.props.dragData(this.props.node));
                     }
                     if(this.state.dragging){
                         this.setState({
@@ -58,10 +61,13 @@ define(
                 },
                 addEvents: function(){
                     //listeners for mouse_up, mouse_move
+                    document.addEventListener('mousemove', this.onMouseMove);
+                    document.addEventListener('mouseup', this.onMouseUp);
                 },
                 removeEvents: function(){
                     //listeners for mouse_up, mouse_move
-
+                    document.removeEventListener('mousemove', this.onMouseMove);
+                    document.removeEventListener('mouseup', this.onMouseUp);
                 }
             }
         }()
