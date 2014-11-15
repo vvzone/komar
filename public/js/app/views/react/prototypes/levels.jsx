@@ -24,13 +24,14 @@ define(
                 var r_type = this.props.node.get('recipient_type');
                 var class_name= "level_node" + ((r_type.code==1 || r_type.code==2)? " node_real": " node_abstract") + (this.state.dragging? " dragging": "");
                 var title = '';
+                //<div className="node_title">Title</div>
+                //style={this.style()}
                 return(
                     <div
-                        style={this.style()}
+                        draggable="true"
                         className={class_name}
                         onMouseDown={this.onMouseDown}
                     >
-                            <div className="node_title">Title</div>
                     </div>);
             },
             style: function(){
@@ -99,6 +100,9 @@ define(
                 };
             },
             render: function() {
+                this.onMouseOver = function(){
+                    console.warn('onMouseOver JS');
+                };
                 return(
                     <div className={this.classes()}
                         onMouseEnter={this.hoverTrue}
@@ -155,19 +159,33 @@ define(
                 });
             },
             hoverTrue: function(){
+                console.info('Hover = ' + this.props.level_model.get('name'));
                 this.setState({
                     hover: true
                 });
             },
             onDrop: function(){
                 console.info('onDrop -> ');
-                console.info('this level=');
+                console.info('this level (who throw onDrop)=');
                 console.info(this.props.level_model);
-                console.info('this.props.currentDragItem.node');
-                console.info(this.props.currentDragItem.node);
-                var current_nodes_collection = this.props.level_model.get('nodes');
 
-                current_nodes_collection.add(this.props.currentDragItem.node); //check this!
+                var old_collection = this.props.currentDragItem.node.collection;
+                console.info('old_collection');
+                console.info(old_collection);
+
+                var current_nodes_collection = this.props.level_model.get('nodes');
+                console.info('Dragged on Level_model:'); //wrong level dragged on
+                console.info(this.props.level_model);
+                console.info('Dragged ON nodes_collection:');
+                console.info(current_nodes_collection);
+
+                var draggedNode = this.props.currentDragItem.node;
+                console.info('draggedNode');
+                console.info(draggedNode);
+
+                current_nodes_collection.add(draggedNode); //check this!
+                //old_collection.remove(draggedNode);
+
                 if(this.active()){
                     return({index: this.props.index + 1});
                 }
