@@ -16,7 +16,7 @@ define(
         var DragAndDropClassMixin = function () {
             return{
                 onMouseDown: function(event){
-                    console.log('onMouseDown');
+                    console.log('DragAndDropClassMixin -> onMouseDown');
                     if(event.button == LEFT_BUTTON){
                         event.stopPropagation();
                     }
@@ -33,14 +33,16 @@ define(
                     });
                 },
                 onMouseMove: function(event){
+                    console.info('DragAndDropClassMixin -> onMouseMove ');
                     var deltaX = event.pageX - this.state.originX;
                     var deltaY = event.pageY - this.state.originY;
                     var distance = Math.abs(deltaX) + Math.abs(deltaY);
-                    if(this.state.dragging == false && distance > DRAG_THRESHOLD ){
+
+                    /*if(this.state.dragging == false && distance > DRAG_THRESHOLD ){
                         this.setState({
                             dragging: true
                         });
-                        console.log('drag start...');
+                        console.log('onMouseMove -> this.props.onDragStart call...');
                         this.props.onDragStart(this.props.dragData(this.props.node));
                     }
                     if(this.state.dragging){
@@ -48,9 +50,10 @@ define(
                             left: this.state.elementX + deltaX + document.body.scrollLeft,
                             top: this.state.elementY + deltaY + document.body.scrollTop
                         });
-                    }
+                    }*/
                 },
                 onMouseUp: function(){
+                    console.info('DragAndDropClassMixin -> onMouseUp');
                     this.removeEvents();
                     if(this.state.dragging){
                         this.props.onDragStop();
@@ -61,11 +64,13 @@ define(
                 },
                 addEvents: function(){
                     //listeners for mouse_up, mouse_move
+                    console.info('addEvents...');
                     document.addEventListener('mousemove', this.onMouseMove);
                     document.addEventListener('mouseup', this.onMouseUp);
                 },
                 removeEvents: function(){
                     //listeners for mouse_up, mouse_move
+                    console.info('removeEvents...');
                     document.removeEventListener('mousemove', this.onMouseMove);
                     document.removeEventListener('mouseup', this.onMouseUp);
                 }

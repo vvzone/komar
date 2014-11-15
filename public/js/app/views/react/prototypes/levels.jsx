@@ -25,13 +25,14 @@ define(
                 var class_name= "level_node" + ((r_type.code==1 || r_type.code==2)? " node_real": " node_abstract") + (this.state.dragging? " dragging": "");
                 var title = '';
                 //<div className="node_title">Title</div>
-                //style={this.style()}
+                //
                 return(
                     <div
-                        draggable="true"
+                        style={this.style()}
                         className={class_name}
                         onMouseDown={this.onMouseDown}
-                    >
+                        onMouseUp={this.onMouseUp}
+                    >TEST
                     </div>);
             },
             style: function(){
@@ -100,11 +101,12 @@ define(
                 };
             },
             render: function() {
-                this.onMouseOver = function(){
+                /*$(this.getDOMNode()).mouseover(function(){
                     console.warn('onMouseOver JS');
-                };
+                });*/
                 return(
                     <div className={this.classes()}
+                        onMouseOver={this.testOver}
                         onMouseEnter={this.hoverTrue}
                         onMouseLeave={this.hoverFalse}
                         onMouseUp={this.onDrop}
@@ -153,7 +155,11 @@ define(
                 //console.info('_.indexOf('+ids_array+', '+current_id+')='+_.indexOf(ids_array, current_id));
                 return (_.indexOf(ids_array, current_id)!=-1 && this.props.currentDragItem!= null)? true:false;
             },
+            testOver: function(){
+                console.info('testOver');
+            },
             hoverFalse: function(){
+                console.info('hoverFalse '+ this.props.level_model.get('name'));
                 this.setState({
                     hover: false
                 });
@@ -165,29 +171,32 @@ define(
                 });
             },
             onDrop: function(){
-                console.info('onDrop -> ');
-                console.info('this level (who throw onDrop)=');
-                console.info(this.props.level_model);
+                //проверять был ли реальный дрег
+                if(this.props.currentDragItem!=null){
+                    console.info('onDrop -> ');
+                    console.info('this level (who throw onDrop)=');
+                    console.info(this.props.level_model);
 
-                var old_collection = this.props.currentDragItem.node.collection;
-                console.info('old_collection');
-                console.info(old_collection);
+                    var old_collection = this.props.currentDragItem.node.collection;
+                    console.info('old_collection');
+                    console.info(old_collection);
 
-                var current_nodes_collection = this.props.level_model.get('nodes');
-                console.info('Dragged on Level_model:'); //wrong level dragged on
-                console.info(this.props.level_model);
-                console.info('Dragged ON nodes_collection:');
-                console.info(current_nodes_collection);
+                    var current_nodes_collection = this.props.level_model.get('nodes');
+                    console.info('Dragged on Level_model:'); //wrong level dragged on
+                    console.info(this.props.level_model);
+                    console.info('Dragged ON nodes_collection:');
+                    console.info(current_nodes_collection);
 
-                var draggedNode = this.props.currentDragItem.node;
-                console.info('draggedNode');
-                console.info(draggedNode);
+                    var draggedNode = this.props.currentDragItem.node;
+                    console.info('draggedNode');
+                    console.info(draggedNode);
 
-                current_nodes_collection.add(draggedNode); //check this!
-                //old_collection.remove(draggedNode);
+                    current_nodes_collection.add(draggedNode); //check this!
+                    //old_collection.remove(draggedNode);
 
-                if(this.active()){
-                    return({index: this.props.index + 1});
+                    if(this.active()){
+                        return({index: this.props.index + 1});
+                    }
                 }
             }
         });
@@ -271,10 +280,11 @@ define(
             onDragStart: function(details){
                 console.info('onDragStart->setState->currentDragItem = details,');
                 console.info(details);
-
+                /*
                 this.setState({
                     currentDragItem: details
                 });
+                */
             },
             onDragStop: function(){
                 this.setState({
