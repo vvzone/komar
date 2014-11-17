@@ -16,7 +16,7 @@ define(
         var DragAndDropClassMixin = function () {
             return{
                 onMouseDown: function(event){
-                    console.log('DragAndDropClassMixin -> onMouseDown');
+                    //console.log('DragAndDropClassMixin -> onMouseDown');
 
                     if(event.button == LEFT_BUTTON){
                         event.stopPropagation(); //still not working...
@@ -35,7 +35,7 @@ define(
                     return false;
                 },
                 onMouseMove: function(event){
-                    console.info('DragAndDropClassMixin -> onMouseMove ');
+                    //console.info('DragAndDropClassMixin -> onMouseMove ');
                     var deltaX = event.pageX - this.state.originX;
                     var deltaY = event.pageY - this.state.originY;
                     var distance = Math.abs(deltaX) + Math.abs(deltaY);
@@ -66,13 +66,13 @@ define(
                 },
                 addEvents: function(){
                     //listeners for mouse_up, mouse_move
-                    console.info('addEvents...');
+                    //console.info('addEvents...');
                     document.addEventListener('mousemove', this.onMouseMove);
                     document.addEventListener('mouseup', this.onMouseUp);
                 },
                 removeEvents: function(){
                     //listeners for mouse_up, mouse_move
-                    console.info('removeEvents...');
+                    //console.info('removeEvents...');
                     document.removeEventListener('mousemove', this.onMouseMove);
                     document.removeEventListener('mouseup', this.onMouseUp);
                 }

@@ -104,10 +104,10 @@ define(
                 /*$(this.getDOMNode()).mouseover(function(){
                     console.warn('onMouseOver JS');
                 });*/
+                //onMouseOver={this.testOver}
                 return(
                     <div className={this.classes()}
-                        onMouseOver={this.testOver}
-                        onMouseEnter={this.hoverTrue}
+                        onMouseEnter={this.testEnter}
                         onMouseLeave={this.hoverFalse}
                         onMouseUp={this.onDrop}
                     >
@@ -155,10 +155,10 @@ define(
                 //console.info('_.indexOf('+ids_array+', '+current_id+')='+_.indexOf(ids_array, current_id));
                 return (_.indexOf(ids_array, current_id)!=-1 && this.props.currentDragItem!= null)? true:false;
             },
-            testOver: function(event){
-                console.info('testOver, event.taget:');
-                console.info(event.target);
-                console.info('react Component= '+ this.props.level_model.get('name'))
+            testEnter: function(event){
+                //console.info('testEnter, event.taget:');
+                //console.info(event.target);
+                console.info('Enter && React.Class= '+ this.props.level_model.get('name'))
             },
             hoverFalse: function(){
                 console.info('hoverFalse '+ this.props.level_model.get('name'));
@@ -282,11 +282,11 @@ define(
             onDragStart: function(details){
                 console.info('onDragStart->setState->currentDragItem = details,');
                 console.info(details);
-                /*
+
                 this.setState({
                     currentDragItem: details
                 });
-                */
+
             },
             onDragStop: function(){
                 this.setState({
