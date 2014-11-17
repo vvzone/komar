@@ -27,7 +27,7 @@ define(
                 //<div className="node_title">Title</div>
                 //
                 return(
-                    <div
+                    <div 
                         style={this.style()}
                         className={class_name}
                         onMouseDown={this.onMouseDown}

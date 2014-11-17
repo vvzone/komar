@@ -49,16 +49,30 @@ define(
         },
         react: function(){
             console.log('route to react test module...');
-            var component_name = 'views/react/prototypes/levels';
+            //var component_name = 'views/react/prototypes/levels';
+            var component_name = 'views/react/prototypes/example';
             var collection_name = 'views/react/prototypes/node_levels_collection';
 
-            require([collection_name, 'jsx!'+component_name], function(TestCollectionOne, Component){
+            //'jsx!'+
+            var test_style = '<link href="js/app/views/react/prototypes/test_style.css" rel="stylesheet" media="all"/>';
+
+            $('head').html(''); //clear all styles
+            $('head').append(test_style);
+
+            require([collection_name, component_name], function(TestCollectionOne, Component){
                 React.renderComponent(
                     new Component({
                         collection: TestCollectionOne //new LevelCollection(data)
                     }), document.getElementById("main_main")
                 );
             });
+
+
+            /*
+            require(['css!views/react/prototypes/test_style'], function(StyleSHIT){
+                console.info('CSS TEST OUTPUT:');
+                console.info(StyleSHIT);
+            });*/
 
         }
     });

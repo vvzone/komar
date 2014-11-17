@@ -12,10 +12,14 @@ require.config({
         react: './libs/react/react',
         apiUrl: 'apiUrl',
         event_bus: 'event_bus'
+        //css: './libs/require-css/css.min'
     },
     jsx: {
         fileExtension: '.jsx'
-    },
+    },/* ---- not working...
+    css: {
+        fileExtension: '.css'
+    },*/
     urlArgs: "v=" +  (new Date()).getTime(), //remove for production
     shim: {
         jquery: {
