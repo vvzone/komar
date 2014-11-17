@@ -155,8 +155,10 @@ define(
                 //console.info('_.indexOf('+ids_array+', '+current_id+')='+_.indexOf(ids_array, current_id));
                 return (_.indexOf(ids_array, current_id)!=-1 && this.props.currentDragItem!= null)? true:false;
             },
-            testOver: function(){
-                console.info('testOver');
+            testOver: function(event){
+                console.info('testOver, event.taget:');
+                console.info(event.target);
+                console.info('react Component= '+ this.props.level_model.get('name'))
             },
             hoverFalse: function(){
                 console.info('hoverFalse '+ this.props.level_model.get('name'));

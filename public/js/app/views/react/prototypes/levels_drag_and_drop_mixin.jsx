@@ -17,11 +17,12 @@ define(
             return{
                 onMouseDown: function(event){
                     console.log('DragAndDropClassMixin -> onMouseDown');
-                    if(event.button == LEFT_BUTTON){
-                        event.stopPropagation();
-                    }
-                    this.addEvents();
 
+                    if(event.button == LEFT_BUTTON){
+                        event.stopPropagation(); //still not working...
+                    }
+
+                    this.addEvents();
                     var pageOffset = this.getDOMNode().getBoundingClientRect();
 
                     this.setState({
@@ -31,6 +32,7 @@ define(
                         elementX: pageOffset.left,
                         elementY:pageOffset.top
                     });
+                    return false;
                 },
                 onMouseMove: function(event){
                     console.info('DragAndDropClassMixin -> onMouseMove ');
@@ -38,7 +40,7 @@ define(
                     var deltaY = event.pageY - this.state.originY;
                     var distance = Math.abs(deltaX) + Math.abs(deltaY);
 
-                    /*if(this.state.dragging == false && distance > DRAG_THRESHOLD ){
+                    if(this.state.dragging == false && distance > DRAG_THRESHOLD ){
                         this.setState({
                             dragging: true
                         });
@@ -50,7 +52,7 @@ define(
                             left: this.state.elementX + deltaX + document.body.scrollLeft,
                             top: this.state.elementY + deltaY + document.body.scrollTop
                         });
-                    }*/
+                    }
                 },
                 onMouseUp: function(){
                     console.info('DragAndDropClassMixin -> onMouseUp');
