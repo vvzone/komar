@@ -516,15 +516,17 @@ div.switch_view {
   text-align: center;
   padding: 10px;
 }
+/* for level nodes */
 div.level {
-  margin-top: 2px;
+  margin-top: 0;
   padding: 10px;
-  border: 1px solid #a6a6a6;
-  -webkit-border-radius: 4px!important;
-  -moz-border-radius: 4px!important;
-  border-radius: 4px!important;
-  background: #faffff;
-  box-shadow: 1px 1px 1px rgba(199, 213, 244, 0.35);
+  padding-left: 40px;
+  font-family: Helvetica;
+  color: #dddee0;
+  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 100;
+  background: #5f7aa7;
 }
 div.level div.level_nodes {
   /*padding: 10px;*/
@@ -534,6 +536,39 @@ div.level div.level_nodes div {
   float: left;
   display: table-cell;
   vertical-align: middle;
+}
+div.level div.level_nodes div ul li {
+  float: left;
+  display: block;
+  padding: 5px;
+  background: #d55d2e;
+}
+div.level div.level_nodes div ul li.level_color_1 {
+  background: #d55d2e;
+}
+div.level div.level_nodes div ul li.level_color_2 {
+  background: #0589bb;
+}
+div.level div.level_nodes div ul li.level_color_3 {
+  background: #8bac39;
+}
+div.level div.level_nodes div ul li.level_color_4 {
+  background: #8bac39;
+}
+div.level div.level_nodes div ul li.level_color_5 {
+  background: #8bac39;
+}
+div.level div.level_nodes div ul li.level_color_6 {
+  background: #8bac39;
+}
+div.level div.level_nodes div ul li.level_color_7 {
+  background: #8bac39;
+}
+div.level div.level_nodes div ul li.level_color_8 {
+  background: #8bac39;
+}
+div.level div.level_nodes div ul li.level_color_9 {
+  background: #8bac39;
 }
 div.level div.level_nodes div div.node_title {
   /*overflow: hidden;*/
@@ -562,4 +597,8 @@ div.level div.level_nodes div.node_real {
   width: 60px;
   height: 60px;
   background: url('/img/admin/node_real_dark.png');
+}
+div.level:nth-child(odd) {
+  background: #6298f1;
+  color: #dddee0;
 }

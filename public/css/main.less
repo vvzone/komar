@@ -705,19 +705,33 @@ div.switch_view{
   }
 }
 
+@level_bg_dark: #5f7aa7;
+//@level_bg_light: #6a8eca;
+@level_bg_light: #6298f1;
+@level_almost_white:#dddee0;
+
+/* for level nodes */
+@level_color_1: #d55d2e;
+@level_color_2: #0589bb;
+@level_color_3: #8bac39;
+@level_color_4: #8bac39;
+@level_color_5: #8bac39;
+@level_color_6: #8bac39;
+@level_color_7: #8bac39;
+@level_color_8: #8bac39;
+@level_color_9: #8bac39;
+@level_color_10: #8bac39;
 
 div.level{
-  margin-top: @min;
+  margin-top: 0; //@min;
   padding: @big;
-  //border: 1px solid @blue_glow;
-  border: 1px solid #a6a6a6;
-  -webkit-border-radius: 4px!important;
-  -moz-border-radius: 4px!important;
-  border-radius: 4px!important;
-  //background: @light_grey_from_blue;
-  background: #faffff;
-  //box-shadow: 0 1px 0 rgba(243, 247, 255, 0.15) inset, 0 1px 1px rgba(0, 0, 0, 0.065);
-  box-shadow: 1px 1px 1px rgba(199, 213, 244, 0.35);
+  padding-left: @big*4;
+  font-family: Helvetica;
+  color: @level_almost_white;
+  line-height: 1.5;
+  font-size: 18px;
+  font-weight: 100;
+  background: @level_bg_dark;
 
   div.level_name{
 
@@ -731,6 +745,52 @@ div.level{
       float: left;
       display: table-cell;
       vertical-align: middle;
+
+      ul{
+
+        li{
+          float:left;
+          display: block;
+          padding: @med;
+          background: @level_color_1;
+        }
+
+        li.level_color_1{
+          background: @level_color_1;
+        }
+
+        li.level_color_2{
+          background: @level_color_2;
+        }
+
+        li.level_color_3{
+          background: @level_color_3;
+        }
+
+        li.level_color_4{
+          background: @level_color_4;
+        }
+
+        li.level_color_5{
+          background: @level_color_5;
+        }
+
+        li.level_color_6{
+          background: @level_color_6;
+        }
+
+        li.level_color_7{
+          background: @level_color_7;
+        }
+
+        li.level_color_8{
+          background: @level_color_8;
+        }
+
+        li.level_color_9{
+          background: @level_color_9;
+        }
+      }
 
       div.node_title{
         /*overflow: hidden;*/
@@ -766,4 +826,9 @@ div.level{
       background: url('/img/admin/node_real_dark.png');
     }
   }
+}
+div.level:nth-child(odd){
+  background: @level_bg_light;
+  //color: @bg_level_light;
+  color: @level_almost_white;
 }

@@ -22,18 +22,18 @@ define(
             render: function() {
                 var output;
                 var r_type = this.props.node.get('recipient_type');
-                var class_name= "level_node" + ((r_type.code==1 || r_type.code==2)? " node_real": " node_abstract") + (this.state.dragging? " dragging": "");
+                var class_name= "level_node" + ((r_type.code==1 || r_type.code==2)? " node_real": " node_abstract") + (this.state.dragging? " dragging": "") +" level_color_"+this.props.colorClassNum;
                 var title = '';
                 //<div className="node_title">Title</div>
                 //
                 return(
-                    <div 
+                    <li
                         style={this.style()}
                         className={class_name}
                         onMouseDown={this.onMouseDown}
                         onMouseUp={this.onMouseUp}
                     >TEST
-                    </div>);
+                    </li>);
             },
             style: function(){
                 if(this.state.dragging){
@@ -71,18 +71,40 @@ define(
         var LevelNodes = React.createClass({
             componentWillMount: function() {},
             render: function() {
-                var output;
+                var output = [];
                 var self = this;
-                output = this.props.level_nodes_collection.map(function(node) {
-                    return (
+
+                //output = <ul></ul>;
+
+                /*
+                this.props.level_nodes_collection.map(function(node) {
+                        output.push(
+                            <LevelNode node={node}
+                            onDragStart={self.props.onDragStart}
+                            onDragStop={self.props.onDragStop}
+                            dragData={self.dragData}
+                            />
+                        );
+                    }
+                );
+                */
+
+                var i = 0;
+
+                this.props.level_nodes_collection.each(function(node) {
+                    console.info('each -> node:');
+                    console.info(node);
+                    i = (i<9)? ++i:0;
+                    output.push(
                         <LevelNode node={node}
                             onDragStart={self.props.onDragStart}
                             onDragStop={self.props.onDragStop}
                             dragData={self.dragData}
+                            colorClassNum={i}
                         />
                     );
                 });
-                return <div classNames="level_node_box">{output}</div>
+                return <div classNames="level_node_box"><ul>{output}</ul></div>
             },
             dragData: function(node){
                 return {

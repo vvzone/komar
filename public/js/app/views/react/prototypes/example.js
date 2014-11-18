@@ -23,7 +23,6 @@ define(
                 document.addEventListener('DOMContentLoaded', function() {
                     return React.renderComponent(Example(), document.body);
                 });
-
                 Example = React.createClass({
                     getInitialState: function() {
                         return {
