@@ -32,7 +32,7 @@ define(
                         className={class_name}
                         onMouseDown={this.onMouseDown}
                         onMouseUp={this.onMouseUp}
-                    >TEST
+                    >{this.title()}
                     </li>);
             },
             style: function(){
@@ -44,6 +44,21 @@ define(
                         };
                 }
                 return {};
+            },
+            title: function(){
+              var title;
+              var r_type = this.props.node.get('recipient_type');
+              if(r_type.code == 1 || r_type.code == 2 ){
+                  title = this.props.node.get('client').full_name;
+                  console.log("this.node.get('client')");
+                  console.log(this.props.node.get('client'));
+              }else{
+                  title = r_type.name;
+                  console.log('r_type.name');
+                  console.log(r_type.name);
+              }
+
+              return title;
             },
             makeTitle: function(r_type){
                 var title = r_type.name;
@@ -92,8 +107,6 @@ define(
                 var i = 0;
 
                 this.props.level_nodes_collection.each(function(node) {
-                    console.info('each -> node:');
-                    console.info(node);
                     i = (i<9)? ++i:0;
                     output.push(
                         <LevelNode node={node}

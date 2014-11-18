@@ -705,36 +705,39 @@ div.switch_view{
   }
 }
 
-@level_bg_dark: #5f7aa7;
+//@level_bg_dark: #5f7aa7;
+//@level_bg_dark: #99ccff;//#6298f1;
+@level_bg_dark: #d9e8ff;
 //@level_bg_light: #6a8eca;
-@level_bg_light: #6298f1;
-@level_almost_white:#dddee0;
+//@level_bg_light: #6298f1;
+//@level_bg_light: #cce1ff;//#9dbdff;
+@level_bg_light: #e9f0ff;
+@level_almost_white: #ffffff; //#dddee0;
 
 /* for level nodes */
-@level_color_1: #d55d2e;
-@level_color_2: #0589bb;
-@level_color_3: #8bac39;
-@level_color_4: #8bac39;
-@level_color_5: #8bac39;
-@level_color_6: #8bac39;
-@level_color_7: #8bac39;
-@level_color_8: #8bac39;
-@level_color_9: #8bac39;
-@level_color_10: #8bac39;
+@level_color_1: #F6672E; //#d55d2e;
+@level_color_2: #009BD4;//#0589bb;
+@level_color_3: #9FC53A;//#8bac39;
+@level_color_4: #FFB200;//#dd9c08;
+@level_color_5: #8F5A9F;//#7e528e;
+@level_color_6: #4EC9BE;//#47b0a9;
+@level_color_7: #B7AEAC;//#a09999;
+@level_color_8: #3A537C;//#364c71;
+@level_color_9: #e20404;//#be4c4c;
 
 div.level{
   margin-top: 0; //@min;
   padding: @big;
-  padding-left: @big*4;
+  padding-left: @big;
   font-family: Helvetica;
-  color: @level_almost_white;
+  color: @level_color_8;
   line-height: 1.5;
-  font-size: 18px;
   font-weight: 100;
   background: @level_bg_dark;
 
   div.level_name{
-
+    font-size: 1.2em;
+    padding: @big;
   }
 
   div.level_nodes{
@@ -747,12 +750,24 @@ div.level{
       vertical-align: middle;
 
       ul{
+        overflow: hidden;
 
         li{
+          cursor: pointer;
           float:left;
           display: block;
-          padding: @med;
+          font-family: Helvetica;
+          font-size: @base_font_size;
+          padding: @big;
+          padding-left: @big*4;
+          padding-right: @big*4;
           background: @level_color_1;
+          color: @level_almost_white;
+          opacity: 0.75;
+        }
+
+        li:hover{
+          opacity: 1;
         }
 
         li.level_color_1{
@@ -790,6 +805,22 @@ div.level{
         li.level_color_9{
           background: @level_color_9;
         }
+
+        li.dragging{
+          border: 1px solid white;
+          z-index: 3;
+        }
+      }//
+
+      li.node_real{
+        display: table-cell;
+        overflow: hidden;
+        /*width: 60px;
+        height: 60px;*/
+        //background: url('/img/admin/node_real.png');
+        background-image: url('/img/admin/node_real_small_white.png')!important;
+        background-repeat: no-repeat!important;
+        background-position: 5% 45%!important;
       }
 
       div.node_title{
@@ -830,5 +861,6 @@ div.level{
 div.level:nth-child(odd){
   background: @level_bg_light;
   //color: @bg_level_light;
-  color: @level_almost_white;
+  color: @level_color_8;
+  //color: #2d5eaf;
 }
