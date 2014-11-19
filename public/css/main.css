@@ -549,6 +549,7 @@ div.level div.level_nodes div ul li {
   display: block;
   font-family: Helvetica;
   font-size: 1em;
+  margin-left: 2px;
   padding: 10px;
   padding-left: 40px;
   padding-right: 40px;
@@ -597,7 +598,7 @@ div.level div.level_nodes div li.node_real {
         height: 60px;*/
   background-image: url('/img/admin/node_real_small_white.png') !important;
   background-repeat: no-repeat !important;
-  background-position: 5% 45%!important;
+  background-position: 9px 46%!important;
 }
 div.level div.level_nodes div div.node_title {
   /*overflow: hidden;*/

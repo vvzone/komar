@@ -24,13 +24,22 @@ define(
             {id: 944, level_type_name: 'Подпись'}
         ];
 
+        /*
         var recipient_type = [
             {id: 34847, code: 1, name: 'Узел'}, //0
             {id: 2,     code: 2, name: 'Подразделение'}, //1
             {id: 124,   code: 3, name: 'Автор'}, //2
             {id: 24,    code: 4, name: 'Начальник'}, //3
             {id: 3248,  code: 5, name: 'Визирующее лицо'} //4
+        ];*/
+
+        var recipient_type = [
+            {id: 34847, code: 1, name: 'Узел/Подразделение'}, //0
+            {id: 124,   code: 2, name: 'Автор'}, //1
+            {id: 24,    code: 3, name: 'Начальник'}, //2
+            {id: 3248,  code: 4, name: 'Визирующее лицо'} //3
         ];
+
         var clients = [
             {id:2345378, full_name: 'Петров Петр Игоревич', name: 'Петр', family_name: 'Петров'},
             {id:23872, full_name: 'Отдел материально-технического снабжения', short_name: 'Отдел МТО'},
@@ -42,42 +51,52 @@ define(
                 recipient_type: recipient_type[4], client: 99000,
                 task: 'Проверить',
                 node_state: node_state[2],
-                period_type: 1, time_stamp: null, period_length: 1},
+                period_type: 1, time_stamp: null, period_length: 1},//0
             {id: 3008, node_level_id: 102, sort_order: 0,
                 recipient_type: recipient_type[4], client: 99000,
                 task: 'Проверить',
                 node_state: node_state[2],
-                period_type: 1, time_stamp: null, period_length: 1},
+                period_type: 1, time_stamp: null, period_length: 1},//1
             {id: 3006, node_level_id: 102, sort_order: 1,
                 recipient_type: recipient_type[4], client: 99000,
                 task: 'Проверить',
                 node_state: node_state[2],
-                period_type: 1, time_stamp: null, period_length: 1},
+                period_type: 1, time_stamp: null, period_length: 1},//2
             {id: 3009, node_level_id: 103, sort_order: 0,
                 recipient_type: recipient_type[0], client: clients[0],
                 task: 'Проверить',
                 node_state: node_state[2],
-                period_type: 1, time_stamp: null, period_length: 1},
+                period_type: 1, time_stamp: null, period_length: 1},//3
             {id: 45609, node_level_id: 103, sort_order: 0,
                 recipient_type: recipient_type[1], client: clients[2],
                 task: 'Проверить',
                 node_state: node_state[2],
-                period_type: 1, time_stamp: null, period_length: 1},
+                period_type: 1, time_stamp: null, period_length: 1},//4
             {id: 35609, node_level_id: 101, sort_order: 0,
                 recipient_type: recipient_type[3], client: clients[2],
                 task: 'Проверить',
                 node_state: node_state[2],
-                period_type: 1, time_stamp: null, period_length: 1},
+                period_type: 1, time_stamp: null, period_length: 1},//5
             {id: 3343209, node_level_id: 101, sort_order: 0,
                 recipient_type: recipient_type[2], client: clients[2],
                 task: 'Проверить',
                 node_state: node_state[2],
-                period_type: 1, time_stamp: null, period_length: 1}
+                period_type: 1, time_stamp: null, period_length: 1},//6
+            {id: 4, node_level_id: 101, sort_order: 0,
+                recipient_type: recipient_type[4], client: 32423,
+                task: 'Проверить',
+                node_state: node_state[2],
+                period_type: 1, time_stamp: null, period_length: 1},//7
+            {id: 4509, node_level_id: 101, sort_order: 0,
+                recipient_type: recipient_type[4], client: 324235,
+                task: 'Проверить',
+                node_state: node_state[2],
+                period_type: 1, time_stamp: null, period_length: 1}//8
         ];
         var node_levels = [
-            {id: 101, route: 1, level_order: 1, level_type: level_types[0], name: 'Согласование 1', nodes: [nodes[0], nodes[5], nodes[6]]},
+            {id: 101, route: 1, level_order: 1, level_type: level_types[0], name: 'Согласование 1', nodes: [nodes[0], nodes[5], nodes[6], nodes[8]]},
             {id: 103, route: 1, level_order: 3, level_type: level_types[2], name: 'Исполняющие', nodes: [nodes[1], nodes[2]]},
-            {id: 102, route: 1, level_order: 2, level_type: level_types[0], name: 'Согласование 2', nodes: [nodes[3], nodes[4]]}
+            {id: 102, route: 1, level_order: 2, level_type: level_types[0], name: 'Согласование 2', nodes: [nodes[3], nodes[4], nodes[7], nodes[5]]}
         ];
 
         var NodeLevelModel = Backbone.Model.extend({

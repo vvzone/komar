@@ -104,7 +104,10 @@ define(
                 );
                 */
 
-                var i = 0;
+
+                var i = this.props.level_cursor;
+                //i = (this.props.level_nodes_cursor>0)? this.props.level_nodes_cursor : 0;
+
 
                 this.props.level_nodes_collection.each(function(node) {
                     i = (i<9)? ++i:0;
@@ -152,6 +155,7 @@ define(
                                 level_nodes_collection={this.props.level_model.get('nodes')}
                                 onDragStart={this.props.onDragStart}
                                 onDragStop={this.props.onDragStop}
+                                level_cursor={this.props.level_nodes_cursor}
                             />
                         </div>
                     </div>
@@ -240,19 +244,21 @@ define(
 
         var ListLevels = React.createClass({
             render: function(){
-                var output;
+                var output = [];
                 /* too much recursion? why? - because my name is muzzy!
                 output = _.each(this.props.levels_collection, function(model){
                     return <ListTableItem model={model} />;
                 });
                 */
 
+                var _i =0;
                 var self = this;
-                var _i = 0; // ?
-                output = this.props.levels_collection.map(function(level_model) {
-                    console.log('level-model');
-                    console.log(level_model);
-                    return (
+                var levels_nodes_cursor = 0;
+                var previous_level_num = 0;
+                this.props.levels_collection.each(function(level_model){
+                    previous_level_num = levels_nodes_cursor;
+                    levels_nodes_cursor  = levels_nodes_cursor + _.size(level_model.get('nodes'));
+                    output.push(
                         <Level
                             level_model={level_model}
                             index={++_i}
@@ -260,11 +266,9 @@ define(
                             onDragStop={self.props.onDragStop}
                             onDrop={self.props.onDrop}
                             currentDragItem={self.props.currentDragItem}
+                            level_nodes_cursor={previous_level_num}
                         />
                     );
-                    //this.props.currentDragItem
-
-
                 });
 
                 return <div>{output}</div>;

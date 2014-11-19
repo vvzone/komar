@@ -315,7 +315,48 @@ define(
                 var production = host + prefix + "/node_types/"+ id;
 
                 return (local_server)? local: production;
+            },
+            /* Client */
+            persons: function() {
+                var local = host + prefix + "/persons";
+                var production = host + prefix + "/persons_list";
+
+                return (local_server)? local: production;
+            },
+            person: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/persons/"+ id;
+                var production = host + prefix + "/person/"+ id;
+
+                return (local_server)? local: production;
+            },
+            units: function() {
+                var local = host + prefix + "/units";
+                var production = host + prefix + "/units_list";
+
+                return (local_server)? local: production;
+            },
+            unit: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/units/"+ id;
+                var production = host + prefix + "/unit/"+ id;
+
+                return (local_server)? local: production;
+            },
+            clients: function() {
+                var local = host + prefix + "/clients";
+                var production = host + prefix + "/clients_list";
+
+                return (local_server)? local: production;
+            },
+            client: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/clients/"+ id;
+                var production = host + prefix + "/client/"+ id;
+
+                return (local_server)? local: production;
             }
+
 
 
 
