@@ -53,6 +53,8 @@ define(
                 /*
                 * возможно стоит сохранять не скопом, а по отдельности
                 * */
+                
+                // ТУТ СОХРАНЯЕТСЯ КОЛЛЕКЦИЯ ДЛЯ CLIENT БУДЕТ ОТДЕЛЬНАЯ МОДЕЛЬ!
                 console.info('->beforeSave');
                 if (_.size(this.get('list_values'))>0) {
                     var new_list_values = this.get('list_values').map(function(model){
@@ -70,20 +72,20 @@ define(
                 console.log(xhr);
                 */
                 // Check if response includes some nested collection data... our case 'nodes'
-                if (_.has(response, 'list_values')){
-                    if(_.size(response.list_values)>0){
+                if (_.has(response, 'person')){
+                    if(_.size(response.person)>0){
                         // Check if this model has a property called nodes
                         /*
                         console.log('this');
                         console.log(this);
                         */
-                        if (!_.has(this, 'list_values')) {  // It does not...
+                        if (!_.has(this, 'person')) {  // It does not...
                             // So instantiate a collection and pass in raw data
                             //this.listValues = new ListCollection(response.listValues);
-                            this.list_values = new ListCollection(response.list_values);
+                            this.person = new ListCollection(response.person);
                         } else {
                             // It does, so just reset the collection
-                            this.list_values.reset(response.list_values);
+                            this.person.reset(response.person);
                         }
                     }
                 }
@@ -92,9 +94,9 @@ define(
             },
             initialize: function(){
                 console.info('Model init');
-                if(_.has(this, 'list_values')){
-                    console.log('rewrite attr.list_values with collection...');
-                    this.set('list_values', this.list_values);
+                if(_.has(this, 'person')){
+                    console.log('rewrite person');
+                    this.set('person', this.person);
                 }
                 this.on('destroy', this.baDaBum);
             },
