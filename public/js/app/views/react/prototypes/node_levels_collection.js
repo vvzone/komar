@@ -83,17 +83,17 @@ define(
 
         var nodes = [
             {id: 3007, node_level_id: 101, sort_order: 0,
-                recipient_type: recipient_type[4], client: 99000,
+                recipient_type: recipient_type[4], client: new ClientModel(clients[0]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//0
             {id: 3008, node_level_id: 102, sort_order: 0,
-                recipient_type: recipient_type[4], client: 99000,
+                recipient_type: recipient_type[4], client: new ClientModel(clients[0]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//1
             {id: 3006, node_level_id: 102, sort_order: 1,
-                recipient_type: recipient_type[4], client: 99000,
+                recipient_type: recipient_type[4], client: new ClientModel(clients[0]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//2
@@ -108,22 +108,22 @@ define(
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//4
             {id: 35609, node_level_id: 101, sort_order: 0,
-                recipient_type: recipient_type[3], client: clients[2],
+                recipient_type: recipient_type[3], client: new ClientModel(clients[0]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//5
             {id: 3343209, node_level_id: 101, sort_order: 0,
-                recipient_type: recipient_type[2], client: clients[2],
+                recipient_type: recipient_type[2], client: new ClientModel(clients[0]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//6
             {id: 4, node_level_id: 101, sort_order: 0,
-                recipient_type: recipient_type[4], client: 32423,
+                recipient_type: recipient_type[4], client: new ClientModel(clients[0]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//7
             {id: 4509, node_level_id: 101, sort_order: 0,
-                recipient_type: recipient_type[4], client: 324235,
+                recipient_type: recipient_type[4], client: new ClientModel(clients[0]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1}//8

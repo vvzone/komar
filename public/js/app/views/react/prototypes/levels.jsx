@@ -21,8 +21,21 @@ define(
             },
             render: function() {
                 var output;
+
                 var r_type = this.props.node.get('recipient_type');
-                var class_name= "level_node" + ((r_type.code==1 || r_type.code==2)? " node_real": " node_abstract") + (this.state.dragging? " dragging": "") +" level_color_"+this.props.colorClassNum;
+                var client = this.props.node.get('client');
+                //console.info('client');
+                //console.info(client);
+                var person = client.get('person');
+                console.info('person='+person);
+                console.info('_.size(person)='+_.size(person));
+
+
+                var class_name =
+                    "level_node"
+                        + (_.size(person)>0)? " node_real": " node_abstract"
+                        + (this.state.dragging? " dragging": "")
+                        +" level_color_"+this.props.colorClassNum;
                 var title = '';
                 //<div className="node_title">Title</div>
                 //

@@ -18,7 +18,7 @@ define(
                 id: null,
                 id_external: null,
                 ident_number: null,
-                full_Name: null,
+                full_name: null,
                 person: [],
                 unit: []
             },
@@ -136,12 +136,10 @@ define(
                         //if (!_.has(this.attributes, 'person')) {  // It does not...
                             // So instantiate a collection and pass in raw data
                             //this.listValues = new ListCollection(response.listValues);
-                            this.set('person', new PersonModel(this.get('person')));
-                            //this.attributes.person = new PersonModel(this.attributes.person);
+                            this.set('person', new PersonModel(this.get('person'))); //Для реальной модели - расскоментить RESET пустой модели
                         /*} else {
                             // It does, so just reset the collection
                             this.get('person').reset(this.get('person'));
-                            //this.attributes.person.reset(this.attributes.person);
                         }*/
                     }
                 }
