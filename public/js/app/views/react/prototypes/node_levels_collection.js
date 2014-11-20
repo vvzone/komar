@@ -6,8 +6,9 @@ define(
         'backbone',
         'react',
         'apiUrl',
-        'views/react/prototypes/nodes_collection'
-    ],function($, _, Backbone, React, apiUrl, NodesCollection){
+        'views/react/prototypes/nodes_collection',
+        'models/client'
+    ],function($, _, Backbone, React, apiUrl, NodesCollection, ClientModel){
         console.log('models/test_collection');
 
         var node_state = [
@@ -41,9 +42,43 @@ define(
         ];
 
         var clients = [
-            {id:2345378, full_name: 'Петров Петр Игоревич', name: 'Петр', family_name: 'Петров'},
-            {id:23872, full_name: 'Отдел материально-технического снабжения', short_name: 'Отдел МТО'},
-            {id:23872, full_name: 'В/Ч 245891', short_name: 'В/Ч 245891'}
+            {
+                id:2345378,
+                full_name: 'Петров Петр Игоревич',
+                person: {
+                    name: 'Петр',
+                    patronymic: 'Игоревич',
+                    family: 'Петров',
+                    birth_date: '11.05.67',
+                    birth_place: 'г. Киев',
+                    sex: 'мужской',
+                    inn: '',
+                    citizenship: 'Россия',
+                    deputy: 'нет'
+                }
+            },
+            {
+                id:23872,
+                full_name: 'Отдел материально-технического снабжения',
+                unit: {
+                    short_name: 'Отдел МТО',
+                    own_numeration: true,
+                    is_legal: false,
+                    parent: 23,
+                    legals: null
+                }
+            },
+            {
+                id:23872,
+                full_name: 'Воинская часть 245891',
+                unit: {
+                    short_name: 'В/Ч 245891',
+                    own_numeration: true,
+                    is_legal: true,
+                    parent: 2324,
+                    legals: null
+                }
+            }
         ];
 
         var nodes = [
@@ -63,12 +98,12 @@ define(
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//2
             {id: 3009, node_level_id: 103, sort_order: 0,
-                recipient_type: recipient_type[0], client: clients[0],
+                recipient_type: recipient_type[0], client: new ClientModel(clients[0]) ,
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//3
             {id: 45609, node_level_id: 103, sort_order: 0,
-                recipient_type: recipient_type[1], client: clients[2],
+                recipient_type: recipient_type[1], client: new ClientModel(clients[2]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//4

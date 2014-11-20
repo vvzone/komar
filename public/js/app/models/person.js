@@ -21,7 +21,7 @@ define(
                 sex: null,
                 inn: null,
                 citizenship: null,
-                deputy: null,
+                deputy: null
             },
             attr_rus_names: {
                 name: 'Имя',
@@ -32,7 +32,7 @@ define(
                 sex: 'Пол',
                 inn: 'ИНН',
                 citizenship: 'Гражданство',
-                deputy: 'Заместитель',
+                deputy: 'Заместитель'
             },
             attr_dependencies: [], //for recursive objects
             model_name: 'person',

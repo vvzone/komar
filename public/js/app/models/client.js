@@ -56,21 +56,27 @@ define(
                 
                 // ТУТ СОХРАНЯЕТСЯ КОЛЛЕКЦИЯ ДЛЯ CLIENT БУДЕТ ОТДЕЛЬНАЯ МОДЕЛЬ!
                 console.info('->beforeSave');
-                if (_.size(this.get('list_values'))>0) {
-                    var new_list_values = this.get('list_values').map(function(model){
+                if (_.size(this.get('person'))>0) {
+                    var new_list_values = this.get('person').map(function(model){
                         return model;
                     });
                     this.set('list_values', new_list_values);
                 }
+                if (_.size(this.get('unit'))>0) {
+                    var new_list_values = this.get('unit').map(function(model){
+                        return model;
+                    });
+                    this.set('unit', new_list_values);
+                }
             },
             parse: function(response, xhr) {
-                /*
+
                 console.info('parse call');
                 console.info('response');
                 console.log(response);
                 console.log('xhr');
                 console.log(xhr);
-                */
+
                 // Check if response includes some nested collection data... our case 'nodes'
                 if (_.has(response, 'person')){
                     if(_.size(response.person)>0){
@@ -82,10 +88,27 @@ define(
                         if (!_.has(this, 'person')) {  // It does not...
                             // So instantiate a collection and pass in raw data
                             //this.listValues = new ListCollection(response.listValues);
-                            this.person = new ListCollection(response.person);
+                            this.person = new PersonModel(response.person);
                         } else {
                             // It does, so just reset the collection
                             this.person.reset(response.person);
+                        }
+                    }
+                }
+                if (_.has(response, 'unit')){
+                    if(_.size(response.unit)>0){
+                        // Check if this model has a property called nodes
+                        /*
+                         console.log('this');
+                         console.log(this);
+                         */
+                        if (!_.has(this, 'unit')) {  // It does not...
+                            // So instantiate a collection and pass in raw data
+                            //this.listValues = new ListCollection(response.listValues);
+                            this.unit = new UnitModel(response.unit);
+                        } else {
+                            // It does, so just reset the collection
+                            this.unit.reset(response.unit);
                         }
                     }
                 }
@@ -93,11 +116,54 @@ define(
                 return response;
             },
             initialize: function(){
-                console.info('Model init');
+                console.info('CLIENT-Model init');
+                console.info(this);
+                /*
                 if(_.has(this, 'person')){
                     console.log('rewrite person');
                     this.set('person', this.person);
+                }*/
+                //
+                /* remove on production!!! */
+                if (_.has(this.attributes, 'person')){
+                    console.log('_.has person');
+                    if(_.size(this.get('person'))>0){
+                        // Check if this model has a property called nodes
+                        /*
+                         console.log('this');
+                         console.log(this);
+                         */
+                        //if (!_.has(this.attributes, 'person')) {  // It does not...
+                            // So instantiate a collection and pass in raw data
+                            //this.listValues = new ListCollection(response.listValues);
+                            this.set('person', new PersonModel(this.get('person')));
+                            //this.attributes.person = new PersonModel(this.attributes.person);
+                        /*} else {
+                            // It does, so just reset the collection
+                            this.get('person').reset(this.get('person'));
+                            //this.attributes.person.reset(this.attributes.person);
+                        }*/
+                    }
                 }
+                if (_.has(this.attributes, 'unit')){
+                    console.log('_.has unit');
+                    if(_.size(this.attributes.unit)>0){
+                        // Check if this model has a property called nodes
+                        /*
+                         console.log('this');
+                         console.log(this);
+                         */
+                        //if (!_.has(this.attributes, 'unit')) {  // It does not...
+                            // So instantiate a collection and pass in raw data
+                            //this.listValues = new ListCollection(response.listValues);
+                            this.set('unit', new UnitModel(this.get('unit')));
+                        /*} else {
+                            // It does, so just reset the collection
+                            this.get('unit').reset(this.get('unit'));
+                        }*/
+                    }
+                }
+                /* remove on production!!! */
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){

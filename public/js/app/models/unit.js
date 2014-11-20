@@ -22,7 +22,7 @@ define(
                 short_name: 'Сокращенное название',
                 own_numeration: 'Собственная нумерация',
                 is_legal: 'Юридическое лицо',
-                parent: 'Родительское подразделение',
+                parent: 'Родительское подразделение'
             },
             attr_dependencies: [], //for recursive objects
             model_name: 'unit',

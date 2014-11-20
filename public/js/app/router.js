@@ -51,6 +51,7 @@ define(
             console.log('route to react test module...');
             var component_name = 'views/react/prototypes/levels';
             //var component_name = 'views/react/prototypes/example';
+
             var collection_name = 'views/react/prototypes/node_levels_collection';
 
             //'jsx!'+
