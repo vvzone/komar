@@ -19,8 +19,8 @@ define(
                 id_external: null,
                 ident_number: null,
                 full_name: null,
-                person: [],
-                unit: []
+                person: null,
+                unit: null
             },
             attr_description:{
                 list_values: 'Массив объектов -> attribute_type_list, отдается для объектов с base_attr_type = 8',

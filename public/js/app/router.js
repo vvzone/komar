@@ -41,7 +41,6 @@ define(
         },
         documentation: function(){
             console.log('trying to documentate...');
-
             var Documentation = require(['service/documentate'], function(Documentation){
                return Documentation;
             });

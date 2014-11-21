@@ -27,13 +27,20 @@ define(
                 //console.info('client');
                 //console.info(client);
                 var person = client.get('person');
-                console.info('person='+person);
+                console.info('person=');
+                console.info(person);
                 console.info('_.size(person)='+_.size(person));
+                console.info('(person!=null)='+(person!=null));
 
+                //(person!=null)? " node_real": " node_abstract"
+                var is_specific = " node_abstract";
+                if(person!=null){
+                    is_specific = " node_real";
+                }
 
                 var class_name =
                     "level_node"
-                        + (_.size(person)>0)? " node_real": " node_abstract"
+                        + is_specific
                         + (this.state.dragging? " dragging": "")
                         +" level_color_"+this.props.colorClassNum;
                 var title = '';
@@ -60,15 +67,16 @@ define(
             },
             title: function(){
               var title;
-              var r_type = this.props.node.get('recipient_type');
-              if(r_type.code == 1 || r_type.code == 2 ){
-                  title = this.props.node.get('client').full_name;
-                  console.log("this.node.get('client')");
-                  console.log(this.props.node.get('client'));
+              var client = this.props.node.get('client');
+                console.warn(client);
+              var person;
+              if((person = client.get('person'))!=null){
+                  console.info(person);
+                  title = person.get('name')
+                          + ' '+person.get('family_name');
               }else{
-                  title = r_type.name;
-                  console.log('r_type.name');
-                  console.log(r_type.name);
+                  var unit = client.get('unit');
+                  title = unit.get('short_name');
               }
 
               return title;

@@ -26,7 +26,7 @@ define(
             attr_rus_names: {
                 name: 'Имя',
                 patronymic: 'Отчество',
-                family: 'Фамилия',
+                family_name: 'Фамилия',
                 birth_date: 'Дата рождения',
                 birth_place: 'Место рождения',
                 sex: 'Пол',

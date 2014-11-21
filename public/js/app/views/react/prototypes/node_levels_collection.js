@@ -48,7 +48,7 @@ define(
                 person: {
                     name: 'Петр',
                     patronymic: 'Игоревич',
-                    family: 'Петров',
+                    family_name: 'Петров',
                     birth_date: '11.05.67',
                     birth_place: 'г. Киев',
                     sex: 'мужской',
@@ -78,27 +78,109 @@ define(
                     parent: 2324,
                     legals: null
                 }
+            },
+            {
+                id:2015378,
+                full_name: 'Иван Сергеевич Велкопоповицкий',
+                person: {
+                    name: 'Иван',
+                    patronymic: 'Сергеевич',
+                    family_name: 'Велкопоповецкий',
+                    birth_date: '11.05.77',
+                    birth_place: 'г. Прага',
+                    sex: 'мужской',
+                    inn: '',
+                    citizenship: 'Россия',
+                    deputy: 'нет'
+                }
+            },
+            {
+                id:2045178,
+                full_name: 'Емельян Федорович Таврищенко',
+                person: {
+                    name: 'Емельян',
+                    patronymic: 'Федорович',
+                    family_name: 'Таврищенко',
+                    birth_date: '11.05.87',
+                    birth_place: 'г. Курск',
+                    sex: 'мужской',
+                    inn: '',
+                    citizenship: 'Россия',
+                    deputy: 'нет'
+                }
+            },
+            {
+                id:2005118,
+                full_name: 'Георгий Константинович Битлов',
+                person: {
+                    name: 'Георгий',
+                    patronymic: 'Константинович',
+                    family_name: 'Битлов',
+                    birth_date: '11.05.57',
+                    birth_place: 'г. Свердловск',
+                    sex: 'мужской',
+                    inn: '',
+                    citizenship: 'Россия',
+                    deputy: 'нет'
+                }
+            },
+            {
+                id:1005178,
+                full_name: 'Денис Ианович Толстопузов',
+                person: {
+                    name: 'Денис',
+                    patronymic: 'Ианович',
+                    family_name: 'Толстопузов',
+                    birth_date: '11.05.95',
+                    birth_place: 'г. Северокамск',
+                    sex: 'мужской',
+                    inn: '',
+                    citizenship: 'Россия',
+                    deputy: 'нет'
+                }
+            },
+            {
+                id:23072,
+                full_name: 'Бухгалтерия В/Ч 245891',
+                unit: {
+                    short_name: 'Бухгалтерия',
+                    own_numeration: true,
+                    is_legal: false,
+                    parent: 2324,
+                    legals: null
+                }
+            },
+            {
+                id:23372,
+                full_name: 'Административно-хозяйственный отдел В/Ч 245891',
+                unit: {
+                    short_name: 'АХО',
+                    own_numeration: true,
+                    is_legal: false,
+                    parent: 2324,
+                    legals: null
+                }
             }
         ];
 
         var nodes = [
             {id: 3007, node_level_id: 101, sort_order: 0,
-                recipient_type: recipient_type[4], client: new ClientModel(clients[0]),
+                recipient_type: recipient_type[4], client: new ClientModel(clients[4]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//0
             {id: 3008, node_level_id: 102, sort_order: 0,
-                recipient_type: recipient_type[4], client: new ClientModel(clients[0]),
+                recipient_type: recipient_type[4], client: new ClientModel(clients[5]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//1
             {id: 3006, node_level_id: 102, sort_order: 1,
-                recipient_type: recipient_type[4], client: new ClientModel(clients[0]),
+                recipient_type: recipient_type[4], client: new ClientModel(clients[3]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//2
             {id: 3009, node_level_id: 103, sort_order: 0,
-                recipient_type: recipient_type[0], client: new ClientModel(clients[0]) ,
+                recipient_type: recipient_type[0], client: new ClientModel(clients[6]) ,
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//3
@@ -108,12 +190,12 @@ define(
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//4
             {id: 35609, node_level_id: 101, sort_order: 0,
-                recipient_type: recipient_type[3], client: new ClientModel(clients[0]),
+                recipient_type: recipient_type[3], client: new ClientModel(clients[8]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//5
             {id: 3343209, node_level_id: 101, sort_order: 0,
-                recipient_type: recipient_type[2], client: new ClientModel(clients[0]),
+                recipient_type: recipient_type[2], client: new ClientModel(clients[7]),
                 task: 'Проверить',
                 node_state: node_state[2],
                 period_type: 1, time_stamp: null, period_length: 1},//6

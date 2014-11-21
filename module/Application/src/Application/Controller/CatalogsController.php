@@ -22,7 +22,7 @@ class CatalogsController extends AbstractActionController
          * isNotScreen - no screen output
          * */
 
-        /*$data_array = array(
+        $data_array = array(
             array('id' => 1, 'name' => 'base', 'screen' => 'base', 'rus_name' => 'Базовые определения', 'isNotScreen' => true),
             array('id' => 2, 'name' => 'staff', 'screen' => 'staff', 'rus_name' => 'Персонал', 'isNotScreen' => true),
             array('id' => 3, 'name' => 'doc', 'screen' => 'doc', 'rus_name' => 'Документы', 'isNotScreen' => true),
@@ -81,7 +81,7 @@ class CatalogsController extends AbstractActionController
             array('id' => 106040, 'parent_id' => 106, 'category' => 'base', 'name' => 'node_types', 'screen' => 'node_types', 'rus_name' => 'Типы узлов маршрута'),
             array('id' => 106050, 'parent_id' => 106, 'category' => 'base', 'name' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'rus_name' => 'Типы аттрибутов'),
             array('id' => 106060, 'parent_id' => 106, 'category' => 'base', 'name' => 'enumeration', 'screen' => 'enumeration', 'rus_name' => 'Нумерация')
-        );*/
+        );
 
         $sys = array(
             array('id' => 10501, 'category' => 'base', 'entity' => 'countries', 'screen' => 'countries', 'name' => 'Страны'),
@@ -977,6 +977,25 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
+    public function unitAction(){
+        $super_new_array = array(
+            array('id' => 1, 'parent' => null, 'name' => 'Организационная структура подразделения', 'shortname'=> 'ПХ', 'is_service' => true),
+            array('id' => 2, 'parent' => 1, 'name' => '', 'shortname'=> 'С', 'is_service' => false),
+            array('id' => 3, 'parent' => 1, 'name' => 'Приказы', 'shortname'=> 'П', 'is_service' => false),
+            array('id' => 4, 'parent' => 1, 'name' => 'Служебные', 'shortname'=> 'сист.', 'is_service' => true,),
+            array('id' => 100, 'parent' => 3, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 110, 'parent' => 3, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'is_service' => false),
+            array('id' => 1101, 'parent' => 110, 'name' => 'Персонал', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 1102, 'parent' => 110, 'name' => 'Материальная часть', 'shortname'=> 'ПХ', 'is_service' => false),
+            array('id' => 1001, 'parent' => 100, 'name' => 'Общевойсковые', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 1002, 'parent' => 100, 'name' => 'Индивидуальные', 'shortname'=> 'ПХ', 'is_service' => false)
+        );
+
+        //$response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($super_new_array);
+        return $JsonModel;
+    }
 }
 
 ?>
