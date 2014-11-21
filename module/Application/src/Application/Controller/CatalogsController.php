@@ -977,18 +977,20 @@ class CatalogsController extends AbstractActionController
         return $JsonModel;
     }
 
-    public function unitAction(){
+    public function unitsAction(){
+
         $super_new_array = array(
-            array('id' => 1, 'parent' => null, 'name' => 'Организационная структура подразделения', 'shortname'=> 'ПХ', 'is_service' => true),
-            array('id' => 2, 'parent' => 1, 'name' => '', 'shortname'=> 'С', 'is_service' => false),
-            array('id' => 3, 'parent' => 1, 'name' => 'Приказы', 'shortname'=> 'П', 'is_service' => false),
-            array('id' => 4, 'parent' => 1, 'name' => 'Служебные', 'shortname'=> 'сист.', 'is_service' => true,),
-            array('id' => 100, 'parent' => 3, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'is_service' => false),
-            array('id' => 110, 'parent' => 3, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'is_service' => false),
-            array('id' => 1101, 'parent' => 110, 'name' => 'Персонал', 'shortname'=> 'ПБ', 'is_service' => false),
-            array('id' => 1102, 'parent' => 110, 'name' => 'Материальная часть', 'shortname'=> 'ПХ', 'is_service' => false),
-            array('id' => 1001, 'parent' => 100, 'name' => 'Общевойсковые', 'shortname'=> 'ПБ', 'is_service' => false),
-            array('id' => 1002, 'parent' => 100, 'name' => 'Индивидуальные', 'shortname'=> 'ПХ', 'is_service' => false)
+            array('id' => 1, 'parent' => null, 'name' => 'Брянская областная Дума', 'shortname'=> 'ПХ', 'is_service' => true),
+            array('id' => 2, 'parent' => 1, 'name' => 'Секретариат', 'shortname'=> 'С', 'is_service' => false),
+            array('id' => 3, 'parent' => 1, 'name' => 'Правовое управление', 'shortname'=> 'П', 'is_service' => false),
+            array('id' => 4, 'parent' => 1, 'name' => 'Общий отдел', 'shortname'=> 'сист.', 'is_service' => true,),
+            array('id' => 5, 'parent' => 1, 'name' => 'Финансовый отдел', 'shortname'=> 'сист.', 'is_service' => true,),
+            array('id' => 6, 'parent' => 1, 'name' => 'Информационно-аналитический отдел', 'shortname'=> 'сист.', 'is_service' => true,),
+            array('id' => 100, 'parent' => 3, 'name' => 'Антикоррупционный отдел', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 110, 'parent' => 3, 'name' => 'Экономический отдел', 'shortname'=> 'ПХ', 'is_service' => false),
+            array('id' => 1102, 'parent' => 4, 'name' => 'Отдел материально-технического обеспечения', 'shortname'=> 'ПХ', 'is_service' => false),
+            array('id' => 1001, 'parent' => 4, 'name' => 'Отдел государственной службы и кадров', 'shortname'=> 'ПБ', 'is_service' => false),
+            array('id' => 1002, 'parent' => 4, 'name' => 'Кадровый отдел', 'shortname'=> 'ПХ', 'is_service' => false)
         );
 
         //$response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
@@ -996,6 +998,38 @@ class CatalogsController extends AbstractActionController
         $JsonModel->setVariables($super_new_array);
         return $JsonModel;
     }
+
+    public function personsAction(){
+        $super_new_array = array(
+            array('id' => 1, 'name' => 'Иван Иванович Батум', 'first_name' => 'Иван',  'patronymic' => 'Иванович', 'family_name' => 'Батум', 'birth_date' => '6.09.57', 'birth_place' => 'г. Москва', 'sex' => 'муж.', 'inn' => '', 'citizenship' => 'Россия'),
+            array('id' => 2, 'name' => 'Ольга Петровна Васильева', 'first_name' => 'Ольга', 'patronymic' => 'Петровна', 'family_name' => 'Васильева', 'birth_date' => '12.11.77', 'birth_place' => 'г. Орджоникиндзеград', 'sex' => 'жен.', 'inn' => '', 'citizenship' => 'Россия'),
+            array('id' => 3, 'name' => 'Дмитрий Семенович Корчагин', 'first_name' => 'Дмитрий', 'patronymic' => 'Семенович', 'family_name' => 'Корчагин', 'birth_date' => '15.10.72', 'birth_place' => 'г. Омск', 'sex' => 'муж.', 'inn' => '', 'citizenship' => 'Россия'),
+            array('id' => 4, 'name' => 'Наталья Жоресовна Патронова', 'first_name' => 'Наталья', 'patronymic' => 'Жоресовна', 'family_name' => 'Патронова', 'birth_date' => '15.10.89', 'birth_place' => 'г. Курсе', 'sex' => 'жен.', 'inn' => '', 'citizenship' => 'Россия'),
+            array('id' => 5, 'name' => 'Виктория Вадимовна Симоньян', 'first_name' => 'Виктория', 'patronymic' => 'Вадимовна', 'family_name' => 'Симоньян', 'birth_date' => '25.11.91', 'birth_place' => 'г. Куйбышев', 'sex' => 'жен.', 'inn' => '', 'citizenship' => 'Россия'),
+            array('id' => 6, 'name' => 'Жанна Игоревна Иванова', 'first_name' => 'Жанна', 'patronymic' => 'Игоревна', 'family_name' => 'Иванова', 'birth_date' => '15.01.90', 'birth_place' => 'г.Кузбас', 'sex' => 'жен.', 'inn' => '', 'citizenship' => 'Россия'),
+            array('id' => 7, 'name' => 'Богдан Викторович Ахметов', 'first_name' => 'Богдан', 'patronymic' => 'Викторович', 'family_name' => 'Ахметов', 'birth_date' => '12.06.81', 'birth_place' => 'г.Ставрополь', 'sex' => 'муж.', 'inn' => '', 'citizenship' => 'Россия')
+        );
+
+        /*
+            id: null,
+                name: null,
+                patronymic: null,
+                family: null,
+                birth_date: null,
+                birth_place: null,
+                sex: null,
+                inn: null,
+                citizenship: null,
+                deputy: null
+
+        */
+
+        //$response = array('response'=> true, 'prototype' => $prototype_array, 'data' => $data_array);
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($super_new_array);
+        return $JsonModel;
+    }
+
 }
 
 ?>

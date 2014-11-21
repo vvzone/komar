@@ -148,7 +148,7 @@ define(
                         console.warn('DocTypeGroupsCollection -> no needed to load');
                         ListView.initialize(DocTypeGroupsCollection);
                     }
-                    break;
+                break;
                 default:
                     var msg = 'Вид для коллекции '+view+' не задан.';
                     EventBus.trigger('error', '404', msg);
@@ -335,6 +335,49 @@ define(
                     }else{
                         console.warn('NodeTypesCollection -> no needed to load');
                         ListView.initialize(NodeTypesCollection);
+                    }
+                break;
+                /* === Орг-штат === */
+
+
+
+                case('persons'):
+                    if(!RanksCollection){
+                        console.warn('!RanksCollection -> require loading');
+                        var RanksCollection = require(['models/persons_collection'], function(RanksCollection){
+                            console.log('loaded...');
+                            ListView.initialize(RanksCollection);
+                            return RanksCollection;
+                        });
+                    }else{
+                        console.warn('RanksCollection -> no needed to load');
+                        ListView.initialize(RanksCollection);
+                    }
+                break;
+                case('units'):
+                    if(!DocTypeGroupsCollection){
+                        console.warn('!DocTypeGroupsCollection -> require loading');
+                        var DocTypeGroupsCollection =require(['models/units_collection'], function(DocTypeGroupsCollection){
+                            console.log('loaded...');
+                            TreeView.initialize(DocTypeGroupsCollection);
+                            return DocTypeGroupsCollection;
+                        });
+                    }else{
+                        console.warn('DocTypeGroupsCollection -> no needed to load');
+                        TreeView.initialize(DocTypeGroupsCollection);
+                    }
+                    break;
+                case('units_plain'):
+                    if(!DocTypeGroupsCollection){
+                        console.warn('!DocTypeGroupsCollection -> require loading');
+                        var DocTypeGroupsCollection =require(['models/units_collection'], function(DocTypeGroupsCollection){
+                            console.log('loaded...');
+                            ListView.initialize(DocTypeGroupsCollection);
+                            return DocTypeGroupsCollection;
+                        });
+                    }else{
+                        console.warn('DocTypeGroupsCollection -> no needed to load');
+                        ListView.initialize(DocTypeGroupsCollection);
                     }
                 break;
             }

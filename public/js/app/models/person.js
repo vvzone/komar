@@ -13,7 +13,7 @@ define(
         var Model = Backbone.Model.extend({
             defaults: {
                 id: null,                
-                name: null,
+                first_name: null,
                 patronymic: null,
                 family: null,
                 birth_date: null,
@@ -24,7 +24,7 @@ define(
                 deputy: null
             },
             attr_rus_names: {
-                name: 'Имя',
+                first_name: 'Имя',
                 patronymic: 'Отчество',
                 family_name: 'Фамилия',
                 birth_date: 'Дата рождения',
@@ -34,7 +34,10 @@ define(
                 citizenship: 'Гражданство',
                 deputy: 'Заместитель'
             },
-            attr_dependencies: [], //for recursive objects
+            attr_dependencies: {
+                deputy: 'constant',
+                sex: 'constant'
+            }, //for recursive objects
             model_name: 'person',
             model_rus_name: 'Физлицо',
             url: function() {

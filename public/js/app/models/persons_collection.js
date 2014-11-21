@@ -13,7 +13,7 @@ define(
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Физ лица',
+            collection_rus_name: 'Отдел МТО / Сотрудники',
             collection_name: 'persons',
             url: function() {
                 return apiUrl('persons');

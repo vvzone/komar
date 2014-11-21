@@ -77,6 +77,21 @@ define(
         properties_types['max_length'] = 'tiny_text';
         properties_types['value'] = 'tiny_text';
         //properties_types['parents'] = 'info_list'; needed new!
+        
+        
+        properties_types['identification_number'] = 'tiny_text';
+        properties_types['commander'] = 'simple_select';
+        properties_types['deputy'] = 'simple_select';
+        properties_types['on_duty'] = 'simple_select';
+        
+        properties_types['first_name'] = 'tiny_text';
+        properties_types['patronymic'] = 'tiny_text';
+        properties_types['family_name'] = 'tiny_text';
+        properties_types['birth_date'] = 'tiny_text';
+        properties_types['birth_place'] = 'tiny_text';
+        properties_types['sex'] = 'tiny_text';
+        properties_types['inn'] = 'tiny_text';
+        properties_types['citizenship'] = 'tiny_text';
 
 
         return properties_types;
