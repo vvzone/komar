@@ -1,17 +1,34 @@
 <?php
-/**
- * This makes our life easier when dealing with paths. Everything is relative
- * to the application root now.
- */
-chdir(dirname(__DIR__));
 
-// Decline static file requests back to the PHP built-in webserver
-if (php_sapi_name() === 'cli-server' && is_file(__DIR__ . parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH))) {
-    return false;
-}
+$mysqli = new mysqli("localhost", "root", "");
 
-// Setup autoloading
-require 'init_autoloader.php';
+//echo $mysqli->client_info;
+echo "<br />";
+//echo $mysqli;
+//echo $mysqli::stat;
+echo $mysqli->character_set_name();
+?>
+<h1>TEST</h1>
 
-// Run the application!
-Zend\Mvc\Application::init(require 'config/application.config.php')->run();
+<?php
+
+/*
+
+init_connect='SET collation_connection = utf8_general_ci'
+init_connect='SET NAMES utf8'
+default-character-set=utf8
+character-set-server=utf8
+collation-server=utf8_general_ci
+skip-character-set-client-handshake
+
+
+init_connect='SET collation_connection = utf8_general_ci'
+init_connect='SET NAMES utf8'
+
+default-character-set=utf8
+character-set-server=utf8
+*/
+
+// phpinfo();
+
+?>

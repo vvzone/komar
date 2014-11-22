@@ -978,7 +978,6 @@ class CatalogsController extends AbstractActionController
     }
 
     public function unitsAction(){
-
         $super_new_array = array(
             array('id' => 1, 'parent' => null, 'name' => 'Брянская областная Дума', 'shortname'=> 'ПХ', 'is_service' => true),
             array('id' => 2, 'parent' => 1, 'name' => 'Секретариат', 'shortname'=> 'С', 'is_service' => false),
