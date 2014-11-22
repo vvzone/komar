@@ -51,6 +51,34 @@ return array(
                     ),
                 ),
             ),
+            'unit' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/unit',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Application\Controller',
+                        'controller'    => 'Unit',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'default' => array(
+                        'type'    => 'Segment',
+                        'options' => array(
+                            'route'    => '/[:action[/:id]]',
+                            'constraints' => array(
+                                'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                'id'     => '[0-9]*',
+                            ),
+                            'defaults' => array(
+                                'id' => '',
+                            )
+                        )
+                    )
+                )
+            ),
             'main' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -143,10 +171,17 @@ return array(
             )
         ),
     ),
+    'db' => array(
+        'driver'         => 'Pdo',
+        'dsn'            => 'mysql:dbname=moskit;host=localhost',
+    ),
     'service_manager' => array(
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
+        ),
+        'factories' => array(
+            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
         ),
         'aliases' => array(
             'translator' => 'MvcTranslator',
@@ -165,7 +200,9 @@ return array(
     'controllers' => array(
         'invokables' => array(
             'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Catalogs' => 'Application\Controller\CatalogsController'
+            'Application\Controller\Catalogs' => 'Application\Controller\CatalogsController',
+            'Application\Controller\Unit' => 'Application\Controller\UnitController',
+            'Unit' => 'Application\Controller\UnitController'
         ),
     ),
     'view_manager' => array(

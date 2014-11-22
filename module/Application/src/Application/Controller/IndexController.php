@@ -22,12 +22,25 @@ class IndexController extends AbstractActionController
 
 
     public function testAction(){
-
         $data_array = 'Запрос к базе';
+        $test = 'Test';
+        $configArray =  array(
+            'driver' => 'Mysqli',
+            'database' => 'zend_db_example',
+            'username' => 'developer',
+            'password' => 'developer-password'
+        );
 
-        $JsonModel = new JsonModel();
-        $JsonModel->setVariables($data_array);
-        return $JsonModel;
+        //$adapter = new Zend\Db\Adapter\Adapter($configArray);
+        /*
+        $adapter = new Zend\Db\Adapter\Adapter();*/
+
+        //$test = $adapter->query('SELECT * FROM `moskit` WHERE 1');
+
+        //$JsonModel = new JsonModel();
+        //$JsonModel->setVariables($data_array);
+        //return $JsonModel;
+        return $test;
     }
 
     public function ajaxAction(){
