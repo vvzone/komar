@@ -33,21 +33,22 @@ return array(
                     'route'    => '/admin',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'Admin\Controller\Index',
-                        'action'        => 'index',
+                        'controller'    => 'Admin\Controller\Index'
                     ),
                 ),
                 'route_plugins' => $routePlugins,
                 'may_terminate' => true, // ????false, because admin/object - not only module, that listen to /admin input
                 'child_routes' => array(
                     '/admin/object' => array(
-                        'type'    => 'Literal',
+                        'type'    => 'segment',
                         'options' => array(
                             'route'    => '/object',
+                            'constraints' => array(
+                                'action' => 'index'
+                            ),
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Object\Controller',
-                                'controller'    => 'Object\Controller\Index',
-                                'action'        => 'index'
+                                'controller'    => 'Object\Controller\Index'
                             )
                         ),
                         'may_terminate' => true,
@@ -111,6 +112,7 @@ return array(
             'Admin\Controller\Index' => 'Admin\Controller\IndexController',
             'Admin\Controller\Catalogs' => 'Admin\Controller\CatalogsController',
             'Admin\Controller\Unit' => 'Admin\Controller\UnitController',
+            'Admin\Controller\Rest' => 'Admin\Controller\RestController',
 
             /* === Object === */
             'Object\Controller\Index' => 'Object\Controller\IndexController',
