@@ -10,53 +10,50 @@
 return array(
     'router' => array(
         'routes' => array(
-            /*
-            'home' => array(
-                'type' => 'Zend\Mvc\Router\Http\Literal',
-                'options' => array(
-                    'route'    => '/',
-                    'defaults' => array(
-                        'controller' => 'Application\Controller\Index',
-                        'action'     => 'index',
-                    ),
-                ),
-            ),
-            // The following is a route to simplify getting started creating
-            // new controllers and actions without needing to create a new
-            // module. Simply drop new controllers in, and you can access them
-            // using the path /application/:controller/:action
-            'application' => array(
+            'admin' => array(
                 'type'    => 'Literal',
                 'options' => array(
-                    'route'    => '/application',
+                    'route'    => '/admin',
                     'defaults' => array(
-                        '__NAMESPACE__' => 'Application\Controller',
-                        'controller'    => 'Index',
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'controller'    => 'Admin\Controller\Index',
+                        'action'        => 'index',
+                    ),
+                ),
+                'may_terminate' => true
+            ),
+            'admin/object' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/admin/object',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Object\Controller',
+                        'controller'    => 'Object\Controller\Unit',
                         'action'        => 'index',
                     ),
                 ),
                 'may_terminate' => true,
-                'child_routes' => array(
+                /*'child_routes' => array(
                     'default' => array(
                         'type'    => 'Segment',
                         'options' => array(
-                            'route'    => '/[:controller[/:action]]',
+                            'route'    => '/admin/object[:controller[/:id]]',
                             'constraints' => array(
                                 'controller' => '[a-zA-Z][a-zA-Z0-9_-]*',
-                                'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',
+                                /*'action'     => '[a-zA-Z][a-zA-Z0-9_-]*',*//*
                                 'id'     => '[0-9]*',
                             ),
                             'defaults' => array(
-                            ),
-                        ),
-                    ),
-                ),
-            ),*/
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'id'            => '',
+                                'controller'    => 'Index',
+                                'action'        => 'index'
+                            )
+                        )
+                    )
+                )*/
+            ),
         ),
-    ),
-    'db' => array(
-        'driver'         => 'Pdo',
-        'dsn'            => 'mysql:dbname=moskit;host=localhost',
     ),
     'service_manager' => array(
         'abstract_factories' => array(
@@ -82,10 +79,15 @@ return array(
     ),
     'controllers' => array(
         'invokables' => array(
-            'Application\Controller\Index' => 'Application\Controller\IndexController',
-            'Application\Controller\Catalogs' => 'Application\Controller\CatalogsController',
-            'Application\Controller\Unit' => 'Application\Controller\UnitController',
-        ),
+            'Admin\Controller\Index' => 'Admin\Controller\IndexController',
+            'Admin\Controller\Catalogs' => 'Admin\Controller\CatalogsController',
+            'Admin\Controller\Unit' => 'Admin\Controller\UnitController',
+
+            'Object\Controller\Unit' => 'Object\Controller\IndexController',
+            //'Object\Controller\Unit' => 'Object\Controller\Test',
+            /* === Object === */
+            'Index' => 'Object\Controller\IndexController',
+        )
     ),
     'view_manager' => array(
         'display_not_found_reason' => true,
