@@ -9,19 +9,21 @@
 
 namespace Object\Controller;
 
-//use Zend\Mvc\Controller\AbstractActionController;
+use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Zend\Mvc\Controller\AbstractRestfulController;
 
-//class UnitController extends AbstractActionController
-class UnitController extends AbstractRestfulController
+class UnitController extends AbstractActionController
+//class UnitController extends AbstractRestfulController
 {
     protected $unitTable;
 
-    /*public function indexAction()
+    public function indexAction()
     {
         echo 'UnitController -> indexAction';
+
+        //echo var_dump($this);
 
         $i = 0;
         foreach($this->getUnitTable()->fetchAll() as $unit){
@@ -30,9 +32,11 @@ class UnitController extends AbstractRestfulController
         return new ViewModel(array(
             'units' => $this->getUnitTable()->fetchAll(),
         ));
-    }*/
+    }
 
 /*-------------- default methods ----------*/
+
+    /*
     public function getList()
     {
         echo 'default methods: getList()';
@@ -56,12 +60,12 @@ class UnitController extends AbstractRestfulController
     public function delete($id)
     {
         echo 'default methods: delete(id)';
-    }
+    }*/
 
 /*-------------- default methods ----------*/
 /* --------------- my methods -------------*/
 
-    /*
+
     public function addAction()
     {
        echo '->addAction';
@@ -81,8 +85,8 @@ class UnitController extends AbstractRestfulController
     {
         if (!$this->unitTable) {
             $sm = $this->getServiceLocator();
-            $this->unitTable = $sm->get('Application\Model\UnitTable');
+            $this->unitTable = $sm->get('Object\Model\UnitTable');
         }
         return $this->unitTable;
-    }*/
+    }
 }

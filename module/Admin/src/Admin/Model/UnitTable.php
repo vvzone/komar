@@ -1,6 +1,6 @@
 <?php
 
-namespace Object\Model;
+namespace Admin\Model;
 
 use Zend\Db\TableGateway\TableGateway;
 

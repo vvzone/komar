@@ -44,15 +44,13 @@ class Module
         return include __DIR__ . '/config/module.config.php';
     }
 
-    /*
+
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
     }
-    */
-    
 
     // Add this method:
     public function getServiceConfig()

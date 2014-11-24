@@ -38,7 +38,7 @@ return array(
                     ),
                 ),
                 'route_plugins' => $routePlugins,
-                'may_terminate' => true, // ????false, because admin/object - not only module, that listen to /admin input
+                'may_terminate' => true, //false, because admin/object - not only module, that listen to /admin input
                 'child_routes' => array(
                     '/admin/object' => array(
                         'type'    => 'Literal',
@@ -49,28 +49,29 @@ return array(
                                 'controller'    => 'Object\Controller\Index',
                                 'action'        => 'index'
                             )
-                        ),
-                        'may_terminate' => true,
-                        'child_routes' => array(
-                            'unit' => array(
-                                'type'    => 'segment',
-                                'options' => array(
-                                    'route'    => '/unit[/:id]',
-                                    'constraints' => array(
-                                        'id'     => '[0-9]*'
-                                    ),
-                                    'defaults' => array(
-                                        '__NAMESPACE__' => 'Object\Controller',
-                                        'controller'    => 'Object\Controller\Unit'
-                                    )
+                        )
+                    ),
+                    'may_terminate' => true,
+                    'child_routes' => array(
+                        '/admin/object/unit' => array(
+                            'type'    => 'Segment',
+                            'options' => array(
+                                'route'    => '/unit[/:id]',
+                                'constraints' => array(
+                                    'id'     => '[0-9]*'
+                                ),
+                                'defaults' => array(
+                                    '__NAMESPACE__' => 'Object\Controller',
+                                    'controller'    => 'Object\Controller\Unit'
                                 )
                             )
-                        )
+                        ),
+                        'may_terminate' => true,
                     )
                 )
             )
             /*,
-            'admin/object' => array(
+            'admin/documentation' => array(
                 'type'    => 'Literal',
                 'options' => array(
                     'route'    => '/admin/object',
