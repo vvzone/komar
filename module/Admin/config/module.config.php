@@ -33,43 +33,59 @@ return array(
                     'route'    => '/admin',
                     'defaults' => array(
                         '__NAMESPACE__' => 'Admin\Controller',
-                        'controller'    => 'Admin\Controller\Index'
+                        'controller'    => 'Admin\Controller\Index',
+                        'action'       => 'index'
                     ),
                 ),
                 'route_plugins' => $routePlugins,
-                'may_terminate' => true, // ????false, because admin/object - not only module, that listen to /admin input
+                'may_terminate' => true, // check-out another time what does this mean
+            ),
+            'rest-endpoint' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/admin/api/object',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'controller'    => 'Admin\Controller\Index',
+                    ),
+                ),
+                'route_plugins' => $routePlugins,
+                'may_terminate' => true,
                 'child_routes' => array(
-                    '/admin/object' => array(
+                    'unit' => array(
                         'type'    => 'segment',
                         'options' => array(
-                            'route'    => '/object',
+                            'route'    => '/unit[/:id]',
                             'constraints' => array(
-                                'action' => 'index'
+                                'id'     => '[0-9]*'
                             ),
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Object\Controller',
-                                'controller'    => 'Object\Controller\Index'
-                            )
-                        ),
-                        'may_terminate' => true,
-                        'child_routes' => array(
-                            'unit' => array(
-                                'type'    => 'segment',
-                                'options' => array(
-                                    'route'    => '/unit[/:id]',
-                                    'constraints' => array(
-                                        'id'     => '[0-9]*'
-                                    ),
-                                    'defaults' => array(
-                                        '__NAMESPACE__' => 'Object\Controller',
-                                        'controller'    => 'Object\Controller\Unit'
-                                    )
-                                )
+                                'controller'    => 'Object\Controller\Unit'
                             )
                         )
                     )
                 )
             )
+
+            /*
+            'child_routes' => array(
+                '/admin/object' => array(
+                    'type'    => 'segment',
+                    'options' => array(
+                        'route'    => '/object',
+                        'constraints' => array(
+                            'action' => 'index'
+                        ),
+                        'defaults' => array(
+                            '__NAMESPACE__' => 'Object\Controller',
+                            'controller'    => 'Object\Controller\Index'
+                        )
+                    ),
+                    'may_terminate' => true,
+                )
+            )
+            */
             /*,
             'admin/object' => array(
                 'type'    => 'Literal',
