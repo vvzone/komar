@@ -3,6 +3,7 @@
 namespace Object\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Object\Model\Unit;
 
 class UnitTable{
 
@@ -25,7 +26,7 @@ class UnitTable{
         $rowset = $this->tableGateway->select(array('id' => $id));
         $row = $rowset->current();
         if (!$row) {
-            throw new \Exception("Could not find row $id");
+            throw new \Exception("Could not find row $id", 404);
         }
         return $row;
     }
@@ -47,12 +48,16 @@ class UnitTable{
 
         $id = (int) $unit->id;
         if ($id == 0) {
-            $this->tableGateway->insert($data);
+            if (!array_filter($data)) {
+                throw new \Exception('Trying to save empty model', 500);
+            }else{
+                $this->tableGateway->insert($data);
+            }
         } else {
             if ($this->getUnit($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
-                throw new \Exception('Unit id does not exist');
+                throw new \Exception('Unit id does not exist', 404);
             }
         }
     }

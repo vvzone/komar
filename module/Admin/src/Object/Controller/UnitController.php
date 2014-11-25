@@ -39,28 +39,38 @@ class UnitController extends RestController
 
     public function get($id)
     {
+
+        /*
+        try{
+            $unit = $this->getUnitTable()->getUnit($id);
+        }catch(\Exception $e){
+            var_dump($e);
+            return false;
+        }
+        */
+
         $unit = $this->getUnitTable()->getUnit($id);
         return new JsonModel(array("data" => $unit));
     }
 
     public function create($data)
     {
+        //var_dump($data);
         $data['id']=0;
         //$form = new UnitForm(); //GREAT IDEA!
         $unit = new Unit();
-        //$form->setInputFilter($album->getInputFilter());
+        //$form->setInputFilter($unit->getInputFilter());
         //$form->setData($data);
 
-        $id=0;
+        //$id=0;
         //if ($form->isValid()) {
-            //$unit->exchangeArray($form->getData());
+            $unit->exchangeArray($data);
             $id = $this->getUnitTable()->saveUnit($unit);
         /*}else {
             print_r(  $form->getMessages());
         }*/
-
         return new JsonModel(array(
-            'data' => $id,
+            'data' => $data,
         ));
     }
 
@@ -68,17 +78,20 @@ class UnitController extends RestController
     {
         $data['id'] = $id;
         $unit = $this->getUnitTable()->getUnit($id);
-        /*$form = new AlbumForm();
-        $form->bind($album);
-        $form->setInputFilter($album->getInputFilter());
+        /*$form = new UnitForm();
+        $form->bind($unit);
+        $form->setInputFilter($unit->getInputFilter());
         $form->setData($data);*/
 
         //if ($form->isValid()) {
-            $id = $this->getUnitTable()->saveUnit($unit); //($form->getData());
+            //next one - temporary !
+            $unit_temp = new Unit();
+            $unit_temp->exchangeArray($data); //delete this one after form will be added
+            $id = $this->getUnitTable()->saveUnit($unit_temp); //($form->getData());
         //}
 
         return new JsonModel(array(
-            'data' => $id,
+            'data' => $data,
         ));
     }
 

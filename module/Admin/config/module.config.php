@@ -131,14 +131,14 @@ return array(
             'application/index/index' => __DIR__ . '/../view/application/index/index.phtml',
             'application/index/ajax' => __DIR__ . '/../view/application/ajax/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
-            'error/index'             => __DIR__ . '/../view/error/index.phtml',
+            'error/index'             => __DIR__ . '/../view/error/index.phtml'
         ),
         'template_path_stack' => array(
             __DIR__ . '/../view',
         ),
         'strategies' => array(
-            'ViewJsonStrategy',
-        ),        
+            'ViewJsonStrategy'
+        )
     ),
     // Placeholder for console routes
     'console' => array(

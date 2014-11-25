@@ -7,7 +7,7 @@ use Zend\EventManager\EventManagerInterface;
 
 class RestController extends AbstractRestfulController
 {
-    /*protected $allowedCollectionMethods = array(
+    protected $allowedCollectionMethods = array(
         'GET',
         'POST',
     );
@@ -39,7 +39,7 @@ class RestController extends AbstractRestfulController
                 $response->setStatusCode(405);
                 return $response;
             }
-            return $response;
+            return;
         }
 
         // We matched a collection; test if we allow the particular request
@@ -48,5 +48,5 @@ class RestController extends AbstractRestfulController
             $response->setStatusCode(405);
             return $response;
         }
-    }*/
+    }
 }
