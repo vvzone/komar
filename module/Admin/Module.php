@@ -73,31 +73,40 @@ class Module
             return;
         }
 
+        $message = 'An error occurred during execution; please try again later.';
+        $code = 500;
+
         $response = $e->getResponse();
         $exception = $e->getParam('exception');
         $exceptionJson = array();
         if ($exception) {
+            /*
             $exceptionJson = array(
-                //'class' => get_class($exception),
+                'class' => get_class($exception),
                 'file' => $exception->getFile(),
-                //'line' => $exception->getLine(),
+                'line' => $exception->getLine(),
                 'message' => $exception->getMessage(),
-                //'stacktrace' => $exception->getTraceAsString(),
+                'stacktrace' => $exception->getTraceAsString(),
                 'code' => $exception->getCode()
             );
+            */
+            $message = $exception->getMessage();
+            if($exception->getCode()){
+                $response->setStatusCode($code = $exception->getCode());
+            }
         }
-        if($exception->getCode()){
-            $response->setStatusCode($exception->getCode());
+
+        if ($error == 'error-router-no-match') {
+            $message = $errorJson['message'] = 'Resource not found.';
+            $code = 404;
+            $response->setStatusCode($code);
         }
 
         $errorJson = array(
-            'message'   => 'An error occurred during execution; please try again later.',
+            'message'   => $message,
             'error'     => $error,
-            'exception' => $exceptionJson,
-        );
-        if ($error == 'error-router-no-match') {
-            $errorJson['message'] = 'Resource not found.';
-        }
+            'code'      => $code
+        );//'exception' => $exceptionJson,
 
         $model = new JsonModel(array('errors' => array($errorJson)));
 

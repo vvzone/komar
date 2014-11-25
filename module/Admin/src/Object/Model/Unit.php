@@ -17,8 +17,8 @@ class Unit{
 
     public function exchangeArray($data)
     {
-        var_dump($data);
-        echo "==============================================";
+        //var_dump($data);
+
         $this->id     = (isset($data['id'])) ? $data['id'] : null;
         $this->name = (isset($data['name'])) ? $data['name'] : null;
         $this->identification_number  = (isset($data['identification_number'])) ? $data['identification_number'] : null;

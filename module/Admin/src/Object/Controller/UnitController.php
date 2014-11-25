@@ -40,14 +40,6 @@ class UnitController extends RestController
     public function get($id)
     {
 
-        /*
-        try{
-            $unit = $this->getUnitTable()->getUnit($id);
-        }catch(\Exception $e){
-            var_dump($e);
-            return false;
-        }
-        */
 
         $unit = $this->getUnitTable()->getUnit($id);
         return new JsonModel(array("data" => $unit));
