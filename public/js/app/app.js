@@ -14,7 +14,7 @@ define(
         'event_bus'
         //, 'views/menu_list'
     ],
-    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus){ //, Menu
+    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus, Menu){ //, Menu
     var init = function(){
 
         EventBus.on('error', function(header, msg, response){
