@@ -16,8 +16,12 @@ use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
 
-use Object\Model\Unit;
+use Object\Model\Unit; //use Object\Model\UnitSimple;
 use Object\Model\UnitTable;
+
+use Object\Model\Client;
+use Object\Model\ClientTable;
+
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
 
@@ -120,11 +124,35 @@ class Module
     {
         return array(
             'factories' => array(
+                'Object\Model\ClientTable' =>  function($sm) {
+                        $tableGateway = $sm->get('ClientTableGateway');
+                        $table = new ClientTable($tableGateway);
+                        return $table;
+                    },
+                'ClientTableGateway' => function($sm) {
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                        $resultSetPrototype = new ResultSet();
+                        $resultSetPrototype->setArrayObjectPrototype(new Client());
+                        return new TableGateway('clients', $dbAdapter, null, $resultSetPrototype);
+                    },
+                /* --- UNIT --- */
                 'Object\Model\UnitTable' =>  function($sm) {
                         $tableGateway = $sm->get('UnitTableGateway');
                         $table = new UnitTable($tableGateway);
                         return $table;
                     },
+                    /*
+                'Object\Model\UnitTableList' =>  function($sm) {
+                        $tableGateway = $sm->get('UnitTableListGateway');
+                        $table = new UnitTable($tableGateway);
+                        return $table;
+                    },
+                'UnitTableListGateway' => function($sm) {
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                        $resultSetPrototype = new ResultSet();
+                        $resultSetPrototype->setArrayObjectPrototype(new UnitSimple());
+                        return new TableGateway('units', $dbAdapter, null, $resultSetPrototype);
+                    },*/
                 'UnitTableGateway' => function($sm) {
                         $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                         $resultSetPrototype = new ResultSet();

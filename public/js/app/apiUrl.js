@@ -14,7 +14,7 @@ define(
         var local_host_url = 'http://zend_test';
         var host = (local_server)? local_host_url: andrey_host_url;
 
-        var prefix = '/api/catalogs';
+        var prefix = '/admin/api/object';
         var URLs = {
             menus: function(){
                 var local = host + prefix + "/menus";
@@ -331,14 +331,14 @@ define(
                 return (local_server)? local: production;
             },
             units: function() {
-                var local = host + prefix + "/units";
+                var local = host + prefix + "/unit";
                 var production = host + prefix + "/units_list";
 
                 return (local_server)? local: production;
             },
             unit: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/units/"+ id;
+                var local = host + prefix + "/unit/"+ id;
                 var production = host + prefix + "/unit/"+ id;
 
                 return (local_server)? local: production;

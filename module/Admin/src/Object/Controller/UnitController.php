@@ -22,12 +22,15 @@ use Admin\Controller\RestController;
 class UnitController extends RestController
 {
     protected $unitTable;
+    protected $unitTableList;
+
     /*-------------- default methods ----------*/
 
     public function getList()
     {
         $results = $this->getUnitTable()->fetchAll();
         $data = array();
+
         foreach ($results as $result) {
             $data[] = $result;
         }
@@ -39,8 +42,6 @@ class UnitController extends RestController
 
     public function get($id)
     {
-
-
         $unit = $this->getUnitTable()->getUnit($id);
         return new JsonModel(array("data" => $unit));
     }
@@ -105,41 +106,15 @@ class UnitController extends RestController
         return $this->unitTable;
     }
 
-/*-------------- default methods ----------*/
-/* --------------- my methods -------------*/
     /*
-
-    public function indexAction(){
-
-        $result = array();
-        foreach($this->getUnitTable()->fetchAll() as $unit){
-            //echo $unit->get_name();
-            $result[] = $unit;
+    public function getUnitTableList()
+    {
+        if (!$this->unitTableList) {
+            $sm = $this->getServiceLocator();
+            $this->unitTableList = $sm->get('Object\Model\UnitTableList');
         }
+        return $this->unitTableList;
+    }*/
 
-        $encoded = json_encode($result, JSON_UNESCAPED_UNICODE);
-
-        //echo Zend_Json::encode($result);
-
-        return new JsonModel(array(
-            $result
-        ));
-
-    }
-    /*
-    public function addAction()
-    {
-       echo '->addAction';
-    }
-
-    public function editAction()
-    {
-        echo '->editAction';
-    }
-
-    public function deleteAction()
-    {
-        echo '->editAction';
-    }
-    */
+/*-------------- default methods ----------*/
 }

@@ -14,8 +14,8 @@ define(
             defaults: {
                 id: null,                
                 first_name: null,
-                patronymic: null,
-                family: null,
+                patronymic_name: null,
+                family_name: null,
                 birth_date: null,
                 birth_place: null,
                 sex: null,
@@ -25,7 +25,7 @@ define(
             },
             attr_rus_names: {
                 first_name: 'Имя',
-                patronymic: 'Отчество',
+                patronymic_name: 'Отчество',
                 family_name: 'Фамилия',
                 birth_date: 'Дата рождения',
                 birth_place: 'Место рождения',

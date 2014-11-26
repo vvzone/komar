@@ -3,9 +3,10 @@
 namespace Object\Model;
 
 use Zend\Db\TableGateway\TableGateway;
+use Object\Model\Client;
 use Object\Model\Unit;
 
-class UnitTable{
+class ClientTable{
 
     protected $tableGateway;
 
@@ -18,7 +19,7 @@ class UnitTable{
     {
             $resultSet = $this->tableGateway->select();
             /* --- <Paginator> ---*/
-        /*  not working
+        /*
             $resultSet->buffer();
             $resultSet->next();
         */
@@ -26,7 +27,7 @@ class UnitTable{
             return $resultSet;
     }
 
-    public function getUnit($id)
+    public function getClient($id)
     {
         $id  = (int) $id;
         $rowset = $this->tableGateway->select(array('id' => $id));
@@ -34,36 +35,21 @@ class UnitTable{
         if (!$row) {
             throw new \Exception("Could not find row $id", 404);
         }
+
         return $row;
     }
+    //
 
-    public function getUnitByClientId($id)
-    {
-        $id  = (int) $id;
-        $rowset = $this->tableGateway->select(array('client' => $id));
-        $row = $rowset->current();
-        if (!$row) {
-            throw new \Exception("Could not find row $id", 404);
-        }
-        return $row;
-    }
-
-    public function saveUnit(Unit $unit)
+    public function saveClient(Client $client)
     {
         $data = array(
-            'id' => $unit->id,
-            'name' => $unit->name,
-            'identification_number' => $unit->identification_number,
-            'short_name' => $unit->short_name,
-            'own_numeration' => $unit->own_numeration,
-            'is_legal' => $unit->is_legal,
-            'parent' => $unit->parent,
-            'commander' => $unit->commander,
-            'deputy' => $unit->deputy,
-            'on_duty' => $unit->on_duty
+            'id' => $client->id,
+            'full_name' => $client->full_name,
+            'identification_number' => $client->identification_number,
+            'is_external' => $client->is_external,
         );
 
-        $id = (int) $unit->id;
+        $id = (int) $client->id;
         if ($id == 0) {
             if (!array_filter($data)) {
                 throw new \Exception('Trying to save empty model', 500);
@@ -71,7 +57,7 @@ class UnitTable{
                 $this->tableGateway->insert($data);
             }
         } else {
-            if ($this->getUnit($id)) {
+            if ($this->getClient($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
                 throw new \Exception('Unit id does not exist', 404);
@@ -79,7 +65,7 @@ class UnitTable{
         }
     }
 
-    public function deleteUnit($id)
+    public function deleteClient($id)
     {
         $this->tableGateway->delete(array('id' => (int) $id));
     }

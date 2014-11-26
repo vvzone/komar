@@ -40,6 +40,7 @@ return array(
                 'route_plugins' => $routePlugins,
                 'may_terminate' => true, // check-out another time what does this mean
             ),
+            /* -= REST =- */
             'rest-endpoint' => array(
                 'type'    => 'Literal',
                 'options' => array(
@@ -52,6 +53,20 @@ return array(
                 'route_plugins' => $routePlugins,
                 'may_terminate' => true,
                 'child_routes' => array(
+                    /* ========= OBJECT ROUTES ===========*/
+                    'client' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/client[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Client'
+                            )
+                        )
+                    ),
                     'unit' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -133,6 +148,7 @@ return array(
             /* === Object === */
             'Object\Controller\Index' => 'Object\Controller\IndexController',
             'Object\Controller\Unit' => 'Object\Controller\UnitController',
+            'Object\Controller\Client' => 'Object\Controller\ClientController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),
