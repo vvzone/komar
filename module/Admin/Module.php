@@ -15,12 +15,17 @@ use Zend\ModuleManager\Feature\ConfigProviderInterface;
 use Zend\Mvc\ModuleRouteListener;
 use Zend\Mvc\MvcEvent;
 
-
 use Object\Model\Unit; //use Object\Model\UnitSimple;
 use Object\Model\UnitTable;
 
 use Object\Model\Client;
 use Object\Model\ClientTable;
+
+use Object\Model\Person;
+use Object\Model\PersonTable;
+
+use Object\Model\Post;
+use Object\Model\PostTable;
 
 use Zend\Db\ResultSet\ResultSet;
 use Zend\Db\TableGateway\TableGateway;
@@ -135,29 +140,61 @@ class Module
                         $resultSetPrototype->setArrayObjectPrototype(new Client());
                         return new TableGateway('clients', $dbAdapter, null, $resultSetPrototype);
                     },
+                /* --- PERSON ---*/
+                'Object\Model\PersonTable' =>  function($sm) {
+                        $tableGateway = $sm->get('PersonTableGateway');
+                        $table = new PersonTable($tableGateway);
+                        return $table;
+                    },
+                'PersonTableGateway' => function($sm) {
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                        $resultSetPrototype = new ResultSet();
+                        $resultSetPrototype->setArrayObjectPrototype(new Person());
+                        return new TableGateway('persons', $dbAdapter, null, $resultSetPrototype);
+                    },
+
+                /* --- POST --- */
+                'Object\Model\PostTable' =>  function($sm) {
+                        $tableGateway = $sm->get('PostTableGateway');
+                        $table = new PostTable($tableGateway);
+                        return $table;
+                    },
+                'PostTableGateway' => function($sm) {
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                        $resultSetPrototype = new ResultSet();
+                        $resultSetPrototype->setArrayObjectPrototype(new Post());
+                        return new TableGateway('posts', $dbAdapter, null, $resultSetPrototype);
+                    },
+                /* --- PersonPost */
+                'Object\Model\PersonPostActiveRecord' => function($sm){
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                        $resultSetPrototype = new ResultSet();
+                        $resultSetPrototype->setArrayObjectPrototype(new PersonPost());
+                        return new TableGateway('person_posts', $dbAdapter, null, $resultSetPrototype);
+                    },
                 /* --- UNIT --- */
                 'Object\Model\UnitTable' =>  function($sm) {
                         $tableGateway = $sm->get('UnitTableGateway');
                         $table = new UnitTable($tableGateway);
                         return $table;
                     },
-                    /*
-                'Object\Model\UnitTableList' =>  function($sm) {
-                        $tableGateway = $sm->get('UnitTableListGateway');
-                        $table = new UnitTable($tableGateway);
-                        return $table;
-                    },
-                'UnitTableListGateway' => function($sm) {
-                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
-                        $resultSetPrototype = new ResultSet();
-                        $resultSetPrototype->setArrayObjectPrototype(new UnitSimple());
-                        return new TableGateway('units', $dbAdapter, null, $resultSetPrototype);
-                    },*/
                 'UnitTableGateway' => function($sm) {
                         $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
                         $resultSetPrototype = new ResultSet();
                         $resultSetPrototype->setArrayObjectPrototype(new Unit());
                         return new TableGateway('units', $dbAdapter, null, $resultSetPrototype);
+                    },
+                /* --- UnitPost--- */
+                'Object\Model\UnitPostTable' =>  function($sm) {
+                        $tableGateway = $sm->get('UnitPostTableGateway');
+                        $table = new UnitPostTable($tableGateway);
+                        return $table;
+                    },
+                'UnitPostTableGateway' => function($sm) {
+                        $dbAdapter = $sm->get('Zend\Db\Adapter\Adapter');
+                        $resultSetPrototype = new ResultSet();
+                        $resultSetPrototype->setArrayObjectPrototype(new UnitPost());
+                        return new TableGateway('unit_posts', $dbAdapter, null, $resultSetPrototype);
                     },
             ),
         );

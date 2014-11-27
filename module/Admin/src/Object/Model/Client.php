@@ -13,7 +13,6 @@ class Client{
     public $unit;
     public $person;
 
-
     public function exchangeArray($data)
     {
         //var_dump($data);

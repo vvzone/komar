@@ -44,10 +44,14 @@ class ClientController extends RestController
     {
         $client = $this->getClientTable()->getClient($id);
         $unit = $this->getUnitTable()->getUnitByClientId($id);
+        $person = $this->getPersonTable()->getPersonByClientId($id);
 
         if($unit){
             $client->is_unit = true;
             $client->unit = $unit;
+        }elseif($person){
+            $client->is_unit = false;
+            $client->person = $person;
         }
 
         //$client = array_merge($client, $unit);
@@ -105,6 +109,15 @@ class ClientController extends RestController
             $this->unitTable = $sm->get('Object\Model\UnitTable');
         }
         return $this->unitTable;
+    }
+
+    public function getPersonTable()
+    {
+        if (!$this->personTable) {
+            $sm = $this->getServiceLocator();
+            $this->personTable = $sm->get('Object\Model\PersonTable');
+        }
+        return $this->personTable;
     }
 
 /*-------------- default methods ----------*/

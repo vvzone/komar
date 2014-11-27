@@ -17,14 +17,14 @@ class ClientTable{
 
     public function fetchAll()
     {
-            $resultSet = $this->tableGateway->select();
-            /* --- <Paginator> ---*/
+        $resultSet = $this->tableGateway->select();
+        /* --- <Paginator> ---*/
         /*
             $resultSet->buffer();
             $resultSet->next();
         */
-            /* --- </Paginator> --- */
-            return $resultSet;
+        /* --- </Paginator> --- */
+        return $resultSet;
     }
 
     public function getClient($id)
@@ -38,7 +38,6 @@ class ClientTable{
 
         return $row;
     }
-    //
 
     public function saveClient(Client $client)
     {
@@ -52,7 +51,7 @@ class ClientTable{
         $id = (int) $client->id;
         if ($id == 0) {
             if (!array_filter($data)) {
-                throw new \Exception('Trying to save empty model', 500);
+                throw new \Exception('trying to save empty model', 500);
             }else{
                 $this->tableGateway->insert($data);
             }
@@ -60,7 +59,7 @@ class ClientTable{
             if ($this->getClient($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
-                throw new \Exception('Unit id does not exist', 404);
+                throw new \Exception('client id does not exist', 404);
             }
         }
     }

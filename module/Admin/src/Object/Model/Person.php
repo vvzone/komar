@@ -15,10 +15,11 @@ class Person{
     public $citizenship;
     public $deputy;
 
+    public $person_post; // -> person_post.id
+
     public function exchangeArray($data)
     {
         //var_dump($data);
-    
         $this->id     = (isset($data['id'])) ? $data['id'] : null;
         $this->first_name = (isset($data['first_name'])) ? $data['first_name'] : null;
         $this->patronymic_name  = (isset($data['patronymic_name'])) ? $data['patronymic_name'] : null;
@@ -29,10 +30,11 @@ class Person{
         $this->inn  = (isset($data['inn'])) ? $data['inn'] : null;
         $this->citizenship  = (isset($data['citizenship'])) ? $data['citizenship'] : null;
         $this->deputy  = (isset($data['deputy'])) ? $data['deputy'] : null;
+
+        $this->person_post  = (isset($data['person_post'])) ? $data['person_post'] : null;
     }
 
     public function get_name(){
         return $this->first_name;
     }
-
 }

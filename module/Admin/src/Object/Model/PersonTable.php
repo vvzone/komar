@@ -43,7 +43,8 @@ class PersonTable{
         $rowset = $this->tableGateway->select(array('client' => $id));
         $row = $rowset->current();
         if (!$row) {
-            throw new \Exception("Could not find row $id", 404);
+            //throw new \Exception("Could not find row $id", 404);
+            return null;
         }
         return $row;
     }
@@ -51,16 +52,16 @@ class PersonTable{
     public function savePerson(Person $person)
     {
         $data = array(
-            'id' => $this->id,
-            'first_name' => $this->first_name,
-            'patronymic_name' => $this->patronymic_name,
-            'family_name' => $this->family_name,
-            'birth_date' => $this->birth_date,
-            'birth_place' => $this->birth_place,
-            'sex' => $this->sex,
-            'inn' => $this->inn,
-            'citizenship' => $this->citizenship,
-            'deputy' => $this->deputy,
+            'id' => $person->id,
+            'first_name' => $person->first_name,
+            'patronymic_name' => $person->patronymic_name,
+            'family_name' => $person->family_name,
+            'birth_date' => $person->birth_date,
+            'birth_place' => $person->birth_place,
+            'sex' => $person->sex,
+            'inn' => $person->inn,
+            'citizenship' => $person->citizenship,
+            'deputy' => $person->deputy
         );
 
         $id = (int) $person->id;

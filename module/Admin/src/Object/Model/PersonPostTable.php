@@ -3,9 +3,9 @@
 namespace Object\Model;
 
 use Zend\Db\TableGateway\TableGateway;
-use Object\Model\Unit;
+use Object\Model\PersonPost;
 
-class UnitTable{
+class PersonPostTable{
 
     protected $tableGateway;
 
@@ -26,7 +26,7 @@ class UnitTable{
             return $resultSet;
     }
 
-    public function getUnit($id)
+    public function getPersonPost($id)
     {
         $id  = (int) $id;
         $rowset = $this->tableGateway->select(array('id' => $id));
@@ -37,7 +37,7 @@ class UnitTable{
         return $row;
     }
 
-    public function getUnitByClientId($id)
+    public function getPersonPostByClientId($id)
     {
         $id  = (int) $id;
         $rowset = $this->tableGateway->select(array('client' => $id));
@@ -49,22 +49,18 @@ class UnitTable{
         return $row;
     }
 
-    public function saveUnit(Unit $unit)
+    public function savePersonPost(PersonPost $person_post)
     {
         $data = array(
-            'id' => $unit->id,
-            'name' => $unit->name,
-            'identification_number' => $unit->identification_number,
-            'short_name' => $unit->short_name,
-            'own_numeration' => $unit->own_numeration,
-            'is_legal' => $unit->is_legal,
-            'parent' => $unit->parent,
-            'commander' => $unit->commander,
-            'deputy' => $unit->deputy,
-            'on_duty' => $unit->on_duty
+            'id' => $person_post->id,
+            'person' => $person_post->person,
+            'unit_post' => $person_post->unit_post,
+            'start_date' => $person_post->start_date,
+            'stop_date' => $person_post->stop_date,
+            'description' => $person_post->description
         );
 
-        $id = (int) $unit->id;
+        $id = (int) $person_post->id;
         if ($id == 0) {
             if (!array_filter($data)) {
                 throw new \Exception('Trying to save empty model', 500);
@@ -72,15 +68,15 @@ class UnitTable{
                 $this->tableGateway->insert($data);
             }
         } else {
-            if ($this->getUnit($id)) {
+            if ($this->getPersonPost($id)) {
                 $this->tableGateway->update($data, array('id' => $id));
             } else {
-                throw new \Exception('Unit id does not exist', 404);
+                throw new \Exception('PersonPost id does not exist', 404);
             }
         }
     }
 
-    public function deleteUnit($id)
+    public function deletePersonPost($id)
     {
         $this->tableGateway->delete(array('id' => (int) $id));
     }
