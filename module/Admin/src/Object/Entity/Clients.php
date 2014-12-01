@@ -122,4 +122,32 @@ class Clients
     {
         return $this->isExternal;
     }
+
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="Persons" inversedBy="clients")
+     * @ORM\JoinColumn(name="userID", referencedColumnName="person")
+     */
+    protected $person;
+
+    public function __construct()
+    {
+        $this->person = new ArrayCollection();
+    }
+
+    public function getPerson(){
+        return $this->person;
+    }
+
+    public function getAll()
+    {
+        return array(
+            'id' => $this->getId(),
+            'full_name' => $this->getFullName(),
+            'identification_number' => $this->getIdentificationNumber(),
+            'is_external' => $this->getIsExternal(),
+            'person' => $this->getPerson()->getFirstName()
+        );
+    }
 }

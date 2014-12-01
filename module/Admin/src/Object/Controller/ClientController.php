@@ -13,6 +13,8 @@ use Object\Model\Client;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
+use Object\Entity\Clients as ClientORM;
+
 use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
 
@@ -35,8 +37,10 @@ class ClientController extends RestController
             $data[] = $result;
         }
 
-        return new JsonModel(array(
-                'data' => $data)
+        return new JsonModel(
+            array(
+                'data' => $data
+            )
         );
     }
 
@@ -46,16 +50,26 @@ class ClientController extends RestController
         $unit = $this->getUnitTable()->getUnitByClientId($id);
         $person = $this->getPersonTable()->getPersonByClientId($id);
 
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+
+        /*
         if($unit){
-            $client->is_unit = true;
-            $client->unit = $unit;
+
+            //$client->is_unit = true;
+            //$client->unit = $unit;
         }elseif($person){
-            $client->is_unit = false;
-            $client->person = $person;
+
+            //$client->is_unit = false;
+            //$client->person = $person;
         }
+        */
 
         //$client = array_merge($client, $unit);
-        return new JsonModel(array("data" => $client));
+        $client = $objectManager->find('Object\Entity\Clients', $id);
+        return new JsonModel(array("data" => $client->getAll()));
     }
 
     public function create($data)
