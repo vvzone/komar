@@ -179,4 +179,19 @@ return array(
             ),
         ),
     ),
+    // Doctrine config
+    'doctrine' => array(
+        'driver' => array(
+            'Object_driver' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/Object/Entity')
+            ),
+            'orm_default' => array(
+                'drivers' => array(
+                   'Object\Entity' => 'Object_driver'
+                )
+            )
+        )
+    ),
 );

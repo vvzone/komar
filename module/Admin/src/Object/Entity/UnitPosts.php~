@@ -1,0 +1,59 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * UnitPosts
+ *
+ * @ORM\Table(name="unit_posts", indexes={@ORM\Index(name="unit", columns={"unit"}), @ORM\Index(name="post", columns={"post"})})
+ * @ORM\Entity
+ */
+class UnitPosts
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="start_date", type="date", nullable=true)
+     */
+    private $startDate;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="stop_date", type="date", nullable=true)
+     */
+    private $stopDate;
+
+    /**
+     * @var \Object\Entity\Posts
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Posts")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="post", referencedColumnName="id")
+     * })
+     */
+    private $post;
+
+    /**
+     * @var \Object\Entity\Units
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Units")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="unit", referencedColumnName="id")
+     * })
+     */
+    private $unit;
+
+
+}

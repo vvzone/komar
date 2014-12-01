@@ -1,0 +1,12 @@
+convert:
+./vendor/doctrine/doctrine-module/bin/doctrine-module orm:convert-mapping --namespace="Admin\\Object\\" --force  --from-database annotation ./module/Admin/src/
+
+create:
+doctrine-module orm:generate-entities ./module/Admin/src/ --generate-annotations=true
+
+
+doctrine-module orm:convert-mapping --namespace="Admin\Entity" --force  --from-database annotation ./module/Admin/src/
+
+
+doctrine-module orm:convert-mapping --namespace="Object" --force  --from-database annotation ./module/Admin/src/
+
