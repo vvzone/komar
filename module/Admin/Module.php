@@ -63,6 +63,13 @@ class Module
 
         $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'onDispatchError'), 0);
         $eventManager->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'onRenderError'), 0);
+
+        //$eventManager->attach(new \Doctrine\DBAL\Event\Listeners\MysqlSessionInit('utf8', 'utf8_unicode_ci')); //getEventManager()->
+
+        /*
+        $e->getApplication()->getEventManager()->addEventSubscriber(new
+        \Doctrine\DBAL\Event\Listeners\MysqlSessionInit('utf8', 'utf8_unicode_ci'));
+        */
     }
 
     public function onDispatchError($e)

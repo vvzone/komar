@@ -66,7 +66,8 @@ class Persons
     /**
      * @var integer
      *
-     * @ORM\Column(name="sex", type="integer", nullable=true)
+     * @ORM\OneToOne(targetEntity="Sex")
+     * @ORM\JoinColumn(name="sex", referencedColumnName="id")
      */
     private $sex;
 
@@ -94,6 +95,7 @@ class Persons
     /**
      * @var integer
      *
+     * @ORM\ManyToMany()
      * @ORM\Column(name="person_post", type="integer", nullable=true)
      */
     private $personPost;
@@ -264,11 +266,11 @@ class Persons
     /**
      * Get sex
      *
-     * @return integer 
+     * @return Sex
      */
     public function getSex()
     {
-        return $this->sex;
+        return $this->sex->getMain();
     }
 
     /**
@@ -365,6 +367,7 @@ class Persons
 
     public function getMain(){
         return array(
+            'id' => $this->getId(),
             'first_name' => $this->getFirstName(),
             'pantronomic_name' => $this->getPatronymicName(),
             'family_name' => $this->getFamilyName(),

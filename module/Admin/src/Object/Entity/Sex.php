@@ -92,4 +92,12 @@ class Sex
     {
         return $this->shortName;
     }
+
+    public function getMain(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName()
+        );
+    }
 }
