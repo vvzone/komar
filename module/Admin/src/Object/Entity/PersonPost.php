@@ -50,12 +50,9 @@ class PersonPost
     private $description;
 
     /**
-     * @var \Object\Entity\Persons
      *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\Persons")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="person", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Persons", inversedBy="personPost")
+     * @ORM\JoinColumn(name="person", referencedColumnName="id")
      */
     private $person;
 
@@ -217,5 +214,16 @@ class PersonPost
     public function getUnitPost()
     {
         return $this->unitPost;
+    }
+
+    public function getPersonToUnitPostSide(){
+        return array(
+            'id' => $this->getId(),
+            'start_date' => $this->getStartDate(),
+            'end_date' => $this->getEndDate(),
+            'document' => $this->getDocument(),
+            'unit_post' => $this->getUnitPost()
+        );
+
     }
 }

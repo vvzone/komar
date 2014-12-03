@@ -162,7 +162,7 @@ return array(
                 //'credentialProperty' => 'password'
             ),
         ),
-
+        
         // migrations configuration
         'migrations_configuration' => array(
             'orm_default' => array(

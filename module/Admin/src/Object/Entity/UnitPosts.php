@@ -158,4 +158,14 @@ class UnitPosts
     {
         return $this->unit;
     }
+
+    public function getMain(){
+        return array(
+            'id' => $this->getId(),
+            'start_date' => $this->getStartDate(),
+            'stop_date' => $this->getStopDate(),
+            'post' => $this->getPost(),
+            'unit' => $this->getUnit()
+        );
+    }
 }

@@ -92,15 +92,18 @@ class Persons
      */
     private $deputy;
 
+
     /**
-     * @var integer
+     * @ORM\OneToMany(targetEntity="PersonPost", mappedBy="person", cascade={"all"}, orphanRemoval=true)
      *
-     * @ORM\ManyToMany()
-     * @ORM\Column(name="person_post", type="integer", nullable=true)
-     */
+     **/
     private $personPost;
 
 
+    public function __construct()
+    {
+        $this->personPost = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -358,11 +361,21 @@ class Persons
     /**
      * Get personPost
      *
-     * @return integer 
+     * @return PersonPost
      */
     public function getPersonPost()
     {
-        return $this->personPost;
+        $count = $this->personPost->count();
+        $collection = $this->personPost;
+        $post_array = array();
+        $new_collection = $collection->map(
+            function($person_post){
+                return $person_post->getPersonToUnitPostSide();
+            }
+        );
+        //var_dump($post_array);
+        //$post_array = $collection->last()->getDescription();
+        return $new_collection->getValues();
     }
 
     public function getMain(){
@@ -377,7 +390,8 @@ class Persons
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
-            'personPost' => $this->getPersonPost()
+            'personPost' => $this->getPersonPost(),
+            'person_post_count' => $this->personPost->count()
         );
     }
 }

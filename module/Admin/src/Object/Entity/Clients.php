@@ -124,9 +124,6 @@ class Clients
 
 
     /**
-     * @var integer
-     *
-     * ORM\Column(name="person", type="integer", nullable=true)
      * @ORM\OneToOne(targetEntity="Persons")
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
@@ -137,7 +134,6 @@ class Clients
     }
 
     /**
-     *
      * @ORM\OneToMany(targetEntity="Persons", mappedBy="client", cascade={"all"}, orphanRemoval=true)
      */
     protected $personInfo;
