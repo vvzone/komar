@@ -3,6 +3,7 @@
 namespace Object\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+//use Object\Entity\Clients as Client;
 
 /**
  * Persons
@@ -22,11 +23,10 @@ class Persons
     private $id;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="client", type="integer", nullable=false)
-     */
-    private $client;
+     * @ORM\ManyToOne(targetEntity="Clients", inversedBy="personInfo")
+     * @ORM\JoinColumn(name="client", referencedColumnName="id")
+     **/
+    protected $client; //private
 
     /**
      * @var string

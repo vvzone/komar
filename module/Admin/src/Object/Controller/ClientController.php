@@ -54,22 +54,25 @@ class ClientController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-
         /*
         if($unit){
 
-            //$client->is_unit = true;
-            //$client->unit = $unit;
+            $client->is_unit = true;
+            $client->unit = $unit;
         }elseif($person){
 
-            //$client->is_unit = false;
-            //$client->person = $person;
+            $client->is_unit = false;
+            $client->person = $person;
         }
         */
 
+
         //$client = array_merge($client, $unit);
+        //$person = $objectManager->find('Object\Entity\Persons', $id);
         $client = $objectManager->find('Object\Entity\Clients', $id);
+        //$client->__load();
         return new JsonModel(array("data" => $client->getAll()));
+        //return new JsonModel(array("data" => $client->get_name()));
     }
 
     public function create($data)

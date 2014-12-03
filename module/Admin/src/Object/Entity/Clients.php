@@ -43,7 +43,6 @@ class Clients
     private $isExternal;
 
 
-
     /**
      * Get id
      *
@@ -125,19 +124,60 @@ class Clients
 
 
     /**
+     * @var integer
      *
-     * @ORM\OneToOne(targetEntity="Persons" inversedBy="clients")
-     * @ORM\JoinColumn(name="userID", referencedColumnName="person")
+     * ORM\Column(name="person", type="integer", nullable=true)
+     * @ORM\OneToOne(targetEntity="Persons")
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
-    protected $person;
+    private $person_id;
+
+    public function getPersonId(){
+        return $this->person_id;
+    }
+
+    /**
+     *
+     * @ORM\OneToOne(targetEntity="Persons", mappedBy="client", cascade={"all"}, orphanRemoval=true)
+     */
+    protected $personInfo;
 
     public function __construct()
     {
-        $this->person = new ArrayCollection();
+        //$this->personInfo = new ArrayCollection();
     }
 
-    public function getPerson(){
-        return $this->person;
+    /**
+     * Add personInfo
+     *
+     * @param Persons $personInfo
+     */
+    public function addPersonInfo(Persons $personInfo){
+        $this->personInfo = $personInfo;
+    }
+
+    /**
+     * Get personInfo
+     *
+     * @return Persons
+     */
+    public function getPersonInfo2(){
+        //return $this->personInfo;
+        $result = 'test';
+        foreach($this->personInfo as $p_info){
+            $result = $p_info->getFirstName();
+        }
+        return $result;
+    }
+
+
+    /**
+     * Get personInfo
+     *
+     * @return Persons
+     */
+    public function getPersonInfo(){
+        return $this->personInfo;
     }
 
     public function getAll()
@@ -147,7 +187,10 @@ class Clients
             'full_name' => $this->getFullName(),
             'identification_number' => $this->getIdentificationNumber(),
             'is_external' => $this->getIsExternal(),
-            'person' => $this->getPerson()->getFirstName()
+            'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
+            //'person' => $this->getPersonInfo()->last()->getFirstName(),
+            'person' => $this->getPersonInfo()->getFirstName(),
+            //'person_count' => $this->getPersonInfo()->count()
         );
     }
 }
