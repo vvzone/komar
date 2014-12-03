@@ -430,4 +430,15 @@ class Persons extends \Object\Entity\Persons implements \Doctrine\ORM\Proxy\Prox
         return parent::getPersonPost();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getMain()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMain', array());
+
+        return parent::getMain();
+    }
+
 }

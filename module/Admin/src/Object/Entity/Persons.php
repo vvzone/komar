@@ -362,4 +362,19 @@ class Persons
     {
         return $this->personPost;
     }
+
+    public function getMain(){
+        return array(
+            'first_name' => $this->getFirstName(),
+            'pantronomic_name' => $this->getPatronymicName(),
+            'family_name' => $this->getFamilyName(),
+            'birth_date' => $this->getBirthDate(),
+            'birth_place' => $this->getBirthPlace(),
+            'sex' => $this->getSex(),
+            'inn' => $this->getInn(),
+            'citizenship' => $this->getCitizenship(),
+            'deputy' => $this->getDeputy(),
+            'personPost' => $this->getPersonPost()
+        );
+    }
 }

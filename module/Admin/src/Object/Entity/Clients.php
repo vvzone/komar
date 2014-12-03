@@ -138,13 +138,13 @@ class Clients
 
     /**
      *
-     * @ORM\OneToOne(targetEntity="Persons", mappedBy="client", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Persons", mappedBy="client", cascade={"all"}, orphanRemoval=true)
      */
     protected $personInfo;
 
     public function __construct()
     {
-        //$this->personInfo = new ArrayCollection();
+        $this->personInfo = new ArrayCollection();
     }
 
     /**
@@ -174,9 +174,14 @@ class Clients
     /**
      * Get personInfo
      *
+     * @throws \Exception
      * @return Persons
      */
     public function getPersonInfo(){
+        if($this->personInfo->count() > 1)
+        {
+            throw new \Exception('Fatal. DB corruption detected. More than one person-extension to current client-record.', 500);
+        }
         return $this->personInfo;
     }
 
@@ -188,9 +193,7 @@ class Clients
             'identification_number' => $this->getIdentificationNumber(),
             'is_external' => $this->getIsExternal(),
             'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
-            //'person' => $this->getPersonInfo()->last()->getFirstName(),
-            'person' => $this->getPersonInfo()->getFirstName(),
-            //'person_count' => $this->getPersonInfo()->count()
+            'person' => $this->getPersonInfo()->last()->getMain(),
         );
     }
 }
