@@ -42,6 +42,21 @@ class Clients
      */
     private $isExternal;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Persons", mappedBy="client", cascade={"all"}, orphanRemoval=true)
+     */
+    protected $personInfo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Units", mappedBy="client", cascade={"all"}, orphanRemoval=true)
+     */
+    protected $unitInfo;
+
+    public function __construct()
+    {
+        $this->personInfo = new ArrayCollection();
+        $this->unitInfo = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -134,16 +149,6 @@ class Clients
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="Persons", mappedBy="client", cascade={"all"}, orphanRemoval=true)
-     */
-    protected $personInfo;
-
-    public function __construct()
-    {
-        $this->personInfo = new ArrayCollection();
-    }
-
-    /**
      * Add personInfo
      *
      * @param Persons $personInfo
@@ -178,7 +183,29 @@ class Clients
         {
             throw new \Exception('Fatal. DB corruption detected. More than one person-extension to current client-record.', 500);
         }
-        return $this->personInfo;
+        $person = $this->personInfo->last();
+        if($person){
+            return $person->getMain();
+        }
+        return null;
+    }
+
+    /**
+     * Get unitInfo
+     *
+     * @throws \Exception
+     * @return Unitss
+     */
+    public function getUnitInfo(){
+        if($this->unitInfo->count() > 1)
+        {
+            throw new \Exception('Fatal. DB corruption detected. More than one unit-extension to current client-record.', 500);
+        }
+        $unit = $this->unitInfo->last();
+        if($unit){
+            return $unit->getMain();
+        }
+        return null;
     }
 
     public function getAll()
@@ -188,8 +215,9 @@ class Clients
             'full_name' => $this->getFullName(),
             'identification_number' => $this->getIdentificationNumber(),
             'is_external' => $this->getIsExternal(),
-            'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
-            'person' => $this->getPersonInfo()->last()->getMain(),
+            //'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
+            'person' => $this->getPersonInfo(),
+            'unit' => $this->getUnitInfo()
         );
     }
 }

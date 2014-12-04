@@ -29,10 +29,9 @@ class Units
     private $parent;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="client", type="integer", nullable=false)
-     */
+     * @ORM\ManyToOne(targetEntity="Clients", inversedBy="unitInfo")
+     * @ORM\JoinColumn(name="client", referencedColumnName="id")
+     **/
     private $client;
 
     /**
@@ -64,16 +63,8 @@ class Units
     private $isLegal;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="identification_number", type="integer", nullable=true)
-     */
-    private $identificationNumber;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="commander", type="integer", nullable=true)
+     * @ORM\OneToOne(targetEntity="Clients")
+     * @ORM\JoinColumn(name="commander", referencedColumnName="id")
      */
     private $commander;
 
@@ -241,28 +232,6 @@ class Units
         return $this->isLegal;
     }
 
-    /**
-     * Set identificationNumber
-     *
-     * @param integer $identificationNumber
-     * @return Units
-     */
-    public function setIdentificationNumber($identificationNumber)
-    {
-        $this->identificationNumber = $identificationNumber;
-
-        return $this;
-    }
-
-    /**
-     * Get identificationNumber
-     *
-     * @return integer 
-     */
-    public function getIdentificationNumber()
-    {
-        return $this->identificationNumber;
-    }
 
     /**
      * Set commander
@@ -280,11 +249,11 @@ class Units
     /**
      * Get commander
      *
-     * @return integer 
+     * @return Clients
      */
     public function getCommander()
     {
-        return $this->commander;
+        return $this->commander->getAll();
     }
 
     /**
@@ -331,5 +300,20 @@ class Units
     public function getOnDuty()
     {
         return $this->onDuty;
+    }
+
+    public function getMain(){
+        return array(
+            'id' => $this->getId(),
+            'parent' => $this->getParent(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName(),
+            'own_numeration' => $this->getOwnNumeration(),
+            'is_legal' => $this->getIsLegal(),
+            'commander' => $this->getCommander(),
+            'deputy' => $this->getDeputy(),
+            'on_duty' => $this->getOnDuty(),
+            'commanderInfo' => '2 do'
+        );
     }
 }

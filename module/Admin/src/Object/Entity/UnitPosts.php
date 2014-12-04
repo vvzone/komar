@@ -36,7 +36,6 @@ class UnitPosts
     private $stopDate;
 
     /**
-     * @var \Object\Entity\Posts
      *
      * @ORM\ManyToOne(targetEntity="Object\Entity\Posts")
      * @ORM\JoinColumns({
@@ -133,7 +132,7 @@ class UnitPosts
      */
     public function getPost()
     {
-        return $this->post;
+        return $this->post->getName();
     }
 
     /**

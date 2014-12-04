@@ -365,7 +365,7 @@ class Persons
      */
     public function getPersonPost()
     {
-        $count = $this->personPost->count();
+        //$count = $this->personPost->count();
         $collection = $this->personPost;
         $post_array = array();
         $new_collection = $collection->map(
@@ -378,6 +378,7 @@ class Persons
         return $new_collection->getValues();
     }
 
+    //
     public function getMain(){
         return array(
             'id' => $this->getId(),
@@ -391,7 +392,7 @@ class Persons
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
             'personPost' => $this->getPersonPost(),
-            'person_post_count' => $this->personPost->count()
+            //'person_post_count' => $this->personPost->count()
         );
     }
 }

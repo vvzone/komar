@@ -57,16 +57,17 @@ class PersonPost
     private $person;
 
     /**
-     * @var \Object\Entity\UnitPosts
      *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\UnitPosts")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="unit_post", referencedColumnName="id")
-     * })
-     */
+     * @ORM\OneToOne(targetEntity="UnitPosts")
+     * @ORM\JoinColumn(name="unit_post", referencedColumnName="id")
+     **/
     private $unitPost;
 
-
+    public function __construct()
+    {
+        $this->person = new \Doctrine\Common\Collections\ArrayCollection();
+        //$this->unitPost = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -209,11 +210,12 @@ class PersonPost
     /**
      * Get unitPost
      *
-     * @return \Object\Entity\UnitPosts 
+     * @return UnitPosts
      */
     public function getUnitPost()
     {
-        return $this->unitPost;
+        //var_dump($this->unitPost);
+        return $this->unitPost->getMain();
     }
 
     public function getPersonToUnitPostSide(){
