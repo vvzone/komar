@@ -28,7 +28,7 @@ class Persons
      **/
     protected $client; //private
 
-    /**
+    /** 
      * @var string
      *
      * @ORM\Column(name="first_name", type="string", length=64, nullable=false)

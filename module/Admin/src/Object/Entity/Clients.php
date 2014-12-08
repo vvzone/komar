@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Clients
  *
  * @ORM\Table(name="clients")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\ClientsRepository")
  */
 class Clients
 {
@@ -194,7 +194,7 @@ class Clients
      * Get unitInfo
      *
      * @throws \Exception
-     * @return Unitss
+     * @return Unit
      */
     public function getUnitInfo(){
         if($this->unitInfo->count() > 1)
@@ -218,6 +218,13 @@ class Clients
             //'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
             'person' => $this->getPersonInfo(),
             'unit' => $this->getUnitInfo()
+        );
+    }
+
+    public function getClientSimple(){
+        return array(
+            'id' => $this->getId(),
+            'full_name' => $this->getFullName(),
         );
     }
 }

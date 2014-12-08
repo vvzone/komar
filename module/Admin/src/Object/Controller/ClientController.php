@@ -14,7 +14,6 @@ use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
 use Object\Entity\Clients as ClientORM;
-
 use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
 
@@ -30,11 +29,19 @@ class ClientController extends RestController
 
     public function getList()
     {
-        $results = $this->getClientTable()->fetchAll();
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        //$results = $objectManager->getRepository('Object\Entity\Clients')->findBy(array('identificationNumber' => 19612));
+        $results = $objectManager->getRepository('Object\Entity\Clients')->findAll();
+
+        //var_dump($results);
+        //$results = $this->getClientTable()->fetchAll();
         $data = array();
 
         foreach ($results as $result) {
-            $data[] = $result;
+            $data[] = $result->getClientSimple();
         }
 
         return new JsonModel(
@@ -109,6 +116,7 @@ class ClientController extends RestController
             'data' => 'deleted',
         ));
     }
+
 
     public function getClientTable()
     {

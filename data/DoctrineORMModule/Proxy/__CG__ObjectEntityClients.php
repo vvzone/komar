@@ -320,4 +320,15 @@ class Clients extends \Object\Entity\Clients implements \Doctrine\ORM\Proxy\Prox
         return parent::getAll();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getClientSimple()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getClientSimple', array());
+
+        return parent::getClientSimple();
+    }
+
 }

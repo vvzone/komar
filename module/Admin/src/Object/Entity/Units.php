@@ -310,7 +310,7 @@ class Units
             'short_name' => $this->getShortName(),
             'own_numeration' => $this->getOwnNumeration(),
             'is_legal' => $this->getIsLegal(),
-            'commander' => $this->getCommander(),
+            //'commander' => $this->getCommander(),
             'deputy' => $this->getDeputy(),
             'on_duty' => $this->getOnDuty(),
             'commanderInfo' => '2 do'

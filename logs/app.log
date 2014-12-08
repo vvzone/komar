@@ -218,3 +218,33 @@ java.lang.ExceptionInInitializerError: ORM not started!
 [$$]2014-10-24 10:54:05,727 INFO command_planner.Planner [Dispatcher: Thread-19] Planner - adding new task: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@682a43a6, author=0}
 [$$]2014-10-24 10:54:05,758 WARN utils.Kit [Planner-2] Kit : fromPlanned2Command() No classOfCommand
 [$$]2014-10-24 10:54:05,758 WARN command_planner.Planner [Planner-2] Cannot convert planned command to cmd for executor: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@682a43a6, author=0}
+[$$]2014-12-08 13:14:14,584 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-12-08 13:14:14,584 INFO mosquito.Main [main] Main modules init!
+[$$]2014-12-08 13:14:21,186 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-12-08 13:14:21,186 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-12-08 13:14:21,189 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-12-08 13:14:21,190 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-12-08 13:14:21,190 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-12-08 13:14:21,289 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-12-08 13:14:21,292 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-12-08 13:14:21,302 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-12-08 13:14:21,304 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-12-08 13:14:21,306 INFO commands.CommandMappingsCache [main] Got 0 commands.
+[$$]2014-12-08 13:14:21,307 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-12-08 13:14:21,308 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-12-08 13:14:21,313 INFO mosquito.Main [main] Ready to go! (0.69)
+[$$]2014-12-08 13:15:13,252 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-12-08 13:15:13,252 INFO mosquito.Main [main] Main modules init!
+[$$]2014-12-08 13:15:20,309 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-12-08 13:15:20,309 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-12-08 13:15:20,312 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-12-08 13:15:20,313 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-12-08 13:15:20,313 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-12-08 13:15:20,392 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-12-08 13:15:20,394 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-12-08 13:15:20,395 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-12-08 13:15:20,396 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-12-08 13:15:20,397 INFO commands.CommandMappingsCache [main] Got 0 commands.
+[$$]2014-12-08 13:15:20,398 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-12-08 13:15:20,398 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-12-08 13:15:20,403 INFO mosquito.Main [main] Ready to go! (0.69)
