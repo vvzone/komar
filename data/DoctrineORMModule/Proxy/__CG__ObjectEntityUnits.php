@@ -386,4 +386,15 @@ class Units extends \Object\Entity\Units implements \Doctrine\ORM\Proxy\Proxy
         return parent::getOnDuty();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getMain()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMain', array());
+
+        return parent::getMain();
+    }
+
 }
