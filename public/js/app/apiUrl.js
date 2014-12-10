@@ -344,14 +344,14 @@ define(
                 return (local_server)? local: production;
             },
             clients: function() {
-                var local = host + prefix + "/clients";
+                var local = host + prefix + "/client";
                 var production = host + prefix + "/clients_list";
 
                 return (local_server)? local: production;
             },
             client: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/clients/"+ id;
+                var local = host + prefix + "/client/"+ id;
                 var production = host + prefix + "/client/"+ id;
 
                 return (local_server)? local: production;

@@ -84,73 +84,9 @@ java.lang.ExceptionInInitializerError: ORM not started!
 	at com.spt.mosquito.Main.modules(Main.java:78) ~[mosquito.jar:0.1]
 	at com.spt.mosquito.Main.runApplication(Main.java:44) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.main(Main.java:32) [mosquito.jar:0.1]
-[$$]2014-10-17 17:40:29,736 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-17 17:40:29,746 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-17 17:40:40,269 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-17 17:40:40,269 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-17 17:40:40,281 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-17 17:40:40,281 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-17 17:40:40,282 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-17 17:40:40,527 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-17 17:40:40,537 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-17 17:40:40,542 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-17 17:40:40,548 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-17 17:40:40,555 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-17 17:40:40,560 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-17 17:40:40,563 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-17 17:40:41,000 INFO apps.MosquitoApp [main] Runup catalog counters: {accounts=0, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_types=0, base_attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attributes=0, document_history=0, document_states=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-17 17:40:41,191 INFO mosquito.Main [main] Ready to go! (0.52)
-[$$]2014-10-17 18:10:12,791 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-17 18:10:12,801 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-17 18:10:22,295 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-17 18:10:22,295 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-17 18:10:22,305 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-17 18:10:22,305 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-17 18:10:22,305 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-17 18:10:22,530 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-17 18:10:22,540 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-17 18:10:22,540 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-17 18:10:22,540 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-17 18:10:22,550 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-17 18:10:22,550 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-17 18:10:22,550 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-17 18:10:22,990 INFO apps.MosquitoApp [main] Runup catalog counters: {accounts=0, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_types=1, base_attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attributes=0, document_history=0, document_states=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=1, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-17 18:10:23,070 INFO mosquito.Main [main] Ready to go! (0.52)
-[$$]2014-10-23 19:26:25,348 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-23 19:26:25,356 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-23 19:26:35,186 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-23 19:26:35,186 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-23 19:26:35,222 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-23 19:26:35,222 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-23 19:26:35,225 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-23 19:26:35,464 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-23 19:26:35,472 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-23 19:26:35,479 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-23 19:26:35,483 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-23 19:26:35,487 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-23 19:26:35,489 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-23 19:26:35,491 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-23 19:26:36,192 INFO apps.MosquitoApp [main] Runup catalog counters: {accounts=0, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_types=1, base_attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attributes=0, document_history=0, document_states=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=1, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-23 19:26:36,381 INFO mosquito.Main [main] Ready to go! (0.52)
-[$$]2014-10-24 10:30:47,162 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-24 10:30:47,168 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-24 10:30:57,000 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-24 10:30:57,000 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-24 10:30:57,042 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-24 10:30:57,042 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-24 10:30:57,046 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-24 10:30:57,437 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-24 10:30:57,445 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-24 10:30:57,459 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-24 10:30:57,461 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-24 10:30:57,466 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-24 10:30:57,467 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-24 10:30:57,468 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-24 10:30:58,371 INFO apps.MosquitoApp [main] Runup catalog counters: {accounts=0, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_types=1, base_attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attributes=0, document_history=0, document_states=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=1, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-24 10:30:58,569 INFO mosquito.Main [main] Ready to go! (0.52)
-[$$]2014-10-24 10:34:15,159 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-24 10:34:15,165 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-24 10:34:16,455 ERROR connector.ORMConnector [main] ORMConnector : connect()
+[$$]2014-10-17 18:09:58,783 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-10-17 18:09:58,793 INFO mosquito.Main [main] Main modules init!
+[$$]2014-10-17 18:10:00,064 ERROR connector.ORMConnector [main] ORMConnector : connect()
 org.hibernate.exception.JDBCConnectionException: Error calling Driver#connect
 	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator$1$1.convert(BasicConnectionCreator.java:122) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
 	at org.hibernate.engine.jdbc.connections.internal.BasicConnectionCreator.convertSqlException(BasicConnectionCreator.java:140) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
@@ -172,9 +108,9 @@ org.hibernate.exception.JDBCConnectionException: Error calling Driver#connect
 	at com.spt.mosquito.Main.modules(Main.java:112) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.runApplication(Main.java:52) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.main(Main.java:40) [mosquito.jar:0.1]
-Caused by: org.postgresql.util.PSQLException: ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "mosquito" ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-	at org.postgresql.core.v3.ConnectionFactoryImpl.readStartupMessages(ConnectionFactoryImpl.java:464) ~[postgresql-8.4-702.jdbc4.jar:?]
-	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:112) ~[postgresql-8.4-702.jdbc4.jar:?]
+Caused by: org.postgresql.util.PSQLException: ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ "postgres" ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½)
+	at org.postgresql.core.v3.ConnectionFactoryImpl.doAuthentication(ConnectionFactoryImpl.java:291) ~[postgresql-8.4-702.jdbc4.jar:?]
+	at org.postgresql.core.v3.ConnectionFactoryImpl.openConnectionImpl(ConnectionFactoryImpl.java:108) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.core.ConnectionFactory.openConnection(ConnectionFactory.java:66) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.jdbc2.AbstractJdbc2Connection.<init>(AbstractJdbc2Connection.java:125) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.postgresql.jdbc3.AbstractJdbc3Connection.<init>(AbstractJdbc3Connection.java:30) ~[postgresql-8.4-702.jdbc4.jar:?]
@@ -185,210 +121,105 @@ Caused by: org.postgresql.util.PSQLException: ï¿½ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ï¿½ï¿½ ï¿½ï
 	at org.postgresql.Driver.connect(Driver.java:267) ~[postgresql-8.4-702.jdbc4.jar:?]
 	at org.hibernate.engine.jdbc.connections.internal.DriverConnectionCreator.makeConnection(DriverConnectionCreator.java:55) ~[hibernate-core-4.3.5.Final.jar:4.3.5.Final]
 	... 17 more
-[$$]2014-10-24 10:34:16,494 ERROR mosquito.Main [main] Main : runApplication()
+[$$]2014-10-17 18:10:00,108 ERROR mosquito.Main [main] Main : runApplication()
 java.lang.ExceptionInInitializerError: ORM not started!
 	at com.spt.mosquito.Main.modules(Main.java:114) ~[mosquito.jar:0.1]
 	at com.spt.mosquito.Main.runApplication(Main.java:52) [mosquito.jar:0.1]
 	at com.spt.mosquito.Main.main(Main.java:40) [mosquito.jar:0.1]
-[$$]2014-10-24 10:34:45,272 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-10-24 10:34:45,278 INFO mosquito.Main [main] Main modules init!
-[$$]2014-10-24 10:34:54,715 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-10-24 10:34:54,715 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-10-24 10:34:54,723 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-10-24 10:34:54,724 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-10-24 10:34:54,724 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-10-24 10:34:54,950 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-10-24 10:34:54,957 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-10-24 10:34:54,961 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-10-24 10:34:54,965 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-10-24 10:34:54,970 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-10-24 10:34:54,972 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-10-24 10:34:54,975 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-10-24 10:34:55,393 INFO apps.MosquitoApp [main] Runup catalog counters: {accounts=0, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_types=0, base_attribute_types=0, commander_types=0, commands=0, countrys=0, document_attribute_history=0, document_attributes=0, document_history=0, document_states=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, legal_details=0, location_types=0, node_attributes=0, node_notifications=0, node_state_historys=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=0, post_group_content=0, post_groups=0, post_ranks=0, posts=0, primitive_attribute_data=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_types=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-10-24 10:34:55,502 INFO mosquito.Main [main] Ready to go! (0.52)
-[$$]2014-10-24 10:45:36,538 INFO command_planner.Planner [Dispatcher: Thread-21] Planner - adding new task: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=null, author=0}
-[$$]2014-10-24 10:45:36,541 WARN utils.Kit [Planner-2] Kit : fromPlanned2Command() No classOfCommand
-[$$]2014-10-24 10:45:36,542 WARN command_planner.Planner [Planner-2] Cannot convert planned command to cmd for executor: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@62d8cad4, author=0}
-[$$]2014-10-24 10:48:45,337 INFO command_planner.Planner [Dispatcher: Thread-19] Planner - adding new task: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@1ed9bfa8, author=0}
-[$$]2014-10-24 10:48:45,368 WARN utils.Kit [Planner-2] Kit : fromPlanned2Command() No classOfCommand
-[$$]2014-10-24 10:48:45,368 WARN command_planner.Planner [Planner-2] Cannot convert planned command to cmd for executor: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@1ed9bfa8, author=0}
-[$$]2014-10-24 10:52:59,140 INFO command_planner.Planner [Dispatcher: Thread-24] Planner - adding new task: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@3661f0b6, author=0}
-[$$]2014-10-24 10:52:59,156 WARN utils.Kit [Planner-2] Kit : fromPlanned2Command() No classOfCommand
-[$$]2014-10-24 10:52:59,156 WARN command_planner.Planner [Planner-2] Cannot convert planned command to cmd for executor: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@3661f0b6, author=0}
-[$$]2014-10-24 10:54:05,727 INFO command_planner.Planner [Dispatcher: Thread-19] Planner - adding new task: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@682a43a6, author=0}
-[$$]2014-10-24 10:54:05,758 WARN utils.Kit [Planner-2] Kit : fromPlanned2Command() No classOfCommand
-[$$]2014-10-24 10:54:05,758 WARN command_planner.Planner [Planner-2] Cannot convert planned command to cmd for executor: PlannedCommand{arguments={id=1, tree=0, all_parents=0, recursive=0, names_only=0}, name='get_attribute_type', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetAttributeTypeCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@682a43a6, author=0}
-[$$]2014-12-08 13:14:14,584 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-12-08 13:14:14,584 INFO mosquito.Main [main] Main modules init!
-[$$]2014-12-08 13:14:21,186 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-12-08 13:14:21,186 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-12-08 13:14:21,189 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-12-08 13:14:21,190 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-12-08 13:14:21,190 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-12-08 13:14:21,289 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-12-08 13:14:21,292 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-12-08 13:14:21,302 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-12-08 13:14:21,304 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-12-08 13:14:21,306 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-12-08 13:14:21,307 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-12-08 13:14:21,308 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-12-08 13:14:21,313 INFO mosquito.Main [main] Ready to go! (0.69)
-[$$]2014-12-08 13:15:13,252 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-12-08 13:15:13,252 INFO mosquito.Main [main] Main modules init!
-[$$]2014-12-08 13:15:20,309 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-12-08 13:15:20,309 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-12-08 13:15:20,312 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-12-08 13:15:20,313 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-12-08 13:15:20,313 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-12-08 13:15:20,392 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-12-08 13:15:20,394 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-12-08 13:15:20,395 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-12-08 13:15:20,396 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-12-08 13:15:20,397 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-12-08 13:15:20,398 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-12-08 13:15:20,398 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-12-08 13:15:20,403 INFO mosquito.Main [main] Ready to go! (0.69)
-[$$]2014-12-08 13:49:03,309 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-12-08 13:49:03,309 INFO mosquito.Main [main] Main modules init!
-[$$]2014-12-08 13:49:07,654 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-12-08 13:49:07,654 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-12-08 13:49:07,654 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-12-08 13:49:07,654 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-12-08 13:49:07,654 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-12-08 13:49:07,733 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-12-08 13:49:07,733 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-12-08 13:49:07,733 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-12-08 13:49:07,733 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-12-08 13:49:07,733 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-12-08 13:49:07,733 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-12-08 13:49:07,733 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-12-08 13:49:07,748 INFO mosquito.Main [main] Ready to go! (0.69)
-[$$]2014-12-08 13:53:32,127 INFO mosquito.Main [main] Running application with arguments : run=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand 
-[$$]2014-12-08 13:53:32,127 INFO mosquito.Main [main] Main modules init!
-[$$]2014-12-08 13:53:36,466 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-12-08 13:53:36,466 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-12-08 13:53:36,466 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-12-08 13:53:36,466 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-12-08 13:53:36,466 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-12-08 13:53:36,546 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-12-08 13:53:36,546 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-12-08 13:53:36,546 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-12-08 13:53:36,546 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-12-08 13:53:36,546 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-12-08 13:53:36,546 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-12-08 13:53:36,561 INFO mosquito.Main [main] Executing command: com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand ...
-[$$]2014-12-08 13:53:36,561 INFO command_planner.Planner [main] Planner - adding new task: PlannedCommand{arguments=null, name='run', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand', answerToken=null, author=null}
-[$$]2014-12-08 13:53:36,599 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand@18f68555, arguments=null, answerToken=null}
-[$$]2014-12-08 13:53:36,633 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=run, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand and arguments=null
-[$$]2014-12-08 13:53:36,705 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand executed for 103 ms.
-[$$]2014-12-08 13:53:36,706 INFO mosquito.Main [Planner-2] Executed!
-[$$]2014-12-08 13:53:36,706 INFO mosquito.Main [Planner-2] Answer: true
-[$$]2014-12-08 13:53:36,708 INFO mosquito.Main [Planner-2] Result: null
-[$$]2014-12-08 13:53:55,233 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-12-08 13:53:55,233 INFO mosquito.Main [main] Main modules init!
-[$$]2014-12-08 13:53:59,599 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-12-08 13:53:59,599 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-12-08 13:53:59,599 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-12-08 13:53:59,599 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-12-08 13:53:59,599 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-12-08 13:53:59,678 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-12-08 13:53:59,678 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-12-08 13:53:59,678 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-12-08 13:53:59,678 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-12-08 13:53:59,710 INFO commands.CommandMappingsCache [main] Got 5 commands.
-[$$]2014-12-08 13:53:59,725 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-12-08 13:53:59,725 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-12-08 13:53:59,725 INFO mosquito.Main [main] Ready to go! (0.69)
-[$$]2014-12-08 13:54:02,364 INFO command_planner.Planner [nioEventLoopGroup-3-1] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=null, author=null}
-[$$]2014-12-08 13:54:02,389 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@77daa57b, arguments={login=root, password=root}, answerToken=null}
-[$$]2014-12-08 13:54:02,421 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 13:54:02,438 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 47 ms.
-[$$]2014-12-08 13:58:00,681 INFO command_planner.Planner [nioEventLoopGroup-3-5] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@5d0847d0, author=null}
-[$$]2014-12-08 13:58:00,683 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@4aa2d867, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 13:58:00,685 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 13:58:00,734 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 49 ms.
-[$$]2014-12-08 13:58:34,239 INFO command_planner.Planner [nioEventLoopGroup-3-8] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@649fb7f2, author=null}
-[$$]2014-12-08 13:58:34,241 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@31e5a47a, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 13:58:34,243 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 13:58:34,288 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 45 ms.
-[$$]2014-12-08 15:22:19,743 INFO command_planner.Planner [nioEventLoopGroup-3-11] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@71da6f69, author=null}
-[$$]2014-12-08 15:22:19,745 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@3bc890e4, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 15:22:19,747 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 15:22:19,796 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 49 ms.
-[$$]2014-12-08 15:23:18,220 INFO command_planner.Planner [nioEventLoopGroup-3-14] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@2edf7aa6, author=null}
-[$$]2014-12-08 15:23:18,222 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@51ed4054, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 15:23:18,224 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 15:23:18,265 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 41 ms.
-[$$]2014-12-08 15:24:48,248 INFO command_planner.Planner [nioEventLoopGroup-3-1] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@6a628568, author=null}
-[$$]2014-12-08 15:24:48,250 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@6a24a568, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 15:24:48,252 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 15:24:48,299 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 47 ms.
-[$$]2014-12-08 15:25:24,998 INFO command_planner.Planner [nioEventLoopGroup-3-5] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@6c089bd6, author=null}
-[$$]2014-12-08 15:25:25,000 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@292f3603, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 15:25:25,002 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 15:25:25,049 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 47 ms.
-[$$]2014-12-08 15:25:26,772 INFO command_planner.Planner [nioEventLoopGroup-3-6] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@1592bfeb, author=null}
-[$$]2014-12-08 15:25:26,774 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@5575e85d, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 15:25:26,776 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 15:25:26,818 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 42 ms.
-[$$]2014-12-08 15:35:23,398 INFO mosquito.Main [main] Running application with arguments : run=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand 
-[$$]2014-12-08 15:35:23,398 INFO mosquito.Main [main] Main modules init!
-[$$]2014-12-08 15:35:28,955 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-12-08 15:35:28,955 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-12-08 15:35:28,959 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-12-08 15:35:28,959 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-12-08 15:35:28,959 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-12-08 15:35:29,040 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-12-08 15:35:29,043 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-12-08 15:35:29,044 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-12-08 15:35:29,045 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-12-08 15:35:29,047 INFO commands.CommandMappingsCache [main] Got 0 commands.
-[$$]2014-12-08 15:35:29,047 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-12-08 15:35:29,048 INFO mosquito.Main [main] Executing command: com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand ...
-[$$]2014-12-08 15:35:29,051 INFO command_planner.Planner [main] Planner - adding new task: PlannedCommand{arguments=null, name='run', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand', answerToken=null, author=null}
-[$$]2014-12-08 15:35:29,077 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand@6701b031, arguments=null, answerToken=null}
-[$$]2014-12-08 15:35:29,111 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=run, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand and arguments=null
-[$$]2014-12-08 15:35:29,171 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand executed for 91 ms.
-[$$]2014-12-08 15:35:29,173 INFO mosquito.Main [Planner-2] Executed!
-[$$]2014-12-08 15:35:29,173 INFO mosquito.Main [Planner-2] Answer: true
-[$$]2014-12-08 15:35:29,175 INFO mosquito.Main [Planner-2] Result: null
-[$$]2014-12-08 15:35:39,407 INFO mosquito.Main [main] Running application with arguments : {} 
-[$$]2014-12-08 15:35:39,407 INFO mosquito.Main [main] Main modules init!
-[$$]2014-12-08 15:35:43,769 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
-[$$]2014-12-08 15:35:43,769 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
-[$$]2014-12-08 15:35:43,769 INFO command_planner.Planner [Planner-2] Starting Planner.
-[$$]2014-12-08 15:35:43,769 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
-[$$]2014-12-08 15:35:43,769 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
-[$$]2014-12-08 15:35:43,849 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
-[$$]2014-12-08 15:35:43,864 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
-[$$]2014-12-08 15:35:43,864 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
-[$$]2014-12-08 15:35:43,864 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
-[$$]2014-12-08 15:35:43,895 INFO commands.CommandMappingsCache [main] Got 5 commands.
-[$$]2014-12-08 15:35:43,895 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
-[$$]2014-12-08 15:35:43,895 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
-[$$]2014-12-08 15:35:43,911 INFO mosquito.Main [main] Ready to go! (0.69)
-[$$]2014-12-08 15:35:44,039 INFO netty.NettyMosquitoApp [main] Runup catalog counters: {accounts=1, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_type_view_types=0, attribute_type_views=0, attribute_types=0, base_attribute_types=0, commander_types=0, commands=5, countrys=0, discussions=0, document_attribute_data=0, document_attributes=0, document_history=0, document_state_histories=0, document_type_attribute_types=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, files=0, legal_details=0, location_types=0, menus=0, node_attributes=0, node_level_type_rules=0, node_level_types=0, node_levels=0, node_notifications=0, node_state_historys=0, node_states=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=1, post_group_content=0, post_groups=0, post_ranks=0, posts=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_type_rules=0, unit_posts=0, units=0, urgency_types=0}
-[$$]2014-12-08 15:35:56,070 INFO command_planner.Planner [nioEventLoopGroup-3-1] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=null, author=null}
-[$$]2014-12-08 15:35:56,095 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@692ce9f5, arguments={login=root, password=root}, answerToken=null}
-[$$]2014-12-08 15:35:56,128 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 15:35:56,140 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 42 ms.
-[$$]2014-12-08 15:40:23,407 INFO command_planner.Planner [nioEventLoopGroup-3-8] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@222c9a95, author=null}
-[$$]2014-12-08 15:40:23,409 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@1e58bdba, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 15:40:23,411 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 15:40:23,429 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 18 ms.
-[$$]2014-12-08 16:11:09,989 INFO command_planner.Planner [nioEventLoopGroup-3-12] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@34ed0665, author=null}
-[$$]2014-12-08 16:11:09,990 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@353eec08, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 16:11:09,992 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 16:11:10,015 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 23 ms.
-[$$]2014-12-08 16:13:16,633 INFO command_planner.Planner [nioEventLoopGroup-3-15] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@5b14fb0a, author=null}
-[$$]2014-12-08 16:13:16,635 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@3e6d7c3d, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 16:13:16,637 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 16:13:16,653 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 16 ms.
-[$$]2014-12-08 16:14:39,084 INFO command_planner.Planner [nioEventLoopGroup-3-2] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@480057f5, author=null}
-[$$]2014-12-08 16:14:39,086 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@e8ebac1, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 16:14:39,088 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 16:14:39,110 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 22 ms.
-[$$]2014-12-08 16:16:57,353 INFO command_planner.Planner [nioEventLoopGroup-3-5] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@269db796, author=null}
-[$$]2014-12-08 16:16:57,355 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@3c7feca8, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
-[$$]2014-12-08 16:16:57,357 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
-[$$]2014-12-08 16:16:57,366 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 9 ms.
+[$$]2014-12-10 12:30:12,927 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-12-10 12:30:12,927 INFO mosquito.Main [main] Main modules init!
+[$$]2014-12-10 12:30:18,066 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-12-10 12:30:18,066 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-12-10 12:30:18,082 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-12-10 12:30:18,082 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-12-10 12:30:18,082 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-12-10 12:30:18,195 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-12-10 12:30:18,195 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-12-10 12:30:18,211 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-12-10 12:30:18,211 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-12-10 12:30:18,273 INFO commands.CommandMappingsCache [main] Got 5 commands.
+[$$]2014-12-10 12:30:18,273 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-12-10 12:30:18,273 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-12-10 12:30:18,273 INFO mosquito.Main [main] Ready to go! (0.69)
+[$$]2014-12-10 12:30:18,538 INFO netty.NettyMosquitoApp [main] Runup catalog counters: {accounts=1, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_type_view_types=0, attribute_type_views=0, attribute_types=0, base_attribute_types=0, commander_types=0, commands=5, countrys=0, discussions=0, document_attribute_data=0, document_attributes=0, document_history=0, document_state_histories=0, document_type_attribute_types=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, files=0, legal_details=0, location_types=0, menus=0, node_attributes=0, node_level_type_rules=0, node_level_types=0, node_levels=0, node_notifications=0, node_state_historys=0, node_states=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=1, post_group_content=0, post_groups=0, post_ranks=0, posts=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_type_rules=0, unit_posts=0, units=0, urgency_types=0}
+[$$]2014-12-10 12:49:59,872 INFO mosquito.Main [main] Running application with arguments : run=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand 
+[$$]2014-12-10 12:49:59,872 INFO mosquito.Main [main] Main modules init!
+[$$]2014-12-10 12:50:06,299 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-12-10 12:50:06,299 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-12-10 12:50:06,315 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-12-10 12:50:06,315 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-12-10 12:50:06,315 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-12-10 12:50:06,395 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-12-10 12:50:06,395 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-12-10 12:50:06,395 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-12-10 12:50:06,395 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-12-10 12:50:06,395 INFO commands.CommandMappingsCache [main] Got 0 commands.
+[$$]2014-12-10 12:50:06,395 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-12-10 12:50:06,395 INFO mosquito.Main [main] Executing command: com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand ...
+[$$]2014-12-10 12:50:06,395 INFO command_planner.Planner [main] Planner - adding new task: PlannedCommand{arguments=null, name='run', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand', answerToken=null, author=null}
+[$$]2014-12-10 12:50:06,427 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand@230030d0, arguments=null, answerToken=null}
+[$$]2014-12-10 12:50:06,489 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=run, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand and arguments=null
+[$$]2014-12-10 12:50:06,570 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.DistributiveFillingCommand executed for 112 ms.
+[$$]2014-12-10 12:50:06,571 INFO mosquito.Main [Planner-2] Executed!
+[$$]2014-12-10 12:50:06,571 INFO mosquito.Main [Planner-2] Answer: true
+[$$]2014-12-10 12:50:06,573 INFO mosquito.Main [Planner-2] Result: null
+[$$]2014-12-10 12:50:11,819 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-12-10 12:50:11,819 INFO mosquito.Main [main] Main modules init!
+[$$]2014-12-10 12:50:16,407 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-12-10 12:50:16,407 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-12-10 12:50:16,407 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-12-10 12:50:16,407 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-12-10 12:50:16,407 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-12-10 12:50:16,486 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-12-10 12:50:16,486 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-12-10 12:50:16,486 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-12-10 12:50:16,486 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-12-10 12:50:16,517 INFO commands.CommandMappingsCache [main] Got 5 commands.
+[$$]2014-12-10 12:50:16,533 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-12-10 12:50:16,533 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-12-10 12:50:16,533 INFO mosquito.Main [main] Ready to go! (0.69)
+[$$]2014-12-10 12:50:16,658 INFO netty.NettyMosquitoApp [main] Runup catalog counters: {accounts=1, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_type_view_types=0, attribute_type_views=0, attribute_types=0, base_attribute_types=0, commander_types=0, commands=5, countrys=0, discussions=0, document_attribute_data=0, document_attributes=0, document_history=0, document_state_histories=0, document_type_attribute_types=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, files=0, legal_details=0, location_types=0, menus=0, node_attributes=0, node_level_type_rules=0, node_level_types=0, node_levels=0, node_notifications=0, node_state_historys=0, node_states=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=1, post_group_content=0, post_groups=0, post_ranks=0, posts=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_type_rules=0, unit_posts=0, units=0, urgency_types=0}
+[$$]2014-12-10 12:53:20,197 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-12-10 12:53:20,197 INFO mosquito.Main [main] Main modules init!
+[$$]2014-12-10 12:53:24,547 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-12-10 12:53:24,547 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-12-10 12:53:24,547 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-12-10 12:53:24,547 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-12-10 12:53:24,547 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-12-10 12:53:24,628 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-12-10 12:53:24,628 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-12-10 12:53:24,628 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-12-10 12:53:24,628 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-12-10 12:53:24,668 INFO commands.CommandMappingsCache [main] Got 5 commands.
+[$$]2014-12-10 12:53:24,668 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-12-10 12:53:24,678 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-12-10 12:53:24,678 INFO mosquito.Main [main] Ready to go! (0.69)
+[$$]2014-12-10 12:53:24,818 INFO netty.NettyMosquitoApp [main] Runup catalog counters: {accounts=1, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_type_view_types=0, attribute_type_views=0, attribute_types=0, base_attribute_types=0, commander_types=0, commands=5, countrys=0, discussions=0, document_attribute_data=0, document_attributes=0, document_history=0, document_state_histories=0, document_type_attribute_types=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, files=0, legal_details=0, location_types=0, menus=0, node_attributes=0, node_level_type_rules=0, node_level_types=0, node_levels=0, node_notifications=0, node_state_historys=0, node_states=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=1, post_group_content=0, post_groups=0, post_ranks=0, posts=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_type_rules=0, unit_posts=0, units=0, urgency_types=0}
+[$$]2014-12-10 13:02:23,831 INFO command_planner.Planner [nioEventLoopGroup-3-16] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=null, author=null}
+[$$]2014-12-10 13:02:23,868 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@2b69d770, arguments={login=root, password=root}, answerToken=null}
+[$$]2014-12-10 13:02:23,901 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
+[$$]2014-12-10 13:02:23,914 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 43 ms.
+[$$]2014-12-10 13:11:15,098 INFO command_planner.Planner [nioEventLoopGroup-3-10] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=com.spt.mosquito.core.pojos.planner.PlannerAnswerToken@514507a0, author=null}
+[$$]2014-12-10 13:11:15,099 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@af7c30f, arguments={login=root, password=root}, answerToken=CmdExecutorAnswerToken{answerIsHere=false, answer=false, data=null, code=0}}
+[$$]2014-12-10 13:11:15,101 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
+[$$]2014-12-10 13:11:15,109 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 8 ms.
+[$$]2014-12-10 14:50:32,243 INFO mosquito.Main [main] Running application with arguments : {} 
+[$$]2014-12-10 14:50:32,243 INFO mosquito.Main [main] Main modules init!
+[$$]2014-12-10 14:50:36,614 INFO cmd_executor.CmdContext [CommandContext-5] Running CommandContext-5
+[$$]2014-12-10 14:50:36,614 INFO cmd_executor.CmdContext [CommandContext-4] Running CommandContext-4
+[$$]2014-12-10 14:50:36,624 INFO command_planner.Planner [Planner-2] Starting Planner.
+[$$]2014-12-10 14:50:36,624 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - start.
+[$$]2014-12-10 14:50:36,624 INFO cmd_executor.CmdExecutor [CommandExecutor-3] Running CmdExecutor with 2 threads
+[$$]2014-12-10 14:50:36,696 INFO scheduled_tasks.ScheduledTaskCache [main] Got 0 tasks.
+[$$]2014-12-10 14:50:36,706 INFO scheduled_tasks.ScheduledTaskCache [main] Uncaching scheduler tasks - finish.
+[$$]2014-12-10 14:50:36,706 INFO commands.CommandCache [main] Jars directory = E:\wamp\www\zend_test\more-jars
+[$$]2014-12-10 14:50:36,706 INFO commands.CommandMappingsCache [main] Uncaching command mappings - start.
+[$$]2014-12-10 14:50:36,736 INFO commands.CommandMappingsCache [main] Got 5 commands.
+[$$]2014-12-10 14:50:36,746 INFO commands.CommandMappingsCache [main] Uncaching command mappings - finish.
+[$$]2014-12-10 14:50:36,746 INFO mosquito.Main [main] Web tier init! with host=127.0.0.1, post=1337
+[$$]2014-12-10 14:50:36,756 INFO mosquito.Main [main] Ready to go! (0.691)
+[$$]2014-12-10 14:50:36,886 INFO netty.NettyMosquitoApp [main] Runup catalog counters: {accounts=1, address_types=0, addresses=0, attribute_type_limits=0, attribute_type_limits_dates=0, attribute_type_limits_floats=0, attribute_type_limits_ints=0, attribute_type_limits_texts=0, attribute_type_limits_timestamps=0, attribute_type_list_values=0, attribute_type_structures=0, attribute_type_view_types=0, attribute_type_views=0, attribute_types=0, base_attribute_types=0, commander_types=0, commands=5, countrys=0, discussions=0, document_attribute_data=0, document_attributes=0, document_history=0, document_state_histories=0, document_type_attribute_types=0, document_type_attributes=0, document_type_group_contents=0, document_type_groups=0, document_types=0, documents=0, enumeration_types=0, enumerations=0, files=0, legal_details=0, location_types=0, menus=0, node_attributes=0, node_level_type_rules=0, node_level_types=0, node_levels=0, node_notifications=0, node_state_historys=0, node_states=0, node_types=0, nodes=0, notification_attachments=0, notification_receivers=0, notification_types=0, notifications=0, period_infos=0, period_types=0, person_document_types=0, person_documents=0, person_posts=0, person_ranks=0, persons=1, post_group_content=0, post_groups=0, post_ranks=0, posts=0, rank_group_content=0, rank_groups=0, ranks=0, recipient_types=0, region_types=0, regions=0, routes=0, rules=0, schedule_task_arguments=0, schedule_task_interval_fixeds=0, schedule_task_interval_limiteds=0, schedule_task_intervals=0, schedule_task_singles=0, secrecy_types=0, sex_types=0, street_types=0, time_infos=0, unit_commanders=0, unit_document_type_rules=0, unit_posts=0, units=0, urgency_types=0}
+[$$]2014-12-10 14:50:40,638 INFO command_planner.Planner [nioEventLoopGroup-3-1] Planner - adding new task: PlannedCommand{arguments={login=root, password=root}, name='get_token', className='com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand', answerToken=null, author=null}
+[$$]2014-12-10 14:50:40,640 INFO cmd_executor.CmdExecutor [Planner-2] CmdExecutor - adding new command: Cmd{commandInstance=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand@1f9e8c09, arguments={login=root, password=root}, answerToken=null}
+[$$]2014-12-10 14:50:40,673 INFO cmd_executor.CmdContext [CommandContext-4] Trying to execute command with commandName=get_token, commandClassName=com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand and arguments={login=root, password=root}
+[$$]2014-12-10 14:50:40,685 INFO cmd_executor.CmdContext [CommandContext-4] Command com.spt.mosquito.core.module_manager.cmd_executor.commands.implementation.GetTokenCommand executed for 42 ms.

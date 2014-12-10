@@ -17,30 +17,31 @@ define(
             defaults: {
                 id: null,
                 id_external: null,
-                ident_number: null,
+                identification_number: null,
                 full_name: null,
+                name: null,
                 person: null,
                 unit: null
             },
             attr_description:{
-                list_values: 'Массив объектов -> attribute_type_list, отдается для объектов с base_attr_type = 8',
-                parents: 'Массив атрибутов верхнего уровня, напр. для точки - маршрут, треугольник и тп.',
-                all_parents: 'Массив идентификаторов всех атрибутов куда входит данный атрибут, например, для атрибута "Название" это будут все составные атрибуты, у которых есть название',
-                attribute_type_childs: 'Массив объектов атрибутов нижнего уровня. Для точки это x,y,название',
-                items: 'Служебное поле клиентской части'
+                is_external: 'Внешний корреспондент',
+                identification_number: 'Идентификационный номер',
+                full_name: 'Полное название'
+/*                ,person: 'Физ лицо',
+                unit: 'Юр лицо'*/
             },
             attr_rus_names: {
                 is_external: 'Внешний корреспондент',
-                ident_number: 'Идентификационный номер',
-                full_Name: 'Полное название',
-                person: 'Физ лицо',
-                unit: 'Юр лицо'
+                identification_number: 'Идентификационный номер',
+                full_name: 'Полное название'
+/*                ,person: 'Физ лицо',
+                unit: 'Юр лицо'*/
             },
             model_name: 'client',
             model_rus_name: 'Клиент',
             attr_dependencies: {
-                base_attr_type: 'constant',
-                attribute_type_childs: 'attribute_type_childs' //запрашиваем коллекцию
+                //base_attr_type: 'constant',
+                //attribute_type_childs: 'attribute_type_childs' //запрашиваем коллекцию
             }, //for recursive objects
             url: function() {
                 return apiUrl('client', this.id);
@@ -60,7 +61,7 @@ define(
                     var new_list_values = this.get('person').map(function(model){
                         return model;
                     });
-                    this.set('list_values', new_list_values);
+                    this.set('person', new_list_values);
                 }
                 if (_.size(this.get('unit'))>0) {
                     var new_list_values = this.get('unit').map(function(model){
@@ -128,6 +129,7 @@ define(
                 if (_.has(this.attributes, 'person')){
                     console.log('_.has person');
                     if(_.size(this.get('person'))>0){
+                        console.log('person>0');
                         // Check if this model has a property called nodes
                         /*
                          console.log('this');
@@ -146,6 +148,7 @@ define(
                 if (_.has(this.attributes, 'unit')){
                     console.log('_.has unit');
                     if(_.size(this.attributes.unit)>0){
+                        console.log('unit>0');
                         // Check if this model has a property called nodes
                         /*
                          console.log('this');

@@ -207,6 +207,15 @@ class Persons
         return $this->familyName;
     }
 
+    public function getInitials()
+    {
+        $initials = null;
+        $first_name = $this->getFirstName();
+        ($this->getFirstName())? $initials = mb_substr($this->getFirstName(), 0, 1, 'utf-8').'.' : null;
+        ($this->getPatronymicName())? $initials =  $initials.mb_substr($this->getPatronymicName(), 0, 1, 'utf-8').'.' : null;
+        return $initials;
+    }
+
     /**
      * Set birthDate
      *
@@ -378,6 +387,12 @@ class Persons
         return $new_collection->getValues();
     }
 
+    public function getFIO(){
+        $fio = null;
+        ($this->getFamilyName())? $fio = $this->getFamilyName() : null;
+        ($this->getInitials())? $fio =$fio.' '.$this->getInitials() : null;
+        return $fio;
+    }
     //
     public function getMain(){
         return array(

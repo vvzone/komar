@@ -181,11 +181,29 @@ class Clients
     public function getPersonInfo(){
         if($this->personInfo->count() > 1)
         {
-            throw new \Exception('Fatal. DB corruption detected. More than one person-extension to current client-record.', 500);
+            throw new \Exception('Fatal. DB corruption detected. More than one person-extension to current client-record. personInfo->count='.$this->personInfo->count(), 500);
         }
         $person = $this->personInfo->last();
         if($person){
             return $person->getMain();
+        }
+        return null;
+    }
+
+    /**
+     * Get personInfo
+     *
+     * @throws \Exception
+     * @return Persons
+     */
+    public function getPerson(){
+        if($this->personInfo->count() > 1)
+        {
+            throw new \Exception('Fatal. DB corruption detected. More than one person-extension to current client-record. personInfo->count='.$this->personInfo->count(), 500);
+        }
+        $person = $this->personInfo->last();
+        if($person){
+            return $person;
         }
         return null;
     }
@@ -199,11 +217,29 @@ class Clients
     public function getUnitInfo(){
         if($this->unitInfo->count() > 1)
         {
-            throw new \Exception('Fatal. DB corruption detected. More than one unit-extension to current client-record.', 500);
+            throw new \Exception('Fatal. DB corruption detected. More than one unit-extension to current client-record. unitInfo->count='.$this->unitInfo->count(), 500);
         }
         $unit = $this->unitInfo->last();
         if($unit){
             return $unit->getMain();
+        }
+        return null;
+    }
+
+    /**
+     * Get unitInfo
+     *
+     * @throws \Exception
+     * @return Units
+     */
+    public function getUnit(){
+        if($this->unitInfo->count() > 1)
+        {
+            throw new \Exception('Fatal. DB corruption detected. More than one unit-extension to current client-record. unitInfo->count='.$this->unitInfo->count(), 500);
+        }
+        $unit = $this->unitInfo->last();
+        if($unit){
+            return $unit;
         }
         return null;
     }
@@ -222,9 +258,16 @@ class Clients
     }
 
     public function getClientSimple(){
+        $name = null;
+        if($this->getPerson()){
+            $name = $this->getPerson()->getFIO();
+        }
+        if($this->getUnit()){
+            $name = $this->getUnit()->getName();
+        }
         return array(
             'id' => $this->getId(),
-            'full_name' => $this->getFullName(),
+            'name' => $name
         );
     }
 }

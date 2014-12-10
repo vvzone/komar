@@ -367,6 +367,19 @@ define(
                         TreeView.initialize(DocTypeGroupsCollection);
                     }
                     break;
+                case('clients'):
+                    if(!ClientsCollection){
+                        console.warn('!ClientsCollection -> require loading');
+                        var ClientsCollection =require(['models/clients_collection'], function(ClientsCollection){
+                            console.log('loaded...');
+                            ListView.initialize(ClientsCollection);
+                            return ClientsCollection;
+                        });
+                    }else{
+                        console.warn('ClientsCollection -> no needed to load');
+                        TreeView.initialize(ClientsCollection);
+                    }
+                break;
                 case('units_plain'):
                     if(!DocTypeGroupsCollection){
                         console.warn('!DocTypeGroupsCollection -> require loading');

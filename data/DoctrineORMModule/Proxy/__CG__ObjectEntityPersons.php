@@ -279,6 +279,17 @@ class Persons extends \Object\Entity\Persons implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
+    public function getInitials()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInitials', array());
+
+        return parent::getInitials();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setBirthDate($birthDate)
     {
 
@@ -428,6 +439,17 @@ class Persons extends \Object\Entity\Persons implements \Doctrine\ORM\Proxy\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPersonPost', array());
 
         return parent::getPersonPost();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getFIO()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFIO', array());
+
+        return parent::getFIO();
     }
 
     /**

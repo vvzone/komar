@@ -101,9 +101,18 @@ define(
                 if(this.state.action_error){
                     EventBus.trigger('error', 'Ошибка', this.state.action_error.response);
                 }
+
+                var name = 'Problem with current model name';
+                if(this.props.model.get('name')){
+                    name = this.props.model.get('name');
+                }else{
+                    if(this.props.model.get('full_name')){
+                        name = this.props.model.get('full_name');
+                    }
+                }
                 return(
                     <li className="item" key={'item'+this.props.model.get('id')}>
-                        <div className="item_name" clicked={this.whenClicked}>{this.props.model.get('name')}</div>
+                        <div className="item_name" clicked={this.whenClicked}>{name}</div>
                         <div className="item_cp">
                             <ButtonEdit clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'edit' +this.props.model.get('id')} mini="true" />
                             <ButtonDelete clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'delete'+this.props.model.get('id')} mini="true" />

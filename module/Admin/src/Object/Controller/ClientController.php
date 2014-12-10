@@ -44,11 +44,7 @@ class ClientController extends RestController
             $data[] = $result->getClientSimple();
         }
 
-        return new JsonModel(
-            array(
-                'data' => $data
-            )
-        );
+        return new JsonModel($data);
     }
 
     public function get($id)
@@ -78,7 +74,7 @@ class ClientController extends RestController
         //$person = $objectManager->find('Object\Entity\Persons', $id);
         $client = $objectManager->find('Object\Entity\Clients', $id);
         //$client->__load();
-        return new JsonModel(array("data" => $client->getAll()));
+        return new JsonModel(array($client->getAll()));
         //return new JsonModel(array("data" => $client->get_name()));
     }
 
