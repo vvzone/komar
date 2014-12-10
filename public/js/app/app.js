@@ -47,11 +47,17 @@ define(
 
             console.info('$(.modal_window).filter(:last)');
             console.info($('.modal_window').filter(':last'));
-            React.renderComponent(
-                ModalWindowEdit({
-                    model: model
-                }), $('.modal_window').filter(':last')[0]  //document.getElementById("global_modal")
-            );
+            var id = model.get('id');
+
+            model.fetch({
+                success: function(){
+                    React.renderComponent(
+                        ModalWindowEdit({
+                            model: model
+                        }), $('.modal_window').filter(':last')[0]  //document.getElementById("global_modal")
+                    );
+                }
+            }); //try to get full-model
         });
 
         EventBus.on('item-delete', function(model){
