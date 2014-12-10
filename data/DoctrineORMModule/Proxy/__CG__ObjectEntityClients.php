@@ -301,12 +301,34 @@ class Clients extends \Object\Entity\Clients implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
+    public function getPerson()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPerson', array());
+
+        return parent::getPerson();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getUnitInfo()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUnitInfo', array());
 
         return parent::getUnitInfo();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUnit()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUnit', array());
+
+        return parent::getUnit();
     }
 
     /**

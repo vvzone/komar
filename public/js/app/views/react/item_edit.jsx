@@ -130,6 +130,12 @@ define(
                 var self = this;
                 for(var prop in this.props.model.attr_rus_names){
                     console.log('mounting, prop: '+prop);
+                    //check if he have sub-model to output
+                    if(this.props.model.sub_model[prop]){
+
+                    }
+
+                    //check if he have some id's with dependency from other collection
                     if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
                         console.log('loading models/'+this.props.model.attr_dependencies[prop]+'_collection');

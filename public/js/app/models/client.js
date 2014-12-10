@@ -16,7 +16,7 @@ define(
         var Model = Backbone.Model.extend({
             defaults: {
                 id: null,
-                id_external: null,
+                is_external: null,
                 identification_number: null,
                 full_name: null,
                 name: null,
@@ -26,20 +26,25 @@ define(
             attr_description:{
                 is_external: 'Внешний корреспондент',
                 identification_number: 'Идентификационный номер',
-                full_name: 'Полное название'
-/*                ,person: 'Физ лицо',
-                unit: 'Юр лицо'*/
+                full_name: 'Полное название',
+                person: 'Физ лицо',
+                unit: 'Юр лицо'
             },
             attr_rus_names: {
                 is_external: 'Внешний корреспондент',
                 identification_number: 'Идентификационный номер',
-                full_name: 'Полное название'
-/*                ,person: 'Физ лицо',
-                unit: 'Юр лицо'*/
+                full_name: 'Полное название',
+                person: 'Физ лицо',
+                unit: 'Юр лицо'
             },
             model_name: 'client',
             model_rus_name: 'Клиент',
+            sub_model: {
+              person: 'person',
+              unit: 'unit'
+            },
             attr_dependencies: {
+                //тут может быть только коллекция для соответвующего id элемента
                 //base_attr_type: 'constant',
                 //attribute_type_childs: 'attribute_type_childs' //запрашиваем коллекцию
             }, //for recursive objects
@@ -80,36 +85,31 @@ define(
 
                 // Check if response includes some nested collection data... our case 'nodes'
                 if (_.has(response, 'person')){
+                    console.info('_.has person');
                     if(_.size(response.person)>0){
+                        console.info('_.size(response.person)>0');
                         // Check if this model has a property called nodes
-                        /*
-                        console.log('this');
-                        console.log(this);
-                        */
                         if (!_.has(this, 'person')) {  // It does not...
+                            console.info('!_.has(this.person) ... this.person set new PersonModel(response.person)');
                             // So instantiate a collection and pass in raw data
                             //this.listValues = new ListCollection(response.listValues);
                             this.person = new PersonModel(response.person);
                         } else {
                             // It does, so just reset the collection
-                            this.person.reset(response.person);
+                            this.person.reset(new PersonModel(response.person));
                         }
                     }
                 }
                 if (_.has(response, 'unit')){
                     if(_.size(response.unit)>0){
                         // Check if this model has a property called nodes
-                        /*
-                         console.log('this');
-                         console.log(this);
-                         */
                         if (!_.has(this, 'unit')) {  // It does not...
                             // So instantiate a collection and pass in raw data
                             //this.listValues = new ListCollection(response.listValues);
                             this.unit = new UnitModel(response.unit);
                         } else {
                             // It does, so just reset the collection
-                            this.unit.reset(response.unit);
+                            this.unit.reset(new UnitModel(response.unit));
                         }
                     }
                 }
