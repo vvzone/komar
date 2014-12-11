@@ -30,14 +30,14 @@ define(
                 return (local_server)? local: production;
             },
             ranks: function() {
-                var local = host + prefix + "/ranks";
-                var production = host + prefix + "/ranks";
+                var local = host + prefix + "/rank";
+                var production = host + prefix + "/rank";
 
                 return (local_server)? local: production;
             },
             rank: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/ranks/"+ id;
+                var local = host + prefix + "/rank/"+ id;
                 var production = host + prefix + "/ranks/"+ id; // проверку не Null ли id
 
                 return (local_server)? local: production;

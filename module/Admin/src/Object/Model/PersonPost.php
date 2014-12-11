@@ -23,5 +23,4 @@ class PersonPost{
         $this->stop_date  = (isset($data['stop_date'])) ? $data['stop_date'] : null;
         $this->description  = (isset($data['description'])) ? $data['description'] : null;
     }
-
 }

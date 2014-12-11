@@ -12,7 +12,7 @@ define(
             mixins: [ControlsMixin],
             getInitialState: function() {
                 return {
-                    value: '',
+                    value: false,
                     discard: undefined
                 };
             },
@@ -26,8 +26,8 @@ define(
                     <div className="form-group">
                         <label htmlFor={id}>{this.props.russian_name}</label>
                         <select value={selected} name={this.props.name} id={id} onChange={this.handleChange} className="form-control">
-                            <option value="true">Да</option>
-                            <option value="false">Нет</option>
+                            <option value={true}>Да</option>
+                            <option value={false}>Нет</option>
                         </select>
                     </div>
                     )

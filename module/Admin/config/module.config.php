@@ -92,6 +92,19 @@ return array(
                                 'controller'    => 'Object\Controller\Unit'
                             )
                         )
+                    ),
+                    'rank' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/rank[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Rank'
+                            )
+                        )
                     )
                 )
             )
@@ -163,6 +176,7 @@ return array(
             'Object\Controller\Unit' => 'Object\Controller\UnitController',
             'Object\Controller\Client' => 'Object\Controller\ClientController',
             'Object\Controller\Person' => 'Object\Controller\PersonController',
+            'Object\Controller\Rank' => 'Object\Controller\RankController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),

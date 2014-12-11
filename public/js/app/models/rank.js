@@ -13,6 +13,7 @@ define(
         var Rank = Backbone.Model.extend({
             defaults: {
                 name: null,
+                short_name: null,
                 is_officer: false,
                 description: 'Без описания'
             },
