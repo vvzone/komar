@@ -67,6 +67,19 @@ return array(
                             )
                         )
                     ),
+                    'person' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/person[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Person'
+                            )
+                        )
+                    ),
                     'unit' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -149,6 +162,7 @@ return array(
             'Object\Controller\Index' => 'Object\Controller\IndexController',
             'Object\Controller\Unit' => 'Object\Controller\UnitController',
             'Object\Controller\Client' => 'Object\Controller\ClientController',
+            'Object\Controller\Person' => 'Object\Controller\PersonController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),

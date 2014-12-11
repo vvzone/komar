@@ -387,6 +387,14 @@ class Persons
         return $new_collection->getValues();
     }
 
+    public function getBigFIO(){
+        $fio = null;
+        ($this->getFamilyName())? $fio = $this->getFamilyName() : null;
+        ($this->getFirstName())? $fio .= ' '.$this->getFirstName() : null;
+        ($this->getPatronymicName())? $fio .= ' '.$this->getPatronymicName() : null;
+        return $fio;
+    }
+
     public function getFIO(){
         $fio = null;
         ($this->getFamilyName())? $fio = $this->getFamilyName() : null;
@@ -398,7 +406,7 @@ class Persons
         return array(
             'id' => $this->getId(),
             'first_name' => $this->getFirstName(),
-            'pantronomic_name' => $this->getPatronymicName(),
+            'patronymic_name' => $this->getPatronymicName(),
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
@@ -408,6 +416,42 @@ class Persons
             'deputy' => $this->getDeputy(),
             'personPost' => $this->getPersonPost(),
             //'person_post_count' => $this->personPost->count()
+        );
+    }
+
+
+    public function getAll()
+    {
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getBigFIO(),
+            'short_name' => $this->getFIO(),
+            'first_name' => $this->getFirstName(),
+            'patronymic_name' => $this->getPatronymicName(),
+            'family_name' => $this->getFamilyName(),
+            'birth_date' => $this->getBirthDate(),
+            'birth_place' => $this->getBirthPlace(),
+            'sex' => $this->getSex(),
+            'inn' => $this->getInn(),
+            'citizenship' => $this->getCitizenship(),
+            'deputy' => $this->getDeputy(),
+            'person_post' => $this->getPersonPost(),
+            'client' => $this->getClient()->getAll()
+            //'person_post_count' => $this->personPost->count()
+        );
+    }
+
+    public function getPersonSimple(){
+        $name = null;
+        /*if($this->getPerson()){
+            $name = $this->getPerson()->getFIO();
+        }
+        if($this->getUnit()){
+            $name = $this->getUnit()->getName();
+        }*/
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getFIO()
         );
     }
 }

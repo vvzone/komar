@@ -444,6 +444,17 @@ class Persons extends \Object\Entity\Persons implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
+    public function getBigFIO()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getBigFIO', array());
+
+        return parent::getBigFIO();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getFIO()
     {
 
@@ -461,6 +472,28 @@ class Persons extends \Object\Entity\Persons implements \Doctrine\ORM\Proxy\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getMain', array());
 
         return parent::getMain();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAll()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
+
+        return parent::getAll();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPersonSimple()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPersonSimple', array());
+
+        return parent::getPersonSimple();
     }
 
 }

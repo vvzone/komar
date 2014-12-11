@@ -252,8 +252,8 @@ class Clients
             'identification_number' => $this->getIdentificationNumber(),
             'is_external' => $this->getIsExternal(),
             //'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
-            'person' => $this->getPersonInfo(),
-            'unit' => $this->getUnitInfo()
+            //'person' => $this->getPersonInfo(),
+            //'unit' => $this->getUnitInfo()
         );
     }
 
