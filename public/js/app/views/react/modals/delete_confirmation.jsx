@@ -36,6 +36,7 @@ define(
                     console.log('throwDelete');
                     var self = this;
                     var name = self.props.model.attributes['name'];
+
                     this.props.model.destroy({
                         wait: true,
                         success: function(){

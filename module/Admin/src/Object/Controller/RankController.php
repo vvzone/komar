@@ -82,10 +82,22 @@ class RankController extends RestController
 
     public function create($data)
     {
-        $data['id'] = 0;
+        /*$data['id'] = 0;
         $rank = new Rank();
         $rank->exchangeArray($data);
-        $id = $this->getRanksTable()->saveRank($rank);
+        $id = $this->getRanksTable()->saveRank($rank);*/
+
+        $rank = new Ranks();
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Ranks');
+
+        $data = $this->RESTtoCamelCase($data);
+        $rank = $hydrator->hydrate($data, $rank);
+        $objectManager->persist($rank);
+        $objectManager->flush();
+
         return new JsonModel(array(
             'data' => $data,
         ));
@@ -129,7 +141,15 @@ class RankController extends RestController
 
     public function delete($id)
     {
-        $this->getRanksTable()->deleteRank($id);
+        //$this->getRanksTable()->deleteRank($id);
+
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        $rank = $objectManager->find('Object\Entity\Ranks', $id);
+        $objectManager->remove($rank);
+        $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
