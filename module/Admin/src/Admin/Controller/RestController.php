@@ -25,6 +25,24 @@ class RestController extends AbstractRestfulController
         $events->attach('dispatch', array($this, 'checkOptions'), 10);
     }
 
+    public function RESTtoCamelCase(array $data){
+        foreach($data as $k => $v){
+            if(strrpos($k, '_')){
+                $new_k = $k;
+                unset($data[$k]);
+                while($pos = strrpos($new_k, '_')){
+                    $new_k = substr_replace($new_k, '', $pos, 1);
+                    $capitalized = strtoupper($new_k[$pos]);
+                    $new_k[$pos] = $capitalized;
+                }
+                $data[$new_k] = $v;
+            }else{
+                $data[$k] = $v;
+            }
+        }
+        return $data;
+    }
+
     public function checkOptions($e)
     {
         $matches  = $e->getRouteMatch();

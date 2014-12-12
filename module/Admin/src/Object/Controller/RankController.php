@@ -117,15 +117,7 @@ class RankController extends RestController
             ->get('Doctrine\ORM\EntityManager');
 
         $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Ranks');
-
-        /*
-        $filter = new UnderscoreToCamelCase();
-        $data = $filter->filter($data);
-        foreach($data as $k => $v){
-            $filtered[$filter->filter($k)] = $v ;
-        }
-        var_dump($filtered);
-        */
+        $data = $this->RESTtoCamelCase($data);
         $rank = $hydrator->hydrate($data, $rank);
         $objectManager->persist($rank);
         $objectManager->flush();
