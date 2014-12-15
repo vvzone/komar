@@ -28,6 +28,8 @@ define(
         properties_types['isSeries'] = 'bool_select';
         properties_types['is_series'] = 'bool_select';
 
+        properties_types[''] = 'bool_select';
+
         /* address_types */
         properties_types['priority'] = 'tiny_text';
 
@@ -92,6 +94,7 @@ define(
         properties_types['birth_place'] = 'tiny_text';
 
         properties_types['sex'] = 'simple_select';
+        properties_types['sex_types'] = 'simple_select';
 
         properties_types['inn'] = 'tiny_text';
         properties_types['citizenship'] = 'tiny_text';

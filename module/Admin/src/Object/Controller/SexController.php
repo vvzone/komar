@@ -9,7 +9,6 @@
 
 namespace Object\Controller;
 
-use Object\Entity\Persons as Persons;
 use Object\Model\Client;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
@@ -17,15 +16,14 @@ use Zend\View\Model\JsonModel;
 use Object\Entity\Clients as ClientORM;
 use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 
-class PersonController extends RestController
+class SexController extends RestController
 {
     protected $clientTable;
     //protected $clientTableList;
     protected $unitTable;
-    protected $personTable;
+    protected $sexTable;
 
     /*-------------- default methods ----------*/
 
@@ -35,11 +33,15 @@ class PersonController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $results = $objectManager->getRepository('Object\Entity\Persons')->findAll();
+        //$results = $objectManager->getRepository('Object\Entity\Clients')->findBy(array('identificationNumber' => 19612));
+        $results = $objectManager->getRepository('Object\Entity\Sex')->findAll();
+
+        //var_dump($results);
+        //$results = $this->getClientTable()->fetchAll();
         $data = array();
 
         foreach ($results as $result) {
-            $data[] = $result->getPersonSimple();
+            $data[] = $result->getSexSimple();
         }
 
         return new JsonModel($data);
@@ -50,23 +52,19 @@ class PersonController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $person = $objectManager->find('Object\Entity\Persons', $id);
-        return new JsonModel($person->getAll());
+
+        $sex = $objectManager->find('Object\Entity\Sex', $id);
+        //$client->__load();
+        return new JsonModel($sex->getMain());
+        //return new JsonModel(array("data" => $client->get_name()));
     }
 
     public function create($data)
     {
-        $person = new Persons();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Persons');
-
-        $data = $this->RESTtoCamelCase($data);
-        $person = $hydrator->hydrate($data, $person);
-        $objectManager->persist($person);
-        $objectManager->flush();
-
+        $data['id'] = 0;
+        $sex = new Sex();
+        $sex->exchangeArray($data);
+        $id = $this->getSexTable()->saveSex($sex);
         return new JsonModel(array(
             'data' => $data,
         ));
@@ -75,31 +73,21 @@ class PersonController extends RestController
     public function update($id, $data)
     {
         $data['id'] = $id;
-        $person = new Persons();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $client = $this->getSexTable()->getSex($id);
+        $sex_temp = new Sex();
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Persons');
-        $data = $this->RESTtoCamelCase($data);
-        $person = $hydrator->hydrate($data, $person);
-        $objectManager->persist($person);
-        $objectManager->flush();
+        // on next line may place hydration
+        $sex_temp->exchangeArray($data); //delete this one after form will be added
+        $id = $this->getSexTable()->saveSex($sex_temp); //($form->getData());
 
-        return new JsonModel(
-            $data
-        );
+        return new JsonModel(array(
+            'data' => $data,
+        ));
     }
 
     public function delete($id)
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-
-        $person = $objectManager->find('Object\Entity\Persons', $id);
-        $objectManager->remove($person);
-        $objectManager->flush();
+        $this->getSexTable()->deleteSex($id);
 
         return new JsonModel(array(
             'data' => 'deleted',
@@ -125,13 +113,13 @@ class PersonController extends RestController
         return $this->unitTable;
     }
 
-    public function getPersonTable()
+    public function getSexTable()
     {
-        if (!$this->personTable) {
+        if (!$this->sexTable) {
             $sm = $this->getServiceLocator();
-            $this->personTable = $sm->get('Object\Model\PersonTable');
+            $this->sexTable = $sm->get('Object\Model\SexTable');
         }
-        return $this->personTable;
+        return $this->sexTable;
     }
 
 /*-------------- default methods ----------*/

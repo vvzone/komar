@@ -109,8 +109,7 @@ define(
                 callback={this.itemUpdate} key={prop} />;
             },
             controlRouterCall: function(model, prop){
-                console.info('controlRouterCall');
-                console.info('model.attributes['+prop+']');
+                console.info('controlRouterCall-> model.attributes['+prop+']');
                 console.info(model.attributes[prop]);
                 return <ControlsRouter
                 type={ControlsConfig[prop]}
@@ -132,12 +131,8 @@ define(
                     console.log('mounting, prop: '+prop);
                     //check if he have sub-model to output
 
-                    /*if(this.props.model.sub_model[prop]){
-
-                    }*/
-
-                    //check if he have some id's with dependency from other collection
                     if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+
                         console.warn(prop+' have dependency from ['+this.props.model.attr_dependencies[prop] +']');
                         console.log('loading models/'+this.props.model.attr_dependencies[prop]+'_collection');
                         if(this.props.model.attr_dependencies[prop]!='constant'){
@@ -145,13 +140,10 @@ define(
                             require([
                                 'models/'+this.props.model.attr_dependencies[prop]+'_collection'
                             ], function(DependencyCollectionClass){
-                                    console.info('loading dependency module...');
-                                    console.info(self.props.model.collection.collection_name);
-                                    //var dependency_array = {};
                                     var DependencyCollection = new DependencyCollectionClass;
                                     var dependency_array= self.state.dependency_array;
-                                    console.info('dependency_array before fetch:');
-                                    console.info(dependency_array);
+                                    console.info('=*LOAD DEPENDENCY COLLECTION CLASS*=');
+                                    console.info('TRYING FETCH!');
                                     DependencyCollection.fetch({
                                         error: function(obj, response){
                                             console.warn('error, response: '+response);
@@ -214,12 +206,10 @@ define(
                     console.log('model.attributes['+prop+']='+model.attributes[prop]);
 
                     //Выводить скрытые поля для Добавления Нового
-
                     if(typeof model.hidden_fields != 'undefined' && model.hidden_fields != null){
                         console.log('had hidden fields...');
                         if(typeof model.hidden_fields[prop] != 'undefined'){
                             //console.info('hidden field['+prop+']! search for rules of output!');
-                            //console.log(model.hidden_fields[prop]);
                             var rule_obj = model.hidden_fields[prop];
                             if(rule_obj){
                                 for(var field in rule_obj){
@@ -227,19 +217,13 @@ define(
                                     var model_value = model.get(field);
                                     if(_.isArray(rule_value)){
                                         //search in array
-
                                         var check_array = false;
                                         for(var key in rule_value){
-                                            //console.log('key='+key+' rule_value[key]='+rule_value[key]+' model_value='+model_value);
                                             if(rule_value[key] == model_value){
-                                                //console.warn('if throw');
                                                 check_array = true;
                                             }
                                         }
-                                        //var check_array = _.indexOf(rule_value, model_value) > -1; - very strange bug
-                                        //console.warn(check_array);
                                         if(check_array == true){
-                                            //console.info('had in array, render control...['+prop+']');
                                             controls.push(
                                                 this.callControlRouter(model, prop)
                                             );

@@ -35,23 +35,15 @@ define(
                 console.log(this.props);
 
                 this.setState({options: this.props.options});
-
-                /*
-                $.get('http://zend_test/main/'+this.props.source, function(result) {
-                    var arr = [];
-                    for(var item in result.data){
-                        arr[result.data[item]['id']] = result.data[item];
-                    }
-                    this.setState({options: arr});
-                }.bind(this));
-                */
-
             },
             render: function(){
                 console.info('SimpleSelect -> Render');
                 console.log(this.props);
                 var options = [];
                 var selected = 0;
+                console.info('-----simple select-------');
+                console.info('this.props.options');
+                console.info(this.props.options);
                 if(this.state.selected){
                     selected = this.state.selected;
                     console.log('SELECTED');

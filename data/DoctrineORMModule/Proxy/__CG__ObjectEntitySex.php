@@ -235,6 +235,17 @@ class Sex extends \Object\Entity\Sex implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getSexSimple()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSexSimple', array());
+
+        return parent::getSexSimple();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getMain()
     {
 

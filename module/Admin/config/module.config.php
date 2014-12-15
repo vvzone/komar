@@ -105,6 +105,19 @@ return array(
                                 'controller'    => 'Object\Controller\Rank'
                             )
                         )
+                    ),
+                    'sex' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/sex[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Sex'
+                            )
+                        )
                     )
                 )
             )
@@ -177,6 +190,7 @@ return array(
             'Object\Controller\Client' => 'Object\Controller\ClientController',
             'Object\Controller\Person' => 'Object\Controller\PersonController',
             'Object\Controller\Rank' => 'Object\Controller\RankController',
+            'Object\Controller\Sex' => 'Object\Controller\SexController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),

@@ -6,7 +6,7 @@ define(
         'backbone',
         'react',
         'apiUrl',
-        'client_sub_model'
+        'models/client_sub_model'
     ],function($, _, Backbone, React, apiUrl, ClientSubModel){
 
         console.log('models/person loaded');
@@ -19,10 +19,11 @@ define(
                 family_name: null,
                 birth_date: null,
                 birth_place: null,
-                sex: null,
+                sex_types: null,
                 inn: null,
                 citizenship: null,
                 deputy: null,
+                person_post: null,
                 client: null,
                 identification_number: null,
                 is_external: null
@@ -33,20 +34,22 @@ define(
                 family_name: 'Фамилия',
                 birth_date: 'Дата рождения',
                 birth_place: 'Место рождения',
-                sex: 'Пол',
+                sex_types: 'Пол',
                 inn: 'ИНН',
                 citizenship: 'Гражданство',
                 deputy: 'Заместитель',
+                person_post: 'Должность',
                 //client: 'Общая информация',
                 identification_number: 'Идентификационный номер',
                 is_external: 'Внешний'
             },
-            sub_form: {
-                //client: ['identification_number', 'is_external']
+            sub_models: {
+                client: 'client'
             },
             attr_dependencies: {
-                deputy: 'constant',
-                sex: 'constant'
+                //deputy: 'constant',
+                /*deputy: 'deputy',*/
+                sex_types: 'sex_types'
             }, //for recursive objects
             model_name: 'person',
             model_rus_name: 'Физлицо',

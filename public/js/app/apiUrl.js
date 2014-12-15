@@ -233,14 +233,14 @@ define(
                 return (local_server)? local: production;
             },
             sex_types: function() {
-                var local = host + prefix + "/sextypes";
+                var local = host + prefix + "/sex";
                 var production = host + prefix + "/sex_types";
 
                 return (local_server)? local: production;
             },
             sex_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/sextypes/"+ id;
+                var local = host + prefix + "/sex/"+ id;
                 var production = host + prefix + "/sex_types/"+ id;
 
                 return (local_server)? local: production;

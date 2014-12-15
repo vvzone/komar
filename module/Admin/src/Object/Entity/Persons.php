@@ -2,6 +2,7 @@
 
 namespace Object\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 //use Object\Entity\Clients as Client;
 
@@ -92,13 +93,15 @@ class Persons
      */
     private $deputy;
 
-
     /**
-     * @ORM\OneToMany(targetEntity="PersonPost", mappedBy="person", cascade={"all"}, orphanRemoval=true)
+     *
+     * @ORM\ManyToMany(targetEntity="Persons", inversedBy="personPost")
+     * @ORM\JoinTable(name="person_post",
+     *      joinColumns={@ORM\JoinColumn(name="persons, referencedColumnName="id")},
+     * )
      *
      **/
     private $personPost;
-
 
     public function __construct()
     {
@@ -287,6 +290,7 @@ class Persons
     public function getSex()
     {
         return $this->sex->getMain();
+        //return $this->sex->getId();
     }
 
     /**
@@ -362,13 +366,21 @@ class Persons
      * Set personPost
      *
      * @param integer $personPost
-     * @return Persons
+     * @return PersonPost
      */
     public function setPersonPost($personPost)
     {
         $this->personPost = $personPost;
 
         return $this;
+    }
+
+    public function addPersonPost($personPost){
+        $this->personPost[] = $personPost;
+    }
+
+    public function removePersonPost($personPost){
+        $this->personPost->removeElement($personPost);
     }
 
     /**
@@ -414,7 +426,7 @@ class Persons
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
-            'sex' => $this->getSex(),
+            'sex_types' => $this->getSex(),
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
@@ -435,7 +447,7 @@ class Persons
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
-            'sex' => $this->getSex(),
+            'sex_types' => $this->getSex(),
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),

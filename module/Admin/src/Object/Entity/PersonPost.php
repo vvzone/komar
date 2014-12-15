@@ -51,8 +51,7 @@ class PersonPost
 
     /**
      *
-     * @ORM\ManyToOne(targetEntity="Persons", inversedBy="personPost")
-     * @ORM\JoinColumn(name="person", referencedColumnName="id")
+     * @ORM\ManyToMany(targetEntity="Persons", mappedBy="groups")
      */
     private $person;
 
@@ -205,6 +204,15 @@ class PersonPost
         $this->unitPost = $unitPost;
 
         return $this;
+    }
+
+    public function addPerson(Persons $persons){
+        $this->person= $persons;
+    }
+
+
+    public function removePerson(Persons $persons){
+        $this->person->removeElement($persons);
     }
 
     /**
