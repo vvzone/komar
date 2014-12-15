@@ -6,6 +6,8 @@ define(
 
         properties_types['name'] = 'tiny_text';
         properties_types['short_name'] = 'tiny_text';
+        properties_types['patronymic_name'] = 'tiny_text';
+
         properties_types['full_name'] = 'small_text';
 
         properties_types['description'] = 'small_text';
@@ -78,7 +80,6 @@ define(
         properties_types['value'] = 'tiny_text';
         //properties_types['parents'] = 'info_list'; needed new!
         
-        
         properties_types['identification_number'] = 'tiny_text';
         properties_types['commander'] = 'simple_select';
         properties_types['deputy'] = 'simple_select';
@@ -89,7 +90,9 @@ define(
         properties_types['family_name'] = 'tiny_text';
         properties_types['birth_date'] = 'tiny_text';
         properties_types['birth_place'] = 'tiny_text';
-        properties_types['sex'] = 'tiny_text';
+
+        properties_types['sex'] = 'simple_select';
+
         properties_types['inn'] = 'tiny_text';
         properties_types['citizenship'] = 'tiny_text';
 

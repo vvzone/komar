@@ -5,8 +5,9 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+        'apiUrl',
+        'client_sub_model'
+    ],function($, _, Backbone, React, apiUrl, ClientSubModel){
 
         console.log('models/person loaded');
 
@@ -21,7 +22,10 @@ define(
                 sex: null,
                 inn: null,
                 citizenship: null,
-                deputy: null
+                deputy: null,
+                client: null,
+                identification_number: null,
+                is_external: null
             },
             attr_rus_names: {
                 first_name: 'Имя',
@@ -32,7 +36,13 @@ define(
                 sex: 'Пол',
                 inn: 'ИНН',
                 citizenship: 'Гражданство',
-                deputy: 'Заместитель'
+                deputy: 'Заместитель',
+                //client: 'Общая информация',
+                identification_number: 'Идентификационный номер',
+                is_external: 'Внешний'
+            },
+            sub_form: {
+                //client: ['identification_number', 'is_external']
             },
             attr_dependencies: {
                 deputy: 'constant',
@@ -40,6 +50,23 @@ define(
             }, //for recursive objects
             model_name: 'person',
             model_rus_name: 'Физлицо',
+            parse: function(response, xhr){
+                if (_.has(response, 'client')){
+                    if(_.size(response.client)>0){
+                        // Check if this model has a property called nodes
+                        if (!_.has(this, 'client')) {  // It does not...
+                            // So instantiate a collection and pass in raw data
+                            //this.listValues = new ListCollection(response.listValues);
+                            this.client = new ClientSubModel(response.client);
+                        } else {
+                            // It does, so just reset the collection
+                            this.client.reset(new ClientSubModel(response.client));
+                        }
+                    }
+                }
+                // Same for edge...
+                return response;
+            },
             url: function() {
                 return apiUrl('person', this.id);
             },

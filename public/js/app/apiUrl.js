@@ -318,14 +318,14 @@ define(
             },
             /* Client */
             persons: function() {
-                var local = host + prefix + "/persons";
+                var local = host + prefix + "/person";
                 var production = host + prefix + "/persons_list";
 
                 return (local_server)? local: production;
             },
             person: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/persons/"+ id;
+                var local = host + prefix + "/person/"+ id;
                 var production = host + prefix + "/person/"+ id;
 
                 return (local_server)? local: production;

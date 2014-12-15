@@ -232,11 +232,15 @@ class Persons
     /**
      * Get birthDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthDate()
     {
-        return $this->birthDate;
+        if($this->birthDate)
+        {
+            $date_formatted = $this->birthDate->format('d.m.Y');
+        }
+        return $date_formatted;
     }
 
     /**
