@@ -51,42 +51,16 @@ class RankController extends RestController
 
     public function get($id)
     {
-        //$client = $this->getClientTable()->getClient($id);
-        //$unit = $this->getUnitTable()->getUnitByClientId($id);
-        //$rank = $this->getRanksTable()->getRankByClientId($id);
-
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-
-        /*
-        if($unit){
-
-            $client->is_unit = true;
-            $client->unit = $unit;
-        }elseif($rank){
-
-            $client->is_unit = false;
-            $client->person = $rank;
-        }
-
-        */
-
-        //$client = array_merge($client, $unit);
-        //$rank = $objectManager->find('Object\Entity\Ranks', $id);
         $rank = $objectManager->find('Object\Entity\Ranks', $id);
-        //$client->__load();
         return new JsonModel($rank->getAll());
-        //return new JsonModel(array("data" => $client->get_name()));
     }
 
     public function create($data)
     {
-        /*$data['id'] = 0;
-        $rank = new Rank();
-        $rank->exchangeArray($data);
-        $id = $this->getRanksTable()->saveRank($rank);*/
-
+        //$data['id'] = 0; --????
         $rank = new Ranks();
         $objectManager = $this
             ->getServiceLocator()
@@ -106,23 +80,6 @@ class RankController extends RestController
     public function update($id, $data)
     {
         $data['id'] = $id;
-
-        /*
-        $rank = $this->getRanksTable()->getRank($id);
-        $rank_temp = new Rank();
-
-        // on next line may place hydration
-        $rank_temp->exchangeArray($data); //delete this one after form will be added
-        $id = $this->getRanksTable()->saveRank($rank_temp); //($form->getData());
-        */
-
-        /*$rank = new Ranks();
-        $hydrator = new DoctrineHydrator($entityManager,'Nomina\Entity\Empleado');
-        $data = $request->getPost()
-        $empleado = $hydrator($data, $empleado);
-        $entityManager->persist($empleado);
-        $entityManager->flush();*/
-
         $rank = new Ranks();
         $objectManager = $this
             ->getServiceLocator()
@@ -142,7 +99,6 @@ class RankController extends RestController
     public function delete($id)
     {
         //$this->getRanksTable()->deleteRank($id);
-
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
