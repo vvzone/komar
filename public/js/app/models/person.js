@@ -53,6 +53,10 @@ define(
             }, //for recursive objects
             model_name: 'person',
             model_rus_name: 'Физлицо',
+            beforeSave: function(){
+                this.client.set('identification_number', this.get('identification_number'));
+                this.client.set('is_external', this.get('is_external'));
+            },
             parse: function(response, xhr){
                 if (_.has(response, 'client')){
                     if(_.size(response.client)>0){
@@ -61,9 +65,13 @@ define(
                             // So instantiate a collection and pass in raw data
                             //this.listValues = new ListCollection(response.listValues);
                             this.client = new ClientSubModel(response.client);
+                            this.identifical_number = response.client.identifical_number; //?set
+                            this.is_external = response.client.is_external;
                         } else {
                             // It does, so just reset the collection
                             this.client.reset(new ClientSubModel(response.client));
+                            this.identifical_number = response.client.identifical_number;
+                            this.is_external = response.client.is_external;
                         }
                     }
                 }

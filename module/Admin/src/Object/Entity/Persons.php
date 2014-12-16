@@ -2,7 +2,7 @@
 
 namespace Object\Entity;
 
-use Doctrine\Common\Collections\ArrayCollection as ArrayCollection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 //use Object\Entity\Clients as Client;
 
@@ -92,21 +92,6 @@ class Persons
      * @ORM\Column(name="deputy", type="integer", nullable=true)
      */
     private $deputy;
-
-    /**
-     *
-     * @ORM\ManyToMany(targetEntity="Persons", inversedBy="personPost")
-     * @ORM\JoinTable(name="person_post",
-     *      joinColumns={@ORM\JoinColumn(name="persons, referencedColumnName="id")},
-     * )
-     *
-     **/
-    private $personPost;
-
-    public function __construct()
-    {
-        $this->personPost = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -363,24 +348,37 @@ class Persons
     }
 
     /**
-     * Set personPost
-     *
-     * @param integer $personPost
-     * @return PersonPost
-     */
-    public function setPersonPost($personPost)
-    {
-        $this->personPost = $personPost;
+     * @ORM\ManyToMany(targetEntity="PersonPost", mappedBy="person")
+     **/
+    private $personPost;
 
-        return $this;
+    public function __construct()
+    {
+        $this->personPost = new ArrayCollection();
     }
 
+    /*
+     * @param PersonPost $personPost;
+     * @return void;
+     * */
     public function addPersonPost($personPost){
         $this->personPost[] = $personPost;
     }
 
     public function removePersonPost($personPost){
         $this->personPost->removeElement($personPost);
+    }
+
+    /**
+     * Set personPost
+     *
+     * @param $personPost
+     * @return PersonPost
+     */
+    public function setPersonPost($personPost)
+    {
+        $this->personPost = $personPost;
+        return $this;
     }
 
     /**
@@ -391,16 +389,19 @@ class Persons
     public function getPersonPost()
     {
         //$count = $this->personPost->count();
-        $collection = $this->personPost;
+
+        /*$collection = $this->personPost;
         $post_array = array();
         $new_collection = $collection->map(
             function($person_post){
-                return $person_post->getPersonToUnitPostSide();
+                return $person_post;
             }
-        );
+        );*/
+
         //var_dump($post_array);
         //$post_array = $collection->last()->getDescription();
-        return $new_collection->getValues();
+        //return $new_collection;
+        return $this->personPost->last();
     }
 
     public function getBigFIO(){

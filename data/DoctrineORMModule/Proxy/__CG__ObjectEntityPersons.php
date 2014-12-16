@@ -422,6 +422,28 @@ class Persons extends \Object\Entity\Persons implements \Doctrine\ORM\Proxy\Prox
     /**
      * {@inheritDoc}
      */
+    public function addPersonPost($personPost)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPersonPost', array($personPost));
+
+        return parent::addPersonPost($personPost);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removePersonPost($personPost)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePersonPost', array($personPost));
+
+        return parent::removePersonPost($personPost);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setPersonPost($personPost)
     {
 

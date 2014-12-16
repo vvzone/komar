@@ -2,7 +2,9 @@
 
 namespace Object\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Object\Entity\Persons;
 
 /**
  * PersonPost
@@ -51,20 +53,36 @@ class PersonPost
 
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Persons", mappedBy="groups")
+     * @ORM\ManyToMany(targetEntity="Persons", inversedBy="id")
      */
     private $person;
 
+
+    /*
+     * @param Person $person;
+     * @return void;
+     * */
+    public function addPerson($person){
+        $this->person[] = $person;
+    }
+
+    /*
+     * @param Person $person;
+     * @return void;
+     * */
+    public function removePerson($person){
+        return 'removePerson test-return';
+    }
+
     /**
      *
-     * @ORM\OneToOne(targetEntity="UnitPosts")
-     * @ORM\JoinColumn(name="unit_post", referencedColumnName="id")
+     * @var integer;
      **/
     private $unitPost;
 
     public function __construct()
     {
-        $this->person = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->person = new ArrayCollection();
         //$this->unitPost = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -204,15 +222,6 @@ class PersonPost
         $this->unitPost = $unitPost;
 
         return $this;
-    }
-
-    public function addPerson(Persons $persons){
-        $this->person= $persons;
-    }
-
-
-    public function removePerson(Persons $persons){
-        $this->person->removeElement($persons);
     }
 
     /**
