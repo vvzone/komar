@@ -348,7 +348,7 @@ class Persons
     }
 
     /**
-     * @ORM\ManyToMany(targetEntity="PersonPost", mappedBy="person")
+     * @ORM\OneToMany(targetEntity="PersonPost", mappedBy="person")
      **/
     private $personPost;
 
@@ -390,18 +390,18 @@ class Persons
     {
         //$count = $this->personPost->count();
 
-        /*$collection = $this->personPost;
+        $collection = $this->personPost;
         $post_array = array();
         $new_collection = $collection->map(
             function($person_post){
-                return $person_post;
+                return $person_post->getDescription();
             }
-        );*/
+        );
 
         //var_dump($post_array);
         //$post_array = $collection->last()->getDescription();
         //return $new_collection;
-        return $this->personPost->last();
+        return $this->personPost->last()->getDescription();
     }
 
     public function getBigFIO(){

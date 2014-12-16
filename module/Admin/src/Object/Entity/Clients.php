@@ -253,7 +253,7 @@ class Clients
             'is_external' => $this->getIsExternal(),
             //'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
             //'person' => $this->getPersonInfo(),
-            //'unit' => $this->getUnitInfo()
+            'unit' => $this->getUnitInfo()
         );
     }
 

@@ -53,26 +53,10 @@ class PersonPost
 
     /**
      *
-     * @ORM\ManyToMany(targetEntity="Persons", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="Persons", inversedBy="personPost")
+     * @ORM\JoinColumn(name="person", referencedColumnName="id")
      */
     private $person;
-
-
-    /*
-     * @param Person $person;
-     * @return void;
-     * */
-    public function addPerson($person){
-        $this->person[] = $person;
-    }
-
-    /*
-     * @param Person $person;
-     * @return void;
-     * */
-    public function removePerson($person){
-        return 'removePerson test-return';
-    }
 
     /**
      *
