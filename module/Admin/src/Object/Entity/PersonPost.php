@@ -216,7 +216,8 @@ class PersonPost
     public function getUnitPost()
     {
         //var_dump($this->unitPost);
-        return $this->unitPost->getMain();
+        //return $this->unitPost->getMain();
+        return 'unitPost test';
     }
 
     public function getPersonToUnitPostSide(){
@@ -225,6 +226,7 @@ class PersonPost
             'start_date' => $this->getStartDate(),
             'end_date' => $this->getEndDate(),
             'document' => $this->getDocument(),
+            'description' => $this->getDescription(),
             'unit_post' => $this->getUnitPost()
         );
 

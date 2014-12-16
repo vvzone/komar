@@ -384,9 +384,9 @@ class Persons
     /**
      * Get personPost
      *
-     * @return PersonPost
+     * @return ArrayCollection
      */
-    public function getPersonPost()
+    public function getPersonPosts()
     {
         //$count = $this->personPost->count();
 
@@ -394,14 +394,11 @@ class Persons
         $post_array = array();
         $new_collection = $collection->map(
             function($person_post){
-                return $person_post->getDescription();
+                return $person_post->getPersonToUnitPostSide();
             }
         );
-
-        //var_dump($post_array);
-        //$post_array = $collection->last()->getDescription();
-        //return $new_collection;
-        return $this->personPost->last()->getDescription();
+        //return $this->personPost->getKeys();
+        return $new_collection->getValues();
     }
 
     public function getBigFIO(){
@@ -431,7 +428,7 @@ class Persons
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
-            'personPost' => $this->getPersonPost(),
+            'personPost' => $this->getPersonPosts(),
             //'person_post_count' => $this->personPost->count()
         );
     }
@@ -452,7 +449,7 @@ class Persons
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
-            'person_post' => $this->getPersonPost(),
+            'person_post' => $this->getPersonPosts(),
             'client' => $this->getClient()->getAll()
             //'person_post_count' => $this->personPost->count()
         );
