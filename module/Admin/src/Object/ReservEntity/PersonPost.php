@@ -2,12 +2,14 @@
 
 namespace Object\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Object\Entity\Persons;
 
 /**
  * PersonPost
  *
- * @ORM\Table(name="person_post", indexes={@ORM\Index(name="person", columns={"person_id"}), @ORM\Index(name="unit_post", columns={"unit_post_id"})})
+ * @ORM\Table(name="person_post", indexes={@ORM\Index(name="person", columns={"person"}), @ORM\Index(name="unit_post", columns={"unit_post"})})
  * @ORM\Entity
  */
 class PersonPost
@@ -50,26 +52,23 @@ class PersonPost
     private $description;
 
     /**
-     * @var \Object\Entity\Person
      *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\Person")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="person_id", referencedColumnName="id")
-     * })
+     * @ORM\ManyToOne(targetEntity="Persons", inversedBy="personPost")
+     * @ORM\JoinColumn(name="person", referencedColumnName="id")
      */
     private $person;
 
     /**
-     * @var \Object\Entity\UnitPost
      *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\UnitPost")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="unit_post_id", referencedColumnName="id")
-     * })
-     */
+     * @var integer;
+     **/
     private $unitPost;
 
-
+    public function __construct()
+    {
+        $this->person = new ArrayCollection();
+        //$this->unitPost = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -176,10 +175,10 @@ class PersonPost
     /**
      * Set person
      *
-     * @param \Object\Entity\Person $person
+     * @param \Object\Entity\Persons $person
      * @return PersonPost
      */
-    public function setPerson(\Object\Entity\Person $person = null)
+    public function setPerson(\Object\Entity\Persons $person = null)
     {
         $this->person = $person;
 
@@ -189,7 +188,7 @@ class PersonPost
     /**
      * Get person
      *
-     * @return \Object\Entity\Person 
+     * @return \Object\Entity\Persons 
      */
     public function getPerson()
     {
@@ -199,10 +198,10 @@ class PersonPost
     /**
      * Set unitPost
      *
-     * @param \Object\Entity\UnitPost $unitPost
+     * @param \Object\Entity\UnitPosts $unitPost
      * @return PersonPost
      */
-    public function setUnitPost(\Object\Entity\UnitPost $unitPost = null)
+    public function setUnitPost(\Object\Entity\UnitPosts $unitPost = null)
     {
         $this->unitPost = $unitPost;
 
@@ -212,10 +211,24 @@ class PersonPost
     /**
      * Get unitPost
      *
-     * @return \Object\Entity\UnitPost 
+     * @return UnitPosts
      */
     public function getUnitPost()
     {
-        return $this->unitPost;
+        //var_dump($this->unitPost);
+        //return $this->unitPost->getMain();
+        return 'unitPost test';
+    }
+
+    public function getPersonToUnitPostSide(){
+        return array(
+            'id' => $this->getId(),
+            'start_date' => $this->getStartDate(),
+            'end_date' => $this->getEndDate(),
+            'document' => $this->getDocument(),
+            'description' => $this->getDescription(),
+            'unit_post' => $this->getUnitPost()
+        );
+
     }
 }

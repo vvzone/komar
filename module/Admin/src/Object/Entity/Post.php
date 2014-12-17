@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Sex
+ * Post
  *
- * @ORM\Table(name="sex")
+ * @ORM\Table(name="post")
  * @ORM\Entity
  */
-class Sex
+class Post
 {
     /**
      * @var integer
@@ -24,16 +24,23 @@ class Sex
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=32, nullable=false)
+     * @ORM\Column(name="name", type="string", length=64, nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="short_name", type="string", length=5, nullable=false)
+     * @ORM\Column(name="short_name", type="string", length=12, nullable=false)
      */
     private $shortName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", nullable=false)
+     */
+    private $description;
 
 
 
@@ -51,7 +58,7 @@ class Sex
      * Set name
      *
      * @param string $name
-     * @return Sex
+     * @return Post
      */
     public function setName($name)
     {
@@ -74,7 +81,7 @@ class Sex
      * Set shortName
      *
      * @param string $shortName
-     * @return Sex
+     * @return Post
      */
     public function setShortName($shortName)
     {
@@ -91,5 +98,28 @@ class Sex
     public function getShortName()
     {
         return $this->shortName;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Post
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

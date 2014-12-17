@@ -1,0 +1,93 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Unit
+ *
+ * @ORM\Table(name="unit", indexes={@ORM\Index(name="fk_unit_client1_idx", columns={"client_id"})})
+ * @ORM\Entity
+ */
+class Unit
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="parent", type="integer", nullable=true)
+     */
+    private $parent;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=64, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="short_name", type="string", length=10, nullable=true)
+     */
+    private $shortName;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="own_numeration", type="boolean", nullable=true)
+     */
+    private $ownNumeration;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_legal", type="boolean", nullable=true)
+     */
+    private $isLegal;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="commander", type="integer", nullable=true)
+     */
+    private $commander;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="deputy", type="integer", nullable=true)
+     */
+    private $deputy;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="on_duty", type="integer", nullable=true)
+     */
+    private $onDuty;
+
+    /**
+     * @var \Object\\Entity\Client
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Object\\Entity\Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * })
+     */
+    private $client;
+
+
+}

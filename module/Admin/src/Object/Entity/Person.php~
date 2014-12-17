@@ -1,0 +1,103 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Person
+ *
+ * @ORM\Table(name="person", indexes={@ORM\Index(name="sex", columns={"sex_id"}), @ORM\Index(name="fk_person_client1_idx", columns={"client_id"})})
+ * @ORM\Entity
+ */
+class Person
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="first_name", type="string", length=64, nullable=false)
+     */
+    private $firstName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="patronymic_name", type="string", length=64, nullable=true)
+     */
+    private $patronymicName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="family_name", type="string", length=64, nullable=false)
+     */
+    private $familyName;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="birth_date", type="date", nullable=true)
+     */
+    private $birthDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="birth_place", type="string", length=64, nullable=true)
+     */
+    private $birthPlace;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="inn", type="integer", nullable=true)
+     */
+    private $inn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="citizenship", type="string", length=64, nullable=true)
+     */
+    private $citizenship;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="deputy", type="integer", nullable=true)
+     */
+    private $deputy;
+
+    /**
+     * @var \Object\\Entity\Sex
+     *
+     * @ORM\ManyToOne(targetEntity="Object\\Entity\Sex")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="sex_id", referencedColumnName="id")
+     * })
+     */
+    private $sex;
+
+    /**
+     * @var \Object\\Entity\Client
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Object\\Entity\Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * })
+     */
+    private $client;
+
+
+}
