@@ -9,7 +9,7 @@
 
 namespace Object\Controller;
 
-use Object\Entity\Persons as Persons;
+use Object\Entity\Person;
 use Object\Model\Client;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
@@ -35,7 +35,7 @@ class PersonController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $results = $objectManager->getRepository('Object\Entity\Persons')->findAll();
+        $results = $objectManager->getRepository('Object\Entity\Person')->findAll();
         $data = array();
 
         foreach ($results as $result) {
@@ -50,17 +50,17 @@ class PersonController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $person = $objectManager->find('Object\Entity\Persons', $id);
+        $person = $objectManager->find('Object\Entity\Person', $id);
         return new JsonModel($person->getAll());
     }
 
     public function create($data)
     {
-        $person = new Persons();
+        $person = new Person();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Persons');
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Person');
 
         $data = $this->RESTtoCamelCase($data);
         $person = $hydrator->hydrate($data, $person);
@@ -75,12 +75,12 @@ class PersonController extends RestController
     public function update($id, $data)
     {
         $data['id'] = $id;
-        $person = new Persons();
+        $person = new Person();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Persons');
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Person');
         $data = $this->RESTtoCamelCase($data);
         $person = $hydrator->hydrate($data, $person);
         $objectManager->persist($person);
@@ -97,7 +97,7 @@ class PersonController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $person = $objectManager->find('Object\Entity\Persons', $id);
+        $person = $objectManager->find('Object\Entity\Person', $id);
         $objectManager->remove($person);
         $objectManager->flush();
 

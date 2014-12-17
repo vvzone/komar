@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Post
+ * Rank
  *
- * @ORM\Table(name="post")
+ * @ORM\Table(name="rank")
  * @ORM\Entity
  */
-class Post
+class Rank
 {
     /**
      * @var integer
@@ -31,31 +31,24 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="short_name", type="string", length=12, nullable=false)
+     * @ORM\Column(name="short_name", type="string", length=15, nullable=true)
      */
     private $shortName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=false)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var boolean
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Unit", mappedBy="post")
+     * @ORM\Column(name="is_officer", type="boolean", nullable=false)
      */
-    private $unit;
+    private $isOfficer;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->unit = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
@@ -72,7 +65,7 @@ class Post
      * Set name
      *
      * @param string $name
-     * @return Post
+     * @return Rank
      */
     public function setName($name)
     {
@@ -95,7 +88,7 @@ class Post
      * Set shortName
      *
      * @param string $shortName
-     * @return Post
+     * @return Rank
      */
     public function setShortName($shortName)
     {
@@ -118,7 +111,7 @@ class Post
      * Set description
      *
      * @param string $description
-     * @return Post
+     * @return Rank
      */
     public function setDescription($description)
     {
@@ -138,35 +131,25 @@ class Post
     }
 
     /**
-     * Add unit
+     * Set isOfficer
      *
-     * @param \Object\Entity\Unit $unit
-     * @return Post
+     * @param boolean $isOfficer
+     * @return Rank
      */
-    public function addUnit(\Object\Entity\Unit $unit)
+    public function setIsOfficer($isOfficer)
     {
-        $this->unit[] = $unit;
+        $this->isOfficer = $isOfficer;
 
         return $this;
     }
 
     /**
-     * Remove unit
+     * Get isOfficer
      *
-     * @param \Object\Entity\Unit $unit
+     * @return boolean 
      */
-    public function removeUnit(\Object\Entity\Unit $unit)
+    public function getIsOfficer()
     {
-        $this->unit->removeElement($unit);
-    }
-
-    /**
-     * Get unit
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUnit()
-    {
-        return $this->unit;
+        return $this->isOfficer;
     }
 }
