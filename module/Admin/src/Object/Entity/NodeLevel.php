@@ -38,8 +38,8 @@ class NodeLevel
     /**
      * @var \Object\Entity\NodeLevelType
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\NodeLevelType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="node_level_type_id", referencedColumnName="id")
@@ -47,11 +47,11 @@ class NodeLevel
      */
     private $nodeLevelType;
 
-    /**
+    /*
      * @var \Object\Entity\Route
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\Route")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="route_id", referencedColumnName="id")
@@ -174,5 +174,13 @@ class NodeLevel
     public function getRoute()
     {
         return $this->route;
+    }
+
+    public function getNodeLevelSimple(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'order' => $this->getLevelOrder()
+        );
     }
 }

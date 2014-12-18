@@ -95,7 +95,7 @@ class DocumentType
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Object\Entity\AttributeType", inversedBy="documentType")
-     * @ORM\JoinTable(name="document_ attribute_type",
+     * @ORM\JoinTable(name="document_type_attribute_type",
      *   joinColumns={
      *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
      *   },
@@ -386,5 +386,22 @@ class DocumentType
     public function getAttributeType()
     {
         return $this->attributeType;
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName(),
+            'code' => $this->getCode(),
+            'default_header' => $this->getDefaultHeader(),
+            'is_service' => $this->getIsService(),
+            'secrecy_type' => $this->getSecrecyType(),
+            'urgency_type' => $this->getUrgencyType(),
+            'presentation' => $this->getPresentation(),
+            'direction_type' => $this->getDirectionTypeCode(),
+            'description' => $this->getDescription(),
+            'attribute_type' => $this->getAttributeType()
+        );
     }
 }

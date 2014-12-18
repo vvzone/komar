@@ -31,8 +31,8 @@ class Document
     /**
      * @var \Object\Entity\Person
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\Person")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="document_author_id", referencedColumnName="id")
@@ -43,8 +43,8 @@ class Document
     /**
      * @var \Object\Entity\DocumentType
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\DocumentType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
@@ -52,11 +52,20 @@ class Document
      */
     private $documentType;
 
+    /*
+     * @var \Object\Entity\NodeLevel
+     *
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Object\Entity\NodeLevel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="current_node_level_id", referencedColumnName="id")
+     * })
+     */
+
     /**
      * @var \Object\Entity\NodeLevel
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\NodeLevel")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="current_node_level_id", referencedColumnName="id")
@@ -64,7 +73,14 @@ class Document
      */
     private $currentNodeLevel;
 
+
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * Запрос к Node_Level_Type -> вычисление через Node_Level_
+     */
+    private $availableNodes;
+    /*
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Object\Entity\LinkedDocument", inversedBy="document")
@@ -86,6 +102,13 @@ class Document
      */
     private $route;
 
+
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Object\Entity\DocumentAttribute", mappedBy="document")
+     */
+    private $documentAttributes;
+
     /**
      * Constructor
      */
@@ -93,6 +116,7 @@ class Document
     {
         $this->linkedDocument = new \Doctrine\Common\Collections\ArrayCollection();
         $this->route = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->documentAttributes = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -162,7 +186,9 @@ class Document
      */
     public function getDocumentAuthor()
     {
-        return $this->documentAuthor;
+        //return $this->documentAuthor;
+
+        return $this->documentAuthor->getPersonSimple();
     }
 
     /**
@@ -185,7 +211,9 @@ class Document
      */
     public function getDocumentType()
     {
-        return $this->documentType;
+        //return $this->documentType;
+        //return $this->documentType->getName();
+        return $this->documentType->getAll();
     }
 
     /**
@@ -208,7 +236,7 @@ class Document
      */
     public function getCurrentNodeLevel()
     {
-        return $this->currentNodeLevel;
+        return $this->currentNodeLevel->getNodeLevelSimple();
     }
 
     /**
@@ -275,5 +303,46 @@ class Document
     public function getRoute()
     {
         return $this->route;
+    }
+
+    /**
+     * @param \Object\Entity\DocumentAttribute $attribute;
+     *
+     * @return Document;
+     */
+    public function addDocumentAttributes($attribute){
+        $this->documentAttributes[] = $attribute;
+        return $this;
+    }
+
+    /**
+     * remove DocumentAttribute
+     *
+     * @param \Object\Entity\DocumentAttribute $attribute
+     */
+    public function removeDocumentAttributes($attribute){
+        $this->documentAttributes->removeElement($attribute);
+    }
+
+    public function getDocumentAttributes(){
+        //return $this->documentAttributes;
+        $attributes = array();
+        foreach($this->documentAttributes as $attribute){
+            $attributes[$attribute->getId()] = array(
+                'type' => $attribute->getAttributeType()->getMachineName(),
+                'data' => $attribute->getData()
+            );
+        }
+        return $attributes;
+    }
+
+    public function getDocumentSimple(){
+        return array(
+            'id' => $this->getId(),
+            'document_author' => $this->getDocumentAuthor(),
+            'document_type' => $this->getDocumentType(),
+            'document_attributes' => $this->getDocumentAttributes(),
+            'current_node' => $this->getCurrentNodeLevel()
+        );
     }
 }

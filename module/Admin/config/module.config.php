@@ -131,6 +131,19 @@ return array(
                                 'controller'    => 'Object\Controller\Sex'
                             )
                         )
+                    ),
+                    'document' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/document[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Document'
+                            )
+                        )
                     )
                 )
             )
@@ -205,6 +218,7 @@ return array(
             'Object\Controller\Person' => 'Object\Controller\PersonController',
             'Object\Controller\Rank' => 'Object\Controller\RankController',
             'Object\Controller\Sex' => 'Object\Controller\SexController',
+            'Object\Controller\Document' => 'Object\Controller\DocumentController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),

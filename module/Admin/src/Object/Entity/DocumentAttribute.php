@@ -42,7 +42,7 @@ class DocumentAttribute
      */
     private $data;
 
-    /**
+    /*
      * @var \Object\Entity\Document
      *
      * @ORM\Id
@@ -51,6 +51,10 @@ class DocumentAttribute
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="document_id", referencedColumnName="id")
      * })
+     */
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Document", inversedBy="documentAttributes")
      */
     private $document;
 

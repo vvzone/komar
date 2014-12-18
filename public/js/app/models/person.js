@@ -19,14 +19,14 @@ define(
                 family_name: null,
                 birth_date: null,
                 birth_place: null,
-                sex_types: null,
+                sex_types: 3,
                 inn: null,
                 citizenship: null,
                 deputy: null,
-                person_post: null,
-                client: null,
-                identification_number: null,
-                is_external: null
+                person_post: null
+                //client: null,
+                //identification_number: null,
+                //is_external: null
             },
             attr_rus_names: {
                 first_name: 'Имя',
@@ -37,11 +37,11 @@ define(
                 sex_types: 'Пол',
                 inn: 'ИНН',
                 citizenship: 'Гражданство',
-                deputy: 'Заместитель',
-                person_post: 'Должность',
+                //deputy: 'Заместитель',
+                person_post: 'Должность'
                 //client: 'Общая информация',
-                identification_number: 'Идентификационный номер',
-                is_external: 'Внешний'
+                //identification_number: 'Идентификационный номер',
+                //is_external: 'Внешний'
             },
             sub_models: {
                 client: 'client'
@@ -53,7 +53,7 @@ define(
             }, //for recursive objects
             model_name: 'person',
             model_rus_name: 'Физлицо',
-            beforeSave: function(){
+           /* beforeSave: function(){
                 this.client.set('identification_number', this.get('identification_number'));
                 this.client.set('is_external', this.get('is_external'));
             },
@@ -77,7 +77,7 @@ define(
                 }
                 // Same for edge...
                 return response;
-            },
+            },*/
             url: function() {
                 return apiUrl('person', this.id);
             },

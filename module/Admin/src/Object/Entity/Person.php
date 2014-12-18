@@ -335,7 +335,12 @@ class Person
      */
     public function getSex()
     {
-        return $this->sex;
+        if($this->sex != null){
+            $sex = $this->sex;
+        }else{
+            $sex = 3;
+        }
+        return $sex;
     }
 
     /**
@@ -446,7 +451,7 @@ class Person
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
-            'sex' => $this->getSex()->getId(),
+            'sex' => $this->getSex(),
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),

@@ -62,9 +62,9 @@ class PersonController extends RestController
 
         $unit_post_id = null;
 
-        if($incoming_array['unit_post']){
-            $unit_post_id = $incoming_array['unit_post'];
-            unset($incoming_array['unit_post']);
+        if(isset($incoming_array['person_post'])){
+            $unit_post_id = $incoming_array['person_post'];
+            unset($incoming_array['person_post']);
         }
 
         $objectManager = $this
@@ -87,6 +87,13 @@ class PersonController extends RestController
             $unit_post = $objectManager->find('Object\Entity\UnitPost', $unit_post_id);
             $objectManager->persist($unit_post);
             $person->addUnitPost($unit_post);
+        }
+
+        if(isset($incoming_array['sex_type'])){
+            $sex_id =  $incoming_array['sex_type'];
+            unset($incoming_array['sex_type']);
+            $sex = $objectManager->find('Object\Entity\Sex', $sex_id);
+            $person->setSex($sex);
         }
 
         $objectManager->persist($person);
