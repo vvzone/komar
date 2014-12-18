@@ -355,7 +355,20 @@ class Unit
      * */
 
     public function getPosts(){
-        return $this->posts->count();
+        return $this->posts;
+    }
+
+    public function getPostsList(){
+        $list = array();
+        foreach($this->getPosts() as $post){
+            $list[$post->getId()] =
+                array(
+                    'name' => $post->getName(),
+                    'short_name' => $post->getShortName()
+                );
+        }
+
+        return $list;
     }
 
     /* === Business logic ==== */
@@ -367,7 +380,7 @@ class Unit
             'name' => $this->getName(),
             'short_name' => $this->getShortName(),
             'own_numeration' => $this->getOwnNumeration(),
-            'unit_posts' => $this->getPosts()
+            'unit_posts' => $this->getPostsList()
         );
     }
 

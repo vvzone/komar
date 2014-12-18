@@ -422,6 +422,17 @@ class Unit extends \Object\Entity\Unit implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getPostsList()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPostsList', array());
+
+        return parent::getPostsList();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getAll()
     {
 

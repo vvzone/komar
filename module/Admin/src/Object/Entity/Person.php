@@ -392,11 +392,21 @@ class Person
     public function getUnitPost()
     {
         //return $this->unitPost->last()->getPost()->getName();
-        $unitPost = $this->unitPost->last();
-        return array(
-            'id' => $unitPost->getId(),
-            'name' => $unitPost->getPost()->getName()
-        );
+        //$unitPost = $this->unitPost->last();
+        return $this->unitPost;
+    }
+
+    public function getUnitPostsList(){
+        $list = array();
+        foreach($this->getUnitPost() as $unit_post){
+            $list[$unit_post->getId()] =
+                array(
+                    'name' => $unit_post->getPost()->getName(),
+                    'short_name' => $unit_post->getPost()->getShortName()
+                );
+        }
+
+        return $list;
     }
 
     /* ============= Business-logic Methods... =================*/
@@ -440,7 +450,7 @@ class Person
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
-            'unit_post' => $this->getUnitPost(),
+            'person_post' => $this->getUnitPostsList(),
             //'client' => $this->getClient()->getAll()
             //'person_post_count' => $this->personPost->count()
         );
