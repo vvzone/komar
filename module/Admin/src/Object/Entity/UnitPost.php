@@ -38,8 +38,6 @@ class UnitPost
     /**
      * @var \Object\Entity\Unit
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\Unit")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="unit_id", referencedColumnName="id")
@@ -50,8 +48,6 @@ class UnitPost
     /**
      * @var \Object\Entity\Post
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\Post")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="post_id", referencedColumnName="id")
@@ -73,7 +69,6 @@ class UnitPost
     {
         $this->person = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Set id
@@ -221,5 +216,31 @@ class UnitPost
     public function getPerson()
     {
         return $this->person;
+    }
+
+    public function getName(){
+        //return 'UnitPost -> getName()';
+        return $this->getPost()->getName();
+    }
+
+    public function getShortName(){
+        //return 'UnitPost -> getShortName()';
+        return $this->getPost()->getShortName();
+    }
+
+    public function getUnitPostSimple(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName()
+        );
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName(),
+        );
     }
 }

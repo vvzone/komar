@@ -93,6 +93,19 @@ return array(
                             )
                         )
                     ),
+                    'unit_post' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/unit_post[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\UnitPost'
+                            )
+                        )
+                    ),
                     'rank' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -187,6 +200,7 @@ return array(
             /* === Object === */
             'Object\Controller\Index' => 'Object\Controller\IndexController',
             'Object\Controller\Unit' => 'Object\Controller\UnitController',
+            'Object\Controller\UnitPost' => 'Object\Controller\UnitPostController',
             'Object\Controller\Client' => 'Object\Controller\ClientController',
             'Object\Controller\Person' => 'Object\Controller\PersonController',
             'Object\Controller\Rank' => 'Object\Controller\RankController',

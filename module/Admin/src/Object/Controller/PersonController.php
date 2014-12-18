@@ -85,8 +85,8 @@ class PersonController extends RestController
 
         if($unit_post_id){
             $unit_post = $objectManager->find('Object\Entity\UnitPost', $unit_post_id);
-            //$objectManager->persist($unit_post);
-            //$person->addUnitPost($unit_post);
+            $objectManager->persist($unit_post);
+            $person->addUnitPost($unit_post);
         }
 
         $objectManager->persist($person);
