@@ -43,12 +43,19 @@ class Post
     private $description;
 
     /*
-     * @var \Object\Entity\Units
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Unit", mappedBy="unitPosts")
+     * @ORM\ManyToMany(targetEntity="Unit", mappedBy="posts")
      * */
-    private $unitsHavePost;
+    private $unitsHaveCurrentPost;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->unitsHaveCurrentPost = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -128,5 +135,38 @@ class Post
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Add unit
+     *
+     * @param \Object\Entity\Unit $unit
+     * @return Post
+     */
+    public function addUnitsHaveCurrentPost(\Object\Entity\Unit $unit)
+    {
+        $this->unitsHaveCurrentPost[] = $unit;
+
+        return $this;
+    }
+
+    /**
+     * Remove unit
+     *
+     * @param \Object\Entity\Unit $unit
+     */
+    public function removeUnitsHaveCurrentPost(\Object\Entity\Unit $unit)
+    {
+        $this->unitsHaveCurrentPost->removeElement($unit);
+    }
+
+    /**
+     * Get unitsHaveCurrentPost
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUnitsHaveCurrentPost()
+    {
+        return $this->unitsHaveCurrentPost;
     }
 }

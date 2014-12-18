@@ -87,10 +87,10 @@ class Unit
      */
     private $client;
 
-    /*
-     * @var \Object\Entity\UnitPost
+    /**
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Post" inversedBy="unitsHavePost")
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Post", inversedBy="unitsHaveCurrentPost")
      * @ORM\JoinTable(name="unit_post",
      *   joinColumns={
      *     @ORM\JoinColumn(name="unit_id", referencedColumnName="id")
@@ -98,15 +98,15 @@ class Unit
      *   inverseJoinColumns={
      *     @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      *   }
-     *
+     * )
      * */
-    private $unitPosts;
+    private $posts;
 
     /*
      * Constructor
      * */
     public function __construct(){
-        $this->unitPosts = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -325,5 +325,57 @@ class Unit
     public function getClient()
     {
         return $this->client;
+    }
+
+    /**
+     * Add Post
+     *
+     * @param \Object\Entity\Post $Post
+     * @return Person
+     */
+    public function addPost(\Object\Entity\Post $Post)
+    {
+        $this->posts[] = $Post;
+
+        return $this;
+    }
+
+    /**
+     * Remove Post
+     *
+     * @param \Object\Entity\Post $Post
+     */
+    public function removePost(\Object\Entity\Post $Post)
+    {
+        $this->posts->removeElement($Post);
+    }
+
+    /*
+     * @return \Doctrine\Common\Collections\Collection
+     * */
+
+    public function getPosts(){
+        return $this->posts->count();
+    }
+
+    /* === Business logic ==== */
+
+    public function getAll()
+    {
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName(),
+            'own_numeration' => $this->getOwnNumeration(),
+            'unit_posts' => $this->getPosts()
+        );
+    }
+
+    public function getUnitSimple(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName()
+        );
     }
 }

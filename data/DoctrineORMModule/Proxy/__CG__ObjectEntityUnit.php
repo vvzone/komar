@@ -64,10 +64,10 @@ class Unit extends \Object\Entity\Unit implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'parent', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'ownNumeration', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'isLegal', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'commander', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'deputy', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'onDuty', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'client');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'parent', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'ownNumeration', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'isLegal', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'commander', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'deputy', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'onDuty', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'client', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'posts');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'parent', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'ownNumeration', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'isLegal', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'commander', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'deputy', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'onDuty', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'client');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'parent', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'ownNumeration', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'isLegal', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'commander', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'deputy', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'onDuty', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'client', '' . "\0" . 'Object\\Entity\\Unit' . "\0" . 'posts');
     }
 
     /**
@@ -384,6 +384,61 @@ class Unit extends \Object\Entity\Unit implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getClient', array());
 
         return parent::getClient();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addPost(\Object\Entity\Post $Post)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addPost', array($Post));
+
+        return parent::addPost($Post);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removePost(\Object\Entity\Post $Post)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removePost', array($Post));
+
+        return parent::removePost($Post);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPosts()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPosts', array());
+
+        return parent::getPosts();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAll()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
+
+        return parent::getAll();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUnitSimple()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUnitSimple', array());
+
+        return parent::getUnitSimple();
     }
 
 }

@@ -10,7 +10,9 @@
 namespace Object\Controller;
 
 //use Zend\Mvc\Controller\AbstractActionController;\
-use Object\Model\Unit;
+use Object\Entity\Unit;
+use Object\Entity\Post;
+
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
@@ -28,40 +30,31 @@ class UnitController extends RestController
 
     public function getList()
     {
-        $results = $this->getUnitTable()->fetchAll();
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        $results = $objectManager->getRepository('Object\Entity\Unit')->findAll();
         $data = array();
 
         foreach ($results as $result) {
-            $data[] = $result;
+            $data[] = $result->getUnitSimple();
         }
 
-        return new JsonModel(array(
-                'data' => $data)
-        );
+        return new JsonModel($data);
     }
 
     public function get($id)
     {
-        $unit = $this->getUnitTable()->getUnit($id);
-        return new JsonModel(array("data" => $unit));
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+        $unit = $objectManager->find('Object\Entity\Unit', $id);
+        return new JsonModel($unit->getAll());
     }
 
     public function create($data)
     {
-        //var_dump($data);
-        $data['id']=0;
-        //$form = new UnitForm(); //GREAT IDEA!
-        $unit = new Unit();
-        //$form->setInputFilter($unit->getInputFilter());
-        //$form->setData($data);
-
-        //$id=0;
-        //if ($form->isValid()) {
-            $unit->exchangeArray($data);
-            $id = $this->getUnitTable()->saveUnit($unit);
-        /*}else {
-            print_r(  $form->getMessages());
-        }*/
         return new JsonModel(array(
             'data' => $data,
         ));
@@ -70,41 +63,37 @@ class UnitController extends RestController
     public function update($id, $data)
     {
         $data['id'] = $id;
-        $unit = $this->getUnitTable()->getUnit($id);
-        /*$form = new UnitForm();
-        $form->bind($unit);
-        $form->setInputFilter($unit->getInputFilter());
-        $form->setData($data);*/
+        $unit = new Unit();
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
 
-        //if ($form->isValid()) {
-            //next one - temporary !
-            $unit_temp = new Unit();
-            $unit_temp->exchangeArray($data); //delete this one after form will be added
-            $id = $this->getUnitTable()->saveUnit($unit_temp); //($form->getData());
-        //}
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Unit');
+        $data = $this->RESTtoCamelCase($data);
+        $unit = $hydrator->hydrate($data, $unit);
+        $objectManager->persist($unit);
+        $objectManager->flush();
 
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        return new JsonModel(
+            $data
+        );
     }
 
     public function delete($id)
     {
-        $this->getUnitTable()->deleteUnit($id);
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        $unit = $objectManager->find('Object\Entity\Unit', $id);
+        $objectManager->remove($unit);
+        $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
 
-    public function getUnitTable()
-    {
-        if (!$this->unitTable) {
-            $sm = $this->getServiceLocator();
-            $this->unitTable = $sm->get('Object\Model\UnitTable');
-        }
-        return $this->unitTable;
-    }
 
     /*
     public function getUnitTableList()

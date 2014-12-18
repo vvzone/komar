@@ -64,10 +64,10 @@ class Post extends \Object\Entity\Post implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'description');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'unitsHaveCurrentPost');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'description');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'unitsHaveCurrentPost');
     }
 
     /**
@@ -252,6 +252,39 @@ class Post extends \Object\Entity\Post implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', array());
 
         return parent::getDescription();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addUnitsHaveCurrentPost(\Object\Entity\Unit $unit)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addUnitsHaveCurrentPost', array($unit));
+
+        return parent::addUnitsHaveCurrentPost($unit);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeUnitsHaveCurrentPost(\Object\Entity\Unit $unit)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeUnitsHaveCurrentPost', array($unit));
+
+        return parent::removeUnitsHaveCurrentPost($unit);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUnitsHaveCurrentPost()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUnitsHaveCurrentPost', array());
+
+        return parent::getUnitsHaveCurrentPost();
     }
 
 }
