@@ -17,7 +17,7 @@ class Person
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -80,9 +80,7 @@ class Person
     /**
      * @var \Object\Entity\Sex
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\Sex")
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Sex")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="sex_id", referencedColumnName="id")
      * })
@@ -92,9 +90,7 @@ class Person
     /**
      * @var \Object\Entity\Client
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\Client")
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Client")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      * })
@@ -107,25 +103,21 @@ class Person
      * @ORM\ManyToMany(targetEntity="Object\Entity\UnitPost", inversedBy="person")
      * @ORM\JoinTable(name="person_has_unit_post",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="person_id", referencedColumnName="id"),
-     *     @ORM\JoinColumn(name="person_sex_id", referencedColumnName="sex_id"),
-     *     @ORM\JoinColumn(name="person_client_id", referencedColumnName="client_id")
+     *     @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="unit_post_unit_id", referencedColumnName="unit_id"),
-     *     @ORM\JoinColumn(name="unit_post_unit_client_id", referencedColumnName="unit_client_id"),
-     *     @ORM\JoinColumn(name="unit_post_post_id", referencedColumnName="post_id")
+     *     @ORM\JoinColumn(name="unit_post_id", referencedColumnName="id")
      *   }
      * )
      */
-    private $unitPostUnit;
+    private $unitPost;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->unitPostUnit = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->unitPost = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 }

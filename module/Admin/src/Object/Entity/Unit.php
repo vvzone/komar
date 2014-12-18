@@ -17,7 +17,7 @@ class Unit
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -80,52 +80,35 @@ class Unit
     /**
      * @var \Object\Entity\Client
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\Client")
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Client")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      * })
      */
     private $client;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
+    /*
+     * @var \Object\Entity\UnitPost
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Post", inversedBy="unit")
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Post" inversedBy="unitsHavePost")
      * @ORM\JoinTable(name="unit_post",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="unit_id", referencedColumnName="id"),
-     *     @ORM\JoinColumn(name="unit_client_id", referencedColumnName="client_id")
+     *     @ORM\JoinColumn(name="unit_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
      *     @ORM\JoinColumn(name="post_id", referencedColumnName="id")
      *   }
-     * )
-     */
-    private $post;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->post = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-
-    /**
-     * Set id
      *
-     * @param integer $id
-     * @return Unit
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
+     * */
+    private $unitPosts;
 
-        return $this;
+    /*
+     * Constructor
+     * */
+    public function __construct(){
+        $this->unitPosts = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
 
     /**
      * Get id
@@ -327,7 +310,7 @@ class Unit
      * @param \Object\Entity\Client $client
      * @return Unit
      */
-    public function setClient(\Object\Entity\Client $client)
+    public function setClient(\Object\Entity\Client $client = null)
     {
         $this->client = $client;
 
@@ -342,38 +325,5 @@ class Unit
     public function getClient()
     {
         return $this->client;
-    }
-
-    /**
-     * Add post
-     *
-     * @param \Object\Entity\Post $post
-     * @return Unit
-     */
-    public function addPost(\Object\Entity\Post $post)
-    {
-        $this->post[] = $post;
-
-        return $this;
-    }
-
-    /**
-     * Remove post
-     *
-     * @param \Object\Entity\Post $post
-     */
-    public function removePost(\Object\Entity\Post $post)
-    {
-        $this->post->removeElement($post);
-    }
-
-    /**
-     * Get post
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getPost()
-    {
-        return $this->post;
     }
 }

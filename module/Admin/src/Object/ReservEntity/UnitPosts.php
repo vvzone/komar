@@ -1,6 +1,6 @@
 <?php
 
-namespace Object\Entity;
+namespace Object\ReservEntity;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -53,8 +53,6 @@ class UnitPosts
      * })
      */
     private $unit;
-
-
 
     /**
      * Get id

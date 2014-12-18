@@ -42,19 +42,5 @@ class Post
      */
     private $description;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Unit", mappedBy="post")
-     */
-    private $unit;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->unit = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }

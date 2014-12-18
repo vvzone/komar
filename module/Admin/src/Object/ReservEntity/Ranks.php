@@ -1,6 +1,6 @@
 <?php
 
-namespace Object\Entity;
+namespace Object\ReservEntity;
 
 use Doctrine\ORM\Mapping as ORM;
 

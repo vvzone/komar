@@ -42,26 +42,19 @@ class Post
      */
     private $description;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
+    /*
+     * @var \Object\Entity\Units
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Unit", mappedBy="post")
-     */
-    private $unit;
+     * @ORM\ManyToMany(targetEntity="Unit", mappedBy="unitPosts")
+     * */
+    private $unitsHavePost;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->unit = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -84,7 +77,7 @@ class Post
     /**
      * Get name
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -107,7 +100,7 @@ class Post
     /**
      * Get shortName
      *
-     * @return string 
+     * @return string
      */
     public function getShortName()
     {
@@ -130,43 +123,10 @@ class Post
     /**
      * Get description
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
         return $this->description;
-    }
-
-    /**
-     * Add unit
-     *
-     * @param \Object\Entity\Unit $unit
-     * @return Post
-     */
-    public function addUnit(\Object\Entity\Unit $unit)
-    {
-        $this->unit[] = $unit;
-
-        return $this;
-    }
-
-    /**
-     * Remove unit
-     *
-     * @param \Object\Entity\Unit $unit
-     */
-    public function removeUnit(\Object\Entity\Unit $unit)
-    {
-        $this->unit->removeElement($unit);
-    }
-
-    /**
-     * Get unit
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getUnit()
-    {
-        return $this->unit;
     }
 }

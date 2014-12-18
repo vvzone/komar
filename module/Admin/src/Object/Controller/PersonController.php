@@ -10,11 +10,11 @@
 namespace Object\Controller;
 
 use Object\Entity\Person;
-use Object\Model\Client;
+use Object\Entity\Client;
+use Object\Entity\UnitPost;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
-use Object\Entity\Clients as ClientORM;
 use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
@@ -54,21 +54,49 @@ class PersonController extends RestController
         return new JsonModel($person->getAll());
     }
 
-    public function create($data)
+    public function create($incoming_array)
     {
+        $client = new Client();
         $person = new Person();
+        $unit_post = new UnitPost();
+
+        $unit_post_id = null;
+
+        if($incoming_array['unit_post']){
+            $unit_post_id = $incoming_array['unit_post'];
+            unset($incoming_array['unit_post']);
+        }
+
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
         $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Person');
 
-        $data = $this->RESTtoCamelCase($data);
-        $person = $hydrator->hydrate($data, $person);
+        $incoming_array = $this->RESTtoCamelCase($incoming_array);
+        $person = $hydrator->hydrate($incoming_array, $person);
+        $client_data = array(
+            'fullName' => $person->getBigFIO()
+        );
+
+        $client = $hydrator->hydrate($client_data, $client);
+        $objectManager->persist($client);
+        //$objectManager->flush();
+        $person->setClient($client);
+
+        if($unit_post_id){
+            $unit_post = $objectManager->find('Object\Entity\UnitPost', $unit_post_id);
+            //$objectManager->persist($unit_post);
+            //$person->addUnitPost($unit_post);
+        }
+
         $objectManager->persist($person);
         $objectManager->flush();
 
         return new JsonModel(array(
-            'data' => $data,
+            'data' => $incoming_array,
+            'person' => $person,
+            'client_id' => $client->getId(),
+            'unit_post_id' => $unit_post_id
         ));
     }
 

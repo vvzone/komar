@@ -17,7 +17,7 @@ class Unit
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -80,37 +80,12 @@ class Unit
     /**
      * @var \Object\Entity\Client
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\Client")
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Client")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      * })
      */
     private $client;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Post", inversedBy="unit")
-     * @ORM\JoinTable(name="unit_post",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="unit_id", referencedColumnName="id"),
-     *     @ORM\JoinColumn(name="unit_client_id", referencedColumnName="client_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="post_id", referencedColumnName="id")
-     *   }
-     * )
-     */
-    private $post;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->post = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }

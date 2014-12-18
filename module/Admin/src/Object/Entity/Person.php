@@ -17,7 +17,7 @@ class Person
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -80,9 +80,7 @@ class Person
     /**
      * @var \Object\Entity\Sex
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\Sex")
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Sex")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="sex_id", referencedColumnName="id")
      * })
@@ -92,9 +90,7 @@ class Person
     /**
      * @var \Object\Entity\Client
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\Client")
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Client")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      * })
@@ -107,40 +103,23 @@ class Person
      * @ORM\ManyToMany(targetEntity="Object\Entity\UnitPost", inversedBy="person")
      * @ORM\JoinTable(name="person_has_unit_post",
      *   joinColumns={
-     *     @ORM\JoinColumn(name="person_id", referencedColumnName="id"),
-     *     @ORM\JoinColumn(name="person_sex_id", referencedColumnName="sex_id"),
-     *     @ORM\JoinColumn(name="person_client_id", referencedColumnName="client_id")
+     *     @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="unit_post_unit_id", referencedColumnName="unit_id"),
-     *     @ORM\JoinColumn(name="unit_post_unit_client_id", referencedColumnName="unit_client_id"),
-     *     @ORM\JoinColumn(name="unit_post_post_id", referencedColumnName="post_id")
+     *     @ORM\JoinColumn(name="unit_post_id", referencedColumnName="id")
      *   }
      * )
      */
-    private $unitPostUnit;
+    private $unitPost;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->unitPostUnit = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->unitPost = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
-    /**
-     * Set id
-     *
-     * @param integer $id
-     * @return Person
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get id
@@ -342,7 +321,7 @@ class Person
      * @param \Object\Entity\Sex $sex
      * @return Person
      */
-    public function setSex(\Object\Entity\Sex $sex)
+    public function setSex(\Object\Entity\Sex $sex = null)
     {
         $this->sex = $sex;
 
@@ -365,7 +344,7 @@ class Person
      * @param \Object\Entity\Client $client
      * @return Person
      */
-    public function setClient(\Object\Entity\Client $client)
+    public function setClient(\Object\Entity\Client $client = null)
     {
         $this->client = $client;
 
@@ -383,35 +362,103 @@ class Person
     }
 
     /**
-     * Add unitPostUnit
+     * Add unitPost
      *
-     * @param \Object\Entity\UnitPost $unitPostUnit
+     * @param \Object\Entity\UnitPost $unitPost
      * @return Person
      */
-    public function addUnitPostUnit(\Object\Entity\UnitPost $unitPostUnit)
+    public function addUnitPost(\Object\Entity\UnitPost $unitPost)
     {
-        $this->unitPostUnit[] = $unitPostUnit;
+        $this->unitPost[] = $unitPost;
 
         return $this;
     }
 
     /**
-     * Remove unitPostUnit
+     * Remove unitPost
      *
-     * @param \Object\Entity\UnitPost $unitPostUnit
+     * @param \Object\Entity\UnitPost $unitPost
      */
-    public function removeUnitPostUnit(\Object\Entity\UnitPost $unitPostUnit)
+    public function removeUnitPost(\Object\Entity\UnitPost $unitPost)
     {
-        $this->unitPostUnit->removeElement($unitPostUnit);
+        $this->unitPost->removeElement($unitPost);
     }
 
     /**
-     * Get unitPostUnit
+     * Get unitPost
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getUnitPostUnit()
+    public function getUnitPost()
     {
-        return $this->unitPostUnit;
+        //return $this->unitPost->last()->getPost()->getName();
+        $unitPost = $this->unitPost->last();
+        return array(
+            'id' => $unitPost->getId(),
+            'name' => $unitPost->getPost()->getName()
+        );
     }
+
+    /* ============= Business-logic Methods... =================*/
+
+    public function getInitials()
+    {
+        $initials = null;
+        $first_name = $this->getFirstName();
+        ($this->getFirstName())? $initials = mb_substr($this->getFirstName(), 0, 1, 'utf-8').'.' : null;
+        ($this->getPatronymicName())? $initials =  $initials.mb_substr($this->getPatronymicName(), 0, 1, 'utf-8').'.' : null;
+        return $initials;
+    }
+
+    public function getBigFIO(){
+        $fio = null;
+        ($this->getFamilyName())? $fio = $this->getFamilyName() : null;
+        ($this->getFirstName())? $fio .= ' '.$this->getFirstName() : null;
+        ($this->getPatronymicName())? $fio .= ' '.$this->getPatronymicName() : null;
+        return $fio;
+    }
+
+    public function getFIO(){
+        $fio = null;
+        ($this->getFamilyName())? $fio = $this->getFamilyName() : null;
+        ($this->getInitials())? $fio =$fio.' '.$this->getInitials() : null;
+        return $fio;
+    }
+
+    public function getAll()
+    {
+        return array(
+            'id' => $this->getId(),
+            //'name' => $this->getBigFIO(),
+            //'short_name' => $this->getFIO(),
+            'first_name' => $this->getFirstName(),
+            'patronymic_name' => $this->getPatronymicName(),
+            'family_name' => $this->getFamilyName(),
+            'birth_date' => $this->getBirthDate(),
+            'birth_place' => $this->getBirthPlace(),
+            'sex' => $this->getSex()->getId(),
+            'inn' => $this->getInn(),
+            'citizenship' => $this->getCitizenship(),
+            'deputy' => $this->getDeputy(),
+            'unit_post' => $this->getUnitPost(),
+            //'client' => $this->getClient()->getAll()
+            //'person_post_count' => $this->personPost->count()
+        );
+    }
+
+    public function getPersonSimple(){
+        $name = null;
+        /*if($this->getPerson()){
+            $name = $this->getPerson()->getFIO();
+        }
+        if($this->getUnit()){
+            $name = $this->getUnit()->getName();
+        }*/
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getFIO()
+        );
+    }
+
+
 }
