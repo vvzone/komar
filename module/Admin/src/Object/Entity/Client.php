@@ -3,7 +3,7 @@
 namespace Object\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Client
  *
@@ -42,6 +42,21 @@ class Client
      */
     private $isExternal;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Object\Entity\Person", mappedBy="client_id", cascade={"all"}, orphanRemoval=true)
+     */
+    protected $personInfo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Object\Entity\Unit", mappedBy="client", cascade={"all"}, orphanRemoval=true)
+     */
+    protected $unitInfo;
+
+    public function __construct()
+    {
+        $this->personInfo = new ArrayCollection();
+        $this->unitInfo = new ArrayCollection();
+    }
 
 
     /**
@@ -121,5 +136,50 @@ class Client
     public function getIsExternal()
     {
         return $this->isExternal;
+    }
+
+    /**
+     * Get unitInfo
+     *
+     * @throws \Exception
+     * @return Unit
+     */
+    public function getUnitInfo(){
+        if($this->unitInfo->count() > 1)
+        {
+            throw new \Exception('Fatal. DB corruption detected. More than one unit-extension to current client-record. unitInfo->count='.$this->unitInfo->count(), 500);
+        }
+        $unit = $this->unitInfo->last();
+        if($unit){
+            return $unit->getPlain();
+        }
+        return null;
+    }
+
+    public function getAll()
+    {
+        return array(
+            'id' => $this->getId(),
+            'full_name' => $this->getFullName(),
+            'identification_number' => $this->getIdentificationNumber(),
+            'is_external' => $this->getIsExternal(),
+            //'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
+            //'person' => $this->getPersonInfo(),
+            'unit' => $this->getUnitInfo()
+        );
+    }
+
+    public function getClientSimple(){
+        /*$name = null;
+        if($this->getPerson()){
+            $name = $this->getPerson()->getFIO();
+        }
+        if($this->getUnit()){
+            $name = $this->getUnit()->getName();
+        }*/
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getFullName()
+        );
     }
 }

@@ -1,15 +1,15 @@
 define(
-    'models/document_attribute_types_collection',
+    'models/document_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/document_attribute_type'
+        'models/document'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/document_attribute_types_collection loaded');
+        console.log('models/document_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,

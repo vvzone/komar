@@ -80,6 +80,7 @@ class Document
      * Запрос к Node_Level_Type -> вычисление через Node_Level_
      */
     private $availableNodes;
+
     /*
      * @var \Doctrine\Common\Collections\Collection
      *

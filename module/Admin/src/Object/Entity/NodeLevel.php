@@ -59,6 +59,10 @@ class NodeLevel
      */
     private $route;
 
+    /**
+     * @var
+     */
+    private $nodes;
 
 
     /**
@@ -174,6 +178,15 @@ class NodeLevel
     public function getRoute()
     {
         return $this->route;
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'order' => $this->getLevelOrder(),
+            'nodes' => ''
+        );
     }
 
     public function getNodeLevelSimple(){

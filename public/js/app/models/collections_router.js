@@ -359,6 +359,19 @@ define(
                         console.warn('!DocTypeGroupsCollection -> require loading');
                         var DocTypeGroupsCollection =require(['models/units_collection'], function(DocTypeGroupsCollection){
                             console.log('loaded...');
+                            ListView.initialize(DocTypeGroupsCollection);
+                            return DocTypeGroupsCollection;
+                        });
+                    }else{
+                        console.warn('DocTypeGroupsCollection -> no needed to load');
+                        ListView.initialize(DocTypeGroupsCollection);
+                    }
+                    break;
+                case('units_tree'):
+                    if(!DocTypeGroupsCollection){
+                        console.warn('!DocTypeGroupsCollection -> require loading');
+                        var DocTypeGroupsCollection =require(['models/units_collection'], function(DocTypeGroupsCollection){
+                            console.log('loaded...');
                             TreeView.initialize(DocTypeGroupsCollection);
                             return DocTypeGroupsCollection;
                         });

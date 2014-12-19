@@ -77,13 +77,18 @@ class Unit
      */
     private $onDuty;
 
-    /**
+    /*
      * @var \Object\Entity\Client
      *
      * @ORM\ManyToOne(targetEntity="Object\Entity\Client")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
      * })
+     */
+    /**
+     * @var \Object\Entity\Client
+     *
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="unitInfo")
      */
     private $client;
 
@@ -372,6 +377,15 @@ class Unit
     }
 
     /* === Business logic ==== */
+
+    public function getPlain(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName(),
+            'own_numeration' => $this->getOwnNumeration()
+        );
+    }
 
     public function getAll()
     {

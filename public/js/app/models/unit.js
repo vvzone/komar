@@ -18,10 +18,11 @@ define(
                 short_name: null,
                 own_numeration: null,
                 is_legal: null,
-                parent: null,
+                parent: null
+                /*
                 commander: null,
                 deputy: null,
-                on_duty: null
+                on_duty: null*/
             },
             attr_rus_names: {
                 name: 'Название',
@@ -30,9 +31,10 @@ define(
                 own_numeration: 'Собственная нумерация',
                 is_legal: 'Юридическое лицо',
                 parent: 'Родительское подразделение',
+                /*
                 commander: 'Руководитель',
                 deputy: 'Заместитель',
-                on_duty: 'Ответственный'
+                on_duty: 'Ответственный'*/
             },
             attr_dependencies: {
                 commander: 'constant',

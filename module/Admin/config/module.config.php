@@ -144,6 +144,19 @@ return array(
                                 'controller'    => 'Object\Controller\Document'
                             )
                         )
+                    ),
+                    'node_level' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/node_level[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\NodeLevel'
+                            )
+                        )
                     )
                 )
             )
@@ -219,6 +232,7 @@ return array(
             'Object\Controller\Rank' => 'Object\Controller\RankController',
             'Object\Controller\Sex' => 'Object\Controller\SexController',
             'Object\Controller\Document' => 'Object\Controller\DocumentController',
+            'Object\Controller\NodeLevel' => 'Object\Controller\NodeLevelController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),

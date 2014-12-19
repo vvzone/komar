@@ -34,7 +34,7 @@ class ClientController extends RestController
             ->get('Doctrine\ORM\EntityManager');
 
         //$results = $objectManager->getRepository('Object\Entity\Clients')->findBy(array('identificationNumber' => 19612));
-        $results = $objectManager->getRepository('Object\Entity\Clients')->findAll();
+        $results = $objectManager->getRepository('Object\Entity\Client')->findAll();
 
         //var_dump($results);
         //$results = $this->getClientTable()->fetchAll();
@@ -49,33 +49,12 @@ class ClientController extends RestController
 
     public function get($id)
     {
-        $client = $this->getClientTable()->getClient($id);
-        $unit = $this->getUnitTable()->getUnitByClientId($id);
-        $person = $this->getPersonTable()->getPersonByClientId($id);
-
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        /*
-        if($unit){
-
-            $client->is_unit = true;
-            $client->unit = $unit;
-        }elseif($person){
-
-            $client->is_unit = false;
-            $client->person = $person;
-        }
-        */
-
-
-        //$client = array_merge($client, $unit);
-        //$person = $objectManager->find('Object\Entity\Persons', $id);
-        $client = $objectManager->find('Object\Entity\Clients', $id);
-        //$client->__load();
+        $client = $objectManager->find('Object\Entity\Client', $id);
         return new JsonModel($client->getAll());
-        //return new JsonModel(array("data" => $client->get_name()));
     }
 
     public function create($data)
