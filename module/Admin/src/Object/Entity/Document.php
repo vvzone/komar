@@ -24,6 +24,19 @@ class Document
     /**
      * @var string
      *
+     * @ORM\Column(name="name", type="string", length=64, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date", type="date", nullable=true)
+     */
+    private $date;
+    /**
+     * @var string
+     *
      * @ORM\Column(name="document_number", type="string", length=45, nullable=true)
      */
     private $documentNumber;
@@ -145,6 +158,52 @@ class Document
     }
 
     /**
+     * Set Name
+     *
+     * @param string $name
+     * @return Document
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get Name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set Date
+     *
+     * @param \DateTime $date
+     * @return Document
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get Date
+     *
+     * @return \DateTime
+     */
+    public function getDate()
+    {
+        return $this->date->format('d.m.Y');
+    }
+
+    /**
      * Set documentNumber
      *
      * @param string $documentNumber
@@ -212,9 +271,13 @@ class Document
      */
     public function getDocumentType()
     {
-        //return $this->documentType;
+        return $this->documentType;
         //return $this->documentType->getName();
-        return $this->documentType->getAll();
+        //return $this->documentType->getAll();
+    }
+
+    public function getDocumentTypeName(){
+        return $this->documentType->getName();
     }
 
     /**
@@ -336,14 +399,33 @@ class Document
         }
         return $attributes;
     }
+    public function getDocumentName(){
+        $type = $this->getDocumentTypeName();
+        $date = ' от '.$this->getDate();
+        $attribute_name = '"'.$this->getName().'"';
+        $name = $type.' '.$date.' '.$attribute_name;
+        return $name;
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'generated_name' => $this->getDocumentName(),
+            'name' => $this->getName(),
+            'document_name' => $this->getName(),
+            'date' => $this->getDate(),
+            'document_author' => $this->getDocumentAuthor(),
+            'document_type' => $this->getDocumentType()->getAll(),
+            'document_attributes' => $this->getDocumentAttributes(),
+            'current_node' => $this->getCurrentNodeLevel()
+        );
+    }
 
     public function getDocumentSimple(){
         return array(
             'id' => $this->getId(),
-            'document_author' => $this->getDocumentAuthor(),
-            'document_type' => $this->getDocumentType(),
-            'document_attributes' => $this->getDocumentAttributes(),
-            'current_node' => $this->getCurrentNodeLevel()
+            'name' => $this->getName(),
+            'date' => $this->getDate()
         );
     }
 }

@@ -456,7 +456,7 @@ class Person
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
             'person_post' => $this->getUnitPostsList(),
-            //'client' => $this->getClient()->getAll()
+            'client' => $this->getClient()->getAll()
             //'person_post_count' => $this->personPost->count()
         );
     }

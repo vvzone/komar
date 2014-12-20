@@ -433,6 +433,17 @@ class Unit extends \Object\Entity\Unit implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getPlain()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPlain', array());
+
+        return parent::getPlain();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getAll()
     {
 

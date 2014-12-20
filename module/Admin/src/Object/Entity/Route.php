@@ -38,8 +38,8 @@ class Route
     /**
      * @var \Object\Entity\DocumentType
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\DocumentType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
@@ -47,7 +47,7 @@ class Route
      */
     private $documentType;
 
-    /**
+    /*
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Object\Entity\Document", inversedBy="route")
@@ -65,6 +65,13 @@ class Route
      * )
      */
     private $document;
+
+    /**
+     * @var \Object\Entity\NodeLevel
+     *
+     * @ORM\OneToMany(targetEntity="NodeLevel", mappedBy="route", cascade={"all"}, orphanRemoval=true)
+     */
+    private $node_levels;
 
     /**
      * Constructor
@@ -198,5 +205,52 @@ class Route
     public function getDocument()
     {
         return $this->document;
+    }
+
+    /**
+     * Add NodeLevel
+     *
+     * @param \Object\Entity\NodeLevel $node_level
+     * @return NodeLevel
+     */
+    public function addNodeLevel(\Object\Entity\NodeLevel $node_level)
+    {
+        $this->node_levels[] = $node_level;
+
+        return $this;
+    }
+
+    /**
+     * Remove NodeLevel
+     *
+     * @param \Object\Entity\NodeLevel $node_level
+     */
+    public function removeNodeLevel(\Object\Entity\NodeLevel $node_level)
+    {
+        $this->document->removeElement($node_level);
+    }
+
+    public function getNodeLevels(){
+        //return $this->node_levels;
+        $node_levels = array();
+        foreach($this->node_levels as $node){
+            $node_levels[] = $node->getAll();
+        }
+        return $node_levels;
+    }
+
+    public function getRouteSimple(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName()
+        );
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'node_levels' => $this->getNodeLevels()
+        );
     }
 }

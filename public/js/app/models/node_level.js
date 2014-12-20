@@ -1,16 +1,3 @@
-define(
-    'views/react/prototypes/node_level',
-    [
-        'jquery',
-        'underscore',
-        'backbone',
-        'react',
-        'apiUrl',
-        'views/react/prototypes/nodes_collection',
-        'models/client'
-    ],function($, _, Backbone, React, apiUrl, NodesCollection, ClientModel){
-        console.log('models/node_level');
-
         var NodeLevelModel = Backbone.Model.extend({
             defaults: {
                 id: null,
@@ -21,10 +8,10 @@ define(
                 nodes: []
             },
             attr_rus_names: {
-                route: 'ÐœÐ°Ñ€ÑˆÑ€ÑƒÑ‚',
-                level_order: 'ÐŸÐ¾Ñ€ÑÐ´Ð¾Ðº Ð² Ð¿Ñ€ÐµÐ´ÐµÐ»Ð°Ñ… Ð¼Ð°Ñ€ÑˆÑ€ÑƒÑ‚Ð°',
-                level_type: 'Ð¢Ð¸Ð¿ ÑƒÑ€Ð¾Ð²Ð½Ñ',
-                name: 'ÐÐ°Ð·Ð²Ð°Ð½Ð¸Ðµ'
+                route: 'Ìàðøðóò',
+                level_order: 'Ïîðÿäîê â ïðåäåëàõ ìàðøðóòà',
+                level_type: 'Òèï óðîâíÿ',
+                name: 'Íàçâàíèå'
             },
             attr_dependencies: null, //for recursive objects
             model_name: 'test_model',
@@ -36,12 +23,12 @@ define(
                 console.info('Model init');
                 this.on('destroy', this.baDaBum);
                 /*this.on('change', function(){
-                 console.error('model -> change');
-                 }, this);*/
+                    console.error('model -> change');
+                }, this);*/
                 console.info('model init, this:');
                 console.info(this);
 
-                // Ð”Ð»Ñ Ð¿Ñ€Ð¾Ð´Ð°ÐºÑˆÐµÐ½Ð° Ð·Ð°Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ Ð½Ð° Ð°Ð½Ð°Ð»Ð¾Ð³Ð¸Ñ‡Ð½Ñ‹Ðµ Ð´ÐµÐ¹ÑÑ‚Ð²Ð¸Ñ Ð² parse
+                // Äëÿ ïðîäàêøåíà çàìåíèòü íà àíàëîãè÷íûå äåéñòâèÿ â parse
                 if(_.size(this.get('nodes'))>0){
                     console.warn('_size(nodes)>0');
                     this.set('nodes', new NodesCollection(this.get('nodes')));
@@ -59,5 +46,5 @@ define(
                 console.warn('KABOOM!');
             }
         });
-    }
-);
+        
+        

@@ -64,10 +64,10 @@ class NodeLevel extends \Object\Entity\NodeLevel implements \Doctrine\ORM\Proxy\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'levelOrder', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'nodeLevelType', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'route');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'levelOrder', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'nodeLevelType', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'route', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'nodes');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'levelOrder', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'nodeLevelType', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'route');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'levelOrder', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'nodeLevelType', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'route', '' . "\0" . 'Object\\Entity\\NodeLevel' . "\0" . 'nodes');
     }
 
     /**
@@ -285,6 +285,28 @@ class NodeLevel extends \Object\Entity\NodeLevel implements \Doctrine\ORM\Proxy\
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRoute', array());
 
         return parent::getRoute();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNodes()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNodes', array());
+
+        return parent::getNodes();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAll()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
+
+        return parent::getAll();
     }
 
     /**

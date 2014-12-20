@@ -14,9 +14,9 @@ define(
         var Collection = Backbone.Collection.extend({
             model: Model,
             collection_rus_name: 'Атрибуты документа',
-            collection_name: 'document_attribute_types',
+            collection_name: 'documents',
             url: function() {
-                return apiUrl('document_attribute_types');
+                return apiUrl('documents');
             },
             initialize: function(){
                 this.on('destroy', this.liluDallas, this);

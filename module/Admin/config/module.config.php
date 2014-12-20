@@ -157,6 +157,32 @@ return array(
                                 'controller'    => 'Object\Controller\NodeLevel'
                             )
                         )
+                    ),
+                    'route' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/route[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Route'
+                            )
+                        )
+                    ),
+                    'document_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/document_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\DocumentType'
+                            )
+                        )
                     )
                 )
             )
@@ -233,6 +259,8 @@ return array(
             'Object\Controller\Sex' => 'Object\Controller\SexController',
             'Object\Controller\Document' => 'Object\Controller\DocumentController',
             'Object\Controller\NodeLevel' => 'Object\Controller\NodeLevelController',
+            'Object\Controller\Route' => 'Object\Controller\RouteController',
+            'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),

@@ -64,10 +64,10 @@ class Route extends \Object\Entity\Route implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'document');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'document', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'node_levels');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'document');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'document', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'node_levels');
     }
 
     /**
@@ -296,6 +296,61 @@ class Route extends \Object\Entity\Route implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDocument', array());
 
         return parent::getDocument();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addNodeLevel(\Object\Entity\NodeLevel $node_level)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addNodeLevel', array($node_level));
+
+        return parent::addNodeLevel($node_level);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeNodeLevel(\Object\Entity\NodeLevel $node_level)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeNodeLevel', array($node_level));
+
+        return parent::removeNodeLevel($node_level);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNodeLevels()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNodeLevels', array());
+
+        return parent::getNodeLevels();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getRouteSimple()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRouteSimple', array());
+
+        return parent::getRouteSimple();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAll()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
+
+        return parent::getAll();
     }
 
 }

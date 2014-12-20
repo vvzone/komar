@@ -31,9 +31,9 @@ class Node
     /**
      * @var string
      *
-     * @ORM\Column(name="tast", type="text", nullable=true)
+     * @ORM\Column(name="task", type="text", nullable=true)
      */
-    private $tast;
+    private $task;
 
     /**
      * @var integer
@@ -63,7 +63,7 @@ class Node
      */
     private $periodLength;
 
-    /**
+    /*
      * @var \Object\Entity\NodeLevel
      *
      * @ORM\ManyToOne(targetEntity="Object\Entity\NodeLevel")
@@ -71,7 +71,13 @@ class Node
      *   @ORM\JoinColumn(name="node_level_id", referencedColumnName="id")
      * })
      */
-    private $nodeLevel;
+
+    /**
+     * @var \Object\Entity\NodeLevel
+     *
+     * @ORM\ManyToOne(targetEntity="Client", inversedBy="nodes")
+     */
+    private $node_level;
 
     /**
      * @var \Object\Entity\Client
@@ -119,26 +125,26 @@ class Node
     }
 
     /**
-     * Set tast
+     * Set task
      *
-     * @param string $tast
+     * @param string $task
      * @return Node
      */
-    public function setTast($tast)
+    public function setTask($task)
     {
-        $this->tast = $tast;
+        $this->task = $task;
 
         return $this;
     }
 
     /**
-     * Get tast
+     * Get task
      *
      * @return string 
      */
-    public function getTast()
+    public function getTask()
     {
-        return $this->tast;
+        return $this->task;
     }
 
     /**
@@ -253,7 +259,7 @@ class Node
      */
     public function getNodeLevel()
     {
-        return $this->nodeLevel;
+        return $this->node_level;
     }
 
     /**
@@ -276,6 +282,25 @@ class Node
      */
     public function getClient()
     {
-        return $this->client;
+        //return $this->client;
+        return $this->client->getAll();
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'node_level_id' => $this->node_level->getId(),
+            'recipient_type' => array(
+                'id' => 234,
+                'code' => 4,
+                'name' => 'Визирующее лицо'
+            ),
+            'sort_order' => $this->getSortOrder(),
+            'task' => $this->getTask(),
+            'node_state' => $this->getNodeStateId(),
+            'period_length' => $this->getPeriodLength(),
+            'node_level' => $this->getNodeLevel(),
+            'client' => $this->getClient()
+        );
     }
 }

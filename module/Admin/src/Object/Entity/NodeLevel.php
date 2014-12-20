@@ -57,12 +57,24 @@ class NodeLevel
      *   @ORM\JoinColumn(name="route_id", referencedColumnName="id")
      * })
      */
+
+
+    /**
+     * @var \Object\Entity\Route
+     *
+     * @ORM\ManyToOne(targetEntity="Route", inversedBy="node_levels")
+     */
     private $route;
 
     /**
-     * @var
+     * @ORM\OneToMany(targetEntity="Node", mappedBy="node_level", cascade={"all"}, orphanRemoval=true)
      */
     private $nodes;
+
+    public function __construct()
+    {
+        $this->nodes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
 
     /**
@@ -180,12 +192,21 @@ class NodeLevel
         return $this->route;
     }
 
+    public function getNodes(){
+        //return $this->nodes;
+        $nodes = array();
+        foreach($this->nodes as $node){
+            $nodes[] = $node->getAll();
+        }
+        return $nodes;
+    }
+
     public function getAll(){
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'order' => $this->getLevelOrder(),
-            'nodes' => ''
+            'level_order' => $this->getLevelOrder(),
+            'nodes' => $this->getNodes()
         );
     }
 

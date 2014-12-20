@@ -406,6 +406,19 @@ define(
                         ListView.initialize(DocTypeGroupsCollection);
                     }
                 break;
+                case('documents'):
+                    if(!DocumentsCollection){
+                        console.warn('!DocumentCollection -> require loading');
+                        var DocumentsCollection =require(['models/document_collection'], function(DocumentsCollection){
+                            console.log('loaded...');
+                            ListView.initialize(DocumentsCollection);
+                            return DocumentsCollection;
+                        });
+                    }else{
+                        console.warn('RegionsCollection -> no needed to load');
+                        ListView.initialize(DocumentsCollection);
+                    }
+                    break;
             }
 
             /*enumeration_types

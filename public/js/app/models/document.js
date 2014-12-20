@@ -20,6 +20,8 @@ define(
                 document_attributes: null,
                 current_node_level: null,
                 allowed_nodes_levels: null*/
+                name: null,
+                date: null,
                 secrecy_type: null,
                 urgency_type: null,
                 document_type_id: null,
@@ -29,13 +31,14 @@ define(
                 current_node: null
             },
             attr_rus_names: {
-                name: 'Название'
+                name: 'Название',
+                date: 'Дата'
             },
             attr_dependencies: [], //for recursive objects
             model_name: 'document_attribute_type',
             model_rus_name: 'Атрибуты документа',
             url: function() {
-                return apiUrl('document_attribute_type', this.id);
+                return apiUrl('document', this.id);
             },
             initialize: function(){
                 console.info('Model init');

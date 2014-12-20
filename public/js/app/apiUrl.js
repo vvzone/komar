@@ -69,6 +69,20 @@ define(
 
                 return (local_server)? local: production;
             },
+            /* Документы */
+            documents: function() {
+                var local = host + prefix + "/document";
+                var production = host + prefix + "/documents";
+
+                return (local_server)? local: production;
+            },
+            document: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/document/"+ id;
+                var production = host + prefix + "/documents/"+ id;
+
+                return (local_server)? local: production;
+            },
             /* Срочность */
             urgency_types: function() {
                 var local = host + prefix + "/urgencytypes";

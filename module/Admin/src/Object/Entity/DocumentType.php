@@ -107,11 +107,19 @@ class DocumentType
     private $attributeType;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Route", mappedBy="documentType",)
+     */
+    private $route;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -385,7 +393,16 @@ class DocumentType
      */
     public function getAttributeType()
     {
-        return $this->attributeType;
+        //return $this->attributeType;
+        return $this->attributeType->count();
+    }
+
+
+    /**
+     * @return \Object\Entity\Route
+     */
+    public function getRoute(){
+        return $this->route->last();
     }
 
     public function getAll(){
@@ -401,7 +418,16 @@ class DocumentType
             'presentation' => $this->getPresentation(),
             'direction_type' => $this->getDirectionTypeCode(),
             'description' => $this->getDescription(),
-            'attribute_type' => $this->getAttributeType()
+            'attribute_type' => $this->getAttributeType(),
+            'route' => $this->getRoute()->getAll()
+        );
+    }
+
+
+    public function getDocumentTypeSimple(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName()
         );
     }
 }
