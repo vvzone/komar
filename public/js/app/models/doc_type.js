@@ -15,6 +15,7 @@ define(
                 id: null,
                 name: null,
                 code: null,
+                default_header: null,
                 description: null,
                 presentation: null,
                 urgency_types: null,
@@ -30,14 +31,15 @@ define(
                 name: 'Название',
                 code: 'Код',
                 description: 'Описание',
+                default_header: 'Заголовок по-умолчанию',
                 presentation: 'Представление для печати',
-                urgency_types: 'Срочность',
-                secrecy_types: 'Секретность',
+                //urgency_types: 'Срочность',
+                //secrecy_types: 'Секретность',
                 attribute_types: 'Типы атрибутов'
             },
             attr_dependencies: {
-                'urgency_types': 'urgency_types',
-                'secrecy_types': 'secrecy_types',
+                //'urgency_types': 'urgency_types',
+                //'secrecy_types': 'secrecy_types',
                 'attribute_types': 'attribute_types'
             }, //for recursive objects
             model_name: 'doc_type',

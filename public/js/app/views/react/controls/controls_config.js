@@ -36,7 +36,6 @@ define(
         /* countries */
         properties_types['code'] = 'tiny_text';
 
-
         properties_types['region_types'] = 'simple_select';
 
         /* ? many */
@@ -61,6 +60,7 @@ define(
         properties_types['is_service'] = 'bool_select';
 
         /* doc_types */
+        properties_types['default_header'] = 'tiny_text';
         properties_types['urgency_types'] = 'simple_select';
         //properties_types['urgency_types'] = 'list_box';
         properties_types['secrecy_types'] = 'simple_select';

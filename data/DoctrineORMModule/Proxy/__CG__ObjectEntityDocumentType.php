@@ -64,10 +64,10 @@ class DocumentType extends \Object\Entity\DocumentType implements \Doctrine\ORM\
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'code', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'defaultHeader', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'isService', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'secrecyType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'urgencyType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'presentation', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'directionTypeCode', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'attributeType');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'code', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'defaultHeader', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'isService', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'secrecyType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'urgencyType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'presentation', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'directionTypeCode', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'attributeType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'route');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'code', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'defaultHeader', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'isService', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'secrecyType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'urgencyType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'presentation', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'directionTypeCode', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'attributeType');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'code', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'defaultHeader', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'isService', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'secrecyType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'urgencyType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'presentation', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'directionTypeCode', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'attributeType', '' . "\0" . 'Object\\Entity\\DocumentType' . "\0" . 'route');
     }
 
     /**
@@ -444,12 +444,34 @@ class DocumentType extends \Object\Entity\DocumentType implements \Doctrine\ORM\
     /**
      * {@inheritDoc}
      */
+    public function getRoute()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getRoute', array());
+
+        return parent::getRoute();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getAll()
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
 
         return parent::getAll();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDocumentTypeSimple()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDocumentTypeSimple', array());
+
+        return parent::getDocumentTypeSimple();
     }
 
 }

@@ -183,6 +183,19 @@ return array(
                                 'controller'    => 'Object\Controller\DocumentType'
                             )
                         )
+                    ),
+                    'attribute_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/attribute_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\AttributeType'
+                            )
+                        )
                     )
                 )
             )
@@ -261,6 +274,7 @@ return array(
             'Object\Controller\NodeLevel' => 'Object\Controller\NodeLevelController',
             'Object\Controller\Route' => 'Object\Controller\RouteController',
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
+            'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),

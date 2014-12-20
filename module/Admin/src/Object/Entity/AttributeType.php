@@ -230,6 +230,13 @@ class AttributeType
         return $this->documentType;
     }
 
+    public function  getAttributeTypeSimple(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName()
+        );
+    }
+
     public function getPlain(){
         return array(
             'id' => $this->getId(),

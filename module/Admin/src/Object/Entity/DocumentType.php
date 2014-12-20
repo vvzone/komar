@@ -402,12 +402,12 @@ class DocumentType
         return $attribute_types;
     }
 
-
     /**
+     * Only one route for one document_type allowed
      * @return \Object\Entity\Route
      */
     public function getRoute(){
-        return $this->route->last();
+        return $this->route->last()->getAll();
     }
 
     public function getAll(){
@@ -424,10 +424,9 @@ class DocumentType
             'direction_type' => $this->getDirectionTypeCode(),
             'description' => $this->getDescription(),
             'attribute_type' => $this->getAttributeType(),
-            'route' => $this->getRoute()->getAll()
+            'route' => $this->getRoute()
         );
     }
-
 
     public function getDocumentTypeSimple(){
         return array(

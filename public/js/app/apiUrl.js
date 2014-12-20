@@ -57,14 +57,14 @@ define(
             },
             /* Типы док-ов */
             doc_types: function() {
-                var local = host + prefix + "/doctypes";
+                var local = host + prefix + "/document_type";
                 var production = host + prefix + "/document_types";
 
                 return (local_server)? local: production;
             },
             doc_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/doctypes/"+ id;
+                var local = host + prefix + "/document_type/"+ id;
                 var production = host + prefix + "/document_types/"+ id;
 
                 return (local_server)? local: production;
@@ -127,14 +127,14 @@ define(
             },
             /* Типы атрибутов */
             attribute_types: function() {
-                var local = host + prefix + "/attributetypes";
+                var local = host + prefix + "/attribute_type";
                 var production = host + prefix + "/attribute_types";
 
                 return (local_server)? local: production;
             },
             attribute_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/attributetypes/"+ id;
+                var local = host + prefix + "/attribute_type/"+ id;
                 var production = host + prefix + "/attribute_types/"+ id;
 
                 return (local_server)? local: production;
