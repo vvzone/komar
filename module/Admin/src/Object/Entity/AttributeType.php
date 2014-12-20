@@ -229,4 +229,25 @@ class AttributeType
     {
         return $this->documentType;
     }
+
+    public function getPlain(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'machine_name' => $this->getMachineName(),
+            'description' => $this->getDescription(),
+            'base_attribute_code' => $this->getBaseAttributeTypeCode()
+        );
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'machine_name' => $this->getMachineName(),
+            'description' => $this->getDescription(),
+            'base_attribute_code' => $this->getBaseAttributeTypeCode(),
+            'document_type' => $this->getDocumentType()
+        );
+    }
 }

@@ -394,7 +394,12 @@ class DocumentType
     public function getAttributeType()
     {
         //return $this->attributeType;
-        return $this->attributeType->count();
+        $attribute_types = array();
+        foreach($this->attributeType as $attribute_type){
+            $attribute_types[] = $attribute_type->getPlain();
+        }
+
+        return $attribute_types;
     }
 
 
