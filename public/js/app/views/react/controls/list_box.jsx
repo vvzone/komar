@@ -240,7 +240,6 @@ define(
                 console.info('items_right');
                 console.info(items_right);
 
-
                 var sorted_by_id_items_left = {};
                 if(typeof items_left != 'undefined'){
                     console.warn('items_left > 0, resort');
@@ -273,7 +272,8 @@ define(
                 console.info('sorted_by_id_items_right');
                 console.info(sorted_by_id_items_right);
 
-                if(_.size(sorted_by_id_items_left) > 0 && _.size(sorted_by_id_items_right)>0){
+                //if(_.size(sorted_by_id_items_left) > 0 or _.size(sorted_by_id_items_right)>0){
+                if(_.size(sorted_by_id_items_left) > 0 || _.size(sorted_by_id_items_right)>0){
                     for(var id in sorted_by_id_items_left){
                         console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
                         delete sorted_by_id_items_right[id];
@@ -288,7 +288,8 @@ define(
             componentWillReceiveProps: function(new_props){
                 console.info('componentWillReceiveProps');
                 console.warn(new_props);
-                if(_.size(new_props.items_left)> 0 && _.size(new_props.items_right)> 0){
+                //if(_.size(new_props.items_left)> 0 && _.size(new_props.items_right)> 0){
+                if(_.size(new_props.items_left)> 0 || _.size(new_props.items_right)> 0){
                     this.calculateState(new_props.items_left, new_props.items_right);
                 }
             },

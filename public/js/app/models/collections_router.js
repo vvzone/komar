@@ -418,7 +418,20 @@ define(
                         console.warn('RegionsCollection -> no needed to load');
                         ListView.initialize(DocumentsCollection);
                     }
-                    break;
+                break;
+                case('route'):
+                    if(!RouteCollection){
+                        console.warn('!RouteCollection -> require loading');
+                        var RouteCollection =require(['models/route_collection'], function(RouteCollection){
+                            console.log('loaded...');
+                            ListView.initialize(RouteCollection);
+                            return RouteCollection;
+                        });
+                    }else{
+                        console.warn('RegionsCollection -> no needed to load');
+                        ListView.initialize(RouteCollection);
+                    }
+                break;
             }
 
             /*enumeration_types

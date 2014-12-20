@@ -369,8 +369,20 @@ define(
                 var production = host + prefix + "/client/"+ id;
 
                 return (local_server)? local: production;
-            }
+            },
+            routes: function() {
+                var local = host + prefix + "/route";
+                var production = host + prefix + "/route";
 
+                return (local_server)? local: production;
+            },
+            route: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/route/"+ id;
+                var production = host + prefix + "/route/"+ id;
+
+                return (local_server)? local: production;
+            }
 
 
 

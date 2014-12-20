@@ -398,7 +398,6 @@ class DocumentType
         foreach($this->attributeType as $attribute_type){
             $attribute_types[] = $attribute_type->getPlain();
         }
-
         return $attribute_types;
     }
 
@@ -407,7 +406,8 @@ class DocumentType
      * @return \Object\Entity\Route
      */
     public function getRoute(){
-        return $this->route->last()->getAll();
+        //return $this->route->last()->getRouteSimple();
+        return $this->route->last()->getId();
     }
 
     public function getAll(){
@@ -423,7 +423,7 @@ class DocumentType
             'presentation' => $this->getPresentation(),
             'direction_type' => $this->getDirectionTypeCode(),
             'description' => $this->getDescription(),
-            'attribute_type' => $this->getAttributeType(),
+            'attribute_types' => $this->getAttributeType(),
             'route' => $this->getRoute()
         );
     }

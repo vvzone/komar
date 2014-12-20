@@ -20,7 +20,8 @@ define(
                 presentation: null,
                 urgency_types: null,
                 secrecy_types: null,
-                attribute_types: []
+                attribute_types: [],
+                route: null
             },
             attr_description: {
                 urgency_types: 'Объект типа срочности',
@@ -35,12 +36,14 @@ define(
                 presentation: 'Представление для печати',
                 //urgency_types: 'Срочность',
                 //secrecy_types: 'Секретность',
-                attribute_types: 'Типы атрибутов'
+                attribute_types: 'Типы атрибутов',
+                route: 'Маршрут'
             },
             attr_dependencies: {
                 //'urgency_types': 'urgency_types',
                 //'secrecy_types': 'secrecy_types',
-                'attribute_types': 'attribute_types'
+                attribute_types: 'attribute_types',
+                route: 'route'
             }, //for recursive objects
             model_name: 'doc_type',
             model_rus_name: 'Тип документа',

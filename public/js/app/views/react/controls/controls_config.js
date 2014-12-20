@@ -99,6 +99,9 @@ define(
         properties_types['inn'] = 'tiny_text';
         properties_types['citizenship'] = 'tiny_text';
 
+        properties_types['route'] = 'simple_select';
+
+
 
         return properties_types;
     }

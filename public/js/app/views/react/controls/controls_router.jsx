@@ -62,6 +62,7 @@ define(
                         break;
                     case('simple_select'):
                         console.info('control_router->simple_select, this.props:');
+                        console.info("!!!!!!!!===========*==========!!!!!!!!");
                         console.info(this.props);
                         return(<SimpleSelect options={this.props.dependency_array} selected={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                         break;
