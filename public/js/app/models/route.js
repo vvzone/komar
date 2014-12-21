@@ -5,28 +5,42 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
-
+        'apiUrl',
+        //'models/node_levels_collection'
+        //'models/node_levels_collection'
+    ],function($, _, Backbone, React, apiUrl){// NodeLevelsCollection
         console.log('models/route loaded');
 
 
         var Model = Backbone.Model.extend({
             defaults: {
                 id: null,
-                name: null
+                name: null,
+                node_levels: null
             },
             attr_rus_names: {
-                name: 'Название'
+                name: 'Название',
+                node_levels: 'Этапы маршрута'
             },
-            attr_dependencies: [], //for recursive objects
+            attr_dependencies: [
+            ], //for recursive objects
             model_name: 'route',
             model_rus_name: 'Маршрут',
             url: function() {
                 return apiUrl('route', this.id);
             },
             initialize: function(){
-                console.info('Model init');
+                /*
+                if (_.size(this.get('node_levels'))>0) {
+                    console.log('Route has node_levels');
+                    if(!NodeLevelsCollection){
+                        console.log('loading "NodeLevelsCollection" sub-collection');
+                        var NodeLevelsCollection = require("models/node_levels_collection");
+                    }
+                    var NodeLevelsCollection = new NodeLevelsCollection(this.get('node_levels'));
+                    this.set({node_levels: NodeLevelsCollection});
+                }
+                */
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){

@@ -35,7 +35,17 @@ class Sex
      */
     private $shortName;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Object\Entity\Person", mappedBy="sex_id", cascade={"all"}, orphanRemoval=true)
+     */
+    private $person;
 
+    public function __construct()
+    {
+        $this->person = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -83,6 +93,16 @@ class Sex
         return $this;
     }
 
+
+    public function getPerson(){
+        //return $this->person;
+        $persons = array();
+        foreach($this->person as $person){
+            $persons[] = $person->getPersonSimple();
+        }
+        return $persons;
+    }
+
     /**
      * Get shortName
      *
@@ -105,7 +125,8 @@ class Sex
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'short_name' => $this->getShortName()
+            'short_name' => $this->getShortName(),
+            //'person' => $this->getPerson()
         );
     }
 }

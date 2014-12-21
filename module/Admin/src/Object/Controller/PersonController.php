@@ -12,6 +12,7 @@ namespace Object\Controller;
 use Object\Entity\Person;
 use Object\Entity\Client;
 use Object\Entity\UnitPost;
+use Object\Entity\Sex;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
@@ -116,13 +117,23 @@ class PersonController extends RestController
             ->get('Doctrine\ORM\EntityManager');
 
         $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Person');
+
+        //if($data['sex_types']){
+            $sex_id = $data['sex_types'];
+            unset($data['sex']);
+            unset($data['sex_types']);
+            $sex = $objectManager->find('Object\Entity\Sex', (int)$sex_id);
+            $person->setSex($sex);
+        //}
+
         $data = $this->RESTtoCamelCase($data);
         $person = $hydrator->hydrate($data, $person);
         $objectManager->persist($person);
         $objectManager->flush();
 
         return new JsonModel(
-            $data
+            $person->getAll()
+            //$sex->getMain()
         );
     }
 

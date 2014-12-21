@@ -100,6 +100,7 @@ define(
         properties_types['citizenship'] = 'tiny_text';
 
         properties_types['route'] = 'simple_select';
+        properties_types['node_levels'] = 'node_levels';
 
 
 

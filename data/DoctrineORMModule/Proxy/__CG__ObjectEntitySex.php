@@ -64,10 +64,10 @@ class Sex extends \Object\Entity\Sex implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'shortName');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'person');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'shortName');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Sex' . "\0" . 'person');
     }
 
     /**
@@ -219,6 +219,17 @@ class Sex extends \Object\Entity\Sex implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setShortName', array($shortName));
 
         return parent::setShortName($shortName);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPerson()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPerson', array());
+
+        return parent::getPerson();
     }
 
     /**

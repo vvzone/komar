@@ -287,4 +287,26 @@ class Post extends \Object\Entity\Post implements \Doctrine\ORM\Proxy\Proxy
         return parent::getUnitsHaveCurrentPost();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getPostSimple()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPostSimple', array());
+
+        return parent::getPostSimple();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAll()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
+
+        return parent::getAll();
+    }
+
 }

@@ -335,14 +335,12 @@ class Person
      */
     public function getSex()
     {
-        if($this->sex != null){
-            $sex = $this->sex;
-        }else{
-            $sex = 3;
-        }
-        return $sex;
+        return $this->sex;
     }
 
+    public function getSexId(){
+       return $this->getSex()->getId();
+    }
     /**
      * Set client
      *
@@ -451,7 +449,7 @@ class Person
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
-            'sex' => $this->getSex(),
+            'sex_types' => $this->getSexId(),
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),

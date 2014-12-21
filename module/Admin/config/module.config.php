@@ -225,6 +225,19 @@ return array(
                                 'controller'    => 'Object\Controller\AttributeType'
                             )
                         )
+                    ),
+                    'post' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/post[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Post'
+                            )
+                        )
                     )
                 )
             )
@@ -304,6 +317,7 @@ return array(
             'Object\Controller\Route' => 'Object\Controller\RouteController',
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
+            'Object\Controller\Post' => 'Object\Controller\PostController',
             //'Object\Controller\Unit' => 'Object\Controller\Test',
         )
     ),

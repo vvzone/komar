@@ -13,10 +13,12 @@ define(
 
         'jsx!views/react/controls/list_box',
         'jsx!views/react/controls/simple_select',
-        'jsx!views/react/controls/simple_list'
+        'jsx!views/react/controls/simple_list',
+        'jsx!views/react/controls/node_levels'
     ],function($, React, ControlsMixin,
                ControlTinyText, ControlSmallText, ControlBoolSelect,
-               ListBox, SimpleSelect, SimpleList){
+               ListBox, SimpleSelect, SimpleList,
+               NodeLevels){
 
         /* Controls: text, selector, search */
 
@@ -75,7 +77,14 @@ define(
                         return(
                             <SimpleList collection={value} callback={self.callBack} />
                             );
-                        break;
+                    break;
+                    case('node_levels'):
+                        console.log('control_router -> node_levels');
+                        console.info(this.props);
+                        return(
+                          <NodeLevels collection={value} callback={self.callBack}/>
+                        );
+                    break;
                 }
 
                 return(<div></div>)

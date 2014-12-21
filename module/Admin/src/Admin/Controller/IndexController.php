@@ -79,7 +79,7 @@ class IndexController extends AbstractActionController
         /*BASE 1 LVL */
         $array_base = array(
             array('id' => 101, 'category' => 'base', 'entity' => 'ranks', 'screen' => 'ranks', 'name' => 'Звания'),
-            array('id' => 102, 'category' => 'base', 'entity' => 'positions', 'screen' => 'positions', 'name' => 'Должности'),
+            array('id' => 102, 'category' => 'base', 'entity' => 'posts', 'screen' => 'positions', 'name' => 'Должности'),
             array('id' => 103, 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'positions', 'name' => 'Соответствие звания должности',
                 'isNonIndependent' => true ),
             array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => 'Типы удостоверяющих личность документов'),

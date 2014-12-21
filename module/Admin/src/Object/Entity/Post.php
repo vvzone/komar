@@ -31,14 +31,14 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="short_name", type="string", length=12, nullable=false)
+     * @ORM\Column(name="short_name", type="string", length=12, nullable=true)
      */
     private $shortName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=false)
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -168,5 +168,21 @@ class Post
     public function getUnitsHaveCurrentPost()
     {
         return $this->unitsHaveCurrentPost;
+    }
+
+    public function getPostSimple(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName()
+        );
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName(),
+            'description' => $this->getDescription()
+        );
     }
 }

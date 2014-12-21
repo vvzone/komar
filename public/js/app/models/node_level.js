@@ -1,3 +1,13 @@
+/** @jsx React.DOM */
+
+define(
+    'models/node_level',
+    [
+        'jquery',
+        'react',
+        'jsx!views/react/controls/controls_mixin',
+        'models/nodes_collection'
+    ],function($, React, ControlsMixin, NodesCollection){
         var NodeLevelModel = Backbone.Model.extend({
             defaults: {
                 id: null,
@@ -8,10 +18,8 @@
                 nodes: []
             },
             attr_rus_names: {
-                route: 'Маршрут',
-                level_order: 'Порядок в пределах маршрута',
-                level_type: 'Тип уровня',
-                name: 'Название'
+                name: 'РќР°Р·РІР°РЅРёРµ',
+                nodes: 'РЈР·Р»С‹'
             },
             attr_dependencies: null, //for recursive objects
             model_name: 'test_model',
@@ -22,20 +30,13 @@
             initialize: function(){
                 console.info('Model init');
                 this.on('destroy', this.baDaBum);
-                /*this.on('change', function(){
-                    console.error('model -> change');
-                }, this);*/
-                console.info('model init, this:');
-                console.info(this);
-
-                // Для продакшена заменить на аналогичные действия в parse
                 if(_.size(this.get('nodes'))>0){
                     console.warn('_size(nodes)>0');
                     this.set('nodes', new NodesCollection(this.get('nodes')));
                 }else{
                     console.info('this.get(nodes):');
                     console.info(this.get('nodes'));
-                    this.set('nodes', new NodesCollection(null));
+                    //this.set('nodes', new NodesCollection(null));
                 }
             },
             parse: function(response, xhr){
@@ -46,5 +47,10 @@
                 console.warn('KABOOM!');
             }
         });
+
+        return NodeLevelModel;
+    }
+);
+
         
         

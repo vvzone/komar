@@ -19,7 +19,7 @@ define(
                 family_name: null,
                 birth_date: null,
                 birth_place: null,
-                sex_types: 3,
+                sex_types: null,
                 inn: null,
                 citizenship: null,
                 deputy: null,

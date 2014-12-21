@@ -44,14 +44,14 @@ define(
                 return (local_server)? local: production;
             },
             posts: function() {
-                var local = host + prefix + "/posts";
+                var local = host + prefix + "/post";
                 var production = host + prefix + "/posts";
 
                 return (local_server)? local: production;
             },
             post: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/posts/"+ id;
+                var local = host + prefix + "/post/"+ id;
                 var production = host + prefix + "/posts/"+ id;
 
                 return (local_server)? local: production;
