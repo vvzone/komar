@@ -43,7 +43,7 @@ class Client
     private $isExternal;
 
     /**
-     * @ORM\OneToMany(targetEntity="Object\Entity\Person", mappedBy="client_id", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="Object\Entity\Person", mappedBy="client", cascade={"all"}, orphanRemoval=true)
      */
     protected $personInfo;
 
@@ -139,6 +139,24 @@ class Client
     }
 
     /**
+     * Get personInfo
+     *
+     * @throws \Exception
+     * @return Person
+     */
+    public function getPersonInfo(){
+        if($this->personInfo->count() > 1)
+        {
+            throw new \Exception('Fatal. DB corruption detected. More than one unit-extension to current client-record. unitInfo->count='.$this->unitInfo->count(), 500);
+        }
+        $person = $this->personInfo->last();
+        if($person){
+            return $person->getPlain();
+        }
+        return null;
+    }
+
+    /**
      * Get unitInfo
      *
      * @throws \Exception
@@ -164,7 +182,7 @@ class Client
             'identification_number' => $this->getIdentificationNumber(),
             'is_external' => $this->getIsExternal(),
             //'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
-            //'person' => $this->getPersonInfo(),
+            'person' => $this->getPersonInfo(),
             'unit' => $this->getUnitInfo()
         );
     }

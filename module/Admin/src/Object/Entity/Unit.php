@@ -378,6 +378,7 @@ class Unit
 
     /* === Business logic ==== */
 
+
     public function getPlain(){
         return array(
             'id' => $this->getId(),
@@ -394,7 +395,8 @@ class Unit
             'name' => $this->getName(),
             'short_name' => $this->getShortName(),
             'own_numeration' => $this->getOwnNumeration(),
-            'unit_posts' => $this->getPostsList()
+            'unit_posts' => $this->getPostsList(),
+            'identification_number' => $this->getClient()->getIdentificationNumber()
         );
     }
 

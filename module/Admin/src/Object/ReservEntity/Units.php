@@ -130,11 +130,6 @@ class Units
         return $this;
     }
 
-    /**
-     * Get client
-     *
-     * @return integer 
-     */
     public function getClient()
     {
         return $this->client;
@@ -314,6 +309,21 @@ class Units
             'deputy' => $this->getDeputy(),
             'on_duty' => $this->getOnDuty(),
             'commanderInfo' => '2 do'
+        );
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'parent' => $this->getParent(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName(),
+            'own_numeration' => $this->getOwnNumeration(),
+            'is_legal' => $this->getIsLegal(),
+            //'commander' => $this->getCommander(),
+            'deputy' => $this->getDeputy(),
+            'on_duty' => $this->getOnDuty(),
+            'client' => $this->getClient()
         );
     }
 }

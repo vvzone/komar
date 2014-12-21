@@ -44,7 +44,7 @@ div#left_panel {
 div#main_window {
   float: left;
   padding: 5px;
-  width: 65%;
+  width: 75%;
 }
 div.next {
   clear: both;
@@ -168,7 +168,7 @@ div.List div.ListHeader div.ButtonAdd {
 div.List div.MainList {
   clear: both;
   overflow: hidden;
-  width: 660px;
+  width: 663.33333333px;
   /*div.item:hover{
       background: @light_silver+30;
       border: 1px solid @light_silver - 50;
@@ -217,7 +217,7 @@ div.List div.MainList ul li.item div.item_cp {
   float: right;
 }
 div.List div.MainList ul li.item div.item_name {
-  min-width: 440px;
+  min-width: 443.33333333px;
   float: left;
 }
 div.List div.MainList ul li.item div.item_cp {
@@ -241,7 +241,7 @@ div.List div.MainList li span.msg {
 div.List div.SimpleList {
   clear: both;
   overflow: hidden;
-  width: 320px 20px;
+  width: 321.66666667px 20px;
   border: 1px solid #ccc;
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
   border-radius: 4px;
@@ -294,7 +294,7 @@ div.List div.SimpleList ul li.item div.item_cp {
   float: right;
 }
 div.List div.SimpleList ul li.item div.item_name {
-  min-width: 440px;
+  min-width: 443.33333333px;
   float: left;
 }
 div.List div.SimpleList ul li.item div.item_cp {
@@ -367,13 +367,13 @@ div.list_box div.list_box_select select {
   padding: 3px;
   border-radius: 3px;
   border: 1px solid #d6e5ed;
-  min-width: 302.5px;
+  min-width: 305px;
 }
 div.list_box div.empty_list_box {
   padding: 3px;
   border-radius: 3px;
   border: 1px solid #d6e5ed;
-  min-width: 302.5px;
+  min-width: 305px;
   min-height: 178px;
 }
 .enlight {
@@ -382,7 +382,8 @@ div.list_box div.empty_list_box {
 /* msg's*/
 .modal-dialog {
   margin-top: 112px;
-  width: 650px;
+  min-width: 750px;
+  max-width: 1150px;
 }
 .modal-body {
   overflow: hidden;
@@ -526,6 +527,7 @@ div.level {
   line-height: 1.5;
   font-weight: 100;
   background: #d9e8ff;
+  border-radius: 2px;
 }
 div.level div.level_name {
   font-size: 1.2em;

@@ -339,7 +339,11 @@ class Person
     }
 
     public function getSexId(){
-       return $this->getSex()->getId();
+       if($this->getSex() instanceof \Object\Entity\Sex){
+           return $this->getSex()->getId();
+       }else{
+           return 3;
+       }
     }
     /**
      * Set client
@@ -436,6 +440,22 @@ class Person
         ($this->getFamilyName())? $fio = $this->getFamilyName() : null;
         ($this->getInitials())? $fio =$fio.' '.$this->getInitials() : null;
         return $fio;
+    }
+
+    public function getPlain(){
+        return array(
+            'id' => $this->getId(),
+            //'name' => $this->getBigFIO(),
+            //'short_name' => $this->getFIO(),
+            'first_name' => $this->getFirstName(),
+            'patronymic_name' => $this->getPatronymicName(),
+            'family_name' => $this->getFamilyName(),
+            'birth_date' => $this->getBirthDate(),
+            'birth_place' => $this->getBirthPlace(),
+            'sex_types' => $this->getSexId(),
+            'inn' => $this->getInn(),
+            'citizenship' => $this->getCitizenship()
+        );
     }
 
     public function getAll()

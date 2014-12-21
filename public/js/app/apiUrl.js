@@ -17,6 +17,19 @@ define(
         var prefix = '/admin/api/object';
         var sys_prefix ='/admin/sys';
         var URLs = {
+            client_menus: function(){
+                var local = host + sys_prefix + "/client_menu";
+                var production = host + sys_prefix + "/menu";
+
+                return (local_server)? local: production;
+            },
+            client_menu: function(trash_id){
+                var id = (trash_id)? trash_id:'';
+                var local = host + sys_prefix + "/client_menu/"+id;
+                var production = host + sys_prefix + "/menu/"+id;
+
+                return (local_server)? local: production;
+            },
             menus: function(){
                 var local = host + sys_prefix + "/menu";
                 var production = host + sys_prefix + "/menu";

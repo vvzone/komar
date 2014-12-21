@@ -14,11 +14,15 @@ define(
         'jsx!views/react/controls/list_box',
         'jsx!views/react/controls/simple_select',
         'jsx!views/react/controls/simple_list',
-        'jsx!views/react/controls/node_levels'
+        'jsx!views/react/controls/levels',
+
+        'models/node_levels_collection' //Убрать это отсюда к ебени матери как только время будет
     ],function($, React, ControlsMixin,
                ControlTinyText, ControlSmallText, ControlBoolSelect,
                ListBox, SimpleSelect, SimpleList,
-               NodeLevels){
+               NodeLevels,
+               NodeLevelsCollection
+        ){
 
         /* Controls: text, selector, search */
 
@@ -82,7 +86,7 @@ define(
                         console.log('control_router -> node_levels');
                         console.info(this.props);
                         return(
-                          <NodeLevels collection={value} callback={self.callBack}/>
+                          <NodeLevels collection={new NodeLevelsCollection(value)} callback={self.callBack}/>
                         );
                     break;
                 }

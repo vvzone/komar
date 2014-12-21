@@ -109,7 +109,7 @@ class IndexController extends AbstractActionController
             array('id' => 302, 'category' => 'doc', 'entity' => 'doc_attribute', 'screen' => 'doc', 'name' => 'Аттрибуты документа',
                 'isNonIndependent' => true ),
             array('id' => 303, 'category' => 'doc', 'entity' => 'pass_docs', 'screen' => 'pass_docs', 'name' => 'Документы удостоверяющие личность'),
-            array('id' => 304, 'category' => 'doc', 'entity' => 'route', 'screen' => 'route', 'name' => 'Маршрут'),
+            array('id' => 304, 'category' => 'doc', 'entity' => 'route', 'screen' => 'route', 'name' => 'Маршруты'),
             array('id' => 305, 'category' => 'doc', 'entity' => 'route_node', 'screen' => 'route', 'name' => 'Пункт маршрута',
                 'isNonIndependent' => true ),
             array('id' => 306, 'category' => 'doc', 'entity' => 'route_node_attribute', 'screen' => 'route_node', 'name' => 'Изменяемые в узле атрибуты',
@@ -117,7 +117,7 @@ class IndexController extends AbstractActionController
         );
 
         $array_unit = array(
-            array('id' => 401, 'category' => 'unit', 'entity' => 'units', 'screen' => 'unit', 'name' => 'Организация/Юр.Лицо/Подразделение'),
+            array('id' => 401, 'category' => 'unit', 'entity' => 'units', 'screen' => 'unit', 'name' => 'Подразделения'),
             array('id' => 402, 'category' => 'unit', 'entity' => 'unit_commander', 'screen' => 'unit', 'name' => 'Руководство',
                 'isNonIndependent' => true ),
             array('id' => 403, 'category' => 'unit', 'entity' => 'unit_positions', 'screen' => 'unit', 'name' => 'Штатное расписание',
@@ -139,6 +139,47 @@ class IndexController extends AbstractActionController
                 'childNodes' => $array_doc),
             array('id' => 4, 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Подразделение', 'isNotScreen' => true,
                 'childNodes' => $array_unit),
+        );
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
+
+    public function clientAction(){
+        $incoming = array(
+            array('id' => 401, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Важные'),
+            array('id' => 402, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Срочные'),
+            array('id' => 403, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Не срочные')
+        );
+
+        $outcomming = array(
+            array('id' => 411, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Вчера'),
+            array('id' => 412, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Неделя'),
+            array('id' => 413, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Месяц')
+        );
+
+        $waiting = array(
+            array('id' => 411, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Изменения документов'),
+            array('id' => 412, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Движение документов'),
+            array('id' => 413, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Системные'),
+            array('id' => 413, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Сигналы')
+        );
+
+        $layers = array(
+            array('id' => 411, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Тактический сервер'),
+            array('id' => 412, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Локальные')
+        );
+
+        $data_array = array(
+            array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Входящие документы', 'isNotScreen' => true,
+                'childNodes' => $incoming),
+            array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Исходящие документы', 'isNotScreen' => true,
+                'childNodes' => $outcomming),
+            array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Уведомления', 'isNotScreen' => true,
+                'childNodes' => $waiting),
+            array('id' => 4, 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Слои', 'isNotScreen' => true,
+                'childNodes' => $layers),
         );
 
         $JsonModel = new JsonModel();

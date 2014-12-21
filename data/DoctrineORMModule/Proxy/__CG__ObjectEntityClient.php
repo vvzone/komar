@@ -257,6 +257,17 @@ class Client extends \Object\Entity\Client implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getPersonInfo()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPersonInfo', array());
+
+        return parent::getPersonInfo();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getUnitInfo()
     {
 

@@ -36,7 +36,7 @@ define(
                 }else{
                     console.info('this.get(nodes):');
                     console.info(this.get('nodes'));
-                    //this.set('nodes', new NodesCollection(null));
+                    this.set('nodes', new NodesCollection(null));
                 }
             },
             parse: function(response, xhr){

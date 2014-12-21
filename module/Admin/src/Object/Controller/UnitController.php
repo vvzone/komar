@@ -12,12 +12,14 @@ namespace Object\Controller;
 //use Zend\Mvc\Controller\AbstractActionController;\
 use Object\Entity\Unit;
 use Object\Entity\Post;
+use Object\Entity\Client;
 
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
 use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 
 //class UnitController extends AbstractActionController
@@ -53,10 +55,38 @@ class UnitController extends RestController
         return new JsonModel($unit->getAll());
     }
 
-    public function create($data)
+    public function create($incoming_array)
     {
+        $client = new Client();
+        $unit = new Unit();
+        //$unit_post = new UnitPost();
+
+        $unit_post_id = null;
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Person');
+
+        $incoming_array = $this->RESTtoCamelCase($incoming_array);
+        $unit = $hydrator->hydrate($incoming_array, $unit);
+
+        $id_num = (isset($incoming_array['identification_number']))? $incoming_array['identification_number']:null;
+        $client_data = array(
+            'fullName' => $unit->getName(),
+            'identificationNumber' => $id_num
+        );
+
+        $client = $hydrator->hydrate($client_data, $client);
+        $objectManager->persist($client);
+        //$objectManager->flush();
+        $unit->setClient($client);
+        $objectManager->persist($unit);
+        $objectManager->flush();
+
         return new JsonModel(array(
-            'data' => $data,
+            'data' => $incoming_array,
+            'unit' =>$unit,
+            'client_id' => $client->getId()
         ));
     }
 

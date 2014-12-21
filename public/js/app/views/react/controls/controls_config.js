@@ -86,7 +86,10 @@ define(
         properties_types['commander'] = 'simple_select';
         properties_types['deputy'] = 'simple_select';
         properties_types['on_duty'] = 'simple_select';
-        
+
+        properties_types['is_legal'] = 'bool_select';
+        properties_types['own_numeration'] = 'bool_select';
+
         properties_types['first_name'] = 'tiny_text';
         properties_types['patronymic'] = 'tiny_text';
         properties_types['family_name'] = 'tiny_text';
@@ -101,6 +104,8 @@ define(
 
         properties_types['route'] = 'simple_select';
         properties_types['node_levels'] = 'node_levels';
+
+
 
 
 

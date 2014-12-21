@@ -5,8 +5,9 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+        'apiUrl',
+        'models/client'
+    ],function($, _, Backbone, React, apiUrl, Client){
         var NodeModel = Backbone.Model.extend({
             defaults: {
                 id: null,
@@ -37,19 +38,18 @@ define(
             url: function() {
                 return apiUrl('test_model_two', this.id);
             },
-            /*
-             initialize: function(){
-             console.info('Model init');
-             this.on('destroy', this.baDaBum);
+            initialize: function () {
+                console.info('Model init');
+                this.on('destroy', this.baDaBum);
 
-             if(_.size(this.get('client'))>0){
-             console.warn('_size(client)>0');
-             this.set('client', new Client(this.get('client')));
-             }else{
-             console.info(this.get('client'));
-             this.set('client', new Client(null));
-             }
-             },*/
+                if (_.size(this.get('client')) > 0) {
+                    console.warn('_size(client)>0');
+                    this.set('client', new Client(this.get('client')));
+                } else {
+                    console.info(this.get('client'));
+                    this.set('client', new Client(null));
+                }
+            },
             baDaBum: function(){
                 console.warn('KABOOM!');
             }

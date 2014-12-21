@@ -6,6 +6,16 @@
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="all"/>
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="all"/>
     <link href="css/main.css" rel="stylesheet" media="all"/>
+    <script src="http://api-maps.yandex.ru/2.1/?load=Map&lang=ru_RU"type="text/javascript"></script>
+<script type="text/javascript">
+    var myMap;
+    function init (ymaps) {
+        myMap = new ymaps.Map("YMapsID", {
+            center: [55.87, 37.66],
+            zoom: 10
+        });
+    }
+</script>
 </head>
 <body>
 <?php echo $this->layout()->content ?>
@@ -16,6 +26,7 @@
     </div>
     <div id="left_panel"></div>
     <div id="main_window">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19061.346861681333!2d34.27340509997559!3d53.331291127605674!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sru!4v1419193641430" width="800" height="600" frameborder="0" style="border:0"></iframe>
         <div id="main_top"></div>
         <div id="main_main"></div>
     </div>

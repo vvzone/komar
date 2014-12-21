@@ -6,10 +6,11 @@ define(
         'backbone',
         'models/collections_router',
         'react',
-        'event_bus'
+        'event_bus',
+        'models/client_menu_collection'
         //'views/menu_list'
     ],
-    function($, _, Backbone, CollectionsRouter, React, EventBus
+    function($, _, Backbone, CollectionsRouter, React, EventBus, ClientMenuCollection
        //Menu
         ){
 
@@ -17,11 +18,12 @@ define(
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
-            //'documentation': 'documentation',
-            //'react': 'react',
-            ':view/:id(/:param)': 'itemView',
-            ':view' : 'collectionView',
-            //'*action': 'no_route'
+            'documentation': 'documentation',
+            'react': 'react',
+            'admin/:view/:id(/:param)': 'itemView',
+            'admin/:view' : 'collectionView',
+            'client': 'clientView',
+            '*action': 'no_route'
         },
         home: function(){
             console.log('home');
@@ -29,6 +31,44 @@ define(
         no_route: function(){
           EventBus.trigger('error', 'Ошибка 404', 'Ошибка роутинга');
           console.warn('Route not found.');
+        },
+        clientView: function(){
+
+            var Menus = new ClientMenuCollection;
+            console.log('trying fetch collection...');
+            var p = Menus.fetch({
+                error: function(obj, response){
+                    console.warn('error, response: '+response);
+                    EventBus.trigger('error', 'Ошибка', 'Невозможно получить меню', response);
+                },
+                success: function(){
+                    console.info('success & menu-collection:');
+                    console.info(Menus.toJSON());
+
+                    $(document).ready(function(){
+                        require(['jsx!views/react/cat_tree'], function(CatTree){
+                            console.log('trying set collection 2 obj:');
+                            console.info(self.collection);
+                            React.renderComponent(
+                                new CatTree({
+                                    collection: Menus
+                                }), document.getElementById("left_panel")
+                            );
+                        });
+                    });
+                }
+            });
+
+            //Yandex
+            /*
+            require(['jsx!views/react/client'], function(Client){
+                React.renderComponent(
+                    new Client({
+                        collection: null
+                    }), document.getElementById("main_main")
+                );
+            });
+            */
         },
         itemView : function(view, id, param){
             console.info('view='+view+' id='+id+' param='+param);
@@ -50,7 +90,6 @@ define(
             console.log('route to react test module...');
             var component_name = 'views/react/prototypes/levels';
             //var component_name = 'views/react/prototypes/example';
-
             var collection_name = 'views/react/prototypes/node_levels_collection';
 
             //'jsx!'+

@@ -81,7 +81,7 @@ div#main_window{
     float: left;
     padding: @med;
     //width: @base_width - @left_panel_width;
-  width: 65%;
+  width: 75%;
 }
 
 div.next{
@@ -544,10 +544,11 @@ div.modal_window div.modal-content{
 
 /* msg's*/
 
-@base_modal_width: @base_width - @left_panel_width - @big*2;
+@base_modal_width: @base_width - @left_panel_width - @big;
 .modal-dialog{
   margin-top: @window_height/2 - 400px;
-  width: @big*65;
+  min-width: @big*75;
+  max-width: @big*115;
 }
 .modal-body{
   overflow: hidden;
@@ -735,6 +736,7 @@ div.level{
   line-height: 1.5;
   font-weight: 100;
   background: @level_bg_dark;
+  border-radius: @min;
 
   div.level_name{
     font-size: 1.2em;
@@ -867,3 +869,4 @@ div.level:nth-child(odd){
   color: @level_color_8;
   //color: #2d5eaf;
 }
+

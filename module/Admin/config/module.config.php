@@ -67,6 +67,20 @@ return array(
                             )
                         )
                     ),
+                    'client_menu' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/client_menu[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Admin\Controller',
+                                'controller'    => 'Admin\Controller\Index',
+                                'action' => 'client'
+                            )
+                        )
+                    )
                 )
             ),
             /* -= REST =- */
