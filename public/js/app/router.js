@@ -17,11 +17,11 @@ define(
     var AppRouter = Backbone.Router.extend({
         routes: {
             '': 'home',
-            'documentation': 'documentation',
-            'react': 'react',
-            'admin/:view/:id(/:param)': 'itemView',
-            'admin/:view' : 'collectionView',
-            '*action': 'no_route'
+            //'documentation': 'documentation',
+            //'react': 'react',
+            ':view/:id(/:param)': 'itemView',
+            ':view' : 'collectionView',
+            //'*action': 'no_route'
         },
         home: function(){
             console.log('home');

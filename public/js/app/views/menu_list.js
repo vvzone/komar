@@ -5,7 +5,7 @@ define(
         'underscore',
         'backbone',
         'react',
-        'models/menu_collection',
+        'models/menu_collection', //грузим коллекцию
         'jsx!views/react/cat_tree',
         'event_bus'
 

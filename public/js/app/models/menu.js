@@ -19,13 +19,13 @@ define(
                 is_non_independent: false,
                 is_not_screen: false,
                 order: null,
-                children: null,
+                childNodes: null,
                 items: null
             },
             attr_description:{
                 parent: 'Идентификатор родителя',
                 is_not_screen: 'Признак того, что элемент не является ссылкой, а служит только для группировки',
-                children: 'Массив объектов дочерних элементов на один уровень ниже',
+                childNodes: 'Массив объектов дочерних элементов на один уровень ниже',
                 items: 'Служебное поле клиентской части'
             },
             attr_rus_names: {
@@ -42,7 +42,9 @@ define(
             },
             initialize: function(){
                 console.info('Model init');
-                if (Array.isArray(this.get('children'))) {
+                //if (Array.isArray(this.get('childNodes'))) {
+                console.info('size='+_.size(this.get('childNodes')));
+                if (_.size(this.get('childNodes'))>0) {
                     console.log('model init -> has children');
                     if(!MenuCollection){
                         console.log('loading sub-collection for childrens');

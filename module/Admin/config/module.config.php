@@ -40,6 +40,35 @@ return array(
                 'route_plugins' => $routePlugins,
                 'may_terminate' => true, // check-out another time what does this mean
             ),
+            /* Menu, end other etc... */
+            'sys' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/admin/sys',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'controller'    => 'Admin\Controller\Index',
+                    ),
+                ),
+                'route_plugins' => $routePlugins,
+                'may_terminate' => true,
+                'child_routes' => array(
+                    'menu' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/menu[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Admin\Controller',
+                                'controller'    => 'Admin\Controller\Index',
+                                'action' => 'ajax'
+                            )
+                        )
+                    ),
+                )
+            ),
             /* -= REST =- */
             'rest-endpoint' => array(
                 'type'    => 'Literal',

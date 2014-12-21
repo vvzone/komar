@@ -15,17 +15,18 @@ define(
         var host = (local_server)? local_host_url: andrey_host_url;
 
         var prefix = '/admin/api/object';
+        var sys_prefix ='/admin/sys';
         var URLs = {
             menus: function(){
-                var local = host + prefix + "/menus";
-                var production = host + prefix + "/menus";
+                var local = host + sys_prefix + "/menu";
+                var production = host + sys_prefix + "/menu";
 
                 return (local_server)? local: production;
             },
             menu: function(trash_id){
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/menus/"+id;
-                var production = host + prefix + "/menus/"+id;
+                var local = host + sys_prefix + "/menu/"+id;
+                var production = host + sys_prefix + "/menu/"+id;
 
                 return (local_server)? local: production;
             },
@@ -38,7 +39,7 @@ define(
             rank: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
                 var local = host + prefix + "/rank/"+ id;
-                var production = host + prefix + "/ranks/"+ id; // проверку не Null ли id
+                var production = host + prefix + "/rank/"+ id; // проверку не Null ли id
 
                 return (local_server)? local: production;
             },

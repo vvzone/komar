@@ -43,13 +43,13 @@ define(
             },
             initialize: function(){
                 console.info('Model init');
-                if (Array.isArray(this.get('children'))) {
+                if (_.size(this.get('childNodes'))>0) {
                     console.log('model init -> has children');
                     if(!MenuCollection){
                         console.log('loading sub-collection for childrens');
                        var MenuCollection = require("models/menu_collection");
                     }
-                    var ChildCollection = new MenuCollection(this.get('children'));
+                    var ChildCollection = new MenuCollection(this.get('childNodes'));
                     this.set({items: ChildCollection});
                 }
                 this.on('destroy', this.baDaBum);

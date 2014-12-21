@@ -93,7 +93,7 @@ class IndexController extends AbstractActionController
         );
 
         $array_staff = array(
-            array('id' => 201, 'category' => 'staff', 'entity' => 'person', 'screen' => 'person', 'name' => 'Картотека Личных дел'),
+            array('id' => 201, 'category' => 'staff', 'entity' => 'persons', 'screen' => 'person', 'name' => 'Картотека Личных дел'),
             array('id' => 202, 'category' => 'staff', 'entity' => 'person_position_history', 'screen' => 'person', 'name' => 'История назначений',
                 'isNonIndependent' => true ),
             array('id' => 203, 'category' => 'staff', 'entity' => 'person_rank_history', 'screen' => 'person', 'name' => 'История присвоения званий',
@@ -117,7 +117,7 @@ class IndexController extends AbstractActionController
         );
 
         $array_unit = array(
-            array('id' => 401, 'category' => 'unit', 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Организация/Юр.Лицо/Подразделение'),
+            array('id' => 401, 'category' => 'unit', 'entity' => 'units', 'screen' => 'unit', 'name' => 'Организация/Юр.Лицо/Подразделение'),
             array('id' => 402, 'category' => 'unit', 'entity' => 'unit_commander', 'screen' => 'unit', 'name' => 'Руководство',
                 'isNonIndependent' => true ),
             array('id' => 403, 'category' => 'unit', 'entity' => 'unit_positions', 'screen' => 'unit', 'name' => 'Штатное расписание',

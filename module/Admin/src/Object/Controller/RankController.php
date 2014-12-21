@@ -36,7 +36,7 @@ class RankController extends RestController
             ->get('Doctrine\ORM\EntityManager');
 
         //$results = $objectManager->getRepository('Object\Entity\Clients')->findBy(array('identificationNumber' => 19612));
-        $results = $objectManager->getRepository('Object\Entity\Ranks')->findAll();
+        $results = $objectManager->getRepository('Object\Entity\Rank')->findAll();
 
         //var_dump($results);
         //$results = $this->getClientTable()->fetchAll();

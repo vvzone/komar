@@ -23,7 +23,7 @@ define(
             model_name: 'route',
             model_rus_name: 'Маршрут',
             url: function() {
-                return apiUrl('document', this.id);
+                return apiUrl('route', this.id);
             },
             initialize: function(){
                 console.info('Model init');
