@@ -22,6 +22,7 @@ define(
                 if(selected == null){
                     selected = false;
                 }
+                console.info('bool_select , selected='+selected);
                 return(
                     <div className="form-group">
                         <label htmlFor={id}>{this.props.russian_name}</label>

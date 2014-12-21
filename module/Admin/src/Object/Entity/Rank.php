@@ -152,4 +152,21 @@ class Rank
     {
         return $this->isOfficer;
     }
+
+    public function getRankSimple(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName()
+        );
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'short_name' => $this->getShortName(),
+            'description' => $this->getDescription(),
+            'is_officer' => $this->getIsOfficer()
+        );
+    }
 }

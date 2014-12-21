@@ -65,7 +65,15 @@ define(
                     console.log(property[key]);
                     console.log('current_item['+key+'] old:');
                     console.log(current_item.attributes[key]);
-                    current_item.attributes[key] = property[key];
+                    if(property[key] == "true" || property[key] == "false"){
+                        if(property[key] == "true"){
+                            current_item.attributes[key] = true;
+                        }else{
+                            current_item.attributes[key] = false;
+                        }
+                    }else{
+                        current_item.attributes[key] = property[key];
+                    }
                     console.log('current_item['+key+'] now:');
                     console.log(current_item.attributes[key]);
                 }

@@ -9,12 +9,12 @@
 
 namespace Object\Controller;
 
-use Object\Entity\Ranks as Ranks;
+use Object\Entity\Rank;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
 
-use Object\Entity\Clients as ClientORM;
+use Object\Entity\Client as ClientORM;
 use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
@@ -54,18 +54,18 @@ class RankController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $rank = $objectManager->find('Object\Entity\Ranks', $id);
+        $rank = $objectManager->find('Object\Entity\Rank', $id);
         return new JsonModel($rank->getAll());
     }
 
     public function create($data)
     {
         //$data['id'] = 0; --????
-        $rank = new Ranks();
+        $rank = new Rank();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Ranks');
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Rank');
 
         $data = $this->RESTtoCamelCase($data);
         $rank = $hydrator->hydrate($data, $rank);
@@ -80,12 +80,12 @@ class RankController extends RestController
     public function update($id, $data)
     {
         $data['id'] = $id;
-        $rank = new Ranks();
+        $rank = new Rank();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Ranks');
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Rank');
         $data = $this->RESTtoCamelCase($data);
         $rank = $hydrator->hydrate($data, $rank);
         $objectManager->persist($rank);
@@ -103,7 +103,7 @@ class RankController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $rank = $objectManager->find('Object\Entity\Ranks', $id);
+        $rank = $objectManager->find('Object\Entity\Rank', $id);
         $objectManager->remove($rank);
         $objectManager->flush();
 
