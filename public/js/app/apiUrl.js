@@ -11,7 +11,7 @@ define(
         var local_server = true;
 
         var andrey_host_url = 'http://127.0.0.1:1337';
-        var local_host_url = 'http://zend_test';
+        var local_host_url = 'http://zend_test:9080';
         var host = (local_server)? local_host_url: andrey_host_url;
 
         var prefix = '/admin/api/object';

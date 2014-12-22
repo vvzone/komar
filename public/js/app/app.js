@@ -8,13 +8,14 @@ define(
         'jsx!views/react/modals/error',
         'jsx!views/react/modals/success',
         'jsx!views/react/modals/edit',
+        'jsx!views/react/modals/open',
         'jsx!views/react/modals/delete_confirmation',
         'jsx!views/react/modals/add',
         'router', // Request router.js
         'event_bus'
-//        , 'views/menu_list'
+        //, 'views/menu_list'
     ],
-    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus){ //, Menu
+    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus){ //, Menu
     var init = function(){
 
         EventBus.on('error', function(header, msg, response){
@@ -39,6 +40,25 @@ define(
                     model: model
                 }), $('.modal_window').filter(':last')[0] //document.getElementById("global_modal")
             );
+        });
+
+        EventBus.on('item-open', function(model){
+            console.info('EventBus -> item-open, model:');
+            console.log(model);
+
+            console.info('$(.modal_window).filter(:last)');
+            console.info($('.modal_window').filter(':last'));
+            var id = model.get('id');
+
+            model.fetch({
+                success: function(){
+                    React.renderComponent(
+                        ModalWindowOpen({
+                            model: model
+                        }), $('.modal_window').filter(':last')[0]  //document.getElementById("global_modal")
+                    );
+                }
+            }); //try to get full-model
         });
 
         EventBus.on('item-edit', function(model){

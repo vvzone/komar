@@ -331,4 +331,37 @@ class AttributeType extends \Object\Entity\AttributeType implements \Doctrine\OR
         return parent::getDocumentType();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getAttributeTypeSimple()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAttributeTypeSimple', array());
+
+        return parent::getAttributeTypeSimple();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPlain()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPlain', array());
+
+        return parent::getPlain();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAll()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
+
+        return parent::getAll();
+    }
+
 }

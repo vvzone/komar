@@ -389,6 +389,17 @@ class Person extends \Object\Entity\Person implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getSexId()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getSexId', array());
+
+        return parent::getSexId();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function setClient(\Object\Entity\Client $client = NULL)
     {
 
@@ -483,6 +494,17 @@ class Person extends \Object\Entity\Person implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getFIO', array());
 
         return parent::getFIO();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getPlain()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPlain', array());
+
+        return parent::getPlain();
     }
 
     /**

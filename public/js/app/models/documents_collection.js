@@ -1,5 +1,5 @@
 define(
-    'models/document_collection',
+    'models/documents_collection',
     [
         'jquery',
         'underscore',
@@ -9,11 +9,11 @@ define(
         'models/document'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/document_collection loaded');
+        console.log('models/documents_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Атрибуты документа',
+            collection_rus_name: 'Документы',
             collection_name: 'documents',
             url: function() {
                 return apiUrl('documents');

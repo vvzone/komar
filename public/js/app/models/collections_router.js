@@ -6,9 +6,10 @@ define(
         'backbone',
         'event_bus',
         'views/list',
+        'views/client_list',
         'views/tree'
     ],
-    function($, _, Backbone, EventBus, ListView, TreeView){
+    function($, _, Backbone, EventBus, ListView, ClientListView, TreeView){
         var initialize = function(view, id, param){
             console.log('collection_router initialization...');
             var ViewCollection = 'undefined';
@@ -432,6 +433,18 @@ define(
                         ListView.initialize(RouteCollection);
                     }
                 break;
+                case('very_urgency'):
+                    if(!DocumentsCollection){
+                        console.warn('!DocumentsCollection -> require loading');
+                        var DocumentsCollection =require(['models/documents_collection'], function(DocumentsCollection){
+                            console.log('loaded...');
+                            ClientListView.initialize(DocumentsCollection);
+                            return DocumentsCollection;
+                        });
+                    }else{
+                        console.warn('RegionsCollection -> no needed to load');
+                        ClientListView.initialize(DocumentsCollection);
+                }
             }
 
             /*enumeration_types

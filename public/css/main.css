@@ -635,3 +635,42 @@ div.level:nth-child(odd) {
   background: #e9f0ff;
   color: #3a537c;
 }
+ul.info_box {
+  list-style: none;
+  border: 1px solid #428bca;
+  padding: 5px;
+  overflow: hidden;
+}
+ul.info_box li {
+  margin-right: 20px;
+}
+ul.info_box li div {
+  padding-right: 5px;
+}
+ul.info_box li div.name {
+  float: left;
+  clear: both;
+}
+ul.info_box li div.data {
+  float: left;
+}
+div.annotation {
+  margin-top: 15px;
+  color: #428bca;
+}
+div.document_output {
+  padding: 10px;
+  border: 1px solid black;
+}
+div.document_output div.header {
+  color: black;
+  font-size: 16pt;
+  margin-top: 15px;
+  margin-left: 25px;
+  margin-bottom: 15px;
+}
+div.document_output div.main_text {
+  color: black;
+  margin-left: 25px;
+  margin-bottom: 25px;
+}
