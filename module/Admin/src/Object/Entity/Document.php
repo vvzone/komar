@@ -415,7 +415,7 @@ class Document
             'document_name' => $this->getName(),
             'date' => $this->getDate(),
             'document_author' => $this->getDocumentAuthor()->getFIO(),
-            //'document_type' => $this->getDocumentType()->getAll(),
+            'document_type' => $this->getDocumentType()->getAll(),
             'secrecy_type' => $this->getDocumentType()->getSecrecyType(),
             'urgency_type' => $this->getDocumentType()->getUrgencyType(),
             'document_attributes' => $this->getDocumentAttributes(),

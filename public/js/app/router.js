@@ -22,6 +22,7 @@ define(
             'react': 'react',
             'admin/:view/:id(/:param)': 'itemView',
             'admin/:view' : 'collectionView',
+            'client/:view': 'clientCollectionView',
             'client': 'clientView',
             '*action': 'no_route'
         },
@@ -46,7 +47,7 @@ define(
                     console.info(Menus.toJSON());
 
                     $(document).ready(function(){
-                        require(['jsx!views/react/cat_tree'], function(CatTree){
+                        require(['jsx!views/react/client_cat_tree'], function(CatTree){
                             console.log('trying set collection 2 obj:');
                             console.info(self.collection);
                             React.renderComponent(
@@ -74,7 +75,42 @@ define(
             console.info('view='+view+' id='+id+' param='+param);
             //Collections.initialize(view, id, param);
         },
+        clientCollectionView: function(view){
+            var Menus = new ClientMenuCollection;
+            console.log('trying fetch collection...');
+            var p = Menus.fetch({
+                error: function(obj, response){
+                    console.warn('error, response: '+response);
+                    EventBus.trigger('error', 'Ошибка', 'Невозможно получить меню', response);
+                },
+                success: function(){
+                    console.info('success & menu-collection:');
+                    console.info(Menus.toJSON());
+
+                    $(document).ready(function(){
+                        require(['jsx!views/react/client_cat_tree'], function(CatTree){
+                            console.log('trying set collection 2 obj:');
+                            console.info(self.collection);
+                            React.renderComponent(
+                                new CatTree({
+                                    collection: Menus
+                                }), document.getElementById("left_panel")
+                            );
+                        });
+                    });
+                }
+            });
+
+            console.info('Router->collectionView: collection='+view);
+            //var MenuOutput = new Menu;
+            CollectionsRouter.initialize(view, null, null);
+        },
         collectionView: function(view){
+
+            var Menu =require(['views/menu_list'], function(MenuList){
+                return MenuList;
+            });
+
             console.info('Router->collectionView: collection='+view);
             //var MenuOutput = new Menu;
             CollectionsRouter.initialize(view, null, null);

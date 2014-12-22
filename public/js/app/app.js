@@ -13,9 +13,10 @@ define(
         'jsx!views/react/modals/add',
         'router', // Request router.js
         'event_bus'
-        //, 'views/menu_list'
+
     ],
-    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus){ //, Menu
+    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus
+        , Menu){ //, Menu
     var init = function(){
 
         EventBus.on('error', function(header, msg, response){

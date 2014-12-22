@@ -1,5 +1,5 @@
 define(
-    'models/doc_type',
+    'models/document_type',
     [
         'jquery',
         'underscore',
@@ -8,7 +8,7 @@ define(
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
 
-        console.log('models/doc_type loaded');
+        console.log('models/document_type loaded');
 
         var Model = Backbone.Model.extend({
             defaults: {
@@ -45,10 +45,10 @@ define(
                 attribute_types: 'attribute_types',
                 route: 'route'
             }, //for recursive objects
-            model_name: 'doc_type',
+            model_name: 'document_type',
             model_rus_name: 'Тип документа',
             url: function() {
-                return apiUrl('doc_type', this.id);
+                return apiUrl('document_type', this.id);
             },
             initialize: function(){
                 console.info('Model init');

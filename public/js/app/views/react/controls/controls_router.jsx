@@ -15,12 +15,14 @@ define(
         'jsx!views/react/controls/simple_select',
         'jsx!views/react/controls/simple_list',
         'jsx!views/react/controls/levels',
+        'jsx!views/react/controls/document_attributes',
 
         'models/node_levels_collection' //Убрать это отсюда к ебени матери как только время будет
     ],function($, React, ControlsMixin,
                ControlTinyText, ControlSmallText, ControlBoolSelect,
                ListBox, SimpleSelect, SimpleList,
                NodeLevels,
+               DocumentAttributes,
                NodeLevelsCollection
         ){
 
@@ -87,6 +89,13 @@ define(
                         console.info(this.props);
                         return(
                           <NodeLevels collection={new NodeLevelsCollection(value)} callback={self.callBack}/>
+                        );
+                    break;
+                    case('document_attribute_types'):
+                        console.log('control_router -> document_attribute_types');
+                        console.info(this.props);
+                        return(
+                            <DocumentAttributes attributes={value} callback={self.callBack}/>
                         );
                     break;
                 }

@@ -34,13 +34,26 @@ define(
             },
             attr_rus_names: {
                 name: 'Название',
+                document_type: 'Тип документа',
                 document_author: 'Автор',
                 date: 'Дата',
                 secrecy_type: 'Секретность',
                 urgency_type: 'Срочность',
-                current_node: 'Текущий этап маршрута'
+                current_node: 'Текущий этап маршрута',
+                document_attribute_types: 'Аттрибуты документа'
             },
-            attr_dependencies: [], //for recursive objects
+            view_only:{
+                'current_node': 'current_node'
+            },
+            edit_only:{
+                'document_type':'document_type'
+            },
+            attr_dependencies: {
+                'document_type': 'document_type'
+            }, //for recursive objects
+            dependency_values_fields: {
+                document_attribute_types: 'document_attribute_types'
+            },
             model_name: 'document_attribute_type',
             model_rus_name: 'Документ',
             url: function() {

@@ -70,13 +70,13 @@ define(
                 return (local_server)? local: production;
             },
             /* Типы док-ов */
-            doc_types: function() {
+            document_types: function() {
                 var local = host + prefix + "/document_type";
                 var production = host + prefix + "/document_types";
 
                 return (local_server)? local: production;
             },
-            doc_type: function(trash_id) {
+            document_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
                 var local = host + prefix + "/document_type/"+ id;
                 var production = host + prefix + "/document_types/"+ id;

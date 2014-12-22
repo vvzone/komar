@@ -431,7 +431,8 @@ class DocumentType
     public function getDocumentTypeSimple(){
         return array(
             'id' => $this->getId(),
-            'name' => $this->getName()
+            'name' => $this->getName(),
+            'attribute_types' => $this->getAttributeType()
         );
     }
 }

@@ -111,10 +111,10 @@ define(
                         ListView.initialize(Collection);
                     }
                 break;
-                case('doc_types'):
+                case('document_type'):
                     if(!Collection){
                         console.warn('!Collection -> require loading');
-                        var Collection =require(['models/doc_types_collection'], function(Collection){
+                        var Collection =require(['models/document_type_collection'], function(Collection){
                             console.log('loaded...');
                             ListView.initialize(Collection);
                             return Collection;

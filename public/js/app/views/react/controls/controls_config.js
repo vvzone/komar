@@ -68,7 +68,13 @@ define(
         properties_types['secrecy_type'] = 'simple_select';
 
         properties_types['attribute_types'] = 'list_box';
-        properties_types['current_node'] = 'list_box';
+
+        properties_types['document_attribute_types'] = 'document_attribute_types';
+
+        properties_types['document_type'] = 'simple_select';
+
+
+        //properties_types['current_node'] = 'list_box';
         //properties_types['secrecy_types'] = 'list_box';
         //properties_types['attribute_types'] = '';
 

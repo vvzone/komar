@@ -1,12 +1,12 @@
 define(
-    'models/doc_types_collection',
+    'models/document_type_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/doc_type'
+        'models/document_type'
     ],function($, _, Backbone, React, apiUrl, Model){
 
         console.log('models/doc_types_collection loaded');
@@ -14,9 +14,9 @@ define(
         var Collection = Backbone.Collection.extend({
             model: Model,
             collection_rus_name: 'Типы документов',
-            collection_name: 'doc_types',
+            collection_name: 'document_type',
             url: function() {
-                return apiUrl('doc_types');
+                return apiUrl('document_types');
             },
 
             initialize: function(){

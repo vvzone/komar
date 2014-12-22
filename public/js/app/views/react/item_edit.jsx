@@ -174,6 +174,9 @@ define(
 
                                 }
                             );
+
+
+
                         }else{
                             console.warn('current model.attr_dependencies['+prop+'] == constant');
                             if(typeof Constants[prop] != 'undefined'){
@@ -209,6 +212,43 @@ define(
                 var counter = 0;
                 var dependencies_by_place = {};
 
+                if(this.state.dependency_array!=null){
+                if(model.dependency_values_fields!= null){
+                    for(var dependency in model.dependency_values_fields){
+                        console.info('this.state.dependency_array:');
+                        console.info(this.state.dependency_array);
+                        console.info('trying set to model...');
+                        var target_field = model.dependency_values_fields[dependency];
+                        var dependency_array = this.state.dependency_array;
+
+                        _.each(dependency_array, function(dep_obj, key){
+                            console.info('dep_obj');
+                            console.info(dep_obj);
+                            console.info('model.set('+target_field+', '+dep_obj[0][target_field]+')');
+                            model.set('document_'+target_field, dep_obj[0][target_field]);
+                        });
+
+
+                        /*
+                        for(var dependency_object in this.state.dependency_array){
+                            var value = this.state.dependency_array[dependency_object];
+                            console.info('value');
+                            console.info(value[0].target_field);
+                            console.info('model.set('+target_field+', '+value+')');
+                            model.set(target_field, value[target_field]);
+                        }*/
+                    }
+                }
+                }
+
+                console.info('ItemEditBox -> RENDER');
+                console.log('ItemEditBox, model:');
+                console.log(model);
+                console.log('ItemEditBox, this.state:');
+                console.log(this.state);
+
+
+                // Поля для зависимости
                 for(var prop in model.attr_rus_names){
                     console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
                     console.log('model.attributes['+prop+']='+model.attributes[prop]);
@@ -250,9 +290,14 @@ define(
                             }
                         }else{
                             //have hidden_fields, but this is not that one
-                            controls.push(
-                                this.callControlRouter(model, prop)
-                            );
+                            if(typeof model.view_only[prop]!='undefined'){
+
+                                //nothing...
+                            }else{
+                                controls.push(
+                                    this.callControlRouter(model, prop)
+                                );
+                            }
                         }
                     }else{
                         //does not have hidden_fields in model

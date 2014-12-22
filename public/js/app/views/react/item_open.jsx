@@ -205,15 +205,23 @@ define(
                 output_document.push(<div className="document_output">{attributes_box}</div>);
 
                 for(var prop in model.attr_rus_names){
-                    console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
-                    console.log('model.attributes['+prop+']='+model.attributes[prop]);
-
-                    controls.push(
+                    if(typeof model.edit_only[prop] != 'undefined'){
+                        console.info('model.edit_only[prop]');
+                        console.info(model.edit_only[prop]);
+                        //hide!
+                    }else{
+                        console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
+                        console.log('model.attributes['+prop+']='+model.attributes[prop]);
+                        console.info('model.edit_only['+prop+']');
+                        console.info(model.edit_only[prop]);
+                        controls.push(
                             <li>
                                 <div className="name">{model.attr_rus_names[prop]}:</div>
                                 <div className="data">{model.attributes[prop]}</div>
                             </li>
-                    );
+                        );
+                    }
+
                 }
 
                 if(controls.length == 0){
