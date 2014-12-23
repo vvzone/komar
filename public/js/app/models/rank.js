@@ -5,10 +5,12 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+        'apiUrl',
+        'config'
+    ],function($, _, Backbone, React, apiUrl, Config){
 
-        console.log('models/rank loaded');
+        var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
+        (debug)?console.log('models/rank loaded'):null;
 
         var Rank = Backbone.Model.extend({
             defaults: {
@@ -31,11 +33,11 @@ define(
                 return apiUrl('rank', this.id);
             },
             initialize: function(){
-                console.info('Model init');
+                (debug)?console.info('Model init'):null;
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){
-                console.warn('KABOOM!');
+                (debug)?console.warn('KABOOM!'):null;
             }
         });
 

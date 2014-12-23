@@ -4,12 +4,13 @@ define(
         'underscore',
         'jquery',
         'react',
+        'config',
         'jsx!views/react/modals/bootstrap_modal_mixin',
         'event_bus',
         'views/react/controls/controls_config',
         'jsx!views/react/controls/controls_router',
         'models/constants'
-    ],function(_, $, React, BootstrapModal, EventBus, ControlsConfig, ControlsRouter, Constants){
+    ],function(_, $, React, Config, BootstrapModal, EventBus, ControlsConfig, ControlsRouter, Constants){
 
         var ItemOpenBox = React.createClass({
             /*

@@ -5,9 +5,12 @@ define(
     [
         'jquery',
         'react',
+        'config',
         'jsx!views/react/modals/bootstrap_modal_mixin',
         'event_bus'
-    ],function($, React, BootstrapModalMixin, EventBus){
+    ],function($, React, Config, BootstrapModalMixin, EventBus){
+
+        var debug = (Config['debug'] && Config['debug']['debug_modals'])? 1:null;
 
         var ModalWindowBase = React.createClass({
             mixins: [BootstrapModalMixin],

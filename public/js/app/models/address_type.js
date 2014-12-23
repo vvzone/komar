@@ -5,9 +5,11 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+        'apiUrl',
+        'config'
+    ],function($, _, Backbone, React, apiUrl, Config){
 
+        var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/address_type loaded');
 
         var Model = Backbone.Model.extend({
@@ -27,14 +29,11 @@ define(
                 return apiUrl('address_type', this.id);
             },
             initialize: function(){
-                console.info('Model init');
+                (debug)?console.info('Model init'):null;
                 this.on('destroy', this.baDaBum);
-                /*this.on('change', function(){
-                    console.error('model -> change');
-                }, this);*/
             },
             baDaBum: function(){
-                console.warn('KABOOM!');
+                (debug)?console.warn('KABOOM!'):null;
             }
         });
 

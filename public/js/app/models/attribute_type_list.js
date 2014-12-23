@@ -5,9 +5,11 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+        'apiUrl',
+        'config'
+    ],function($, _, Backbone, React, apiUrl, Config){
 
+        var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/attribute_type_list loaded');
 
         var Model = Backbone.Model.extend({
@@ -31,7 +33,7 @@ define(
                 return apiUrl('attribute_type', this.id); //there is no url
             },
             initialize: function(){
-                console.info('Model init');
+                (debug)?console.info('Model init'):null;
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){

@@ -17,7 +17,7 @@ define(
                     model: []
                 };
             },
-            componentWillMount: function() {;
+            componentWillMount: function() {
                 if(this.props.model.get('items')!=null){
                     this.setState({visible: false});
                 }

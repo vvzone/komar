@@ -6,11 +6,13 @@ define(
         'backbone',
         'react',
         'apiUrl',
+        'config',
         'models/person',
         'models/unit'
 
-    ],function($, _, Backbone, React, apiUrl, PersonModel, UnitModel){
+    ],function($, _, Backbone, React, apiUrl, Config, PersonModel, UnitModel){
 
+        var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/client loaded');
 
         var Model = Backbone.Model.extend({
@@ -61,7 +63,8 @@ define(
                 * */
                 
                 // ТУТ СОХРАНЯЕТСЯ КОЛЛЕКЦИЯ ДЛЯ CLIENT БУДЕТ ОТДЕЛЬНАЯ МОДЕЛЬ!
-                console.info('->beforeSave');
+
+                (debug)?console.info('->beforeSave'):null;
                 if (_.size(this.get('person'))>0) {
                     var new_list_values = this.get('person').map(function(model){
                         return model;
@@ -77,20 +80,21 @@ define(
             },
             parse: function(response, xhr) {
 
-                console.info('parse call');
-                console.info('response');
-                console.log(response);
-                console.log('xhr');
-                console.log(xhr);
-
+                if (debug) {
+                    console.info('parse call');
+                    console.info('response');
+                    console.log(response);
+                    console.log('xhr');
+                    console.log(xhr);
+                }
                 // Check if response includes some nested collection data... our case 'nodes'
                 if (_.has(response, 'person')){
-                    console.info('_.has person');
+                    (debug)?console.info('_.has person'):null;
                     if(_.size(response.person)>0){
-                        console.info('_.size(response.person)>0');
+                        (debug)?console.info('_.size(response.person)>0'):null;
                         // Check if this model has a property called nodes
                         if (!_.has(this, 'person')) {  // It does not...
-                            console.info('!_.has(this.person) ... this.person set new PersonModel(response.person)');
+                            (debug)?console.info('!_.has(this.person) ... this.person set new PersonModel(response.person)'):null;
                             // So instantiate a collection and pass in raw data
                             //this.listValues = new ListCollection(response.listValues);
                             this.person = new PersonModel(response.person);
@@ -117,19 +121,16 @@ define(
                 return response;
             },
             initialize: function(){
-                console.info('CLIENT-Model init');
-                console.info(this);
-                /*
-                if(_.has(this, 'person')){
-                    console.log('rewrite person');
-                    this.set('person', this.person);
-                }*/
+                if(debug){
+                    console.info('CLIENT-Model init');
+                    console.info(this);
+                }
                 //
                 /* remove on production!!! */
                 if (_.has(this.attributes, 'person')){
-                    console.log('_.has person');
+                    (debug)?console.log('_.has person'):null;
                     if(_.size(this.get('person'))>0){
-                        console.log('person>0');
+                        (debug)?console.log('person>0'):null;
                         // Check if this model has a property called nodes
                         /*
                          console.log('this');
@@ -146,9 +147,9 @@ define(
                     }
                 }
                 if (_.has(this.attributes, 'unit')){
-                    console.log('_.has unit');
+                    (debug)?console.log('_.has unit'):null;
                     if(_.size(this.attributes.unit)>0){
-                        console.log('unit>0');
+                        (debug)?console.log('unit>0'):null;
                         // Check if this model has a property called nodes
                         /*
                          console.log('this');
@@ -168,7 +169,7 @@ define(
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){
-                console.warn('KABOOM!');
+                (debug)?console.warn('KABOOM!'):null;
             }
 
         });

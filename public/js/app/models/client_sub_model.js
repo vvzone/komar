@@ -5,10 +5,12 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
+        'apiUrl',
+        'config'
 
-    ],function($, _, Backbone, React, apiUrl){
+    ],function($, _, Backbone, React, apiUrl, Config){
 
+        var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/client_sub_model loaded');
 
         var Model = Backbone.Model.extend({
@@ -40,13 +42,15 @@ define(
                 return apiUrl('client', this.id);
             },
             initialize: function(){
-                console.info('CLIENT-Model init');
-                console.info(this);
+                if(debug){
+                    console.info('CLIENT-Model init');
+                    console.info(this);
+                }
                 /* remove on production!!! */
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){
-                console.warn('KABOOM!');
+                (debug)?console.warn('KABOOM!'):null;
             }
 
         });

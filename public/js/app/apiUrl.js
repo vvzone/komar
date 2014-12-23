@@ -4,11 +4,15 @@ define(
         'jquery',
         'underscore',
         'backbone',
-        'react'
+        'react',
+        'config'
+    ],function($, _, Backbone, React, Config){
 
-    ],function($, _, Backbone, React){
+        var debug = (Config['debug'] && Config['debug']['apiUrl'])? 1:null;
 
-        var local_server = true;
+        var local_server = (Config['local_server'])? true: null;
+        (debug)?console.log('local_server='+local_server):null;
+
 
         var andrey_host_url = 'http://127.0.0.1:1337';
         var local_host_url = 'http://zend_test:9080';
@@ -397,20 +401,11 @@ define(
 
                 return (local_server)? local: production;
             }
-
-
-
-            //commander_types
-            /*subscriptions: function(userId, id) {
-             return "/api/users/"+ userId +"/subscriptions/" + id;
-             }*/
         };
 
         //apiUrl добавить
         return function(type){
             var id = [].slice.call(arguments, 1);
-            console.log('id = [].slice.call(arguments, 1)');
-            console.log(id);
             return URLs[type] ?
                 URLs[type].apply(this, [].slice.call(arguments, 1)) :
                 undefined;

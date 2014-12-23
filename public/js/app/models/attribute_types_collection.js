@@ -6,9 +6,11 @@ define(
         'backbone',
         'react',
         'apiUrl',
+        'config',
         'models/attribute_type'
-    ],function($, _, Backbone, React, apiUrl, Model){
+    ],function($, _, Backbone, React, apiUrl, Config, Model){
 
+        var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/attribute_types_collection loaded');
 
         var Collection = Backbone.Collection.extend({
@@ -23,7 +25,7 @@ define(
                 this.on('destroy', this.liluDallas, this);
             },
             liluDallas: function(){
-                console.warn('Multi-passport!');
+                (debug)?console.warn('Multi-passport!'):null;
             }
         });
 

@@ -5,22 +5,29 @@ define(
         'underscore',
         'backbone',
         'react',
+        'config',
+
         'jsx!views/react/modals/error',
         'jsx!views/react/modals/success',
         'jsx!views/react/modals/edit',
         'jsx!views/react/modals/open',
         'jsx!views/react/modals/delete_confirmation',
         'jsx!views/react/modals/add',
+
         'router', // Request router.js
         'event_bus'
-
     ],
-    function($, _, Backbone, React, ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd, Router, EventBus
-        , Menu){ //, Menu
+    function($, _, Backbone, React, Config,
+             ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd,
+             Router, EventBus){
+
+        console.log('app loaded...');
+        var debug_modals = (Config['debug'] && Config['debug']['debug_modals'])? 1:null;
+
     var init = function(){
 
         EventBus.on('error', function(header, msg, response){
-            console.info('EventBus.on error catch');
+            (debug_modals)?console.info('EventBus.on error catch'):null;
             EventBus.trigger('windows-close');
 
             React.renderComponent(
@@ -33,8 +40,10 @@ define(
         });
 
         EventBus.on('item-add', function(model){
-            console.info('EventBus -> item-add, model:');
-            console.log(model);
+            if((debug_modals)){
+                console.info('EventBus -> item-add, model:');
+                console.log(model);
+            }
 
             React.renderComponent(
                 ModalWindowEdit({
@@ -44,13 +53,10 @@ define(
         });
 
         EventBus.on('item-open', function(model){
-            console.info('EventBus -> item-open, model:');
-            console.log(model);
-
-            /*
-            console.info('$(.modal_window).filter(:last)');
-            console.info($('.modal_window').filter(':last'));
-            */
+            if((debug_modals)){
+                console.info('EventBus -> item-open, model:');
+                console.log(model);
+            }
             var id = model.get('id');
 
             model.fetch({
@@ -65,15 +71,12 @@ define(
         });
 
         EventBus.on('item-edit', function(model){
-            console.info('EventBus -> item-edit, model:');
-            console.log(model);
+            if((debug_modals)){
+                console.info('EventBus -> item-edit, model:');
+                console.log(model);
+            }
 
-            /*
-            console.info('$(.modal_window).filter(:last)');
-            console.info($('.modal_window').filter(':last'));
-            */
             var id = model.get('id');
-
             model.fetch({
                 success: function(){
                     React.renderComponent(
@@ -86,14 +89,14 @@ define(
         });
 
         EventBus.on('item-delete', function(model){
-            console.info('EventBus -> item-delete, model:');
-            console.log(model);
+            if((debug_modals)){
+                console.info('EventBus -> item-delete, model:');
+                console.log(model);
+            }
             EventBus.trigger('windows-close');
-
             var unmount = React.unmountComponentAtNode($('#global_modal')[0]);
-            console.log('unmount='+unmount);
+            (debug_modals)?console.log('unmount='+unmount):null;
             $('#global_modal').html('');
-
             React.renderComponent(
                 ModalWindowDeleteConfirmation({
                     model: model

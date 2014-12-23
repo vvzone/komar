@@ -3,6 +3,7 @@ define(
     [
         'jquery',
         'react',
+        'config',
         'jsx!views/react/search',
         'jsx!views/react/base/btn_add',
         'jsx!views/react/base/btn_edit',
@@ -12,11 +13,14 @@ define(
         'jsx!views/react/search',
         //'models/rank',
         'event_bus'
-    ],function($, React, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, Search, EventBus){
+    ],function($, React, Config, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, Search, EventBus){
+
+        var debug = (Config['debug'] && Config['debug']['debug_main_list'])? 1:null;
+        console.log('module views/react/controls/main_list loaded');
 
         var MainList = React.createClass({
             componentWillMount: function(){
-                console.log('MainList WillMount');
+                (debug)?console.log('MainList WillMount'):null;
             },
             //2-do:
             // * search
@@ -34,11 +38,6 @@ define(
                 }
 
                 var items = collection.map(function(model){
-                    /*
-                    console.log('MainList -> collection.map, model:');
-                    console.log(model);
-                    */
-
                     return <ListItem model={model} />
                 });
                 if(items.length<1){
@@ -81,53 +80,19 @@ define(
                 //this.setState({model: this.props.model});
             },
             whenClickedCP: function(action){
-                console.log('whenClickedCP, action -'+action);
+                (debug)?console.log('whenClickedCP, action -'+action):null;
                 if(action){
                     if(action == 'delete'){
                         EventBus.trigger('item-delete', this.props.model);
-                        /*
-                        console.log('ListItem -> delete -> id = '+this.props.model.get('id'));
-                        var self = this;
-                        this.props.model.destroy({
-                            wait: true,
-                            success: function(){
-                                var name = self.props.model.attributes['name'];
-                                EventBus.trigger('success', 'Обьект «'+name+'» удален.');
-                            },
-                            error:
-                                function(model, response) {
-                                    self.setState({
-                                        action_error: {
-                                            response: response,
-                                            model: model
-                                        }
-                                     });
-                                }
-                        });*/
-
                     }
 
                     if(action == 'edit'){
-
-                        //this.el = $(document).find('global_modal');
                         EventBus.trigger('item-edit', this.props.model);
-
-                        /*
-                        this.setState({
-                            edited: this.state.edited==true? false: true,
-                            open: false
-                        });*/
                     }
                 }
             },
             render: function(){
-                /*
-                console.log('ListItem render, item');
-                console.log(this.props.model);
-                */
-
                 var editable = this.props.model.get('attr_rus_names');
-
                 var editable_controls = [];
                 if(this.state.edited == true){
                     for(var attr in editable){
@@ -146,7 +111,6 @@ define(
                 if(this.state.action_error){
                     //EventBus.trigger('error', 'Ошибка вида', 'Произошла ошиба вывода. Обратитесь к администратору.');
                     EventBus.trigger('error', 'Ошибка', this.state.action_error.response);
-                    //error_box = <ErrorMsg msg={this.state.action_error.response}/>;
                 }
                 return(
                     <li className="item" key={'item'+this.props.model.get('id')}>

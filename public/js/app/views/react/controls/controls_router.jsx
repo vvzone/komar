@@ -5,6 +5,7 @@ define(
     [
         'jquery',
         'react',
+        'config',
         'jsx!views/react/controls/controls_mixin',
 
         'jsx!views/react/controls/tiny_text',
@@ -18,7 +19,7 @@ define(
         'jsx!views/react/controls/document_attributes',
 
         'models/node_levels_collection' //Убрать это отсюда к ебени матери как только время будет
-    ],function($, React, ControlsMixin,
+    ],function($, React, Config, ControlsMixin,
                ControlTinyText, ControlSmallText, ControlBoolSelect,
                ListBox, SimpleSelect, SimpleList,
                NodeLevels,
@@ -26,8 +27,10 @@ define(
                NodeLevelsCollection
         ){
 
+        console.log('controls_router loaded...');
         /* Controls: text, selector, search */
 
+        var debug = (Config['debug'] && (Config['debug']['debug_control_router'] || Config['debug']['debug_controls_router']))? 1:null;
 
         var ControlsRouter = React.createClass({
             /* Router  fix this as soon as some free time ;)
@@ -42,7 +45,7 @@ define(
                 };
             },
             componentWillMount: function(){
-                console.log('ControlRouter -> '+this.props.name+'->'+this.props.type);
+                (debug)?console.log('ControlRouter -> '+this.props.name+'->'+this.props.type):null;
             },
             componentWillReceiveProps: function(prop){
                 this.setState({discard: prop.discard});
@@ -78,22 +81,28 @@ define(
                         name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
                         break;
                     case('simple_list'):
-                        console.log('control_router->simple_list');
-                        console.info(this.props);
+                        if(debug){
+                            console.log('control_router->simple_list');
+                            console.info(this.props);
+                        }
                         return(
                             <SimpleList collection={value} callback={self.callBack} />
                             );
                     break;
                     case('node_levels'):
-                        console.log('control_router -> node_levels');
-                        console.info(this.props);
+                        if(debug){
+                            console.log('control_router -> node_levels');
+                            console.info(this.props);
+                        }
                         return(
                           <NodeLevels collection={new NodeLevelsCollection(value)} callback={self.callBack}/>
                         );
                     break;
                     case('document_attribute_types'):
-                        console.log('control_router -> document_attribute_types');
-                        console.info(this.props);
+                        if(debug){
+                            console.log('control_router -> document_attribute_types');
+                            console.info(this.props);
+                        }
                         return(
                             <DocumentAttributes attributes={value} callback={self.callBack}/>
                         );

@@ -5,11 +5,13 @@ define(
         'underscore',
         'backbone',
         'react',
+        'config',
         'event_bus'
 
-    ],function($, _, Backbone, React, EventBus){
+    ],function($, _, Backbone, React, Config, EventBus){
 
-        console.log('module views/positions_list loaded');
+        var debug = (Config['debug'] && Config['debug']['debug_list'])? 1:null;
+        console.log('module views/list loaded');
 
         var ListView = Backbone.View.extend({
             el: '#main_main', // 2-do: extend from base-class
@@ -17,10 +19,10 @@ define(
             template: '<div id="main_list_header"></div>' +
                 '<div id="main_list"></div>',
             initialize: function() {
-                console.log('ListView (backbone) initialization...');
+                (debug)?console.log('ListView (backbone) initialization...'):null;
                 _.bindAll(this, 'render');
-                console.log('init, this.collection:');
-                console.log(this.collection);
+                (debug)?console.log('init, this.collection:'):null;
+                (debug)?console.log(this.collection):null;
 
                 this.collection.bind('destroy', this.render, this);
                 this.collection.bind('change', this.render, this);
@@ -28,17 +30,9 @@ define(
                 this.render();
             },
             render: function(){
-                /*
-                console.log('render, this.collection:');
-                console.log(this.collection);
-                */
                 var self = this;
                 $(document).ready(function(){
                     require(['jsx!views/react/controls/main_list'], function(MainList){
-                        /*
-                        console.log('trying set collection 2 obj:');
-                        console.info(self.collection);
-                        */
                         React.renderComponent(
                             new MainList({
                                 collection: self.collection
@@ -50,13 +44,14 @@ define(
         });
 
             var initialize = function(CollectionModule){
-                console.log('start loaded...');
                 var Collection = new CollectionModule;
-                console.log('CollectionModule');
-                console.log(CollectionModule);
-                console.log('Collection');
-                console.log(Collection);
-                console.log('trying fetch collection...');
+                if(debug){
+                    console.log('CollectionModule');
+                    console.log(CollectionModule);
+                    console.log('Collection');
+                    console.log(Collection);
+                    console.log('trying fetch collection...');
+                }
                 var p = Collection.fetch({
                     /*data: {recursive: 1},*/
                     error: function(obj, response){
@@ -64,8 +59,10 @@ define(
                         EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
                     },
                     success: function(){
-                        console.info('success & Current collection:');
-                        console.info(Collection.toJSON());
+                        if(debug){
+                            console.info('success & Current collection:');
+                            console.info(Collection.toJSON())
+                        };
                         var View = new ListView({collection: Collection});
                     }
                 });

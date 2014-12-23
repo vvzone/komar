@@ -6,10 +6,11 @@ define(
         'backbone',
         'react',
         'apiUrl',
+        'config',
         'models/attribute_type_list_collection'
+    ],function($, _, Backbone, React, apiUrl, Config, ListCollection){
 
-    ],function($, _, Backbone, React, apiUrl, ListCollection){
-
+        var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/attribute_type loaded');
 
         var Model = Backbone.Model.extend({
@@ -90,7 +91,7 @@ define(
                 /*
                 * возможно стоит сохранять не скопом, а по отдельности
                 * */
-                console.info('->beforeSave');
+                (debug)?console.info('->beforeSave'):null;
                 if (_.size(this.get('list_values'))>0) {
                     var new_list_values = this.get('list_values').map(function(model){
                         return model;
@@ -99,24 +100,19 @@ define(
                 }
             },
             parse: function(response, xhr) {
-                /*
-                console.info('parse call');
-                console.info('response');
-                console.log(response);
-                console.log('xhr');
-                console.log(xhr);
-                */
+                if(debug){
+                    console.info('parse call');
+                    console.info('response');
+                    console.log(response);
+                    console.log('xhr');
+                    console.log(xhr);
+                }
                 // Check if response includes some nested collection data... our case 'nodes'
                 if (_.has(response, 'list_values')){
                     if(_.size(response.list_values)>0){
                         // Check if this model has a property called nodes
-                        /*
-                        console.log('this');
-                        console.log(this);
-                        */
                         if (!_.has(this, 'list_values')) {  // It does not...
                             // So instantiate a collection and pass in raw data
-                            //this.listValues = new ListCollection(response.listValues);
                             this.list_values = new ListCollection(response.list_values);
                         } else {
                             // It does, so just reset the collection
@@ -128,15 +124,15 @@ define(
                 return response;
             },
             initialize: function(){
-                console.info('Model init');
+                (debug)?console.info('Model init'):null;
                 if(_.has(this, 'list_values')){
-                    console.log('rewrite attr.list_values with collection...');
+                    (debug)?console.log('rewrite attr.list_values with collection...'):null;
                     this.set('list_values', this.list_values);
                 }
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){
-                console.warn('KABOOM!');
+                (debug)?console.warn('KABOOM!'):null;
             }
 
         });

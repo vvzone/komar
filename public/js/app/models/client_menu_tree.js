@@ -5,9 +5,11 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+        'apiUrl',
+        'config'
+    ],function($, _, Backbone, React, apiUrl, Config){
 
+        var debug = (Config['debug'] && Config['debug']['debug_menu'])? 1:null;
         console.log('models/client_menu_tree loaded');
 
         var Menu = Backbone.Model.extend({
@@ -42,11 +44,11 @@ define(
                 return apiUrl('client_menu', this.id);
             },
             initialize: function(){
-                console.info('Model init');
+                (debug)? console.info('Model init'): null;
                 if (_.size(this.get('childNodes'))>0) {
-                    console.log('model init -> has children');
+                    (debug)? console.log('model init -> has children'):null;
                     if(!MenuCollection){
-                        console.log('loading sub-collection for childrens');
+                        (debug)?console.log('loading sub-collection for childrens'):null;
                        var MenuCollection = require("models/client_menu_collection");
                     }
                     var ChildCollection = new MenuCollection(this.get('childNodes'));

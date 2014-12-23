@@ -6,9 +6,11 @@ define(
         'backbone',
         'react',
         'apiUrl',
-        'models/address_type'
-    ],function($, _, Backbone, React, apiUrl, Model){
+        'models/address_type',
+        'config'
+    ],function($, _, Backbone, React, apiUrl, Model, Config){
 
+        var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/address_types_collection loaded');
 
         var Collection = Backbone.Collection.extend({
@@ -18,19 +20,14 @@ define(
             url: function() {
                 return apiUrl('address_types');
             },
-
             initialize: function(){
-                /*this.on('change', function(){
-                    console.info('Collection Change! > fetch');
-                    this.fetch();
-                }, this);*/
 
                 this.on('destroy', function(){
                     this.liluDallas;
                 }, this);
             },
             liluDallas: function(){
-                console.warn('Multi-passport!');
+                (debug)?console.warn('Multi-passport!'):null;
             }
         });
 
