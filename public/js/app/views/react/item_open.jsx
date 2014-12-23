@@ -195,8 +195,8 @@ define(
                 console.info('model.get(document_attributes)');
                 console.info(model.get('document_attributes'));
                 //for(var attribute in model.get('document_attributes')){
-                var attributes = model.get('document_attributes');
 
+                var attributes = model.get('document_attributes');
                 _.each(attributes, function(num, key){
                     attributes_box.push(<div className={num.type}>{num.data}</div>);
                 });

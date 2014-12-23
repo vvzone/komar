@@ -59,7 +59,7 @@ define(
 
 
             switch(view){
-                case('ranks'):
+                /*case('ranks'):
                     if(!RanksCollection){
                         console.warn('!RanksCollection -> require loading');
                         var RanksCollection = require(['models/ranks_collection'], function(RanksCollection){
@@ -71,7 +71,7 @@ define(
                         console.warn('RanksCollection -> no needed to load');
                         ListView.initialize(RanksCollection);
                     }
-                break;
+                break;*/
                 case('posts'):
                     if(!PostsCollection){
                         console.warn('!PostsCollection -> require loading');
@@ -446,37 +446,6 @@ define(
                         ClientListView.initialize(DocumentsCollection);
                 }
             }
-
-            /*enumeration_types
-           if(view){
-               if(id){
-                   console.log('getting module views/'+view);
-                   require(['views/'+view], function(ViewItem){
-                       console.log('module returned ViewItem-obj:');
-                       console.log(ViewItem);
-
-                       //ViewItem.initialize();
-                   });
-               }else{
-                   console.log('getting module views/'+view+'_list (collection)');
-
-                   console.info('dynamic variable stat');
-                   console.info(window['views/'+view+'_list']);
-
-                   if(window['views/'+view+'_list']!='undefined'){
-                       console.log('NO registered variable '+'views/'+view+'_list');
-                       require(['views/'+view+'_list'], function(ViewCollection){
-                           console.log('module returns ViewCollection-obj:');
-                           console.log(ViewCollection);
-
-                           //ViewCollection.initialize(); //-second time init (auto)
-                       });
-                   }else{
-                       console.log('already HAVE registered variable '+'views/'+view+'_list');
-                   }
-               }
-           }*/
-
         };
         return {
             initialize: initialize

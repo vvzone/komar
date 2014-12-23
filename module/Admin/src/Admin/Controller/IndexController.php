@@ -148,9 +148,10 @@ class IndexController extends AbstractActionController
 
     public function clientAction(){
         $incoming = array(
-            array('id' => 401, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Важные'),
-            array('id' => 402, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Срочные'),
-            array('id' => 403, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Не срочные')
+            array('id' => 401, 'category' => 'unit', 'entity' => 'documents', 'screen' => 'unit', 'name' => 'Все документы'),
+            array('id' => 402, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Важные'),
+            array('id' => 403, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Срочные'),
+            array('id' => 404, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Не срочные')
         );
 
         $outcomming = array(

@@ -17,8 +17,7 @@ define(
                     model: []
                 };
             },
-            componentWillMount: function() {
-                console.log('CatLink mount');
+            componentWillMount: function() {;
                 if(this.props.model.get('items')!=null){
                     this.setState({visible: false});
                 }
@@ -39,7 +38,6 @@ define(
                 if (!this.state.visible) {
                     style.display = "none";
                 }
-
                 if(model.get('items')!=null){
                     className = "glyphicon togglable";
                     if (this.state.visible) {
@@ -85,9 +83,7 @@ define(
                 };
             },
             componentDidMount: function() {
-                console.log('views/react/cat_tree_links_list loaded');
                 if(this.props.childs!=null){
-                    console.log('CatTreeLinksList -> render childrens');
                     var collection = this.props.childs;
                     this.setState({collection: collection})
                 }else{
@@ -102,34 +98,20 @@ define(
             render: function(){
                 var links_output = [];
                 var collection = this.state.collection;
-
-                //if(Object.prototype.toString.call(this.state.links) == '[object Array]'){
-                    //console.info(Object.prototype.toString.call(this.state.collection));
-                    var self = this;
-                    links_output = collection.map(function(model){
-                        console.log('link_model');
-                        console.log(model);
-                        if(model.get('is_not_screen')==true && model.get('items')==null){
-                            console.log('cat_tree > render > not_link (is_not_screen==true & items==null)');
-                            console.log("model.get('name')="+model.get('name'));
-                            return(<li><div className="tree_not_link">{model.get('name')}</div></li>);
-                        }
-                        //if(model.get('is_non_independent')!=true){
-                        if(model.get('isNonIndependent')!=true){
-                            console.log('cat_tree > render > link (is_non_independent!=true)');
-                            console.log("model.get('name')="+model.get('name'));
-                            return(<CatLink model={model} key={model.get('id')} onClick={self.handleClick}/>)
-                        }
-                    });
-                    return(
-                        <ul className="nav nav-sidebar cattree">{links_output}</ul>
-                        );
-                //}
-                /*
+                var self = this;
+                links_output = collection.map(function(model) {
+                    if (model.get('is_not_screen') == true && model.get('items') == null) {
+                        return(<li>
+                            <div className="tree_not_link">{model.get('name')}</div>
+                        </li>);
+                    }
+                    if (model.get('isNonIndependent') != true) {
+                        return(<CatLink model={model} key={model.get('id')} onClick={self.handleClick}/>)
+                    }
+                });
                 return(
-                    <ErrorMsg msg="Неправильный формат ответа сервера" />
-                    )
-                    */
+                    <ul className="nav nav-sidebar cattree">{links_output}</ul>
+                );
             }
         });
 
