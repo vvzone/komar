@@ -250,6 +250,7 @@ class Route
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'document_type' => $this->getDocumentType()->getId(),
             'node_levels' => $this->getNodeLevels()
         );
     }

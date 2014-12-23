@@ -7,8 +7,12 @@ define(
         'underscore',
         'backbone',
         'react',
+        'config',
         'jsx!views/react/controls/levels_drag_and_drop_mixin'
-    ],function($, _, Backbone, React, DragAndDropClassMixin){
+    ],function($, _, Backbone, React, Config, DragAndDropClassMixin){
+
+        console.log('views/react/controls/levels loaded...');
+        var debug = (Config['debug'] && Config['debug']['debug_route_levels_control'])? 1:null;
 
         var LevelNode = React.createClass({
             //Draggable
@@ -21,18 +25,17 @@ define(
             },
             render: function() {
                 var output;
-
                 var r_type = this.props.node.get('recipient_type');
                 var client = this.props.node.get('client');
-                //console.info('client');
-                //console.info(client);
                 var person = client.get('person');
-                console.info('person=');
-                console.info(person);
-                console.info('_.size(person)='+_.size(person));
-                console.info('(person!=null)='+(person!=null));
 
-                //(person!=null)? " node_real": " node_abstract"
+                if(debug){
+                    console.info('person=');
+                    console.info(person);
+                    console.info('_.size(person)='+_.size(person));
+                    console.info('(person!=null)='+(person!=null));
+                }
+
                 var is_specific = " node_abstract";
                 if(person!=null){
                     is_specific = " node_real";
@@ -68,10 +71,8 @@ define(
             title: function () {
                 var title;
                 var client = this.props.node.get('client');
-                console.warn(client);
                 var person;
                 if ((person = client.get('person')) != null) {
-                    console.info(person);
                     title = person.get('first_name')
                         + ' ' + person.get('family_name');
                 } else {
@@ -85,7 +86,7 @@ define(
             makeTitle: function(r_type){
                 var title = r_type.name;
                 var client;
-                console.log('r_type.name='+r_type.name);
+                (debug)?console.log('r_type.name='+r_type.name):null;
                 if(r_type.code == 1 || r_type.code == 2){
                     if(r_type.code == 2){
                         title = this.cutTitle(client.full_name, client.short_name);
@@ -110,27 +111,8 @@ define(
             render: function() {
                 var output = [];
                 var self = this;
-
-                //output = <ul></ul>;
-
-                /*
-                this.props.level_nodes_collection.map(function(node) {
-                        output.push(
-                            <LevelNode node={node}
-                            onDragStart={self.props.onDragStart}
-                            onDragStop={self.props.onDragStop}
-                            dragData={self.dragData}
-                            />
-                        );
-                    }
-                );
-                */
-
-
                 var i = this.props.level_cursor;
                 //i = (this.props.level_nodes_cursor>0)? this.props.level_nodes_cursor : 0;
-
-
                 this.props.level_nodes_collection.each(function(node) {
                     i = (i<9)? ++i:0;
                     output.push(
@@ -204,8 +186,10 @@ define(
 
                 var current_id = (this.props.currentDragItem)? this.props.currentDragItem.node.get('id'):null;
                 var level_nodes_collection = this.props.level_model.get('nodes');
-                console.info('level_nodes_collection -> to JSON NEXT');
-                console.info(level_nodes_collection);
+                if(debug){
+                    console.info('level_nodes_collection -> to JSON NEXT');
+                    console.info(level_nodes_collection);
+                }
                 var level_nodes_array = level_nodes_collection.toJSON();
                 var ids_array = _.pluck(level_nodes_array, 'id');
                 return (_.indexOf(ids_array, current_id)==-1 && this.props.currentDragItem!= null)? true:false;
@@ -234,7 +218,7 @@ define(
                 });
             },
             hoverTrue: function(){
-                console.info('Hover = ' + this.props.level_model.get('name'));
+                (debug)?console.info('Hover = ' + this.props.level_model.get('name')):null;
                 this.setState({
                     hover: true
                 });
@@ -242,23 +226,31 @@ define(
             onDrop: function(){
                 //проверять был ли реальный дрег
                 if(this.props.currentDragItem!=null){
-                    console.info('onDrop -> ');
-                    console.info('this level (who throw onDrop)=');
-                    console.info(this.props.level_model);
+                    if(debug){
+                        console.info('onDrop -> ');
+                        console.info('this level (who throw onDrop)=');
+                        console.info(this.props.level_model);
+                    }
 
                     var old_collection = this.props.currentDragItem.node.collection;
-                    console.info('old_collection');
-                    console.info(old_collection);
+                    if(debug){
+                        console.info('old_collection');
+                        console.info(old_collection);
+                    }
 
                     var current_nodes_collection = this.props.level_model.get('nodes');
-                    console.info('Dragged on Level_model:'); //wrong level dragged on
-                    console.info(this.props.level_model);
-                    console.info('Dragged ON nodes_collection:');
-                    console.info(current_nodes_collection);
+                    if(debug){
+                        console.info('Dragged on Level_model:'); //wrong level dragged on
+                        console.info(this.props.level_model);
+                        console.info('Dragged ON nodes_collection:');
+                        console.info(current_nodes_collection);
+                    }
 
                     var draggedNode = this.props.currentDragItem.node;
-                    console.info('draggedNode');
-                    console.info(draggedNode);
+                    if(debug){
+                        console.info('draggedNode');
+                        console.info(draggedNode);
+                    }
 
                     current_nodes_collection.add(draggedNode); //check this!
                     //old_collection.remove(draggedNode);
@@ -329,8 +321,10 @@ define(
             render: function() {
                 var levels_list_output;
                 //list = this.state.items;
-                console.info('this.state.levels_collection');
-                console.log(this.state.levels_collection);
+                if(debug){
+                    console.info('this.state.levels_collection');
+                    console.log(this.state.levels_collection);
+                }
                 //return <div><List levels_collection={this.state.levels_collection} /><div>Добавить</div></div>;
 
                 return (
@@ -347,8 +341,10 @@ define(
                 );
             },
             onDragStart: function(details){
-                console.info('onDragStart->setState->currentDragItem = details,');
-                console.info(details);
+                if(debug){
+                    console.info('onDragStart->setState->currentDragItem = details,');
+                    console.info(details);
+                }
 
                 this.setState({
                     currentDragItem: details
@@ -361,8 +357,10 @@ define(
                 });
             },
             onDrop: function(target){
-                console.info('onDrop->(target)=');
-                console.info(target);
+                if(debug){
+                    console.info('onDrop->(target)=');
+                    console.info(target);
+                }
                 this.setState({
                     lastDrop: {
                         source: this.state.currentDragItem.node,

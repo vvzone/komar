@@ -5,12 +5,14 @@ define(
         'underscore',
         'backbone',
         'event_bus',
+        'config',
+
         'views/list',
         'views/client_list',
-        'views/tree',
-        'config'
+        'views/tree'
     ],
-    function($, _, Backbone, EventBus, ListView, ClientListView, TreeView, Config){
+    function($, _, Backbone, EventBus, Config,
+             ListView, ClientListView, TreeView){
         var initialize = function(view, id, param){
             console.log('collection_router initialization...');
             var debug = (Config['debug'] && Config['debug']['debug_collection_router'])? 1:null;
@@ -34,6 +36,11 @@ define(
                                 case('tree'):
                                     (debug)?console.log('will use TreeView for collection output...'):null;
                                     TreeView.initialize(Collection);
+                                    return Collection;
+                                break;
+                                case('client_list'):
+                                    (debug)?console.log('will use ClientListView for collection output...'):null;
+                                    ClientListView.initialize(Collection);
                                     return Collection;
                                 break;
                                 default:

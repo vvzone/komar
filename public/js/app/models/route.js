@@ -5,7 +5,7 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl',
+        'apiUrl'
         //'models/node_levels_collection'
         //'models/node_levels_collection'
     ],function($, _, Backbone, React, apiUrl){// NodeLevelsCollection
@@ -16,14 +16,17 @@ define(
             defaults: {
                 id: null,
                 name: null,
+                document_type: null,
                 node_levels: null
             },
             attr_rus_names: {
                 name: 'Название',
+                document_type: 'Тип документа',
                 node_levels: 'Этапы маршрута'
             },
-            attr_dependencies: [
-            ], //for recursive objects
+            attr_dependencies: {
+                document_type: 'document_type'
+            },
             model_name: 'route',
             model_rus_name: 'Маршрут',
             url: function() {

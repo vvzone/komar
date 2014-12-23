@@ -19,7 +19,8 @@ define(
                 debug_main_list: null,
                 debug_modals: null,
                 debug_item_edit: null,
-                debug_control_router: null
+                debug_control_router: null,
+                debug_route_levels_control: null
             },
             collections_router: [
                 {ranks: 'list'},
@@ -55,6 +56,7 @@ define(
             local_server: 1,
             temp: null
         };
+        //
 
         return Config;
     }
