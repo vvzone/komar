@@ -56,7 +56,6 @@ define(
             local_server: 1,
             temp: null
         };
-        //
 
         return Config;
     }

@@ -13,37 +13,42 @@ define(
         var local_server = (Config['local_server'])? true: null;
         (debug)?console.log('local_server='+local_server):null;
 
-
         var andrey_host_url = 'http://127.0.0.1:1337';
         var local_host_url = 'http://zend_test:9080';
         var host = (local_server)? local_host_url: andrey_host_url;
 
         var prefix = '/admin/api/object';
+        var production_prefix = '/api/object';
         var sys_prefix ='/admin/sys';
+        var production_sys_prefix = '/api/object';
+
+        prefix = (local_server)? prefix:production_prefix;
+        sys_prefix = (local_server)? sys_prefix:production_sys_prefix;
+
         var URLs = {
             client_menus: function(){
                 var local = host + sys_prefix + "/client_menu";
-                var production = host + sys_prefix + "/menu";
+                var production = host + sys_prefix + "/client_menu_tree";
 
                 return (local_server)? local: production;
             },
             client_menu: function(trash_id){
                 var id = (trash_id)? trash_id:'';
                 var local = host + sys_prefix + "/client_menu/"+id;
-                var production = host + sys_prefix + "/menu/"+id;
+                var production = host + sys_prefix + "/client_menu_tree/"+id;
 
                 return (local_server)? local: production;
             },
             menus: function(){
                 var local = host + sys_prefix + "/menu";
-                var production = host + sys_prefix + "/menu";
+                var production = host + sys_prefix + "/admin_menu_tree";
 
                 return (local_server)? local: production;
             },
             menu: function(trash_id){
                 var id = (trash_id)? trash_id:'';
                 var local = host + sys_prefix + "/menu/"+id;
-                var production = host + sys_prefix + "/menu/"+id;
+                var production = host + sys_prefix + "/admin_menu_tree/"+id;
 
                 return (local_server)? local: production;
             },
@@ -103,28 +108,28 @@ define(
             },
             /* Срочность */
             urgency_types: function() {
-                var local = host + prefix + "/urgencytypes";
+                var local = host + prefix + "/urgency_type";
                 var production = host + prefix + "/urgency_types";
 
                 return (local_server)? local: production;
             },
             urgency_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/urgencytypes/"+ id;
+                var local = host + prefix + "/urgency_type/"+ id;
                 var production = host + prefix + "/urgency_types/"+ id;
 
                 return (local_server)? local: production;
             },
             /* Секретность */
             secrecy_types: function() {
-                var local = host + prefix + "/secrecytypes";
+                var local = host + prefix + "/secrecy_type";
                 var production = host + prefix + "/secrecy_types";
 
                 return (local_server)? local: production;
             },
             secrecy_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = + prefix + "/secrecytypes/"+ id;
+                var local = + prefix + "/secrecy_type/"+ id;
                 var production = host + prefix + "/secrecy_types/"+ id;
 
                 return (local_server)? local: production;

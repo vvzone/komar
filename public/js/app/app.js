@@ -130,6 +130,11 @@ define(
         console.log('app initialization...');
         Router.initialize();
     };
+
+    var getAuthToken = function(){
+
+    };
+
     return {
         init: init
     };

@@ -40,6 +40,20 @@ return array(
                 'route_plugins' => $routePlugins,
                 'may_terminate' => true, // check-out another time what does this mean
             ),
+            /* login */
+            'login' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/admin/login',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'controller'    => 'Admin\Controller\Auth',
+                        'action'       => 'index'
+                    ),
+                ),
+                'route_plugins' => $routePlugins,
+                'may_terminate' => true, // check-out another time what does this mean
+            ),
             /* Menu, end other etc... */
             'sys' => array(
                 'type'    => 'Literal',
@@ -317,6 +331,8 @@ return array(
             'Admin\Controller\Catalogs' => 'Admin\Controller\CatalogsController',
             'Admin\Controller\Unit' => 'Admin\Controller\UnitController',
             'Admin\Controller\Rest' => 'Admin\Controller\RestController',
+
+            'Admin\Controller\Auth' => 'Admin\Controller\AuthController',
 
             /* === Object === */
             'Object\Controller\Index' => 'Object\Controller\IndexController',

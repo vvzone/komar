@@ -25,22 +25,27 @@ class RestController extends AbstractRestfulController
         $events->attach('dispatch', array($this, 'checkOptions'), 10);
     }
 
-    public function RESTtoCamelCase(array $data){
-        foreach($data as $k => $v){
-            if(strrpos($k, '_')){
-                $new_k = $k;
-                unset($data[$k]);
-                while($pos = strrpos($new_k, '_')){
-                    $new_k = substr_replace($new_k, '', $pos, 1);
-                    $capitalized = strtoupper($new_k[$pos]);
-                    $new_k[$pos] = $capitalized;
+    public function RESTtoCamelCase($data){
+        if(is_array($data)){
+            foreach($data as $k => $v){
+                if(strrpos($k, '_')){
+                    $new_k = $k;
+                    unset($data[$k]);
+                    while($pos = strrpos($new_k, '_')){
+                        $new_k = substr_replace($new_k, '', $pos, 1);
+                        $capitalized = strtoupper($new_k[$pos]);
+                        $new_k[$pos] = $capitalized;
+                    }
+                    $data[$new_k] = $v;
+                }else{
+                    $data[$k] = $v;
                 }
-                $data[$new_k] = $v;
-            }else{
-                $data[$k] = $v;
             }
+            return $data;
+        }else{
+            $response = $e->getResponse();
+            $response->setStatusCode(401);
         }
-        return $data;
     }
 
     public function checkOptions($e)
@@ -58,6 +63,14 @@ class RestController extends AbstractRestfulController
                 return $response;
             }
             return;
+        }
+
+        $headers = $request->getHeaders();
+        $authorization = $headers->get('Authorization')->getFieldValue();
+
+        if($authorization!='832320hbewhr2384u2'){
+            $response->setStatusCode(401);
+            return $response;
         }
 
         // We matched a collection; test if we allow the particular request

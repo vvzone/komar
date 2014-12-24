@@ -807,8 +807,8 @@ class CatalogsController extends AbstractActionController
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
         return $JsonModel;
-
     }
+
 
     public function streettypesAction(){
         $editable_array = array('shortname' => 'Сокращение', 'name' => 'Название');
@@ -819,6 +819,7 @@ class CatalogsController extends AbstractActionController
             array('id' => 3, 'name' => 'Проезд', 'short_name'=> 'п-зд.'),
             array('id' => 4, 'name' => 'Переулок', 'short_name'=> 'пер.'),
         );
+
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();
@@ -870,6 +871,7 @@ class CatalogsController extends AbstractActionController
             array('id' => 2, 'name' => 'Начальник', 'priority'=> 2),
             array('id' => 3, 'name' => 'Ответственный исполнитель за обработку корреспонденции', 'priority'=> 3),
         );
+
         $request = $this->getRequest();
         if ($request->isXmlHttpRequest() and $this->getRequest()->isPost()){
             $query = $request->getContent();

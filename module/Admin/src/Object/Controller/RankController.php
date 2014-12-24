@@ -46,7 +46,9 @@ class RankController extends RestController
             $data[] = $result->getRankSimple();
         }
 
-        return new JsonModel($data);
+        return new JsonModel(
+            $data
+        );
     }
 
     public function get($id)

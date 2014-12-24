@@ -924,3 +924,76 @@ div.document_output{
   }
 }
 
+video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  background: url('test_bg.jpg') no-repeat;
+  background-size: cover;
+  transition: 1s opacity;
+}
+
+div.login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: -150px 0 0 -150px;
+  width:300px;
+  height:300px;
+
+
+    h1 {
+    //color: #fff;
+    //text-shadow: 0 0 10px rgba(0,0,0,0.3);
+    //text-shadow: #000 1px 0 0px, #000 0 1px 0px, #000 -1px 0 0px, #000 0 -1px 0px;
+    //text-shadow: #ffffff 1px 0 0px, #ffffff 0 1px 0px, #ffffff -1px 0 0px, #ffffff 0 -1px 0px;
+
+      //text-shadow: #0589bb 2px 0 1px, #0589bb 0 2px 1px, #0589bb -1px 0 1px, #0589bb 0 -1px 1px;
+      text-shadow: #fff 2px 0 1px, #fff 0 2px 1px, #fff -1px 0 1px, #fff 0 -1px 1px;
+
+    //letter-spacing:1px;
+    //text-align:center;
+    }
+
+  .btn-primary.active { color: rgba(255, 255, 255, 0.75); }
+  .btn-primary {
+    background-color: #0589bb;
+    background-image: -moz-linear-gradient(top, #19b0e3, #0589bb);
+    background-image: -ms-linear-gradient(top, #19b0e3, #0589bb);
+    background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#119b0e3), to(#0589bb));
+    background-image: -webkit-linear-gradient(top, #19b0e3, #0589bb);
+    background-image: -o-linear-gradient(top, #19b0e3, #0589bb);
+    background-image: linear-gradient(top, #19b0e3, #0589bb);
+    background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#19b0e3, endColorstr=#0589bb, GradientType=0);
+    border: 1px solid #0589bb;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.4);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
+  .btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #0589bb; }
+
+  input {
+    width: 100%;
+    margin-bottom: 10px;
+    background: rgba(0,0,0,0.3);
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 13px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+    -webkit-transition: box-shadow .5s ease;
+    -moz-transition: box-shadow .5s ease;
+    -o-transition: box-shadow .5s ease;
+    -ms-transition: box-shadow .5s ease;
+    transition: box-shadow .5s ease;
+  }
+  input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+}
+
