@@ -15,7 +15,6 @@ class AuthenticationAdapterFactory implements FactoryInterface{
         $request     = $sl->get('Request');
         //$repository = $sl->get('Object\Repository\UserRepository');
         $om = $sl->get('Doctrine\ORM\EntityManager');
-
         $repository = $om->getRepository('Object\Entity\User');
 
         $adapter = new HeaderAuthentication($request, $repository);

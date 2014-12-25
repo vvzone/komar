@@ -7,6 +7,8 @@ use Zend\EventManager\EventManagerInterface;
 
 class RestController extends AbstractRestfulController
 {
+    protected $eventIdentifier = 'Object\Controller';
+
     protected $allowedCollectionMethods = array(
         'GET',
         'POST',
@@ -63,14 +65,6 @@ class RestController extends AbstractRestfulController
                 return $response;
             }
             return;
-        }
-
-        $headers = $request->getHeaders();
-        $authorization = $headers->get('Authorization')->getFieldValue();
-
-        if($authorization!='832320hbewhr2384u2'){
-            $response->setStatusCode(401);
-            return $response;
         }
 
         // We matched a collection; test if we allow the particular request

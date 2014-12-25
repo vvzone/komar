@@ -19,8 +19,6 @@ class HeaderAuthentication implements AdapterInterface{
     }
 
 
-
-
     public function getRequest(){
         return $this->request;
     }
@@ -28,7 +26,6 @@ class HeaderAuthentication implements AdapterInterface{
     public function getUserRepository(){
         return $this->repository;
     }
-
 
 
     public function authenticate()
@@ -39,9 +36,11 @@ class HeaderAuthentication implements AdapterInterface{
         // Check Authorization header presence
 
         if (!$headers->has('Authorization')) {
+
             return new Result(Result::FAILURE, null, array(
                 'Authorization header missing'
             ));
+
         }
 
 
@@ -60,7 +59,9 @@ class HeaderAuthentication implements AdapterInterface{
         //$publicKey = $this->extractPublicKey($authorization);
         //$user      = $this->getUserRepository()->findByPublicKey($publicKey);
 
-        $user      = $this->getUserRepository()->findByToken($authorization);
+        $user  = $this->getUserRepository()->findByToken($authorization);
+        //->getResult()
+
 
         if (null === $user) {
             $code = Result::FAILURE_IDENTITY_NOT_FOUND;
@@ -68,6 +69,7 @@ class HeaderAuthentication implements AdapterInterface{
                 'User not found based on token'
             ));
         }
+
 
         // Validate signature
         /*

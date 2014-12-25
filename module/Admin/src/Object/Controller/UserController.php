@@ -49,11 +49,28 @@ class UserController extends RestController
     //
     public function get($id)
     {
+        /*
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
         $user = $objectManager->find('Object\Entity\User', $id);
         return new JsonModel($user->getAll());
+
+        */
+
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        $results = $objectManager->getRepository('Object\Entity\User')->findByToken($id)->getResult();
+
+        foreach($results as $user){
+            $data[] = $user->getLogin();
+        }
+
+        return new JsonModel(array(
+            $results
+        ));
     }
 
     public function create($data)
