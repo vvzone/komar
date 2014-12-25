@@ -35,16 +35,18 @@ class UserController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-
-        $results = $objectManager->getRepository('Object\Entity\User')->test();
-
+        $results = $objectManager->getRepository('Object\Entity\User')->findByToken('12345qwerty98745')->getResult(); //TEST!
         $data = array();
 
+        foreach($results as $user){
+            $data[] = $user->getLogin();
+        }
         return new JsonModel(array(
-            $results
+           $data
         ));
     }
 
+    //
     public function get($id)
     {
         $objectManager = $this

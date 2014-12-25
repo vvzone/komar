@@ -2,7 +2,7 @@
 namespace Object\Repository;
 
 use Doctrine\ORM\EntityRepository;
-use DoctrineORMModule\Proxy\__CG__\Object\Entity\Clients;
+//use DoctrineORMModule\Proxy\__CG__\Object\Entity\Clients;
 
 class ClientsRepository extends EntityRepository
 {
