@@ -266,6 +266,19 @@ return array(
                                 'controller'    => 'Object\Controller\Post'
                             )
                         )
+                    ),
+                    'user' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/user[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\User'
+                            )
+                        )
                     )
                 )
             )
@@ -316,7 +329,7 @@ return array(
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
             'Object\Controller\Post' => 'Object\Controller\PostController',
-            //'Object\Controller\Unit' => 'Object\Controller\Test',
+            'Object\Controller\User' => 'Object\Controller\UserController',
         )
     ),
     'view_manager' => array(
@@ -354,9 +367,15 @@ return array(
                 'cache' => 'array',
                 'paths' => array(__DIR__ . '/../src/Object/Entity')
             ),
+            'Object_repositories' => array(
+                'class' => 'Doctrine\ORM\Mapping\Driver\AnnotationDriver',
+                'cache' => 'array',
+                'paths' => array(__DIR__ . '/../src/Object/Repository')
+            ),
             'orm_default' => array(
                 'drivers' => array(
-                   'Object\Entity' => 'Object_driver'
+                   'Object\Entity' => 'Object_driver',
+                   'Object\Repository' => 'Object_repositories',
                 )
             )
         )
