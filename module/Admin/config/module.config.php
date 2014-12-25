@@ -269,38 +269,6 @@ return array(
                     )
                 )
             )
-
-            /*
-            'child_routes' => array(
-                '/admin/object' => array(
-                    'type'    => 'segment',
-                    'options' => array(
-                        'route'    => '/object',
-                        'constraints' => array(
-                            'action' => 'index'
-                        ),
-                        'defaults' => array(
-                            '__NAMESPACE__' => 'Object\Controller',
-                            'controller'    => 'Object\Controller\Index'
-                        )
-                    ),
-                    'may_terminate' => true,
-                )
-            )
-            */
-            /*,
-            'admin/object' => array(
-                'type'    => 'Literal',
-                'options' => array(
-                    'route'    => '/admin/object',
-                    'defaults' => array(
-                        '__NAMESPACE__' => 'Object\Controller',
-                        'controller'    => 'Object\Controller\Index',
-                        'action'        => 'index',
-                    ),
-                ),
-                'may_terminate' => true,
-            ),*/
         ),
     ),
     'service_manager' => array(
