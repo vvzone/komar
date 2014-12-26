@@ -52,7 +52,7 @@ class IndexController extends AbstractActionController
     public function ajaxAction(){
         /*
          * isNonIndependent - output only in the parent screen
-         * isNotScreen - no screen output
+         * is_not_screen - no screen output
          * */
         $sys = array(
             array('id' => 10501, 'category' => 'base', 'entity' => 'countries', 'screen' => 'countries', 'name' => 'Страны'),
@@ -83,10 +83,10 @@ class IndexController extends AbstractActionController
             array('id' => 103, 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'positions', 'name' => 'Соответствие звания должности',
                 'isNonIndependent' => true ),
             array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => 'Типы удостоверяющих личность документов'),
-            array('id' => 105, 'category' => 'base', 'entity' => 'sys', 'screen' => 'sys', 'name' => 'Основные настройки', 'isNotScreen' => true,
-                'childNodes' => $sys),
-            array('id' => 106, 'category' => 'base', 'entity' => 'sys_docs', 'screen' => 'sys_docs', 'name' => 'Настройки документов', 'isNotScreen' => true,
-                'childNodes' => $sys_docs
+            array('id' => 105, 'category' => 'base', 'entity' => 'sys', 'screen' => 'sys', 'name' => 'Основные настройки', 'is_not_screen' => true,
+                'children' => $sys),
+            array('id' => 106, 'category' => 'base', 'entity' => 'sys_docs', 'screen' => 'sys_docs', 'name' => 'Настройки документов', 'is_not_screen' => true,
+                'children' => $sys_docs
             ),
             array('id' => 107, 'category' => 'base', 'entity' => 'commander_types', 'screen' => 'commander_types', 'name' => 'Тип руководства подразделения'),
 
@@ -131,14 +131,14 @@ class IndexController extends AbstractActionController
         );
 
         $data_array = array(
-            array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Базовые определения', 'isNotScreen' => true,
-                'childNodes' => $array_base),
-            array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Персонал', 'isNotScreen' => true,
-                'childNodes' => $array_staff),
-            array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Документы', 'isNotScreen' => true,
-                'childNodes' => $array_doc),
-            array('id' => 4, 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Подразделение', 'isNotScreen' => true,
-                'childNodes' => $array_unit),
+            array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Базовые определения', 'is_not_screen' => true,
+                'children' => $array_base),
+            array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Персонал', 'is_not_screen' => true,
+                'children' => $array_staff),
+            array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Документы', 'is_not_screen' => true,
+                'children' => $array_doc),
+            array('id' => 4, 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Подразделение', 'is_not_screen' => true,
+                'children' => $array_unit),
         );
 
         $JsonModel = new JsonModel();
@@ -173,14 +173,14 @@ class IndexController extends AbstractActionController
         );
 
         $data_array = array(
-            array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Входящие документы', 'isNotScreen' => true,
-                'childNodes' => $incoming),
-            array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Исходящие документы', 'isNotScreen' => true,
-                'childNodes' => $outcomming),
-            array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Уведомления', 'isNotScreen' => true,
-                'childNodes' => $waiting),
-            array('id' => 4, 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Слои', 'isNotScreen' => true,
-                'childNodes' => $layers),
+            array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Входящие документы', 'is_not_screen' => true,
+                'children' => $incoming),
+            array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Исходящие документы', 'is_not_screen' => true,
+                'children' => $outcomming),
+            array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Уведомления', 'is_not_screen' => true,
+                'children' => $waiting),
+            array('id' => 4, 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Слои', 'is_not_screen' => true,
+                'children' => $layers),
         );
 
         $JsonModel = new JsonModel();
@@ -225,8 +225,6 @@ class IndexController extends AbstractActionController
             $query = $request->getContent();
             $data_array = $this->instantSearch($query, $data_array);
         }
-
-
         /*
          * old-style
          * */
@@ -286,9 +284,9 @@ class IndexController extends AbstractActionController
                 }else{
                     /*echo "2-error\n";
                     echo "current_id= ".$current_id.' search_pole_value='.$item[$search_pole_name]."\n";*/
-                    if(isset($item['childNodes'])){
+                    if(isset($item['children'])){
                         //echo "2-success\n";
-                        $result[] = $this->baseSearchArray($item['childNodes'], $current_id, $search_pole_name);
+                        $result[] = $this->baseSearchArray($item['children'], $current_id, $search_pole_name);
                     }
                 }
             }else{ //если поле массив значений (связная таблица)
@@ -334,8 +332,8 @@ class IndexController extends AbstractActionController
                 if($current_id == $item['id']){
                     return true;
                 }else{
-                    if(isset($item['childNodes'])){
-                        return $result = $this->checkArray($item['childNodes'], $current_id);
+                    if(isset($item['children'])){
+                        return $result = $this->checkArray($item['children'], $current_id);
                     }
                 }
             }
@@ -344,8 +342,8 @@ class IndexController extends AbstractActionController
                 if($current_id == $item[$search_pole_name]){
                     return true;
                 }else{
-                    if(isset($item['childNodes'])){
-                        return $result = $this->checkArray($item['childNodes'], $current_id, $search_pole_name);
+                    if(isset($item['children'])){
+                        return $result = $this->checkArray($item['children'], $current_id, $search_pole_name);
                     }
                 }
             }
@@ -819,15 +817,15 @@ class IndexController extends AbstractActionController
 
         $child_1 = array(
             array('id' => 100, 'parent_id' => 2, 'name' => 'Боевые', 'shortname'=> 'ПБ', 'isService' => false,
-                'childNodes' => $combat),
+                'children' => $combat),
             array('id' => 110, 'parent_id' => 2, 'name' => 'Хозяйственные', 'shortname'=> 'ПХ', 'isService' => false,
-                'childNodes' => $economic)
+                'children' => $economic)
         );
 
         $data_array = array(
             array('id' => 1, 'parent_id' => null, 'name' => 'Сигналы', 'shortname'=> 'С', 'isService' => false),
             array('id' => 2, 'parent_id' => null, 'name' => 'Приказы', 'shortname'=> 'П', 'isService' => false,
-                'childNodes' => $child_1),
+                'children' => $child_1),
             array('id' => 3, 'parent_id' => null, 'name' => 'Служебные', 'shortname'=> 'сист.', 'isService' => true,),
         );
 

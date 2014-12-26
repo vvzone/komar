@@ -18,32 +18,67 @@ use Zend\ServiceManager\ServiceManager;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
-
 class AuthController extends AbstractActionController
 {
     public function indexAction()
     {
         $headers_old= $this->params()->fromHeader();
-        $params = $this->params()->fromQuery();
-
+        $paramsPost = $this->params()->fromPost();
         $request = $this->getRequest();
         $headers = $request->getHeaders();
-        $authorization = $headers->get('Authorization')->getFieldValue();
 
-        if($params['login'] == 'root' && $params['password'] == 'root'){
-            $token = '832320hbewhr2384u2';
+        //$authorization = $headers->get('Authorization')->getFieldValue();
+        $response = $this->getResponse();
+        $params = $request->getPost()->toArray();
+
+        if($request->isPost()){
+            //post with form data
+            $params = $request->getPost()->toArray();
+            $response = $this->getResponse();
+
+            if(!isset($params['login'] ) ||!isset($params['password'])){
+                $response->setStatusCode(401);
+                return new JsonModel(
+                    array(
+                        'login-pair are not set',
+                        $request->getPost()->toArray()
+                    )
+                );
+            }
+
+        }else{
+            //get with parameters
+            $params = $this->params()->fromQuery();
+            $this->checkLoginPair($params);
+        }
+
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        $result = $objectManager->getRepository('Object\Entity\User')->getByCredentials($params);
+
+        /*
+        return new JsonModel(
+            array(
+                'params' => $params,
+                'user' => $user
+            )
+        );*/
+
+        if($result){
             return new JsonModel(
                 array(
-                    $token,
-                    $authorization,
-                    $request
+                    $result
                 )
             );
         }else{
             $response = $this->getResponse()->setStatusCode(401);
             return new JsonModel(
-                array('Unauthorized...')
+                array('Неправильное имя пользователя или пароль...')
             );
         }
     }
+
+
 }

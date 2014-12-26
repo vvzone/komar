@@ -29,6 +29,36 @@ class UserRepository extends EntityRepository implements ServiceLocatorAwareInte
         return 'UserRepository -> test';
     }
 
+/*
+$filter[1] = $credentials['login'];
+$filter[2] = $credentials['password'];
+
+$qb = $this->_em->createQueryBuilder();
+
+$qb->add('select', new Select(array('u')))
+->add('from', new From('Object\Entity\User', 'u'))
+->add('where', 'u.login = ?1')
+->add('where', 'u.password = ?2')
+->add('orderBy', new OrderBy('u.id', 'DESC'))
+->setParameters($filter);
+;
+
+$result = $query = $qb->getQuery();
+*/
+
+    public function getByCredentials($credentials){
+        $query = $this->_em->createQuery('SELECT u.login, u.token FROM Object\Entity\User u WHERE u.login = :login AND u.password = :password');
+        $query->setParameters(array(
+            'login' => $credentials['login'],
+            'password'=> $credentials['password']
+        ));
+
+
+        //$query->setParameters('password', $credentials['password']);
+
+        $result = $query->getOneOrNullResult();
+        return $result;
+    }
 
     /**
      * @param $token

@@ -20,7 +20,8 @@ define(
                 debug_modals: null,
                 debug_item_edit: null,
                 debug_control_router: null,
-                debug_route_levels_control: null
+                debug_route_levels_control: null,
+                debug_login: 1
             },
             collections_router: [
                 {ranks: 'list'},
@@ -54,7 +55,16 @@ define(
                 {very_urgency: 'list'}
             ],
             local_server: 1,
-            temp: null
+            temp: null,
+            host: {
+                local_server: 'zend-test:9080',
+                production_server: 'localhost:1337'
+            },
+            login_url: {
+                local_server: '/admin/login',
+                production_server: '/admin/api/commands/get_token'
+            }
+
         };
 
         return Config;

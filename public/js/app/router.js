@@ -100,6 +100,7 @@ define(
 
     var cleanUp = function(){
         $('#main_top').html('');
+        $('#main_main').html('');
     };
 
     var initialize = function(){

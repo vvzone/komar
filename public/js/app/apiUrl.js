@@ -18,9 +18,9 @@ define(
         var host = (local_server)? local_host_url: andrey_host_url;
 
         var prefix = '/admin/api/object';
-        var production_prefix = '/api/object';
+        var production_prefix = '/admin/api/object';
         var sys_prefix ='/admin/sys';
-        var production_sys_prefix = '/api/object';
+        var production_sys_prefix = '/admin/api/object';
 
         prefix = (local_server)? prefix:production_prefix;
         sys_prefix = (local_server)? sys_prefix:production_sys_prefix;
@@ -28,7 +28,7 @@ define(
         var URLs = {
             client_menus: function(){
                 var local = host + sys_prefix + "/client_menu";
-                var production = host + sys_prefix + "/client_menu_tree";
+                var production = host + sys_prefix + "/client_menu_tree/0";
 
                 return (local_server)? local: production;
             },
@@ -41,7 +41,7 @@ define(
             },
             menus: function(){
                 var local = host + sys_prefix + "/menu";
-                var production = host + sys_prefix + "/admin_menu_tree";
+                var production = host + sys_prefix + "/admin_menu_tree/0";
 
                 return (local_server)? local: production;
             },
