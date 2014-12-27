@@ -5,9 +5,13 @@ define(
     [
         'jquery',
         'react',
+        'config',
         'jsx!views/react/base/error_msg',
         'jsx!views/react/item_link'
-    ],function($, React, ErrorMsg, ItemLink){
+    ],function($, React, Config, ErrorMsg, ItemLink){
+        var debug = (Config['debug'] && Config['debug']['debug_menu'])? 1:null;
+
+        console.log('views/react/cat_tree_links_list.jsx loaded....');
 
         var CatLink = React. createClass({
             getInitialState: function() {
@@ -85,9 +89,9 @@ define(
                 };
             },
             componentDidMount: function() {
-                console.log('views/react/cat_tree_links_list loaded');
+                (debug)?console.log('views/react/cat_tree_links_list loaded'):null;
                 if(this.props.childs!=null){
-                    console.log('CatTreeLinksList -> render childrens');
+                    (debug)?console.log('CatTreeLinksList -> render childrens'):null;
                     var collection = this.props.childs;
                     this.setState({collection: collection})
                 }else{
@@ -97,7 +101,7 @@ define(
                 }
             },
             handleClick: function(){
-                console.log('handle click');
+                (debug)?console.log('handle click'):null;
             },
             render: function(){
                 var links_output = [];
@@ -107,17 +111,16 @@ define(
                     //console.info(Object.prototype.toString.call(this.state.collection));
                     var self = this;
                     links_output = collection.map(function(model){
-                        console.log('link_model');
-                        console.log(model);
+                        (debug)?console.log(['link_model', model]):null;
                         if(model.get('is_not_screen')==true && model.get('items')==null){
-                            console.log('cat_tree > render > not_link (is_not_screen==true & items==null)');
-                            console.log("model.get('name')="+model.get('name'));
+                            (debug)?console.log('cat_tree > render > not_link (is_not_screen==true & items==null)'):null;
+                            (debug)?console.log("model.get('name')="+model.get('name')):null;
                             return(<li><div className="tree_not_link">{model.get('name')}</div></li>);
                         }
                         //if(model.get('is_non_independent')!=true){
                         if(model.get('isNonIndependent')!=true){
-                            console.log('cat_tree > render > link (is_non_independent!=true)');
-                            console.log("model.get('name')="+model.get('name'));
+                            (debug)?console.log('cat_tree > render > link (is_non_independent!=true)'):null;
+                            (debug)?console.log("model.get('name')="+model.get('name')):null;
                             return(<CatLink model={model} key={model.get('id')} onClick={self.handleClick}/>)
                         }
                     });

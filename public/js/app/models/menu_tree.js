@@ -5,9 +5,11 @@ define(
         'underscore',
         'backbone',
         'react',
-        'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+        'apiUrl',
+        'config'
+    ],function($, _, Backbone, React, apiUrl, Config){
 
+        var debug = (Config['debug'] && Config['debug']['debug_menu'])? 1:null;
         console.log('models/menu_tree loaded');
 
         var Menu = Backbone.Model.extend({
@@ -42,11 +44,11 @@ define(
                 return apiUrl('menu', this.id);
             },
             initialize: function(){
-                console.info('Model init');
+                (debug)?console.info('Model init'):null;
                 if (_.size(this.get('children'))>0) {
-                    console.log('model init -> has children');
+                    (debug)?console.log('model init -> has children'):null;
                     if(!MenuCollection){
-                        console.log('loading sub-collection for children');
+                        (debug)?console.log('loading sub-collection for children'):null;
                        var MenuCollection = require("models/menu_collection");
                     }
                     var ChildCollection = new MenuCollection(this.get('children'));
@@ -55,7 +57,7 @@ define(
                 this.on('destroy', this.baDaBum);
             },
             baDaBum: function(){
-                console.warn('KABOOM!');
+                (debug)?console.warn('KABOOM!'):null;
             }
 
         });

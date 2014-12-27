@@ -23,6 +23,9 @@ define(
             'client': 'clientView',
             '*action': 'no_route'
         },
+        before: function(){
+            console.info('there will be authentication');
+        },
         home: function(){
             cleanUp();
             console.info('Router->home');

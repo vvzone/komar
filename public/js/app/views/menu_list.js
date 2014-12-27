@@ -5,13 +5,15 @@ define(
         'underscore',
         'backbone',
         'react',
+        'config',
         'models/menu_collection', //грузим коллекцию
         'jsx!views/react/cat_tree',
         'event_bus'
 
-    ],function($, _, Backbone, React, MenusCollection, CatScreen, EventBus){
+    ],function($, _, Backbone, React, Config, MenusCollection, CatScreen, EventBus){
 
         console.log('module views/menu loaded');
+        var debug = (Config['debug'] && Config['debug']['debug_menu'])? 1:null;
 
         var MenuView = Backbone.View.extend({
             //el: $('div#left_panel'), // 2-do: extend from base-class
@@ -19,10 +21,9 @@ define(
             template: '<div id="main_list_header"></div>' +
                 '<div id="menu_view"></div>',
             initialize: function() {
-                console.log('MenuView initialization...');
+                (debug)?console.log('MenuView initialization...'):null;
                 _.bindAll(this, 'render');
-                console.log('init, this.collection:');
-                console.log(this.collection);
+                (debug)? console.log(['init, this.collection:', this.collection]):null;
 
                 this.collection.bind('destroy', this.render, this);
                 this.collection.bind('change', this.render, this);
@@ -30,14 +31,11 @@ define(
                 this.render();
             },
             render: function(){
-                console.log('render, this.collection:');
-                console.log(this.collection);
+                (debug)?console.log(['render, this.collection:', this.collection]):null;
                 var self = this;
                 $(document).ready(function(){
                      require(['jsx!views/react/cat_tree'], function(CatTree){
-                         console.log('trying set collection 2 obj:');
-                         console.info(self.collection);
-
+                         (debug)?console.log(['trying set collection 2 obj:', self.collection]):null;
                          React.renderComponent(
                              new CatTree({
                                     collection: self.collection
@@ -49,15 +47,14 @@ define(
         });
 
         var Menus = new MenusCollection;
-        console.log('trying fetch collection...');
+        (debug)?console.log('trying fetch collection...'):null;
         var p = Menus.fetch({
             error: function(obj, response){
-                console.warn('error, response: '+response);
+                (debug)?console.warn('error, response: '+response):null;
                 EventBus.trigger('error', 'Ошибка', 'Невозможно получить меню', response);
             },
             success: function(){
-                console.info('success & menu-collection:');
-                console.info(Menus.toJSON());
+                (debug)?console.info(['success & menu-collection:', Menus.toJSON()]):null;
                 var View = new MenuView({collection: Menus});
             }
         });
