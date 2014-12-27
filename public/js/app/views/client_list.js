@@ -60,7 +60,7 @@ define(
                 var p = Collection.fetch({
                     /*data: {recursive: 1},*/
                     error: function(obj, response){
-                        console.warn('error, response: '+response);
+                        console.warn(['error, response: ', response]);
                         EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
                     },
                     success: function(){

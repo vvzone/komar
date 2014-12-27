@@ -17,7 +17,6 @@ define(
 
         (debug)? console.info('LoginForm url='+url):null;
 
-
         var LoginForm = React.createClass({
             componentDidMount: function(){
                 var body = document.getElementsByTagName("body")[0];
@@ -41,7 +40,7 @@ define(
                     data: formValues,
                     success:function (data) {
                         console.log(["Login request details: ", data]);
-                        $('#x-auth-token').html(''+data[0]['token']+'');
+                        $('#x-auth-token').val(data[0]['token']);
                         //window.location.replace('#');
                     },
                     error: function(data){

@@ -25,16 +25,32 @@ define(
                 }
                 var response = '';
                 if(this.props.response){
-                    response = <div className="server-log">Ответ сервера: {this.props.response}</div>;
+                    var response = this.props.response;
+                    var response_msg = response.status+" — "+response.statusText;
+                    if(response_msg == null){
+                        response_msg = response;
+                    }
+
+                    response = <div className="server-log">Ответ сервера: {response_msg}</div>;
                 }
 
                 var header ='';
                 if(this.props.header){
                     if(this.props.header.length>0){
-                        header= <div className="header"><strong>{this.props.header}</strong></div>;
+                        if(this.props.response.status){
+                            var code = this.props.response.status;
+                            header= <div className="header"><strong>{this.props.header} {code}</strong></div>;
+                        }else{
+                            header= <div className="header"><strong>{this.props.header}</strong></div>;
+                        }
                     }
                 }else{
-                    header= <div className="header"><strong>Ошибка</strong></div>;
+                    if(this.props.response.status){
+                        var code = this.props.response.status;
+                        header= <div className="header"><strong>Ошибка {code}</strong></div>;
+                    }else{
+                        header= <div className="header"><strong>Ошибка</strong></div>;
+                    }
                 }
 
                 var main_msg = <div className="modal-body">

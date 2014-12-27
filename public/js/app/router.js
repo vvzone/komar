@@ -23,8 +23,34 @@ define(
             'client': 'clientView',
             '*action': 'no_route'
         },
-        before: function(){
-            console.info('there will be authentication');
+        initialize: function(){
+            console.info('Routter initialize...');
+            if ($('#x-auth-token').val() == "") {
+                window.location.replace("#login");
+            }
+            //this.navigate("login", true);
+        },
+        route: function(route, name, callback){
+            console.info('Router -> route');
+
+            if (!_.isRegExp(route)) route = this._routeToRegExp(route);
+            if (!callback) callback = this[name]; // this is of interest
+            _.wrap(callback, function(cb) {
+                if ($('#x-auth-token').val() != "") {
+                    console.info("#x-auth-token').val() NOT null");
+                    cb();
+                } else {
+                    console.info("#x-auth-token').val() is null");
+                    this.navigate("#login");
+                }
+            });
+            Backbone.history.route(route, _.bind(function(fragment) {
+                var args = this._extractParameters(route, fragment);
+                callback && callback.apply(this, args);
+                this.trigger.apply(this, ['route:' + name].concat(args));
+                Backbone.history.trigger('route', this, name, args);
+            }, this));
+            return this;
         },
         home: function(){
             cleanUp();
