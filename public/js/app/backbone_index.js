@@ -11,7 +11,8 @@ require.config({
         text: './libs/text',
         react: './libs/react/react',
         apiUrl: 'apiUrl',
-        event_bus: 'event_bus'
+        event_bus: 'event_bus',
+        route_filter: './libs/backbone.routefilter.min'
         //css: './libs/require-css/css.min'
     },
     jsx: {
@@ -32,6 +33,9 @@ require.config({
         backbone: {
             deps:["jquery", "underscore"],
             exports: 'Backbone'
+        },
+        route_filter: {
+            deps: ['backbone']
         }
     },
     catchError: true
