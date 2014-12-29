@@ -4,14 +4,16 @@ define(
         'jquery',
         'underscore',
         'backbone',
+        'config',
         'models/collections_router',
         'react',
         'event_bus',
         'route_filter'
     ],
-    function($, _, Backbone, CollectionsRouter, React, EventBus, RouteFilter){
+    function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter){
 
 
+        var debug = (Config['debug'] && Config['debug']['debug_router'])? 1:null;
             // Set up a a Router.
             var Router = Backbone.Router.extend({
                 routes: {
@@ -32,27 +34,31 @@ define(
                     // handlers. If the url has more fragments, the before callback will
                     // also get them, eg: before: function( frag1, frag2, frag3 )
                     // (just like regular Backbone route handlers).
-                    console.info('BEFORE!!!');
+                    (debug)?console.log(['Router -> before, route:', route]):null;
+                    if(route != 'login'){
+                        var token = $('meta[name="csrf-token"]').attr('content');
+                        if(!token) {
+                            (debug)?console.info(['token=',token]):null;
+                            //window.location.replace("#login");
+                            this.navigate('login', true);
+                        }else{
+                            console.info(['token=',token]);
+                        }
 
-                    if ($('#x-auth-token').val() == "") {
-                        //window.location.replace("#login");
-                        this.navigate('login', true);
                     }
-
+                    cleanUp();
                     // Returning false from inside of the before filter will prevent the
                     // current route's callback from running, and will prevent the after
                     // filter's callback from running.
 
                 },
                 after: {
-
                     // define a specific callback for a certain route.
                     "page/:id" : function( route ) {
                         console.log("After callback for page/:id was run!");
                     }
                 },
                 home: function(){
-                    cleanUp();
                     console.info('Router->home');
                     var Menu =require(['views/menu_list'], function(MenuList){
                         return MenuList;
@@ -70,25 +76,21 @@ define(
                     $('#left_panel').html('');
                 },
                 no_route: function(){
-                    cleanUp();
                     console.info('Router->no_route');
                     console.warn('Route not found.');
                     EventBus.trigger('error', 'Ошибка 404', 'Ошибка роутинга');
                 },
                 clientView: function(){
-                    cleanUp();
                     console.info('Router->clientView');
                     var ClientMenu =require(['views/client_menu_list'], function(ClientMenuList){
                         return ClientMenuList;
                     });
                 },
                 itemView : function(view, id, param){
-                    cleanUp();
                     console.info('Router->itemView: view='+view+' , id='+id,+' , param='+param);
                     console.info('view='+view+' id='+id+' param='+param);
                 },
                 clientCollectionView: function(view){
-                    cleanUp();
                     console.info('Router->clientCollectionView: collection='+view);
                     var ClientMenu =require(['views/client_menu_list'], function(ClientMenuList){
                         return ClientMenuList;
@@ -96,7 +98,6 @@ define(
                     CollectionsRouter.initialize(view, null, null);
                 },
                 collectionView: function(view){
-                    cleanUp();
                     console.info('Router->collectionView: collection='+view);
 
                     var Menu =require(['views/menu_list'], function(MenuList){
@@ -105,14 +106,12 @@ define(
                     CollectionsRouter.initialize(view, null, null);
                 },
                 documentation: function(){
-                    cleanUp();
                     console.info('Router->documentation');
                     var Documentation = require(['service/documentate'], function(Documentation){
                         return Documentation;
                     });
                 },
                 react: function(){
-                    cleanUp();
                     console.info('Router->react');
                     var component_name = 'views/react/prototypes/levels';
                     var collection_name = 'views/react/prototypes/node_levels_collection';
@@ -126,9 +125,11 @@ define(
                 }
             });
 
-     
+
     var cleanUp = function(){
+        (debug)?console.info('cleanUp'):null;
         $('#main_top').html('');
+        $('#left_panel').html('');
         $('#main_main').html('');
     };
 

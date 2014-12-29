@@ -26,6 +26,9 @@ define(
                 var body = document.getElementsByTagName("body")[0];
                 body.style.background ="";
             },
+            callback: function(){
+                this.props.callback('success');
+            },
             sendAuth: function(event){
                 event.preventDefault();
                 (debug)?console.info(event):null;
@@ -34,19 +37,33 @@ define(
                     password: $('#inputPassword').val()
                 };
 
+                var self = this;
+                var token = '';
                 $.ajax({
                     url: '/admin/login',
                     type:'POST',
                     data: formValues,
                     success:function (data) {
-                        console.log(["Login request details: ", data]);
-                        $('#x-auth-token').val(data[0]['token']);
+                        (debug)?console.log(["Login request details: ", data]):null;
+
+                        token = data[0]['token'];
+                        $('meta[name="csrf-token"]').attr('content', token);
+                        //$('#x-auth-token').val(data[0]['token']);
                         //window.location.replace('#');
+                        self.callback();
                     },
                     error: function(data){
                         (debug)?console.warn('Error received:'):null;
                         (debug)?console.warn(data):null;
                         $('#loginMsgBox').html('<div class="alert alert-error">'+data.responseJSON[0]+'</div>');
+                    }
+                });
+
+                //setUp ajax
+                $.ajaxSetup({
+                    headers: { 'Authorization': token },
+                    beforeSend: function(xhr) {
+                        xhr.setRequestHeader('Authorization', token);
                     }
                 });
             },
@@ -67,10 +84,27 @@ define(
             }
         });
 
+        //
+
         var LoginComponent = React.createClass({
+            getInitialState: function(){
+                return {
+                    is_logged: false
+                };
+            },
+            successLogin: function(){
+                this.setState({
+                    is_logged: true
+                });
+            },
             render: function(){
+                var output = <LoginForm callback={this.successLogin} />;
+                if(this.state.is_logged == true){
+                    output = <div>Congrat!</div>;
+                    //Router.navigate('client', true);
+                }
                 return(
-                  <LoginForm />
+                    output
                 );
             }
         });

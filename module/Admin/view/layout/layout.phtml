@@ -1,22 +1,14 @@
 <html>
 <head>
     <meta charset="utf-8">
+    <meta name="csrf-token" content="">
     <title>LAYOUT PHTML</title>
     <link href="css/bootstrap.min.css" rel="stylesheet" media="all"/>
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="all"/>
     <link href="css/bootstrap-theme.min.css" rel="stylesheet" media="all"/>
     <link href="css/main.css" rel="stylesheet" media="all"/>
-    <!--<script src="http://api-maps.yandex.ru/2.1/?load=Map&lang=ru_RU"type="text/javascript"></script>-->
-<script type="text/javascript">
-    var myMap;
-    function init (ymaps) {
-        myMap = new ymaps.Map("YMapsID", {
-            center: [55.87, 37.66],
-            zoom: 10
-        });
-    }
-</script>
 </head>
+
 <body>
 <?php echo $this->layout()->content ?>
 <div id="main_container">
@@ -34,10 +26,9 @@
     </div>
     <div id="global_modal"></div>
     <div class="modal_window"></div>
-    <input type="hidden" id="x-auth-token" style="display: none" value="" />
+    <!--<input type="hidden" id="x-auth-token" style="display: none" value="" />-->
 </div>
 <script data-main="js/app/backbone_index" src="js/require.js" type="text/javascript"></script>
-<!--<script src="js/app/libs/backbone.routefilter.js"></script>-->
 </body>
 </html>
 

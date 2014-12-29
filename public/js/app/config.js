@@ -21,7 +21,8 @@ define(
                 debug_item_edit: null,
                 debug_control_router: null,
                 debug_route_levels_control: null,
-                debug_login: 1
+                debug_login: 1,
+                debug_router: 1
             },
             collections_router: [
                 {ranks: 'list'},
