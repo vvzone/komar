@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 define(
-    'views/react/login',
+    'views/react/logout',
     [
         'jquery',
         'react',
@@ -17,7 +17,7 @@ define(
 
         (debug)? console.info('LoginForm url='+url):null;
 
-        var LoginForm = React.createClass({
+        var LogoutForm = React.createClass({
             componentDidMount: function(){
                 var body = document.getElementsByTagName("body")[0];
                 body.style.background = "#f3f3f3 url('/img/rls_mini.jpg') no-repeat right top";
@@ -29,43 +29,35 @@ define(
             callback: function(){
                 this.props.callback('success');
             },
-            sendAuth: function(event){
+            sendLogout: function(event){
                 event.preventDefault();
                 (debug)?console.info(event):null;
-
-                var login = $('#inputLogin').val();
-                var password = $('#inputPassword').val();
-
                 var formValues = {
-                    login: login,
-                    password: password
+                    login: $('#inputLogin').val(),
+                    password: $('#inputPassword').val()
                 };
-
-                var hash_credentials = btoa(login+':'+password);
-                (debug)?console.info(['base64', hash_credentials]):null;
 
                 var self = this;
                 var token = '';
                 $.ajax({
-                    url: '/admin/login',
+                    url: '/admin/logout',
                     type:'POST',
                     data: formValues,
-                    headers: {
-                        Authorization: 'BASE '+hash_credentials
-                    },
                     success:function (data) {
                         (debug)?console.log(["Login request details: ", data]):null;
 
                         token = data[0]['token'];
-                        $('meta[name="csrf-token"]').attr('content', 'TOKEN '+token);
+                        $('meta[name="csrf-token"]').attr('content', token);
                         //$('#x-auth-token').val(data[0]['token']);
                         //window.location.replace('#');
-                        //self.callback();
+                        self.callback();
                     },
                     error: function(data){
                         (debug)?console.warn('Error received:'):null;
                         (debug)?console.warn(data):null;
-                        $('#loginMsgBox').html('<div class="alert alert-error">'+data.responseJSON[0]+'</div>');
+
+                        $('meta[name="csrf-token"]').attr('content', null);
+                        $('#loginMsgBox').html('<div class="alert alert-error">Неудалось корректно завершить сеанс. Локальная сессия завершена. '+data.responseJSON[0]+'</div>');
                     }
                 });
 
@@ -80,35 +72,26 @@ define(
             render: function(){
                 return(
                     <div>
-                        <div className="login">
-                            <h1>Вход</h1>
-                            <form method="post">
-                                <input id="inputLogin" type="text" name="u" placeholder="Логин" required="required" />
-                                <input id="inputPassword" type="password" name="p" placeholder="Пароль" required="required" />
-                                <button type="submit" className="btn btn-primary btn-block btn-large" onClick={this.sendAuth}>Войти</button>
-                            </form>
-                            <div id="loginMsgBox"></div>
-                        </div>
+                        <h1>Вы вышли из системы.</h1>
                     </div>
                 );
             }
         });
 
-        var LoginComponent = React.createClass({
+        var LogoutComponent = React.createClass({
             getInitialState: function(){
                 return {
-                    is_logged: false
+                    is_logged: true
                 };
             },
             successLogin: function(){
                 this.setState({
-                    is_logged: true
+                    is_logged: false
                 });
             },
             render: function(){
-                var output = <LoginForm callback={this.successLogin} />;
-                if(this.state.is_logged == true){
-                    output = <div>Congrat!</div>;
+                var output = <LogoutForm callback={this.successLogin} />;
+                if(this.state.is_logged == false){
                     //;Router.navigate('client', true);
                 }
                 return(
@@ -117,7 +100,7 @@ define(
             }
         });
 
-        return LoginComponent;
+        return LogoutComponent;
     }
 );
 

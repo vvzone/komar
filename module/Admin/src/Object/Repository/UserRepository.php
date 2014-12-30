@@ -47,6 +47,8 @@ $result = $query = $qb->getQuery();
 */
 
     public function getByCredentials($credentials){
+
+
         $query = $this->_em->createQuery('SELECT u.login, u.token FROM Object\Entity\User u WHERE u.login = :login AND u.password = :password');
         $query->setParameters(array(
             'login' => $credentials['login'],
@@ -90,6 +92,13 @@ $result = $query = $qb->getQuery();
         $query = $this->_em->createQuery('SELECT u.login, u.password FROM Object\Entity\User u WHERE u.token = :token');
         $query->setParameter('token', $token);
         $result = $query->getOneOrNullResult();
+        return $result;
+    }
+
+    public function findByCredentials($authorizationPair){
+        $login = $authorizationPair[0];
+        $password = $authorizationPair[1];
+
         return $result;
     }
 

@@ -39,17 +39,17 @@ define(
                         var token = $('meta[name="csrf-token"]').attr('content');
                         if(!token) {
                             (debug)?console.info(['token=',token]):null;
-                            //window.location.replace("#login");
                             this.navigate('login', true);
+                            return false;
                         }else{
                             console.info(['token=',token]);
                         }
 
                     }
-                    cleanUp();
                     // Returning false from inside of the before filter will prevent the
                     // current route's callback from running, and will prevent the after
                     // filter's callback from running.
+                    //
 
                 },
                 after: {
@@ -71,13 +71,21 @@ define(
                         React.renderComponent(
                             new LoginComponent, document.getElementById("main_main")
                         );
+                        clearScreen();
                     });
 
-                    $('#left_panel').html('');
+                   // $('#left_panel').html('');
+                },
+                logout: function(){
+                    console.info('Route->logout');
+                    require(['jsx!views/react/logout'], function(LogoutComponent){
+                        React.renderComponent(
+                            new LogoutComponent, document.getElementById("main_main")
+                        );
+                    });
                 },
                 no_route: function(){
                     console.info('Router->no_route');
-                    console.warn('Route not found.');
                     EventBus.trigger('error', 'Ошибка 404', 'Ошибка роутинга');
                 },
                 clientView: function(){
@@ -125,6 +133,14 @@ define(
                 }
             });
 
+
+    var clearScreen = function(){
+        (debug)?console.info('clearScreen'):null;
+        $('#main_top').html('');
+        $('#left_panel').html('');
+        console.info(['#left_panel',$('#left_panel')]);
+        //$('#main_main').html('');
+    };
 
     var cleanUp = function(){
         (debug)?console.info('cleanUp'):null;

@@ -27,6 +27,18 @@ class HeaderAuthentication implements AdapterInterface{
         return $this->repository;
     }
 
+    public function extractCredentials($authorizationHeader){
+        $authorizationHeader = base64_encode($authorizationHeader);
+        if (!preg_match('/[^\:]*\:.*/i', $authorizationHeader)) {
+
+            //$this->_redirectInvalidRequest($request);
+            return;
+        }
+        $authorizationParts = explode(':', $authorizationHeader);
+        $username = $authorizationParts[0];
+        $password = $authorizationParts[1];
+        return $authorizationParts;
+    }
 
     public function authenticate()
     {
@@ -47,19 +59,28 @@ class HeaderAuthentication implements AdapterInterface{
         // Check Authorization prefix
 
         $authorization = $headers->get('Authorization')->getFieldValue();
+
         /*
-        if (strpos($authorization, 'PRE') !== 0) {
-            return new Result(Result::FAILURE, null, array(
-                'Missing PRE prefix'
-            ));
+        if (strpos($authorization, 'BASE') !== 0) {
+            $authorizationPairs = $this->extractCredentials($authorization);
+            $user  = $this->getUserRepository()->findByCredentials($authorizationPairs);
         }
         */
+
+        if(strpos($authorization, 'TOKEN') !== 0){
+            $user  = $this->getUserRepository()->findByToken($authorization);
+        }
+        else{
+            return new Result(Result::FAILURE, null, array(
+                'Missing authorization prefix'
+            ));
+        }
 
         // Validate public key
         //$publicKey = $this->extractPublicKey($authorization);
         //$user      = $this->getUserRepository()->findByPublicKey($publicKey);
 
-        $user  = $this->getUserRepository()->findByToken($authorization);
+
         //->getResult()
 
 

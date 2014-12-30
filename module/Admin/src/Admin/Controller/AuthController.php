@@ -22,49 +22,41 @@ class AuthController extends AbstractActionController
 {
     public function indexAction()
     {
-        $headers_old= $this->params()->fromHeader();
-        $paramsPost = $this->params()->fromPost();
         $request = $this->getRequest();
         $headers = $request->getHeaders();
-
-        //$authorization = $headers->get('Authorization')->getFieldValue();
-        $response = $this->getResponse();
-        $params = $request->getPost()->toArray();
-
-        if($request->isPost()){
-            //post with form data
-            $params = $request->getPost()->toArray();
-            $response = $this->getResponse();
-
-            if(!isset($params['login'] ) ||!isset($params['password'])){
-                $response->setStatusCode(401);
-                return new JsonModel(
-                    array(
-                        'login-pair are not set',
-                        $request->getPost()->toArray()
-                    )
-                );
-            }
-
-        }else{
-            //get with parameters
-            $params = $this->params()->fromQuery();
-            $this->checkLoginPair($params);
-        }
 
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $result = $objectManager->getRepository('Object\Entity\User')->getByCredentials($params);
 
-        /*
-        return new JsonModel(
-            array(
-                'params' => $params,
-                'user' => $user
-            )
-        );*/
+        if (!$headers->has('Authorization')) {
+            $response = $this->getResponse()->setStatusCode(400);
+            return new JsonModel(
+                array('Неправильный заголовок запросе...')
+            );
+        }
+
+        $authorization = $headers->get('Authorization')->getFieldValue();
+
+        if (strpos($authorization, 'BASE') !== 0) {
+            $response = $this->getResponse()->setStatusCode(400);
+            return new JsonModel(
+                array(
+                    'Неправильный заголовок авторизации...',
+                    $authorization,
+                    strpos($authorization, 'BASE'),
+                    strpos('BASE YWRtaW46dGVzdA==', 'BASE 354')
+                )
+            );
+        }
+
+        $authorizationPairs = $this->extractCredentials($authorization);
+
+        $params['login'] =  $authorizationPairs[0];
+        $params['password'] = $authorizationPairs[1];
+
+        $result = $objectManager->getRepository('Object\Entity\User')->getByCredentials($params);
 
         if($result){
             return new JsonModel(
@@ -75,10 +67,27 @@ class AuthController extends AbstractActionController
         }else{
             $response = $this->getResponse()->setStatusCode(401);
             return new JsonModel(
-                array('Неправильное имя пользователя или пароль...')
+                array(
+                    'Неправильное имя пользователя или пароль...' => '',
+                    'login' => $params['login'],
+                    'password' => $params['password'],
+                    'authorizationPairs' => $authorizationPairs,
+                )
             );
         }
     }
 
+    public function extractCredentials($authorizationHeader){
+        $authorizationHeader = base64_decode($authorizationHeader);
+        if (!preg_match('/[^\:]*\:.*/i', $authorizationHeader)) {
+            //$this->_redirectInvalidRequest($request);
+            return;
+        }
+
+        $authorizationParts = explode(':', $authorizationHeader);
+        $username = $authorizationParts[0];
+        $password = $authorizationParts[1];
+        return $authorizationParts;
+    }
 
 }
