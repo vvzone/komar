@@ -33,20 +33,20 @@ class AuthController extends AbstractActionController
         if (!$headers->has('Authorization')) {
             $response = $this->getResponse()->setStatusCode(400);
             return new JsonModel(
-                array('Неправильный заголовок запросе...')
+                array('Неправильный заголовок запроса...')
             );
         }
 
         $authorization = $headers->get('Authorization')->getFieldValue();
 
-        if (strpos($authorization, 'BASE') !== 0) {
-            $response = $this->getResponse()->setStatusCode(400);
+        if (strpos($authorization, 'BASE') != 0) {
+            //$response = $this->getResponse()->setStatusCode(400);
             return new JsonModel(
                 array(
                     'Неправильный заголовок авторизации...',
                     $authorization,
                     strpos($authorization, 'BASE'),
-                    strpos('BASE YWRtaW46dGVzdA==', 'BASE 354')
+                    strpos('BASE YWRtaW46dGVzdA==', 'BASE')
                 )
             );
         }
@@ -61,7 +61,7 @@ class AuthController extends AbstractActionController
         if($result){
             return new JsonModel(
                 array(
-                    $result
+                    'result' => $result
                 )
             );
         }else{
@@ -78,13 +78,14 @@ class AuthController extends AbstractActionController
     }
 
     public function extractCredentials($authorizationHeader){
-        $authorizationHeader = base64_decode($authorizationHeader);
-        if (!preg_match('/[^\:]*\:.*/i', $authorizationHeader)) {
+        $authorizationHash = substr($authorizationHeader, 5);
+        $authorization = base64_decode($authorizationHash);
+        if (!preg_match('/[^\:]*\:.*/i', $authorization)) {
             //$this->_redirectInvalidRequest($request);
             return;
         }
 
-        $authorizationParts = explode(':', $authorizationHeader);
+        $authorizationParts = explode(':', $authorization);
         $username = $authorizationParts[0];
         $password = $authorizationParts[1];
         return $authorizationParts;

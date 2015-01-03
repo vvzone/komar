@@ -99,7 +99,7 @@ $result = $query = $qb->getQuery();
         $login = $authorizationPair[0];
         $password = $authorizationPair[1];
 
-        return $result;
+        return 'error method';
     }
 
 }

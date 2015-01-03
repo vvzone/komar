@@ -56,24 +56,27 @@ define(
                     success:function (data) {
                         (debug)?console.log(["Login request details: ", data]):null;
 
-                        token = data[0]['token'];
+                        token = data.result['token'];
                         $('meta[name="csrf-token"]').attr('content', 'TOKEN '+token);
                         //$('#x-auth-token').val(data[0]['token']);
                         //window.location.replace('#');
-                        //self.callback();
+                        //setUp ajax
+                        $.ajaxSetup({
+                            headers: { 'Authorization': token },
+                            beforeSend: function(xhr) {
+                                xhr.setRequestHeader('Authorization', token);
+                            }
+                        });
+                        self.callback();
                     },
                     error: function(data){
                         (debug)?console.warn('Error received:'):null;
                         (debug)?console.warn(data):null;
-                        $('#loginMsgBox').html('<div class="alert alert-error">'+data.responseJSON[0]+'</div>');
-                    }
-                });
-
-                //setUp ajax
-                $.ajaxSetup({
-                    headers: { 'Authorization': token },
-                    beforeSend: function(xhr) {
-                        xhr.setRequestHeader('Authorization', token);
+                        if(data.responseJSON){
+                            $('#loginMsgBox').html('<div class="alert alert-error">'+data.responseJSON[0]+'</div>');
+                        }else{
+                            $('#loginMsgBox').html('<div class="alert alert-error">Server error: '+data.statusText+'</div>');
+                        }
                     }
                 });
             },
@@ -108,8 +111,8 @@ define(
             render: function(){
                 var output = <LoginForm callback={this.successLogin} />;
                 if(this.state.is_logged == true){
-                    output = <div>Congrat!</div>;
-                    //;Router.navigate('client', true);
+                    //output = <div>Congrat!</div>;
+                    Router.navigate('client', true);
                 }
                 return(
                     output

@@ -28,13 +28,15 @@ class HeaderAuthentication implements AdapterInterface{
     }
 
     public function extractCredentials($authorizationHeader){
-        $authorizationHeader = base64_encode($authorizationHeader);
+
+        $authorizationHash = substr($authorizationHeader, 5);
+        $authorization = base64_encode($authorizationHash);
         if (!preg_match('/[^\:]*\:.*/i', $authorizationHeader)) {
 
             //$this->_redirectInvalidRequest($request);
             return;
         }
-        $authorizationParts = explode(':', $authorizationHeader);
+        $authorizationParts = explode(':', $authorization);
         $username = $authorizationParts[0];
         $password = $authorizationParts[1];
         return $authorizationParts;
@@ -60,12 +62,11 @@ class HeaderAuthentication implements AdapterInterface{
 
         $authorization = $headers->get('Authorization')->getFieldValue();
 
-        /*
-        if (strpos($authorization, 'BASE') !== 0) {
+
+        /*if (strpos($authorization, 'BASE') !== 0) {
             $authorizationPairs = $this->extractCredentials($authorization);
-            $user  = $this->getUserRepository()->findByCredentials($authorizationPairs);
-        }
-        */
+            $user  = $this->getUserRepository()->getByCredentials($authorizationPairs);
+        }*/
 
         if(strpos($authorization, 'TOKEN') !== 0){
             $user  = $this->getUserRepository()->findByToken($authorization);
@@ -83,14 +84,12 @@ class HeaderAuthentication implements AdapterInterface{
 
         //->getResult()
 
-
         if (null === $user) {
             $code = Result::FAILURE_IDENTITY_NOT_FOUND;
             return new Result($code, null, array(
                 'User not found based on token'
             ));
         }
-
 
         // Validate signature
         /*
