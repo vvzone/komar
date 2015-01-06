@@ -64,8 +64,11 @@ define(
             login_url: {
                 local_server: '/admin/login',
                 production_server: '/admin/api/commands/get_token'
+            },
+            logout_url: {
+                local_server: '/admin/logout',
+                production_server: '/admin/api/commands/return_token'
             }
-
         };
 
         return Config;

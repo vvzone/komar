@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 define(
-    'views/react/login',
+    'views/react/user_bar',
     [
         'jquery',
         'react',
@@ -19,59 +19,40 @@ define(
         (debug)? console.info('LoginForm url='+url):null;
 
         var LoginForm = React.createClass({
-            componentDidMount: function(){
-                var body = document.getElementsByTagName("body")[0];
-                body.style.background = "#f3f3f3 url('/img/rls_mini.jpg') no-repeat right top";
-            },
-            componentWillUnmount: function(){
-                var body = document.getElementsByTagName("body")[0];
-                body.style.background ="";
-            },
             callback: function(){
                 this.props.callback('success');
             },
-            sendAuth: function(event){
+            sendLogOut: function(event){
                 event.preventDefault();
                 (debug)?console.info(event):null;
 
-                var login = $('#inputLogin').val();
-                var password = $('#inputPassword').val();
 
-                var formValues = {
-                    login: login,
-                    password: password
+                if(app_registry.auth.token == null){
+                    //trigger ERROR
+                }
+
+                var data = {
+                    token: app_registry.auth.token
                 };
-
-                var hash_credentials = btoa(login+':'+password);
-                (debug)?console.info(['base64', hash_credentials]):null;
 
                 var self = this;
                 var token = '';
                 $.ajax({
                     url: '/admin/login',
                     type:'POST',
-                    data: formValues,
+                    data: data,
                     headers: {
-                        Authorization: 'BASE '+hash_credentials
+                        Authorization: 'TOKEN '+app_registry.auth.token
                     },
                     success:function (data) {
-                        (debug)?console.log(["Login request details: ", data]):null;
-
-                        token = data.result['token'];
-                        $('meta[name="csrf-token"]').attr('content', 'TOKEN '+token);
-                        //$('#x-auth-token').val(data[0]['token']);
-                        //window.location.replace('#');
-                        //setUp ajax
+                        (debug)?console.log(["Logout request details: ", data]):null;
+                        $('meta[name="csrf-token"]').attr('content', '');
                         $.ajaxSetup({
-                            headers: { 'Authorization': token },
+                            headers: { 'Authorization': null},
                             beforeSend: function(xhr) {
-                                xhr.setRequestHeader('Authorization', token);
+                                xhr.setRequestHeader('Authorization', null);
                             }
                         });
-                        app_registry.auth = {
-                            login: login,
-                            token: token
-                        };
                         self.callback();
                     },
                     error: function(data){
@@ -88,7 +69,7 @@ define(
             render: function(){
                 return(
                     <div>
-                        <div className="login">
+                        <div className="login_bar">
                             <h1>Вход</h1>
                             <form method="post">
                                 <input id="inputLogin" type="text" name="u" placeholder="Логин" required="required" />
@@ -103,25 +84,27 @@ define(
             }
         });
 
-        var LoginComponent = React.createClass({
+        var UserBarComponent = React.createClass({
             getInitialState: function(){
+
+                if(app_registry.auth.login != null &&  $('meta[name="csrf-token"]').attr('content') != ''){
+                    return {
+                        is_logged: true
+                    };
+                }
                 return {
                     is_logged: false
                 };
             },
-            successLogin: function(msg){
+            logOut: function(msg){
                 this.setState({
-                    is_logged: true
+                    is_logged: false
                 });
             },
             render: function(){
-                var output = <LoginForm callback={this.successLogin} />;
+                var output = <UserBar callback={this.logOut} />;
                 if(this.state.is_logged == true){
                     output = <div>Congrat!</div>;
-                    //app_registry.test = 'Changed';
-                    (debug)?console.info(['auth', app_registry.auth]):null;
-                    app_registry.router.navigate('client', true);
-                    //Router.navigate('client', true);
                 }
                 return(
                     output
@@ -129,7 +112,7 @@ define(
             }
         });
 
-        return LoginComponent;
+        return UserBarComponent;
     }
 );
 

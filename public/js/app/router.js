@@ -8,9 +8,10 @@ define(
         'models/collections_router',
         'react',
         'event_bus',
-        'route_filter'
+        'route_filter',
+        'app_registry'
     ],
-    function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter){
+    function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter, app_registry){
 
 
         var debug = (Config['debug'] && Config['debug']['debug_router'])? 1:null;
@@ -152,7 +153,8 @@ define(
     var initialize = function(){
         console.log('router initialization...');
         //var app_router = new AppRouter;
-        var app_router = new Router;
+        //var app_router = new Router;
+        app_registry.router = new Router;
         Backbone.history.start();
     };
     return {

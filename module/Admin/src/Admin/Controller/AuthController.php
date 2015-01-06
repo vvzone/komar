@@ -67,12 +67,13 @@ class AuthController extends AbstractActionController
         }else{
             $response = $this->getResponse()->setStatusCode(401);
             return new JsonModel(
-                array(
+                /*array(
                     'Неправильное имя пользователя или пароль...' => '',
                     'login' => $params['login'],
                     'password' => $params['password'],
                     'authorizationPairs' => $authorizationPairs,
-                )
+                )*/
+                array('Неправильное имя пользователя или пароль...')
             );
         }
     }
