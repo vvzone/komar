@@ -9,9 +9,13 @@ define(
         'react',
         'event_bus',
         'route_filter',
-        'app_registry'
+
+        'app_registry',
+        'jsx!views/react/user_bar',
+        'jsx!views/react/select_entry'
     ],
-    function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter, app_registry){
+    function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter,
+             app_registry, UserBarComponent){
 
 
         var debug = (Config['debug'] && Config['debug']['debug_router'])? 1:null;
@@ -43,7 +47,8 @@ define(
                             this.navigate('login', true);
                             return false;
                         }else{
-                            console.info(['token=',token]);
+                            console.info(['token=',token, 'UserBarComponent -> initialize']);
+                            UserBarComponent.initialize();
                         }
 
                     }
@@ -63,6 +68,15 @@ define(
                     console.info('Router->home');
                     var Menu =require(['views/menu_list'], function(MenuList){
                         return MenuList;
+                    });
+                },
+                enter: function () {
+                    console.info('Router->enter');
+                    require(['jsx!views/react/select_entry'], function (SelectEntry) {
+                        React.renderComponent(
+                            new SelectEntry, document.getElementById("main_main")
+                        );
+                        clearScreen();
                     });
                 },
                 login: function(){

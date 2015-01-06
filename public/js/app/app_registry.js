@@ -5,11 +5,12 @@ define(['underscore', 'backbone'], function(_, Backbone) {
 
     app_registry.router = {};
 
+    app_registry.user_bar = {};
+
     app_registry.auth = {
         username: null,
         token: null
     };
-
 
     app_registry.test = 'Test!';
     return app_registry;

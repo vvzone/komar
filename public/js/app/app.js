@@ -16,15 +16,18 @@ define(
 
         'router', // Request router.js
         'event_bus'
+
     ],
     function($, _, Backbone, React, Config,
              ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd,
-             Router, EventBus){
+             Router, EventBus){ //, UserBarComponent
 
         console.log('app loaded...');
         var debug_modals = (Config['debug'] && Config['debug']['debug_modals'])? 1:null;
 
     var init = function(){
+
+        //2 do: убрать основные эвенты окон в другой модуль нихера не понятно
 
         EventBus.on('error', function(header, msg, response){
             (debug_modals)?console.info('EventBus.on error catch'):null;
@@ -129,10 +132,12 @@ define(
         // Pass in our Router module and call it's initialize function
         console.log('app initialization...');
         Router.initialize();
-    };
-
-    var getAuthToken = function(){
-
+        /*
+        React.renderComponent(
+            UserBarComponent(),
+            document.getElementById("header_login")
+        );
+        */
     };
 
     return {

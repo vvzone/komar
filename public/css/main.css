@@ -687,6 +687,20 @@ video {
   background-size: cover;
   transition: 1s opacity;
 }
+/* ===== AUTH ==== */
+div#user_bar {
+  font-size: 12pt;
+  margin-left: 20px;
+  overflow: hidden;
+  padding: 20px;
+}
+div#user_bar_username a {
+  color: white;
+}
+div#user_bar_username a:hover {
+  color: white;
+  text-decoration: underline;
+}
 div.login {
   position: absolute;
   top: 50%;

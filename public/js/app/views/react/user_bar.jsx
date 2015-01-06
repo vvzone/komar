@@ -18,7 +18,7 @@ define(
 
         (debug)? console.info('LoginForm url='+url):null;
 
-        var LoginForm = React.createClass({
+        var UserBar = React.createClass({
             callback: function(){
                 this.props.callback('success');
             },
@@ -69,15 +69,8 @@ define(
             render: function(){
                 return(
                     <div>
-                        <div className="login_bar">
-                            <h1>Вход</h1>
-                            <form method="post">
-                                <input id="inputLogin" type="text" name="u" placeholder="Логин" required="required" />
-                                <input id="inputPassword" type="password" name="p" placeholder="Пароль" required="required" />
-                                <button type="submit" className="btn btn-primary btn-block btn-large" onClick={this.sendAuth}>Войти</button>
-                            </form>
-                            <div id="test">{app_registry.test}</div>
-                            <div id="loginMsgBox"></div>
+                        <div id="user_bar">
+                            <div id="user_bar_username">Вы вошли как: {app_registry.auth.login}&nbsp;[<a href="#logout" onClick={this.sendLogOut}>Выйти</a>]</div>
                         </div>
                     </div>
                 );
@@ -86,15 +79,15 @@ define(
 
         var UserBarComponent = React.createClass({
             getInitialState: function(){
-
-                if(app_registry.auth.login != null &&  $('meta[name="csrf-token"]').attr('content') != ''){
-                    return {
-                        is_logged: true
-                    };
-                }
                 return {
                     is_logged: false
                 };
+            },
+            componentWillMount: function(){
+                (debug)?console.info('UserBarComponent -> WillMount'):null;
+              this.setState({
+                  is_logged: this.props.is_logged
+              });
             },
             logOut: function(msg){
                 this.setState({
@@ -102,9 +95,18 @@ define(
                 });
             },
             render: function(){
-                var output = <UserBar callback={this.logOut} />;
-                if(this.state.is_logged == true){
-                    output = <div>Congrat!</div>;
+                var is_logged = false;
+                (debug)?console.info(['app_registry.auth.login', app_registry.auth.login]):null;
+                if(app_registry.auth.login != null &&  $('meta[name="csrf-token"]').attr('content') != ''){
+                    is_logged = true;
+                }
+                if($('meta[name="csrf-token"]').attr('content') != ''){
+                    console.info('csrf-token changed');
+                }
+
+                var output = <div>not logged...</div>;
+                if(is_logged == true){
+                    output = <UserBar callback={this.logOut} />;
                 }
                 return(
                     output
@@ -112,7 +114,20 @@ define(
             }
         });
 
-        return UserBarComponent;
+        //return UserBarComponent;
+
+        var initialize = function(){
+            (debug)?console.info('user bar initialization...'):null;
+
+            app_registry.user_bar = React.renderComponent(
+                UserBarComponent(),
+                document.getElementById("header_login")
+            );
+        };
+
+        return {
+            initialize: initialize
+        };
     }
 );
 

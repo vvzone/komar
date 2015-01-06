@@ -120,7 +120,7 @@ define(
                     output = <div>Congrat!</div>;
                     //app_registry.test = 'Changed';
                     (debug)?console.info(['auth', app_registry.auth]):null;
-                    app_registry.router.navigate('client', true);
+                    app_registry.router.navigate('enter', true);
                     //Router.navigate('client', true);
                 }
                 return(
