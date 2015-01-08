@@ -20,6 +20,7 @@ div#header div#logo {
   padding-top: 10px;
   padding-bottom: 10px;
   background: deepskyblue;
+  cursor: pointer;
 }
 div#header div.header_login {
   float: left;
@@ -761,8 +762,8 @@ div.login input:focus {
 }
 div#select_entry {
   position: absolute;
-  left: 38%;
-  right: 62%;
+  left: 39%;
+  right: 61%;
   width: 900px;
   margin: 250px 0 0 -150px;
 }
@@ -771,7 +772,7 @@ div#select_entry div.bg_box {
   border: 1px solid white;
   color: white;
   float: left;
-  margin: 20px;
+  margin-right: 20px;
   opacity: 0.55;
   padding-top: 100px;
   width: 350px;
