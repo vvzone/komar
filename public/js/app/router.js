@@ -113,6 +113,7 @@ define(
                 admin: function(){
                     console.info('Router->admin');
                     AdminMenuList.initialize();
+                    cleanMainScreen();
                 },
                 adminItemView : function(view, id, param){
                     console.info('Router->itemView: view='+view+' , id='+id,+' , param='+param);
@@ -128,6 +129,7 @@ define(
                 client: function(){
                     console.info('Router->client');
                     ClientMenuList.initialize();
+                    cleanMainScreen();
                 },
                 clientCollectionView: function(view){
                     console.info('Router->clientCollectionView: collection='+view);
@@ -157,10 +159,18 @@ define(
             });
 
 
+    var cleanMainScreen = function(){
+        (debug)?console.info("cleanMainScreen"):null;
+        //$('#main_main').html('');
+        React.unmountComponentAtNode($('#main_main')[0]);
+    };
+
     var clearScreen = function(){
         (debug)?console.info('clearScreen'):null;
-        $('#main_top').html('');
-        $('#left_panel').html('');
+        //React.unmountComponentAtNode($('#main_top')[0]);
+        React.unmountComponentAtNode($('#left_panel')[0]);
+
+        //$('#main_top').html('');  //2-do: all trash clean-up on componentUnmount
         console.info(['#left_panel',$('#left_panel')]);
         //$('#main_main').html('');
     };

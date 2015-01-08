@@ -22,6 +22,9 @@ define(
             componentWillMount: function(){
                 (debug)?console.log('MainList WillMount'):null;
             },
+            componentWillUnmount: function(){
+                $('#main_top').html('');
+            },
             //2-do:
             // * search
             // * filter

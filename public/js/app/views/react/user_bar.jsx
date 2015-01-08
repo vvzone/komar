@@ -120,7 +120,7 @@ define(
             (debug)?console.info('user bar initialization...'):null;
 
             app_registry.user_bar = React.renderComponent(
-                UserBarComponent(),
+                new UserBarComponent,
                 document.getElementById("header_login")
             );
         };
