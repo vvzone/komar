@@ -30,6 +30,7 @@ define(
             },
             render: function(){
                 var self = this;
+
                 $(document).ready(function(){
                      require(['jsx!views/react/client_cat_tree'], function(CatTree){
                          React.renderComponent(
@@ -42,15 +43,21 @@ define(
             }
         });
 
-        var Menus = new MenusCollection;
-        var p = Menus.fetch({
-            error: function(obj, response){
-                console.warn('error, response: '+response);
-                EventBus.trigger('error', 'Ошибка', 'Невозможно получить меню', response);
-            },
-            success: function(){
-                var View = new MenuView({collection: Menus});
-            }
-        });
+        var initialize = function(){
+            console.log('client menu initialization...');
+            var Menus = new MenusCollection;
+            var p = Menus.fetch({
+                error: function(obj, response){
+                    console.warn('error, response: '+response);
+                    EventBus.trigger('error', 'Ошибка', 'Невозможно получить меню', response);
+                },
+                success: function(){
+                    var View = new MenuView({collection: Menus});
+                }
+            });
+        };
+        return {
+            initialize: initialize
+        };
     }
 );

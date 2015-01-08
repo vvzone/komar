@@ -12,10 +12,13 @@ define(
 
         'app_registry',
         'jsx!views/react/user_bar',
-        'jsx!views/react/select_entry'
+        'jsx!views/react/select_entry',
+
+        'views/client_menu_list'
     ],
     function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter,
-             app_registry, UserBarComponent){
+             app_registry, UserBarComponent, SelectEntry, 
+             ClientMenuList){
 
 
         var debug = (Config['debug'] && Config['debug']['debug_router'])? 1:null;
@@ -106,9 +109,13 @@ define(
                 },
                 clientView: function(){
                     console.info('Router->clientView');
+
+                    ClientMenuList.initialize();
+
+                    /*
                     var ClientMenu =require(['views/client_menu_list'], function(ClientMenuList){
                         return ClientMenuList;
-                    });
+                    });*/
                 },
                 itemView : function(view, id, param){
                     console.info('Router->itemView: view='+view+' , id='+id,+' , param='+param);
