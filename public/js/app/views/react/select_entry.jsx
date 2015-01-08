@@ -11,6 +11,14 @@ define(
 
 
         var SelectEntryScreen = React.createClass({
+            componentDidMount: function(){
+                var body = document.getElementsByTagName("body")[0];
+                body.style.background = "#f3f3f3 url('/img/rls_mini.jpg') no-repeat right top";
+            },
+            componentWillUnmount: function(){
+                var body = document.getElementsByTagName("body")[0];
+                body.style.background ="";
+            },
             entryClient: function(event){
                 event.preventDefault();
                 app_registry.router.navigate('client', true);
@@ -22,8 +30,12 @@ define(
             render: function(){
                 return(
                     <div id="select_entry">
-                        <div className="entry_option" onClick={this.entryClient}>Клиентская часть</div>
-                        <div className="entry_option" onClick={this.entryAdmin}>Администрирование</div>
+                        <div className="bg_box" onClick={this.entryClient}>
+                            <div className="entry_option">Клиентская часть</div>
+                        </div>
+                        <div className="bg_box" onClick={this.entryAdmin}>
+                            <div className="entry_option">Администрирование</div>
+                        </div>
                     </div>
                 );
             }

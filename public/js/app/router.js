@@ -26,6 +26,7 @@ define(
                     'documentation': 'documentation',
                     'react': 'react',
                     'login': 'login',
+                    'enter': 'enter',
                     'admin/:view/:id(/:param)': 'itemView',
                     'admin/:view' : 'collectionView',
                     'client/:view': 'clientCollectionView',

@@ -942,9 +942,9 @@ video {
 
 div#user_bar {
   font-size: 12pt;
-  margin-left: 20px;
+  margin-left: @big*2;
   overflow: hidden;
-  padding: 20px;
+  padding: @big*2 - @min*2;
 }
 div#user_bar_username a{
   color: white;
@@ -1013,4 +1013,44 @@ div.login {
   }
   input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
 }
+
+div#select_entry {
+  position: absolute;
+  left: 38%;
+  right: 62%;
+  width: @big*90;
+  margin: 250px 0 0 -150px;
+
+  div.bg_box {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid white;
+    color: white;
+    float: left;
+    margin: @big*2;
+    opacity: 0.55;
+    padding-top: @big*10;
+    width: @big*35;
+    height: @big*23;
+    cursor: pointer;
+
+    div.entry_option {
+      color: black;
+      opacity: 1;
+      text-align: center;
+      font-size: 140%;
+    }
+  }
+
+  div.bg_box:hover{
+    opacity: 0.75;
+    border: 1px solid white;
+    text-decoration: underline;
+
+    div{
+      text-decoration: underline;
+    }
+  }
+
+}
+
 

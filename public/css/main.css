@@ -692,7 +692,7 @@ div#user_bar {
   font-size: 12pt;
   margin-left: 20px;
   overflow: hidden;
-  padding: 20px;
+  padding: 16px;
 }
 div#user_bar_username a {
   color: white;
@@ -758,4 +758,37 @@ div.login input {
 }
 div.login input:focus {
   box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
+}
+div#select_entry {
+  position: absolute;
+  left: 38%;
+  right: 62%;
+  width: 900px;
+  margin: 250px 0 0 -150px;
+}
+div#select_entry div.bg_box {
+  background: none repeat scroll 0 0 white;
+  border: 1px solid white;
+  color: white;
+  float: left;
+  margin: 20px;
+  opacity: 0.55;
+  padding-top: 100px;
+  width: 350px;
+  height: 230px;
+  cursor: pointer;
+}
+div#select_entry div.bg_box div.entry_option {
+  color: black;
+  opacity: 1;
+  text-align: center;
+  font-size: 140%;
+}
+div#select_entry div.bg_box:hover {
+  opacity: 0.75;
+  border: 1px solid white;
+  text-decoration: underline;
+}
+div#select_entry div.bg_box:hover div {
+  text-decoration: underline;
 }
