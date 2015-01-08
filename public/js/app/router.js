@@ -14,11 +14,12 @@ define(
         'jsx!views/react/user_bar',
         'jsx!views/react/select_entry',
 
-        'views/client_menu_list'
+        'views/client_menu_list',
+        'views/menu_list'
     ],
     function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter,
-             app_registry, UserBarComponent, SelectEntry, 
-             ClientMenuList){
+             app_registry, UserBarComponent, SelectEntry,
+             ClientMenuList, AdminMenuList){
 
 
         var debug = (Config['debug'] && Config['debug']['debug_router'])? 1:null;
@@ -30,10 +31,11 @@ define(
                     'react': 'react',
                     'login': 'login',
                     'enter': 'enter',
-                    'admin/:view/:id(/:param)': 'itemView',
-                    'admin/:view' : 'collectionView',
+                    'admin/:view/:id(/:param)': 'adminItemView',
+                    'admin/:view' : 'adminCollectionView',
+                    'admin': 'admin',
                     'client/:view': 'clientCollectionView',
-                    'client': 'clientView',
+                    'client': 'client',
                     '*action': 'no_route'
                 },
                 before: function( route ) {
@@ -107,32 +109,30 @@ define(
                     console.info('Router->no_route');
                     EventBus.trigger('error', 'Ошибка 404', 'Ошибка роутинга');
                 },
-                clientView: function(){
-                    console.info('Router->clientView');
-
-                    ClientMenuList.initialize();
-
-                    /*
-                    var ClientMenu =require(['views/client_menu_list'], function(ClientMenuList){
-                        return ClientMenuList;
-                    });*/
+                /* ==== ADMIN ==== */
+                admin: function(){
+                    console.info('Router->admin');
+                    AdminMenuList.initialize();
                 },
-                itemView : function(view, id, param){
+                adminItemView : function(view, id, param){
                     console.info('Router->itemView: view='+view+' , id='+id,+' , param='+param);
                     console.info('view='+view+' id='+id+' param='+param);
+                    AdminMenuList.initialize();
+                },
+                adminCollectionView: function(view){
+                    console.info('Router->collectionView: collection='+view);
+                    AdminMenuList.initialize();
+                    CollectionsRouter.initialize(view, null, null);
+                },
+                /* ==== CLIENT ==== */
+                client: function(){
+                    console.info('Router->client');
+                    ClientMenuList.initialize();
                 },
                 clientCollectionView: function(view){
                     console.info('Router->clientCollectionView: collection='+view);
                     var ClientMenu =require(['views/client_menu_list'], function(ClientMenuList){
                         return ClientMenuList;
-                    });
-                    CollectionsRouter.initialize(view, null, null);
-                },
-                collectionView: function(view){
-                    console.info('Router->collectionView: collection='+view);
-
-                    var Menu =require(['views/menu_list'], function(MenuList){
-                        return MenuList;
                     });
                     CollectionsRouter.initialize(view, null, null);
                 },

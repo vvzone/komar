@@ -46,17 +46,25 @@ define(
             }
         });
 
-        var Menus = new MenusCollection;
-        (debug)?console.log('trying fetch collection...'):null;
-        var p = Menus.fetch({
-            error: function(obj, response){
-                (debug)?console.warn('error, response: '+response):null;
-                EventBus.trigger('error', 'Ошибка', 'Невозможно получить меню', response);
-            },
-            success: function(){
-                (debug)?console.info(['success & menu-collection:', Menus.toJSON()]):null;
-                var View = new MenuView({collection: Menus});
-            }
-        });
+
+        var initialize = function(){
+            console.log('admin menu initialization...');
+            var Menus = new MenusCollection;
+            (debug)?console.log('trying fetch collection...'):null;
+            var p = Menus.fetch({
+                error: function(obj, response){
+                    (debug)?console.warn('error, response: '+response):null;
+                    EventBus.trigger('error', 'Ошибка', 'Невозможно получить меню', response);
+                },
+                success: function(){
+                    (debug)?console.info(['success & menu-collection:', Menus.toJSON()]):null;
+                    var View = new MenuView({collection: Menus});
+                }
+            });
+        }
+
+        return {
+            initialize: initialize
+        }
     }
 );
