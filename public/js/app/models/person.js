@@ -37,7 +37,7 @@ define(
                 sex_types: 'Пол',
                 inn: 'ИНН',
                 citizenship: 'Гражданство',
-                //deputy: 'Заместитель',
+                deputy: 'Заместитель',
                 person_post: 'Должность'
                 //client: 'Общая информация',
                 //identification_number: 'Идентификационный номер',
@@ -48,7 +48,7 @@ define(
             },
             attr_dependencies: {
                 //deputy: 'constant',
-                /*deputy: 'deputy',*/
+                deputy: 'deputy',
                 sex_types: 'sex_types'
             }, //for recursive objects
             model_name: 'person',

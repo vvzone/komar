@@ -52,7 +52,15 @@ class PersonController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
         $person = $objectManager->find('Object\Entity\Person', $id);
-        return new JsonModel($person->getAll());
+
+        $personObject = $person->getAll();
+
+        /*
+        $unit_id = $personObject[''];
+        $personDeputy =  $objectManager->getRepository('Object\Entity\Person')->getDeputy($unit_id);
+        */
+
+        return new JsonModel($personObject);
     }
 
     public function create($incoming_array)

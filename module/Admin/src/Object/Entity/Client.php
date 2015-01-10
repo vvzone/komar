@@ -58,7 +58,6 @@ class Client
         $this->unitInfo = new ArrayCollection();
     }
 
-
     /**
      * Get id
      *
@@ -171,7 +170,10 @@ class Client
         if($unit){
             return $unit->getPlain();
         }
-        return null;
+        //return null;
+
+        //2-do
+        return $this->unitInfo->last()->getId();
     }
 
     public function getAll()

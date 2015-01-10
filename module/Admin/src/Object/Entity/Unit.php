@@ -394,6 +394,7 @@ class Unit
             'id' => $this->getId(),
             'name' => $this->getName(),
             'short_name' => $this->getShortName(),
+            'is_legal' => $this->getIsLegal(),
             'own_numeration' => $this->getOwnNumeration(),
             'unit_posts' => $this->getPostsList(),
             'identification_number' => $this->getClient()->getIdentificationNumber()
