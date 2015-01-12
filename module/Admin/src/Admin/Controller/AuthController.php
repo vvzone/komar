@@ -18,6 +18,8 @@ use Zend\ServiceManager\ServiceManager;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
+//
+
 class AuthController extends AbstractActionController
 {
     public function indexAction()
@@ -76,6 +78,44 @@ class AuthController extends AbstractActionController
                 array('Неправильное имя пользователя или пароль...')
             );
         }
+    }
+
+    public function logoutAction(){
+
+        $request = $this->getRequest();
+        $headers = $request->getHeaders();
+
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+
+        if (!$headers->has('Authorization')) {
+            $response = $this->getResponse()->setStatusCode(400);
+            return new JsonModel(
+                array('Неправильный заголовок запроса...')
+            );
+        }
+
+        $authorization = $headers->get('Authorization')->getFieldValue();
+
+        if (strpos($authorization, 'TOKEN') === false) {
+            //$response = $this->getResponse()->setStatusCode(400);
+            return new JsonModel(
+                array(
+                    'Неправильный заголовок авторизации...',
+                    $authorization,
+                    strpos($authorization, 'TOKEN'),
+                    strpos('TOKEN 12345', 'TOKEN'),
+                )
+            );
+        }
+
+        return new JsonModel(
+            array(
+                'result' => 'logout'
+            )
+        );
     }
 
     public function extractCredentials($authorizationHeader){

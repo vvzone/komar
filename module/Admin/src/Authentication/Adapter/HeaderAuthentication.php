@@ -42,6 +42,10 @@ class HeaderAuthentication implements AdapterInterface{
         return $authorizationParts;
     }
 
+    public function extractToken($authorizationHeader){
+        return $authorization =  substr($authorizationHeader, 6);
+    }
+
     public function authenticate()
     {
         $request = $this->getRequest();
@@ -61,20 +65,25 @@ class HeaderAuthentication implements AdapterInterface{
         // Check Authorization prefix
 
         $authorization = $headers->get('Authorization')->getFieldValue();
-
-
         /*if (strpos($authorization, 'BASE') !== 0) {
             $authorizationPairs = $this->extractCredentials($authorization);
             $user  = $this->getUserRepository()->getByCredentials($authorizationPairs);
         }*/
 
-        if(strpos($authorization, 'TOKEN') !== 0){
-            $user  = $this->getUserRepository()->findByToken($authorization);
-        }
-        else{
+        if(strpos($authorization, 'TOKEN') === false){
+            /*
+            return new JsonModel(array(
+                'Missing authorization prefix'
+            ));
+            */
+
             return new Result(Result::FAILURE, null, array(
                 'Missing authorization prefix'
             ));
+        }
+        else{
+            $authorization = $this->extractToken($authorization);
+            $user  = $this->getUserRepository()->findByToken($authorization);
         }
 
         // Validate public key
@@ -84,12 +93,15 @@ class HeaderAuthentication implements AdapterInterface{
 
         //->getResult()
 
-        if (null === $user) {
+
+        if ($user === null) {
             $code = Result::FAILURE_IDENTITY_NOT_FOUND;
             return new Result($code, null, array(
                 'User not found based on token'
             ));
         }
+
+
 
         // Validate signature
         /*

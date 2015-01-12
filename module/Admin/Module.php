@@ -65,11 +65,12 @@ class Module
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
 
+        $listener = $serviceManager->get('Authentication\Listener\ApiAuthenticationListener');
+        $eventManager->getSharedManager()->attach('Object\Controller', 'dispatch', $listener);
+
         $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'onDispatchError'), 0);
         $eventManager->attach(MvcEvent::EVENT_RENDER_ERROR, array($this, 'onRenderError'), 0);
 
-        $listener = $serviceManager->get('Authentication\Listener\ApiAuthenticationListener');
-        $eventManager->getSharedManager()->attach('Object\Controller', 'dispatch', $listener);
 
 
         //$eventManager->attach(new \Doctrine\DBAL\Event\Listeners\MysqlSessionInit('utf8', 'utf8_unicode_ci')); //getEventManager()->

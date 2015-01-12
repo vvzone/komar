@@ -54,6 +54,19 @@ return array(
                 'route_plugins' => $routePlugins,
                 'may_terminate' => true, // check-out another time what does this mean
             ),
+            'logout' => array(
+                'type'    => 'Literal',
+                'options' => array(
+                    'route'    => '/admin/logout',
+                    'defaults' => array(
+                        '__NAMESPACE__' => 'Admin\Controller',
+                        'controller'    => 'Admin\Controller\Auth',
+                        'action'       => 'logout'
+                    ),
+                ),
+                'route_plugins' => $routePlugins,
+                'may_terminate' => true, // check-out another time what does this mean
+            ),
             /* Menu, end other etc... */
             'sys' => array(
                 'type'    => 'Literal',

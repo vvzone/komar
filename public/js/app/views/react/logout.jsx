@@ -5,8 +5,9 @@ define(
     [
         'jquery',
         'react',
-        'config'
-    ],function($, React, Config){
+        'config',
+        'app_registry'
+    ],function($, React, Config, app_registry){
 
         var debug = (Config['debug'] && Config['debug']['debug_login'])? 1:null;
 
@@ -84,15 +85,16 @@ define(
                     is_logged: true
                 };
             },
-            successLogin: function(){
+            successLogOut: function(){
                 this.setState({
                     is_logged: false
                 });
             },
             render: function(){
-                var output = <LogoutForm callback={this.successLogin} />;
+                var output = <LogoutForm callback={this.successLogOut} />;
                 if(this.state.is_logged == false){
-                    //;Router.navigate('client', true);
+                    //Router.navigate('client', true);
+                    app_registry.router.navigate('client', true);
                 }
                 return(
                     output
