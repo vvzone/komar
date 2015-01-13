@@ -407,11 +407,7 @@ return array(
         ),
         'shared' => array(
             'token' => false
-        )
-        /*'invokables' => array
-        (
-            'token' => 'Authentication\Helper\TokenHelper',
-        )*/
+        ),
     )
 
 );
