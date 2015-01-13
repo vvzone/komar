@@ -57,6 +57,7 @@ define(
                     success:function (data) {
                         (debug)?console.log(["Login request details: ", data]):null;
 
+                        console.info(['data', data]);
                         token = data.result['token'];
                         $('meta[name="csrf-token"]').attr('content', 'TOKEN '+token);
                         //$('#x-auth-token').val(data[0]['token']);

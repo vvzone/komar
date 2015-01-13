@@ -13,6 +13,7 @@ class ApiAuthenticationListener
     {
         $this->adapter = $adapter;
     }
+    //
 
 
     public function __invoke(MvcEvent $event)

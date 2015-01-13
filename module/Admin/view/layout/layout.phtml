@@ -1,14 +1,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="csrf-token" content="<?php echo $this->layout()->token ?>">
-    <meta name="csrf-token23" content="<?php echo $this->layout()->tokenHelper ?>">
-    <meta name="csrf-token2" content="<?php echo $this->layout()->tokenHelper2 ?>">
-    <meta name="csrf-token3" content="<?php echo $this->layout()->tokenHelper3 ?>">
-    <meta name="csrf-token4" content="<?php echo $this->tokenHelper ?>">
-    <meta name="csrf-token41" content="<?php echo $this->token_helper ?>">
-    <meta name="csrf-token42" content="<?php //echo $this->token_helper->getToken() ?>">
-    <meta name="csrf-token43" content="<?php echo $this->tokenHelper3 ?>">
+    <meta name="csrf-token" content="<?php echo $this->token ?>">
     <title><?php echo 'testTitle'; ?></title>
     <link href="css/bootstrap.min.css" rel="stylesheet" media="all"/>
     <link href="css/bootstrap-responsive.min.css" rel="stylesheet" media="all"/>
@@ -18,8 +11,9 @@
 <body>
 <?php echo $this->layout()->content ?>
 <?php //echo var_dump($this->layout()) ?>
-<?php //echo var_dump($this) ?>
-<?php echo var_dump($this->layout()->tokenhelper) ?>
+<?php echo var_dump($this->layout()->token) ?>
+<?php echo var_dump($this->token) ?>
+<?php $this->plugin('token'); ?>
 <?php echo var_dump($this->tokenhelper) ?>
 <?php echo var_dump($this->tokenHelper) ?>
 <?php echo var_dump($this->tokenHelper3) ?>

@@ -398,12 +398,20 @@ return array(
             )
         )
     ),
+    //
     // ViewHelpers
+    //
     'view_helpers' => array(
-        'invokables' => array
-        (
-            'tokenhelper' => 'Authentication\Helper\TokenHelper',
-
+        'factories' => array(
+            'token' => 'Authentication\Helper\TokenHelperFactory'
+        ),
+        'shared' => array(
+            'token' => false
         )
+        /*'invokables' => array
+        (
+            'token' => 'Authentication\Helper\TokenHelper',
+        )*/
     )
+
 );
