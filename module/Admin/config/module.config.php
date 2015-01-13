@@ -397,5 +397,13 @@ return array(
                 )
             )
         )
+    ),
+    // ViewHelpers
+    'view_helpers' => array(
+        'invokables' => array
+        (
+            'tokenhelper' => 'Authentication\Helper\TokenHelper',
+
+        )
     )
 );

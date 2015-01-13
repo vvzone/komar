@@ -32,6 +32,8 @@ use Zend\Db\TableGateway\TableGateway;
 
 use Zend\View\Model\JsonModel;
 
+use Zend\ModuleManager\Feature\ViewHelperProviderInterface;
+
 class Module
 {
     public function getAutoloaderConfig()
@@ -61,6 +63,14 @@ class Module
         $application         = $event->getApplication();
         $serviceManager      = $application->getServiceManager();
         $eventManager        = $application->getEventManager();
+
+
+        $viewModel = $event->getApplication()->getMvcEvent()->getViewModel();
+
+        //$myService = $serviceManager->get('\Authentication\Helper\TokenHelper');
+        //$viewModel->token = $myService;
+        //$viewModel->token = new \Authentication\Helper\TokenHelper();
+
 
         $moduleRouteListener = new ModuleRouteListener();
         $moduleRouteListener->attach($eventManager);
@@ -94,9 +104,9 @@ class Module
     public function getJsonModelError($e)
     {
         $error = $e->getError();
-        if (!$error) {
+        /*if (!$error) {
             return;
-        }
+        }*/
 
         $message = 'An error occurred during execution; please try again later.';
         $code = 500;
@@ -215,8 +225,6 @@ class Module
             ),
         );
     }
-
-
 
 
 }

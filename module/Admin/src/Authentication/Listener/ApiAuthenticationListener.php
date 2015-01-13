@@ -26,7 +26,14 @@ class ApiAuthenticationListener
             $response->setStatusCode(401);
 
             $jsonModel = new JsonModel($result->getMessages());
-            $response->setContent($jsonModel->serialize());
+
+            $serialized = $jsonModel->serialize();
+            //$response->setContent($jsonModel);
+            $response->setContent($serialized);
+
+            $event->setError('AUTH ERROR!');
+            $event->setResult($response);
+
             return $response;
 
             //$event->setResult($response);
