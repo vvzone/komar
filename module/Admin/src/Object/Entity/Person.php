@@ -408,8 +408,12 @@ class Person
         foreach($this->getUnitPost() as $unit_post){
             $list[$unit_post->getId()] =
                 array(
+                    $unit_post->getAll()
+                    /*
                     'name' => $unit_post->getPost()->getName(),
-                    'short_name' => $unit_post->getPost()->getShortName()
+                    'short_name' => $unit_post->getPost()->getShortName(),
+                    'unit' => $this->getPost()
+                    */
                 );
         }
 

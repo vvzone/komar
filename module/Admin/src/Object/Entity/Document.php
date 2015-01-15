@@ -393,6 +393,7 @@ class Document
         $attributes = array();
         foreach($this->documentAttributes as $attribute){
             $attributes[$attribute->getId()] = array(
+                'id' => $attribute->getId(),
                 'type' => $attribute->getAttributeType()->getMachineName(),
                 'data' => $attribute->getData()
             );

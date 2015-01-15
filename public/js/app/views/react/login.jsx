@@ -64,9 +64,9 @@ define(
                         //window.location.replace('#');
                         //setUp ajax
                         $.ajaxSetup({
-                            headers: { 'Authorization': token },
+                            headers: { 'Authorization': 'TOKEN '+token },
                             beforeSend: function(xhr) {
-                                xhr.setRequestHeader('Authorization', token);
+                                xhr.setRequestHeader('Authorization', 'TOKEN '+token);
                             }
                         });
                         app_registry.auth = {

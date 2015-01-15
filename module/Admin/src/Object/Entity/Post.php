@@ -182,7 +182,9 @@ class Post
             'id' => $this->getId(),
             'name' => $this->getName(),
             'short_name' => $this->getShortName(),
-            'description' => $this->getDescription()
+            'description' => $this->getDescription(),
+            'unit' => '',
+            'unitsHaveCurrentPost' => $this->getUnitsHaveCurrentPost()
         );
     }
 }

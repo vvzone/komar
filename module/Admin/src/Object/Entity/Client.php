@@ -48,6 +48,7 @@ class Client
     protected $personInfo;
 
     /**
+     * Only if has Unit-extension!
      * @ORM\OneToMany(targetEntity="Object\Entity\Unit", mappedBy="client", cascade={"all"}, orphanRemoval=true)
      */
     protected $unitInfo;
@@ -157,6 +158,7 @@ class Client
 
     /**
      * Get unitInfo
+     * Only if Client is a Unit
      *
      * @throws \Exception
      * @return Unit
@@ -173,7 +175,7 @@ class Client
         //return null;
 
         //2-do
-        return $this->unitInfo->last()->getId();
+        return $this->unitInfo->last();
     }
 
     public function getAll()

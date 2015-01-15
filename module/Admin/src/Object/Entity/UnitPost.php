@@ -241,6 +241,7 @@ class UnitPost
             'id' => $this->getId(),
             'name' => $this->getName(),
             'short_name' => $this->getShortName(),
+            'unit' => $this->getUnit()->getUnitSimple()
         );
     }
 }

@@ -51,7 +51,8 @@ define(
                 {units_tree: 'tree'},
                 {clients: 'list'},
                 {units_plain: 'list'},
-                {documents: 'list'},
+                {documents: 'client_list'},
+                //{documents_output: 'client_list'},
                 {route: 'list'},
                 {very_urgency: 'list'}
             ],
@@ -74,3 +75,4 @@ define(
         return Config;
     }
 );
+
