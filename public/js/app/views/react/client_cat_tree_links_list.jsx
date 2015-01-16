@@ -23,6 +23,7 @@ define(
                 }
             },
             whenClicked: function(link){
+                link.preventDefault();
                 var customEvent = new CustomEvent("catLinkClick",  {
                     detail: {screen_name: link.screen},
                     bubbles: true
@@ -41,9 +42,9 @@ define(
                 if(model.get('items')!=null){
                     className = "glyphicon togglable";
                     if (this.state.visible) {
-                        className += " glyphicon-minus";
+                        className += " glyphicon-chevron-up";
                     } else {
-                        className += " glyphicon-plus";
+                        className += " glyphicon-chevron-down";
                     }
                     if(model.get('is_not_screen')!=null){
                         return(
@@ -65,7 +66,7 @@ define(
                 }
 
                 return(
-                    <li style={style}><ItemLink model={model} onClick={this.whenClicked}/></li>
+                    <li style={style}><ItemLink model={model} onClick={this.whenClicked}/><span className="unread">2</span></li>
                     );
 
             },
@@ -92,7 +93,8 @@ define(
                     });
                 }
             },
-            handleClick: function(){
+            handleClick: function(event){
+                event.preventDefault();
                 console.log('handle click');
             },
             render: function(){
@@ -109,8 +111,9 @@ define(
                         return(<CatLink model={model} key={model.get('id')} onClick={self.handleClick}/>)
                     }
                 });
+                //nav nav-sidebar
                 return(
-                    <ul className="nav nav-sidebar cattree">{links_output}</ul>
+                    <ul className="client_menu">{links_output}</ul>
                 );
             }
         });

@@ -31,10 +31,10 @@ define(
                 return(
                     <div id="select_entry">
                         <div className="bg_box" onClick={this.entryClient}>
-                            <div className="entry_option">Клиентская часть</div>
+                            <div className="entry_option"><span className="glyphicon glyphicon-user"></span>Клиентская часть</div>
                         </div>
                         <div className="bg_box" onClick={this.entryAdmin}>
-                            <div className="entry_option">Администрирование</div>
+                            <div className="entry_option"><span className="glyphicon glyphicon-cog"></span>Администрирование</div>
                         </div>
                     </div>
                 );

@@ -20,7 +20,7 @@ define(
                 (debug)?console.log('client_cat_tree.jsx loaded...'):null;
                 var collection = this.props.collection;
                 return(
-                    <div className="well"><ClientCatTreeLinksList collection={collection} childs={null} reaction={this.whenReaction}/></div>
+                    <div className="client_bar"><ClientCatTreeLinksList collection={collection} childs={null} reaction={this.whenReaction}/></div>
                 );
             }
         });
