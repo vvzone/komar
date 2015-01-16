@@ -167,7 +167,7 @@ ul.client_menu{
   font-family: 'Open Sans', sans-serif;
   background: #dbdbdb;
 
-  li{
+  >li{
     color: #fff;
     //background: #34495e;
     background: #579db9;
@@ -184,6 +184,34 @@ ul.client_menu{
       float:left;
       font-size: 50%;
       margin: @med;
+    }
+
+    ul.simple_menu_list{
+      overflow: hidden;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      padding-top: @min;
+      padding-left: @big*2;
+
+      li{
+        float:left;
+        clear: both;
+        color: white;
+        margin: 0;
+        overflow: hidden;
+
+        a{
+          color: white;
+          text-decoration: underline;
+        }
+
+        a:hover{
+          color: white;
+          text-decoration: underline;
+          border: 0;
+        }
+      }
     }
   }
 

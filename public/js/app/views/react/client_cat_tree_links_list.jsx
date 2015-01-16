@@ -47,11 +47,32 @@ define(
                         className += " glyphicon-chevron-down";
                     }
                     if(model.get('is_not_screen')!=null){
+
+                        var simple_links = [];
+
+                        var items = model.get('items');
+                        var simple_links = items.map(function(model) {
+                            return <li><ItemLink model={model} onClick={this.whenClicked}/></li>;
+                        });
+
+                        /*
+                        for(var model_sec in models){
+                            console.info(['model_sec', model_sec]);
+                            console.info(['models', models]);
+                            simple_links = <ItemLink model={model_sec} onClick={this.whenClicked}/>;
+                        }
+                        */
+                        //<CatTreeLinksList source={null} childs={model.get('items')}/>
+                        //{simple_links}
                         return(
                             <li>
                                 <span onClick={this.toggle} className={className}></span>
                                 <div className="childs" onClick={this.toggle}>{model.get('name')}</div>
-                                <div style={style}><CatTreeLinksList source={null} childs={model.get('items')}/></div>
+                                <div style={style}>
+                                    <ul className="simple_menu_list">
+                                        {simple_links}
+                                    </ul>
+                                </div>
                             </li>
                             );
                     }

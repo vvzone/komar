@@ -114,7 +114,7 @@ ul.client_menu {
   background: #dbdbdb;
   /*the animations */
 }
-ul.client_menu li {
+ul.client_menu > li {
   color: #fff;
   background: #579db9;
   padding: 1em;
@@ -124,10 +124,34 @@ ul.client_menu li {
   cursor: pointer;
   transition: 0.4s all;
 }
-ul.client_menu li span {
+ul.client_menu > li span {
   float: left;
   font-size: 50%;
   margin: 5px;
+}
+ul.client_menu > li ul.simple_menu_list {
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding-top: 2px;
+  padding-left: 20px;
+}
+ul.client_menu > li ul.simple_menu_list li {
+  float: left;
+  clear: both;
+  color: white;
+  margin: 0;
+  overflow: hidden;
+}
+ul.client_menu > li ul.simple_menu_list li a {
+  color: white;
+  text-decoration: underline;
+}
+ul.client_menu > li ul.simple_menu_list li a:hover {
+  color: white;
+  text-decoration: underline;
+  border: 0;
 }
 ul.client_menu i {
   padding-right: 0.5em;
