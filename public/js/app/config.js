@@ -8,7 +8,7 @@ define(
     function($, _, Backbone){
 
         console.info('config loaded...');
-
+//Наша проблема в том, что мы не действуем как субьект. Все время на США и ЕС смотрим. А Россия должна сама уже начать действовать в этой ситуации. А то каж
         var Config = {
             debug: {
                 debug_menu: null,
@@ -22,7 +22,8 @@ define(
                 debug_control_router: null,
                 debug_route_levels_control: null,
                 debug_login: 1,
-                debug_router: 1
+                debug_router: 1,
+                debug_map: 1
             },
             collections_router: [
                 {ranks: 'list'},

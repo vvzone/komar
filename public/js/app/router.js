@@ -15,11 +15,14 @@ define(
         'jsx!views/react/select_entry',
 
         'views/client_menu_list',
-        'views/menu_list'
+        'views/menu_list',
+
+        'views/map'
     ],
     function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter,
              app_registry, UserBarComponent, SelectEntry,
-             ClientMenuList, AdminMenuList){
+             ClientMenuList, AdminMenuList,
+             MapView){ //2-do: to many components loaded by default!
 
 
         var debug = (Config['debug'] && Config['debug']['debug_router'])? 1:null;
@@ -132,6 +135,8 @@ define(
                     console.info('Router->client');
                     ClientMenuList.initialize();
                     cleanMainScreen();
+
+                    MapView.initialize();
                 },
                 clientCollectionView: function(view){
                     console.info('Router->clientCollectionView: collection='+view);

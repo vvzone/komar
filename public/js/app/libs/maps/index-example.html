@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Примеры использования</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="deploy/styles/gis.full.min.css"/>
+    <link rel="stylesheet" href="deploy/libs/ui/styles/gis.ui.min.css"/>
+    <style>
+        #example-list {
+            position: absolute;
+            top: 10px;
+            left: 100%;
+            z-index: 232;
+            width: 200px;
+            -webkit-transition: all 0.6s ease-in;
+            -moz-transition: all 0.6s ease-in;
+            -o-transition: all 0.6s ease-in;
+            -ms-transition: all 0.6s ease-in;
+            transition: all 0.6s ease-in;
+            margin-left: -200px;
+        }
+        #example-list.selected {
+            left: 50%;
+            top: 0;
+            margin-left: -100px;
+        }
+        #example-list li {
+            -webkit-transition: border-radius  0.6s ease-in, padding  0.6s ease-in;
+            -moz-transition: border-radius  0.6s ease-in, padding  0.6s ease-in;
+            -o-transition: border-radius  0.6s ease-in, padding  0.6s ease-in;
+            -ms-transition: border-radius  0.6s ease-in, padding  0.6s ease-in;
+            position: relative;
+            color: #ffffff;
+            font-size: 14px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            padding: 5px 10px;
+            background: rgba(0, 0, 0, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+            border-radius: 5px 0 0 5px;
+        }
+        #example-list li:hover, #example-list.selected li {
+            -webkit-transform: scale(1.1);
+            -moz-transform: scale(1.1);
+            -o-transform: scale(1.1);
+            -ms-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+        #example-list.selected li {
+            color: #000000;
+            border-radius: 0 0 5px 5px;
+            cursor: default;
+            padding: 0 5px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+    </style>
+</head>
+<body>
+    <ul id="example-list">
+        <li data-script="examples/base.js">Базовые настройки</li>
+        <li data-script="examples/heat-map.js">Тепловая карта</li>
+        <li data-script="examples/bearings.js">Пеленги каждые 45 миллисекунд</li>
+        <li data-script="examples/bearings-2.js">Пеленги каждые 45 миллисекунд (владелец не мы)</li>
+        <li data-script="examples/overlay.js">Оверлей</li>
+        <li data-script="examples/100k.js">100 000 объектов</li>
+        <li data-script="examples/bearings_before_object.js">Позиции и пеленги до появления источника и поста</li>
+        <li data-script="examples/bing-maps.js">Bing</li>
+        <li data-script="examples/custom-objects.js">Настраиваемый список иконок в графическом интерфейсе</li>
+        <li data-script="examples/min-bearings-per-post.js">Ограничение на количество пеленгов с одного поста</li>
+    </ul>
+    <script src="deploy/scripts/gis.full.min.js"></script>
+    <script src="deploy/libs/ui/scripts/gis.ui.full.min.js"></script>
+    <script>
+        $(function () {
+            var SELECTED_CLASS = 'selected',
+                    $list = $('#example-list');
+            var functionSelect = function () {
+                $list.addClass(SELECTED_CLASS);
+                $(document.body).prepend('<div id="map"/>');
+                require([$(this).data('script')]);
+                $list.off('click', 'li', functionSelect);
+                $('li', $list).not(this).remove();
+                return false;
+            };
+            $list.on('click', 'li', functionSelect);
+        });
+    </script>
+</body>
+</html>

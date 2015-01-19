@@ -300,15 +300,15 @@ define(
 
             /* типы периодов */
             period_types: function() {
-                var local = host + prefix + "/periodtypes";
-                var production = host + prefix + "/period_types";
+                var local = host + prefix + "/period_type";
+                var production = host + prefix + "/period_type";
 
                 return (local_server)? local: production;
             },
             period_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/periodtypes/"+ id;
-                var production = host + prefix + "/period_types/"+ id;
+                var local = host + prefix + "/period_type/"+ id;
+                var production = host + prefix + "/period_type/"+ id;
 
                 return (local_server)? local: production;
             },
