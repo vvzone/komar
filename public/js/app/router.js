@@ -137,6 +137,9 @@ define(
                     cleanMainScreen();
 
                     MapView.initialize();
+
+                    //MapView.show();
+
                 },
                 clientCollectionView: function(view){
                     console.info('Router->clientCollectionView: collection='+view);
