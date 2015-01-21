@@ -7,19 +7,36 @@ define(
         'react',
         'event_bus',
         'config',
-        'window'
-/*
-        'map_main',
-        'map'
-*/
+        //'window',
 
-    ],function($, _, Backbone, React, EventBus, Config, window
-        ){ //Gis, Map
+        //'proj4',
+        //'map_main'
+        //'map'
+
+
+    ],function($, _, Backbone, React, EventBus, Config
+               ){ //Gis, Map , window
+        /*
+        var test = function (a) {
+            var b, c;
+            if ("function" == typeof define && define.amd)define(["leaflet", "proj4"], a);
+            else if ("undefined" != typeof module)b = require("leaflet"), c = require("proj4"), module.exports = a(b, c);
+            else {
+                if ("undefined" == typeof window.L || "undefined" == typeof window.proj4)throw"Leaflet and proj4 must be loaded first";
+                a(window.L, window.proj4)
+            }
+        }*/
+
+        var b,c;
+        b = require("leaflet");
+        c = require("proj4");
+
+        module.exports = a(b, c);
 
         console.log('views/map loaded...');
         var debug = (Config['debug'] && Config['debug']['debug_map'])? 1:null;
 
-        require(['./js/app/libs/maps/deploy/scripts/gis.full.min.js']);
+        //require(['./js/app/libs/maps/deploy/scripts/gis.full.min.js']);
 
         //require(['deploy/scripts/gis.full.min.js']);
         //require(['./js/app/libs/maps/deploy/libs/ui/scripts/gis.ui.full.min.js']);
