@@ -15,8 +15,8 @@ require.config({
         route_filter: './libs/backbone.routefilter.min',
         map_main: './libs/maps/deploy/scripts/gis.full.min',
         //map_main: '../../deploy/scripts/gis.full.min',
-        //map: './libs/maps/deploy/libs/ui/scripts/gis.ui.full.min',
-        map: '../../deploy/libs/ui/scripts/gis.ui.full.min',
+        map: './libs/maps/deploy/libs/ui/scripts/gis.ui.full.min',
+        //map: '../../deploy/libs/ui/scripts/gis.ui.full.min',
         window: 'window',
         proj4: 'proj4',
         leaflet: 'leaflet'
@@ -43,11 +43,11 @@ require.config({
         },
         route_filter: {
             deps: ['backbone']
-        },/*
+        },
         map_main: {
             //exports: 'Gis',
-            deps: ['window', 'jquery', 'proj4']
-        },*/
+            deps: ['window', 'jquery', 'leaflet', 'proj4']
+        },
         map: {
             //exports: 'L',
             deps: ['map_main']

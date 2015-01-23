@@ -8,9 +8,9 @@ define(
         'event_bus',
         'config',
         //'window'
-        //'leaflet',
-        //'proj4',
-        'map_main'
+        'leaflet',
+        'proj4'
+//        'map_main'
         //'map'
 
 
@@ -38,10 +38,18 @@ define(
         console.info(['proj4', c]);
         */
 
-        console.info(['leaflef', leaflet]);
-        console.info(['proj4', proj4]);
+        var req_L, req_proj4;
+        req_L = require('leaflet');
+        req_proj4 = require('proj4');
 
+        console.info(['leaflef', leaflet]);
+        console.info(['req_L', req_L]);
+        console.info(['proj4', proj4]);
+        console.info(['req_proj4', req_proj4]);
+
+        window.proj4 = req_proj4;
         //module.exports = a(b, c);
+
 
 
         console.log('views/map loaded...');
@@ -56,6 +64,17 @@ define(
 
         var initialize = function(){
             (debug)?console.info('MapComponent(view/map) initialization... '):null;
+
+            require(['map_main'], function(MapMain){
+                return
+            });
+
+            /*
+            require(['map'], function(Map){
+                return;
+            });
+            */
+
 
             console.info(['window', window]);
             $('#main_main').prepend('<div id="map"/>');
