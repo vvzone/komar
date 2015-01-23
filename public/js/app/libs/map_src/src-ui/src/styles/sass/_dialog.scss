@@ -1,0 +1,70 @@
+/**dialog*/
+#marker-new-dialog, #object-new-dialog {
+  text-align: left;
+  > div {
+    margin-bottom: 4px;
+    min-height: 18px;
+    > ul {
+      display: inline-block;
+      margin-left: 4px;
+      vertical-align: middle;
+    }
+  }
+  &.ui-dialog-content.ui-widget-content {
+    font-size: 10px;
+    padding: 11px 11px 0;
+  }
+}
+#marker-new-dialog {
+  .dialog-label {
+    float: left;
+    margin-right: 4px;
+  }
+  .input-wraper {
+    overflow: hidden;
+  }
+}
+#dialog-new-object-text {
+  width: 205px;
+  margin-left: 4px;
+}
+#dialog-new-marker-text {
+  width: 100%;
+}
+#file-name-user {
+  width: 100%;
+  margin: 9px 0 0 0;
+}
+input[name="automatic"],
+input[name="fixed"]{
+  float: right;
+}
+input[name="fixed"] {
+  width: 31px;
+}
+.dialogNewMap {
+  label {
+    margin-top: 10px;
+    display: block;
+  }
+  input[type=text] {
+    width: 165px;
+    float: right;
+  }
+  .load-error {
+    color: red;
+    text-align: center;
+    clear: both;
+  }
+}
+.copy-latlng {
+  p {
+    margin-bottom: 10px;
+  }
+  input, textarea {
+    width: 100%;
+  }
+  textarea {
+    resize: vertical;
+  }
+}

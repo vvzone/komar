@@ -1,0 +1,53 @@
+$innerContainerWidth: 260px;
+$widgetContainerBackground: #272727;
+
+body {
+  overflow: hidden;
+}
+html, body, div#map, div#leaflet-map-gis {
+
+}
+.gis-ui-container {
+  text-align: left;
+  .gis-bottom-container, .gis-left-container, .gis-top-container, .gis-right-container {
+    background: $widgetContainerBackground;
+  }
+  .gis-bottom-container {
+    height: 24px;
+    width: 100%;
+    background: $widgetContainerBackground;
+  }
+  .gis-top-container {
+    height: 45px;
+    width: 100%;
+  }
+  .gis-left-container {
+    width: 45px;
+  }
+  .gis-right-container {
+    width: 25px;
+  }
+  .gis-right-inner-container {
+    padding: 6px 6px 0 0;
+  }
+  .gis-right-inner-container, .gis-left-inner-container {
+    width: $innerContainerWidth;
+  }
+  .gis-left-inner-container  {
+    z-index: 1000;
+  }
+}
+.modalPreloader {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  .text {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    text-align: center;
+  }
+}

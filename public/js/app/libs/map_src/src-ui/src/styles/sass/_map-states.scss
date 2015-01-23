@@ -1,0 +1,80 @@
+/** map states
+**/
+.gis-map-selecting,
+.gis-clickable {
+  cursor: auto;
+}
+.gis-map-selecting,
+.gis-clickable{
+  cursor: url($imagePath + '/cursor-select.cur') 3 3, auto;
+}
+.gis-map-marker {
+  cursor: crosshair;
+}
+.gis-map-marker {
+  cursor: url($imagePath + '/cursor-marker.cur') 10 10, crosshair;
+}
+.gis-map-measuring {
+  cursor: crosshair;
+}
+.gis-map-measuring {
+  cursor: url($imagePath + '/cursor-measure.cur') 10 10, crosshair;
+}
+.gis-map-object {
+  cursor: crosshair;
+}
+.gis-map-object {
+  cursor: url($imagePath + '/cursor-object.cur') 10 10, crosshair;
+}
+.gis-map-path {
+  cursor: crosshair;
+}
+.gis-map-path {
+  cursor: url($imagePath + '/cursor-path.cur') 10 10, crosshair;
+}
+.gis-map-polygon {
+  cursor: crosshair;
+}
+.gis-map-polygon {
+  cursor: url($imagePath + '/cursor-polygon.cur') 10 10, crosshair;
+}
+.gis-map-ellipse {
+  cursor: crosshair;
+}
+.gis-map-ellipse {
+  cursor: url($imagePath + '/cursor-ellipse.cur') 10 10, crosshair;
+}
+.gis-map-zooming-out {
+  cursor: crosshair;
+}
+.gis-map-sector {
+  cursor: url($imagePath + '/cursor-sector.cur') 10 10, crosshair;
+}
+body .gis-clickable{
+  cursor: url($imagePath + '/cursor-select.cur') 3 3, auto;
+}
+.gis-map-zooming {
+  cursor: zoom-in;
+}
+.gis-map-zooming {
+  cursor: url($imagePath + '/cursor-zoom-in.cur') 0 0, zoom-in;
+}
+.gis-map-zooming-out {
+  cursor: zoom-out;
+}
+.gis-map-zooming-out {
+  cursor: url($imagePath + '/cursor-zoom-out.cur') 0 0, zoom-out;
+}
+.gis-map-moving {
+  cursor: move;
+}
+.gis-map-moving {
+  cursor: url($imagePath + '/cursor-move.cur') 0 0, move;
+}
+body.leaflet-dragging div div,
+body.leaflet-dragging div div .gis-clickable {
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+  cursor: -o-grabbing;
+  cursor: -ms-grabbing;
+}

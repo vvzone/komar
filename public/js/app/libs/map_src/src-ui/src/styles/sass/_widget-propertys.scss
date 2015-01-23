@@ -1,0 +1,540 @@
+$pointSelectorIcoSyze: 10px;
+$propertysBorderColor: #646464;
+$propertysGradientStartColor: #888888;
+$xyInputWidth: 48%;
+$xyInputWidthDirection: 90px;
+@mixin center-selector {
+  .inline-points {
+    margin-bottom: 6px;
+    li, .point-tag {
+      display: inline-block;
+      width: 48%;
+      margin-right: 2%;
+      line-height: 0;
+      &:last-child {
+        margin-right: 0;
+        float: right;
+      }
+      input {
+        width: 82% + 15%;
+        text-align: center;
+        padding: 0;
+        margin-right: -3px;
+      }
+      .gis-direction {
+        input {
+          width: 82%;
+        }
+      }
+    }
+  }
+}
+/*Propertys*/
+.gis-propertys-button {
+  cursor: pointer;
+  @include border-radius(2px);
+  @include button-inactive;
+  &:active, &.selected {
+    @include button-active;
+  }
+  &.disabled {
+    cursor: default;
+    @include disabledBackground;
+    &.selected {
+      @include button-active;
+    }
+  }
+  &.gis-color-button {
+    &:active, &.selected {
+      @include button-active-white;
+    }
+    &.disabled {
+      @include disabledBackground;
+      &.selected {
+        @include button-active-white;
+      }
+    }
+  }
+  &.widget-control {
+    font-size: 11px;
+    border: none;
+    border-radius: 2px;
+    cursor: pointer;
+    color: #DCDCDC;
+    margin: 0;
+    padding: 2px 4px 0 4px;
+    height: 22px;
+    width: 24px;
+    .gis-widget-propertys-geo-path & {
+      width: auto;
+    }
+    span.gis-button-icon {
+      width: 16px;
+      background: url($iconURI) 16px 16px no-repeat;
+      top: 0;
+    }
+    &.gis-button-with-text {
+      width: 98px;
+      padding-left: 0;
+      &.gis-propertys-button-clean-overlay {
+        text-align: center;
+        width: 48px;
+      }
+      span.gis-button-icon {
+        margin-right: 2px;
+        top: 1px;
+      }
+      span.gis-button-text {
+        line-height: 20px;
+        vertical-align: top;
+      }
+    }
+    &:disabled,&.disabled {
+      @include disabledBackground;
+    }
+    span {
+      display: inline-block;
+      height: 20px;
+      position: relative;
+    }
+    &.gis-propertys-button-delete span.gis-button-icon {
+      background-position: -67px 0;
+    }
+    &.gis-propertys-button-deselect span.gis-button-icon {
+      background-position: -48px 0;
+    }
+    &.gis-propertys-button-return span.gis-button-icon {
+      background-position: -86px 0;
+    }
+    &.gis-propertys-button-revert span.gis-button-icon {
+      background-position: -106px 0;
+    }
+  }
+  &.location-show {
+    span {
+      display: block;
+      width: 16px;
+      height: 16px;
+      background: url($imagePath + '/location_found.png') top left no-repeat;
+    }
+  }
+}
+
+.gis-widget-propertys-ellipse {
+  @include sector-ellipse-block;
+  .data-row {
+      input[type=text], input[type=number] {
+        width: 48%;
+        float: right;
+        //&#ellipse-angle {
+        //  width: 104px;
+        //}
+      }
+  }
+}
+.gis-widget-propertys-sector {
+  @include sector-ellipse-block;
+  .data-row {
+    input[type=text], input[type=number] {
+      width: $xyInputWidth;
+      float: right;
+    }
+    .gis-direction {
+      input[type=text], input[type=number] {
+        width: $xyInputWidthDirection;
+      }
+    }
+  }
+}
+.gis-widget-propertys {
+  background: rgba(0,0,0, 0.7);
+  padding: 2px;
+  @include border-radius($middleBorderRadius);
+  color: $defaultFontColor;
+  font-size: 12px;
+  position: relative;
+  &:hover {
+    z-index: 4;
+  }
+  li.data-row {
+    margin-bottom: 6px;
+    min-height: 20px;
+    margin-top: 6px;
+    &.data-title {
+      margin-bottom: 0;
+      margin-top: 7px;
+      min-height: 0;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  div.gis-widget-propertys-wraper {
+    margin-bottom: 6px;
+    font-size: 10px;
+    color: $defaultFontColor;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+  .gis-widget-propertys-title {
+    background: $propertysGradientStartColor;
+    background: -moz-linear-gradient(top,  $propertysGradientStartColor 0%, $propertysBorderColor 46%, $propertysBorderColor 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, $propertysGradientStartColor), color-stop(46%, $propertysBorderColor), color-stop(100%, $propertysBorderColor));
+    background: -webkit-linear-gradient(top,  $propertysGradientStartColor 0%, $propertysBorderColor 46%, $propertysBorderColor 100%);
+    background: -o-linear-gradient(top,  $propertysGradientStartColor 0%, $propertysBorderColor 46%, $propertysBorderColor 100%);
+    background: -ms-linear-gradient(top,  $propertysGradientStartColor 0%, $propertysBorderColor 46%, $propertysBorderColor 100%);
+    background: linear-gradient(to bottom,  $propertysGradientStartColor 0%, $propertysBorderColor 46%, $propertysBorderColor 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#888888', endColorstr='#646464',GradientType=0 );
+    border-radius: 3px 3px 0 0;
+    display: inline-block;
+    padding: 1px 6px 0;
+    font-size: 10px;
+  }
+  .gis-widget-propertys-buttons-wraper, .gis-widget-propertys-data {
+    @include border-radius($middleBorderRadius);
+    padding: 4px;
+    background: -moz-linear-gradient(top,  #131313 0%, #030303 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#131313), color-stop(100%,#030303));
+    background: -webkit-linear-gradient(top,  #131313 0%,#030303 100%);
+    background: -o-linear-gradient(top,  #131313 0%,#030303 100%);
+    background: -ms-linear-gradient(top,  #131313 0%,#030303 100%);
+    background: linear-gradient(to bottom,  #131313 0%,#030303 100%);
+  }
+  .gis-widget-propertys-data {
+    border-top: 1px solid $propertysBorderColor;
+    border-bottom: 1px solid $propertysBorderColor;
+    border-top-left-radius: 0;
+    &#points-selector {
+      overflow: auto;
+      padding-bottom: 5px;
+      padding-top: 12px;
+      ol {
+        list-style: none;
+        &:first-child {
+          counter-reset: customlistcounter;
+        }
+        > li {
+          counter-increment: customlistcounter;
+          position: relative;
+          &:before {
+            content: counter(customlistcounter) " ";
+            font-weight: bold;
+            width: 1em;
+            color: $propertyLiNumberColor;
+            font-size: $fontBiggerSize;
+          }
+          &.selected:before {
+            color: $pointRowSelected;
+          }
+        }
+        input {
+          color: #000000;
+        }
+        li:last-child .gis-widget-ico.gis-widget-ico-down,
+        li:first-child .gis-widget-ico.gis-widget-ico-up{
+          visibility: hidden;
+        }
+      }
+      .gis-widget-ico {
+        display: inline-block;
+        height: $pointSelectorIcoSyze;
+        width: $pointSelectorIcoSyze;
+        cursor: pointer;
+        background: url($iconURI) $pointSelectorIcoSyze $pointSelectorIcoSyze no-repeat;
+      }
+      .gis-widget-ico-up {
+        background-position: -47px -22px;
+      }
+      .gis-widget-ico-down {
+        background-position: -59px -22px;
+      }
+      .gis-widget-ico-add {
+        background-position: -71px -22px;
+        position: absolute;
+        right: 0;
+        top: -7px;
+      }
+      .gis-widget-ico-remove {
+        background-position: -83px -22px;
+      }
+      .gis-widget-add-to-end {
+        position: relative;
+        height: 7px;
+        .gis-widget-ico-add {
+          top: -2px;
+        }
+      }
+    }
+    ul {
+      margin-bottom: 0;
+      padding: 0;
+      list-style: none;
+    }
+  }
+
+}
+p.data-title {
+  min-height: 16px;
+  margin-top: 3px;
+}
+/** Color selector*/
+.gis-color-container {
+  padding-bottom: 0;
+}
+.gis-color-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  .gis-color-button {
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 2px;
+    padding: 4px;
+    cursor: pointer;
+    margin-bottom: 4px;
+    &.gis-color-custom {
+      position: relative;
+      &:after {
+        position: absolute;
+        content: '';
+        border: 4px solid transparent;
+        border-top-color: white;
+        left: 50%;
+        margin-left: -4px;
+        bottom: -4px;
+      }
+    }
+    span {
+      display: block;
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+.gis-widget-propertys-marker,
+.gis-widget-propertys-object,
+.gis-widget-propertys-ellipse,
+.gis-widget-propertys-sector{
+  input#marker-text, input#object-text {
+    width: 100%;
+  }
+}
+#dialog-new-marker-text,
+#dialog-new-object-text,
+#file-name-user{
+  @include propertys-input;
+}
+@include center-selector;
+
+.gis-map-measuring .gis-image-label.gis-clickable.gis-selected{
+  background: none;
+  box-shadow: none;
+  .gis-cyrcle-fill {
+    fill: yellow !important;
+  }
+}
+#info-data {
+  overflow: auto;
+}
+//
+//#gis-list-filtered > li {
+//  &:hover {
+//     span {
+//      color: #ffffff;
+//    }
+//  }
+//}
+.gis-row-layer {
+  cursor: pointer;
+}
+#gis-show-filter {
+  @include big-select-box;
+}
+/**image type selector*/
+.gis-image-type-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  .gis-image-type-button {
+    display: inline-block;
+    margin-right: 6px;
+    padding: 4px;
+    border-radius: 2px;
+    cursor: pointer;
+    line-height: 0;
+    margin-bottom: 4px;
+    vertical-align: top;
+    span {
+      display: block;
+      width: 12px;
+      height: 12px;
+      background: url($iconURI) 12px 12px no-repeat;
+      cursor: pointer;
+    }
+    &.gis-image-type-target span {
+      background-position: -48px -37px;
+    }
+    &.gis-image-type-danger span {
+      background-position: -61px -37px;
+    }
+    &.gis-image-type-circle span {
+      background-position: -76px -37px;
+    }
+    &.gis-image-type-storm span {
+      background-position: -91px -37px;
+    }
+    &.gis-image-type-simple span {
+      background-position: -106px -37px;
+    }
+  }
+}
+/**property buttons*/
+ul.gis-property-buttons-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+  text-align: right;
+  li {
+    display: inline-block;
+    margin-right: 4px;
+    vertical-align: bottom;
+    margin-left: 0;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}
+
+.gis-widget-propertys-zoom {
+  .gis-propertys-button.gis-button-with-text {
+    width: 75px;
+  }
+}
+
+.gis-point-in-list {
+  width: 77%;
+  display: inline-block;
+  position: relative;
+  margin-right: -3px;
+  &.inline-points {
+    .point-tag, li {
+      width: 46%;
+    }
+    .gis-point-selector {
+      width: 87%;
+    }
+  }
+}
+.visibility-radius {
+  float: right;
+}
+.visibility-h > span, .visibility-h input, input.visibility-radius {
+  display: inline-block;
+  width: 48%;
+}
+.visibility-h input,  input.visibility-radius {
+  float: right;
+}
+.gis-widget-propertys-geo {
+  #query-text {
+    &.hide {
+      display: none;
+    }
+  }
+  #position-selector {
+    clear: both;
+    margin-top: 9px;
+    &.hide {
+      display: none;
+    }
+  }
+  .type-title {
+    display: inline-block;
+    margin-top: 4px;
+  }
+  #type-selector {
+    float: right;
+    width: 48%;
+  }
+  #query-text {
+    width: 100%;
+    margin-top: 7px;
+  }
+  #result-container {
+    ul {
+      overflow: auto;
+      height: 100%;
+    }
+    img {
+      float: right;
+      margin-left: 10px;
+    }
+    li {
+      span {
+        @include user-select(text);
+      }
+    }
+  }
+}
+.gis-widget-propertys-geo-path {
+}
+.data-list {
+  @include list-gradient;
+  @include border-radius($smollBorderRadius);
+  &.element-hover {
+    li, tr {
+      position: relative;
+      text-align: left;
+      cursor: pointer;
+      padding: 6px;
+      border: 1px dashed transparent;
+      font-size: 12px;
+      line-height: 1.2em;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      color: #000;
+
+      &.invisible {
+        display: none;
+      }
+      &.selected, &:hover {
+        @include list-element-selected;
+      }
+    }
+  }
+}
+.gis-widget-measure-info {
+  .head {
+    margin-bottom: 5px;
+  }
+  table {
+    width: 100%;
+  }
+
+  .value {
+    float: right;
+    max-width: 100px;
+    color: #ffffff;
+    font-weight: bold;
+    @include user-select(text);
+  }
+  th {
+    font-weight: bold;
+    color: #ffffff;
+    border-bottom: 1px solid #ffffff;
+    background: rgb(81, 81, 81);
+  }
+  th, td {
+    border-right: 1px solid #646464;
+    text-align: center;
+    padding: 2px 0;
+    @include user-select(text);
+  }
+  th:last-child, td:last-child{
+    border-right: none;
+  }
+}

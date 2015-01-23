@@ -1,0 +1,283 @@
+/** instrument panel
+*/
+$instrumentsWidth: 26px;
+.gis-widget.gis-widget-instruments {
+  position: relative;
+  div.instruments-submenu-container {
+    z-index: 1;
+    position: absolute;
+    top: 0;
+    padding-left: 5px;
+    opacity: 0;
+    width: 44px;
+    @include transition(all 0.3s ease-in);
+    left: 0;
+    @include transform(scaleX(0));
+    overflow: hidden;
+    padding-right: 0;
+    &.show {
+      @include transform(scaleX(1));
+      opacity: 1;
+      left: $instrumentsWidth + 2px + 2px;
+    }
+  }
+  ul.instruments-submenu {
+    padding-bottom: 2px;
+    height: 100%;
+
+    .gis-instruments-button-separator {
+      display: none;
+    }
+    li {
+      margin-right: 5px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    li:last-child {
+      margin-bottom: 0;
+    }
+  }
+  ul.instruments-list, .instruments-submenu-container{
+    padding: 4px 4px 13px;
+    height: 100%;
+    position: relative;
+    z-index: 2;
+    margin: 0 2px 7px 7px;
+    @include border-radius($largeBorderRadius);
+    background: $instrumentsBg;
+    width: $instrumentsWidth;
+    li {
+      width: $squaredButtonWidth;
+      height: $squaredButtonWidth;
+      list-style: none;
+      margin-bottom: 5px;
+      position: relative;
+      padding: 4px;
+      border: 1px solid transparent;
+      &.gis-instruments-button {
+        z-index: 1;
+        border: $buttonBorder;
+        @include border-radius($smollBorderRadius);
+        cursor: pointer;
+        @include button-inactive;
+        &.selected,&:active {
+          border: $buttonBorderActive;
+          @include button-active;
+        }
+      }
+
+      ul.with-childs {
+         > li {
+           top: -45px;
+           position: relative;
+           margin-left: 2px;
+           &:nth-child(2) {
+             @include transition(all 0.3s ease);
+             opacity: 0;
+             left: -100%;
+           }
+           ul {
+             background: #121212;
+             width: 26px;
+             padding: 4px 4px 2px;
+             border-top-right-radius: $largeBorderRadius;
+             border-bottom-right-radius: $largeBorderRadius;
+           }
+        }
+        > li:first-child {
+          display: block;
+          top: -5px;
+          left: -5px;
+          margin-left: 0;
+          &:after {
+            content: "";
+            position: absolute;
+            bottom: -3px;
+            right: -3px;
+            border: 4px solid transparent;
+            border-top-color: #fff;
+            @include rotate(-45deg);
+          }
+        }
+
+        &.show-submenu {
+          > li:nth-child(2) {
+            left: 100%;
+            opacity: 1;
+          }
+        }
+      }
+      span {
+        width: $squaredButtonWidth;
+        height: $squaredButtonWidth;
+        display: block;
+        background: url($iconURI) 0 0 no-repeat;
+      }
+      &.gis-instruments-button-select {
+        span {
+          background-position: 0 -179px;
+        }
+        &.selected span {
+          background-position: -20px -179px;
+        }
+      }
+      &.gis-instruments-button-object {
+        span {
+          background-position: -1px -20px;
+        }
+        &.selected span {
+          background-position: -19px -20px;
+        }
+      }
+      &.gis-instruments-button-marker {
+        span {
+          background-position: -1px 0;
+        }
+        &.selected span {
+          background-position: -19px 0;
+        }
+      }
+      &.gis-instruments-button-move {
+        span {
+          background-position: 0 -130px;
+        }
+        &.selected span {
+          background-position: -20px -130px;
+        }
+      }
+      &.gis-instruments-button-measure {
+        span {
+          background-position: 0 -110px;
+        }
+        &.selected span {
+          background-position: -20px -110px;
+        }
+      }
+      &.gis-instruments-button-layers {
+        span {
+          background-position: -91px -98px;
+        }
+        &.selected span {
+          background-position: -91px -117px;
+        }
+      }
+      &.gis-instruments-button-relief {
+        &.hide {
+          display: none;
+        }
+        span {
+          background: url($imagePath + '/mountain.png') top left no-repeat;
+        }
+        &.selected span {
+          background-position: -16px 0;
+        }
+      }
+      &.gis-instruments-button-visibility {
+        &.hide {
+          display: none;
+        }
+        span {
+          background: url($imagePath + '/visibility.png') top left no-repeat;
+        }
+        &.selected span {
+          background-position: -16px 0;
+        }
+      }
+      &.gis-instruments-button-areal-relief {
+        &.hide {
+          display: none;
+        }
+        span {
+          background: url($imagePath + '/areal.png') top left no-repeat;
+        }
+        &.selected span {
+          background-position: -16px 0;
+        }
+      }
+      &.gis-instruments-button-geo {
+        &.hide {
+          display: none;
+        }
+        span {
+          background: url($imagePath + '/geo.png') top left no-repeat;
+        }
+        &.selected span {
+          background-position: -16px 0;
+        }
+      }
+      &.gis-instruments-button-geo-path {
+        &.hide {
+          display: none;
+        }
+        span {
+          background: url($imagePath + '/geo-path.png') top left no-repeat;
+        }
+        &.selected span {
+          background-position: -16px 0;
+        }
+      }
+      &.gis-instruments-button-submenu {
+        @include transform(scale(0));
+        opacity: 0;
+        @include transition(all 0.5s cubic-bezier(0.575, 0.140, 0.000, 1.650));
+        &.show {
+          opacity: 1;
+          @include transform(scale(1));
+        }
+        span {
+          background: url($imagePath + '/menu.png') top left no-repeat;
+        }
+        &.selected span {
+          background-position: -15px 0;
+        }
+      }
+      &.gis-instruments-button-zoom {
+        span {
+          background-position: -20px -151px;
+        }
+        &.selected span {
+          background-position: 0 -151px;
+        }
+      }
+      &.gis-instruments-button-path {
+        span {
+          background-position: -1px -38px;
+        }
+        &.selected span {
+          background-position: -19px -38px;
+        }
+      }
+      &.gis-instruments-button-polygon {
+        span {
+          background-position: -1px -56px;
+        }
+        &.selected span {
+          background-position: -19px -56px;
+        }
+      }
+      &.gis-instruments-button-sector {
+        span {
+          background-position: -1px -92px;
+        }
+        &.selected span {
+          background-position: -19px -92px;
+        }
+      }
+      &.gis-instruments-button-ellipse {
+        span {
+          background-position: -1px -74px;
+        }
+        &.selected span {
+          background-position: -19px -74px;
+        }
+      }
+      &.gis-instruments-button-separator {
+        &:first-child {
+          display: none;
+        }
+        background: none;
+        cursor: default;
+      }
+    }
+  }
+}

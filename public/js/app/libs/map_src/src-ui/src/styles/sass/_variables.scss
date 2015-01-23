@@ -1,0 +1,37 @@
+$minHeight: 500px;
+$minWidth: 1000px;
+
+$fontFamily: Arial;
+$fontDefaultSize: 10px;
+$defaultLineHeight: 1em;
+$fontBiggerSize: 11px;
+
+$defaultFontColor: #DCDCDC;
+
+$innerVerticalContainerWidth: 200px;
+$instrumentsBg: rgb(18, 18, 18);
+//border radius
+$smollBorderRadius: 2px;
+$middleBorderRadius: 3px;
+$largeBorderRadius: 5px;
+
+
+$squaredButtonWidth: 16px;
+
+$buttonBorder: 1px solid transparent;
+$buttonBorderActive: 1px solid #C8C8C8;
+
+$buttonGradientBottom: #303030;
+$buttonGradientTop: #141414;
+$buttonGradientBottomInactive: #616161;
+$buttonGradientTopInactive: #3c3c3c;
+
+$propertyLiNumberColor: #55AFE2;
+$pointRowSelected: yellow;
+
+$imagePath: '../images';
+$iconURI: $imagePath + '/icons.png';
+@mixin disabledBackground {
+  background: #969696;
+  cursor: default;
+}

@@ -1,0 +1,83 @@
+/** form elements
+*/
+
+input[type=text], input[type=number], textarea {
+  @include propertys-input;
+}
+.gis-widget-button{
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -ms-user-select: none;
+}
+.gis-control-square-button,
+.post-list .html-select-view-title-container {
+  border: $buttonBorder;
+  @include border-radius($smollBorderRadius);
+  &:active, &.active {
+    border: $buttonBorderActive;
+    @include button-active;
+  }
+}
+
+.post-list .html-select-view-title-container {
+  border: $buttonBorderActive;
+  @include button-active;
+}
+
+
+span.checkbox {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border: 1px solid #c8c8c8;
+  border-radius: 2px;
+  background: #f0f0f0;
+  position: relative;
+  margin-right: 5px;
+  top: 1px;
+  cursor: pointer;
+  float: left;
+  &.checked, &.some-checked {
+    &:after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 6px;
+      height: 6px;
+      border-radius: 2px;
+    }
+  }
+  &.checked {
+    &:after {
+      background: #0A246A;
+    }
+  }
+  &.some-checked {
+    &:after {
+      background: #595959;
+    }
+  }
+}
+.button-checkbox {
+  float: left;
+  top: 5px;
+  position: relative;
+  left: 7px;
+  cursor: pointer;
+  vertical-align: bottom;
+  display: inline-block;
+  line-height: 14px;
+  font-size: 10px;
+  span.name {
+    font-size: 10px;
+    line-height: 1.4em;
+    text-decoration: underline;
+  }
+  &:hover {
+    span.name {
+      text-decoration: none;
+    }
+  }
+}

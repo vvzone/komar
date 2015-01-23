@@ -1,0 +1,113 @@
+@mixin button-inactive {
+    background: -moz-linear-gradient(top,  $buttonGradientBottomInactive 0%, $buttonGradientTopInactive 53%, $buttonGradientTopInactive 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$buttonGradientBottomInactive), color-stop(53%,$buttonGradientTopInactive), color-stop(100%,$buttonGradientTopInactive));
+    background: -webkit-linear-gradient(top,  $buttonGradientBottomInactive 0%,$buttonGradientTopInactive 53%,$buttonGradientTopInactive 100%);
+    background: -o-linear-gradient(top,  $buttonGradientBottomInactive 0%,$buttonGradientTopInactive 53%,$buttonGradientTopInactive 100%);
+    background: -ms-linear-gradient(top,  $buttonGradientBottomInactive 0%,$buttonGradientTopInactive 53%,$buttonGradientTopInactive 100%);
+    background: linear-gradient(to bottom,  $buttonGradientBottomInactive 0%,$buttonGradientTopInactive 53%,$buttonGradientTopInactive 100%);
+}
+@mixin button-active {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($buttonGradientTop), color-stop(0.37, $buttonGradientBottom), to($buttonGradientBottom));
+  background-image: -webkit-linear-gradient($buttonGradientTop 0%, $buttonGradientBottom 37%, $buttonGradientBottom 100%);
+  background-image: -moz-linear-gradient($buttonGradientTop 0%, $buttonGradientBottom 37%, $buttonGradientBottom 100%);
+  background-image: -o-linear-gradient($buttonGradientTop 0%, $buttonGradientBottom 37%, $buttonGradientBottom 100%);
+  background-image: linear-gradient($buttonGradientTop 0%, $buttonGradientBottom 37%, $buttonGradientBottom 100%);
+}
+@mixin button-active-white {
+  $buttonGradientTopProperty: #e9e9e9;
+  background: $buttonGradientTopProperty;
+}
+@mixin list-element {
+  cursor: pointer;
+  border: 1px dashed transparent;
+  font-size: 12px;
+  line-height: 1.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  &.html-list-active {
+    background-color: #121212;
+  }
+  &.html-list-title {
+    cursor: default;
+    background-color: gray;
+  }
+
+}
+@mixin list-element-selected {
+  background: #0A246A;
+  border-color: #F5DB95;
+  color: rgb(220, 220, 220);
+}
+@mixin big-select-box {
+  .html-select-view-selector {
+    height: 22px;
+    &:after {
+      top: 5px;
+    }
+  }
+  .closed .html-select-view-selector:after {
+    top: 10px;
+  }
+  .html-select-view-title-container {
+    padding: 2px;
+    overflow: hidden;
+    min-height: 12px;
+  }
+}
+.btn {
+  @include button-inactive;
+}
+.btn:active, .btn.selected {
+  @include button-active;
+}
+.closed .html-select-view-selector ,
+.closed .html-select-view-selector:active,
+.gis-widget-sliderVertical-container .gis-widget-button,
+.gis-widget-sliderHorisontal-container .gis-widget-button,
+.gis-map-footer .gis-widget-button,
+.gis-map-middle .gis-widget-button{
+  @include button-inactive;
+}
+.gis-control-square-button:active,
+.gis-widget-sliderVertical-container .gis-widget-button:active,
+.gis-widget-sliderHorisontal-container .gis-widget-button:active,
+.post-list .html-select-view-title-container,
+.html-select-view-selector,
+.gis-map-footer .gis-widget-button:active,
+.gis-map-middle .gis-widget-button:active {
+  @include button-active;
+}
+.gis-widget.gis-widget-propertys input[type=text],
+.gis-widget.gis-widget-propertys input[type=number],
+#dialog-new-marker-text,
+#dialog-new-object-text{
+  border: none;
+  line-height: 20px;
+  font-size: 12px;
+}
+.gis-widget.gis-widget-propertys .gis-point-selector input[type=text]{
+  @include border-radius(0 2px 2px 0);
+}
+
+.gis-widget.gis-widget-propertys .gis-direction input[type=text]{
+  @include border-radius(0);
+}
+
+
+.gis-ui-marker {
+  position: absolute;
+  font: bold 12px Verdana;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  @include border-radius($smollBorderRadius);
+  padding: 1px 4px;
+  margin-left: 7px;
+}
+
+
+.gis-image-label {
+  z-index: 1;
+}
+.gis-path-azimuth {
+  z-index: 0;
+}

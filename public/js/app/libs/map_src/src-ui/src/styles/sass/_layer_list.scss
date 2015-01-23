@@ -1,0 +1,45 @@
+.gis-widget-propertys-layers {
+  box-shadow: 0 5px 0px rgba(0, 0, 0, 0);
+  @include transition(box-shadow 0.5s ease-in);
+  &:hover {
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+  }
+  .layers-menu {
+    overflow: auto;
+    height: 100%;
+    margin: 0 0 6px;
+    li {
+      span.name {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        display: block;
+      }
+      span.count {
+        float: right;
+        opacity: 0.5;
+        @include transition(transform 0.3s ease-in, opacity 0.3s ease-in);
+        @include transform(scale(0.8));
+        position: absolute;
+        right: 3px;
+        top: 7px;
+        box-shadow: 0 0 8px rgb(0, 0, 0);
+        background: rgb(255, 255, 255);
+        z-index: 3;
+        border-radius: 10px;
+        color: rgb(0, 0, 0);
+        display: block;
+        padding: 0 4px;
+      }
+      &.invisible {
+        display: none;
+      }
+      &.selected, &:hover {
+        span.count {
+          opacity: 1;
+          @include transform(scale(1));
+        }
+      }
+    }
+  }
+}

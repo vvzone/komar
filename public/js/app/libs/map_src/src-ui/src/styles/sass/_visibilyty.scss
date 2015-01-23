@@ -1,0 +1,51 @@
+.visibility-additional-data {
+  $queryHeight: 826px;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  z-index: 1;
+  margin-left: -4px;
+  @include transition(left 0.3s ease-in-out, top 0.3s ease-in-out, margin-top 0.3s ease-in-out, opacity 0.3s ease-in-out);
+  background: rgba(0,0,0,.7);
+  padding: 2px;
+  @include border-radius(3px);
+  @media (max-height: $queryHeight - 1px) {
+    & {
+      width: 80%;
+    }
+  }
+  @media (min-height: $queryHeight) {
+    & {
+      margin-left: 0;
+      top: -141px;
+    }
+  }
+  &.show {
+    opacity: 1;
+    left: -80%;
+    @media (min-height: $queryHeight) {
+      & {
+        left: 0;
+        top: 100%;
+      }
+    }
+  }
+  .additional-row {
+    display: inline-block;
+    width: 32%;
+    margin-right: 2%;
+    input {
+      width: 100%;
+    }
+    &.visibility-right {
+      float: right;
+      margin-right: 0;
+    }
+  }
+}
+.vis-wrapper {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 6px;
+}

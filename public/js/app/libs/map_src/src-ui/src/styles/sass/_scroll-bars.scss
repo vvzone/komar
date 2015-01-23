@@ -1,0 +1,119 @@
+$transparentBorder: 6px solid transparent;
+$coloredBorder: 6px solid #DDDDDD;
+$triangleTransparentBorder: 3px solid transparent;
+@mixin slider-gradient {
+  background: #d9d9d9;
+  background: -moz-linear-gradient(top,  #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#d9d9d9), color-stop(50%,#bebebe), color-stop(100%,#a2a2a2));
+  background: -webkit-linear-gradient(top,  #d9d9d9 0%,#bebebe 50%,#a2a2a2 100%);
+  background: -o-linear-gradient(top,  #d9d9d9 0%,#bebebe 50%,#a2a2a2 100%);
+  background: -ms-linear-gradient(top,  #d9d9d9 0%,#bebebe 50%,#a2a2a2 100%);
+  background: linear-gradient(to bottom,  #d9d9d9 0%,#bebebe 50%,#a2a2a2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d9d9d9', endColorstr='#a2a2a2',GradientType=0 );
+}
+/*latitude**/
+.gis-widget-sliderVertical-container {
+  .gis-widget-button {
+    height: 20px;
+    width: 10px;
+    position: absolute;
+    left: 0;
+    @include border-radius($smollBorderRadius);
+    cursor: pointer;
+    &:after {
+      content: "";
+      position: absolute;
+      border: $triangleTransparentBorder;
+      left: 2px;
+    }
+    &.gis-latitude-previous {
+      top: -22px;
+      &:after {
+        top: 1px;
+        border-top: $transparentBorder;
+        border-bottom: $coloredBorder;
+      }
+    }
+    &.gis-latitude-next {
+      bottom: -22px;
+      &:after {
+        top: 7px;
+        border-bottom: $transparentBorder;
+        border-top: $coloredBorder;
+      }
+    }
+  }
+  > div {
+    margin: 23px 7px 22px 7px;
+    padding: 24px 0 25px 0;
+    width: 10px;
+    position: relative;
+    @include slider-gradient;
+  }
+}
+
+/**LONGITUDE*/
+.gis-widget-sliderHorisontal-container {
+  .gis-widget-button {
+    height: 10px;
+    width: 20px;
+    position: absolute;
+    top: 0;
+    @include border-radius($smollBorderRadius);
+    cursor: pointer;
+    &:after {
+      content: "";
+      position: absolute;
+      border: $triangleTransparentBorder;
+      top: 2px;
+    }
+    &.gis-longitude-previous {
+      left: -22px;
+      &:after {
+        left: 1px;
+        border-left: $transparentBorder;
+        border-right: $coloredBorder;
+      }
+    }
+    &.gis-longitude-next {
+      right: -22px;
+      &:after {
+        left: 7px;
+        border-right: $transparentBorder;
+        border-left: $coloredBorder;
+      }
+    }
+  }
+  margin-top: 6px;
+  margin-bottom: 6px;
+  > div {
+    margin: 0 47px 0 67px;
+    padding: 0 28px 0 28px;
+    @include border-radius($smollBorderRadius);
+    position: relative;
+    @include slider-gradient;
+  }
+}
+/***/
+
+#scroll-bar-h{
+  @include slider-gradient;
+  padding: 0;
+  &.ui-slider .ui-slider-handle {
+    width: 56px;
+    height: 10px;
+    margin-left: -28px;
+    margin-top: 0;
+    top: 0;
+  }
+}
+#scroll-bar {
+  background: none;
+  &.ui-slider .ui-slider-handle {
+    width: 10px;
+    height: 50px;
+    margin-left: 0;
+    margin-bottom: -25px;
+    left: 0;
+  }
+}

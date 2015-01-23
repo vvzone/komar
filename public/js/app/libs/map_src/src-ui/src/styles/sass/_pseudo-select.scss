@@ -1,0 +1,69 @@
+.html-select-view {
+  position: absolute;
+  color: $defaultFontColor;
+  background: #121212;
+  border: 1px solid #646464;
+  @include border-radius($middleBorderRadius);
+  width: 100%;
+  z-index: 200;
+  overflow: auto;
+  max-height: 1024px;
+  li {
+    padding: 2px;
+    @include list-element;
+    &.html-list-active:hover, &.html-list-active.selected {
+      @include list-element-selected;
+    }
+  }
+  .ui-list-childs {
+    border-bottom: 3px solid gray;
+  }
+}
+.html-select-view-container {
+  position: relative;
+}
+.html-select-view-title-container {
+  font-size: 12px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #000000;
+  @include border-radius($smollBorderRadius);
+  padding: 0 2px;
+  background: #cacaca;
+  background: -moz-linear-gradient(top,  #cacaca 0%, #f0f0f0 35%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#cacaca), color-stop(35%,#f0f0f0), color-stop(100%,#f0f0f0));
+  background: -webkit-linear-gradient(top,  #cacaca 0%,#f0f0f0 35%,#f0f0f0 100%);
+  background: -o-linear-gradient(top,  #cacaca 0%,#f0f0f0 35%,#f0f0f0 100%);
+  background: -ms-linear-gradient(top,  #cacaca 0%,#f0f0f0 35%,#f0f0f0 100%);
+  background: linear-gradient(to bottom,  #cacaca 0%,#f0f0f0 35%,#f0f0f0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cacaca', endColorstr='#f0f0f0',GradientType=0 );
+  .disabled & {
+    @include disabledBackground;
+  }
+}
+.html-select-view-selector {
+  height: 18px;
+  width: 14px;
+  display: block;
+  position: absolute;
+  @include border-radius($smollBorderRadius);
+  right: 1px;
+  top: 1px;
+  &:after {
+    border-bottom: 3px solid $defaultFontColor;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid transparent;
+    position: absolute;
+    left: 3px;
+    top: 2px;
+    content: "";
+  }
+  .closed &:after {
+    border-top: 3px solid $defaultFontColor;
+    top: 7px;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+  }
+}

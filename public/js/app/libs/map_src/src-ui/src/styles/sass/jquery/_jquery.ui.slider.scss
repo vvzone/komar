@@ -1,0 +1,91 @@
+/*!
+ * jQuery UI Slider 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/slider/#theming
+ */
+.ui-slider {
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+  &.ui-slider-horizontal {
+    height: 10px;
+    @include propertys-input;
+    .ui-slider-handle {
+      top: -.3em;
+      margin-left: -.6em;
+      cursor: pointer;
+      cursor: grab;
+      cursor: -moz-grab;
+      cursor: -webkit-grab;
+      &:active {
+        cursor: pointer;
+        cursor: grabbing;
+        cursor: -moz-grabbing;
+        cursor: -webkit-grabbing;
+      }
+    }
+    .ui-slider-range {
+      top: 0;
+      height: 100%;
+    }
+    .ui-slider-range-min {
+      left: 0;
+    }
+    .ui-slider-range-max {
+      right: 0;
+    }
+  }
+  .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 1.2em;
+    height: 1.2em;
+    cursor: default;
+    span {
+      position: absolute;
+      top: -15px;
+      width: 20px;
+      display: block;
+      left: 50%;
+      margin-left: -10px;
+      text-align: center;
+    }
+  }
+  .ui-slider-range {
+    position: absolute;
+    z-index: 1;
+    font-size: .7em;
+    display: block;
+    border: 0;
+    background-position: 0 0;
+  }
+}
+
+
+.ui-slider-vertical {
+	width: 4px;
+	height: 100px;
+}
+.ui-slider-vertical .ui-slider-handle {
+  left: -6px;
+  margin-left: 0;
+  margin-bottom: -8px;
+  border-radius: 10px;
+  width: 16px;
+  height: 16px;
+}
+.ui-slider-vertical .ui-slider-range {
+	left: 0;
+	width: 100%;
+}
+.ui-slider-vertical .ui-slider-range-min {
+	bottom: 0;
+}
+.ui-slider-vertical .ui-slider-range-max {
+	top: 0;
+}

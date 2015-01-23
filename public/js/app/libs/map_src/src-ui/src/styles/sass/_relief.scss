@@ -1,0 +1,137 @@
+.gis-widget-propertys-relief {
+  margin: 4px 7px;
+  padding: 4px;
+  background: rgb(18, 18, 18);
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+  .help {
+    @include transition(all 0.3s ease-in);
+    opacity: 1;
+    @include transform(scale(1));
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    &.hide {
+      opacity: 0;
+      @include transform(scale(0));
+    }
+    > div {
+      width: 300px;
+      color: #FFF;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+      background: rgba(0, 0, 0, 0.8);
+      text-align: center;
+      margin: 0 auto;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -170px;
+      padding: 20px;
+      font-size: 20px;
+      margin-top: -26px;
+      border-radius: 4px;
+      @include user-select(none);
+      cursor: default;
+      line-height: 1.3em;
+    }
+  }
+  .gis-property-buttons-list {
+    > li {
+      position: absolute;
+      $iconWidth: 24px;
+      $paddingBetweenIcons: 5px;
+      $offset: 5px;
+      margin-top: $offset;
+      margin-right: 0;
+      z-index: 2;
+      &.yes {
+        right: $iconWidth * 2 + $paddingBetweenIcons * 3;
+      }
+      &.revert {
+        right: $iconWidth + $paddingBetweenIcons * 2;
+      }
+      &.delete {
+        right: $paddingBetweenIcons;
+      }
+      button {
+        @include transition(all 0.3s ease-in);
+        @include transform(scale(1));
+        &.disabled {
+          @include transform(scale(0));
+        }
+      }
+    }
+  }
+  .a-wrapper {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background: #F0F0F0;
+    border-radius: 5px;
+  }
+  #config {
+    .height {
+      margin-right: 5px;
+      input {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+        width: 88%;
+      }
+    }
+    &.large {
+      .a-points {
+        >div {
+          >div {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+  .a-points {
+    position: relative;
+    padding-top: 7px;
+    .gis-point-selector {
+      width: 87%;
+      margin-right: 4px;
+    }
+    input {
+      width: 85%;
+      margin-right: -4px;
+    }
+    >div {
+      display: inline-block;
+      vertical-align: top;
+      &.left {
+        text-align: left;
+        width: 37%;
+      }
+      &.right {
+        text-align: right;
+        width: 37%;
+      }
+      &.center {
+        text-align: center;
+        width: 26%;
+        left: 50%;
+      }
+      >div {
+        margin-bottom: 5px;
+        display: inline-block;
+        vertical-align: top;
+      }
+      div {
+        input {
+          font-size: 10px;
+          padding: 0 2px;
+        }
+      }
+    }
+  }
+}
+ul#north-west-selector {
+  margin-bottom: 5px;
+}

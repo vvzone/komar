@@ -1,0 +1,3 @@
+.gis-control-square-button, .gis-instruments-button, .gis-widget-control-zoom-selector, .gis-sk-selector {
+  @include user-select(none);
+}

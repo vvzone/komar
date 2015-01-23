@@ -1,0 +1,261 @@
+/**TOP PANEL */
+$gisControlSquareButton: 17px;
+$gisStatusConnectionSize: 9px;
+.gis-widget-mapcontrol{
+  @include big-select-box;
+  > ul {
+    background-color: #626262;
+    @include background(linear-gradient(top,  #626262 0%, #3c3c3c 28%, #3c3c3c 100%));
+    margin: 0 8px 3px 7px;
+    padding: 4px 5px 4px 7px;
+    top: 5px;
+    position: relative;
+    border-radius: 3px;
+    color: $defaultFontColor;
+  }
+  .html-select-view-title-container{
+    width: 36px;
+    padding: 0px 2px;
+    .html-select-view-title {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: block;
+      line-height: 24px;
+      white-space: nowrap;
+    }
+  }
+  #gis-maps-container {
+    margin-right: 2px;
+    .html-select-view-title-container{
+      width: 223px;
+    }
+  }
+}
+li.gis-control-element {
+  display: inline-block;
+  vertical-align: top;
+  &.gis-mouse-position {
+    float: right;
+    margin-top: 7px;
+    position: relative;
+    span {
+      @include user-select(text);
+    }
+    > div {
+      vertical-align: top;
+      display: inline-block;
+      &.gis-sk-selector-container {
+        width: auto;
+        margin-top: -7px;
+        > div {
+          &.gis-sk-title {
+            margin-right: 7px;
+          }
+          display: inline-block;
+        }
+        .html-select-view-title-container {
+          width: 12px;
+        }
+        .html-select-view {
+          width: 128px;
+          margin-left: -114px;
+        }
+      }
+    }
+  }
+  &.gis-zoom-selector {
+    > div{
+      display: inline-block;
+      vertical-align: top;
+    }
+    .gis-control-square-button#gis-control-zoom-out > span {
+      background-position: -46px -58px;
+    }
+    .gis-control-square-button#gis-control-zoom-in > span {
+      background-position: -70px -58px;
+    }
+  }
+}
+.gis-control-square-button {
+  padding: 2px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 1px;
+  > span {
+    height: $gisControlSquareButton;
+    width: $gisControlSquareButton;
+    display: block;
+    background: url($iconURI) $gisControlSquareButton $gisControlSquareButton no-repeat;
+    cursor: pointer;
+  }
+  &#gis-post-center{
+    > span {
+      background-position: -70px -99px;
+    }
+    &.active > span {
+      background-position: -70px -118px;
+    }
+  }
+  &#gis-select-map{
+    > span {
+      background-position: -110px -141px;
+    }
+    &.active > span {
+      background-position: -110px -162px;
+    }
+  }
+  &#gis-object-center {
+    margin-right: 4px;
+    > span {
+      background-position: -48px -99px;
+    }
+    &.active > span {
+      background-position: -48px -118px;
+    }
+  }
+  &#gis-remove-map {
+    margin-right: 21px;
+    > span {
+      background-position: -81px -18px;
+    }
+    &.active > span {
+      background-position: -81px -18px;
+    }
+  }
+  &#gis-add-map {
+    > span {
+      background-position: -68px -18px;
+    }
+    &.active > span {
+      background-position: -68px -18px;
+    }
+  }
+  &#gis-clear-map {
+    > span {
+      background-position: -92px -58px;
+    }
+    &.active > span {
+      background-position: -92px -58px;
+    }
+  }
+}
+
+div.post-list {
+  width: 8px;
+  height: 19px;
+  display: inline-block;
+  margin-left: 1px;
+  margin: 1px 7px 0 1px;
+  .html-select-view-title-container {
+    border: $buttonBorderActive;
+    width: 8px;
+    height: 21px;
+    padding: 0;
+    display: inline-block;
+    vertical-align: top;
+    @include border-radius($smollBorderRadius);
+    &.closed {
+      background: none;
+      border-color: transparent;
+    }
+  }
+  .html-select-view {
+    left: 0;
+    top: 23px;
+    width: 84px;
+  }
+  span.html-select-view-selector {
+    display: block;
+    background: none;
+    height: 0;
+    width: 0;
+    margin-top: 5px;
+    position: static;
+    &:after {
+      left: 1px;
+    }
+  }
+}
+
+.gis-map-selector {
+  > span, > div {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  > span {
+    margin-right: 7px;
+  }
+}
+@-webkit-keyframes rotate360 { from { @include rotate(0deg);} to { @include rotate(360deg);}  }
+@-moz-keyframes rotate360 { from { @include rotate(0deg);} to { @include rotate(360deg);}  }
+@-o-keyframes rotate360 { from { @include rotate(0deg);} to { @include rotate(360deg);}  }
+@keyframes rotate360 { from { @include rotate(0deg);} to { @include rotate(360deg);}  }
+.gis-connection-status{
+  $iconDimension: 24px;
+  $borderWidth: 5px;
+  margin: 0 8px;
+  float: right;
+  height: 24px;
+  position: relative;
+  #gis-widget-control-status-connection {
+    position: relative;
+    z-index: 2;
+  }
+  &:before{
+    content: '';
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -$iconDimension/2;
+    margin-left: -$iconDimension/2;
+    @include border-radius($iconDimension/2);
+    @include transition(all 0.3s ease-in-out);
+    z-index: 1;
+  }
+  &:before {
+    $w: $iconDimension - $borderWidth * 2;
+    width: $w;
+    height: $w;
+    border: $borderWidth solid transparent;
+    border-left-color: #fff;
+    border-right-color: #fff;
+    -webkit-animation: rotate360 4s linear 0s infinite;
+    -moz-animation: rotate360 4s linear 0s infinite;
+    -o-animation: rotate360 4s linear 0s infinite;
+    animation: rotate360 4s linear 0s infinite;
+  }
+  &.loading {;
+    &:before {
+      opacity: 0.8;
+    }
+  }
+  .server-status {
+    position: relative;
+    top: 6px;
+    border: 1px solid #777;
+    display: block;
+    height: $gisStatusConnectionSize;
+    width: $gisStatusConnectionSize;
+    background-color: #E45858;
+    background: -webkit-radial-gradient(30% 30%, farthest-side, #ffffff, #E23131);
+    background: -moz-radial-gradient(30% 30%, farthest-side, #ffffff, #E23131);
+    @include border-radius($gisStatusConnectionSize);
+    &.server-status-1 {
+      background-color: #66F172;
+      background: -webkit-radial-gradient(30% 30%, farthest-side, #ffffff, #31C11D);
+      background: -moz-radial-gradient(30% 30%, farthest-side, #ffffff, #31C11D)
+    }
+    &.server-status-2 {
+      background-color: #F1DF66;
+      background: -webkit-radial-gradient(30% 30%, farthest-side, #ffffff, #E9D33C);
+      background: -moz-radial-gradient(30% 30%, farthest-side, #ffffff, #E9D33C)
+    }
+  }
+}
+.serve-status-tooltip {
+  .value {
+    font-weight: bold;
+    color: white;
+  }
+}

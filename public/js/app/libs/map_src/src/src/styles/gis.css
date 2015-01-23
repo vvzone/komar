@@ -1,0 +1,185 @@
+/* Eric Meyer's Reset CSS v2.0 - http://cssreset.com */
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{border:0;font-size:100%;font:inherit;vertical-align:baseline;margin:0;padding:0}article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{display:block}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:none}table{border-collapse:collapse;border-spacing:0}
+
+/*default style for map*/
+input, button {
+    margin: 0;
+}
+html {
+    background: #ffffff;
+}
+html, body, div#map {
+    height: 100%;
+}
+h1{
+    text-align: center;
+}
+div#map{
+    background: rgba(0,0,0,0.7);
+    box-shadow: 1px 1px 8px black;
+    margin: 0 auto;
+}
+.leaflet-marker-pane svg {
+    position: absolute;
+}
+body .gis-clickable {
+    cursor: default;
+}
+body.gis-grab {
+    cursor: -moz-grab;
+    cursor: -webkit-grab;
+}
+.gis-label {
+    position: absolute;
+    font: bold 12px Verdana;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 2px;
+    padding: 1px 4px;
+    margin-left: 7px;
+}
+.gis-label.label-selected{
+    box-shadow: 0 0 0 2px rgb(75, 84, 255);
+}
+.gis-source, .gis-post{
+}
+.gis-caption {
+    position: absolute;
+    text-shadow: 1px 1px 1px rgb(255, 255, 255),-1px -1px 1px rgb(255, 255, 255),-1px 1px 1px rgb(255, 255, 255),1px -1px 2px rgb(255, 255, 255),1px 0 1px rgb(255, 255, 255),-1px 0 1px rgb(255, 255, 255),0 1px 1px rgb(255, 255, 255),0 -1px 1px rgb(255, 255, 255);
+    font-weight: bold;
+    padding: 0;
+    text-align: left;
+    white-space: nowrap;
+    font-size: 15px;
+    white-space: nowrap;
+}
+.gis-popup {
+    position: absolute;
+    text-align: center;
+    border-radius: 3px;
+    color: white;
+    z-index: 1000;
+    font: 9px Arial;
+    border: 2px solid white;
+    padding: 4px;
+    background: #3A3A3C;
+}
+.gis-selected {
+    box-shadow: 0 0 0 2px rgb(75, 84, 255);
+    background: rgba(75, 84, 255, 0.5);
+    border-radius: 2px;
+}
+.gis-custom-action-list-container,
+.gis-custom-action-list-container ul ul {
+    max-width: 200px;
+    position: absolute;
+    color: gainsboro;
+    background: #121212;
+    border: 1px solid #646464;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -o-border-radius: 3px;
+    border-radius: 3px;
+    z-index: 200;
+}
+.gis-custom-action-list-container ul>li {
+    position: relative;
+}
+.gis-custom-action-list-container ul li span {
+    padding: 2px;
+    display: block;
+    cursor: pointer;
+    border: 1px dashed transparent;
+    font-size: 12px;
+    line-height: 1.2em;
+}
+.gis-custom-action-list-container ul li:hover>span {
+    background: #0A246A;
+    border-color: #F5DB95;
+    color: rgb(220, 220, 220);
+}
+.gis-custom-action-list-container ul>li > ul {
+    position: absolute;
+    top: -1px;
+    left: 100%;
+    display: none;
+}
+.gis-custom-action-list-container ul li.with-sub-menu:after {
+    content: '';
+    position: absolute;
+    border: 4px solid transparent;
+    border-left-color: #ffffff;
+    right: 2px;
+    top: 50%;
+    margin-top: -4px;
+}
+.gis-custom-action-list-container ul>li:hover > ul,
+.gis-custom-action-list-container ul>li > ul:hover{
+    display: block;
+}
+.gis-post {
+    z-index: 10;
+}
+.gis-bearing {
+    z-index: 5;
+}
+div.image-loader {
+    visibility: visible;
+}
+div.leaflet-tile img {
+    opacity: 0;
+    -webkit-transition: opacity .1s linear;
+    -moz-transition: opacity .1s linear;
+    -o-transition: opacity .1s linear;
+    transition: opacity .1s linear;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+div.leaflet-tile.leaflet-tile-loaded img {
+    opacity: 1;
+}
+div.image-loader.showed {
+    opacity: 1;
+}
+div.image-loader:after {
+    position: absolute;
+    /*background: #ffffff url(../images/ajax-loader.gif) center no-repeat;*/
+    top: 50%;
+    left: 50%;
+    width: 40px;
+    height: 40px;
+    content: '';
+    margin-top: -25px;
+    margin-left: -25px;
+    border-radius: 25px;
+    border: 5px solid transparent;
+    border-left-color: #ffffff;
+    border-right-color: #ffffff;
+    opacity: 0.0;
+    -webkit-animation: rotate360 4s linear 0s infinite;
+    -moz-animation: rotate360 4s linear 0s infinite;
+    -o-animation: rotate360 4s linear 0s infinite;
+    animation: rotate360 4s linear 0s infinite;
+    box-shadow: 0 0 19px rgba(0, 0, 0, 0.72);
+    background: rgba(0, 0, 0, 0.32);
+    -webkit-transition: opacity .2s 0.2s linear;
+    -moz-transition: opacity .2s 0.2s linear;
+    -o-transition: opacity .2s 0.2s linear;
+    transition: opacity .2s 0.2s linear;
+}
+.leaflet-fade-anim div.image-loader {
+}
+.leaflet-fade-anim div.leaflet-tile.showed:after {
+    opacity: 1;
+}
+.leaflet-fade-anim div.leaflet-tile.leaflet-tile-loaded.showed:after {
+    -webkit-transition: opacity .2s linear;
+    -moz-transition: opacity .2s linear;
+    -o-transition: opacity .2s linear;
+    transition: opacity .2s linear;
+    opacity: 0;
+}

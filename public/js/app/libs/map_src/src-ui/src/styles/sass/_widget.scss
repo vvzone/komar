@@ -1,0 +1,73 @@
+.gis-widget {
+  font-size: $fontDefaultSize;
+  line-height: $defaultLineHeight;
+  font-family: $fontFamily;
+}
+#gis-widget-control-mouse-position > span {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.dragger {
+  display: none;
+  height: 3px;
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0);
+  z-index: 2;
+  box-shadow: 0 0 0 black;
+  @include transition(background 0.3s ease-in 0.1s, box-shadow 0.3s ease-in 0.1s);
+  &.ui-draggable-dragging{
+    background: rgba(255, 255, 255, 1);
+    box-shadow: 0 0 5px black;
+    div {
+      opacity: 1;
+      box-shadow: 0 0 5px black;
+      @include transform(scale(1.2));
+      cursor: n-resize;
+    }
+  }
+  $length: 80px;
+  $padding: 10px;
+  div {
+    cursor: pointer;
+    opacity: 0.6;
+    @include transition(all 0.3s ease-in 0.3s);
+    position: absolute;
+    @include transform(scale(1));
+    content: '';
+    height: 9px;
+    width: $length;
+    left: 50%;
+    top: -3px;
+    background: #FFF;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-left: -40px;
+    box-shadow: 0 0 5px black;
+    &:hover {
+      opacity: 1;
+      @include transform(scale(1.2));
+    }
+    &:after, &:before {
+      content: '';
+      width: $length - $padding * 2;
+      height: 1px;
+      background: rgba(0, 0, 0, 0.46);
+      left: $padding;
+      position: absolute;
+    }
+    &:after {
+      top: 3px;
+    }
+    &:before {
+      top: 5px;
+    }
+  }
+  &.show {
+    display: block;
+  }
+}
+.scroller {
+  overflow: auto;
+}

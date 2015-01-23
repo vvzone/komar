@@ -1,0 +1,64 @@
+$paddingInput: 0 1px 0;
+.gis-widget-propertys .gis-row-name {
+  vertical-align: bottom;
+  @include propertys-input;
+  padding: 0 2px;
+  margin-left: 0;
+  border-radius: 2px 0 0 2px;
+  border-right: 1px solid #cbcbcb;
+  color: black;
+  display: inline-block;
+  text-align: center;
+  font-size: 10px;
+  width: 5%;
+  line-height: 20px;
+}
+.gis-point-selector {
+  .point-direction {
+    cursor: pointer;
+    display: none;
+    vertical-align: bottom;
+    @include propertys-input;
+    padding: $paddingInput;
+    margin-left: 0;
+    border-radius: 0 2px 2px 0;
+    border-left: 1px solid #cbcbcb;
+    color: black;
+    margin-right: -3px;
+    line-height: 20px;
+    &.disabled {
+      color: rgba(0, 0, 0, 0.61);
+      cursor: not-allowed;
+    }
+  }
+  .point-attention {
+    display: none;
+    margin-left: 0;
+    vertical-align: bottom;
+    @include propertys-input;
+    padding: 3px 1px 1px;
+    width: 3%;
+    &.zone-fixed {
+      cursor: default;
+      display: inline-block;
+      background: red;
+      position: absolute;
+      color: white;
+    }
+  }
+  width: 93%;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: -3px;
+  &.gis-direction {
+    .point-direction {
+      display: inline-block;
+      width: 15%;
+      text-align: center;
+      font-size: 9px;
+    }
+  }
+}
+.gis-point-wraper {
+  line-height: 1.2em;
+}

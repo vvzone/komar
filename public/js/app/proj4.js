@@ -45,6 +45,7 @@ $Id: Proj.js 2956 2007-07-09 12:17:52Z steven $
 /**
  * Global namespace object for Proj4js library
  */
+ console.info('proj4.js loaded...');
 var Proj4js = {
 
     /**

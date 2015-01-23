@@ -1,0 +1,6183 @@
+/* line 19, ../sass/_reset.scss */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+nav,
+section {
+  display: block;
+}
+
+/* line 28, ../sass/_reset.scss */
+audio,
+canvas,
+video {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+/* line 37, ../sass/_reset.scss */
+audio:not([controls]) {
+  display: none;
+}
+
+/* line 44, ../sass/_reset.scss */
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+/* line 50, ../sass/_reset.scss */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+
+/* line 53, ../sass/_reset.scss */
+input {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  -o-user-select: text;
+  user-select: text;
+}
+
+/* line 57, ../sass/_reset.scss */
+a:focus {
+  outline: thin dotted #333;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+
+/* line 62, ../sass/_reset.scss */
+a:hover,
+a:active {
+  outline: 0;
+}
+
+/* line 70, ../sass/_reset.scss */
+sub,
+sup {
+  position: relative;
+  font-size: 75%;
+  line-height: 0;
+  vertical-align: baseline;
+}
+
+/* line 76, ../sass/_reset.scss */
+sup {
+  top: -0.5em;
+}
+
+/* line 79, ../sass/_reset.scss */
+sub {
+  bottom: -0.25em;
+}
+
+/* line 86, ../sass/_reset.scss */
+img {
+  /* Responsive images (ensure images don't scale beyond their parents) */
+  max-width: 100%;
+  /* Part 1: Set a maxium relative to the parent */
+  width: auto\9;
+  /* IE7-8 need help adjusting responsive images */
+  height: auto;
+  /* Part 2: Scale the height according to the width, otherwise you get stretching */
+  vertical-align: middle;
+  border: 0;
+  -ms-interpolation-mode: bicubic;
+}
+
+/* line 99, ../sass/_reset.scss */
+#map_canvas img,
+.google-maps img {
+  max-width: none;
+}
+
+/* line 110, ../sass/_reset.scss */
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  font-size: 100%;
+  vertical-align: middle;
+}
+
+/* line 116, ../sass/_reset.scss */
+button,
+input {
+  *overflow: visible;
+  line-height: normal;
+}
+
+/* line 121, ../sass/_reset.scss */
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+/* line 128, ../sass/_reset.scss */
+button,
+html input[type="button"],
+input[type="reset"],
+input[type="submit"] {
+  -webkit-appearance: button;
+  cursor: pointer;
+}
+
+/* line 139, ../sass/_reset.scss */
+label,
+select,
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+input[type="radio"],
+input[type="checkbox"] {
+  cursor: pointer;
+}
+
+/* line 142, ../sass/_reset.scss */
+input[type="search"] {
+  -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
+  box-sizing: content-box;
+  -webkit-appearance: textfield;
+}
+
+/* line 147, ../sass/_reset.scss */
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+/* line 150, ../sass/_reset.scss */
+textarea {
+  overflow: auto;
+  vertical-align: top;
+}
+
+@media print {
+  /* line 162, ../sass/_reset.scss */
+  * {
+    text-shadow: none !important;
+    color: #000 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* line 170, ../sass/_reset.scss */
+  a,
+  a:visited {
+    text-decoration: underline;
+  }
+
+  /* line 174, ../sass/_reset.scss */
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+
+  /* line 178, ../sass/_reset.scss */
+  abbr[title]:after {
+    content: " (" attr(title) ")";
+  }
+
+  /* line 185, ../sass/_reset.scss */
+  .ir a:after,
+  a[href^="javascript:"]:after,
+  a[href^="#"]:after {
+    content: "";
+  }
+
+  /* line 190, ../sass/_reset.scss */
+  pre,
+  blockquote {
+    border: 1px solid #999;
+    page-break-inside: avoid;
+  }
+
+  /* line 195, ../sass/_reset.scss */
+  thead {
+    display: table-header-group;
+  }
+
+  /* line 200, ../sass/_reset.scss */
+  tr,
+  img {
+    page-break-inside: avoid;
+  }
+
+  /* line 204, ../sass/_reset.scss */
+  img {
+    max-width: 100% !important;
+  }
+
+  @page {
+    margin: 0.5cm;
+}
+
+  /* line 214, ../sass/_reset.scss */
+  p,
+  h2,
+  h3 {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* line 220, ../sass/_reset.scss */
+  h2,
+  h3 {
+    page-break-after: avoid;
+  }
+}
+/*!
+ * jQuery UI CSS Framework 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ */
+/*!
+ * jQuery UI CSS Framework 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ */
+/* Layout helpers
+----------------------------------*/
+/* line 14, ../sass/jquery/_jquery.ui.core.scss */
+.ui-helper-hidden {
+  display: none;
+}
+
+/* line 17, ../sass/jquery/_jquery.ui.core.scss */
+.ui-helper-hidden-accessible {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+/* line 27, ../sass/jquery/_jquery.ui.core.scss */
+.ui-helper-reset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  line-height: 1.3;
+  text-decoration: none;
+  font-size: 100%;
+  list-style: none;
+}
+
+/* line 38, ../sass/jquery/_jquery.ui.core.scss */
+.ui-helper-clearfix:before,
+.ui-helper-clearfix:after {
+  content: "";
+  display: table;
+  border-collapse: collapse;
+}
+
+/* line 43, ../sass/jquery/_jquery.ui.core.scss */
+.ui-helper-clearfix:after {
+  clear: both;
+}
+
+/* line 46, ../sass/jquery/_jquery.ui.core.scss */
+.ui-helper-clearfix {
+  min-height: 0;
+  /* support: IE7 */
+}
+
+/* line 49, ../sass/jquery/_jquery.ui.core.scss */
+.ui-helper-zfix {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  opacity: 0;
+  filter: Alpha(Opacity=0);
+}
+
+/* line 59, ../sass/jquery/_jquery.ui.core.scss */
+.ui-front {
+  z-index: 100;
+}
+
+/* Interaction Cues
+----------------------------------*/
+/* line 66, ../sass/jquery/_jquery.ui.core.scss */
+.ui-state-disabled {
+  cursor: default !important;
+}
+
+/* Icons
+----------------------------------*/
+/* states and images */
+/* line 75, ../sass/jquery/_jquery.ui.core.scss */
+.ui-icon {
+  display: block;
+  text-indent: -99999px;
+  overflow: hidden;
+  background-repeat: no-repeat;
+}
+
+/* Misc visuals
+----------------------------------*/
+/* Overlays */
+/* line 87, ../sass/jquery/_jquery.ui.core.scss */
+.ui-widget-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/*!
+ * jQuery UI Dialog 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/dialog/#theming
+ */
+/* line 12, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 3px;
+  outline: 0;
+}
+/* line 18, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog.shadow {
+  -webkit-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.8);
+  -moz-box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.8);
+  box-shadow: 0px 2px 10px rgba(255, 255, 255, 0.8);
+}
+
+/* line 22, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-titlebar {
+  padding: 3px 6px;
+  position: relative;
+  text-align: left;
+  background-color: #626262;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #626262), color-stop(28%, #3c3c3c), color-stop(100%, #3c3c3c));
+  background: -webkit-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: -moz-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: -o-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  border-radius: 0;
+  margin: -3px;
+  margin-bottom: 5px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+/* line 34, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-title {
+  float: left;
+  margin: 0;
+  white-space: nowrap;
+  width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 42, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-titlebar-close {
+  position: absolute;
+  right: 3px;
+  top: 50%;
+  width: 19px;
+  margin: -10px 0 0 0;
+  padding: 0;
+  height: 19px;
+}
+/* line 51, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-titlebar-close span.ui-icon {
+  margin: 1px 1px;
+  width: 17px;
+  height: 17px;
+  background: url(../images/icons.png) -92px -78px no-repeat;
+}
+/* line 57, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-titlebar-close .ui-button-text {
+  display: none;
+}
+
+/* line 61, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-content {
+  position: relative;
+  border: 0;
+  padding: 11px;
+  background: none;
+  overflow: visible;
+  text-align: left;
+}
+/* line 68, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-content h2 {
+  font-size: 16px;
+  border-bottom: 1px solid white;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}
+
+/* line 75, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-buttonpane {
+  text-align: left;
+  background-image: none;
+  margin-top: .5em;
+  padding: 0 11px 6px;
+}
+
+/* line 81, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-buttonpane .ui-dialog-buttonset {
+  float: right;
+}
+
+/* line 84, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-dialog-buttonpane button {
+  margin: 0 0 0 6px;
+  cursor: pointer;
+  width: 8em;
+}
+
+/* line 89, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-resizable-se {
+  width: 6px;
+  height: 6px;
+  right: 2px;
+  bottom: 2px;
+  border-right: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+}
+/* line 96, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-dialog .ui-resizable-se:after {
+  position: absolute;
+  right: 2px;
+  bottom: 2px;
+  content: "";
+  width: 2px;
+  height: 2px;
+  border-right: 1px solid #DCDCDC;
+  border-bottom: 1px solid #DCDCDC;
+}
+
+/* line 107, ../sass/jquery/_jquery.ui.dialog.scss */
+.ui-draggable .ui-dialog-titlebar {
+  cursor: move;
+}
+
+/*!
+ * jQuery UI Menu 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/menu/#theming
+ */
+/* line 11, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu {
+  list-style: none;
+  padding: 2px;
+  margin: 0;
+  display: block;
+  outline: none;
+}
+
+/* line 18, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-menu {
+  margin-top: -3px;
+  position: absolute;
+}
+
+/* line 22, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-menu-item {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  /* support: IE10, see #8844 */
+  list-style-image: url(data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7);
+}
+
+/* line 29, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-menu-divider {
+  margin: 5px -2px 5px -2px;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  border-width: 1px 0 0 0;
+}
+
+/* line 36, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-menu-item a {
+  text-decoration: none;
+  display: block;
+  padding: 2px .4em;
+  line-height: 1.5;
+  min-height: 0;
+  /* support: IE7 */
+  font-weight: normal;
+}
+
+/* line 45, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-menu-item a.ui-state-focus,
+.ui-menu .ui-menu-item a.ui-state-active {
+  font-weight: normal;
+  margin: -1px;
+}
+
+/* line 50, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-state-disabled {
+  font-weight: normal;
+  margin: .4em 0 .2em;
+  line-height: 1.5;
+}
+
+/* line 55, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-state-disabled a {
+  cursor: default;
+}
+
+/* icon support */
+/* line 60, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu-icons {
+  position: relative;
+}
+
+/* line 63, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu-icons .ui-menu-item a {
+  position: relative;
+  padding-left: 2em;
+}
+
+/* left-aligned */
+/* line 69, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-icon {
+  position: absolute;
+  top: .2em;
+  left: .2em;
+}
+
+/* right-aligned */
+/* line 76, ../sass/jquery/_jquery.ui.menu.scss */
+.ui-menu .ui-menu-icon {
+  position: static;
+  float: right;
+}
+
+/*!
+ * jQuery UI Selectable 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ */
+/* line 9, ../sass/jquery/_jquery.ui.selectable.scss */
+.ui-selectable-helper {
+  position: absolute;
+  z-index: 100;
+  border: 1px dotted black;
+}
+
+/*!
+ * jQuery UI Resizable 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ */
+/* line 9, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable {
+  position: relative;
+}
+
+/* line 12, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-handle {
+  position: absolute;
+  font-size: 0.1px;
+  display: block;
+}
+
+/* line 18, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-disabled .ui-resizable-handle,
+.ui-resizable-autohide .ui-resizable-handle {
+  display: none;
+}
+
+/* line 21, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-n {
+  cursor: n-resize;
+  height: 7px;
+  width: 100%;
+  top: -5px;
+  left: 0;
+}
+
+/* line 28, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-s {
+  cursor: s-resize;
+  height: 7px;
+  width: 100%;
+  bottom: -5px;
+  left: 0;
+}
+
+/* line 35, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-e {
+  cursor: e-resize;
+  width: 7px;
+  right: -5px;
+  top: 0;
+  height: 100%;
+}
+
+/* line 42, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-w {
+  cursor: w-resize;
+  width: 7px;
+  left: -5px;
+  top: 0;
+  height: 100%;
+}
+
+/* line 49, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-se {
+  cursor: se-resize;
+  width: 12px;
+  height: 12px;
+  right: 1px;
+  bottom: 1px;
+}
+
+/* line 56, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-sw {
+  cursor: sw-resize;
+  width: 9px;
+  height: 9px;
+  left: -5px;
+  bottom: -5px;
+}
+
+/* line 63, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-nw {
+  cursor: nw-resize;
+  width: 9px;
+  height: 9px;
+  left: -5px;
+  top: -5px;
+}
+
+/* line 70, ../sass/jquery/_jquery.ui.resizable.scss */
+.ui-resizable-ne {
+  cursor: ne-resize;
+  width: 9px;
+  height: 9px;
+  right: -5px;
+  top: -5px;
+}
+
+/*!
+ * jQuery UI Slider 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/slider/#theming
+ */
+/* line 11, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider {
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+}
+/* line 15, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider.ui-slider-horizontal {
+  height: 10px;
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(42%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  border: none;
+  line-height: 20px;
+  padding: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 18, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider.ui-slider-horizontal .ui-slider-handle {
+  top: -.3em;
+  margin-left: -.6em;
+  cursor: pointer;
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+/* line 25, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider.ui-slider-horizontal .ui-slider-handle:active {
+  cursor: pointer;
+  cursor: grabbing;
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+}
+/* line 32, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider.ui-slider-horizontal .ui-slider-range {
+  top: 0;
+  height: 100%;
+}
+/* line 36, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider.ui-slider-horizontal .ui-slider-range-min {
+  left: 0;
+}
+/* line 39, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider.ui-slider-horizontal .ui-slider-range-max {
+  right: 0;
+}
+/* line 43, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider .ui-slider-handle {
+  position: absolute;
+  z-index: 2;
+  width: 1.2em;
+  height: 1.2em;
+  cursor: default;
+}
+/* line 49, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider .ui-slider-handle span {
+  position: absolute;
+  top: -15px;
+  width: 20px;
+  display: block;
+  left: 50%;
+  margin-left: -10px;
+  text-align: center;
+}
+/* line 59, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider .ui-slider-range {
+  position: absolute;
+  z-index: 1;
+  font-size: .7em;
+  display: block;
+  border: 0;
+  background-position: 0 0;
+}
+
+/* line 70, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider-vertical {
+  width: 4px;
+  height: 100px;
+}
+
+/* line 74, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider-vertical .ui-slider-handle {
+  left: -6px;
+  margin-left: 0;
+  margin-bottom: -8px;
+  border-radius: 10px;
+  width: 16px;
+  height: 16px;
+}
+
+/* line 82, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider-vertical .ui-slider-range {
+  left: 0;
+  width: 100%;
+}
+
+/* line 86, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider-vertical .ui-slider-range-min {
+  bottom: 0;
+}
+
+/* line 89, ../sass/jquery/_jquery.ui.slider.scss */
+.ui-slider-vertical .ui-slider-range-max {
+  top: 0;
+}
+
+/*!
+ * jQuery UI Tooltip 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/tooltip/#theming
+ */
+/* line 11, ../sass/jquery/_jquery.ui.tooltip.scss */
+.ui-tooltip {
+  padding: 8px;
+  position: absolute;
+  z-index: 9999;
+  max-width: 300px;
+  -webkit-box-shadow: 0 0 5px #aaa;
+  box-shadow: 0 0 5px #aaa;
+}
+
+/* line 19, ../sass/jquery/_jquery.ui.tooltip.scss */
+body .ui-tooltip {
+  border-width: 2px;
+}
+
+/*!
+ * jQuery UI CSS Framework 1.10.4
+ * http://jqueryui.com
+ *
+ * Copyright 2014 jQuery Foundation and other contributors
+ * Released under the MIT license.
+ * http://jquery.org/license
+ *
+ * http://api.jqueryui.com/category/theming/
+ *
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/
+ */
+/* Component containers
+----------------------------------*/
+/* line 17, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget {
+  font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+  font-size: 1.1em;
+}
+
+/* line 21, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget .ui-widget {
+  font-size: 1em;
+}
+
+/* line 27, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget input,
+.ui-widget select,
+.ui-widget textarea,
+.ui-widget button {
+  font-family: Trebuchet MS,Tahoma,Verdana,Arial,sans-serif;
+  font-size: 1em;
+}
+
+/* line 31, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget-content {
+  background: #141414;
+  color: #DCDCDC;
+  font-size: 14px;
+}
+
+/* line 36, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget-content a {
+  color: #333333;
+}
+
+/* line 39, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget-header {
+  /*background: #f6a828 url(images/ui-bg_gloss-wave_35_f6a828_500x100.png) 50% 50% repeat-x;*/
+  color: #DCDCDC;
+  font-weight: bold;
+}
+
+/* line 44, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget-header a {
+  color: #ffffff;
+}
+
+/* Interaction states
+----------------------------------*/
+/* line 52, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+  border: none;
+  background: #616161;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #616161 0%, #3c3c3c 46%, #3c3c3c 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #616161), color-stop(46%, #3c3c3c), color-stop(100%, #3c3c3c));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #616161 0%, #3c3c3c 46%, #3c3c3c 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #616161 0%, #3c3c3c 46%, #3c3c3c 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #616161 0%, #3c3c3c 46%, #3c3c3c 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #616161 0%, #3c3c3c 46%, #3c3c3c 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#616161', endColorstr='#3c3c3c',GradientType=0 );
+  /* IE6-9 */
+  color: #ffffff;
+}
+
+/* line 67, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-default a,
+.ui-state-default a:link,
+.ui-state-default a:visited {
+  color: #1c94c4;
+  text-decoration: none;
+}
+
+/* line 76, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-hover,
+.ui-widget-content .ui-state-hover,
+.ui-widget-header .ui-state-hover,
+.ui-state-focus,
+.ui-widget-content .ui-state-focus,
+.ui-widget-header .ui-state-focus {
+  background: #616161;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #616161 0%, #3c3c3c 73%, #3c3c3c 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #616161), color-stop(73%, #3c3c3c), color-stop(100%, #3c3c3c));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #616161 0%, #3c3c3c 73%, #3c3c3c 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #616161 0%, #3c3c3c 73%, #3c3c3c 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #616161 0%, #3c3c3c 73%, #3c3c3c 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #616161 0%, #3c3c3c 73%, #3c3c3c 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#616161', endColorstr='#3c3c3c',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 89, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-hover a,
+.ui-state-hover a:hover,
+.ui-state-hover a:link,
+.ui-state-hover a:visited {
+  color: #c77405;
+  text-decoration: none;
+}
+
+/* line 95, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+  background: #3c3c3c;
+  /* Old browsers */
+  background: -moz-linear-gradient(top, #3c3c3c 0%, #3c3c3c 27%, #616161 100%);
+  /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #3c3c3c), color-stop(27%, #3c3c3c), color-stop(100%, #616161));
+  /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top, #3c3c3c 0%, #3c3c3c 27%, #616161 100%);
+  /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, #3c3c3c 0%, #3c3c3c 27%, #616161 100%);
+  /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, #3c3c3c 0%, #3c3c3c 27%, #616161 100%);
+  /* IE10+ */
+  background: linear-gradient(to bottom, #3c3c3c 0%, #3c3c3c 27%, #616161 100%);
+  /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#3c3c3c', endColorstr='#616161',GradientType=0 );
+  /* IE6-9 */
+}
+
+/* line 107, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-active a,
+.ui-state-active a:link,
+.ui-state-active a:visited {
+  color: #eb8f00;
+  text-decoration: none;
+}
+
+/* Interaction Cues
+----------------------------------*/
+/* line 116, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-highlight,
+.ui-widget-content .ui-state-highlight,
+.ui-widget-header .ui-state-highlight {
+  border: 1px solid #fed22f;
+  color: #363636;
+}
+
+/* line 122, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-highlight a,
+.ui-widget-content .ui-state-highlight a,
+.ui-widget-header .ui-state-highlight a {
+  color: #363636;
+}
+
+/* line 127, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-error,
+.ui-widget-content .ui-state-error,
+.ui-widget-header .ui-state-error {
+  border: 1px solid #cd0a0a;
+  color: #ffffff;
+}
+
+/* line 133, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-error a,
+.ui-widget-content .ui-state-error a,
+.ui-widget-header .ui-state-error a {
+  color: #ffffff;
+}
+
+/* line 138, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-error-text,
+.ui-widget-content .ui-state-error-text,
+.ui-widget-header .ui-state-error-text {
+  color: #ffffff;
+}
+
+/* line 143, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-priority-primary,
+.ui-widget-content .ui-priority-primary,
+.ui-widget-header .ui-priority-primary {
+  font-weight: bold;
+}
+
+/* line 148, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-priority-secondary,
+.ui-widget-content .ui-priority-secondary,
+.ui-widget-header .ui-priority-secondary {
+  opacity: .7;
+  filter: Alpha(Opacity=70);
+  font-weight: normal;
+}
+
+/* line 155, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-disabled,
+.ui-widget-content .ui-state-disabled,
+.ui-widget-header .ui-state-disabled {
+  opacity: .35;
+  filter: Alpha(Opacity=35);
+  background-image: none;
+}
+
+/* line 160, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-state-disabled .ui-icon {
+  filter: Alpha(Opacity=35);
+  /* For IE8 - See #6059 */
+}
+
+/* Icons
+----------------------------------*/
+/* states and images */
+/* line 168, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Misc visuals
+----------------------------------*/
+/* Corner radius */
+/* line 179, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-left,
+.ui-corner-tl {
+  border-top-left-radius: 4px;
+}
+
+/* line 185, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-corner-all,
+.ui-corner-top,
+.ui-corner-right,
+.ui-corner-tr {
+  border-top-right-radius: 4px;
+}
+
+/* line 191, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-left,
+.ui-corner-bl {
+  border-bottom-left-radius: 4px;
+}
+
+/* line 197, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-corner-all,
+.ui-corner-bottom,
+.ui-corner-right,
+.ui-corner-br {
+  border-bottom-right-radius: 4px;
+}
+
+/* Overlays */
+/* line 202, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  filter: Alpha(Opacity=50);
+}
+
+/* line 206, ../sass/jquery/_jquery.ui.theme.scss */
+.ui-widget-shadow {
+  margin: -5px 0 0 -5px;
+  padding: 5px;
+  opacity: .2;
+  filter: Alpha(Opacity=20);
+  border-radius: 5px;
+}
+
+/* line 213, ../sass/jquery/_jquery.ui.theme.scss */
+.no-title-bar .ui-dialog-titlebar {
+  display: none;
+}
+
+/* line 1, ../sass/_random.scss */
+.gis-control-square-button, .gis-instruments-button, .gis-widget-control-zoom-selector, .gis-sk-selector {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+/* line 57, ../sass/_styles.scss */
+.btn {
+  background: -moz-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #616161), color-stop(53%, #3c3c3c), color-stop(100%, #3c3c3c));
+  background: -webkit-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -o-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -ms-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: linear-gradient(to bottom, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+}
+
+/* line 60, ../sass/_styles.scss */
+.btn:active, .btn.selected {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#141414), color-stop(0.37, #303030), to(#303030));
+  background-image: -webkit-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -moz-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -o-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+}
+
+/* line 68, ../sass/_styles.scss */
+.closed .html-select-view-selector,
+.closed .html-select-view-selector:active,
+.gis-widget-sliderVertical-container .gis-widget-button,
+.gis-widget-sliderHorisontal-container .gis-widget-button,
+.gis-map-footer .gis-widget-button,
+.gis-map-middle .gis-widget-button {
+  background: -moz-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #616161), color-stop(53%, #3c3c3c), color-stop(100%, #3c3c3c));
+  background: -webkit-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -o-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -ms-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: linear-gradient(to bottom, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+}
+
+/* line 77, ../sass/_styles.scss */
+.gis-control-square-button:active,
+.gis-widget-sliderVertical-container .gis-widget-button:active,
+.gis-widget-sliderHorisontal-container .gis-widget-button:active,
+.post-list .html-select-view-title-container,
+.html-select-view-selector,
+.gis-map-footer .gis-widget-button:active,
+.gis-map-middle .gis-widget-button:active {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#141414), color-stop(0.37, #303030), to(#303030));
+  background-image: -webkit-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -moz-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -o-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+}
+
+/* line 83, ../sass/_styles.scss */
+.gis-widget.gis-widget-propertys input[type=text],
+.gis-widget.gis-widget-propertys input[type=number],
+#dialog-new-marker-text,
+#dialog-new-object-text {
+  border: none;
+  line-height: 20px;
+  font-size: 12px;
+}
+
+/* line 88, ../sass/_styles.scss */
+.gis-widget.gis-widget-propertys .gis-point-selector input[type=text] {
+  -webkit-border-radius: 0 2px 2px 0;
+  -moz-border-radius: 0 2px 2px 0;
+  -ms-border-radius: 0 2px 2px 0;
+  -o-border-radius: 0 2px 2px 0;
+  border-radius: 0 2px 2px 0;
+}
+
+/* line 92, ../sass/_styles.scss */
+.gis-widget.gis-widget-propertys .gis-direction input[type=text] {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  -ms-border-radius: 0;
+  -o-border-radius: 0;
+  border-radius: 0;
+}
+
+/* line 97, ../sass/_styles.scss */
+.gis-ui-marker {
+  position: absolute;
+  font: bold 12px Verdana;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 1px 4px;
+  margin-left: 7px;
+}
+
+/* line 108, ../sass/_styles.scss */
+.gis-image-label {
+  z-index: 1;
+}
+
+/* line 111, ../sass/_styles.scss */
+.gis-path-azimuth {
+  z-index: 0;
+}
+
+/* line 4, ../sass/_layout.scss */
+body {
+  overflow: hidden;
+}
+
+/* line 10, ../sass/_layout.scss */
+.gis-ui-container {
+  text-align: left;
+}
+/* line 12, ../sass/_layout.scss */
+.gis-ui-container .gis-bottom-container, .gis-ui-container .gis-left-container, .gis-ui-container .gis-top-container, .gis-ui-container .gis-right-container {
+  background: #272727;
+}
+/* line 15, ../sass/_layout.scss */
+.gis-ui-container .gis-bottom-container {
+  height: 24px;
+  width: 100%;
+  background: #272727;
+}
+/* line 20, ../sass/_layout.scss */
+.gis-ui-container .gis-top-container {
+  height: 45px;
+  width: 100%;
+}
+/* line 24, ../sass/_layout.scss */
+.gis-ui-container .gis-left-container {
+  width: 45px;
+}
+/* line 27, ../sass/_layout.scss */
+.gis-ui-container .gis-right-container {
+  width: 25px;
+}
+/* line 30, ../sass/_layout.scss */
+.gis-ui-container .gis-right-inner-container {
+  padding: 6px 6px 0 0;
+}
+/* line 33, ../sass/_layout.scss */
+.gis-ui-container .gis-right-inner-container, .gis-ui-container .gis-left-inner-container {
+  width: 260px;
+}
+/* line 36, ../sass/_layout.scss */
+.gis-ui-container .gis-left-inner-container {
+  z-index: 1000;
+}
+
+/* line 40, ../sass/_layout.scss */
+.modalPreloader {
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+/* line 47, ../sass/_layout.scss */
+.modalPreloader .text {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  text-align: center;
+}
+
+/* line 1, ../sass/_widget.scss */
+.gis-widget {
+  font-size: 10px;
+  line-height: 1em;
+  font-family: Arial;
+}
+
+/* line 6, ../sass/_widget.scss */
+#gis-widget-control-mouse-position > span {
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* line 11, ../sass/_widget.scss */
+.dragger {
+  display: none;
+  height: 3px;
+  width: 100%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0);
+  z-index: 2;
+  box-shadow: 0 0 0 black;
+  -webkit-transition: background 0.3s ease-in, box-shadow 0.3s ease-in;
+  -webkit-transition-delay: 0.1s, 0.1s;
+  -moz-transition: background 0.3s ease-in 0.1s, box-shadow 0.3s ease-in 0.1s;
+  -o-transition: background 0.3s ease-in 0.1s, box-shadow 0.3s ease-in 0.1s;
+  transition: background 0.3s ease-in 0.1s, box-shadow 0.3s ease-in 0.1s;
+}
+/* line 20, ../sass/_widget.scss */
+.dragger.ui-draggable-dragging {
+  background: white;
+  box-shadow: 0 0 5px black;
+}
+/* line 23, ../sass/_widget.scss */
+.dragger.ui-draggable-dragging div {
+  opacity: 1;
+  box-shadow: 0 0 5px black;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+  cursor: n-resize;
+}
+/* line 32, ../sass/_widget.scss */
+.dragger div {
+  cursor: pointer;
+  opacity: 0.6;
+  -webkit-transition: all 0.3s ease-in;
+  -webkit-transition-delay: 0.3s;
+  -moz-transition: all 0.3s ease-in 0.3s;
+  -o-transition: all 0.3s ease-in 0.3s;
+  transition: all 0.3s ease-in 0.3s;
+  position: absolute;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  content: '';
+  height: 9px;
+  width: 80px;
+  left: 50%;
+  top: -3px;
+  background: #FFF;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-left: -40px;
+  box-shadow: 0 0 5px black;
+}
+/* line 48, ../sass/_widget.scss */
+.dragger div:hover {
+  opacity: 1;
+  -webkit-transform: scale(1.2);
+  -moz-transform: scale(1.2);
+  -ms-transform: scale(1.2);
+  -o-transform: scale(1.2);
+  transform: scale(1.2);
+}
+/* line 52, ../sass/_widget.scss */
+.dragger div:after, .dragger div:before {
+  content: '';
+  width: 60px;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.46);
+  left: 10px;
+  position: absolute;
+}
+/* line 60, ../sass/_widget.scss */
+.dragger div:after {
+  top: 3px;
+}
+/* line 63, ../sass/_widget.scss */
+.dragger div:before {
+  top: 5px;
+}
+/* line 67, ../sass/_widget.scss */
+.dragger.show {
+  display: block;
+}
+
+/* line 71, ../sass/_widget.scss */
+.scroller {
+  overflow: auto;
+}
+
+/** form elements
+*/
+/* line 4, ../sass/_form.scss */
+input[type=text], input[type=number], textarea {
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(42%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  border: none;
+  line-height: 20px;
+  padding: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+
+/* line 7, ../sass/_form.scss */
+.gis-widget-button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -ms-user-select: none;
+}
+
+/* line 14, ../sass/_form.scss */
+.gis-control-square-button,
+.post-list .html-select-view-title-container {
+  border: 1px solid transparent;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 17, ../sass/_form.scss */
+.gis-control-square-button:active, .gis-control-square-button.active,
+.post-list .html-select-view-title-container:active,
+.post-list .html-select-view-title-container.active {
+  border: 1px solid #c8c8c8;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#141414), color-stop(0.37, #303030), to(#303030));
+  background-image: -webkit-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -moz-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -o-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+}
+
+/* line 23, ../sass/_form.scss */
+.post-list .html-select-view-title-container {
+  border: 1px solid #c8c8c8;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#141414), color-stop(0.37, #303030), to(#303030));
+  background-image: -webkit-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -moz-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -o-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+}
+
+/* line 29, ../sass/_form.scss */
+span.checkbox {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border: 1px solid #c8c8c8;
+  border-radius: 2px;
+  background: #f0f0f0;
+  position: relative;
+  margin-right: 5px;
+  top: 1px;
+  cursor: pointer;
+  float: left;
+}
+/* line 42, ../sass/_form.scss */
+span.checkbox.checked:after, span.checkbox.some-checked:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+}
+/* line 53, ../sass/_form.scss */
+span.checkbox.checked:after {
+  background: #0A246A;
+}
+/* line 58, ../sass/_form.scss */
+span.checkbox.some-checked:after {
+  background: #595959;
+}
+
+/* line 63, ../sass/_form.scss */
+.button-checkbox {
+  float: left;
+  top: 5px;
+  position: relative;
+  left: 7px;
+  cursor: pointer;
+  vertical-align: bottom;
+  display: inline-block;
+  line-height: 14px;
+  font-size: 10px;
+}
+/* line 73, ../sass/_form.scss */
+.button-checkbox span.name {
+  font-size: 10px;
+  line-height: 1.4em;
+  text-decoration: underline;
+}
+/* line 79, ../sass/_form.scss */
+.button-checkbox:hover span.name {
+  text-decoration: none;
+}
+
+/** instrument panel
+*/
+/* line 4, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments {
+  position: relative;
+}
+/* line 6, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments div.instruments-submenu-container {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  padding-left: 5px;
+  opacity: 0;
+  width: 44px;
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  left: 0;
+  -webkit-transform: scaleX(0);
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -o-transform: scaleX(0);
+  transform: scaleX(0);
+  overflow: hidden;
+  padding-right: 0;
+}
+/* line 18, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments div.instruments-submenu-container.show {
+  -webkit-transform: scaleX(1);
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -o-transform: scaleX(1);
+  transform: scaleX(1);
+  opacity: 1;
+  left: 30px;
+}
+/* line 24, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-submenu {
+  padding-bottom: 2px;
+  height: 100%;
+}
+/* line 28, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-submenu .gis-instruments-button-separator {
+  display: none;
+}
+/* line 31, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-submenu li {
+  margin-right: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 36, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-submenu li:last-child {
+  margin-bottom: 0;
+}
+/* line 40, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list, .gis-widget.gis-widget-instruments .instruments-submenu-container {
+  padding: 4px 4px 13px;
+  height: 100%;
+  position: relative;
+  z-index: 2;
+  margin: 0 2px 7px 7px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  background: #121212;
+  width: 26px;
+}
+/* line 49, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li, .gis-widget.gis-widget-instruments .instruments-submenu-container li {
+  width: 16px;
+  height: 16px;
+  list-style: none;
+  margin-bottom: 5px;
+  position: relative;
+  padding: 4px;
+  border: 1px solid transparent;
+}
+/* line 57, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button {
+  z-index: 1;
+  border: 1px solid transparent;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+  background: -moz-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #616161), color-stop(53%, #3c3c3c), color-stop(100%, #3c3c3c));
+  background: -webkit-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -o-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -ms-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: linear-gradient(to bottom, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+}
+/* line 63, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button.selected, .gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button:active, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button.selected, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button:active {
+  border: 1px solid #c8c8c8;
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#141414), color-stop(0.37, #303030), to(#303030));
+  background-image: -webkit-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -moz-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -o-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+}
+/* line 70, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li ul.with-childs > li, .gis-widget.gis-widget-instruments .instruments-submenu-container li ul.with-childs > li {
+  top: -45px;
+  position: relative;
+  margin-left: 2px;
+}
+/* line 74, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li ul.with-childs > li:nth-child(2), .gis-widget.gis-widget-instruments .instruments-submenu-container li ul.with-childs > li:nth-child(2) {
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+  -o-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+  opacity: 0;
+  left: -100%;
+}
+/* line 79, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li ul.with-childs > li ul, .gis-widget.gis-widget-instruments .instruments-submenu-container li ul.with-childs > li ul {
+  background: #121212;
+  width: 26px;
+  padding: 4px 4px 2px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+/* line 87, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li ul.with-childs > li:first-child, .gis-widget.gis-widget-instruments .instruments-submenu-container li ul.with-childs > li:first-child {
+  display: block;
+  top: -5px;
+  left: -5px;
+  margin-left: 0;
+}
+/* line 92, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li ul.with-childs > li:first-child:after, .gis-widget.gis-widget-instruments .instruments-submenu-container li ul.with-childs > li:first-child:after {
+  content: "";
+  position: absolute;
+  bottom: -3px;
+  right: -3px;
+  border: 4px solid transparent;
+  border-top-color: #fff;
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+/* line 104, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li ul.with-childs.show-submenu > li:nth-child(2), .gis-widget.gis-widget-instruments .instruments-submenu-container li ul.with-childs.show-submenu > li:nth-child(2) {
+  left: 100%;
+  opacity: 1;
+}
+/* line 110, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li span, .gis-widget.gis-widget-instruments .instruments-submenu-container li span {
+  width: 16px;
+  height: 16px;
+  display: block;
+  background: url("../images/icons.png") 0 0 no-repeat;
+}
+/* line 117, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-select span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-select span {
+  background-position: 0 -179px;
+}
+/* line 120, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-select.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-select.selected span {
+  background-position: -20px -179px;
+}
+/* line 125, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-object span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-object span {
+  background-position: -1px -20px;
+}
+/* line 128, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-object.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-object.selected span {
+  background-position: -19px -20px;
+}
+/* line 133, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-marker span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-marker span {
+  background-position: -1px 0;
+}
+/* line 136, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-marker.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-marker.selected span {
+  background-position: -19px 0;
+}
+/* line 141, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-move span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-move span {
+  background-position: 0 -130px;
+}
+/* line 144, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-move.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-move.selected span {
+  background-position: -20px -130px;
+}
+/* line 149, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-measure span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-measure span {
+  background-position: 0 -110px;
+}
+/* line 152, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-measure.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-measure.selected span {
+  background-position: -20px -110px;
+}
+/* line 157, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-layers span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-layers span {
+  background-position: -91px -98px;
+}
+/* line 160, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-layers.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-layers.selected span {
+  background-position: -91px -117px;
+}
+/* line 165, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-relief.hide, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-relief.hide {
+  display: none;
+}
+/* line 168, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-relief span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-relief span {
+  background: url("../images/mountain.png") top left no-repeat;
+}
+/* line 171, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-relief.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-relief.selected span {
+  background-position: -16px 0;
+}
+/* line 176, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-visibility.hide, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-visibility.hide {
+  display: none;
+}
+/* line 179, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-visibility span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-visibility span {
+  background: url("../images/visibility.png") top left no-repeat;
+}
+/* line 182, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-visibility.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-visibility.selected span {
+  background-position: -16px 0;
+}
+/* line 187, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-areal-relief.hide, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-areal-relief.hide {
+  display: none;
+}
+/* line 190, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-areal-relief span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-areal-relief span {
+  background: url("../images/areal.png") top left no-repeat;
+}
+/* line 193, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-areal-relief.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-areal-relief.selected span {
+  background-position: -16px 0;
+}
+/* line 198, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-geo.hide, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-geo.hide {
+  display: none;
+}
+/* line 201, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-geo span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-geo span {
+  background: url("../images/geo.png") top left no-repeat;
+}
+/* line 204, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-geo.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-geo.selected span {
+  background-position: -16px 0;
+}
+/* line 209, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-geo-path.hide, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-geo-path.hide {
+  display: none;
+}
+/* line 212, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-geo-path span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-geo-path span {
+  background: url("../images/geo-path.png") top left no-repeat;
+}
+/* line 215, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-geo-path.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-geo-path.selected span {
+  background-position: -16px 0;
+}
+/* line 219, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-submenu, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-submenu {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  opacity: 0;
+  -webkit-transition: all 0.5s cubic-bezier(0.575, 0.14, 0, 1.65);
+  -moz-transition: all 0.5s cubic-bezier(0.575, 0.14, 0, 1.65);
+  -o-transition: all 0.5s cubic-bezier(0.575, 0.14, 0, 1.65);
+  transition: all 0.5s cubic-bezier(0.575, 0.14, 0, 1.65);
+}
+/* line 223, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-submenu.show, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-submenu.show {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+/* line 227, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-submenu span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-submenu span {
+  background: url("../images/menu.png") top left no-repeat;
+}
+/* line 230, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-submenu.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-submenu.selected span {
+  background-position: -15px 0;
+}
+/* line 235, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-zoom span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-zoom span {
+  background-position: -20px -151px;
+}
+/* line 238, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-zoom.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-zoom.selected span {
+  background-position: 0 -151px;
+}
+/* line 243, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-path span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-path span {
+  background-position: -1px -38px;
+}
+/* line 246, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-path.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-path.selected span {
+  background-position: -19px -38px;
+}
+/* line 251, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-polygon span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-polygon span {
+  background-position: -1px -56px;
+}
+/* line 254, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-polygon.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-polygon.selected span {
+  background-position: -19px -56px;
+}
+/* line 259, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-sector span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-sector span {
+  background-position: -1px -92px;
+}
+/* line 262, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-sector.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-sector.selected span {
+  background-position: -19px -92px;
+}
+/* line 267, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-ellipse span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-ellipse span {
+  background-position: -1px -74px;
+}
+/* line 270, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-ellipse.selected span, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-ellipse.selected span {
+  background-position: -19px -74px;
+}
+/* line 274, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-separator, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-separator {
+  background: none;
+  cursor: default;
+}
+/* line 275, ../sass/_instruments.scss */
+.gis-widget.gis-widget-instruments ul.instruments-list li.gis-instruments-button-separator:first-child, .gis-widget.gis-widget-instruments .instruments-submenu-container li.gis-instruments-button-separator:first-child {
+  display: none;
+}
+
+/*Propertys*/
+/* line 33, ../sass/_widget-propertys.scss */
+.gis-propertys-button {
+  cursor: pointer;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  background: -moz-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #616161), color-stop(53%, #3c3c3c), color-stop(100%, #3c3c3c));
+  background: -webkit-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -o-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: -ms-linear-gradient(top, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+  background: linear-gradient(to bottom, #616161 0%, #3c3c3c 53%, #3c3c3c 100%);
+}
+/* line 37, ../sass/_widget-propertys.scss */
+.gis-propertys-button:active, .gis-propertys-button.selected {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#141414), color-stop(0.37, #303030), to(#303030));
+  background-image: -webkit-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -moz-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -o-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+}
+/* line 40, ../sass/_widget-propertys.scss */
+.gis-propertys-button.disabled {
+  cursor: default;
+  background: #969696;
+  cursor: default;
+}
+/* line 43, ../sass/_widget-propertys.scss */
+.gis-propertys-button.disabled.selected {
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#141414), color-stop(0.37, #303030), to(#303030));
+  background-image: -webkit-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -moz-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: -o-linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+  background-image: linear-gradient(#141414 0%, #303030 37%, #303030 100%);
+}
+/* line 48, ../sass/_widget-propertys.scss */
+.gis-propertys-button.gis-color-button:active, .gis-propertys-button.gis-color-button.selected {
+  background: #e9e9e9;
+}
+/* line 51, ../sass/_widget-propertys.scss */
+.gis-propertys-button.gis-color-button.disabled {
+  background: #969696;
+  cursor: default;
+}
+/* line 53, ../sass/_widget-propertys.scss */
+.gis-propertys-button.gis-color-button.disabled.selected {
+  background: #e9e9e9;
+}
+/* line 58, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control {
+  font-size: 11px;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  color: #DCDCDC;
+  margin: 0;
+  padding: 2px 4px 0 4px;
+  height: 22px;
+  width: 24px;
+}
+/* line 68, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo-path .gis-propertys-button.widget-control {
+  width: auto;
+}
+/* line 71, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control span.gis-button-icon {
+  width: 16px;
+  background: url("../images/icons.png") 16px 16px no-repeat;
+  top: 0;
+}
+/* line 76, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control.gis-button-with-text {
+  width: 98px;
+  padding-left: 0;
+}
+/* line 79, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control.gis-button-with-text.gis-propertys-button-clean-overlay {
+  text-align: center;
+  width: 48px;
+}
+/* line 83, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control.gis-button-with-text span.gis-button-icon {
+  margin-right: 2px;
+  top: 1px;
+}
+/* line 87, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control.gis-button-with-text span.gis-button-text {
+  line-height: 20px;
+  vertical-align: top;
+}
+/* line 92, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control:disabled, .gis-propertys-button.widget-control.disabled {
+  background: #969696;
+  cursor: default;
+}
+/* line 95, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control span {
+  display: inline-block;
+  height: 20px;
+  position: relative;
+}
+/* line 100, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control.gis-propertys-button-delete span.gis-button-icon {
+  background-position: -67px 0;
+}
+/* line 103, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control.gis-propertys-button-deselect span.gis-button-icon {
+  background-position: -48px 0;
+}
+/* line 106, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control.gis-propertys-button-return span.gis-button-icon {
+  background-position: -86px 0;
+}
+/* line 109, ../sass/_widget-propertys.scss */
+.gis-propertys-button.widget-control.gis-propertys-button-revert span.gis-button-icon {
+  background-position: -106px 0;
+}
+/* line 114, ../sass/_widget-propertys.scss */
+.gis-propertys-button.location-show span {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: url("../images/location_found.png") top left no-repeat;
+}
+
+/* line 123, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-ellipse {
+  position: relative;
+  top: 2px;
+}
+/* line 126, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-ellipse .data-row input[type=text], .gis-widget-propertys-ellipse .data-row input[type=number] {
+  width: 48%;
+  float: right;
+}
+
+/* line 135, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-sector {
+  position: relative;
+  top: 2px;
+}
+/* line 138, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-sector .data-row input[type=text], .gis-widget-propertys-sector .data-row input[type=number] {
+  width: 48%;
+  float: right;
+}
+/* line 143, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-sector .data-row .gis-direction input[type=text], .gis-widget-propertys-sector .data-row .gis-direction input[type=number] {
+  width: 90px;
+}
+
+/* line 149, ../sass/_widget-propertys.scss */
+.gis-widget-propertys {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  color: gainsboro;
+  font-size: 12px;
+  position: relative;
+}
+/* line 156, ../sass/_widget-propertys.scss */
+.gis-widget-propertys:hover {
+  z-index: 4;
+}
+/* line 159, ../sass/_widget-propertys.scss */
+.gis-widget-propertys li.data-row {
+  margin-bottom: 6px;
+  min-height: 20px;
+  margin-top: 6px;
+}
+/* line 163, ../sass/_widget-propertys.scss */
+.gis-widget-propertys li.data-row.data-title {
+  margin-bottom: 0;
+  margin-top: 7px;
+  min-height: 0;
+}
+/* line 168, ../sass/_widget-propertys.scss */
+.gis-widget-propertys li.data-row:last-child {
+  margin-bottom: 0;
+}
+/* line 172, ../sass/_widget-propertys.scss */
+.gis-widget-propertys div.gis-widget-propertys-wraper {
+  margin-bottom: 6px;
+  font-size: 10px;
+  color: gainsboro;
+}
+/* line 176, ../sass/_widget-propertys.scss */
+.gis-widget-propertys div.gis-widget-propertys-wraper:last-child {
+  margin-bottom: 0;
+}
+/* line 180, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-title {
+  background: #888888;
+  background: -moz-linear-gradient(top, #888888 0%, #646464 46%, #646464 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #888888), color-stop(46%, #646464), color-stop(100%, #646464));
+  background: -webkit-linear-gradient(top, #888888 0%, #646464 46%, #646464 100%);
+  background: -o-linear-gradient(top, #888888 0%, #646464 46%, #646464 100%);
+  background: -ms-linear-gradient(top, #888888 0%, #646464 46%, #646464 100%);
+  background: linear-gradient(to bottom, #888888 0%, #646464 46%, #646464 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#888888', endColorstr='#646464',GradientType=0 );
+  border-radius: 3px 3px 0 0;
+  display: inline-block;
+  padding: 1px 6px 0;
+  font-size: 10px;
+}
+/* line 194, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-buttons-wraper, .gis-widget-propertys .gis-widget-propertys-data {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  padding: 4px;
+  background: -moz-linear-gradient(top, #131313 0%, #030303 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #131313), color-stop(100%, #030303));
+  background: -webkit-linear-gradient(top, #131313 0%, #030303 100%);
+  background: -o-linear-gradient(top, #131313 0%, #030303 100%);
+  background: -ms-linear-gradient(top, #131313 0%, #030303 100%);
+  background: linear-gradient(to bottom, #131313 0%, #030303 100%);
+}
+/* line 204, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data {
+  border-top: 1px solid #646464;
+  border-bottom: 1px solid #646464;
+  border-top-left-radius: 0;
+}
+/* line 208, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector {
+  overflow: auto;
+  padding-bottom: 5px;
+  padding-top: 12px;
+}
+/* line 212, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector ol {
+  list-style: none;
+}
+/* line 214, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector ol:first-child {
+  counter-reset: customlistcounter;
+}
+/* line 217, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector ol > li {
+  counter-increment: customlistcounter;
+  position: relative;
+}
+/* line 220, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector ol > li:before {
+  content: counter(customlistcounter) " ";
+  font-weight: bold;
+  width: 1em;
+  color: #55afe2;
+  font-size: 11px;
+}
+/* line 227, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector ol > li.selected:before {
+  color: yellow;
+}
+/* line 231, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector ol input {
+  color: #000000;
+}
+/* line 235, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector ol li:last-child .gis-widget-ico.gis-widget-ico-down,
+.gis-widget-propertys .gis-widget-propertys-data#points-selector ol li:first-child .gis-widget-ico.gis-widget-ico-up {
+  visibility: hidden;
+}
+/* line 239, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector .gis-widget-ico {
+  display: inline-block;
+  height: 10px;
+  width: 10px;
+  cursor: pointer;
+  background: url("../images/icons.png") 10px 10px no-repeat;
+}
+/* line 246, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector .gis-widget-ico-up {
+  background-position: -47px -22px;
+}
+/* line 249, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector .gis-widget-ico-down {
+  background-position: -59px -22px;
+}
+/* line 252, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector .gis-widget-ico-add {
+  background-position: -71px -22px;
+  position: absolute;
+  right: 0;
+  top: -7px;
+}
+/* line 258, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector .gis-widget-ico-remove {
+  background-position: -83px -22px;
+}
+/* line 261, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector .gis-widget-add-to-end {
+  position: relative;
+  height: 7px;
+}
+/* line 264, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data#points-selector .gis-widget-add-to-end .gis-widget-ico-add {
+  top: -2px;
+}
+/* line 269, ../sass/_widget-propertys.scss */
+.gis-widget-propertys .gis-widget-propertys-data ul {
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* line 277, ../sass/_widget-propertys.scss */
+p.data-title {
+  min-height: 16px;
+  margin-top: 3px;
+}
+
+/** Color selector*/
+/* line 282, ../sass/_widget-propertys.scss */
+.gis-color-container {
+  padding-bottom: 0;
+}
+
+/* line 285, ../sass/_widget-propertys.scss */
+.gis-color-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+/* line 290, ../sass/_widget-propertys.scss */
+.gis-color-list .gis-color-button {
+  display: inline-block;
+  margin-right: 4px;
+  border-radius: 2px;
+  padding: 4px;
+  cursor: pointer;
+  margin-bottom: 4px;
+}
+/* line 297, ../sass/_widget-propertys.scss */
+.gis-color-list .gis-color-button.gis-color-custom {
+  position: relative;
+}
+/* line 299, ../sass/_widget-propertys.scss */
+.gis-color-list .gis-color-button.gis-color-custom:after {
+  position: absolute;
+  content: '';
+  border: 4px solid transparent;
+  border-top-color: white;
+  left: 50%;
+  margin-left: -4px;
+  bottom: -4px;
+}
+/* line 309, ../sass/_widget-propertys.scss */
+.gis-color-list .gis-color-button span {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+/* line 320, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-marker input#marker-text, .gis-widget-propertys-marker input#object-text,
+.gis-widget-propertys-object input#marker-text,
+.gis-widget-propertys-object input#object-text,
+.gis-widget-propertys-ellipse input#marker-text,
+.gis-widget-propertys-ellipse input#object-text,
+.gis-widget-propertys-sector input#marker-text,
+.gis-widget-propertys-sector input#object-text {
+  width: 100%;
+}
+
+/* line 326, ../sass/_widget-propertys.scss */
+#dialog-new-marker-text,
+#dialog-new-object-text,
+#file-name-user {
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(42%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  border: none;
+  line-height: 20px;
+  padding: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+
+/* line 7, ../sass/_widget-propertys.scss */
+.inline-points {
+  margin-bottom: 6px;
+}
+/* line 9, ../sass/_widget-propertys.scss */
+.inline-points li, .inline-points .point-tag {
+  display: inline-block;
+  width: 48%;
+  margin-right: 2%;
+  line-height: 0;
+}
+/* line 14, ../sass/_widget-propertys.scss */
+.inline-points li:last-child, .inline-points .point-tag:last-child {
+  margin-right: 0;
+  float: right;
+}
+/* line 18, ../sass/_widget-propertys.scss */
+.inline-points li input, .inline-points .point-tag input {
+  width: 97%;
+  text-align: center;
+  padding: 0;
+  margin-right: -3px;
+}
+/* line 25, ../sass/_widget-propertys.scss */
+.inline-points li .gis-direction input, .inline-points .point-tag .gis-direction input {
+  width: 82%;
+}
+
+/* line 331, ../sass/_widget-propertys.scss */
+.gis-map-measuring .gis-image-label.gis-clickable.gis-selected {
+  background: none;
+  box-shadow: none;
+}
+/* line 334, ../sass/_widget-propertys.scss */
+.gis-map-measuring .gis-image-label.gis-clickable.gis-selected .gis-cyrcle-fill {
+  fill: yellow !important;
+}
+
+/* line 338, ../sass/_widget-propertys.scss */
+#info-data {
+  overflow: auto;
+}
+
+/* line 349, ../sass/_widget-propertys.scss */
+.gis-row-layer {
+  cursor: pointer;
+}
+
+/* line 42, ../sass/_styles.scss */
+#gis-show-filter .html-select-view-selector {
+  height: 22px;
+}
+/* line 44, ../sass/_styles.scss */
+#gis-show-filter .html-select-view-selector:after {
+  top: 5px;
+}
+/* line 48, ../sass/_styles.scss */
+#gis-show-filter .closed .html-select-view-selector:after {
+  top: 10px;
+}
+/* line 51, ../sass/_styles.scss */
+#gis-show-filter .html-select-view-title-container {
+  padding: 2px;
+  overflow: hidden;
+  min-height: 12px;
+}
+
+/**image type selector*/
+/* line 356, ../sass/_widget-propertys.scss */
+.gis-image-type-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+}
+/* line 361, ../sass/_widget-propertys.scss */
+.gis-image-type-list .gis-image-type-button {
+  display: inline-block;
+  margin-right: 6px;
+  padding: 4px;
+  border-radius: 2px;
+  cursor: pointer;
+  line-height: 0;
+  margin-bottom: 4px;
+  vertical-align: top;
+}
+/* line 370, ../sass/_widget-propertys.scss */
+.gis-image-type-list .gis-image-type-button span {
+  display: block;
+  width: 12px;
+  height: 12px;
+  background: url("../images/icons.png") 12px 12px no-repeat;
+  cursor: pointer;
+}
+/* line 377, ../sass/_widget-propertys.scss */
+.gis-image-type-list .gis-image-type-button.gis-image-type-target span {
+  background-position: -48px -37px;
+}
+/* line 380, ../sass/_widget-propertys.scss */
+.gis-image-type-list .gis-image-type-button.gis-image-type-danger span {
+  background-position: -61px -37px;
+}
+/* line 383, ../sass/_widget-propertys.scss */
+.gis-image-type-list .gis-image-type-button.gis-image-type-circle span {
+  background-position: -76px -37px;
+}
+/* line 386, ../sass/_widget-propertys.scss */
+.gis-image-type-list .gis-image-type-button.gis-image-type-storm span {
+  background-position: -91px -37px;
+}
+/* line 389, ../sass/_widget-propertys.scss */
+.gis-image-type-list .gis-image-type-button.gis-image-type-simple span {
+  background-position: -106px -37px;
+}
+
+/**property buttons*/
+/* line 395, ../sass/_widget-propertys.scss */
+ul.gis-property-buttons-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  cursor: default;
+  text-align: right;
+}
+/* line 401, ../sass/_widget-propertys.scss */
+ul.gis-property-buttons-list li {
+  display: inline-block;
+  margin-right: 4px;
+  vertical-align: bottom;
+  margin-left: 0;
+}
+/* line 406, ../sass/_widget-propertys.scss */
+ul.gis-property-buttons-list li:last-child {
+  margin-right: 0;
+}
+
+/* line 413, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-zoom .gis-propertys-button.gis-button-with-text {
+  width: 75px;
+}
+
+/* line 418, ../sass/_widget-propertys.scss */
+.gis-point-in-list {
+  width: 77%;
+  display: inline-block;
+  position: relative;
+  margin-right: -3px;
+}
+/* line 424, ../sass/_widget-propertys.scss */
+.gis-point-in-list.inline-points .point-tag, .gis-point-in-list.inline-points li {
+  width: 46%;
+}
+/* line 427, ../sass/_widget-propertys.scss */
+.gis-point-in-list.inline-points .gis-point-selector {
+  width: 87%;
+}
+
+/* line 432, ../sass/_widget-propertys.scss */
+.visibility-radius {
+  float: right;
+}
+
+/* line 435, ../sass/_widget-propertys.scss */
+.visibility-h > span, .visibility-h input, input.visibility-radius {
+  display: inline-block;
+  width: 48%;
+}
+
+/* line 439, ../sass/_widget-propertys.scss */
+.visibility-h input, input.visibility-radius {
+  float: right;
+}
+
+/* line 444, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo #query-text.hide {
+  display: none;
+}
+/* line 448, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo #position-selector {
+  clear: both;
+  margin-top: 9px;
+}
+/* line 451, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo #position-selector.hide {
+  display: none;
+}
+/* line 455, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo .type-title {
+  display: inline-block;
+  margin-top: 4px;
+}
+/* line 459, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo #type-selector {
+  float: right;
+  width: 48%;
+}
+/* line 463, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo #query-text {
+  width: 100%;
+  margin-top: 7px;
+}
+/* line 468, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo #result-container ul {
+  overflow: auto;
+  height: 100%;
+}
+/* line 472, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo #result-container img {
+  float: right;
+  margin-left: 10px;
+}
+/* line 477, ../sass/_widget-propertys.scss */
+.gis-widget-propertys-geo #result-container li span {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+
+/* line 485, ../sass/_widget-propertys.scss */
+.data-list {
+  background: #c8c8c8;
+  background: -moz-linear-gradient(top, #c8c8c8 1%, #f0f0f0 50%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #c8c8c8), color-stop(50%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #c8c8c8 1%, #f0f0f0 50%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #c8c8c8 1%, #f0f0f0 50%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #c8c8c8 1%, #f0f0f0 50%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #c8c8c8 1%, #f0f0f0 50%, #f0f0f0 100%);
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 489, ../sass/_widget-propertys.scss */
+.data-list.element-hover li, .data-list.element-hover tr {
+  position: relative;
+  text-align: left;
+  cursor: pointer;
+  padding: 6px;
+  border: 1px dashed transparent;
+  font-size: 12px;
+  line-height: 1.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #000;
+}
+/* line 501, ../sass/_widget-propertys.scss */
+.data-list.element-hover li.invisible, .data-list.element-hover tr.invisible {
+  display: none;
+}
+/* line 504, ../sass/_widget-propertys.scss */
+.data-list.element-hover li.selected, .data-list.element-hover li:hover, .data-list.element-hover tr.selected, .data-list.element-hover tr:hover {
+  background: #0A246A;
+  border-color: #F5DB95;
+  color: gainsboro;
+}
+
+/* line 511, ../sass/_widget-propertys.scss */
+.gis-widget-measure-info .head {
+  margin-bottom: 5px;
+}
+/* line 514, ../sass/_widget-propertys.scss */
+.gis-widget-measure-info table {
+  width: 100%;
+}
+/* line 518, ../sass/_widget-propertys.scss */
+.gis-widget-measure-info .value {
+  float: right;
+  max-width: 100px;
+  color: #ffffff;
+  font-weight: bold;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+/* line 525, ../sass/_widget-propertys.scss */
+.gis-widget-measure-info th {
+  font-weight: bold;
+  color: #ffffff;
+  border-bottom: 1px solid #ffffff;
+  background: #515151;
+}
+/* line 531, ../sass/_widget-propertys.scss */
+.gis-widget-measure-info th, .gis-widget-measure-info td {
+  border-right: 1px solid #646464;
+  text-align: center;
+  padding: 2px 0;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+/* line 537, ../sass/_widget-propertys.scss */
+.gis-widget-measure-info th:last-child, .gis-widget-measure-info td:last-child {
+  border-right: none;
+}
+
+/* line 2, ../sass/_widget-point.scss */
+.gis-widget-propertys .gis-row-name {
+  vertical-align: bottom;
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(42%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  border: none;
+  line-height: 20px;
+  padding: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0 2px;
+  margin-left: 0;
+  border-radius: 2px 0 0 2px;
+  border-right: 1px solid #cbcbcb;
+  color: black;
+  display: inline-block;
+  text-align: center;
+  font-size: 10px;
+  width: 5%;
+  line-height: 20px;
+}
+
+/* line 16, ../sass/_widget-point.scss */
+.gis-point-selector {
+  width: 93%;
+  display: inline-block;
+  vertical-align: bottom;
+  margin-right: -3px;
+}
+/* line 17, ../sass/_widget-point.scss */
+.gis-point-selector .point-direction {
+  cursor: pointer;
+  display: none;
+  vertical-align: bottom;
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(42%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  border: none;
+  line-height: 20px;
+  padding: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0 1px 0;
+  margin-left: 0;
+  border-radius: 0 2px 2px 0;
+  border-left: 1px solid #cbcbcb;
+  color: black;
+  margin-right: -3px;
+  line-height: 20px;
+}
+/* line 29, ../sass/_widget-point.scss */
+.gis-point-selector .point-direction.disabled {
+  color: rgba(0, 0, 0, 0.61);
+  cursor: not-allowed;
+}
+/* line 34, ../sass/_widget-point.scss */
+.gis-point-selector .point-attention {
+  display: none;
+  margin-left: 0;
+  vertical-align: bottom;
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(42%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  border: none;
+  line-height: 20px;
+  padding: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 3px 1px 1px;
+  width: 3%;
+}
+/* line 41, ../sass/_widget-point.scss */
+.gis-point-selector .point-attention.zone-fixed {
+  cursor: default;
+  display: inline-block;
+  background: red;
+  position: absolute;
+  color: white;
+}
+/* line 54, ../sass/_widget-point.scss */
+.gis-point-selector.gis-direction .point-direction {
+  display: inline-block;
+  width: 15%;
+  text-align: center;
+  font-size: 9px;
+}
+
+/* line 62, ../sass/_widget-point.scss */
+.gis-point-wraper {
+  line-height: 1.2em;
+}
+
+/*latitude**/
+/* line 16, ../sass/_scroll-bars.scss */
+.gis-widget-sliderVertical-container .gis-widget-button {
+  height: 20px;
+  width: 10px;
+  position: absolute;
+  left: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+/* line 23, ../sass/_scroll-bars.scss */
+.gis-widget-sliderVertical-container .gis-widget-button:after {
+  content: "";
+  position: absolute;
+  border: 3px solid transparent;
+  left: 2px;
+}
+/* line 29, ../sass/_scroll-bars.scss */
+.gis-widget-sliderVertical-container .gis-widget-button.gis-latitude-previous {
+  top: -22px;
+}
+/* line 31, ../sass/_scroll-bars.scss */
+.gis-widget-sliderVertical-container .gis-widget-button.gis-latitude-previous:after {
+  top: 1px;
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid #dddddd;
+}
+/* line 37, ../sass/_scroll-bars.scss */
+.gis-widget-sliderVertical-container .gis-widget-button.gis-latitude-next {
+  bottom: -22px;
+}
+/* line 39, ../sass/_scroll-bars.scss */
+.gis-widget-sliderVertical-container .gis-widget-button.gis-latitude-next:after {
+  top: 7px;
+  border-bottom: 6px solid transparent;
+  border-top: 6px solid #dddddd;
+}
+/* line 46, ../sass/_scroll-bars.scss */
+.gis-widget-sliderVertical-container > div {
+  margin: 23px 7px 22px 7px;
+  padding: 24px 0 25px 0;
+  width: 10px;
+  position: relative;
+  background: #d9d9d9;
+  background: -moz-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d9d9d9), color-stop(50%, #bebebe), color-stop(100%, #a2a2a2));
+  background: -webkit-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -o-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -ms-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: linear-gradient(to bottom, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9d9d9', endColorstr='#a2a2a2',GradientType=0 );
+}
+
+/**LONGITUDE*/
+/* line 56, ../sass/_scroll-bars.scss */
+.gis-widget-sliderHorisontal-container {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+/* line 57, ../sass/_scroll-bars.scss */
+.gis-widget-sliderHorisontal-container .gis-widget-button {
+  height: 10px;
+  width: 20px;
+  position: absolute;
+  top: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  cursor: pointer;
+}
+/* line 64, ../sass/_scroll-bars.scss */
+.gis-widget-sliderHorisontal-container .gis-widget-button:after {
+  content: "";
+  position: absolute;
+  border: 3px solid transparent;
+  top: 2px;
+}
+/* line 70, ../sass/_scroll-bars.scss */
+.gis-widget-sliderHorisontal-container .gis-widget-button.gis-longitude-previous {
+  left: -22px;
+}
+/* line 72, ../sass/_scroll-bars.scss */
+.gis-widget-sliderHorisontal-container .gis-widget-button.gis-longitude-previous:after {
+  left: 1px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid #dddddd;
+}
+/* line 78, ../sass/_scroll-bars.scss */
+.gis-widget-sliderHorisontal-container .gis-widget-button.gis-longitude-next {
+  right: -22px;
+}
+/* line 80, ../sass/_scroll-bars.scss */
+.gis-widget-sliderHorisontal-container .gis-widget-button.gis-longitude-next:after {
+  left: 7px;
+  border-right: 6px solid transparent;
+  border-left: 6px solid #dddddd;
+}
+/* line 89, ../sass/_scroll-bars.scss */
+.gis-widget-sliderHorisontal-container > div {
+  margin: 0 47px 0 67px;
+  padding: 0 28px 0 28px;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  position: relative;
+  background: #d9d9d9;
+  background: -moz-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d9d9d9), color-stop(50%, #bebebe), color-stop(100%, #a2a2a2));
+  background: -webkit-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -o-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -ms-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: linear-gradient(to bottom, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9d9d9', endColorstr='#a2a2a2',GradientType=0 );
+}
+
+/***/
+/* line 99, ../sass/_scroll-bars.scss */
+#scroll-bar-h {
+  background: #d9d9d9;
+  background: -moz-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #d9d9d9), color-stop(50%, #bebebe), color-stop(100%, #a2a2a2));
+  background: -webkit-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -o-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: -ms-linear-gradient(top, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  background: linear-gradient(to bottom, #d9d9d9 0%, #bebebe 50%, #a2a2a2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#d9d9d9', endColorstr='#a2a2a2',GradientType=0 );
+  padding: 0;
+}
+/* line 102, ../sass/_scroll-bars.scss */
+#scroll-bar-h.ui-slider .ui-slider-handle {
+  width: 56px;
+  height: 10px;
+  margin-left: -28px;
+  margin-top: 0;
+  top: 0;
+}
+
+/* line 110, ../sass/_scroll-bars.scss */
+#scroll-bar {
+  background: none;
+}
+/* line 112, ../sass/_scroll-bars.scss */
+#scroll-bar.ui-slider .ui-slider-handle {
+  width: 10px;
+  height: 50px;
+  margin-left: 0;
+  margin-bottom: -25px;
+  left: 0;
+}
+
+/* line 1, ../sass/_pseudo-select.scss */
+.html-select-view {
+  position: absolute;
+  color: gainsboro;
+  background: #121212;
+  border: 1px solid #646464;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  width: 100%;
+  z-index: 200;
+  overflow: auto;
+  max-height: 1024px;
+}
+/* line 11, ../sass/_pseudo-select.scss */
+.html-select-view li {
+  padding: 2px;
+  cursor: pointer;
+  border: 1px dashed transparent;
+  font-size: 12px;
+  line-height: 1.2em;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/* line 27, ../sass/_styles.scss */
+.html-select-view li.html-list-active {
+  background-color: #121212;
+}
+/* line 30, ../sass/_styles.scss */
+.html-select-view li.html-list-title {
+  cursor: default;
+  background-color: gray;
+}
+/* line 14, ../sass/_pseudo-select.scss */
+.html-select-view li.html-list-active:hover, .html-select-view li.html-list-active.selected {
+  background: #0A246A;
+  border-color: #F5DB95;
+  color: gainsboro;
+}
+/* line 18, ../sass/_pseudo-select.scss */
+.html-select-view .ui-list-childs {
+  border-bottom: 3px solid gray;
+}
+
+/* line 22, ../sass/_pseudo-select.scss */
+.html-select-view-container {
+  position: relative;
+}
+
+/* line 25, ../sass/_pseudo-select.scss */
+.html-select-view-title-container {
+  font-size: 12px;
+  line-height: 20px;
+  cursor: pointer;
+  color: #000000;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0 2px;
+  background: #cacaca;
+  background: -moz-linear-gradient(top, #cacaca 0%, #f0f0f0 35%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cacaca), color-stop(35%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cacaca 0%, #f0f0f0 35%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cacaca 0%, #f0f0f0 35%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cacaca 0%, #f0f0f0 35%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cacaca 0%, #f0f0f0 35%, #f0f0f0 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cacaca', endColorstr='#f0f0f0',GradientType=0 );
+}
+/* line 40, ../sass/_pseudo-select.scss */
+.disabled .html-select-view-title-container {
+  background: #969696;
+  cursor: default;
+}
+
+/* line 44, ../sass/_pseudo-select.scss */
+.html-select-view-selector {
+  height: 18px;
+  width: 14px;
+  display: block;
+  position: absolute;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+  right: 1px;
+  top: 1px;
+}
+/* line 52, ../sass/_pseudo-select.scss */
+.html-select-view-selector:after {
+  border-bottom: 3px solid gainsboro;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid transparent;
+  position: absolute;
+  left: 3px;
+  top: 2px;
+  content: "";
+}
+/* line 62, ../sass/_pseudo-select.scss */
+.closed .html-select-view-selector:after {
+  border-top: 3px solid gainsboro;
+  top: 7px;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+}
+
+/**TOP PANEL */
+/* line 42, ../sass/_styles.scss */
+.gis-widget-mapcontrol .html-select-view-selector {
+  height: 22px;
+}
+/* line 44, ../sass/_styles.scss */
+.gis-widget-mapcontrol .html-select-view-selector:after {
+  top: 5px;
+}
+/* line 48, ../sass/_styles.scss */
+.gis-widget-mapcontrol .closed .html-select-view-selector:after {
+  top: 10px;
+}
+/* line 51, ../sass/_styles.scss */
+.gis-widget-mapcontrol .html-select-view-title-container {
+  padding: 2px;
+  overflow: hidden;
+  min-height: 12px;
+}
+/* line 6, ../sass/_control.scss */
+.gis-widget-mapcontrol > ul {
+  background-color: #626262;
+  background: -webkit-gradient(linear, 50% 0%, 50% 100%, color-stop(0%, #626262), color-stop(28%, #3c3c3c), color-stop(100%, #3c3c3c));
+  background: -webkit-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: -moz-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: -o-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  margin: 0 8px 3px 7px;
+  padding: 4px 5px 4px 7px;
+  top: 5px;
+  position: relative;
+  border-radius: 3px;
+  color: gainsboro;
+}
+/* line 16, ../sass/_control.scss */
+.gis-widget-mapcontrol .html-select-view-title-container {
+  width: 36px;
+  padding: 0px 2px;
+}
+/* line 19, ../sass/_control.scss */
+.gis-widget-mapcontrol .html-select-view-title-container .html-select-view-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+  line-height: 24px;
+  white-space: nowrap;
+}
+/* line 27, ../sass/_control.scss */
+.gis-widget-mapcontrol #gis-maps-container {
+  margin-right: 2px;
+}
+/* line 29, ../sass/_control.scss */
+.gis-widget-mapcontrol #gis-maps-container .html-select-view-title-container {
+  width: 223px;
+}
+
+/* line 34, ../sass/_control.scss */
+li.gis-control-element {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 37, ../sass/_control.scss */
+li.gis-control-element.gis-mouse-position {
+  float: right;
+  margin-top: 7px;
+  position: relative;
+}
+/* line 41, ../sass/_control.scss */
+li.gis-control-element.gis-mouse-position span {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+/* line 44, ../sass/_control.scss */
+li.gis-control-element.gis-mouse-position > div {
+  vertical-align: top;
+  display: inline-block;
+}
+/* line 47, ../sass/_control.scss */
+li.gis-control-element.gis-mouse-position > div.gis-sk-selector-container {
+  width: auto;
+  margin-top: -7px;
+}
+/* line 50, ../sass/_control.scss */
+li.gis-control-element.gis-mouse-position > div.gis-sk-selector-container > div {
+  display: inline-block;
+}
+/* line 51, ../sass/_control.scss */
+li.gis-control-element.gis-mouse-position > div.gis-sk-selector-container > div.gis-sk-title {
+  margin-right: 7px;
+}
+/* line 56, ../sass/_control.scss */
+li.gis-control-element.gis-mouse-position > div.gis-sk-selector-container .html-select-view-title-container {
+  width: 12px;
+}
+/* line 59, ../sass/_control.scss */
+li.gis-control-element.gis-mouse-position > div.gis-sk-selector-container .html-select-view {
+  width: 128px;
+  margin-left: -114px;
+}
+/* line 67, ../sass/_control.scss */
+li.gis-control-element.gis-zoom-selector > div {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 71, ../sass/_control.scss */
+li.gis-control-element.gis-zoom-selector .gis-control-square-button#gis-control-zoom-out > span {
+  background-position: -46px -58px;
+}
+/* line 74, ../sass/_control.scss */
+li.gis-control-element.gis-zoom-selector .gis-control-square-button#gis-control-zoom-in > span {
+  background-position: -70px -58px;
+}
+
+/* line 79, ../sass/_control.scss */
+.gis-control-square-button {
+  padding: 2px;
+  display: inline-block;
+  vertical-align: top;
+  margin-top: 1px;
+}
+/* line 84, ../sass/_control.scss */
+.gis-control-square-button > span {
+  height: 17px;
+  width: 17px;
+  display: block;
+  background: url("../images/icons.png") 17px 17px no-repeat;
+  cursor: pointer;
+}
+/* line 92, ../sass/_control.scss */
+.gis-control-square-button#gis-post-center > span {
+  background-position: -70px -99px;
+}
+/* line 95, ../sass/_control.scss */
+.gis-control-square-button#gis-post-center.active > span {
+  background-position: -70px -118px;
+}
+/* line 100, ../sass/_control.scss */
+.gis-control-square-button#gis-select-map > span {
+  background-position: -110px -141px;
+}
+/* line 103, ../sass/_control.scss */
+.gis-control-square-button#gis-select-map.active > span {
+  background-position: -110px -162px;
+}
+/* line 107, ../sass/_control.scss */
+.gis-control-square-button#gis-object-center {
+  margin-right: 4px;
+}
+/* line 109, ../sass/_control.scss */
+.gis-control-square-button#gis-object-center > span {
+  background-position: -48px -99px;
+}
+/* line 112, ../sass/_control.scss */
+.gis-control-square-button#gis-object-center.active > span {
+  background-position: -48px -118px;
+}
+/* line 116, ../sass/_control.scss */
+.gis-control-square-button#gis-remove-map {
+  margin-right: 21px;
+}
+/* line 118, ../sass/_control.scss */
+.gis-control-square-button#gis-remove-map > span {
+  background-position: -81px -18px;
+}
+/* line 121, ../sass/_control.scss */
+.gis-control-square-button#gis-remove-map.active > span {
+  background-position: -81px -18px;
+}
+/* line 126, ../sass/_control.scss */
+.gis-control-square-button#gis-add-map > span {
+  background-position: -68px -18px;
+}
+/* line 129, ../sass/_control.scss */
+.gis-control-square-button#gis-add-map.active > span {
+  background-position: -68px -18px;
+}
+/* line 134, ../sass/_control.scss */
+.gis-control-square-button#gis-clear-map > span {
+  background-position: -92px -58px;
+}
+/* line 137, ../sass/_control.scss */
+.gis-control-square-button#gis-clear-map.active > span {
+  background-position: -92px -58px;
+}
+
+/* line 143, ../sass/_control.scss */
+div.post-list {
+  width: 8px;
+  height: 19px;
+  display: inline-block;
+  margin-left: 1px;
+  margin: 1px 7px 0 1px;
+}
+/* line 149, ../sass/_control.scss */
+div.post-list .html-select-view-title-container {
+  border: 1px solid #c8c8c8;
+  width: 8px;
+  height: 21px;
+  padding: 0;
+  display: inline-block;
+  vertical-align: top;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 157, ../sass/_control.scss */
+div.post-list .html-select-view-title-container.closed {
+  background: none;
+  border-color: transparent;
+}
+/* line 162, ../sass/_control.scss */
+div.post-list .html-select-view {
+  left: 0;
+  top: 23px;
+  width: 84px;
+}
+/* line 167, ../sass/_control.scss */
+div.post-list span.html-select-view-selector {
+  display: block;
+  background: none;
+  height: 0;
+  width: 0;
+  margin-top: 5px;
+  position: static;
+}
+/* line 174, ../sass/_control.scss */
+div.post-list span.html-select-view-selector:after {
+  left: 1px;
+}
+
+/* line 181, ../sass/_control.scss */
+.gis-map-selector > span, .gis-map-selector > div {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 185, ../sass/_control.scss */
+.gis-map-selector > span {
+  margin-right: 7px;
+}
+
+@-webkit-keyframes rotate360 {
+  /* line 189, ../sass/_control.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 189, ../sass/_control.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-moz-keyframes rotate360 {
+  /* line 190, ../sass/_control.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 190, ../sass/_control.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@-o-keyframes rotate360 {
+  /* line 191, ../sass/_control.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 191, ../sass/_control.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotate360 {
+  /* line 192, ../sass/_control.scss */
+  from {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -ms-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+
+  /* line 192, ../sass/_control.scss */
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+/* line 193, ../sass/_control.scss */
+.gis-connection-status {
+  margin: 0 8px;
+  float: right;
+  height: 24px;
+  position: relative;
+}
+/* line 200, ../sass/_control.scss */
+.gis-connection-status #gis-widget-control-status-connection {
+  position: relative;
+  z-index: 2;
+}
+/* line 204, ../sass/_control.scss */
+.gis-connection-status:before {
+  content: '';
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+  -webkit-border-radius: 12px;
+  -moz-border-radius: 12px;
+  -ms-border-radius: 12px;
+  -o-border-radius: 12px;
+  border-radius: 12px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  z-index: 1;
+}
+/* line 216, ../sass/_control.scss */
+.gis-connection-status:before {
+  width: 14px;
+  height: 14px;
+  border: 5px solid transparent;
+  border-left-color: #fff;
+  border-right-color: #fff;
+  -webkit-animation: rotate360 4s linear 0s infinite;
+  -moz-animation: rotate360 4s linear 0s infinite;
+  -o-animation: rotate360 4s linear 0s infinite;
+  animation: rotate360 4s linear 0s infinite;
+}
+/* line 229, ../sass/_control.scss */
+.gis-connection-status.loading:before {
+  opacity: 0.8;
+}
+/* line 233, ../sass/_control.scss */
+.gis-connection-status .server-status {
+  position: relative;
+  top: 6px;
+  border: 1px solid #777;
+  display: block;
+  height: 9px;
+  width: 9px;
+  background-color: #E45858;
+  background: -webkit-radial-gradient(30% 30%, farthest-side, white, #e23131);
+  background: -moz-radial-gradient(30% 30%, farthest-side, white, #e23131);
+  -webkit-border-radius: 9px;
+  -moz-border-radius: 9px;
+  -ms-border-radius: 9px;
+  -o-border-radius: 9px;
+  border-radius: 9px;
+}
+/* line 244, ../sass/_control.scss */
+.gis-connection-status .server-status.server-status-1 {
+  background-color: #66F172;
+  background: -webkit-radial-gradient(30% 30%, farthest-side, white, #31c11d);
+  background: -moz-radial-gradient(30% 30%, farthest-side, white, #31c11d);
+}
+/* line 249, ../sass/_control.scss */
+.gis-connection-status .server-status.server-status-2 {
+  background-color: #F1DF66;
+  background: -webkit-radial-gradient(30% 30%, farthest-side, white, #e9d33c);
+  background: -moz-radial-gradient(30% 30%, farthest-side, white, #e9d33c);
+}
+
+/* line 257, ../sass/_control.scss */
+.serve-status-tooltip .value {
+  font-weight: bold;
+  color: white;
+}
+
+/**SCHEME**/
+/* line 2, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container {
+  background: #020202;
+  border-radius: 3px;
+  width: 100%;
+  margin: 8px 8px 14px 0;
+  right: -8px;
+  opacity: 1;
+  z-index: 3;
+  -webkit-transition: right 0.3s ease-in, opacity 0.3s ease-in;
+  -moz-transition: right 0.3s ease-in, opacity 0.3s ease-in;
+  -o-transition: right 0.3s ease-in, opacity 0.3s ease-in;
+  transition: right 0.3s ease-in, opacity 0.3s ease-in;
+}
+/* line 11, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container.hide {
+  right: -100%;
+  opacity: 0;
+}
+/* line 16, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-header {
+  height: 24px;
+  padding: 6px;
+}
+/* line 20, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-middle {
+  padding: 0 6px;
+}
+/* line 23, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element .gis-widget-button {
+  height: 24px;
+  width: 24px;
+  margin-right: 6px;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  border-radius: 2px;
+}
+/* line 32, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element .gis-widget-button:disabled, .gis-widget.gis-widget-scheme-container .gis-scheme-element .gis-widget-button.disabled {
+  background: #969696;
+  cursor: default;
+}
+/* line 35, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element .gis-widget-button:after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  height: 16px;
+  width: 16px;
+  background: url("../images/icons.png") 16px 16px no-repeat;
+}
+/* line 45, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer {
+  height: 24px;
+  padding: 6px;
+}
+/* line 48, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer #gis-collapse {
+  position: relative;
+  float: left;
+}
+/* line 51, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer #gis-collapse:after {
+  content: "";
+  top: 8px;
+  left: 4px;
+  position: absolute;
+  border: 8px solid transparent;
+  border-top-color: #ccc;
+  height: 0;
+  width: 0;
+}
+/* line 61, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer #gis-collapse.collapsed:after {
+  bottom: 8px;
+  top: auto;
+  left: 4px;
+  border: 8px solid transparent;
+  border-bottom-color: #ccc;
+}
+/* line 69, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer > div {
+  text-align: right;
+}
+/* line 73, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer #gis-load-all input[type=file] {
+  height: 24px;
+  line-height: 24px;
+  position: absolute;
+  right: 0px;
+  top: 0px;
+  margin: 0px;
+  padding: 0px;
+  cursor: pointer;
+  opacity: 0;
+  z-index: 2;
+}
+/* line 85, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer #gis-load-all.gis-widget-button:after {
+  background-position: -68px -140px;
+}
+/* line 89, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer #gis-save-all.gis-widget-button:after {
+  background-position: -48px -140px;
+}
+/* line 92, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container .gis-scheme-element.gis-map-footer #gis-clear-all.gis-widget-button:after {
+  background-position: -92px -58px;
+}
+/* line 97, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered {
+  overflow: auto;
+  height: 100%;
+}
+/* line 100, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer {
+  vertical-align: top;
+}
+/* line 102, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer div.actions {
+  display: none;
+  margin-top: 1px;
+  position: absolute;
+  right: 6px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.63);
+  background: rgba(0, 0, 0, 0.83);
+  line-height: 0;
+}
+/* line 110, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer div.actions .real-action {
+  display: none;
+}
+/* line 113, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer div.actions div.action {
+  margin-right: 0;
+  margin-left: 2px;
+}
+/* line 117, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer div.actions div.action.delete:after {
+  background-position: -92px -58px;
+}
+/* line 122, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer div.actions div.action.copy:after {
+  background: url("../images/action-copy.png") top left no-repeat;
+}
+/* line 127, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer div.actions div.action.menu:after {
+  background: url("../images/menu.png") top left no-repeat;
+}
+/* line 133, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer div.actions.active .real-action {
+  display: inline-block;
+}
+/* line 137, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer div.actions.active div.action.menu:after {
+  background: none;
+  border: 8px solid transparent;
+  border-left-color: #aaaaaa;
+  left: 8px;
+  width: 0;
+  height: 0;
+}
+/* line 149, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-row-layer.selected div.actions {
+  display: block;
+}
+/* line 154, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .ico-preview {
+  display: inline-block;
+  margin-left: -6px;
+  width: 21px;
+  height: 21px;
+  float: left;
+  margin-right: 1px;
+  position: relative;
+  margin-bottom: -2px;
+}
+/* line 163, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .ico-preview canvas {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+/* line 169, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-type {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+/* line 172, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-type:first-child {
+  padding-top: 6px;
+}
+/* line 175, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-type:hover {
+  background: none;
+  border-color: transparent;
+  color: #000;
+}
+/* line 181, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-type ul {
+  display: none;
+}
+/* line 184, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered .gis-type.selected-type ul {
+  display: block;
+}
+/* line 189, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li span {
+  display: block;
+  padding: 6px;
+}
+/* line 192, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li span.x-name, .gis-widget.gis-widget-scheme-container #gis-list-filtered > li span.y-name {
+  display: inline;
+  padding: 0;
+}
+/* line 196, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li span.additional {
+  display: none;
+  font-size: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  padding-left: 0;
+  padding-top: 1px;
+  padding-bottom: 1px;
+  max-width: 170px;
+  padding-right: 0;
+}
+/* line 208, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li span.gis-name {
+  vertical-align: top;
+  padding: 0;
+}
+/* line 213, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li .gis-row-layer {
+  position: relative;
+}
+/* line 215, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li .gis-row-layer.hided {
+  display: none;
+}
+/* line 218, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li .gis-row-layer div.row-name {
+  line-height: 100%;
+  vertical-align: middle;
+  display: inline-block;
+  height: 100%;
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  user-select: text;
+}
+/* line 226, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li li {
+  padding: 6px 6px 6px 12px;
+}
+/* line 229, ../sass/_scheme.scss */
+.gis-widget.gis-widget-scheme-container #gis-list-filtered > li li.selected .additional {
+  display: block;
+}
+
+/* line 238, ../sass/_scheme.scss */
+#gis-filter-all {
+  padding: 4px;
+  width: auto;
+  height: 16px;
+  cursor: pointer;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  margin-right: 6px;
+  float: left;
+  z-index: 2;
+}
+/* line 247, ../sass/_scheme.scss */
+#gis-filter-all input {
+  width: 0;
+  line-height: 24px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  opacity: 0.0;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  outline: none;
+}
+/* line 256, ../sass/_scheme.scss */
+#gis-filter-all.focused {
+  box-shadow: 0 0 1px 1px #78ccf7;
+}
+/* line 260, ../sass/_scheme.scss */
+#gis-filter-all.gis-widget-button span {
+  display: table-cell;
+  width: 16px;
+  height: 16px;
+  background: url("../images/filter.png") top left no-repeat;
+  margin-right: 5px;
+  margin-bottom: 10px;
+}
+/* line 268, ../sass/_scheme.scss */
+#gis-filter-all.gis-widget-button:active span {
+  background-position: -16px 0;
+}
+/* line 271, ../sass/_scheme.scss */
+#gis-filter-all.gis-widget-button.selected {
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(42%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+}
+/* line 273, ../sass/_scheme.scss */
+#gis-filter-all.gis-widget-button.selected input {
+  opacity: 1;
+  width: 140px;
+}
+/* line 277, ../sass/_scheme.scss */
+#gis-filter-all.gis-widget-button.selected span {
+  background-position: -32px 0;
+}
+/* line 282, ../sass/_scheme.scss */
+#gis-filter-all div {
+  display: table-cell;
+  right: -4px;
+  top: -4px;
+  position: relative;
+}
+
+/** map states
+**/
+/* line 4, ../sass/_map-states.scss */
+.gis-map-selecting,
+.gis-clickable {
+  cursor: auto;
+}
+
+/* line 8, ../sass/_map-states.scss */
+.gis-map-selecting,
+.gis-clickable {
+  cursor: url("../images/cursor-select.cur") 3 3, auto;
+}
+
+/* line 11, ../sass/_map-states.scss */
+.gis-map-marker {
+  cursor: crosshair;
+}
+
+/* line 14, ../sass/_map-states.scss */
+.gis-map-marker {
+  cursor: url("../images/cursor-marker.cur") 10 10, crosshair;
+}
+
+/* line 17, ../sass/_map-states.scss */
+.gis-map-measuring {
+  cursor: crosshair;
+}
+
+/* line 20, ../sass/_map-states.scss */
+.gis-map-measuring {
+  cursor: url("../images/cursor-measure.cur") 10 10, crosshair;
+}
+
+/* line 23, ../sass/_map-states.scss */
+.gis-map-object {
+  cursor: crosshair;
+}
+
+/* line 26, ../sass/_map-states.scss */
+.gis-map-object {
+  cursor: url("../images/cursor-object.cur") 10 10, crosshair;
+}
+
+/* line 29, ../sass/_map-states.scss */
+.gis-map-path {
+  cursor: crosshair;
+}
+
+/* line 32, ../sass/_map-states.scss */
+.gis-map-path {
+  cursor: url("../images/cursor-path.cur") 10 10, crosshair;
+}
+
+/* line 35, ../sass/_map-states.scss */
+.gis-map-polygon {
+  cursor: crosshair;
+}
+
+/* line 38, ../sass/_map-states.scss */
+.gis-map-polygon {
+  cursor: url("../images/cursor-polygon.cur") 10 10, crosshair;
+}
+
+/* line 41, ../sass/_map-states.scss */
+.gis-map-ellipse {
+  cursor: crosshair;
+}
+
+/* line 44, ../sass/_map-states.scss */
+.gis-map-ellipse {
+  cursor: url("../images/cursor-ellipse.cur") 10 10, crosshair;
+}
+
+/* line 47, ../sass/_map-states.scss */
+.gis-map-zooming-out {
+  cursor: crosshair;
+}
+
+/* line 50, ../sass/_map-states.scss */
+.gis-map-sector {
+  cursor: url("../images/cursor-sector.cur") 10 10, crosshair;
+}
+
+/* line 53, ../sass/_map-states.scss */
+body .gis-clickable {
+  cursor: url("../images/cursor-select.cur") 3 3, auto;
+}
+
+/* line 56, ../sass/_map-states.scss */
+.gis-map-zooming {
+  cursor: zoom-in;
+}
+
+/* line 59, ../sass/_map-states.scss */
+.gis-map-zooming {
+  cursor: url("../images/cursor-zoom-in.cur") 0 0, zoom-in;
+}
+
+/* line 62, ../sass/_map-states.scss */
+.gis-map-zooming-out {
+  cursor: zoom-out;
+}
+
+/* line 65, ../sass/_map-states.scss */
+.gis-map-zooming-out {
+  cursor: url("../images/cursor-zoom-out.cur") 0 0, zoom-out;
+}
+
+/* line 68, ../sass/_map-states.scss */
+.gis-map-moving {
+  cursor: move;
+}
+
+/* line 71, ../sass/_map-states.scss */
+.gis-map-moving {
+  cursor: url("../images/cursor-move.cur") 0 0, move;
+}
+
+/* line 75, ../sass/_map-states.scss */
+body.leaflet-dragging div div,
+body.leaflet-dragging div div .gis-clickable {
+  cursor: -moz-grabbing;
+  cursor: -webkit-grabbing;
+  cursor: -o-grabbing;
+  cursor: -ms-grabbing;
+}
+
+/**dialog*/
+/* line 2, ../sass/_dialog.scss */
+#marker-new-dialog, #object-new-dialog {
+  text-align: left;
+}
+/* line 4, ../sass/_dialog.scss */
+#marker-new-dialog > div, #object-new-dialog > div {
+  margin-bottom: 4px;
+  min-height: 18px;
+}
+/* line 7, ../sass/_dialog.scss */
+#marker-new-dialog > div > ul, #object-new-dialog > div > ul {
+  display: inline-block;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+/* line 13, ../sass/_dialog.scss */
+#marker-new-dialog.ui-dialog-content.ui-widget-content, #object-new-dialog.ui-dialog-content.ui-widget-content {
+  font-size: 10px;
+  padding: 11px 11px 0;
+}
+
+/* line 19, ../sass/_dialog.scss */
+#marker-new-dialog .dialog-label {
+  float: left;
+  margin-right: 4px;
+}
+/* line 23, ../sass/_dialog.scss */
+#marker-new-dialog .input-wraper {
+  overflow: hidden;
+}
+
+/* line 27, ../sass/_dialog.scss */
+#dialog-new-object-text {
+  width: 205px;
+  margin-left: 4px;
+}
+
+/* line 31, ../sass/_dialog.scss */
+#dialog-new-marker-text {
+  width: 100%;
+}
+
+/* line 34, ../sass/_dialog.scss */
+#file-name-user {
+  width: 100%;
+  margin: 9px 0 0 0;
+}
+
+/* line 39, ../sass/_dialog.scss */
+input[name="automatic"],
+input[name="fixed"] {
+  float: right;
+}
+
+/* line 42, ../sass/_dialog.scss */
+input[name="fixed"] {
+  width: 31px;
+}
+
+/* line 46, ../sass/_dialog.scss */
+.dialogNewMap label {
+  margin-top: 10px;
+  display: block;
+}
+/* line 50, ../sass/_dialog.scss */
+.dialogNewMap input[type=text] {
+  width: 165px;
+  float: right;
+}
+/* line 54, ../sass/_dialog.scss */
+.dialogNewMap .load-error {
+  color: red;
+  text-align: center;
+  clear: both;
+}
+
+/* line 61, ../sass/_dialog.scss */
+.copy-latlng p {
+  margin-bottom: 10px;
+}
+/* line 64, ../sass/_dialog.scss */
+.copy-latlng input, .copy-latlng textarea {
+  width: 100%;
+}
+/* line 67, ../sass/_dialog.scss */
+.copy-latlng textarea {
+  resize: vertical;
+}
+
+/**tooltip */
+/* line 3, ../sass/_tooltip.scss */
+body .ui-tooltip {
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+  -webkit-box-shadow: 0 0 2px #c8c8c8;
+  -moz-box-shadow: 0 0 2px #c8c8c8;
+  box-shadow: 0 0 2px #c8c8c8;
+  background: -moz-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #626262), color-stop(28%, #3c3c3c), color-stop(100%, #3c3c3c));
+  background: -webkit-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: -o-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: -ms-linear-gradient(top, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  background: linear-gradient(to bottom, #626262 0%, #3c3c3c 28%, #3c3c3c 100%);
+  padding: 4px;
+  position: absolute;
+  z-index: 9999;
+  max-width: 300px;
+}
+
+/* line 1, ../sass/_zoom.scss */
+.gis-ui-zoom-div {
+  border: 2px solid transparent;
+}
+
+/* line 3, ../sass/_widget_gradient.scss */
+.gradient-colors li canvas {
+  height: 60px;
+  width: 16px;
+}
+
+/* line 6, ../sass/_map-dialog.scss */
+#map-dialog-additional input[type=text], .map-dialog input[type=text], .map-custom-layers input[type=text] {
+  background: -moz-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #cbcbcb), color-stop(42%, #f0f0f0), color-stop(100%, #f0f0f0));
+  background: -webkit-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -o-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: -ms-linear-gradient(top, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  background: linear-gradient(to bottom, #cbcbcb 0%, #f0f0f0 42%, #f0f0f0 100%);
+  border: none;
+  line-height: 20px;
+  padding: 0;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  -ms-border-radius: 2px;
+  -o-border-radius: 2px;
+  border-radius: 2px;
+}
+/* line 9, ../sass/_map-dialog.scss */
+#map-dialog-additional .gis-propertys-button, .map-dialog .gis-propertys-button, .map-custom-layers .gis-propertys-button {
+  color: #ffffff;
+  padding: 2px 5px;
+}
+/* line 13, ../sass/_map-dialog.scss */
+#map-dialog-additional button, .map-dialog button, .map-custom-layers button {
+  border: none;
+  color: #DCDCDC;
+  border-radius: 2px;
+}
+/* line 18, ../sass/_map-dialog.scss */
+#map-dialog-additional .padding-3, .map-dialog .padding-3, .map-custom-layers .padding-3 {
+  position: relative;
+  height: 100%;
+}
+/* line 22, ../sass/_map-dialog.scss */
+#map-dialog-additional #map-list-container, #map-dialog-additional #map-list-container-additional, #map-dialog-additional .a-list, .map-dialog #map-list-container, .map-dialog #map-list-container-additional, .map-dialog .a-list, .map-custom-layers #map-list-container, .map-custom-layers #map-list-container-additional, .map-custom-layers .a-list {
+  height: 100%;
+}
+/* line 25, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-buttons, .map-dialog .map-buttons, .map-custom-layers .map-buttons {
+  position: absolute;
+  bottom: -31px;
+  width: 100%;
+}
+/* line 30, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-buttons .left, .map-dialog .map-buttons .left, .map-custom-layers .map-buttons .left {
+  float: left;
+}
+/* line 33, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-buttons .additional-buttons, .map-dialog .map-buttons .additional-buttons, .map-custom-layers .map-buttons .additional-buttons {
+  overflow: hidden;
+}
+/* line 35, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-buttons .additional-buttons #map-additional, .map-dialog .map-buttons .additional-buttons #map-additional, .map-custom-layers .map-buttons .additional-buttons #map-additional {
+  display: block;
+  float: left;
+  margin-right: 5px;
+}
+/* line 41, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-buttons .right, .map-dialog .map-buttons .right, .map-custom-layers .map-buttons .right {
+  float: right;
+}
+/* line 43, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-buttons .right button, .map-dialog .map-buttons .right button, .map-custom-layers .map-buttons .right button {
+  margin-left: 6px;
+}
+
+/* line 49, ../sass/_map-dialog.scss */
+ul.ui-menu.grid-list {
+  position: absolute;
+  z-index: 100;
+}
+/* line 52, ../sass/_map-dialog.scss */
+ul.ui-menu.grid-list li {
+  border: 1px dashed transparent;
+  cursor: pointer;
+}
+/* line 55, ../sass/_map-dialog.scss */
+ul.ui-menu.grid-list li.selected, ul.ui-menu.grid-list li:hover {
+  background: #0A246A;
+  border-color: #F5DB95;
+  color: #dcdcdc;
+}
+
+/* line 63, ../sass/_map-dialog.scss */
+#map-dialog-additional #map-list-container-additional {
+  margin-top: -35px;
+}
+/* line 67, ../sass/_map-dialog.scss */
+.ui-dialog #map-dialog-additional.ui-dialog-content {
+  padding: 40px 3px 37px;
+}
+/* line 72, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-list li {
+  cursor: default;
+}
+/* line 75, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-list li:first-child span.up {
+  visibility: hidden;
+}
+/* line 80, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-list li:last-child span.down {
+  visibility: hidden;
+}
+/* line 85, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-list li span.up, #map-dialog-additional .map-list li span.down {
+  cursor: pointer;
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background: url(../images/icons.png) -112px -78px no-repeat;
+}
+/* line 92, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-list li span.down {
+  -webkit-transform: scaleY(-1);
+  -moz-transform: scaleY(-1);
+  -ms-transform: scaleY(-1);
+  -o-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+/* line 95, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-list li span.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+/* line 103, ../sass/_map-dialog.scss */
+#map-dialog-additional .map-list .up, #map-dialog-additional .map-list .down, #map-dialog-additional .map-list .opacity {
+  float: right;
+  margin-left: 6px;
+}
+
+/* line 111, ../sass/_map-dialog.scss */
+.ui-dialog .map-dialog.ui-dialog-content {
+  padding: 54px 3px 37px;
+}
+/* line 115, ../sass/_map-dialog.scss */
+.map-dialog .map-element {
+  position: relative;
+}
+/* line 118, ../sass/_map-dialog.scss */
+.map-dialog .actions {
+  position: absolute;
+  right: 7px;
+  top: 2px;
+}
+/* line 122, ../sass/_map-dialog.scss */
+.map-dialog .actions .gis-propertys-button {
+  padding: 2px;
+}
+/* line 124, ../sass/_map-dialog.scss */
+.map-dialog .actions .gis-propertys-button span {
+  height: 16px;
+}
+/* line 130, ../sass/_map-dialog.scss */
+.map-dialog .actions .layers .gis-button-icon {
+  background-position: -91px -98px;
+}
+/* line 135, ../sass/_map-dialog.scss */
+.map-dialog .top {
+  position: absolute;
+  width: 100%;
+  top: -54px;
+}
+/* line 139, ../sass/_map-dialog.scss */
+.map-dialog .top #map-refresh {
+  padding: 3px 3px 2px;
+}
+/* line 141, ../sass/_map-dialog.scss */
+.map-dialog .top #map-refresh span {
+  display: block;
+  height: 17px;
+  width: 17px;
+  background: url(../images/icons.png) -114px -98px no-repeat;
+}
+/* line 146, ../sass/_map-dialog.scss */
+.map-dialog .top #map-refresh span.animate {
+  -webkit-transition: all 1.5s ease;
+  -moz-transition: all 1.5s ease;
+  -o-transition: all 1.5s ease;
+  transition: all 1.5s ease;
+}
+/* line 149, ../sass/_map-dialog.scss */
+.map-dialog .top #map-refresh span.rotated {
+  -webkit-transform: rotate(360deg);
+  -moz-transform: rotate(360deg);
+  -ms-transform: rotate(360deg);
+  -o-transform: rotate(360deg);
+  transform: rotate(360deg);
+}
+/* line 155, ../sass/_map-dialog.scss */
+.map-dialog .middle {
+  position: absolute;
+  width: 100%;
+  top: -27px;
+}
+/* line 160, ../sass/_map-dialog.scss */
+.map-dialog #map-type-filter {
+  float: left;
+  margin: 0 0 6px;
+}
+/* line 164, ../sass/_map-dialog.scss */
+.map-dialog #map-type-filter ul li {
+  display: inline-block;
+}
+/* line 166, ../sass/_map-dialog.scss */
+.map-dialog #map-type-filter ul li label {
+  margin-right: 6px;
+}
+/* line 172, ../sass/_map-dialog.scss */
+.map-dialog .map-controls {
+  float: right;
+  margin: 0 0 6px;
+}
+/* line 175, ../sass/_map-dialog.scss */
+.map-dialog .map-controls button {
+  margin-left: 6px;
+}
+/* line 179, ../sass/_map-dialog.scss */
+.map-dialog .map-filter {
+  clear: both;
+  margin: 0 2px 6px;
+}
+/* line 183, ../sass/_map-dialog.scss */
+.map-dialog .map-filter input {
+  width: 100%;
+  padding: 2px 2px 1px;
+  margin-left: -2px;
+  margin-right: -2px;
+}
+/* line 190, ../sass/_map-dialog.scss */
+.map-dialog span.checkbox {
+  float: right;
+}
+/* line 193, ../sass/_map-dialog.scss */
+.map-dialog span.name {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: block;
+}
+/* line 200, ../sass/_map-dialog.scss */
+.map-dialog .grid-container {
+  display: block;
+  overflow: hidden;
+}
+/* line 203, ../sass/_map-dialog.scss */
+.map-dialog .grid-container button {
+  position: relative;
+  padding-right: 13px;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+/* line 210, ../sass/_map-dialog.scss */
+.map-dialog .grid-container button:after {
+  position: absolute;
+  right: 2px;
+  top: 10px;
+  content: '';
+  border: 5px solid transparent;
+  border-top-color: #fff;
+}
+/* line 219, ../sass/_map-dialog.scss */
+.map-dialog .grid-container button.selected:after {
+  top: 5px;
+  border-top-color: transparent;
+  border-bottom-color: #fff;
+}
+
+/* line 229, ../sass/_map-dialog.scss */
+.map-text {
+  position: relative;
+  top: -40px;
+  font-size: 17px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* line 236, ../sass/_map-dialog.scss */
+.map-text div {
+  font-size: 12px;
+}
+
+/* line 240, ../sass/_map-dialog.scss */
+.map-list {
+  overflow: auto;
+  height: 100%;
+  margin: 0 0 6px;
+}
+/* line 244, ../sass/_map-dialog.scss */
+.map-list span.checkbox {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+  border: 1px solid #c8c8c8;
+  border-radius: 2px;
+  background: #f0f0f0;
+  position: relative;
+  margin-right: 5px;
+  top: 1px;
+  cursor: pointer;
+  float: left;
+}
+/* line 257, ../sass/_map-dialog.scss */
+.map-list span.checkbox.checked:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 2px;
+  background: #0A246A;
+}
+
+/* line 270, ../sass/_map-dialog.scss */
+.sortable-placeholder {
+  border: 2px dashed #0a246a;
+  background-color: rgba(10, 36, 106, 0.5);
+  height: 18px;
+}
+
+/* line 275, ../sass/_map-dialog.scss */
+.slider-opacity-container {
+  position: absolute;
+  background: #c8c8c8;
+  box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.7);
+  padding: 9px 7px;
+  border-radius: 18px;
+  z-index: 900;
+  margin-top: -4px;
+  margin-left: 10px;
+  opacity: 0;
+  right: 30px;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+/* line 289, ../sass/_map-dialog.scss */
+.slider-opacity-container .ui-slider-handle span {
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+/* line 294, ../sass/_map-dialog.scss */
+.slider-opacity-container .ui-slider-handle.animation {
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+/* line 298, ../sass/_map-dialog.scss */
+.slider-opacity-container.visible {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+/* line 302, ../sass/_map-dialog.scss */
+.slider-opacity-container:before {
+  content: '';
+  position: absolute;
+  left: -17px;
+  top: 2px;
+  border: 10px solid transparent;
+  border-right-color: #c8c8c8;
+}
+
+/* line 312, ../sass/_map-dialog.scss */
+.map-custom-layers .a-list {
+  margin-top: -18px;
+}
+/* line 315, ../sass/_map-dialog.scss */
+.map-custom-layers .map-text {
+  top: -26px;
+}
+/* line 319, ../sass/_map-dialog.scss */
+.ui-dialog .map-custom-layers.ui-dialog-content {
+  padding: 26px 3px 37px;
+}
+
+/* line 1, ../sass/_layer_list.scss */
+.gis-widget-propertys-layers {
+  box-shadow: 0 5px 0px rgba(0, 0, 0, 0);
+  -webkit-transition: box-shadow 0.5s ease-in;
+  -moz-transition: box-shadow 0.5s ease-in;
+  -o-transition: box-shadow 0.5s ease-in;
+  transition: box-shadow 0.5s ease-in;
+}
+/* line 4, ../sass/_layer_list.scss */
+.gis-widget-propertys-layers:hover {
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+}
+/* line 7, ../sass/_layer_list.scss */
+.gis-widget-propertys-layers .layers-menu {
+  overflow: auto;
+  height: 100%;
+  margin: 0 0 6px;
+}
+/* line 12, ../sass/_layer_list.scss */
+.gis-widget-propertys-layers .layers-menu li span.name {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+/* line 18, ../sass/_layer_list.scss */
+.gis-widget-propertys-layers .layers-menu li span.count {
+  float: right;
+  opacity: 0.5;
+  -webkit-transition: -webkit-transform 0.3s ease-in, opacity 0.3s ease-in;
+  -moz-transition: -moz-transform 0.3s ease-in, opacity 0.3s ease-in;
+  -o-transition: -o-transform 0.3s ease-in, opacity 0.3s ease-in;
+  transition: transform 0.3s ease-in, opacity 0.3s ease-in;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -ms-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  transform: scale(0.8);
+  position: absolute;
+  right: 3px;
+  top: 7px;
+  box-shadow: 0 0 8px black;
+  background: white;
+  z-index: 3;
+  border-radius: 10px;
+  color: black;
+  display: block;
+  padding: 0 4px;
+}
+/* line 34, ../sass/_layer_list.scss */
+.gis-widget-propertys-layers .layers-menu li.invisible {
+  display: none;
+}
+/* line 38, ../sass/_layer_list.scss */
+.gis-widget-propertys-layers .layers-menu li.selected span.count, .gis-widget-propertys-layers .layers-menu li:hover span.count {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+
+/* line 1, ../sass/_relief.scss */
+.gis-widget-propertys-relief {
+  margin: 4px 7px;
+  padding: 4px;
+  background: #121212;
+  border-radius: 5px;
+  position: relative;
+  overflow: hidden;
+}
+/* line 8, ../sass/_relief.scss */
+.gis-widget-propertys-relief .help {
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  opacity: 1;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+/* line 17, ../sass/_relief.scss */
+.gis-widget-propertys-relief .help.hide {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+/* line 21, ../sass/_relief.scss */
+.gis-widget-propertys-relief .help > div {
+  width: 300px;
+  color: #FFF;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
+  text-align: center;
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -170px;
+  padding: 20px;
+  font-size: 20px;
+  margin-top: -26px;
+  border-radius: 4px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  cursor: default;
+  line-height: 1.3em;
+}
+/* line 42, ../sass/_relief.scss */
+.gis-widget-propertys-relief .gis-property-buttons-list > li {
+  position: absolute;
+  margin-top: 5px;
+  margin-right: 0;
+  z-index: 2;
+}
+/* line 50, ../sass/_relief.scss */
+.gis-widget-propertys-relief .gis-property-buttons-list > li.yes {
+  right: 63px;
+}
+/* line 53, ../sass/_relief.scss */
+.gis-widget-propertys-relief .gis-property-buttons-list > li.revert {
+  right: 34px;
+}
+/* line 56, ../sass/_relief.scss */
+.gis-widget-propertys-relief .gis-property-buttons-list > li.delete {
+  right: 5px;
+}
+/* line 59, ../sass/_relief.scss */
+.gis-widget-propertys-relief .gis-property-buttons-list > li button {
+  -webkit-transition: all 0.3s ease-in;
+  -moz-transition: all 0.3s ease-in;
+  -o-transition: all 0.3s ease-in;
+  transition: all 0.3s ease-in;
+  -webkit-transform: scale(1);
+  -moz-transform: scale(1);
+  -ms-transform: scale(1);
+  -o-transform: scale(1);
+  transform: scale(1);
+}
+/* line 62, ../sass/_relief.scss */
+.gis-widget-propertys-relief .gis-property-buttons-list > li button.disabled {
+  -webkit-transform: scale(0);
+  -moz-transform: scale(0);
+  -ms-transform: scale(0);
+  -o-transform: scale(0);
+  transform: scale(0);
+}
+/* line 68, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-wrapper {
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+  background: #F0F0F0;
+  border-radius: 5px;
+}
+/* line 76, ../sass/_relief.scss */
+.gis-widget-propertys-relief #config .height {
+  margin-right: 5px;
+}
+/* line 78, ../sass/_relief.scss */
+.gis-widget-propertys-relief #config .height input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 88%;
+}
+/* line 87, ../sass/_relief.scss */
+.gis-widget-propertys-relief #config.large .a-points > div > div {
+  display: block;
+}
+/* line 94, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points {
+  position: relative;
+  padding-top: 7px;
+}
+/* line 97, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points .gis-point-selector {
+  width: 87%;
+  margin-right: 4px;
+}
+/* line 101, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points input {
+  width: 85%;
+  margin-right: -4px;
+}
+/* line 105, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points > div {
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 108, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points > div.left {
+  text-align: left;
+  width: 37%;
+}
+/* line 112, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points > div.right {
+  text-align: right;
+  width: 37%;
+}
+/* line 116, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points > div.center {
+  text-align: center;
+  width: 26%;
+  left: 50%;
+}
+/* line 121, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points > div > div {
+  margin-bottom: 5px;
+  display: inline-block;
+  vertical-align: top;
+}
+/* line 127, ../sass/_relief.scss */
+.gis-widget-propertys-relief .a-points > div div input {
+  font-size: 10px;
+  padding: 0 2px;
+}
+
+/* line 135, ../sass/_relief.scss */
+ul#north-west-selector {
+  margin-bottom: 5px;
+}
+
+/* line 1, ../sass/_loader.scss */
+.windows8 {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  opacity: 0;
+  -webkit-transition: all 0.5s ease-in;
+  -moz-transition: all 0.5s ease-in;
+  -o-transition: all 0.5s ease-in;
+  transition: all 0.5s ease-in;
+  left: 0px;
+}
+/* line 9, ../sass/_loader.scss */
+.windows8 .container {
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  left: 50%;
+  top: 50%;
+  margin-left: -136px;
+  margin-top: -136px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 5px;
+  padding: 100px;
+}
+/* line 22, ../sass/_loader.scss */
+.windows8.show {
+  opacity: 1;
+  top: 0;
+}
+
+/* line 28, ../sass/_loader.scss */
+.windows8 .wBall {
+  position: absolute;
+  width: 86px;
+  height: 86px;
+  opacity: 0;
+  -moz-transform: rotate(225deg);
+  -moz-animation: orbit 7.15s infinite;
+  -webkit-transform: rotate(225deg);
+  -webkit-animation: orbit 7.15s infinite;
+  -ms-transform: rotate(225deg);
+  -ms-animation: orbit 7.15s infinite;
+  -o-transform: rotate(225deg);
+  -o-animation: orbit 7.15s infinite;
+  transform: rotate(225deg);
+  animation: orbit 7.15s infinite;
+}
+
+/* line 45, ../sass/_loader.scss */
+.windows8 .wBall .wInnerBall {
+  position: absolute;
+  width: 11px;
+  height: 11px;
+  background: rgba(255, 255, 255, 0.76);
+  left: 0px;
+  top: 0px;
+  -moz-border-radius: 11px;
+  -webkit-border-radius: 11px;
+  -ms-border-radius: 11px;
+  -o-border-radius: 11px;
+  border-radius: 11px;
+  box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.76);
+}
+
+/* line 60, ../sass/_loader.scss */
+.windows8 #wBall_1 {
+  -moz-animation-delay: 1.56s;
+  -webkit-animation-delay: 1.56s;
+  -ms-animation-delay: 1.56s;
+  -o-animation-delay: 1.56s;
+  animation-delay: 1.56s;
+}
+
+/* line 68, ../sass/_loader.scss */
+.windows8 #wBall_2 {
+  -moz-animation-delay: 0.31s;
+  -webkit-animation-delay: 0.31s;
+  -ms-animation-delay: 0.31s;
+  -o-animation-delay: 0.31s;
+  animation-delay: 0.31s;
+}
+
+/* line 76, ../sass/_loader.scss */
+.windows8 #wBall_3 {
+  -moz-animation-delay: 0.62s;
+  -webkit-animation-delay: 0.62s;
+  -ms-animation-delay: 0.62s;
+  -o-animation-delay: 0.62s;
+  animation-delay: 0.62s;
+}
+
+/* line 84, ../sass/_loader.scss */
+.windows8 #wBall_4 {
+  -moz-animation-delay: 0.94s;
+  -webkit-animation-delay: 0.94s;
+  -ms-animation-delay: 0.94s;
+  -o-animation-delay: 0.94s;
+  animation-delay: 0.94s;
+}
+
+/* line 92, ../sass/_loader.scss */
+.windows8 #wBall_5 {
+  -moz-animation-delay: 1.25s;
+  -webkit-animation-delay: 1.25s;
+  -ms-animation-delay: 1.25s;
+  -o-animation-delay: 1.25s;
+  animation-delay: 1.25s;
+}
+
+@-moz-keyframes orbit {
+  /* line 101, ../sass/_loader.scss */
+  0% {
+    opacity: 1;
+    z-index: 99;
+    -moz-transform: rotate(180deg);
+    -moz-animation-timing-function: ease-out;
+  }
+
+  /* line 108, ../sass/_loader.scss */
+  7% {
+    opacity: 1;
+    -moz-transform: rotate(300deg);
+    -moz-animation-timing-function: linear;
+    -moz-origin: 0%;
+  }
+
+  /* line 115, ../sass/_loader.scss */
+  30% {
+    opacity: 1;
+    -moz-transform: rotate(410deg);
+    -moz-animation-timing-function: ease-in-out;
+    -moz-origin: 7%;
+  }
+
+  /* line 122, ../sass/_loader.scss */
+  39% {
+    opacity: 1;
+    -moz-transform: rotate(645deg);
+    -moz-animation-timing-function: linear;
+    -moz-origin: 30%;
+  }
+
+  /* line 129, ../sass/_loader.scss */
+  70% {
+    opacity: 1;
+    -moz-transform: rotate(770deg);
+    -moz-animation-timing-function: ease-out;
+    -moz-origin: 39%;
+  }
+
+  /* line 136, ../sass/_loader.scss */
+  75% {
+    opacity: 1;
+    -moz-transform: rotate(900deg);
+    -moz-animation-timing-function: ease-out;
+    -moz-origin: 70%;
+  }
+
+  /* line 143, ../sass/_loader.scss */
+  76% {
+    opacity: 0;
+    -moz-transform: rotate(900deg);
+  }
+
+  /* line 148, ../sass/_loader.scss */
+  100% {
+    opacity: 0;
+    -moz-transform: rotate(900deg);
+  }
+}
+
+@-webkit-keyframes orbit {
+  /* line 156, ../sass/_loader.scss */
+  0% {
+    opacity: 1;
+    z-index: 99;
+    -webkit-transform: rotate(180deg);
+    -webkit-animation-timing-function: ease-out;
+  }
+
+  /* line 163, ../sass/_loader.scss */
+  7% {
+    opacity: 1;
+    -webkit-transform: rotate(300deg);
+    -webkit-animation-timing-function: linear;
+    -webkit-origin: 0%;
+  }
+
+  /* line 170, ../sass/_loader.scss */
+  30% {
+    opacity: 1;
+    -webkit-transform: rotate(410deg);
+    -webkit-animation-timing-function: ease-in-out;
+    -webkit-origin: 7%;
+  }
+
+  /* line 177, ../sass/_loader.scss */
+  39% {
+    opacity: 1;
+    -webkit-transform: rotate(645deg);
+    -webkit-animation-timing-function: linear;
+    -webkit-origin: 30%;
+  }
+
+  /* line 184, ../sass/_loader.scss */
+  70% {
+    opacity: 1;
+    -webkit-transform: rotate(770deg);
+    -webkit-animation-timing-function: ease-out;
+    -webkit-origin: 39%;
+  }
+
+  /* line 191, ../sass/_loader.scss */
+  75% {
+    opacity: 1;
+    -webkit-transform: rotate(900deg);
+    -webkit-animation-timing-function: ease-out;
+    -webkit-origin: 70%;
+  }
+
+  /* line 198, ../sass/_loader.scss */
+  76% {
+    opacity: 0;
+    -webkit-transform: rotate(900deg);
+  }
+
+  /* line 203, ../sass/_loader.scss */
+  100% {
+    opacity: 0;
+    -webkit-transform: rotate(900deg);
+  }
+}
+
+@-ms-keyframes orbit {
+  /* line 211, ../sass/_loader.scss */
+  0% {
+    opacity: 1;
+    z-index: 99;
+    -ms-transform: rotate(180deg);
+    -ms-animation-timing-function: ease-out;
+  }
+
+  /* line 218, ../sass/_loader.scss */
+  7% {
+    opacity: 1;
+    -ms-transform: rotate(300deg);
+    -ms-animation-timing-function: linear;
+    -ms-origin: 0%;
+  }
+
+  /* line 225, ../sass/_loader.scss */
+  30% {
+    opacity: 1;
+    -ms-transform: rotate(410deg);
+    -ms-animation-timing-function: ease-in-out;
+    -ms-origin: 7%;
+  }
+
+  /* line 232, ../sass/_loader.scss */
+  39% {
+    opacity: 1;
+    -ms-transform: rotate(645deg);
+    -ms-animation-timing-function: linear;
+    -ms-origin: 30%;
+  }
+
+  /* line 239, ../sass/_loader.scss */
+  70% {
+    opacity: 1;
+    -ms-transform: rotate(770deg);
+    -ms-animation-timing-function: ease-out;
+    -ms-origin: 39%;
+  }
+
+  /* line 246, ../sass/_loader.scss */
+  75% {
+    opacity: 1;
+    -ms-transform: rotate(900deg);
+    -ms-animation-timing-function: ease-out;
+    -ms-origin: 70%;
+  }
+
+  /* line 253, ../sass/_loader.scss */
+  76% {
+    opacity: 0;
+    -ms-transform: rotate(900deg);
+  }
+
+  /* line 258, ../sass/_loader.scss */
+  100% {
+    opacity: 0;
+    -ms-transform: rotate(900deg);
+  }
+}
+
+@-o-keyframes orbit {
+  /* line 266, ../sass/_loader.scss */
+  0% {
+    opacity: 1;
+    z-index: 99;
+    -o-transform: rotate(180deg);
+    -o-animation-timing-function: ease-out;
+  }
+
+  /* line 273, ../sass/_loader.scss */
+  7% {
+    opacity: 1;
+    -o-transform: rotate(300deg);
+    -o-animation-timing-function: linear;
+    -o-origin: 0%;
+  }
+
+  /* line 280, ../sass/_loader.scss */
+  30% {
+    opacity: 1;
+    -o-transform: rotate(410deg);
+    -o-animation-timing-function: ease-in-out;
+    -o-origin: 7%;
+  }
+
+  /* line 287, ../sass/_loader.scss */
+  39% {
+    opacity: 1;
+    -o-transform: rotate(645deg);
+    -o-animation-timing-function: linear;
+    -o-origin: 30%;
+  }
+
+  /* line 294, ../sass/_loader.scss */
+  70% {
+    opacity: 1;
+    -o-transform: rotate(770deg);
+    -o-animation-timing-function: ease-out;
+    -o-origin: 39%;
+  }
+
+  /* line 301, ../sass/_loader.scss */
+  75% {
+    opacity: 1;
+    -o-transform: rotate(900deg);
+    -o-animation-timing-function: ease-out;
+    -o-origin: 70%;
+  }
+
+  /* line 308, ../sass/_loader.scss */
+  76% {
+    opacity: 0;
+    -o-transform: rotate(900deg);
+  }
+
+  /* line 313, ../sass/_loader.scss */
+  100% {
+    opacity: 0;
+    -o-transform: rotate(900deg);
+  }
+}
+
+@keyframes orbit {
+  /* line 321, ../sass/_loader.scss */
+  0% {
+    opacity: 1;
+    z-index: 99;
+    transform: rotate(180deg);
+    animation-timing-function: ease-out;
+  }
+
+  /* line 328, ../sass/_loader.scss */
+  7% {
+    opacity: 1;
+    transform: rotate(300deg);
+    animation-timing-function: linear;
+    origin: 0%;
+  }
+
+  /* line 335, ../sass/_loader.scss */
+  30% {
+    opacity: 1;
+    transform: rotate(410deg);
+    animation-timing-function: ease-in-out;
+    origin: 7%;
+  }
+
+  /* line 342, ../sass/_loader.scss */
+  39% {
+    opacity: 1;
+    transform: rotate(645deg);
+    animation-timing-function: linear;
+    origin: 30%;
+  }
+
+  /* line 349, ../sass/_loader.scss */
+  70% {
+    opacity: 1;
+    transform: rotate(770deg);
+    animation-timing-function: ease-out;
+    origin: 39%;
+  }
+
+  /* line 356, ../sass/_loader.scss */
+  75% {
+    opacity: 1;
+    transform: rotate(900deg);
+    animation-timing-function: ease-out;
+    origin: 70%;
+  }
+
+  /* line 363, ../sass/_loader.scss */
+  76% {
+    opacity: 0;
+    transform: rotate(900deg);
+  }
+
+  /* line 368, ../sass/_loader.scss */
+  100% {
+    opacity: 0;
+    transform: rotate(900deg);
+  }
+}
+
+/* line 3, ../sass/_opacity.scss */
+.gis-widget.gis-widget-propertys .gis-widget-propertys-data.gis-opacity-container {
+  padding: 20px 12px 4px;
+  overflow: hidden;
+}
+
+/*
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU AFFERO General Public License as published by
+the Free Software Foundation; either version 3 of the License, or
+any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+or see http://www.gnu.org/licenses/agpl.txt.
+*/
+/* OSRM CSS styles */
+/* ------------------------------------------------------------------------ */
+/* line 24, ../sass/_osrm.scss */
+.via-counter {
+  position: absolute;
+  top: -3px;
+  right: -6px;
+  width: 16px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-color: #FFFFFF;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 9px;
+  display: none;
+}
+
+/* ------------------------------------------------------------------------ */
+/* styles for error messages (browser too old / no javascript) */
+/* line 43, ../sass/_osrm.scss */
+.error-header {
+  font-weight: bold;
+  margin: 20px 20px 10px 20px;
+}
+
+/* line 48, ../sass/_osrm.scss */
+.error-body {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+/* line 53, ../sass/_osrm.scss */
+#old-browser-warning {
+  display: none;
+}
+
+/* line 57, ../sass/_osrm.scss */
+#gui {
+  display: none;
+}
+
+/* ------------------------------------------------------------------------ */
+/* general styles for gui boxes */
+/* line 68, ../sass/_osrm.scss */
+.box-animated {
+  transition: left 1s, right 1s;
+  -moz-transition: left 1s,right 1s;
+  -webkit-transition: left 1s,right 1s;
+  -o-transition: left 1s,right 1s;
+  -ms-transition: left 1s,right 1s;
+}
+
+/* line 79, ../sass/_osrm.scss */
+.box-handle-wrapper-right {
+  width: 36px;
+  height: 36px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+}
+
+/* line 90, ../sass/_osrm.scss */
+.box-handle-content-right {
+  width: 16px;
+  height: 16px;
+  border-top-right-radius: 0px;
+  border-bottom-right-radius: 0px;
+  -moz-border-radius-topright: 0px;
+  -moz-border-radius-bottomright: 0px;
+  -webkit-border-top-right-radius: 0px;
+  -webkit-border-bottom-right-radius: 0px;
+}
+
+/* line 101, ../sass/_osrm.scss */
+.box-handle-wrapper-left {
+  width: 36px;
+  height: 36px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+}
+
+/* line 112, ../sass/_osrm.scss */
+.box-handle-content-left {
+  width: 16px;
+  height: 16px;
+  border-top-left-radius: 0px;
+  border-bottom-left-radius: 0px;
+  -moz-border-radius-topleft: 0px;
+  -moz-border-radius-bottomleft: 0px;
+  -webkit-border-top-left-radius: 0px;
+  -webkit-border-bottom-left-radius: 0px;
+}
+
+/* general styles for gui box headers */
+/* line 126, ../sass/_osrm.scss */
+.top-left-button {
+  float: left;
+  vertical-align: top;
+}
+
+/* line 131, ../sass/_osrm.scss */
+.top-right-button {
+  float: right;
+  vertical-align: top;
+}
+
+/* ------------------------------------------------------------------------ */
+/* styles for main gui boxes */
+/* styles for main-input areas */
+/* line 152, ../sass/_osrm.scss */
+#input-mask-header {
+  left: 0px;
+  right: 0px;
+  top: 0px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* line 161, ../sass/_osrm.scss */
+#input-mask {
+  margin: 3px;
+}
+
+/* line 165, ../sass/_osrm.scss */
+#input-mask-options {
+  margin: 3px;
+}
+
+/* styles for main-input input-mask-header */
+/* line 172, ../sass/_osrm.scss */
+#gui-language-toggle {
+  position: absolute;
+}
+
+/* styles for main-input input-mask */
+/* line 179, ../sass/_osrm.scss */
+.input-marker {
+  display: table-row;
+}
+
+/* line 183, ../sass/_osrm.scss */
+.input-marker > div {
+  padding-bottom: 4px;
+}
+
+/* line 187, ../sass/_osrm.scss */
+.input-label {
+  margin: 0px 2px 0px 0px;
+}
+
+/* line 191, ../sass/_osrm.scss */
+.input-delete {
+  margin: 0px 15px 0px 8px;
+  visibility: hidden;
+}
+
+/* line 196, ../sass/_osrm.scss */
+.input-box {
+  width: 100%;
+}
+
+/* styles for main-input input-mask-options */
+/* line 203, ../sass/_osrm.scss */
+#gui-engine-toggle {
+  max-width: 200px;
+}
+
+/* styles for main-output areas */
+/* line 210, ../sass/_osrm.scss */
+#information-box-header {
+  margin: 5px;
+}
+
+/* line 214, ../sass/_osrm.scss */
+#information-box {
+  overflow: auto;
+  margin: 5px;
+}
+
+/* line 219, ../sass/_osrm.scss */
+.information-box-with-normal-header {
+  top: 65px;
+}
+
+/* line 223, ../sass/_osrm.scss */
+.information-box-with-large-header {
+  top: 85px;
+}
+
+/* line 227, ../sass/_osrm.scss */
+.information-box-with-larger-header {
+  top: 100px;
+}
+
+/* line 231, ../sass/_osrm.scss */
+#legal-notice {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  margin: 5px;
+}
+
+/* styles for main-output information-box-header */
+/* line 241, ../sass/_osrm.scss */
+.header-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* line 246, ../sass/_osrm.scss */
+.header-subtitle {
+  font-weight: normal;
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+/* line 252, ../sass/_osrm.scss */
+.header-label {
+  font-weight: normal;
+  padding: 0px 5px 0px 0px;
+}
+
+/* line 257, ../sass/_osrm.scss */
+.header-content {
+  font-weight: normal;
+}
+
+/* line 261, ../sass/_osrm.scss */
+.text-link {
+  color: #0000ff;
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* line 268, ../sass/_osrm.scss */
+.text-link:hover {
+  color: #ff0000;
+}
+
+/* line 272, ../sass/_osrm.scss */
+.text-link-inactive {
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* styles for main-output information-box -> workaround for invisible scrollbars in Chrome */
+/* line 280, ../sass/_osrm.scss */
+#information-box::-webkit-scrollbar {
+  height: 10px;
+  width: 10px;
+}
+
+/* line 285, ../sass/_osrm.scss */
+#information-box::-webkit-scrollbar-track {
+  background: #FFFFFF;
+}
+
+/* line 289, ../sass/_osrm.scss */
+#information-box::-webkit-scrollbar-thumb {
+  min-height: 30px;
+  background: #EEEEEE;
+  border: 1px solid #999999;
+  -webkit-border-radius: 5ex;
+}
+
+/* line 296, ../sass/_osrm.scss */
+#information-box::-webkit-scrollbar-thumb:hover {
+  background: #F9F9F9;
+}
+
+/* line 300, ../sass/_osrm.scss */
+#information-box::-webkit-scrollbar-thumb:active {
+  background: #F4F4F4;
+}
+
+/* style for main-output information-box -> table (general) */
+/* line 307, ../sass/_osrm.scss */
+.no-results {
+  text-align: center;
+  margin: 28px;
+}
+
+/* style for main-output information-box -> table (search results) */
+/* line 315, ../sass/_osrm.scss */
+.results {
+  border-spacing: 0px;
+  width: 100%;
+}
+
+/* line 323, ../sass/_osrm.scss */
+.results-body-even {
+  background-color: rgba(0, 0, 0, 0.09);
+}
+
+/* line 327, ../sass/_osrm.scss */
+.results-body-counter {
+  text-align: right;
+  vertical-align: middle;
+  font-weight: bold;
+  padding: 1px 5px 1px 5px;
+}
+
+/* line 334, ../sass/_osrm.scss */
+.results-body-items {
+  text-align: left;
+  vertical-align: top;
+  width: 100%;
+  padding: 1px;
+}
+
+/* line 341, ../sass/_osrm.scss */
+.results-body-item {
+  cursor: pointer;
+  color: black;
+}
+
+/* line 346, ../sass/_osrm.scss */
+.results-body-item:hover {
+  color: #ffffff;
+}
+
+/* style for main-output information-box -> table (driving directions) */
+/* line 356, ../sass/_osrm.scss */
+.description {
+  border-spacing: 0px;
+  width: 100%;
+}
+
+/* line 364, ../sass/_osrm.scss */
+.description-body-even {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+
+/* line 368, ../sass/_osrm.scss */
+.description-body-items {
+  text-align: left;
+  vertical-align: middle;
+  padding: 1px;
+}
+
+/* line 374, ../sass/_osrm.scss */
+.description-body-directions {
+  text-align: left;
+  width: 22px;
+  vertical-align: middle;
+  padding: 1px 5px 1px 5px;
+}
+
+/* line 381, ../sass/_osrm.scss */
+.description-body-direction {
+  width: 18px;
+  height: 18px;
+}
+
+/* line 386, ../sass/_osrm.scss */
+.description-body-distance {
+  text-align: right;
+  vertical-align: middle;
+  padding: 1px 1px 1px 5px;
+}
+
+/* line 393, ../sass/_osrm.scss */
+.description tr {
+  cursor: pointer;
+  color: #000000;
+}
+/* line 396, ../sass/_osrm.scss */
+.description tr:hover {
+  color: #ffffff;
+}
+
+/* line 408, ../sass/_osrm.scss */
+.description-body-item-selected {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* ------------------------------------------------------------------------ */
+/* styles for other gui boxes */
+/* line 417, ../sass/_osrm.scss */
+#mapping-wrapper {
+  width: 410px;
+  height: 100px;
+  bottom: 25px;
+  right: 5px;
+}
+
+/* line 424, ../sass/_osrm.scss */
+#mapping-content {
+  width: 390px;
+  height: 80px;
+}
+
+/* line 429, ../sass/_osrm.scss */
+#config-wrapper {
+  width: 410px;
+  height: 100px;
+  bottom: 25px;
+  right: 5px;
+}
+
+/* line 436, ../sass/_osrm.scss */
+#config-content {
+  width: 390px;
+  height: 80px;
+}
+
+/* line 441, ../sass/_osrm.scss */
+#exclusive-notification-wrapper {
+  width: 600px;
+  height: 170px;
+  top: 50%;
+  left: 50%;
+  margin-top: -85px;
+  margin-left: -300px;
+}
+
+/* line 450, ../sass/_osrm.scss */
+#exclusive-notification-content {
+  width: 580px;
+  height: 150px;
+}
+
+/* line 455, ../sass/_osrm.scss */
+#exclusive-notification-blanket {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.25);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#3f000000, endColorstr=#3f000000);
+  z-index: 100;
+  display: none;
+}
+
+/* line 467, ../sass/_osrm.scss */
+#tooltip-notification-wrapper {
+  width: 700px;
+  height: 38px;
+  top: 20px;
+  left: 50%;
+  margin-left: -350px;
+  z-index: 98;
+  display: none;
+}
+
+/* line 477, ../sass/_osrm.scss */
+#tooltip-notification-content {
+  width: 680px;
+  height: 18px;
+}
+
+/* styles for content of other gui boxes */
+/* line 485, ../sass/_osrm.scss */
+#gui-language-2-toggle {
+  position: relative;
+}
+
+/* line 489, ../sass/_osrm.scss */
+#gui-units-toggle {
+  position: relative;
+}
+
+/* line 493, ../sass/_osrm.scss */
+.box-label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* line 498, ../sass/_osrm.scss */
+.config-label {
+  margin: 0px 0px 0px 5px;
+}
+
+/* line 502, ../sass/_osrm.scss */
+.config-select {
+  width: 100px;
+}
+
+/* line 506, ../sass/_osrm.scss */
+#config-timestamps {
+  display: table;
+  position: absolute;
+  right: 5px;
+  /* equal to box-content padding */
+  bottom: 5px;
+}
+
+/* line 513, ../sass/_osrm.scss */
+#mapping-checkboxes {
+  margin-top: -2px;
+}
+
+/* line 517, ../sass/_osrm.scss */
+#mapping-checkboxes input {
+  cursor: pointer;
+  position: relative;
+  margin: 0px 5px 5px 5px;
+  padding: 0px;
+  top: 3px;
+}
+
+/* line 525, ../sass/_osrm.scss */
+#mapping-checkboxes label {
+  display: block;
+  vertical-align: middle;
+}
+
+/* line 530, ../sass/_osrm.scss */
+.mapping-button {
+  float: right;
+}
+
+/* line 534, ../sass/_osrm.scss */
+.mapping-label {
+  padding: 3px 10px 2px 10px;
+  font-size: 9px;
+  float: right;
+}
+
+/* line 540, ../sass/_osrm.scss */
+#notification-box {
+  margin: 5px 5px 5px 5px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* map buttons */
+/* line 548, ../sass/_osrm.scss */
+.gui-control-wrapper {
+  position: relative;
+}
+
+/* line 552, ../sass/_osrm.scss */
+.gui-control {
+  cursor: pointer;
+  position: relative;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+/* line 559, ../sass/_osrm.scss */
+.gui-control-inactive {
+  cursor: default;
+  position: relative;
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  display: block;
+}
+
+/* zoom buttons */
+/* line 573, ../sass/_osrm.scss */
+.gui-zoom-in,
+.gui-zoom-out,
+.gui-zoom-in-inactive,
+.gui-zoom-out-inactive {
+  width: 15px;
+  height: 15px;
+}
+
+/* line 581, ../sass/_osrm.scss */
+.leaflet-touch .gui-zoom-in,
+.leaflet-touch .gui-zoom-out,
+.leaflet-touch .gui-zoom-in-inactive,
+.leaflet-touch .gui-zoom-out-inactive {
+  width: 23px;
+  height: 23px;
+}
+
+/* locations buttons */
+/* line 592, ../sass/_osrm.scss */
+.gui-locations-user,
+.gui-locations-route,
+.gui-locations-user-inactive,
+.gui-locations-route-inactive {
+  float: left;
+  width: 26px;
+  height: 26px;
+}
+
+/* line 601, ../sass/_osrm.scss */
+.leaflet-touch .gui-locations-user,
+.leaflet-touch .gui-locations-route,
+.leaflet-touch .gui-locations-user-inactive,
+.leaflet-touch .gui-locations-route-inactive {
+  width: 32px;
+  height: 32px;
+}
+
+/* layer selection */
+/* line 609, ../sass/_osrm.scss */
+.gui-layers {
+  width: 26px;
+  height: 26px;
+}
+
+/* line 614, ../sass/_osrm.scss */
+.leaflet-touch .gui-layers {
+  width: 32px;
+  height: 32px;
+}
+
+/* line 619, ../sass/_osrm.scss */
+.gui-layers-expanded .gui-layers {
+  display: none;
+}
+
+/* line 624, ../sass/_osrm.scss */
+.gui-layers-list {
+  display: none;
+}
+
+/* line 628, ../sass/_osrm.scss */
+.gui-layers-expanded .gui-layers-list {
+  display: block;
+  position: relative;
+}
+
+/* line 633, ../sass/_osrm.scss */
+.gui-layers-list input {
+  cursor: pointer;
+  margin-top: 2px;
+  position: relative;
+  top: 2px;
+}
+
+/* line 640, ../sass/_osrm.scss */
+.gui-layers-list label {
+  cursor: pointer;
+  display: block;
+  vertical-align: middle;
+}
+
+/* line 647, ../sass/_osrm.scss */
+.gui-layers-separator {
+  height: 0;
+  border-top: 1px solid #ddd;
+  margin: 5px 0px 5px 0px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* text buttons */
+/* line 657, ../sass/_osrm.scss */
+.button {
+  cursor: pointer;
+  padding: 2px 10px 2px 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-color: #EEEEEE;
+  border: 1px solid #999999;
+  color: #333333;
+  text-decoration: none;
+  font-size: 9px;
+  outline-style: none;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+/* line 673, ../sass/_osrm.scss */
+.button:hover {
+  background-color: #F9F9F9;
+  color: #000000;
+}
+
+/* line 678, ../sass/_osrm.scss */
+.button:active {
+  background-color: #F4F4F4;
+  color: #FF0000;
+}
+
+/* line 683, ../sass/_osrm.scss */
+.button-inactive {
+  cursor: default;
+  padding: 2px 10px 2px 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-color: #F9F9F9;
+  border: 1px solid #CCCCCC;
+  color: #999999;
+  text-decoration: none;
+  font-size: 9px;
+  outline-style: none;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+/* line 699, ../sass/_osrm.scss */
+.button-pressed {
+  cursor: pointer;
+  padding: 2px 10px 2px 10px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  -webkit-border-radius: 5px;
+  background-color: #AAAAAA;
+  border: 1px solid #999999;
+  color: #000000;
+  text-decoration: none;
+  font-size: 9px;
+  outline-style: none;
+  vertical-align: 1px;
+  white-space: nowrap;
+}
+
+/* iconic buttons */
+/* line 718, ../sass/_osrm.scss */
+.iconic-button {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* line 727, ../sass/_osrm.scss */
+#gui-printer-inactive {
+  cursor: default;
+}
+
+/* styled select */
+/* line 734, ../sass/_osrm.scss */
+.styled-select-helper {
+  position: relative;
+  border: 0px;
+  text-decoration: none;
+  opacity: 0;
+  filter: alpha(opacity=0);
+  z-index: 5;
+  cursor: pointer;
+}
+
+/* line 744, ../sass/_osrm.scss */
+.styled-select {
+  text-align: left;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-position: top right;
+  padding: 1px 1px 1px 1px;
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------------------ */
+/* utility styles */
+/* line 757, ../sass/_osrm.scss */
+.quad {
+  min-width: 10px;
+  min-height: 10px;
+}
+
+/* line 762, ../sass/_osrm.scss */
+.absolute-hidden {
+  position: absolute;
+  top: -1000px;
+  left: -1000px;
+}
+
+/* line 768, ../sass/_osrm.scss */
+.nowrap {
+  white-space: nowrap;
+}
+
+/* ------------------------------------------------------------------------ */
+/* table styles */
+/* line 776, ../sass/_osrm.scss */
+.full {
+  display: table;
+  width: 100%;
+}
+
+/* line 781, ../sass/_osrm.scss */
+.row {
+  display: table-row;
+}
+
+/* line 785, ../sass/_osrm.scss */
+.left {
+  display: table-cell;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* line 791, ../sass/_osrm.scss */
+.right {
+  display: table-cell;
+  text-align: right;
+  vertical-align: middle;
+}
+
+/* line 797, ../sass/_osrm.scss */
+.center {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* line 803, ../sass/_osrm.scss */
+.stretch {
+  width: 100%;
+}
+
+/* line 807, ../sass/_osrm.scss */
+.fixed {
+  min-width: 100px;
+}
+
+/* ------------------------------------------------------------------------ */
+/* fonts */
+/* line 815, ../sass/_osrm.scss */
+.base-font {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+/* line 821, ../sass/_osrm.scss */
+.big-font {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+/* line 827, ../sass/_osrm.scss */
+.medium-font {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 10.5px;
+  font-weight: normal;
+}
+
+/* line 833, ../sass/_osrm.scss */
+.small-font {
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  font-size: 9px;
+  font-weight: normal;
+}
+
+/* line 838, ../sass/_osrm.scss */
+.gis-propertys-button#gui-new-route {
+  margin-right: 5px;
+}
+
+/* line 1, ../sass/_visibilyty.scss */
+.visibility-additional-data {
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  top: 0;
+  z-index: 1;
+  margin-left: -4px;
+  -webkit-transition: left 0.3s ease-in-out, top 0.3s ease-in-out, margin-top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  -moz-transition: left 0.3s ease-in-out, top 0.3s ease-in-out, margin-top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  -o-transition: left 0.3s ease-in-out, top 0.3s ease-in-out, margin-top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  transition: left 0.3s ease-in-out, top 0.3s ease-in-out, margin-top 0.3s ease-in-out, opacity 0.3s ease-in-out;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 2px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  border-radius: 3px;
+}
+@media (max-height: 825px) {
+  /* line 14, ../sass/_visibilyty.scss */
+  .visibility-additional-data {
+    width: 80%;
+  }
+}
+@media (min-height: 826px) {
+  /* line 19, ../sass/_visibilyty.scss */
+  .visibility-additional-data {
+    margin-left: 0;
+    top: -141px;
+  }
+}
+/* line 24, ../sass/_visibilyty.scss */
+.visibility-additional-data.show {
+  opacity: 1;
+  left: -80%;
+}
+@media (min-height: 826px) {
+  /* line 28, ../sass/_visibilyty.scss */
+  .visibility-additional-data.show {
+    left: 0;
+    top: 100%;
+  }
+}
+/* line 34, ../sass/_visibilyty.scss */
+.visibility-additional-data .additional-row {
+  display: inline-block;
+  width: 32%;
+  margin-right: 2%;
+}
+/* line 38, ../sass/_visibilyty.scss */
+.visibility-additional-data .additional-row input {
+  width: 100%;
+}
+/* line 41, ../sass/_visibilyty.scss */
+.visibility-additional-data .additional-row.visibility-right {
+  float: right;
+  margin-right: 0;
+}
+
+/* line 47, ../sass/_visibilyty.scss */
+.vis-wrapper {
+  position: relative;
+  z-index: 2;
+  margin-bottom: 6px;
+}
+
+/* line 1, ../sass/_colorpicker.scss */
+.colorpicker {
+  width: 386px;
+  height: 176px;
+  overflow: hidden;
+  position: absolute;
+  background: url(../images/colorpicker/colorpicker_background.png);
+  font-family: Arial, Helvetica, sans-serif;
+  display: none;
+  z-index: 800;
+}
+
+/* line 11, ../sass/_colorpicker.scss */
+.colorpicker_color {
+  width: 150px;
+  height: 150px;
+  left: 14px;
+  top: 13px;
+  position: absolute;
+  background: #f00;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+/* line 21, ../sass/_colorpicker.scss */
+.colorpicker_color div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 150px;
+  height: 150px;
+  background: url(../images/colorpicker/colorpicker_overlay.png);
+}
+
+/* line 29, ../sass/_colorpicker.scss */
+.colorpicker_color div div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 11px;
+  height: 11px;
+  overflow: hidden;
+  background: url(../images/colorpicker/colorpicker_select.gif);
+  margin: -5px 0 0 -5px;
+}
+
+/* line 41, ../sass/_colorpicker.scss */
+.colorpicker_hue, .colorpicker_alpha {
+  position: absolute;
+  top: 13px;
+  width: 35px;
+  height: 150px;
+  cursor: n-resize;
+}
+/* line 47, ../sass/_colorpicker.scss */
+.colorpicker_hue div, .colorpicker_alpha div {
+  position: absolute;
+  width: 35px;
+  height: 9px;
+  overflow: hidden;
+  background: url(../images/colorpicker/colorpicker_indic.gif) left top;
+  margin: -4px 0 0 0;
+  left: 0px;
+}
+
+/* line 57, ../sass/_colorpicker.scss */
+.colorpicker_hue {
+  left: 171px;
+}
+
+/* line 60, ../sass/_colorpicker.scss */
+.colorpicker_alpha {
+  left: 213px;
+  width: 17px;
+}
+/* line 63, ../sass/_colorpicker.scss */
+.colorpicker_alpha div {
+  left: -9px;
+}
+
+/* line 67, ../sass/_colorpicker.scss */
+.colorpicker_new_color {
+  position: absolute;
+  width: 131px;
+  height: 30px;
+  left: 243px;
+  top: 13px;
+  background: #f00;
+}
+
+/* line 75, ../sass/_colorpicker.scss */
+.colorpicker_current_color {
+  position: absolute;
+  width: 60px;
+  height: 30px;
+  left: 314px;
+  top: 13px;
+  background: #f00;
+}
+
+/* line 83, ../sass/_colorpicker.scss */
+.colorpicker input {
+  background-color: transparent;
+  position: absolute;
+  font-size: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+  top: 4px;
+  right: 11px;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  line-height: 14px;
+  width: 34px;
+}
+
+/* line 96, ../sass/_colorpicker.scss */
+.colorpicker_hex {
+  position: absolute;
+  width: 62px;
+  height: 22px;
+  background: url(../images/colorpicker/colorpicker_hex.png) top;
+  left: 244px;
+  top: 142px;
+}
+
+/* line 104, ../sass/_colorpicker.scss */
+.colorpicker_hex input {
+  right: 3px;
+  width: 42px;
+}
+
+/* line 108, ../sass/_colorpicker.scss */
+.colorpicker_field {
+  height: 22px;
+  width: 62px;
+  background-position: top;
+  position: absolute;
+}
+
+/* line 114, ../sass/_colorpicker.scss */
+.colorpicker_field span {
+  position: absolute;
+  width: 12px;
+  height: 22px;
+  overflow: hidden;
+  top: 0;
+  right: 0;
+  cursor: n-resize;
+}
+
+/* line 123, ../sass/_colorpicker.scss */
+.colorpicker_rgb_r {
+  background-image: url(../images/colorpicker/colorpicker_rgb_r.png);
+  top: 52px;
+  left: 244px;
+}
+
+/* line 128, ../sass/_colorpicker.scss */
+.colorpicker_rgb_g {
+  background-image: url(../images/colorpicker/colorpicker_rgb_g.png);
+  top: 82px;
+  left: 244px;
+}
+
+/* line 133, ../sass/_colorpicker.scss */
+.colorpicker_rgb_b {
+  background-image: url(../images/colorpicker/colorpicker_rgb_b.png);
+  top: 112px;
+  left: 244px;
+}
+
+/* line 138, ../sass/_colorpicker.scss */
+.colorpicker_hsb_h {
+  background-image: url(../images/colorpicker/colorpicker_hsb_h.png);
+  top: 52px;
+  left: 314px;
+}
+
+/* line 143, ../sass/_colorpicker.scss */
+.colorpicker_hsb_s {
+  background-image: url(../images/colorpicker/colorpicker_hsb_s.png);
+  top: 82px;
+  left: 314px;
+}
+
+/* line 148, ../sass/_colorpicker.scss */
+.colorpicker_hsb_b {
+  background-image: url(../images/colorpicker/colorpicker_hsb_b.png);
+  top: 112px;
+  left: 314px;
+}
+
+/* line 153, ../sass/_colorpicker.scss */
+.colorpicker_hsb_a {
+  background-image: url(../images/colorpicker/colorpicker_rgb_a.png);
+  top: 142px;
+  left: 314px;
+}
+
+/* line 158, ../sass/_colorpicker.scss */
+.colorpicker_submit {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: url(../images/colorpicker/colorpicker_submit.png) top;
+  left: 322px;
+  top: 142px;
+  overflow: hidden;
+  display: none;
+}
+
+/* line 168, ../sass/_colorpicker.scss */
+.colorpicker_focus {
+  background-position: center;
+}
+
+/* line 171, ../sass/_colorpicker.scss */
+.colorpicker_hex.colorpicker_focus {
+  background-position: bottom;
+}
+
+/* line 174, ../sass/_colorpicker.scss */
+.colorpicker_submit.colorpicker_focus {
+  background-position: bottom;
+}
+
+/* line 177, ../sass/_colorpicker.scss */
+.colorpicker_slider {
+  background-position: bottom;
+}

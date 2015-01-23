@@ -7,14 +7,14 @@ define(
         'react',
         'event_bus',
         'config',
-        //'window',
-
+        //'window'
+        //'leaflet',
         //'proj4',
-        //'map_main'
+        'map_main'
         //'map'
 
 
-    ],function($, _, Backbone, React, EventBus, Config
+    ],function($, _, Backbone, React, EventBus, Config, leaflet, proj4
                ){ //Gis, Map , window
         /*
         var test = function (a) {
@@ -27,11 +27,22 @@ define(
             }
         }*/
 
+
+        /*
         var b,c;
         b = require("leaflet");
         c = require("proj4");
 
-        module.exports = a(b, c);
+
+        console.info(['leaflef', b]);
+        console.info(['proj4', c]);
+        */
+
+        console.info(['leaflef', leaflet]);
+        console.info(['proj4', proj4]);
+
+        //module.exports = a(b, c);
+
 
         console.log('views/map loaded...');
         var debug = (Config['debug'] && Config['debug']['debug_map'])? 1:null;
