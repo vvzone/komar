@@ -9,12 +9,12 @@ define(
         'config',
         //'window'
         'leaflet',
-        'proj4'
-//        'map_main'
+        'proj4',
+        //'map_main'
         //'map'
 
 
-    ],function($, _, Backbone, React, EventBus, Config, leaflet, proj4
+    ],function($, _, Backbone, React, EventBus, Config, leaflet, proj4, map_main
                ){ //Gis, Map , window
         /*
         var test = function (a) {
@@ -65,15 +65,23 @@ define(
         var initialize = function(){
             (debug)?console.info('MapComponent(view/map) initialization... '):null;
 
+
+            //require('map_main');
+            //require('map_main');
+
+
             require(['map_main'], function(MapMain){
-                return
+                return;
             });
+
+
+
 
             /*
             require(['map'], function(Map){
                 return;
-            });
-            */
+            });*/
+
 
 
             console.info(['window', window]);
