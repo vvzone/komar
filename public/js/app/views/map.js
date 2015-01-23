@@ -7,14 +7,14 @@ define(
         'react',
         'event_bus',
         'config',
-        //'window'
+        'window',
         'leaflet',
-        'proj4',
+        'proj4'
         //'map_main'
         //'map'
 
 
-    ],function($, _, Backbone, React, EventBus, Config, leaflet, proj4, map_main
+    ],function($, _, Backbone, React, EventBus, Config, window, leaflet, proj4, map_main
                ){ //Gis, Map , window
         /*
         var test = function (a) {
