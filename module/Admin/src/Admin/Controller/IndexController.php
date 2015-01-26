@@ -145,6 +145,7 @@ class IndexController extends AbstractActionController
         $JsonModel->setVariables($data_array);
         return $JsonModel;
     }
+    //
 
     public function clientAction(){
         $incoming = array(
@@ -161,15 +162,10 @@ class IndexController extends AbstractActionController
         );
 
         $waiting = array(
-            array('id' => 411, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Изменения документов'),
-            array('id' => 412, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Движение документов'),
-            array('id' => 413, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Системные'),
-            array('id' => 413, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Сигналы')
-        );
-
-        $layers = array(
-            array('id' => 411, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Тактический сервер'),
-            array('id' => 412, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Локальные')
+            array('id' => 411, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Маршрут движения объекта Вини-Пух'),
+            array('id' => 412, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Приказ №3425'),
+            array('id' => 413, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Вводная занятия по отработке основ определения Винни на карте'),
+            array('id' => 413, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Сигналы Пяточка')
         );
 
         $data_array = array(
@@ -177,16 +173,45 @@ class IndexController extends AbstractActionController
                 'children' => $incoming),
             array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Исходящие документы', 'is_not_screen' => true,
                 'children' => $outcomming),
-            array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Уведомления', 'is_not_screen' => true,
-                'children' => $waiting),
-            array('id' => 4, 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Слои', 'is_not_screen' => true,
-                'children' => $layers),
+            array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Документы на карте', 'is_not_screen' => true,
+                'children' => $waiting,
+                'type' => 'layers')
+        );
+
+        // type => layers, widget
+
+        $JsonModel = new JsonModel();
+        $JsonModel->setVariables($data_array);
+        return $JsonModel;
+    }
+
+    public function rightpanAction(){
+        $incoming = array(
+            array('id' => 401, 'category' => 'unit', 'entity' => 'documents', 'screen' => 'unit', 'name' => 'Иконки'),
+            array('id' => 402, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Важные'),
+            array('id' => 403, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Срочные'),
+            array('id' => 404, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Не срочные')
+        );
+
+        $outcomming = array(
+            array('id' => 411, 'category' => 'unit', 'entity' => 'layer_one', 'screen' => 'unit', 'name' => 'Слой 1'),
+            array('id' => 412, 'category' => 'unit', 'entity' => 'layer_two', 'screen' => 'unit', 'name' => 'Слой 2'),
+            array('id' => 413, 'category' => 'unit', 'entity' => 'layer_three', 'screen' => 'unit', 'name' => 'Слой 3')
+        );
+
+        $data_array = array(
+            array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Классификатор', 'is_not_screen' => true,
+                'children' => $incoming),
+            array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Слои', 'is_not_screen' => true,
+                'children' => $outcomming, 'type' => 'layers')
         );
 
         $JsonModel = new JsonModel();
         $JsonModel->setVariables($data_array);
         return $JsonModel;
     }
+
+
 
     public function pageAction(){
         //

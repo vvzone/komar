@@ -39,6 +39,19 @@ define(
 
                 return (local_server)? local: production;
             },
+            client_menus_right: function(){
+                var local = host + sys_prefix + "/client_menu_right";
+                var production = host + sys_prefix + "/client_menu_tree/0";
+
+                return (local_server)? local: production;
+            },
+            client_menu_right: function(trash_id){
+                var id = (trash_id)? trash_id:'';
+                var local = host + sys_prefix + "/client_menu/"+id;
+                var production = host + sys_prefix + "/client_menu_tree/"+id;
+
+                return (local_server)? local: production;
+            },
             menus: function(){
                 var local = host + sys_prefix + "/menu";
                 var production = host + sys_prefix + "/admin_menu_tree/0";

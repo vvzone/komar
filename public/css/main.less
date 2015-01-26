@@ -2,9 +2,11 @@
 * 2-g css
 */
 
-@base_width: 1600px;
+@base_width: 1900px; //1600
 @window_height: 1024px;
-@left_panel_width: 350px;
+@left_panel_width: 286px;
+@right_panel_width: 286px;
+
 
 @min: 2px;
 @small: 3px;
@@ -75,7 +77,8 @@ div#left_panel{
   clear: both;
   float: left;
   //width: @left_panel_width - @med;
-  width: 15%;
+  //width: 15%;
+  width: @left_panel_width;
 }
 
 
@@ -83,7 +86,15 @@ div#main_window{
     float: left;
     padding: @med;
     //width: @base_width - @left_panel_width;
-  width: 75%;
+    //width: 75%;
+    width: @base_width - (@left_panel_width+@right_panel_width);
+}
+
+div#right_panel{
+  float: left;
+  //width: @left_panel_width - @med;
+  //width: 15%;
+  width: @right_panel_width;
 }
 
 div.next{

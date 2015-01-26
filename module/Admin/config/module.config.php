@@ -107,6 +107,20 @@ return array(
                                 'action' => 'client'
                             )
                         )
+                    ),
+                    'client_menu_right' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/client_menu_right[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Admin\Controller',
+                                'controller'    => 'Admin\Controller\Index',
+                                'action' => 'rightpan'
+                            )
+                        )
                     )
                 )
             ),

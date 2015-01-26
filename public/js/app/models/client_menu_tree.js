@@ -22,7 +22,10 @@ define(
                 is_not_screen: false,
                 order: null,
                 children: null,
-                items: null
+                items: null,
+                type: null,
+                total: null,
+                unread: null
             },
             attr_description:{
                 parent: 'Идентификатор родителя',
@@ -38,8 +41,8 @@ define(
             },
             attr_dependencies: null, //for recursive objects
             model_description: 'Возвращается в виде дерева',
-            model_name: 'menu_tree',
-            model_rus_name: 'Меню админки',
+            model_name: 'client_menu_tree',
+            model_rus_name: 'Меню клиента',
             url: function() {
                 return apiUrl('client_menu', this.id);
             },

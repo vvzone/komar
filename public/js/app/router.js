@@ -15,13 +15,14 @@ define(
         'jsx!views/react/select_entry',
 
         'views/client_menu_list',
+        'views/client_menu_list_right',
         'views/menu_list',
 
         'views/map'
     ],
     function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter,
              app_registry, UserBarComponent, SelectEntry,
-             ClientMenuList, AdminMenuList,
+             ClientMenuList, ClientMenuListRight, AdminMenuList,
              MapView){ //2-do: to many components loaded by default!
 
 
@@ -134,9 +135,10 @@ define(
                 client: function(){
                     console.info('Router->client');
                     ClientMenuList.initialize();
+                    ClientMenuListRight.initialize();
                     cleanMainScreen();
 
-                    MapView.initialize();
+                    //MapView.initialize();
 
                     //MapView.show();
 
