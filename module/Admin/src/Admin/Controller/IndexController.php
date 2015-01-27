@@ -173,6 +173,8 @@ class IndexController extends AbstractActionController
                 'children' => $incoming),
             array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Исходящие документы', 'is_not_screen' => true,
                 'children' => $outcomming),
+            array('id' => 4, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Уведомления', 'is_not_screen' => true,
+                'children' => $outcomming),
             array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Документы на карте', 'is_not_screen' => true,
                 'children' => $waiting,
                 'type' => 'layers')

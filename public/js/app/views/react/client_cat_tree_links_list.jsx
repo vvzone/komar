@@ -124,8 +124,10 @@ define(
                 }
                 if(model.get('items')!=null){
                     className = "glyphicon togglable";
+                    var listHead= "childs";
                     if (this.state.visible) {
                         className += " glyphicon-chevron-up";
+                        listHead += " childs_open";
                     } else {
                         className += " glyphicon-chevron-down";
                     }
@@ -135,13 +137,19 @@ define(
 
                         var items = model.get('items');
                         var simple_links = items.map(function(model) {
-                            return <li><ItemLink model={model} onClick={this.whenClicked}/></li>;
+                            return (
+                                <li>
+                                    <div><ItemLink model={model} onClick={this.whenClicked}/></div>
+                                </li>
+                            );
                         });
-
+//
                         return(
                             <li>
-                                <span onClick={this.toggle} className={className}></span>
-                                <div className="childs" onClick={this.toggle}>{model.get('name')}</div>
+                                <div className={listHead} onClick={this.toggle}>
+                                    <span onClick={this.toggle} className={className}></span>
+                                    <span>{model.get('name')}</span>
+                                </div>
                                 <div style={style}>
                                     <ul className="simple_menu_list">
                                         {simple_links}
@@ -161,7 +169,12 @@ define(
                 }
 
                 return(
-                    <li style={style}><ItemLink model={model} onClick={this.whenClicked}/><span className="unread">2</span></li>
+                    <li style={style}>
+                        <div>
+                            <ItemLink model={model} onClick={this.whenClicked}/>
+                            <span className="unread">2</span>
+                        </div>
+                    </li>
                 );
 
             },

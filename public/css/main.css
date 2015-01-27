@@ -16,12 +16,17 @@ div#header {
 div#header div#logo {
   float: left;
   overflow: hidden;
+  font-family: 'Roboto Condensed', sans-serif;
   width: 15%;
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
   background: deepskyblue;
   cursor: pointer;
+  text-shadow: 0 1px 1px #646464;
+}
+div#header div#logo:hover {
+  text-shadow: 0 1px 1px #159553;
 }
 div#header div.header_login {
   float: left;
@@ -49,7 +54,7 @@ div#main_window {
   width: 1328px;
 }
 div#right_panel {
-  float: left;
+  float: right;
   width: 286px;
 }
 div.next {
@@ -120,19 +125,23 @@ ul.client_menu {
 }
 ul.client_menu > li {
   color: #fff;
-  background: #37aad9;
-  border-bottom: 0.35em solid #bebdbd;
+  background: #c8a77d;
   margin-top: 0.15em;
-  border-left: 0.55em groove #00bfff;
   cursor: pointer;
   transition: 0.4s all;
 }
 ul.client_menu > li div {
-  padding: 1em;
   overflow: hidden;
+  padding: 0.5em;
+}
+ul.client_menu > li > div {
+  padding: 1em;
+  text-shadow: 0 1px 1px #646464;
 }
 ul.client_menu > li div.childs_open {
-  background: #379cd9;
+  background: #deb887;
+  border-bottom: 1px solid #eeeeee;
+  text-shadow: 0 1px 1px #646464;
 }
 ul.client_menu > li span {
   float: left;
@@ -147,7 +156,6 @@ ul.client_menu > li ul.simple_layer_menu_list {
   overflow: hidden;
   list-style: none;
   margin: 0;
-  margin-top: 10px;
   margin-bottom: 20px;
   padding: 0;
   padding-top: 2px;
@@ -187,8 +195,7 @@ ul.client_menu .active {
   border-left: 0.55em groove #1abc9c;
 }
 ul.client_menu > li:hover {
-  background: #379cd9;
-  border-left: 0.55em groove #00bfff;
+  background: #deb887;
 }
 ul.client_menu .unread {
   float: right;
@@ -676,7 +683,7 @@ div.level {
   margin-top: 0;
   padding: 10px;
   padding-left: 10px;
-  font-family: Helvetica;
+  font-family: 'Open Sans', sans-serif;
   color: #3a537c;
   line-height: 1.5;
   font-weight: 100;
@@ -703,7 +710,6 @@ div.level div.level_nodes div ul li {
   cursor: pointer;
   float: left;
   display: block;
-  font-family: Helvetica;
   font-size: 1em;
   margin-left: 2px;
   margin-top: 2px;

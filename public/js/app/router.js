@@ -181,6 +181,7 @@ define(
         (debug)?console.info('clearScreen'):null;
         //React.unmountComponentAtNode($('#main_top')[0]);
         React.unmountComponentAtNode($('#left_panel')[0]);
+        React.unmountComponentAtNode($('#right_panel')[0]);
 
         //$('#main_top').html('');  //2-do: all trash clean-up on componentUnmount
         console.info(['#left_panel',$('#left_panel')]);
