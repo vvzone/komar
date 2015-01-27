@@ -121,43 +121,64 @@ ul.client_menu {
 ul.client_menu > li {
   color: #fff;
   background: #37aad9;
-  padding: 1em;
   border-bottom: 0.35em solid #bebdbd;
   margin-top: 0.15em;
   border-left: 0.55em groove #00bfff;
   cursor: pointer;
   transition: 0.4s all;
 }
+ul.client_menu > li div {
+  padding: 1em;
+  overflow: hidden;
+}
+ul.client_menu > li div.childs_open {
+  background: #379cd9;
+}
 ul.client_menu > li span {
   float: left;
-  font-size: 50%;
+  margin-left: 10px;
+}
+ul.client_menu > li span.glyphicon {
+  font-size: 70%;
   margin: 5px;
 }
-ul.client_menu > li ul.simple_menu_list {
+ul.client_menu > li ul.simple_menu_list,
+ul.client_menu > li ul.simple_layer_menu_list {
   overflow: hidden;
   list-style: none;
   margin: 0;
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 20px;
   padding: 0;
   padding-top: 2px;
   padding-left: 20px;
+  font-size: 90%;
 }
-ul.client_menu > li ul.simple_menu_list li {
+ul.client_menu > li ul.simple_menu_list div,
+ul.client_menu > li ul.simple_layer_menu_list div {
+  line-height: 150%;
+}
+ul.client_menu > li ul.simple_menu_list li,
+ul.client_menu > li ul.simple_layer_menu_list li {
   float: left;
   clear: both;
   color: white;
   margin: 0;
   overflow: hidden;
 }
-ul.client_menu > li ul.simple_menu_list li a {
+ul.client_menu > li ul.simple_menu_list li a,
+ul.client_menu > li ul.simple_layer_menu_list li a {
   color: white;
-  text-decoration: underline;
+  text-decoration: none;
 }
-ul.client_menu > li ul.simple_menu_list li a:hover {
+ul.client_menu > li ul.simple_menu_list li a:hover,
+ul.client_menu > li ul.simple_layer_menu_list li a:hover {
   color: white;
   text-decoration: underline;
   border: 0;
+}
+ul.client_menu > li ul.simple_layer_menu_list {
+  padding-left: 0;
 }
 ul.client_menu i {
   padding-right: 0.5em;
@@ -165,7 +186,7 @@ ul.client_menu i {
 ul.client_menu .active {
   border-left: 0.55em groove #1abc9c;
 }
-ul.client_menu li:hover {
+ul.client_menu > li:hover {
   background: #379cd9;
   border-left: 0.55em groove #00bfff;
 }

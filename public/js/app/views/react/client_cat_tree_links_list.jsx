@@ -6,8 +6,9 @@ define(
         'jquery',
         'react',
         'jsx!views/react/base/error_msg',
-        'jsx!views/react/client_item_link'
-    ],function($, React, ErrorMsg, ItemLink){
+        'jsx!views/react/client_item_link',
+        'jsx!views/react/layer_item_link'
+    ],function($, React, ErrorMsg, ItemLink, LayerItemLink){
 
         //<li style={style}><span className="eye">Показать/Скрыть</span><ItemLink model={model} onClick={this.whenClicked}/><span className="unread">2</span></li>
 
@@ -19,7 +20,7 @@ define(
             },
             componentWillMount: function() {
                 if(this.props.model.get('items')!=null){
-                    this.setState({visible: false});
+                    //this.setState({visible: false});
                 }
             },
             whenClicked: function(link){
@@ -42,10 +43,13 @@ define(
 
                 if(model.get('items')!=null){
                     className = "glyphicon togglable";
+                    var listHead= "childs";
                     if (this.state.visible) {
                         className += " glyphicon-chevron-up";
+                        listHead += " childs_open";
                     } else {
                         className += " glyphicon-chevron-down";
+                        //listHead += " close";
                     }
                     if(model.get('is_not_screen')!=null){
 
@@ -53,15 +57,14 @@ define(
 
                         var items = model.get('items');
                         var simple_links = items.map(function(model) {
-                            return <li><span className="eye">Показать/Скрыть</span><ItemLink model={model} onClick={this.whenClicked}/></li>;
+                            return <li><LayerItemLink model={model} onClick={this.whenClicked}/></li>;
                         });
 
                         return(
                             <li>
-                                <span onClick={this.toggle} className={className}></span>
-                                <div className="childs" onClick={this.toggle}>{model.get('name')}</div>
+                                <div className={listHead} onClick={this.toggle}><span onClick={this.toggle} className={className}></span>{model.get('name')}</div>
                                 <div style={style}>
-                                    <ul className="simple_menu_list">
+                                    <ul className="simple_layer_menu_list">
                                         {simple_links}
                                     </ul>
                                 </div>

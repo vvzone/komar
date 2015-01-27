@@ -182,7 +182,7 @@ ul.client_menu{
     color: #fff;
     //background: #34495e;
     background: #37aad9; //579db9;
-    padding: 1em;
+    //padding: 1em;
     //border-bottom: 0.5em solid #2c3e50;
     border-bottom: 0.35em solid #bebdbd;
     margin-top: 0.15em;
@@ -192,21 +192,39 @@ ul.client_menu{
     cursor: pointer;
     transition: 0.4s all;
 
+    div{
+      padding: 1em;
+      overflow: hidden;
+    }
+
+    div.childs_open{
+      background: #379cd9;
+    }
+
     span{
       float:left;
-      font-size: 50%;
+      margin-left: @big;
+    }
+
+    span.glyphicon{
+      font-size: 70%;
       margin: @med;
     }
 
-    ul.simple_menu_list{
+    ul.simple_menu_list, ul.simple_layer_menu_list{
       overflow: hidden;
       list-style: none;
       margin: 0;
-      margin-top: @big*2;
+      margin-top: @big;
       margin-bottom: @big*2;
       padding: 0;
       padding-top: @min;
       padding-left: @big*2;
+      font-size: 90%;
+
+      div{
+        line-height: 150%;
+      }
 
       li{
         float:left;
@@ -217,7 +235,7 @@ ul.client_menu{
 
         a{
           color: white;
-          text-decoration: underline;
+          text-decoration: none;
         }
 
         a:hover{
@@ -225,7 +243,15 @@ ul.client_menu{
           text-decoration: underline;
           border: 0;
         }
+
+        span{
+          //glyphicon-eye-open
+        }
       }
+    }
+
+    ul.simple_layer_menu_list{
+      padding-left: 0;
     }
   }
 
@@ -237,7 +263,7 @@ ul.client_menu{
     border-left: 0.55em groove #1abc9c;
   }
 
-  li:hover{
+  >li:hover{
     //background: #2c3e50;
     background: #379cd9; //66acc8;
     //border-left: 0.55em groove #3498db;
