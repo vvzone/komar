@@ -5,6 +5,7 @@
 /* -- headr -- */
 /* fonts */
 body {
+  height: 100%;
   color: #428bca;
 }
 div#header {
@@ -32,6 +33,15 @@ div#header div#logo:hover {
 div#header div.header_login {
   float: left;
 }
+div#main_container {
+  height: 100%;
+}
+div#footer {
+  background: #00bfff;
+}
+div#main_row {
+  height: 100%;
+}
 div#main_main {
   padding-left: 15px;
 }
@@ -48,6 +58,7 @@ div#left_panel {
   clear: both;
   float: left;
   width: 286px;
+  height: 100%;
 }
 div#main_window {
   float: left;
@@ -115,6 +126,7 @@ ul.cattree {
 div.client_bar {
   overflow: hidden;
   background: #e9e9e9;
+  height: 100%;
 }
 ul.client_menu {
   margin: 2em auto;
@@ -160,7 +172,6 @@ ul.client_menu > li ul.simple_layer_menu_list {
   margin-bottom: 20px;
   padding: 0;
   padding-top: 2px;
-  padding-left: 20px;
   font-size: 90%;
 }
 ul.client_menu > li ul.simple_menu_list div,
@@ -174,6 +185,9 @@ ul.client_menu > li ul.simple_layer_menu_list li {
   color: white;
   margin: 0;
   overflow: hidden;
+  padding: 2px;
+  padding-left: 20px;
+  width: 100%;
 }
 ul.client_menu > li ul.simple_menu_list li a,
 ul.client_menu > li ul.simple_layer_menu_list li a {
@@ -185,6 +199,11 @@ ul.client_menu > li ul.simple_layer_menu_list li a:hover {
   color: white;
   text-decoration: underline;
   border: 0;
+}
+ul.client_menu > li ul.simple_menu_list li:hover,
+ul.client_menu > li ul.simple_layer_menu_list li:hover {
+  background: #f0c993;
+  text-decoration: underline;
 }
 ul.client_menu > li ul.simple_layer_menu_list {
   padding-left: 0;
