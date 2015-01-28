@@ -21,7 +21,7 @@ define(
         var LoginForm = React.createClass({
             componentDidMount: function(){
                 var body = document.getElementsByTagName("body")[0];
-                body.style.background = "#f3f3f3 url('/img/rls_mini.jpg') no-repeat right top";
+                body.style.background = "#f3f3f3 url('/img/rls_mini_2.jpg') no-repeat right top";
             },
             componentWillUnmount: function(){
                 var body = document.getElementsByTagName("body")[0];
@@ -90,13 +90,11 @@ define(
                 return(
                     <div>
                         <div className="login">
-                            <h1>Вход</h1>
                             <form method="post">
                                 <input id="inputLogin" type="text" name="u" placeholder="Логин" required="required" />
                                 <input id="inputPassword" type="password" name="p" placeholder="Пароль" required="required" />
                                 <button type="submit" className="btn btn-primary btn-block btn-large" onClick={this.sendAuth}>Войти</button>
                             </form>
-                            <div id="test">{app_registry.test}</div>
                             <div id="loginMsgBox"></div>
                         </div>
                     </div>

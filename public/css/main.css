@@ -2,6 +2,7 @@
 * 2-g css
 */
 /* colors */
+/* -- headr -- */
 /* fonts */
 body {
   color: #428bca;
@@ -21,7 +22,7 @@ div#header div#logo {
   text-align: center;
   padding-top: 10px;
   padding-bottom: 10px;
-  background: deepskyblue;
+  background: #00bfff;
   cursor: pointer;
   text-shadow: 0 1px 1px #646464;
 }
@@ -196,6 +197,7 @@ ul.client_menu .active {
 }
 ul.client_menu > li:hover {
   background: #deb887;
+  transition: opacity .1s ease .05s, right .15s;
 }
 ul.client_menu .unread {
   float: right;
@@ -617,7 +619,7 @@ div.switch_view {
   padding: 10px;
   overflow: hidden;
   background: #fff;
-  color: #d00006;
+  color: #00bfff;
 }
 .alert-error .modal-header {
   border: none;
@@ -865,12 +867,16 @@ div.login {
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -150px 0 0 -150px;
+  margin: -100px 0 0 -150px;
   width: 300px;
   height: 300px;
 }
 div.login h1 {
-  text-shadow: #ffffff 2px 0 1px, #ffffff 0 2px 1px, #ffffff -1px 0 1px, #ffffff 0 -1px 1px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 1.8em;
+  text-shadow: 0 1px 1px #646464;
+  color: white;
+  color: #00bfff;
 }
 div.login .btn-primary.active {
   color: rgba(255, 255, 255, 0.75);
@@ -900,13 +906,11 @@ div.login .btn-primary[disabled] {
 div.login input {
   width: 100%;
   margin-bottom: 10px;
-  background: rgba(0, 0, 0, 0.3);
   border: none;
   outline: none;
   padding: 10px;
   font-size: 13px;
-  color: #fff;
-  text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.3);
+  color: #222;
   border: 1px solid rgba(0, 0, 0, 0.3);
   border-radius: 4px;
   box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.2), 0 1px 1px rgba(255, 255, 255, 0.2);
@@ -915,9 +919,6 @@ div.login input {
   -o-transition: box-shadow 0.5s ease;
   -ms-transition: box-shadow 0.5s ease;
   transition: box-shadow 0.5s ease;
-}
-div.login input:focus {
-  box-shadow: inset 0 -5px 45px rgba(100, 100, 100, 0.4), 0 1px 1px rgba(255, 255, 255, 0.2);
 }
 div#select_entry {
   position: absolute;
@@ -940,6 +941,7 @@ div#select_entry div.bg_box {
 }
 div#select_entry div.bg_box div.entry_option {
   color: black;
+  font-family: 'Open Sans', sans-serif;
   opacity: 1;
   text-align: center;
   font-size: 140%;
