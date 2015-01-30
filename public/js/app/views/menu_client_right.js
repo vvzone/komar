@@ -1,5 +1,5 @@
 define(
-    'views/client_menu_list',
+    'views/menu_client_right',
     [
         'jquery',
         'underscore',
@@ -7,8 +7,8 @@ define(
         'react',
         'event_bus',
         'config',
-        'models/client_menu_collection', //грузим коллекцию
-        'jsx!views/react/client_cat_tree'
+        'models/client_menu_right_collection', //грузим коллекцию
+        'jsx!views/react/menu/client_menu'
 
     ],function($, _, Backbone, React, EventBus, Config, MenusCollection, CatScreen){
 
@@ -32,11 +32,11 @@ define(
                 var self = this;
 
                 $(document).ready(function(){
-                     require(['jsx!views/react/client_cat_tree'], function(CatTree){
+                     require(['jsx!views/react/menu/client_menu'], function(CatTree){
                          React.renderComponent(
                              new CatTree({
                                     collection: self.collection
-                                }), document.getElementById("left_panel")
+                                }), document.getElementById("right_panel")
                          );
                      });
                 });

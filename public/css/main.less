@@ -43,6 +43,7 @@
 body{
     height: 100%;
     color: @base_font_color;
+  background: #f6f6f6;
 }
 
 div#header{
@@ -50,7 +51,7 @@ div#header{
   color: white;
   font-size: 1.8em;
   overflow: hidden;
-  border-bottom: @min solid #bebdbd;
+  border-bottom: 1px solid @menu_li_border_color_dark;
 
   div#logo{
     float: left;
@@ -188,30 +189,59 @@ ul.cattree{
 
 /* === CLIENT MENU ===*/
 
+@menu_li_border_color_dark: #838383;
+@menu_li_border_color_light: #f0c993;
+
+@menu_hover_hover_color: #f4fbff;//#f0c993;
 @menu_hover_hover_color: #f0c993;
+
+@menu_hover_color: #a5ddff;//#deb887;
 @menu_hover_color: #deb887;
 //@menu_hover_color: #379cd9;;
 @menu_open_color: @menu_hover_color; //379cd9;
+@menu_bg_color: #7acafa; //#c8a77d; //36aedf; //00bfff;
 @menu_bg_color: #c8a77d; //36aedf; //00bfff;
 //@menu_bg_color: #36aedf; //36aedf; //00bfff;
-@menu_border_bottom_color: #eeeeee;
+
+@menu_border_bottom_color: #c0a47a;
 @menu_border_bottom: 1px solid @menu_border_bottom_color;
 
 
 div.client_bar{
   overflow: hidden;
-  background: #e9e9e9;
+  //background: #e9e9e9;
   height: 100%;
 }
 
 ul.client_menu{
-  margin: 2em auto;
-  //width: 400px;
-  //background: #34495e;
+  //margin: 0.5em;
+  //margin: 2em auto;
   list-style: none;
   padding: 0;
   font-family: @base_font;
-  background: #dbdbdb;
+  border-radius: 5px;
+  //border: 1px solid @menu_li_border_color_dark;
+
+  a{
+    color: white;
+  }
+
+  a:hover{
+    text-decoration: underline;
+  }
+
+  /*
+  >li:first-child{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  >li:last-child{
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom: none;
+  }
+  */
 
   >li{
     color: #fff;
@@ -221,11 +251,13 @@ ul.client_menu{
     //border-bottom: 0.5em solid #2c3e50;
     //border-bottom: 0.35em solid #bebdbd;
     //border-bottom: 0.15em solid #bebdbd;
-    margin-top: 0.15em;
+    //margin-top: 0.15em;
     //border-left: 0.5em groove #e74c3c;
     //border-left: 0.55em groove #1abc9c;
    // border-bottom: 1px solid white;
     //border-left: 0.55em groove #00bfff;
+    border-bottom: 1px solid @menu_li_border_color_dark;
+    border-top: 1px solid @menu_li_border_color_light;
     cursor: pointer;
     transition: 0.4s all;
 
@@ -240,6 +272,42 @@ ul.client_menu{
       text-shadow: 0 1px 1px @easy_black;
     }
 
+    div.childs{
+      span{
+        float:left;
+        //margin-left: @big;
+      }
+
+      span.unread{
+        float: right;
+      }
+
+      span.glyphicon{
+        font-size: 70%;
+        margin: @med;
+        float: right;
+      }
+
+      i.fa{
+        float:left;
+        font-size: 100%;
+        margin: @med;
+        margin-top: @min*2;
+        margin-right: 0;
+      }
+
+      i.fa-map-marker{
+        font-size: 120%;
+      }
+    }
+
+    div.childs:hover{
+      text-decoration: underline;
+
+      span.link{
+        text-decoration: underline;
+      }
+    }
 
     div.childs_open{
       //background: @menu_open_color;//379cd9;
@@ -250,16 +318,6 @@ ul.client_menu{
 
     div.childs_open:hover{
       //background: transparent; //
-    }
-
-    span{
-      float:left;
-      margin-left: @big;
-    }
-
-    span.glyphicon{
-      font-size: 70%;
-      margin: @med;
     }
 
     ul.simple_menu_list, ul.simple_layer_menu_list{
@@ -273,10 +331,6 @@ ul.client_menu{
       //padding-left: @big*2;
       font-size: 90%;
 
-      div{
-        line-height: 150%;
-      }
-
       li{
         float:left;
         clear: both;
@@ -284,7 +338,7 @@ ul.client_menu{
         margin: 0;
         overflow: hidden;
         padding: @min;
-        padding-left: @big*2;
+        //padding-left: @big*2;
         width: 100%;
 
         a{
@@ -298,13 +352,22 @@ ul.client_menu{
           border: 0;
         }
 
-        span{
-          //glyphicon-eye-open
+        div{
+          line-height: 150%;
+
+          span.glyphicon{
+            font-size: 90%;
+            margin-right: @med;
+            margin-bottom: @min;
+            //margin: @min;
+            //float: left;
+          }
         }
+//
       }
 
       li:hover{
-        background: @menu_hover_hover_color;
+        background: transparent; //@menu_hover_hover_color
         text-decoration: underline;
       }
     }
@@ -357,7 +420,7 @@ ul.client_menu{
       box-shadow: 0 0 0 0.25em #c0392b;
     }
     100% {
-      box-shadow: 0 0 0 0.15em #c0392b;
+      box-shadow: 0 0 0 0.05em #c0392b;
     }
   }
   @-webkit-keyframes notificationpulse {

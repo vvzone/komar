@@ -168,18 +168,40 @@ class IndexController extends AbstractActionController
             array('id' => 413, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Сигналы Пяточка')
         );
 
-        $data_array = array(
-            array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Входящие документы', 'is_not_screen' => true,
-                'children' => $incoming),
-            array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Исходящие документы', 'is_not_screen' => true,
-                'children' => $outcomming),
-            array('id' => 4, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Уведомления', 'is_not_screen' => true,
-                'children' => $outcomming),
-            array('id' => 3, 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Документы на карте', 'is_not_screen' => true,
-                'children' => $waiting,
-                'type' => 'layers')
+        $classificator = array(
+            array('id' => 421, 'category' => 'unit', 'entity' => 'documents', 'screen' => 'unit', 'name' => 'Иконки'),
+            array('id' => 422, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Важные'),
+            array('id' => 423, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Срочные'),
+            array('id' => 424, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Не срочные')
         );
 
+        $layers = array(
+            array('id' => 431, 'category' => 'unit', 'entity' => 'layer_one', 'screen' => 'unit', 'name' => 'Слой 1'),
+            array('id' => 432, 'category' => 'unit', 'entity' => 'layer_two', 'screen' => 'unit', 'name' => 'Слой 2'),
+            array('id' => 433, 'category' => 'unit', 'entity' => 'layer_three', 'screen' => 'unit', 'name' => 'Слой 3')
+        );
+
+        $data_array = array(
+            array('id' => 1, 'entity' => 'inbox', 'screen' => 'base', 'name' => 'Входящие документы', 'is_not_screen' => true,
+                  'type' => 'msg_box', 'messages'=> array('total' => 45, 'new' => 1), 'icon' => 'fa fa-inbox'),
+
+            array('id' => 2, 'entity' => 'sent', 'screen' => 'staff', 'name' => 'Исходящие документы', 'is_not_screen' => true,
+                'type'=> 'msg_box', 'icon' => 'fa fa-paper-plane' ),
+            array('id' => 4, 'entity' => 'notification', 'screen' => 'staff', 'name' => 'Уведомления', 'is_not_screen' => true,
+                'type' => 'msg_box', 'messages'=> array('total' => 4502, 'new' => 6), 'icon' => 'fa fa-bell fa-lg'),
+            array('id' => 3, 'entity' => 'documents_on_map', 'screen' => 'doc', 'name' => 'Документы на карте', 'is_not_screen' => true,
+                'children' => $waiting,
+                'type' => 'layers', 'icon' => 'fa fa-map-marker fa-lg'),
+            /* -- right --- */
+            array('id' => 5, 'entity' => 'classificator', 'screen' => 'base', 'name' => 'Классификатор', 'is_not_screen' => true,
+                'children' => $classificator, 'icon' => 'fa fa-archive'),
+            array('id' => 6, 'entity' => 'layers', 'screen' => 'staff', 'name' => 'Слои', 'is_not_screen' => true,
+                'children' => $layers, 'type' => 'layers', 'icon' => 'fa fa-cogs'),
+            array('id' => 7, 'entity' => 'layers', 'screen' => 'staff', 'name' => 'Слои', 'is_not_screen' => true,
+                'children' => $outcomming, 'icon' => 'fa fa-cogs')
+        );
+
+        //
         // type => layers, widget
 
         $JsonModel = new JsonModel();
@@ -188,14 +210,14 @@ class IndexController extends AbstractActionController
     }
 
     public function rightpanAction(){
-        $incoming = array(
+        $classificator = array(
             array('id' => 401, 'category' => 'unit', 'entity' => 'documents', 'screen' => 'unit', 'name' => 'Иконки'),
             array('id' => 402, 'category' => 'unit', 'entity' => 'very_urgency', 'screen' => 'unit', 'name' => 'Важные'),
             array('id' => 403, 'category' => 'unit', 'entity' => 'urgency', 'screen' => 'unit', 'name' => 'Срочные'),
             array('id' => 404, 'category' => 'unit', 'entity' => 'no_important', 'screen' => 'unit', 'name' => 'Не срочные')
         );
 
-        $outcomming = array(
+        $layers = array(
             array('id' => 411, 'category' => 'unit', 'entity' => 'layer_one', 'screen' => 'unit', 'name' => 'Слой 1'),
             array('id' => 412, 'category' => 'unit', 'entity' => 'layer_two', 'screen' => 'unit', 'name' => 'Слой 2'),
             array('id' => 413, 'category' => 'unit', 'entity' => 'layer_three', 'screen' => 'unit', 'name' => 'Слой 3')
@@ -203,9 +225,9 @@ class IndexController extends AbstractActionController
 
         $data_array = array(
             array('id' => 1, 'entity' => 'base', 'screen' => 'base', 'name' => 'Классификатор', 'is_not_screen' => true,
-                'children' => $incoming),
+                'children' => $classificator, 'icon' => 'fa fa-archive'),
             array('id' => 2, 'entity' => 'staff', 'screen' => 'staff', 'name' => 'Слои', 'is_not_screen' => true,
-                'children' => $outcomming, 'type' => 'layers')
+                'children' => $outcomming, 'type' => 'layers', 'icon' => 'fa fa-cogs')
         );
 
         $JsonModel = new JsonModel();

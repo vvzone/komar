@@ -1,13 +1,13 @@
 /** @jsx React.DOM */
 
 define(
-    'views/react/client_item_link',
+    'views/react/menu/item_link_default',
     [
         'jquery',
         'react',
         'event_bus'
     ],function($, React, EventBus){
-        var ItemLink = React. createClass({
+        var DefaultLink = React. createClass({
             /*
              * props: name, clicked(), id
              *
@@ -19,12 +19,14 @@ define(
                 //this.props.onClick(this.props.model);
             },
             render: function(){
+
+
                 var href= "#client/"+this.props.model.get('entity');
                 return(<a draggable="false" href={href} onClick={this.handleClick}>{this.props.model.get('name')}</a>)
             }
         });
 
-        return ItemLink;
+        return DefaultLink;
     }
 );
 

@@ -14,11 +14,11 @@ define(
         'jsx!views/react/user_bar',
         'jsx!views/react/select_entry',
 
-        'views/client_menu_list',
-        'views/client_menu_list_right',
-        'views/menu_list',
+        'views/menu_client'/*,
+        'views/menu_client_right',
+        'views/menu_admin',
 
-        'views/map'
+        'views/map'*/
     ],
     function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter,
              app_registry, UserBarComponent, SelectEntry,
@@ -135,7 +135,7 @@ define(
                 client: function(){
                     console.info('Router->client');
                     ClientMenuList.initialize();
-                    ClientMenuListRight.initialize();
+                    //ClientMenuListRight.initialize();
                     cleanMainScreen();
 
                     //MapView.initialize();

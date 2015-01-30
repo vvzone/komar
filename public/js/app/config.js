@@ -70,6 +70,12 @@ define(
             logout_url: {
                 local_server: '/admin/logout',
                 production_server: '/admin/api/commands/return_token'
+            },
+            menu_group_classes: {
+                menu_new_doc: ['new_document'],
+                menu_msg: ['inbox', 'sent'],
+                menu_warn: ['notification'],
+                menu_map: ['classificator', 'documents_on_map', 'layers']
             }
         };
 

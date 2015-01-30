@@ -1,0 +1,34 @@
+/** @jsx React.DOM */
+
+define(
+    'views/react/menu/item_no_link',
+    [
+        'jquery',
+        'react',
+        'event_bus'
+    ],function($, React, EventBus){
+        var NoLink = React. createClass({
+            callback: function(){
+                this.props.callback(true);
+            },
+            render: function(){
+                var model = this.props.model;
+
+                var icon= (this.model.get('icon'))?this.model.get('icon'):'';
+                var listHead= (this.model.get(''))?:'';
+
+                var href= "#client/"+this.props.model.get('entity');
+                return(
+                    <div className={listHead} onClick={this.callback}>
+                        {icon}{model.get('name')}
+                        <span onClick={this.callback} className={className}></span>
+                    </div>
+                );
+            }
+        });
+
+        return NoLink;
+    }
+);
+
+

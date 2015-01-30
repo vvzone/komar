@@ -7,13 +7,14 @@
 body {
   height: 100%;
   color: #428bca;
+  background: #f6f6f6;
 }
 div#header {
   background: #1dc5fd;
   color: white;
   font-size: 1.8em;
   overflow: hidden;
-  border-bottom: 2px solid #bebdbd;
+  border-bottom: 1px solid #838383;
 }
 div#header div#logo {
   float: left;
@@ -125,21 +126,38 @@ ul.cattree {
 /* === CLIENT MENU ===*/
 div.client_bar {
   overflow: hidden;
-  background: #e9e9e9;
   height: 100%;
 }
 ul.client_menu {
-  margin: 2em auto;
   list-style: none;
   padding: 0;
   font-family: 'Open Sans', sans-serif;
-  background: #dbdbdb;
+  border-radius: 5px;
+  /*
+  >li:first-child{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+
+  >li:last-child{
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom: none;
+  }
+  */
   /*the animations */
+}
+ul.client_menu a {
+  color: white;
+}
+ul.client_menu a:hover {
+  text-decoration: underline;
 }
 ul.client_menu > li {
   color: #fff;
   background: #c8a77d;
-  margin-top: 0.15em;
+  border-bottom: 1px solid #838383;
+  border-top: 1px solid #f0c993;
   cursor: pointer;
   transition: 0.4s all;
 }
@@ -151,18 +169,37 @@ ul.client_menu > li > div {
   padding: 1em;
   text-shadow: 0 1px 1px #646464;
 }
-ul.client_menu > li div.childs_open {
-  background: #deb887;
-  border-bottom: 1px solid #eeeeee;
-  text-shadow: 0 1px 1px #646464;
-}
-ul.client_menu > li span {
+ul.client_menu > li div.childs span {
   float: left;
-  margin-left: 10px;
 }
-ul.client_menu > li span.glyphicon {
+ul.client_menu > li div.childs span.unread {
+  float: right;
+}
+ul.client_menu > li div.childs span.glyphicon {
   font-size: 70%;
   margin: 5px;
+  float: right;
+}
+ul.client_menu > li div.childs i.fa {
+  float: left;
+  font-size: 100%;
+  margin: 5px;
+  margin-top: 4px;
+  margin-right: 0;
+}
+ul.client_menu > li div.childs i.fa-map-marker {
+  font-size: 120%;
+}
+ul.client_menu > li div.childs:hover {
+  text-decoration: underline;
+}
+ul.client_menu > li div.childs:hover span.link {
+  text-decoration: underline;
+}
+ul.client_menu > li div.childs_open {
+  background: #deb887;
+  border-bottom: 1px solid #c0a47a;
+  text-shadow: 0 1px 1px #646464;
 }
 ul.client_menu > li ul.simple_menu_list,
 ul.client_menu > li ul.simple_layer_menu_list {
@@ -174,10 +211,6 @@ ul.client_menu > li ul.simple_layer_menu_list {
   padding-top: 2px;
   font-size: 90%;
 }
-ul.client_menu > li ul.simple_menu_list div,
-ul.client_menu > li ul.simple_layer_menu_list div {
-  line-height: 150%;
-}
 ul.client_menu > li ul.simple_menu_list li,
 ul.client_menu > li ul.simple_layer_menu_list li {
   float: left;
@@ -186,7 +219,6 @@ ul.client_menu > li ul.simple_layer_menu_list li {
   margin: 0;
   overflow: hidden;
   padding: 2px;
-  padding-left: 20px;
   width: 100%;
 }
 ul.client_menu > li ul.simple_menu_list li a,
@@ -200,9 +232,19 @@ ul.client_menu > li ul.simple_layer_menu_list li a:hover {
   text-decoration: underline;
   border: 0;
 }
+ul.client_menu > li ul.simple_menu_list li div,
+ul.client_menu > li ul.simple_layer_menu_list li div {
+  line-height: 150%;
+}
+ul.client_menu > li ul.simple_menu_list li div span.glyphicon,
+ul.client_menu > li ul.simple_layer_menu_list li div span.glyphicon {
+  font-size: 90%;
+  margin-right: 5px;
+  margin-bottom: 2px;
+}
 ul.client_menu > li ul.simple_menu_list li:hover,
 ul.client_menu > li ul.simple_layer_menu_list li:hover {
-  background: #f0c993;
+  background: transparent;
   text-decoration: underline;
 }
 ul.client_menu > li ul.simple_layer_menu_list {
@@ -244,7 +286,7 @@ ul.client_menu .unread {
     box-shadow: 0 0 0 0.25em #c0392b;
   }
   100% {
-    box-shadow: 0 0 0 0.15em #c0392b;
+    box-shadow: 0 0 0 0.05em #c0392b;
   }
 }
 @-webkit-keyframes notificationpulse {

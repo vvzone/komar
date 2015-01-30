@@ -1,18 +1,13 @@
 /** @jsx React.DOM */
 
 define(
-    'views/react/layer_item_link',
+    'views/react/menu/item_link_type_layer',
     [
         'jquery',
         'react',
         'event_bus'
     ],function($, React, EventBus){
         var LayerItemLink = React. createClass({
-            /*
-             * props: name, clicked(), id
-             *
-             * */
-
             getInitialState: function(){
               return {
                   visible: true
@@ -28,7 +23,6 @@ define(
 
                 var className = 'glyphicon';
                 if(this.state.visible == false){
-                    //className += ' glyphicon-eye-close';
                     className += ' glyphicon-remove';
                 }
                 else{
@@ -37,8 +31,9 @@ define(
 
                 return(
                     <div>
-                        <span className={className} onClick={this.toggle}></span>
-                        <a draggable="false" href={href} onClick={this.handleClick}>{this.props.model.get('name')}</a>
+                        <i className={icon}></i>
+                        <span><a className="childs" href={src}>{model.get('name')}</a></span>
+                        <span onClick={this.toggle} className={className}></span>
                     </div>
                 )
             },
