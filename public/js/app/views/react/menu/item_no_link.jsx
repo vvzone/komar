@@ -14,14 +14,20 @@ define(
             render: function(){
                 var model = this.props.model;
 
-                var icon= (this.model.get('icon'))?this.model.get('icon'):'';
-                var listHead= (this.model.get(''))?:'';
+                var icon = '';
+                if(model.get('icon')){
+                    icon= <i className={model.get('icon')}></i>;
+                }
+
+                var listHead= '';
+                var className = '';
 
                 var href= "#client/"+this.props.model.get('entity');
                 return(
                     <div className={listHead} onClick={this.callback}>
-                        {icon}{model.get('name')}
-                        <span onClick={this.callback} className={className}></span>
+                        {icon}
+                        <span>{model.get('name')}</span>
+                        <span className={className} onClick={this.callback}></span>
                     </div>
                 );
             }

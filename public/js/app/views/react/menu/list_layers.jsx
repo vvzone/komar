@@ -6,8 +6,9 @@ define(
         'jquery',
         'react',
         'event_bus',
-        'jsx!views/react/menu/item_link_default'
-    ],function($, React, EventBus, ItemLink){
+        'jsx!views/react/menu/item_link_default',
+        'jsx!views/react/menu/item_no_link'
+    ],function($, React, EventBus, ItemLink, ItemNoLink){
 
         var CategoryLayerList = React.createClass({
             getInitialState: function(){
