@@ -25,6 +25,8 @@ define(
         prefix = (local_server)? prefix:production_prefix;
         sys_prefix = (local_server)? sys_prefix:production_sys_prefix;
 
+        //2-do: clean-up
+
         var URLs = {
             client_menus: function(){
                 var local = host + sys_prefix + "/client_menu";

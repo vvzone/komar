@@ -155,23 +155,9 @@ ul.client_menu a:hover {
 }
 ul.client_menu > li {
   color: #fff;
-  background: #c8a77d;
-  border-bottom: 1px solid #838383;
-  border-top: 1px solid #f0c993;
+  background: #c6bdbb;
   cursor: pointer;
   transition: 0.4s all;
-  /*
-    div.childs:hover{
-      text-decoration: underline;
-
-      span.link{
-        text-decoration: underline;
-      }
-
-      span.glyphicon:hover{
-        text-decoration: none;
-      }
-    }*/
 }
 ul.client_menu > li div {
   overflow: hidden;
@@ -210,10 +196,51 @@ ul.client_menu > li div.childs i.fa-map-marker {
 ul.client_menu > li div.childs a:hover {
   text-decoration: underline;
 }
+ul.client_menu > li > div {
+  border-bottom: 1px solid #838383;
+}
+ul.client_menu > li div.inbox,
+ul.client_menu > li div.sent {
+  background: #c6bdbb;
+  border-top: 1px solid #d4cbc9;
+}
+ul.client_menu > li div.inbox:hover,
+ul.client_menu > li div.sent:hover {
+  background: #d4cbc9;
+}
+ul.client_menu > li div.notification {
+  background: #d4cbc9;
+  border-top: 1px solid #d4cbc9;
+}
+ul.client_menu > li div.notification {
+  background: #c6bdbb;
+  border-top: 1px solid #d4cbc9;
+}
+ul.client_menu > li div.notification:hover {
+  background: #d4cbc9;
+}
+ul.client_menu > li div.documents_on_map,
+ul.client_menu > li div.layers,
+ul.client_menu > li div.classificator {
+  background: #c6bdbb;
+  border-top: 1px solid #d4cbc9;
+}
+ul.client_menu > li div.documents_on_map:hover,
+ul.client_menu > li div.layers:hover,
+ul.client_menu > li div.classificator:hover {
+  background: #d4cbc9;
+}
+ul.client_menu > li div.classificator {
+  background: #c6bdbb;
+  border-top: 1px solid #d4cbc9;
+}
+ul.client_menu > li div.classificator:hover {
+  background: #d4cbc9;
+}
 ul.client_menu > li div.childs_open {
-  background: #deb887;
-  border-bottom: 1px solid #c0a47a;
+  background: #d4cbc9;
   text-shadow: 0 1px 1px #646464;
+  border-bottom: 1px solid #a8a8a8;
 }
 ul.client_menu > li ul.simple_menu_list,
 ul.client_menu > li ul.simple_layer_menu_list {
@@ -270,7 +297,7 @@ ul.client_menu .active {
   border-left: 0.55em groove #1abc9c;
 }
 ul.client_menu > li:hover {
-  background: #deb887;
+  background: #d4cbc9;
   transition: opacity .1s ease .05s, right .15s;
 }
 ul.client_menu .unread {

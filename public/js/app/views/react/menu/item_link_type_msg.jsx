@@ -11,6 +11,13 @@ define(
             handleClick: function(e){
                 EventBus.trigger(this.props.model.get('entity'));
             },
+            currentClassName: function () {
+                var className = 'childs';
+                if (this.props.model.get('entity')) {
+                    className += ' '+this.props.model.get('entity');
+                }
+                return className;
+            },
             currentIcon: function(){
                 var icon = '';
                 if(this.props.model.get('icon')){
@@ -30,7 +37,7 @@ define(
                 var href= "#client/"+this.props.model.get('entity');
                 return(
                     <li>
-                        <div className="childs">
+                        <div className={this.currentClassName()}>
                             {this.currentIcon()}
                             <span className="link"><a draggable="false" href={href} onClick={this.handleClick}>{this.props.model.get('name')}</a></span>
                             {this.counter()}

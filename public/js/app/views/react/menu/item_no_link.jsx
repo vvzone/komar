@@ -44,6 +44,9 @@ define(
                 if (this.props.visible) {
                     listHead += " childs_open";
                 }
+                if (this.props.model.get('entity')) {
+                    listHead += ' '+this.props.model.get('entity');
+                }
                 return listHead;
             },
             currentName: function(){

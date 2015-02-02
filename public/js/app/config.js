@@ -8,7 +8,6 @@ define(
     function($, _, Backbone){
 
         console.info('config loaded...');
-//Наша проблема в том, что мы не действуем как субьект. Все время на США и ЕС смотрим. А Россия должна сама уже начать действовать в этой ситуации. А то каж
         var Config = {
             debug: {
                 debug_menu: null,

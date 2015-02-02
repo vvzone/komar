@@ -196,9 +196,7 @@ class IndexController extends AbstractActionController
             array('id' => 5, 'entity' => 'classificator', 'screen' => 'base', 'name' => 'Классификатор', 'is_not_screen' => true,
                 'children' => $classificator, 'icon' => 'fa fa-archive'),
             array('id' => 6, 'entity' => 'layers', 'screen' => 'staff', 'name' => 'Слои', 'is_not_screen' => true,
-                'children' => $layers, 'type' => 'layers', 'icon' => 'fa fa-cogs'),
-            array('id' => 7, 'entity' => 'layers', 'screen' => 'staff', 'name' => 'Слои', 'is_not_screen' => true,
-                'children' => $outcomming, 'icon' => 'fa fa-cogs')
+                'children' => $layers, 'type' => 'layers', 'icon' => 'fa fa-cogs')
         );
 
         //
