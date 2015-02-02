@@ -14,11 +14,11 @@ define(
         'jsx!views/react/user_bar',
         'jsx!views/react/select_entry',
 
-        'views/menu_client'/*,
+        'views/menu_client',
         'views/menu_client_right',
         'views/menu_admin',
 
-        'views/map'*/
+        'views/map'
     ],
     function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter,
              app_registry, UserBarComponent, SelectEntry,
@@ -50,7 +50,7 @@ define(
                     // also get them, eg: before: function( frag1, frag2, frag3 )
                     // (just like regular Backbone route handlers).
                     (debug)?console.log(['Router -> before, route:', route]):null;
-                    /*
+
                     if(route != 'login'){
                         var token = $('meta[name="csrf-token"]').attr('content');
                         if(!token) {
@@ -61,9 +61,7 @@ define(
                             console.info(['token=',token, 'UserBarComponent -> initialize']);
                             UserBarComponent.initialize();
                         }
-
                     }
-                    */
                     // Returning false from inside of the before filter will prevent the
                     // current route's callback from running, and will prevent the after
                     // filter's callback from running.
