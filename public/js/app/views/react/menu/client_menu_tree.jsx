@@ -42,10 +42,11 @@ define(
                 links_output = collection.map(function(model) {
                     if(model.get('type')){
                         if(model.get('type') == 'layers'){
+                            return(<ListLinks model={model} key={model.get('id')} onClick={self.handleClick}/>);
                             //return (<ListLayers model={model} key={model.get('id')} onClick={self.handleClick} />);
                         }
                         if(model.get('type') == 'msg_box'){
-                            //return (<MsgLink  model={model} key={model.get('id')} onClick={self.handleClick}/>);
+                            return (<ItemLinkMsg  model={model} key={model.get('id')} onClick={self.handleClick}/>);
                         }
                     }else{
                         if (model.get('is_not_screen') == true && model.get('items') == null) {

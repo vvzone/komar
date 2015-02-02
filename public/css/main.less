@@ -273,6 +273,10 @@ ul.client_menu{
     }
 
     div.childs{
+      user-select: none;
+      -moz-user-select: none;
+      -khtml-user-select: none;
+
       span{
         float:left;
         //margin-left: @big;
@@ -299,15 +303,24 @@ ul.client_menu{
       i.fa-map-marker{
         font-size: 120%;
       }
+
+      a:hover{
+        text-decoration: underline;
+      }
     }
 
+    /*
     div.childs:hover{
       text-decoration: underline;
 
       span.link{
         text-decoration: underline;
       }
-    }
+
+      span.glyphicon:hover{
+        text-decoration: none;
+      }
+    }*/
 
     div.childs_open{
       //background: @menu_open_color;//379cd9;
@@ -368,7 +381,6 @@ ul.client_menu{
 
       li:hover{
         background: transparent; //@menu_hover_hover_color
-        text-decoration: underline;
       }
     }
 

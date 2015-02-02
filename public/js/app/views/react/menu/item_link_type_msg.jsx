@@ -11,29 +11,29 @@ define(
             handleClick: function(e){
                 EventBus.trigger(this.props.model.get('entity'));
             },
-            render: function(){
-                var href= "#admin/"+this.props.model.get('entity');
-
-                var model = this.props.model;
-
+            currentIcon: function(){
                 var icon = '';
-                if(model.get('icon')){
-                    icon= <i className={model.get('icon')}></i>;
+                if(this.props.model.get('icon')){
+                    icon= <i className={this.props.model.get('icon')}></i>;
+                    return icon;
                 }
-
-                var counter = '';
-                console.info(model.get('messages'));
-                if(model.get('messages')){
+            },
+            counter: function(){
+                var counter = [];
+                if(this.props.model.get('messages')){
                     var messages = this.props.model.get('messages');
-                   counter = <span className="unread">{messages.new}</span>;
+                    counter.push(<span className="unread">{messages.new}</span>);
+                    return counter;
                 }
-
+            },
+            render: function(){
+                var href= "#client/"+this.props.model.get('entity');
                 return(
                     <li>
                         <div className="childs">
-                            {icon}
+                            {this.currentIcon()}
                             <span className="link"><a draggable="false" href={href} onClick={this.handleClick}>{this.props.model.get('name')}</a></span>
-                            {counter}
+                            {this.counter()}
                         </div>
                     </li>
                 )

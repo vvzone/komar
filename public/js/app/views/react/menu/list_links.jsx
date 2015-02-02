@@ -23,7 +23,10 @@ define(
                     this.setState({visible: false});
                 }
             },
-            whenClicked: function(link){
+            layerLinkClicked: function(event){
+                console.info('layerLinkClicked'); //Remove THIS!
+            },
+            linkClicked: function(link){
                 link.preventDefault();
                 var customEvent = new CustomEvent("catLinkClick",  {
                     detail: {screen_name: link.screen},
@@ -33,28 +36,12 @@ define(
             },
             render: function(){
                 var model = this.props.model;
-                var src = './react/get/screen/'+model.get('name');
 
-                var className = "";
                 var style = {};
                 if (!this.state.visible) {
                     style.display = "none";
                 }
-
-                var icon = '';
-                if(model.get('icon')){
-                    icon= <i className={model.get('icon')}></i>;
-                }
-
                 if(model.get('items')!=null){
-                    className = "glyphicon togglable";
-                    var listHead= "childs";
-                    if (this.state.visible) {
-                        className += " glyphicon-chevron-up";
-                        listHead += " childs_open";
-                    } else {
-                        className += " glyphicon-chevron-down";
-                    }
                     if(model.get('is_not_screen')!=null){
                         var simple_links = [];
 
@@ -62,14 +49,14 @@ define(
                         var simple_links = items.map(function(model) {
                             return (
                                 <li>
-                                    <div><ItemLink model={model} onClick={this.whenClicked}/></div>
+                                    <div><ItemLink model={model} onClick={this.linkClicked}/></div>
                                 </li>
                             );
                         });
 
                         return(
                             <li>
-                                <ItemNoLink model={model} callback={this.toggle} />
+                                <ItemNoLink model={model} callback={this.toggle} visible={this.state.visible} />
                                 <div style={style}>
                                     <ul className="simple_menu_list">
                                         {simple_links}
@@ -89,13 +76,14 @@ define(
                         </li>
                         );
                     */
+                    //
                 }
 
                 //no child
                 return(
                     <li style={style}>
                         <div>
-                            <ItemLink model={model} onClick={this.whenClicked}/>
+                            <ItemLink model={model} onClick={this.linkClicked}/>
                             <span className="unread">2</span>
                         </div>
                     </li>

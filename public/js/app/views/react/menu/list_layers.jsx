@@ -65,7 +65,7 @@ define(
 
                         return(
                             <li>
-                                <ItemNoLink callback={this.toggle} model={model} />
+                                <ItemNoLink callback={this.toggle} model={model} visible={this.state.visible} />
                                 <div style={style}>
                                     <ul className="simple_layer_menu_list">
                                         {simple_links}

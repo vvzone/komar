@@ -160,6 +160,18 @@ ul.client_menu > li {
   border-top: 1px solid #f0c993;
   cursor: pointer;
   transition: 0.4s all;
+  /*
+    div.childs:hover{
+      text-decoration: underline;
+
+      span.link{
+        text-decoration: underline;
+      }
+
+      span.glyphicon:hover{
+        text-decoration: none;
+      }
+    }*/
 }
 ul.client_menu > li div {
   overflow: hidden;
@@ -168,6 +180,11 @@ ul.client_menu > li div {
 ul.client_menu > li > div {
   padding: 1em;
   text-shadow: 0 1px 1px #646464;
+}
+ul.client_menu > li div.childs {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
 }
 ul.client_menu > li div.childs span {
   float: left;
@@ -190,10 +207,7 @@ ul.client_menu > li div.childs i.fa {
 ul.client_menu > li div.childs i.fa-map-marker {
   font-size: 120%;
 }
-ul.client_menu > li div.childs:hover {
-  text-decoration: underline;
-}
-ul.client_menu > li div.childs:hover span.link {
+ul.client_menu > li div.childs a:hover {
   text-decoration: underline;
 }
 ul.client_menu > li div.childs_open {
@@ -245,7 +259,6 @@ ul.client_menu > li ul.simple_layer_menu_list li div span.glyphicon {
 ul.client_menu > li ul.simple_menu_list li:hover,
 ul.client_menu > li ul.simple_layer_menu_list li:hover {
   background: transparent;
-  text-decoration: underline;
 }
 ul.client_menu > li ul.simple_layer_menu_list {
   padding-left: 0;
