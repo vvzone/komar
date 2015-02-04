@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "r_01",
+    "url": "http://localhost:1337/admin/api/object/rank",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "r_02",
+    "url": "http://localhost:1337/admin/api/object/rank",
+    "method": "post",
+    "body": {"id":0, "name":"рядовой", "is_officer":true, "description":"рядовой"},
+    "want": {"id":51, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_03",
+    "url": "http://localhost:1337/admin/api/object/rank/51",
+    "method": "delete",
+    "want": {"id":51, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_04",
+    "url": "http://localhost:1337/admin/api/object/rank",
+    "method": "post",
+    "body": {"id":0, "name":"рядовой-1", "is_officer":true, "description":"рядовой"},
+    "want": {"id":52, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_05",
+    "url": "http://localhost:1337/admin/api/object/rank/52",
+    "method": "get",
+    "want": {"id":52, "name":"рядовой-1", "is_officer":true, "description":"рядовой"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_06",
+    "url": "http://localhost:1337/admin/api/object/rank",
+    "method": "post",
+    "body": {"id":0, "name":"лейтенант-1", "is_officer":true, "description":"комсостав"},
+    "want": {"id":53, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_07",
+    "url": "http://localhost:1337/admin/api/object/rank/53",
+    "method": "get",
+    "want": {"id":53, "name":"лейтенант-1", "is_officer":true, "description":"комсостав"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_08",
+    "url": "http://localhost:1337/admin/api/object/rank",
+    "method": "get",
+    "want": [{"id":52, "name":"рядовой-1"},{"id":53, "name":"лейтенант-1"}],
+    "want_code": 200
+},
+{ 
+    "tag": "r_09",
+    "url": "http://localhost:1337/admin/api/object/rank/52",
+    "method": "post",
+    "body": {"id":52, "name":"рядовой", "is_officer":false, "description":"рядовой состав"},
+    "want": {"id":52, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_10",
+    "url": "http://localhost:1337/admin/api/object/rank/53",
+    "method": "post",
+    "body": {"id":53, "name":"лейтенант", "is_officer":true, "description":"младший командный состав"},
+    "want": {"id":53, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_11",
+    "url": "http://localhost:1337/admin/api/object/rank",
+    "method": "get",
+    "want":   [{"id":52,"name":"рядовой"},{"id":53,"name":"лейтенант"}],
+    "want_code": 200
+}
+]

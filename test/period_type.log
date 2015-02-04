@@ -1,0 +1,117 @@
+Doing request: @GET http://localhost:1337/admin/api/object/period_type
+body = null
+#pt_01 @GET http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":1,"name":"минута","short_name":"мин."}
+Wrote body
+#pt_02 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":21,"type":"new"}
+     got body: {"id":21,"type":"new"}
+sended body: {"id":0,"code":1,"name":"минута","short_name":"мин."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":2,"name":"час","short_name":"ч."}
+Wrote body
+#pt_03 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":22,"type":"new"}
+     got body: {"id":22,"type":"new"}
+sended body: {"id":0,"code":2,"name":"час","short_name":"ч."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":3,"name":"день (рабочий)","short_name":"д.р."}
+Wrote body
+#pt_04 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":23,"type":"new"}
+     got body: {"id":23,"type":"new"}
+sended body: {"id":0,"code":3,"name":"день (рабочий)","short_name":"д.р."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":4,"name":"день (календарный)","short_name":"д.к."}
+Wrote body
+#pt_05 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":24,"type":"new"}
+     got body: {"id":24,"type":"new"}
+sended body: {"id":0,"code":4,"name":"день (календарный)","short_name":"д.к."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":5,"name":"неделя","short_name":"н."}
+Wrote body
+#pt_06 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":25,"type":"new"}
+     got body: {"id":25,"type":"new"}
+sended body: {"id":0,"code":5,"name":"неделя","short_name":"н."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":6,"name":"месяц","short_name":"м."}
+Wrote body
+#pt_07 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":26,"type":"new"}
+     got body: {"id":26,"type":"new"}
+sended body: {"id":0,"code":6,"name":"месяц","short_name":"м."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":7,"name":"год","short_name":"г."}
+Wrote body
+#pt_08 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":27,"type":"new"}
+     got body: {"id":27,"type":"new"}
+sended body: {"id":0,"code":7,"name":"год","short_name":"г."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":8,"name":"точное время","short_name":"время"}
+Wrote body
+#pt_09 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":28,"type":"new"}
+     got body: {"id":28,"type":"new"}
+sended body: {"id":0,"code":8,"name":"точное время","short_name":"время"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/period_type
+body = {"id":0,"code":9,"name":"Удаляемый","short_name":"уд."}
+Wrote body
+#pt_10 @POST http://localhost:1337/admin/api/object/period_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":29,"type":"new"}
+     got body: {"id":29,"type":"new"}
+sended body: {"id":0,"code":9,"name":"Удаляемый","short_name":"уд."}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/period_type/29
+body = null
+#pt_11 @DELETE http://localhost:1337/admin/api/object/period_type/29 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":29,"type":"deleted"}
+     got body: {"id":29,"type":"deleted"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/period_type
+body = null
+#pt_012 @GET http://localhost:1337/admin/api/object/period_type : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":21,"code":1,"name":"минута"},{"id":22,"code":2,"name":"час"},{"id":23,"code":3,"name":"день (рабочий)"},{"id":24,"code":4,"name":"день (календарный)"},{"id":25,"code":5,"name":"неделя"},{"id":26,"code":6,"name":"месяц"},{"id":27,"code":7,"name":"год"},{"id":28,"code":8,"name":"точное время"}]
+     got body: [{"id":21,"name":"минута"},{"id":22,"name":"час"},{"id":23,"name":"день (рабочий)"},{"id":24,"name":"день (календарный)"},{"id":25,"name":"неделя"},{"id":26,"name":"месяц"},{"id":27,"name":"год"},{"id":28,"name":"точное время"}]
+#########
+total tasks: 12
+total successes: 11
+total fails: 1

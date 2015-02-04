@@ -1,0 +1,114 @@
+[
+{ 
+    "tag": "ct_01",
+    "url": "http://localhost:1337/admin/api/object/node_level_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/node_level_type",
+    "method": "post",
+    "body": {"id":0,"name":"согласование","code":1, "default_node_level_name":"согласование"},
+    "want":   {"id":118, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/node_level_type/118",
+    "method": "delete",
+    "want":   {"id":118, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/node_level_type",
+    "method": "post",
+    "body" : {"id":0,"name":"Согласование","code":1, "default_node_level_name":"согласование"},
+    "want": {"id":119, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/node_level_type/119",
+    "method": "get",
+    "want":   {"id":119,"name":"Согласование","code":1, "default_node_level_name":"согласование"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/node_level_type",
+    "method": "post",
+    "body" : {"id":0,"name":"Подпись","code":2, "default_node_level_name":"подпись"},
+    "want": {"id":120, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/node_level_type/120",
+    "method": "get",
+    "want":   {"id":120,"name":"Подпись","code":2, "default_node_level_name":"подпись"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07_1",
+    "url": "http://localhost:1337/admin/api/object/node_level_type",
+    "method": "post",
+    "body" : {"id":0,"name":"Исполнение","code":3, "default_node_level_name":"исполнение"},
+    "want": {"id":121, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07_2",
+    "url": "http://localhost:1337/admin/api/object/node_level_type/121",
+    "method": "get",
+    "want":   {"id":121,"name":"Исполнение","code":3, "default_node_level_name":"исполнение"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/node_level_type",
+    "method": "get",
+    "want":   [{"id":119,"name":"Согласование"},{"id":120,"name":"Подпись"},{"id":121,"name":"Исполнение"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/node_level_type/119",
+    "method": "post",
+    "body" : {"id":119,"name":"согласование","code":1, "default_node_level_name":"согласование"},
+    "want": {"id":119, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/node_level_type/120",
+    "method": "post",
+    "body" : {"id":120,"name":"подписание","code":2, "default_node_level_name":"подпись"},
+    "want": {"id":120, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10_1",
+    "url": "http://localhost:1337/admin/api/object/node_level_type/121",
+    "method": "post",
+    "body" : {"id":121,"name":"исполнение","code":3, "default_node_level_name":"исполнение"},
+    "want": {"id":121, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10_2",
+    "url": "http://localhost:1337/admin/api/object/node_level_type/121",
+    "method": "get",
+    "want":   {"id":121,"name":"исполнение","code":3, "default_node_level_name":"исполнение"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_120",
+    "url": "http://localhost:1337/admin/api/object/node_level_type",
+    "method": "get",
+    "want":   [{"id":119,"name":"согласование"},{"id":120,"name":"подписание"},{"id":121,"name":"исполнение"}],
+    "want_code": 200
+}
+]

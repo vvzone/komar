@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "ct_01",
+    "url": "http://localhost:1337/admin/api/object/commander_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/commander_type",
+    "method": "post",
+    "body": {"id":0,"name":"Начальник","priority":1},
+    "want":   {"id":10, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/commander_type/10",
+    "method": "delete",
+    "want":   {"id":10, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/commander_type",
+    "method": "post",
+    "body" : {"id":0,"name":"Начальник (1)","priority":1},
+    "want": {"id":11, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/commander_type/11",
+    "method": "get",
+    "want":   {"id":11,"name":"Начальник (1)","priority":1},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/commander_type",
+    "method": "post",
+    "body" : {"id":0,"name":"Заместитель (1)","priority":1},
+    "want": {"id":12, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/commander_type/12",
+    "method": "get",
+    "want":   {"id":12,"name":"Заместитель (1)","priority":1},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/commander_type",
+    "method": "get",
+    "want":   [{"id":11,"name":"Начальник (1)"},{"id":12,"name":"Заместитель (1)"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/commander_type/11",
+    "method": "post",
+    "body" : {"id":11,"name":"Начальник","priority":1},
+    "want": {"id":11, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/commander_type/12",
+    "method": "post",
+    "body" : {"id":12,"name":"Заместитель","priority":1},
+    "want": {"id":12, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/commander_type",
+    "method": "get",
+    "want":   [{"id":11,"name":"Начальник"},{"id":12,"name":"Заместитель"}],
+    "want_code": 200
+}
+]

@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "c_01",
+    "url": "http://localhost:1337/admin/api/object/post",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/post",
+    "method": "post",
+    "body": {"id":0, "name":"заведующий хозяйством", "short_name":"завхоз", "description":"отвечает за все", "allowed_ranks": [{"id":52},{"id":53}]},
+    "want": {"id":61, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/post/61",
+    "method": "delete",
+    "want": {"id":61, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/post",
+    "method": "post",
+    "body": {"id":0, "name":"командир взвода", "short_name":"комвзвода", "description":"командир", "allowed_ranks": [{"id":53}]},
+    "want": {"id":63, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/post/63",
+    "method": "get",
+    "want": {"id":63, "name":"командир взвода", "short_name":"комвзвода", "description":"командир", "allowed_ranks": [{"id":53}]},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/post",
+    "method": "post",
+    "body": {"id":0, "name":"телеграфист", "short_name":"телгр.", "description":"работник радиостанции", "allowed_ranks": [{"id":52}]},
+    "want": {"id":65, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/post/65",
+    "method": "get",
+    "want": {"id":65, "name":"телеграфист", "short_name":"телгр.", "description":"работник радиостанции", "allowed_ranks": [{"id":52}]},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/post",
+    "method": "get",
+    "want":   [{"id":63,"name":"командир взвода"},{"id":65,"name":"телеграфист"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/post/63",
+    "method": "post",
+    "body": {"id":63, "name":"начальник станции", "short_name":"нст", "description":"командир взвода", "allowed_ranks": [{"id":53}]},
+    "want": {"id":63, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/post/65",
+    "method": "post",
+    "body": {"id":65, "name":"оператор", "short_name":"оп.", "description":"телеграфист", "allowed_ranks": [{"id":52}]},
+    "want": {"id":65, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/post",
+    "method": "get",
+    "want":   [{"id":63,"name":"начальник станции"},{"id":65,"name":"оператор"}],
+    "want_code": 200
+}
+]

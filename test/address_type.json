@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "at_01",
+    "url": "http://127.0.0.1:1337/admin/api/object/address_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "at_02",
+    "url": "http://localhost:1337/admin/api/object/address_type",
+    "method": "post",
+    "body": {"id":0,"name":"Почтовый","priority":1},
+    "want":   {"id":7, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_03",
+    "url": "http://localhost:1337/admin/api/object/address_type/7",
+    "method": "delete",
+    "want":   {"id":7, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04",
+    "url": "http://localhost:1337/admin/api/object/address_type",
+    "method": "post",
+    "body" : {"id":0,"name":"Почтовый (1)","priority":1},
+    "want":   {"id":8, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_05",
+    "url": "http://localhost:1337/admin/api/object/address_type/8",
+    "method": "get",
+    "want":   {"id":8,"name":"Почтовый (1)","priority":1},
+    "want_code": 200
+},
+{ 
+    "tag": "at_06",
+    "url": "http://localhost:1337/admin/api/object/address_type",
+    "method": "post",
+    "body" : {"id":0,"name":"Юридический (1)","priority":1},
+    "want":   {"id":9, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_07",
+    "url": "http://localhost:1337/admin/api/object/address_type/9",
+    "method": "get",
+    "want":   {"id":9,"name":"Юридический (1)","priority":1},
+    "want_code": 200
+},
+{ 
+    "tag": "at_08",
+    "url": "http://localhost:1337/admin/api/object/address_type",
+    "method": "get",
+    "want":   [{"id":8,"name":"Почтовый (1)"},{"id":9,"name":"Юридический (1)"}],
+    "want_code": 200
+},
+{ 
+    "tag": "at_09",
+    "url": "http://localhost:1337/admin/api/object/address_type/8",
+    "method": "post",
+    "body" : {"id":8,"name":"Почтовый","priority":1},
+    "want":   {"id":8, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_10",
+    "url": "http://localhost:1337/admin/api/object/address_type/9",
+    "method": "post",
+    "body" : {"id":9,"name":"Юридический","priority":1},
+    "want":   {"id":9, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_11",
+    "url": "http://localhost:1337/admin/api/object/address_type",
+    "method": "get",
+    "want":   [{"id":8,"name":"Почтовый"},{"id":9,"name":"Юридический"}],
+    "want_code": 200
+}
+]

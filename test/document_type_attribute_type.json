@@ -1,0 +1,91 @@
+[
+{ 
+    "tag": "dtat_01",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type",
+    "method": "get",
+    "want":   [{"id":130}],
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_01_1",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type/130",
+    "method": "get",
+    "want":   {"id":130},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_02",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type",
+    "method": "post",
+    "body": {"id":148,"name":"Заголовок"},
+    "want":   {"answer":"ok", "entity_id":148},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_03",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type/148",
+    "method": "delete",
+    "want":   {"answer":"ok"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_04",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type",
+    "method": "post",
+    "body": {"id":149,"name":"header"},
+    "want": {"answer":"ok", "entity_id":149},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_05",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type/149",
+    "method": "get",
+    "want": {"id":149,"name":"header"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_06",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type",
+    "method": "post",
+    "body": {"id":150,"name":"footer"},
+    "want": {"answer":"ok", "entity_id":150},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_07",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type/150",
+    "method": "get",
+    "want": {"id":150,"name":"footer"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_08",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type",
+    "method": "get",
+    "want":   [{"id":149,"name":"header"},{"id":150,"name":"footer"}],
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_09",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type/149",
+    "method": "post",
+    "body": {"id":149,"name":"Заголовок"},
+    "want": {"answer":"ok", "entity_id":149},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_10",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type/150",
+    "method": "post",
+    "body": {"id":150,"name":"Содержимое"},
+    "want": {"answer":"ok", "entity_id":150},
+    "want_code": 200
+},
+{ 
+    "tag": "dtat_11",
+    "url": "http://localhost:1337/admin/api/object/document_type_attribute_type",
+    "method": "get",
+    "want":   [{"id":149,"name":"Заголовок"},{"id":150,"name":"Содержимое"}],
+    "want_code": 200
+}
+]

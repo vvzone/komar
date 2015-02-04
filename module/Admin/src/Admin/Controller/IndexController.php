@@ -182,20 +182,23 @@ class IndexController extends AbstractActionController
         );
 
         $data_array = array(
-            array('id' => 1, 'entity' => 'inbox', 'screen' => 'base', 'name' => 'Входящие документы', 'is_not_screen' => true,
+            array('id' => 1, 'entity' => 'create_new_document', 'screen' => 'base', 'name' => 'Создать документ', 'is_not_screen' => true,
+                'type' => 'msg_box', 'icon' => 'glyphicon glyphicon-file'), //fa fa-file-o
+            array('id' => 2, 'entity' => 'inbox', 'screen' => 'base', 'name' => 'Входящие документы', 'is_not_screen' => true,
                   'type' => 'msg_box', 'messages'=> array('total' => 45, 'new' => 1), 'icon' => 'fa fa-inbox'),
-
-            array('id' => 2, 'entity' => 'sent', 'screen' => 'staff', 'name' => 'Исходящие документы', 'is_not_screen' => true,
+            array('id' => 3, 'entity' => 'sent', 'screen' => 'staff', 'name' => 'Черновики', 'is_not_screen' => true,
                 'type'=> 'msg_box', 'icon' => 'fa fa-paper-plane' ),
-            array('id' => 4, 'entity' => 'notification', 'screen' => 'staff', 'name' => 'Уведомления', 'is_not_screen' => true,
+            array('id' => 4, 'entity' => 'sent', 'screen' => 'staff', 'name' => 'Исходящие документы', 'is_not_screen' => true,
+                'type'=> 'msg_box', 'icon' => 'fa fa-paper-plane' ),
+            array('id' => 5, 'entity' => 'notification', 'screen' => 'staff', 'name' => 'Уведомления', 'is_not_screen' => true,
                 'type' => 'msg_box', 'messages'=> array('total' => 4502, 'new' => 6), 'icon' => 'fa fa-bell fa-lg'),
-            array('id' => 3, 'entity' => 'documents_on_map', 'screen' => 'doc', 'name' => 'Документы на карте', 'is_not_screen' => true,
+            array('id' => 6, 'entity' => 'documents_on_map', 'screen' => 'doc', 'name' => 'Документы на карте', 'is_not_screen' => true,
                 'children' => $waiting,
                 'type' => 'layers', 'icon' => 'fa fa-map-marker fa-lg'),
             /* -- right --- */
-            array('id' => 5, 'entity' => 'classificator', 'screen' => 'base', 'name' => 'Классификатор', 'is_not_screen' => true,
+            array('id' => 7, 'entity' => 'classificator', 'screen' => 'base', 'name' => 'Классификатор', 'is_not_screen' => true,
                 'children' => $classificator, 'icon' => 'fa fa-archive'),
-            array('id' => 6, 'entity' => 'layers', 'screen' => 'staff', 'name' => 'Слои', 'is_not_screen' => true,
+            array('id' => 8, 'entity' => 'layers', 'screen' => 'staff', 'name' => 'Слои', 'is_not_screen' => true,
                 'children' => $layers, 'type' => 'layers', 'icon' => 'fa fa-cogs')
         );
 

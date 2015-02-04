@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "rt_01",
+    "url": "http://localhost:1337/admin/api/object/region_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "rt_02",
+    "url": "http://localhost:1337/admin/api/object/region_type",
+    "method": "post",
+    "body": {"id":0,"name":"автономия", "short_name":"а.о."},
+    "want": {"id":71, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "rt_03",
+    "url": "http://localhost:1337/admin/api/object/region_type/71",
+    "method": "delete",
+    "want": {"id":71, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "rt_04",
+    "url": "http://localhost:1337/admin/api/object/region_type",
+    "method": "post",
+    "body": {"id":0,"name":"область-1", "short_name":"обл."},
+    "want": {"id":72, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "rt_05",
+    "url": "http://localhost:1337/admin/api/object/region_type/72",
+    "method": "get",
+    "want": {"id":72,"name":"область-1", "short_name":"обл."},
+    "want_code": 200
+},
+{ 
+    "tag": "rt_06",
+    "url": "http://localhost:1337/admin/api/object/region_type",
+    "method": "post",
+    "body": {"id":0,"name":"край-1", "short_name":"обл."},
+    "want": {"id":73, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "rt_07",
+    "url": "http://localhost:1337/admin/api/object/region_type/73",
+    "method": "get",
+    "want": {"id":73,"name":"край-1", "short_name":"кр."},
+    "want_code": 200
+},
+{ 
+    "tag": "rt_08",
+    "url": "http://localhost:1337/admin/api/object/region_type",
+    "method": "get",
+    "want":   [{"id":72,"name":"область-1"},{"id":73,"name":"край-1"}],
+    "want_code": 200
+},
+{ 
+    "tag": "rt_09",
+    "url": "http://localhost:1337/admin/api/object/region_type/72",
+    "method": "post",
+    "body": {"id":72,"name":"область", "short_name":"обл."},
+    "want": {"id":72, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "rt_10",
+    "url": "http://localhost:1337/admin/api/object/region_type/73",
+    "method": "post",
+    "body": {"id":73,"name":"край", "short_name":"кр."},
+    "want": {"id":73, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "rt_11",
+    "url": "http://localhost:1337/admin/api/object/region_type",
+    "method": "get",
+    "want":   [{"id":72,"name":"область"},{"id":73,"name":"край"}],
+    "want_code": 200
+}
+]

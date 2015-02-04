@@ -1,0 +1,19 @@
+Doing request: @GET http://localhost:1337/admin/api/object/post_group_tree
+body = null
+#pgt_01 @GET http://localhost:1337/admin/api/object/post_group_tree : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":67,"name":"Руководство","children":[]},{"id":68,"name":"�?сполнителм","children":[{"id":69,"name":"Программисты","children":[]},{"id":70,"name":"Тестировщики","children":[]}]}]
+     got body: [{"id":67,"name":"Руководство","children":[]},{"id":68,"name":"�?сполнителм","children":[{"id":69,"name":"Программисты","children":[]},{"id":70,"name":"Тестировщики","children":[]}]}]
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/post_group_tree/68
+body = null
+#dtg_02 @GET http://localhost:1337/admin/api/object/post_group_tree/68 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"name":"�?сполнителм","parent_id":null,"children":[{"name":"Тестировщики","parent_id":68,"children":[],"id":70},{"name":"Программисты","parent_id":68,"children":[],"id":69}],"id":68}
+     got body: {"name":"�?сполнителм","parent_id":null,"children":[{"name":"Тестировщики","parent_id":68,"children":[],"id":70},{"name":"Программисты","parent_id":68,"children":[],"id":69}],"id":68}
+#########
+total tasks: 2
+total successes: 0
+total fails: 2

@@ -15,12 +15,13 @@ define(
         'jsx!views/react/modals/add',
 
         'router', // Request router.js
-        'event_bus'
+        'event_bus',
+        'app_registry'
 
     ],
     function($, _, Backbone, React, Config,
              ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd,
-             Router, EventBus){ //, UserBarComponent
+             Router, EventBus, app_registry){ //, UserBarComponent
 
         console.log('app loaded...');
         var debug_modals = (Config['debug'] && Config['debug']['debug_modals'])? 1:null;
@@ -131,7 +132,9 @@ define(
 
         // Pass in our Router module and call it's initialize function
         console.log('app initialization...');
+        app_registry.init();
         Router.initialize();
+        //app_registry.router = Router.initialize();
         /*
         React.renderComponent(
             UserBarComponent(),

@@ -1,0 +1,86 @@
+[
+{ 
+    "tag": "et_01",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "et_02",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type",
+    "method": "post",   
+    "body": {"id":0,"name":"Черновик", "mask":"Ч-%N" , "is_draft":true , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0},
+    "want": {"id":30, "type":"new"},
+    "want_code": 200
+},
+
+
+{ 
+    "tag": "et_03",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type/30",
+    "method": "delete",
+    "want": {"id":30, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "et_04",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type",
+    "method": "post",
+    "body": {"id":0,"name":"Черновой", "mask":"Ч-%N" , "is_draft":true , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0},
+    "want": {"id":31, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "et_05",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type/31",
+    "method": "get",
+    "want": {"id":31,"name":"Черновой", "mask":"Ч-%N" , "is_draft":true , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0},
+    "want_code": 200
+},
+{ 
+    "tag": "et_06",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type",
+    "method": "post",
+    "body": {"id":0,"name":"Входящий", "mask":"В-%N" , "is_draft":false , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0},
+    "want": {"id":32, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "et_07",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type/32",
+    "method": "get",
+    "want": {"id":32,"name":"Входящий", "mask":"В-%N" , "is_draft":false , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0},
+    "want_code": 200
+},
+{ 
+    "tag": "et_08",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type",
+    "method": "get",
+    "want":   [{"id":31,"name":"Черновой"},{"id":32,"name":"Входящий"}],
+    "want_code": 200
+},
+{ 
+    "tag": "et_09",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type/31",
+    "method": "post",
+    "body": {"id":31,"name":"Черновики", "mask":"Ч-%N" , "is_draft":true , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0},
+    "want": {"id":31, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "et_10",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type/32",
+    "method": "post",
+    "body": {"id":32,"name":"Входящие", "mask":"В-%N" , "is_draft":false , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0},
+    "want": {"id":32, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "et_11",
+    "url": "http://localhost:1337/admin/api/object/enumeration_type",
+    "method": "get",
+    "want":   [{"id":31,"name":"Черновики"},{"id":32,"name":"Входящие"}],
+    "want_code": 200
+}
+]

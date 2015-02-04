@@ -52,15 +52,25 @@ define(
                     (debug)?console.log(['Router -> before, route:', route]):null;
 
                     if(route != 'login'){
-                        var token = $('meta[name="csrf-token"]').attr('content');
-                        if(!token) {
-                            (debug)?console.info(['token=',token]):null;
-                            this.navigate('login', true);
-                            return false;
-                        }else{
-                            console.info(['token=',token, 'UserBarComponent -> initialize']);
-                            UserBarComponent.initialize();
+                        if(Config['cfsr_token']){
+                            var token = $('meta[name="csrf-token"]').attr('content');
+                            if(!token) {
+                                //something else...
+                            }
                         }
+                        else{
+                            (debug)?console.info('cfsr token not found...'):null;
+                            if(app_registry.isAuth()){
+                                (debug)?console.info('app_registry -> isAuth: yes..'):null;
+                                UserBarComponent.initialize();
+                            }else{
+                                (debug)?console.info('app_registry: is not auth...'):null;
+                                this.navigate('login', true);
+                                return false;
+                            }
+                        }
+                    }else{
+                        removeUserBar();
                     }
                     // Returning false from inside of the before filter will prevent the
                     // current route's callback from running, and will prevent the after
@@ -184,6 +194,11 @@ define(
         //$('#main_top').html('');  //2-do: all trash clean-up on componentUnmount
         console.info(['#left_panel',$('#left_panel')]);
         //$('#main_main').html('');
+    };
+
+    var removeUserBar = function(){
+        (debug)?console.info('removeUserBar'):null;
+        React.unmountComponentAtNode($('#header_login')[0]);
     };
 
     var cleanUp = function(){

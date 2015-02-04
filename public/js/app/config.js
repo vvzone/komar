@@ -56,15 +56,15 @@ define(
                 {route: 'list'},
                 {very_urgency: 'list'}
             ],
-            local_server: 1,
+            local_server: true,
             temp: null,
             host: {
                 local_server: 'zend-test:9080',
-                production_server: 'localhost:1337'
+                production_server: '127.0.0.1:1337'
             },
             login_url: {
                 local_server: '/admin/login',
-                production_server: '/admin/api/commands/get_token'
+                production_server: '/admin/api/login'
             },
             logout_url: {
                 local_server: '/admin/logout',
@@ -74,8 +74,10 @@ define(
                 menu_new_doc: ['new_document'],
                 menu_msg: ['inbox', 'sent'],
                 menu_warn: ['notification'],
-                menu_map: ['classificator', 'documents_on_map', 'layers']
-            }
+                menu_map: ['classifier', 'documents_on_map', 'layers']
+            },
+            cookie_name: 'moskit',
+            csrf_token: false
         };
 
         return Config;

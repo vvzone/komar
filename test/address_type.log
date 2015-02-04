@@ -1,0 +1,101 @@
+Doing request: @GET http://127.0.0.1:1337/admin/api/object/address_type
+body = null
+#at_01 @GET http://127.0.0.1:1337/admin/api/object/address_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/address_type
+body = {"id":0,"name":"Почтовый","priority":1}
+Wrote body
+#at_02 @POST http://localhost:1337/admin/api/object/address_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":7,"type":"new"}
+     got body: {"id":7,"type":"new"}
+sended body: {"id":0,"name":"Почтовый","priority":1}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/address_type/7
+body = null
+#at_03 @DELETE http://localhost:1337/admin/api/object/address_type/7 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":7,"type":"deleted"}
+     got body: {"id":7,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/address_type
+body = {"id":0,"name":"Почтовый (1)","priority":1}
+Wrote body
+#at_04 @POST http://localhost:1337/admin/api/object/address_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":8,"type":"new"}
+     got body: {"id":8,"type":"new"}
+sended body: {"id":0,"name":"Почтовый (1)","priority":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/address_type/8
+body = null
+#at_05 @GET http://localhost:1337/admin/api/object/address_type/8 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":8,"name":"Почтовый (1)","priority":1}
+     got body: {"name":"Почтовый (1)","priority":1,"id":8}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/address_type
+body = {"id":0,"name":"Юридический (1)","priority":1}
+Wrote body
+#at_06 @POST http://localhost:1337/admin/api/object/address_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":9,"type":"new"}
+     got body: {"id":9,"type":"new"}
+sended body: {"id":0,"name":"Юридический (1)","priority":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/address_type/9
+body = null
+#at_07 @GET http://localhost:1337/admin/api/object/address_type/9 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":9,"name":"Юридический (1)","priority":1}
+     got body: {"name":"Юридический (1)","priority":1,"id":9}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/address_type
+body = null
+#at_08 @GET http://localhost:1337/admin/api/object/address_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":8,"name":"Почтовый (1)"},{"id":9,"name":"Юридический (1)"}]
+     got body: [{"id":8,"name":"Почтовый (1)"},{"id":9,"name":"Юридический (1)"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/address_type/8
+body = {"id":8,"name":"Почтовый","priority":1}
+Wrote body
+#at_09 @POST http://localhost:1337/admin/api/object/address_type/8 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":8,"type":"old"}
+     got body: {"id":8,"type":"old"}
+sended body: {"id":8,"name":"Почтовый","priority":1}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/address_type/9
+body = {"id":9,"name":"Юридический","priority":1}
+Wrote body
+#at_10 @POST http://localhost:1337/admin/api/object/address_type/9 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":9,"type":"old"}
+     got body: {"id":9,"type":"old"}
+sended body: {"id":9,"name":"Юридический","priority":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/address_type
+body = null
+#at_11 @GET http://localhost:1337/admin/api/object/address_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":8,"name":"Почтовый"},{"id":9,"name":"Юридический"}]
+     got body: [{"id":8,"name":"Почтовый"},{"id":9,"name":"Юридический"}]
+#########
+total tasks: 11
+total successes: 11
+total fails: 0

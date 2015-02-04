@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "r_01",
+    "url": "http://localhost:1337/admin/api/object/region",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "r_02",
+    "url": "http://localhost:1337/admin/api/object/region",
+    "method": "post",
+    "body": {"id":0,"name":"Брянск", "code":"32", "description":"Передовая", "region_type":{"id":72}},
+    "want": {"id":74, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_03",
+    "url": "http://localhost:1337/admin/api/object/region/74",
+    "method": "delete",
+    "want": {"id":74, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_04",
+    "url": "http://localhost:1337/admin/api/object/region",
+    "method": "post",
+    "body": {"id":0,"name":"Брянск", "code":"32", "description":"Передовая", "region_type":{"id":72}},
+    "want": {"id":75, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_05",
+    "url": "http://localhost:1337/admin/api/object/region/75",
+    "method": "get",
+    "want": {"id":75,"name":"Брянск", "code":"32", "description":"Передовая", "region_type":{"id":72}},
+    "want_code": 200
+},
+{ 
+    "tag": "r_06",
+    "url": "http://localhost:1337/admin/api/object/region",
+    "method": "post",
+    "body": {"id":0,"name":"Краснодар", "code":"15", "description":"Тыл", "region_type":{"id":73}},
+    "want": {"id":76, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_07",
+    "url": "http://localhost:1337/admin/api/object/region/76",
+    "method": "get",
+    "want": {"id":76,"name":"Краснодар", "code":"15", "description":"Тыл", "region_type":{"id":73}},
+    "want_code": 200
+},
+{ 
+    "tag": "r_08",
+    "url": "http://localhost:1337/admin/api/object/region",
+    "method": "get",
+    "want":   [{"id":75,"name":"Брянск"},{"id":76,"name":"Краснодар"}],
+    "want_code": 200
+},
+{ 
+    "tag": "r_09",
+    "url": "http://localhost:1337/admin/api/object/region/75",
+    "method": "post",
+    "body": {"id":75,"name":"Брянская", "code":"32", "description":"Передовая", "region_type":{"id":72}},
+    "want": {"id":75, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_10",
+    "url": "http://localhost:1337/admin/api/object/region/76",
+    "method": "post",
+    "body": {"id":76,"name":"Краснодарский", "code":"15", "description":"Тыл", "region_type":{"id":73}},
+    "want": {"id":76, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "r_11",
+    "url": "http://localhost:1337/admin/api/object/region",
+    "method": "get",
+    "want":   [{"id":75,"name":"Брянская"},{"id":76,"name":"Краснодарский"}],
+    "want_code": 200
+}
+]

@@ -1,0 +1,425 @@
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Базовые определения - 1","description":"","entity":"base","is_not_screen":true,"parent_id":null,"sort_order":1}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":7,"type":"new"}
+  sended body: {"id":0,"name":"Базовые определения - 1","description":"","entity":"base","is_not_screen":true,"parent_id":null,"sort_order":1}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Звания - 101","description":"","entity":"ranks","is_not_screen":false,"parent_id":7,"sort_order":1}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":8,"type":"new"}
+  sended body: {"id":0,"name":"Звания - 101","description":"","entity":"ranks","is_not_screen":false,"parent_id":7,"sort_order":1}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Должности - 102","description":"","entity":"posts","is_not_screen":false,"parent_id":7,"sort_order":2}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":9,"type":"new"}
+  sended body: {"id":0,"name":"Должности - 102","description":"","entity":"posts","is_not_screen":false,"parent_id":7,"sort_order":2}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Соответствие звания должности - 103","description":"","entity":"position_rank","is_not_screen":false,"parent_id":7,"sort_order":3}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":10,"type":"new"}
+  sended body: {"id":0,"name":"Соответствие звания должности - 103","description":"","entity":"position_rank","is_not_screen":false,"parent_id":7,"sort_order":3}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы удостоверяющих личность документов - 104","description":"","entity":"pass_doc_types","is_not_screen":false,"parent_id":7,"sort_order":4}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":11,"type":"new"}
+  sended body: {"id":0,"name":"Типы удостоверяющих личность документов - 104","description":"","entity":"pass_doc_types","is_not_screen":false,"parent_id":7,"sort_order":4}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Основные настройки - 105","description":"","entity":"sys","is_not_screen":true,"parent_id":7,"sort_order":5}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":12,"type":"new"}
+  sended body: {"id":0,"name":"Основные настройки - 105","description":"","entity":"sys","is_not_screen":true,"parent_id":7,"sort_order":5}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Страны - 10501","description":"","entity":"countries","is_not_screen":false,"parent_id":12,"sort_order":1}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":13,"type":"new"}
+  sended body: {"id":0,"name":"Страны - 10501","description":"","entity":"countries","is_not_screen":false,"parent_id":12,"sort_order":1}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы адреса - 10502","description":"","entity":"address_types","is_not_screen":false,"parent_id":12,"sort_order":2}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":14,"type":"new"}
+  sended body: {"id":0,"name":"Типы адреса - 10502","description":"","entity":"address_types","is_not_screen":false,"parent_id":12,"sort_order":2}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы региона - 10503","description":"","entity":"region_types","is_not_screen":false,"parent_id":12,"sort_order":3}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":15,"type":"new"}
+  sended body: {"id":0,"name":"Типы региона - 10503","description":"","entity":"region_types","is_not_screen":false,"parent_id":12,"sort_order":3}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Регионы - 10504","description":"","entity":"regions","is_not_screen":false,"parent_id":12,"sort_order":4}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":16,"type":"new"}
+  sended body: {"id":0,"name":"Регионы - 10504","description":"","entity":"regions","is_not_screen":false,"parent_id":12,"sort_order":4}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы нас. пункта - 10505","description":"","entity":"location_types","is_not_screen":false,"parent_id":12,"sort_order":5}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":17,"type":"new"}
+  sended body: {"id":0,"name":"Типы нас. пункта - 10505","description":"","entity":"location_types","is_not_screen":false,"parent_id":12,"sort_order":5}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы улиц - 10506","description":"","entity":"street_types","is_not_screen":false,"parent_id":12,"sort_order":6}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":18,"type":"new"}
+  sended body: {"id":0,"name":"Типы улиц - 10506","description":"","entity":"street_types","is_not_screen":false,"parent_id":12,"sort_order":6}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы пола служащего - 10507","description":"","entity":"sex_types","is_not_screen":false,"parent_id":12,"sort_order":7}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":19,"type":"new"}
+  sended body: {"id":0,"name":"Типы пола служащего - 10507","description":"","entity":"sex_types","is_not_screen":false,"parent_id":12,"sort_order":7}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Настройки документов - 106","description":"","entity":"sys_docs","is_not_screen":true,"parent_id":7,"sort_order":6}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":20,"type":"new"}
+  sended body: {"id":0,"name":"Настройки документов - 106","description":"","entity":"sys_docs","is_not_screen":true,"parent_id":7,"sort_order":6}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы периодов - 10601","description":"","entity":"period_types","is_not_screen":false,"parent_id":20,"sort_order":1}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":21,"type":"new"}
+  sended body: {"id":0,"name":"Типы периодов - 10601","description":"","entity":"period_types","is_not_screen":false,"parent_id":20,"sort_order":1}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы нумерации - 10602","description":"","entity":"enumeration_types","is_not_screen":false,"parent_id":20,"sort_order":2}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":22,"type":"new"}
+  sended body: {"id":0,"name":"Типы нумерации - 10602","description":"","entity":"enumeration_types","is_not_screen":false,"parent_id":20,"sort_order":2}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Группы типов документов - 10603","description":"","entity":"doc_type_groups","is_not_screen":false,"parent_id":20,"sort_order":3}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":23,"type":"new"}
+  sended body: {"id":0,"name":"Группы типов документов - 10603","description":"","entity":"doc_type_groups","is_not_screen":false,"parent_id":20,"sort_order":3}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы секретности документа - 10604","description":"","entity":"doc_secrecy_types","is_not_screen":false,"parent_id":20,"sort_order":4}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":24,"type":"new"}
+  sended body: {"id":0,"name":"Типы секретности документа - 10604","description":"","entity":"doc_secrecy_types","is_not_screen":false,"parent_id":20,"sort_order":4}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы срочности документа - 10605","description":"","entity":"doc_urgency_types","is_not_screen":false,"parent_id":20,"sort_order":5}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":25,"type":"new"}
+  sended body: {"id":0,"name":"Типы срочности документа - 10605","description":"","entity":"doc_urgency_types","is_not_screen":false,"parent_id":20,"sort_order":5}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы документов - 10606","description":"","entity":"doc_types","is_not_screen":false,"parent_id":20,"sort_order":6}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":26,"type":"new"}
+  sended body: {"id":0,"name":"Типы документов - 10606","description":"","entity":"doc_types","is_not_screen":false,"parent_id":20,"sort_order":6}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы узлов маршрута - 10607","description":"","entity":"node_types","is_not_screen":false,"parent_id":20,"sort_order":7}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":27,"type":"new"}
+  sended body: {"id":0,"name":"Типы узлов маршрута - 10607","description":"","entity":"node_types","is_not_screen":false,"parent_id":20,"sort_order":7}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы аттрибутов - 10608","description":"","entity":"doc_attributes_types","is_not_screen":false,"parent_id":20,"sort_order":8}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":28,"type":"new"}
+  sended body: {"id":0,"name":"Типы аттрибутов - 10608","description":"","entity":"doc_attributes_types","is_not_screen":false,"parent_id":20,"sort_order":8}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Нумерация - 10609","description":"","entity":"enumeration","is_not_screen":false,"parent_id":20,"sort_order":9}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":29,"type":"new"}
+  sended body: {"id":0,"name":"Нумерация - 10609","description":"","entity":"enumeration","is_not_screen":false,"parent_id":20,"sort_order":9}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Тип руководства подразделения - 107","description":"","entity":"commander_types","is_not_screen":false,"parent_id":7,"sort_order":7}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":30,"type":"new"}
+  sended body: {"id":0,"name":"Тип руководства подразделения - 107","description":"","entity":"commander_types","is_not_screen":false,"parent_id":7,"sort_order":7}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Персонал - 2","description":"","entity":"staff","is_not_screen":true,"parent_id":null,"sort_order":2}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":31,"type":"new"}
+  sended body: {"id":0,"name":"Персонал - 2","description":"","entity":"staff","is_not_screen":true,"parent_id":null,"sort_order":2}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Картотека Личных дел - 201","description":"","entity":"persons","is_not_screen":true,"parent_id":31,"sort_order":1}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":32,"type":"new"}
+  sended body: {"id":0,"name":"Картотека Личных дел - 201","description":"","entity":"persons","is_not_screen":true,"parent_id":31,"sort_order":1}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"�?стория назначений - 202","description":"","entity":"person_position_history","is_not_screen":true,"parent_id":31,"sort_order":2}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":33,"type":"new"}
+  sended body: {"id":0,"name":"�?стория назначений - 202","description":"","entity":"person_position_history","is_not_screen":true,"parent_id":31,"sort_order":2}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"�?стория присвоения званий - 203","description":"","entity":"person_rank_history","is_not_screen":true,"parent_id":31,"sort_order":3}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":34,"type":"new"}
+  sended body: {"id":0,"name":"�?стория присвоения званий - 203","description":"","entity":"person_rank_history","is_not_screen":true,"parent_id":31,"sort_order":3}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Адрес лица - 204","description":"","entity":"person_address","is_not_screen":true,"parent_id":31,"sort_order":4}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":35,"type":"new"}
+  sended body: {"id":0,"name":"Адрес лица - 204","description":"","entity":"person_address","is_not_screen":true,"parent_id":31,"sort_order":4}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Роль служащего - 205","description":"","entity":"role","is_not_screen":true,"parent_id":31,"sort_order":5}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":36,"type":"new"}
+  sended body: {"id":0,"name":"Роль служащего - 205","description":"","entity":"role","is_not_screen":true,"parent_id":31,"sort_order":5}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Документы - 3","description":"","entity":"doc","is_not_screen":true,"parent_id":null,"sort_order":3}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":37,"type":"new"}
+  sended body: {"id":0,"name":"Документы - 3","description":"","entity":"doc","is_not_screen":true,"parent_id":null,"sort_order":3}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Документы - 301","description":"","entity":"doc","is_not_screen":false,"parent_id":37,"sort_order":1}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":38,"type":"new"}
+  sended body: {"id":0,"name":"Документы - 301","description":"","entity":"doc","is_not_screen":false,"parent_id":37,"sort_order":1}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Аттрибуты документа - 302","description":"","entity":"doc_attribute","is_not_screen":true,"parent_id":37,"sort_order":2}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":39,"type":"new"}
+  sended body: {"id":0,"name":"Аттрибуты документа - 302","description":"","entity":"doc_attribute","is_not_screen":true,"parent_id":37,"sort_order":2}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Документы удостоверяющие личность - 303","description":"","entity":"pass_docs","is_not_screen":true,"parent_id":37,"sort_order":3}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":40,"type":"new"}
+  sended body: {"id":0,"name":"Документы удостоверяющие личность - 303","description":"","entity":"pass_docs","is_not_screen":true,"parent_id":37,"sort_order":3}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Маршруты - 304","description":"","entity":"route","is_not_screen":true,"parent_id":37,"sort_order":4}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":41,"type":"new"}
+  sended body: {"id":0,"name":"Маршруты - 304","description":"","entity":"route","is_not_screen":true,"parent_id":37,"sort_order":4}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Пункт маршрута - 305","description":"","entity":"route_node","is_not_screen":true,"parent_id":37,"sort_order":5}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":42,"type":"new"}
+  sended body: {"id":0,"name":"Пункт маршрута - 305","description":"","entity":"route_node","is_not_screen":true,"parent_id":37,"sort_order":5}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"�?зменяемые в узле атрибуты - 306","description":"","entity":"route_node_attribute","is_not_screen":true,"parent_id":37,"sort_order":6}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":43,"type":"new"}
+  sended body: {"id":0,"name":"�?зменяемые в узле атрибуты - 306","description":"","entity":"route_node_attribute","is_not_screen":true,"parent_id":37,"sort_order":6}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Подразделение - 4","description":"","entity":"unit","is_not_screen":true,"parent_id":null,"sort_order":4}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: No body
+     got body: {"id":44,"type":"new"}
+  sended body: {"id":0,"name":"Подразделение - 4","description":"","entity":"unit","is_not_screen":true,"parent_id":null,"sort_order":4}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Подразделения - 401","description":"","entity":"units","is_not_screen":false,"parent_id":45,"sort_order":1}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : FAIL
+expected code: 200
+     got code: 404
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Руководство - 402","description":"","entity":"unit_commander","is_not_screen":true,"parent_id":45,"sort_order":2}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : FAIL
+expected code: 200
+     got code: 404
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Штатное расписание - 403","description":"","entity":"unit_position","is_not_screen":true,"parent_id":45,"sort_order":3}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : FAIL
+expected code: 200
+     got code: 404
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Типы документов подразделения - 404","description":"","entity":"unit_doc_types","is_not_screen":true,"parent_id":45,"sort_order":4}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : FAIL
+expected code: 200
+     got code: 404
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Маршруты в подразделении - 405","description":"","entity":"unit_routes","is_not_screen":true,"parent_id":45,"sort_order":5}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : FAIL
+expected code: 200
+     got code: 404
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/admin_menu
+body = {"id":0,"name":"Нумерация в подразделении - 406","description":"","entity":"unit_enumeration","is_not_screen":true,"parent_id":45,"sort_order":6}
+Wrote body
+#adm_menu_01 @POST http://localhost:1337/admin/api/object/admin_menu : FAIL
+expected code: 200
+     got code: 404
+#########
+total tasks: 44
+total successes: 0
+total fails: 44

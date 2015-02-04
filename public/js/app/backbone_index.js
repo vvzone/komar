@@ -2,6 +2,7 @@ require.config({
     baseUrl: 'js/app',
     paths: {
         jquery: './libs/jquery/jquery.min',
+        jCookie: './libs/jquery/jquery.cookie',
         underscore: './libs/underscore/underscore-min',
         backbone: './libs/backbone/backbone',
         bootstrap: './libs/bootstrap/bootstrap.min',
@@ -32,6 +33,9 @@ require.config({
     shim: {
         jquery: {
             exports: '$'
+        },
+        jCookie: {
+            deps:["jquery"]
         },
         underscore: {
             deps:["jquery"],

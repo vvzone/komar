@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/rank
+body = null
+#r_01 @GET http://localhost:1337/admin/api/object/rank : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/rank
+body = {"id":0,"name":"рядовой","is_officer":true,"description":"рядовой"}
+Wrote body
+#r_02 @POST http://localhost:1337/admin/api/object/rank : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":51,"type":"new"}
+     got body: {"id":51,"type":"new"}
+sended body: {"id":0,"name":"рядовой","is_officer":true,"description":"рядовой"}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/rank/51
+body = null
+#r_03 @DELETE http://localhost:1337/admin/api/object/rank/51 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":51,"type":"deleted"}
+     got body: {"id":51,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/rank
+body = {"id":0,"name":"рядовой-1","is_officer":true,"description":"рядовой"}
+Wrote body
+#r_04 @POST http://localhost:1337/admin/api/object/rank : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":52,"type":"new"}
+     got body: {"id":52,"type":"new"}
+sended body: {"id":0,"name":"рядовой-1","is_officer":true,"description":"рядовой"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/rank/52
+body = null
+#r_05 @GET http://localhost:1337/admin/api/object/rank/52 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":52,"name":"рядовой-1","is_officer":true,"description":"рядовой"}
+     got body: {"name":"рядовой-1","is_officer":true,"description":"рядовой","id":52}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/rank
+body = {"id":0,"name":"лейтенант-1","is_officer":true,"description":"комсостав"}
+Wrote body
+#r_06 @POST http://localhost:1337/admin/api/object/rank : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":53,"type":"new"}
+     got body: {"id":53,"type":"new"}
+sended body: {"id":0,"name":"лейтенант-1","is_officer":true,"description":"комсостав"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/rank/53
+body = null
+#r_07 @GET http://localhost:1337/admin/api/object/rank/53 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":53,"name":"лейтенант-1","is_officer":true,"description":"комсостав"}
+     got body: {"name":"лейтенант-1","is_officer":true,"description":"комсостав","id":53}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/rank
+body = null
+#r_08 @GET http://localhost:1337/admin/api/object/rank : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":52,"name":"рядовой-1"},{"id":53,"name":"лейтенант-1"}]
+     got body: [{"id":52,"name":"рядовой-1"},{"id":53,"name":"лейтенант-1"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/rank/52
+body = {"id":52,"name":"рядовой","is_officer":false,"description":"рядовой состав"}
+Wrote body
+#r_09 @POST http://localhost:1337/admin/api/object/rank/52 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":52,"type":"old"}
+     got body: {"id":52,"type":"old"}
+sended body: {"id":52,"name":"рядовой","is_officer":false,"description":"рядовой состав"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/rank/53
+body = {"id":53,"name":"лейтенант","is_officer":true,"description":"младший командный состав"}
+Wrote body
+#r_10 @POST http://localhost:1337/admin/api/object/rank/53 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":53,"type":"old"}
+     got body: {"id":53,"type":"old"}
+sended body: {"id":53,"name":"лейтенант","is_officer":true,"description":"младший командный состав"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/rank
+body = null
+#r_11 @GET http://localhost:1337/admin/api/object/rank : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":52,"name":"рядовой"},{"id":53,"name":"лейтенант"}]
+     got body: [{"id":52,"name":"рядовой"},{"id":53,"name":"лейтенант"}]
+#########
+total tasks: 11
+total successes: 11
+total fails: 0

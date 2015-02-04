@@ -1,0 +1,106 @@
+[
+{ 
+    "tag": "ct_01",
+    "url": "http://localhost:1337/admin/api/object/node_state_code",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/node_state_code",
+    "method": "post",
+    "body": {"id":0,"name":"принят","code":1},
+    "want":   {"id":122, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/node_state_code/122",
+    "method": "delete",
+    "want":   {"id":122, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/node_state_code",
+    "method": "post",
+    "body" : {"id":0,"name":"Создан","code":1},
+    "want": {"id":123, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/node_state_code/123",
+    "method": "get",
+    "want":   {"id":123,"name":"Создан","code":1},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/node_state_code",
+    "method": "post",
+    "body" : {"id":0,"name":"Принят","code":2},
+    "want": {"id":124, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/node_state_code/124",
+    "method": "get",
+    "want":   {"id":124,"name":"Принят","code":2},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07_1",
+    "url": "http://localhost:1337/admin/api/object/node_state_code",
+    "method": "post",
+    "body" : {"id":0,"name":"Прочтен","code":3},
+    "want": {"id":125, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07_2",
+    "url": "http://localhost:1337/admin/api/object/node_state_code/125",
+    "method": "get",
+    "want":   {"id":125,"name":"Прочтен","code":3},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07_3",
+    "url": "http://localhost:1337/admin/api/object/node_state_code",
+    "method": "post",
+    "body" : {"id":0,"name":"Исполнен","code":4},
+    "want": {"id":126, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07_4",
+    "url": "http://localhost:1337/admin/api/object/node_state_code/126",
+    "method": "get",
+    "want":   {"id":126,"name":"Исполнен","code":4},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/node_state_code",
+    "method": "get",
+    "want":   [{"id":123,"name":"Создан"},{"id":124,"name":"Принят"},{"id":125,"name":"Прочтен"},{"id":126,"name":"Исполнен"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/node_state_code/123",
+    "method": "post",
+    "body" : {"id":123,"name":"Завершен","code":1},
+    "want": {"id":123, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_123",
+    "url": "http://localhost:1337/admin/api/object/node_state_code",
+    "method": "get",
+    "want":   [{"id":123,"name":"Завершен"},{"id":124,"name":"Принят"},{"id":125,"name":"Прочтен"},{"id":126,"name":"Исполнен"}],
+    "want_code": 200
+}
+]

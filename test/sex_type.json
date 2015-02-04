@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "c_01",
+    "url": "http://localhost:1337/admin/api/object/sex_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/sex_type",
+    "method": "post",
+    "body": {"id":0,"name":"мужской", "short_name":"м"},
+    "want": {"id":80, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/sex_type/80",
+    "method": "delete",
+    "want": {"id":80, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/sex_type",
+    "method": "post",
+    "body": {"id":0,"name":"женский", "short_name":"ж"},
+    "want": {"id":81, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/sex_type/81",
+    "method": "get",
+    "want": {"id":81,"name":"женский", "short_name":"ж"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/sex_type",
+    "method": "post",
+    "body": {"id":0,"name":"мужской", "short_name":"м"},
+    "want": {"id":82, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/sex_type/82",
+    "method": "get",
+    "want": {"id":82,"name":"мужской", "short_name":"м"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/sex_type",
+    "method": "get",
+    "want":   [{"id":81,"name":"женский"},{"id":82,"name":"мужской"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/sex_type/81",
+    "method": "post",
+    "body": {"id":81,"name":"жен.", "short_name":"ж"},
+    "want": {"id":81, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/sex_type/82",
+    "method": "post",
+    "body": {"id":82,"name":"муж.", "short_name":"м"},
+    "want": {"id":82, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/sex_type",
+    "method": "get",
+    "want":   [{"id":81,"name":"жен."},{"id":82,"name":"муж."}],
+    "want_code": 200
+}
+]

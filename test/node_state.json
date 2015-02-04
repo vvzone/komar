@@ -1,0 +1,76 @@
+[
+{ 
+    "tag": "ct_01",
+    "url": "http://localhost:1337/admin/api/object/node_state",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/node_state",
+    "method": "post",
+    "body": {"id":0,"name":"Создан", "node_level_type":{"id":119} ,"node_state_code":{"id":123} , "is_reversible":false},
+    "want":   {"id":127, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/node_state/127",
+    "method": "delete",
+    "want":   {"id":127, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/node_state",
+    "method": "post",
+    "body" : {"id":0,"name":"Создан", "node_level_type":{"id":119} ,"node_state_code":{"id":123} , "is_reversible":false},
+    "want": {"id":128, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/node_state/128",
+    "method": "get",
+    "want":   {"id":128,"name":"Создан", "node_level_type":{"id":119} ,"node_state_code":{"id":123} , "is_reversible":false},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/node_state",
+    "method": "post",
+    "body" :{"id":0,"name":"Принят", "node_level_type":{"id":119} ,"node_state_code":{"id":124} , "is_reversible":false},
+    "want": {"id":129, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/node_state/129",
+    "method": "get",
+    "want":   {"id":129,"name":"Принят", "node_level_type":{"id":119} ,"node_state_code":{"id":124} , "is_reversible":false},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/node_state",
+    "method": "get",
+    "want":   [{"id":128,"name":"Создан"},{"id":129,"name":"Принят"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/node_state/128",
+    "method": "post",
+    "body" : {"id":128,"name":"Создание","code":1},
+    "want": {"id":128, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/node_state",
+    "method": "get",
+    "want":   [{"id":128,"name":"Создание"},{"id":129,"name":"Принят"}],
+    "want_code": 200
+}
+]

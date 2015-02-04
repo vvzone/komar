@@ -1,0 +1,129 @@
+Doing request: @GET http://localhost:1337/admin/api/object/post_group
+body = null
+#pg_01 @GET http://localhost:1337/admin/api/object/post_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/post_group
+body = {"id":0,"parent_id":null,"name":"Руководящие","description":"Руководящие должности"}
+Wrote body
+#pg_02 @POST http://localhost:1337/admin/api/object/post_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":66,"type":"new"}
+     got body: {"id":66,"type":"new"}
+sended body: {"id":0,"parent_id":null,"name":"Руководящие","description":"Руководящие должности"}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/post_group/66
+body = null
+#pg_03 @DELETE http://localhost:1337/admin/api/object/post_group/66 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":66,"type":"deleted"}
+     got body: {"id":66,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/post_group
+body = {"id":0,"parent_id":null,"name":"Руководящие","description":"Руководящие должности"}
+Wrote body
+#pg_04 @POST http://localhost:1337/admin/api/object/post_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":67,"type":"new"}
+     got body: {"id":67,"type":"new"}
+sended body: {"id":0,"parent_id":null,"name":"Руководящие","description":"Руководящие должности"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/post_group/67
+body = null
+#pg_05 @GET http://localhost:1337/admin/api/object/post_group/67 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":67,"parent_id":null,"name":"Руководящие","description":"Руководящие должности"}
+     got body: {"name":"Руководящие","description":"Руководящие должности","parent_id":null,"posts":[],"id":67}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/post_group
+body = {"id":0,"parent_id":null,"name":"�?нженерные","description":"�?нженерные должности"}
+Wrote body
+#pg_06 @POST http://localhost:1337/admin/api/object/post_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":68,"type":"new"}
+     got body: {"id":68,"type":"new"}
+sended body: {"id":0,"parent_id":null,"name":"�?нженерные","description":"�?нженерные должности"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/post_group/68
+body = null
+#pg_07 @GET http://localhost:1337/admin/api/object/post_group/68 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":68,"parent_id":null,"name":"�?нженерные","description":"�?нженерные должности"}
+     got body: {"name":"�?нженерные","description":"�?нженерные должности","parent_id":null,"posts":[],"id":68}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/post_group
+body = null
+#pg_08 @GET http://localhost:1337/admin/api/object/post_group : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":67,"name":"Руководящие"},{"id":68,"name":"�?нженерные"}]
+     got body: [{"id":67,"name":"Руководящие"},{"id":68,"name":"�?нженерные"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/post_group/67
+body = {"id":67,"parent_id":null,"name":"Руководство","description":"Руководящие должности"}
+Wrote body
+#pg_09 @POST http://localhost:1337/admin/api/object/post_group/67 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":67,"type":"old"}
+     got body: {"id":67,"type":"old"}
+sended body: {"id":67,"parent_id":null,"name":"Руководство","description":"Руководящие должности"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/post_group/68
+body = {"id":68,"parent_id":null,"name":"�?сполнителм","description":"Основной состав"}
+Wrote body
+#pg_10 @POST http://localhost:1337/admin/api/object/post_group/68 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":68,"type":"old"}
+     got body: {"id":68,"type":"old"}
+sended body: {"id":68,"parent_id":null,"name":"�?сполнителм","description":"Основной состав"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/post_group
+body = {"id":0,"parent_id":68,"name":"Программисты","description":"Программисты"}
+Wrote body
+#pg_11 @POST http://localhost:1337/admin/api/object/post_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":69,"type":"new"}
+     got body: {"id":69,"type":"new"}
+sended body: {"id":0,"parent_id":68,"name":"Программисты","description":"Программисты"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/post_group
+body = {"id":0,"parent_id":68,"name":"Тестировщики","description":"Вспомогательный состав"}
+Wrote body
+#pg_12 @POST http://localhost:1337/admin/api/object/post_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":70,"type":"new"}
+     got body: {"id":70,"type":"new"}
+sended body: {"id":0,"parent_id":68,"name":"Тестировщики","description":"Вспомогательный состав"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/post_group
+body = null
+#pg_13 @GET http://localhost:1337/admin/api/object/post_group : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":67,"name":"Руководство"},{"id":68,"name":"�?сполнители"},{"id":69,"name":"Программисты"},{"id":70,"name":"Тестировщики"}]
+     got body: [{"id":67,"name":"Руководство"},{"id":68,"name":"�?сполнителм"},{"id":69,"name":"Программисты"},{"id":70,"name":"Тестировщики"}]
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/post_group/68
+body = null
+#pg_14 @GET http://localhost:1337/admin/api/object/post_group/68 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":68,"parent_id":null,"name":"�?сполнители","description":"Основной состав","children":[{"id":69,"name":"Программисты","parent_id":68},{"id":70,"name":"Тестировщики","parent_id":68}]}
+     got body: {"name":"�?сполнителм","description":"Основной состав","parent_id":null,"posts":[],"id":68}
+#########
+total tasks: 14
+total successes: 9
+total fails: 5

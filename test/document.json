@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "ct_01",
+    "url": "http://localhost:1337/admin/api/object/document",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/document",
+    "method": "post",
+    "body": {"id":160,"name":"Начальник","priority":1},
+    "want":   {"answer":"ok", "entity_id":160},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/document/160",
+    "method": "delete",
+    "want":   {"answer":"ok"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/document",
+    "method": "post",
+    "body" : {"id":161,"name":"Начальник (1)","priority":1},
+    "want": {"answer":"ok", "entity_id":161},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/document/161",
+    "method": "get",
+    "want":   {"id":161,"name":"Начальник (1)","priority":1},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/document",
+    "method": "post",
+    "body" : {"id":162,"name":"Заместитель (1)","priority":1},
+    "want": {"answer":"ok", "entity_id":162},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/document/162",
+    "method": "get",
+    "want":   {"id":162,"name":"Заместитель (1)","priority":1},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/document",
+    "method": "get",
+    "want":   [{"id":161,"name":"Начальник (1)"},{"id":162,"name":"Заместитель (1)"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/document/161",
+    "method": "post",
+    "body" : {"id":161,"name":"Начальник","priority":1},
+    "want": {"answer":"ok", "entity_id":161},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/document/162",
+    "method": "post",
+    "body" : {"id":162,"name":"Заместитель","priority":1},
+    "want": {"answer":"ok", "entity_id":162},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/document",
+    "method": "get",
+    "want":   [{"id":161,"name":"Начальник"},{"id":162,"name":"Заместитель"}],
+    "want_code": 200
+}
+]

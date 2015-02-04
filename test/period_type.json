@@ -1,0 +1,103 @@
+[
+{ 
+    "tag": "pt_01",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "pt_02",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0,"code":1,"name":"минута", "short_name":"мин." },
+    "want":   {"id":21, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_03",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0, "code":2, "name":"час","short_name":"ч."},
+    "want":   {"id":22, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_04",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0, "code":3, "name":"день (рабочий)","short_name":"д.р."},
+    "want":   {"id":23, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_05",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0, "code":4, "name":"день (календарный)","short_name":"д.к."},
+    "want":   {"id":24, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_06",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0, "code":5, "name":"неделя","short_name":"н."},
+    "want":   {"id":25, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_07",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0, "code":6, "name":"месяц","short_name":"м."},
+    "want":   {"id":26, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_08",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0, "code":7, "name":"год","short_name":"г."},
+    "want":   {"id":27, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_09",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0, "code":8, "name":"точное время","short_name":"время"},
+    "want": {"id":28, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_10",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "post",
+    "body": {"id":0,"code":9,"name":"Удаляемый", "short_name":"уд." },
+    "want":   {"id":29, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_11",
+    "url": "http://localhost:1337/admin/api/object/period_type/29",
+    "method": "delete",
+    "want":   {"id":29, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "pt_012",
+    "url": "http://localhost:1337/admin/api/object/period_type",
+    "method": "get",
+    "want":   [{"id":21, "code":1, "name":"минута"},
+               {"id":22, "code":2, "name":"час"},
+               {"id":23, "code":3, "name":"день (рабочий)"},
+               {"id":24, "code":4, "name":"день (календарный)"},
+               {"id":25, "code":5, "name":"неделя"},
+               {"id":26, "code":6, "name":"месяц"},
+               {"id":27, "code":7, "name":"год"},
+               {"id":28, "code":8, "name":"точное время"}
+               ],
+    "want_code": 200
+}
+]

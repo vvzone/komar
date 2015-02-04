@@ -1,0 +1,86 @@
+[
+{ 
+    "tag": "pdt_01",
+    "url": "http://localhost:1337/admin/api/object/person_document_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/person_document_type",
+    "method": "post",
+    "body": {"id":0,"name":"Паспорт", "description":"", "is_full":true, "is_main":true, "series_mask":"[0-9]{4}", "number_mask":"[0-9]{6}", "valid_period":"P:20,P:45"},
+    "want":   {"id":48, "type":"new"},
+    "want_code": 200
+},
+
+
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/person_document_type/48",
+    "method": "delete",
+    "want":   {"id":48, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/person_document_type",
+    "method": "post",
+    "body": {"id":0,"name":"Паспорт РФ", "description":"", "is_full":true, "is_main":true, "series_mask":"[0-9]{4}", "number_mask":"[0-9]{6}", "valid_period":"P:20,P:45"},
+    "want": {"id":49, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/person_document_type/49",
+    "method": "get",
+    "want": {"id":49,"name":"Паспорт РФ", "description":"", "is_full":true, "is_main":true, "series_mask":"[0-9]{4}", "number_mask":"[0-9]{6}", "valid_period":"P:20,P:45"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/person_document_type",
+    "method": "post",
+    "body": {"id":0,"name":"Загранпаспорт РФ", "description":"", "is_full":true, "is_main":true, "series_mask":"[0-9]{4}", "number_mask":"[0-9]{7}", "valid_period":"L:5Y"},
+    "want": {"id":50, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/person_document_type/50",
+    "method": "get",
+    "want": {"id":50,"name":"Загранпаспорт РФ", "description":"", "is_full":true, "is_main":true, "series_mask":"[0-9]{4}", "number_mask":"[0-9]{7}", "valid_period":"L:5Y"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/person_document_type",
+    "method": "get",
+    "want":   [{"id":49,"name":"Паспорт РФ"},{"id":50,"name":"Загранпаспорт РФ"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/person_document_type/49",
+    "method": "post",
+    "body": {"id":49,"name":"Паспорт гражданина Российской Федерации", "description":"", "is_full":true, "is_main":true,"series_mask":"[0-9]{4}", "number_mask":"[0-9]{6}", "valid_period":"P:20,P:45"},
+    "want": {"id":49, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/person_document_type/50",
+    "method": "post",
+    "body": {"id":50,"name":"Загранпаспорт гражданина РФ", "description":"", "is_full":true, "is_main":true, "series_mask":"[0-9]{4}", "number_mask":"[0-9]{7}", "valid_period":"L:5Y"},
+    "want": {"id":50, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/person_document_type",
+    "method": "get",
+    "want":   [{"id":49,"name":"Паспорт гражданина Российской Федерации"},{"id":50,"name":"Загранпаспорт гражданина РФ"}],
+    "want_code": 200
+}
+]

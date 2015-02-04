@@ -1,0 +1,91 @@
+Doing request: @GET http://localhost:1337/admin/api/object/node_state
+body = null
+#ct_01 @GET http://localhost:1337/admin/api/object/node_state : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state
+body = {"id":0,"name":"Создан","node_level_type":{"id":119},"node_state_code":{"id":123},"is_reversible":false}
+Wrote body
+#ct_02 @POST http://localhost:1337/admin/api/object/node_state : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":127,"type":"new"}
+     got body: {"id":127,"type":"new"}
+sended body: {"id":0,"name":"Создан","node_level_type":{"id":119},"node_state_code":{"id":123},"is_reversible":false}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/node_state/127
+body = null
+#ct_03 @DELETE http://localhost:1337/admin/api/object/node_state/127 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":127,"type":"deleted"}
+     got body: {"id":127,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state
+body = {"id":0,"name":"Создан","node_level_type":{"id":119},"node_state_code":{"id":123},"is_reversible":false}
+Wrote body
+#ct_04 @POST http://localhost:1337/admin/api/object/node_state : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":128,"type":"new"}
+     got body: {"id":128,"type":"new"}
+sended body: {"id":0,"name":"Создан","node_level_type":{"id":119},"node_state_code":{"id":123},"is_reversible":false}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state/128
+body = null
+#ct_05 @GET http://localhost:1337/admin/api/object/node_state/128 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":128,"name":"Создан","node_level_type":{"id":119},"node_state_code":{"id":123},"is_reversible":false}
+     got body: {"node_level_type":{"code":1,"name":"согласование","default_node_level_name":"согласование","id":119},"node_state_code":{"code":1,"name":"Завершен","id":123},"name":"Создан","is_reversible":false,"id":128}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state
+body = {"id":0,"name":"Принят","node_level_type":{"id":119},"node_state_code":{"id":124},"is_reversible":false}
+Wrote body
+#ct_06 @POST http://localhost:1337/admin/api/object/node_state : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":129,"type":"new"}
+     got body: {"id":129,"type":"new"}
+sended body: {"id":0,"name":"Принят","node_level_type":{"id":119},"node_state_code":{"id":124},"is_reversible":false}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state/129
+body = null
+#ct_07 @GET http://localhost:1337/admin/api/object/node_state/129 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":129,"name":"Принят","node_level_type":{"id":119},"node_state_code":{"id":124},"is_reversible":false}
+     got body: {"node_level_type":{"code":1,"name":"согласование","default_node_level_name":"согласование","id":119},"node_state_code":{"code":2,"name":"Принят","id":124},"name":"Принят","is_reversible":false,"id":129}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state
+body = null
+#ct_08 @GET http://localhost:1337/admin/api/object/node_state : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":128,"name":"Создан"},{"id":129,"name":"Принят"}]
+     got body: [{"id":128,"name":"Создан"},{"id":129,"name":"Принят"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state/128
+body = {"id":128,"name":"Создание","code":1}
+Wrote body
+#ct_09 @POST http://localhost:1337/admin/api/object/node_state/128 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":128,"type":"old"}
+     got body: {"id":128,"type":"old"}
+sended body: {"id":128,"name":"Создание","code":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state
+body = null
+#ct_11 @GET http://localhost:1337/admin/api/object/node_state : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":128,"name":"Создание"},{"id":129,"name":"Принят"}]
+     got body: [{"id":128,"name":"Создание"},{"id":129,"name":"Принят"}]
+#########
+total tasks: 10
+total successes: 8
+total fails: 2

@@ -6,7 +6,8 @@ define(
         'jquery',
         'react',
         'config',
-        'app_registry'
+        'app_registry',
+        'jCookie'
     ],function($, React, Config, app_registry){
 
         var debug = (Config['debug'] && Config['debug']['debug_login'])? 1:null;
@@ -22,23 +23,20 @@ define(
             callback: function(){
                 this.props.callback('success');
             },
-            sendLogOut: function(event){
-                event.preventDefault();
-                (debug)?console.info(event):null;
-
-
-                if(app_registry.auth.token == null){
-                    //trigger ERROR
-                }
-
+            removeCookies: function(){
+                app_registry.clearAuth();
+                app_registry.router.navigate('enter', true);
+            },
+            cancelToken: function(){
                 var data = {
+                    username: app_registry.auth.username,
                     token: app_registry.auth.token
                 };
 
                 var self = this;
                 var token = '';
                 $.ajax({
-                    url: '/admin/login',
+                    url: (Config['local_server'])? Config['logout_url']['local_server']: Config['logout_url']['production_server'],
                     type:'POST',
                     data: data,
                     headers: {
@@ -66,11 +64,26 @@ define(
                     }
                 });
             },
+            sendLogOut: function(event){
+                event.preventDefault();
+                (debug)?console.info(event):null;
+
+                if(app_registry.isAuth){
+                    if(Config['csrf-token']){
+                        this.cancelToken();
+                        this.removeCookies();
+                    }else{
+                        this.removeCookies();
+                    }
+                }else{
+
+                }
+            },
             render: function(){
                 return(
                     <div>
                         <div id="user_bar">
-                            <div id="user_bar_username">Вы вошли как: {app_registry.auth.login}&nbsp;[<a href="#logout" onClick={this.sendLogOut}>Выйти</a>]</div>
+                            <div id="user_bar_username">Вы вошли как: {app_registry.auth.username}&nbsp;[<a href="#logout" onClick={this.sendLogOut}>Выйти</a>]</div>
                         </div>
                     </div>
                 );
@@ -93,13 +106,24 @@ define(
                 this.setState({
                     is_logged: false
                 });
+
+                $.cookie('token', null);
+                $.cookie('username', null);
             },
             render: function(){
                 var is_logged = false;
-                (debug)?console.info(['app_registry.auth.login', app_registry.auth.login]):null;
-                if(app_registry.auth.login != null &&  $('meta[name="csrf-token"]').attr('content') != ''){
-                    is_logged = true;
+                (debug)?console.info(['app_registry.auth.username', app_registry.auth.username]):null;
+
+                if(Config['csrf_token']){
+                    if(app_registry.auth.username != null &&  $('meta[name="csrf-token"]').attr('content') != ''){
+                        is_logged = true;
+                    }
+                }else{
+                    if(app_registry.auth.username != null){
+                        is_logged = true;
+                    }
                 }
+
                 if($('meta[name="csrf-token"]').attr('content') != ''){
                     console.info('csrf-token changed');
                 }

@@ -1,0 +1,118 @@
+[
+{ 
+    "tag": "at_01",
+    "url": "http://127.0.0.1:1337/admin/api/object/base_attribute_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "at_02",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body": {"id":0,"name":"целый","code":1},
+    "want":   {"id":89, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_03",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type/89",
+    "method": "delete",
+    "want":   {"id":89, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_1",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body" : {"id":0,"name":"целое","code":1},
+    "want":   {"id":90, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_05",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type/90",
+    "method": "get",
+    "want":   {"id":90,"name":"целое","code":1},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_2",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body":   {"id":0,"name":"вещественное","code":2},
+    "want":   {"id":91, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_3",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body":   {"id":0,"name":"текст","code":3},
+    "want":   {"id":92, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_4",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body":   {"id":0,"name":"булевский","code":4},
+    "want":   {"id":93, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_5",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body":   {"id":0,"name":"дата","code":5},
+    "want":   {"id":94, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_6",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body":   {"id":0,"name":"время","code":6},
+    "want":   {"id":95, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_7",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body":   {"id":0,"name":"дата/время","code":7},
+    "want":   {"id":96, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_8",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body":   {"id":0,"name":"список","code":8},
+    "want":   {"id":97, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_04_9",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "post",
+    "body":   {"id":0,"name":"составной","code":9},
+    "want":   {"id":98, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "at_11",
+    "url": "http://localhost:1337/admin/api/object/base_attribute_type",
+    "method": "get",
+    "want":   [{"id":90,"name":"целое"},
+               {"id":91,"name":"вещественное"},
+               {"id":92,"name":"текст"},
+               {"id":93,"name":"булевский"},
+               {"id":94,"name":"дата"},
+               {"id":95,"name":"время"},
+               {"id":96,"name":"дата/время"},
+               {"id":97,"name":"список"},
+               {"id":98,"name":"составной"}],
+    "want_code": 200
+}
+]

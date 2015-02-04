@@ -1,0 +1,23 @@
+[
+{ 
+    "tag": "ct_01",
+    "url": "http://localhost:1337/admin/api/object/client",
+    "method": "get",
+    "want":   [{"id":5,"name":"root"},{"id":41,"name":"Специальные программные технологии"},{"id":44,"name":"Специальные программные технологии"},{"id":131,"name":"Сидорников Сидор Сидорович"},{"id":132,"name":"Петров Петр Петрович"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/client/131",
+    "method": "get",
+    "want":   {"id":131, "full_name":"Сидоров Сидор Сидорович", "identification_number":"123", "is_external":false, "person":{"name":"Сидоров Сидор Сидорович","short_name":"Сидоров С.С.","first_name":"Сидор","patronymic":"Сидорович","family":"Сидоров","birth_date":"01.01.1980","birth_place":"Москва","sex":{"id":82}}},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/client/41",
+    "method": "get",
+    "want":   {"id":41,"id":38,"full_name":"Специальные программные технологии","identification_number":"0123","is_external":false, "unit":{"short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null}},
+    "want_code": 200
+}
+]

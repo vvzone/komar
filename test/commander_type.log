@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/commander_type
+body = null
+#ct_01 @GET http://localhost:1337/admin/api/object/commander_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/commander_type
+body = {"id":0,"name":"Начальник","priority":1}
+Wrote body
+#ct_02 @POST http://localhost:1337/admin/api/object/commander_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":10,"type":"new"}
+     got body: {"id":10,"type":"new"}
+sended body: {"id":0,"name":"Начальник","priority":1}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/commander_type/10
+body = null
+#ct_03 @DELETE http://localhost:1337/admin/api/object/commander_type/10 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":10,"type":"deleted"}
+     got body: {"id":10,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/commander_type
+body = {"id":0,"name":"Начальник (1)","priority":1}
+Wrote body
+#ct_04 @POST http://localhost:1337/admin/api/object/commander_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":11,"type":"new"}
+     got body: {"id":11,"type":"new"}
+sended body: {"id":0,"name":"Начальник (1)","priority":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/commander_type/11
+body = null
+#ct_05 @GET http://localhost:1337/admin/api/object/commander_type/11 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":11,"name":"Начальник (1)","priority":1}
+     got body: {"name":"Начальник (1)","priority":1,"id":11}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/commander_type
+body = {"id":0,"name":"Заместитель (1)","priority":1}
+Wrote body
+#ct_06 @POST http://localhost:1337/admin/api/object/commander_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":12,"type":"new"}
+     got body: {"id":12,"type":"new"}
+sended body: {"id":0,"name":"Заместитель (1)","priority":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/commander_type/12
+body = null
+#ct_07 @GET http://localhost:1337/admin/api/object/commander_type/12 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":12,"name":"Заместитель (1)","priority":1}
+     got body: {"name":"Заместитель (1)","priority":1,"id":12}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/commander_type
+body = null
+#ct_08 @GET http://localhost:1337/admin/api/object/commander_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":11,"name":"Начальник (1)"},{"id":12,"name":"Заместитель (1)"}]
+     got body: [{"id":11,"name":"Начальник (1)"},{"id":12,"name":"Заместитель (1)"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/commander_type/11
+body = {"id":11,"name":"Начальник","priority":1}
+Wrote body
+#ct_09 @POST http://localhost:1337/admin/api/object/commander_type/11 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":11,"type":"old"}
+     got body: {"id":11,"type":"old"}
+sended body: {"id":11,"name":"Начальник","priority":1}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/commander_type/12
+body = {"id":12,"name":"Заместитель","priority":1}
+Wrote body
+#ct_10 @POST http://localhost:1337/admin/api/object/commander_type/12 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":12,"type":"old"}
+     got body: {"id":12,"type":"old"}
+sended body: {"id":12,"name":"Заместитель","priority":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/commander_type
+body = null
+#ct_11 @GET http://localhost:1337/admin/api/object/commander_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":11,"name":"Начальник"},{"id":12,"name":"Заместитель"}]
+     got body: [{"id":11,"name":"Начальник"},{"id":12,"name":"Заместитель"}]
+#########
+total tasks: 11
+total successes: 11
+total fails: 0

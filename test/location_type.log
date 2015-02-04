@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/location_type
+body = null
+#lt_01 @GET http://localhost:1337/admin/api/object/location_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/location_type
+body = {"id":0,"name":"Деревня","short_name":"д."}
+Wrote body
+#lt_02 @POST http://localhost:1337/admin/api/object/location_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":45,"type":"new"}
+     got body: {"id":45,"type":"new"}
+sended body: {"id":0,"name":"Деревня","short_name":"д."}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/location_type/45
+body = null
+#lt_03 @DELETE http://localhost:1337/admin/api/object/location_type/45 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":45,"type":"deleted"}
+     got body: {"id":45,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/location_type
+body = {"id":0,"name":"Деревня","short_name":"дер."}
+Wrote body
+#lt_04 @POST http://localhost:1337/admin/api/object/location_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":46,"type":"new"}
+     got body: {"id":46,"type":"new"}
+sended body: {"id":0,"name":"Деревня","short_name":"дер."}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/location_type/46
+body = null
+#lt_05 @GET http://localhost:1337/admin/api/object/location_type/46 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":46,"name":"Деревня","short_name":"дер."}
+     got body: {"name":"Деревня","short_name":"дер.","id":46}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/location_type
+body = {"id":0,"name":"Город","short_name":"г."}
+Wrote body
+#lt_06 @POST http://localhost:1337/admin/api/object/location_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":47,"type":"new"}
+     got body: {"id":47,"type":"new"}
+sended body: {"id":0,"name":"Город","short_name":"г."}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/location_type/47
+body = null
+#lt_07 @GET http://localhost:1337/admin/api/object/location_type/47 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":47,"name":"Город","short_name":"г."}
+     got body: {"name":"Город","short_name":"г.","id":47}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/location_type
+body = null
+#lt_08 @GET http://localhost:1337/admin/api/object/location_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":46,"name":"Деревня"},{"id":47,"name":"Город"}]
+     got body: [{"id":46,"name":"Деревня"},{"id":47,"name":"Город"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/location_type/46
+body = {"id":46,"name":"деревня","short_name":"д."}
+Wrote body
+#lt_09 @POST http://localhost:1337/admin/api/object/location_type/46 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":46,"type":"old"}
+     got body: {"id":46,"type":"old"}
+sended body: {"id":46,"name":"деревня","short_name":"д."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/location_type/47
+body = {"id":47,"name":"город","short_name":"г."}
+Wrote body
+#lt_10 @POST http://localhost:1337/admin/api/object/location_type/47 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":47,"type":"old"}
+     got body: {"id":47,"type":"old"}
+sended body: {"id":47,"name":"город","short_name":"г."}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/location_type
+body = null
+#lt_11 @GET http://localhost:1337/admin/api/object/location_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":46,"name":"деревня"},{"id":47,"name":"город"}]
+     got body: [{"id":46,"name":"деревня"},{"id":47,"name":"город"}]
+#########
+total tasks: 11
+total successes: 11
+total fails: 0

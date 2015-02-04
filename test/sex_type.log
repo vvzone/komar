@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/sex_type
+body = null
+#c_01 @GET http://localhost:1337/admin/api/object/sex_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/sex_type
+body = {"id":0,"name":"мужской","short_name":"м"}
+Wrote body
+#ct_02 @POST http://localhost:1337/admin/api/object/sex_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":80,"type":"new"}
+     got body: {"id":80,"type":"new"}
+sended body: {"id":0,"name":"мужской","short_name":"м"}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/sex_type/80
+body = null
+#ct_03 @DELETE http://localhost:1337/admin/api/object/sex_type/80 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":80,"type":"deleted"}
+     got body: {"id":80,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/sex_type
+body = {"id":0,"name":"женский","short_name":"ж"}
+Wrote body
+#ct_04 @POST http://localhost:1337/admin/api/object/sex_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":81,"type":"new"}
+     got body: {"id":81,"type":"new"}
+sended body: {"id":0,"name":"женский","short_name":"ж"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/sex_type/81
+body = null
+#ct_05 @GET http://localhost:1337/admin/api/object/sex_type/81 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":81,"name":"женский","short_name":"ж"}
+     got body: {"name":"женский","short_name":"ж","id":81}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/sex_type
+body = {"id":0,"name":"мужской","short_name":"м"}
+Wrote body
+#ct_06 @POST http://localhost:1337/admin/api/object/sex_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":82,"type":"new"}
+     got body: {"id":82,"type":"new"}
+sended body: {"id":0,"name":"мужской","short_name":"м"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/sex_type/82
+body = null
+#ct_07 @GET http://localhost:1337/admin/api/object/sex_type/82 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":82,"name":"мужской","short_name":"м"}
+     got body: {"name":"мужской","short_name":"м","id":82}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/sex_type
+body = null
+#ct_08 @GET http://localhost:1337/admin/api/object/sex_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":81,"name":"женский"},{"id":82,"name":"мужской"}]
+     got body: [{"id":81,"name":"женский"},{"id":82,"name":"мужской"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/sex_type/81
+body = {"id":81,"name":"жен.","short_name":"ж"}
+Wrote body
+#ct_09 @POST http://localhost:1337/admin/api/object/sex_type/81 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":81,"type":"old"}
+     got body: {"id":81,"type":"old"}
+sended body: {"id":81,"name":"жен.","short_name":"ж"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/sex_type/82
+body = {"id":82,"name":"муж.","short_name":"м"}
+Wrote body
+#ct_10 @POST http://localhost:1337/admin/api/object/sex_type/82 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":82,"type":"old"}
+     got body: {"id":82,"type":"old"}
+sended body: {"id":82,"name":"муж.","short_name":"м"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/sex_type
+body = null
+#ct_11 @GET http://localhost:1337/admin/api/object/sex_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":81,"name":"жен."},{"id":82,"name":"муж."}]
+     got body: [{"id":81,"name":"жен."},{"id":82,"name":"муж."}]
+#########
+total tasks: 11
+total successes: 11
+total fails: 0

@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/street_type
+body = null
+#lt_01 @GET http://localhost:1337/admin/api/object/street_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/street_type
+body = {"id":0,"name":"Улица","short_name":"ул."}
+Wrote body
+#lt_02 @POST http://localhost:1337/admin/api/object/street_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":86,"type":"new"}
+     got body: {"id":86,"type":"new"}
+sended body: {"id":0,"name":"Улица","short_name":"ул."}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/street_type/86
+body = null
+#lt_03 @DELETE http://localhost:1337/admin/api/object/street_type/86 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":86,"type":"deleted"}
+     got body: {"id":86,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/street_type
+body = {"id":0,"name":"Улица","short_name":"ул."}
+Wrote body
+#lt_04 @POST http://localhost:1337/admin/api/object/street_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":87,"type":"new"}
+     got body: {"id":87,"type":"new"}
+sended body: {"id":0,"name":"Улица","short_name":"ул."}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/street_type/87
+body = null
+#lt_05 @GET http://localhost:1337/admin/api/object/street_type/87 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":87,"name":"Улица","short_name":"ул."}
+     got body: {"name":"Улица","short_name":"ул.","id":87}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/street_type
+body = {"id":0,"name":"Аллея","short_name":"ал."}
+Wrote body
+#lt_06 @POST http://localhost:1337/admin/api/object/street_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":88,"type":"new"}
+     got body: {"id":88,"type":"new"}
+sended body: {"id":0,"name":"Аллея","short_name":"ал."}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/street_type/88
+body = null
+#lt_07 @GET http://localhost:1337/admin/api/object/street_type/88 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":88,"name":"Аллея","short_name":"ал."}
+     got body: {"name":"Аллея","short_name":"ал.","id":88}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/street_type
+body = null
+#lt_08 @GET http://localhost:1337/admin/api/object/street_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":87,"name":"Улица"},{"id":88,"name":"Аллея"}]
+     got body: [{"id":87,"name":"Улица"},{"id":88,"name":"Аллея"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/street_type/87
+body = {"id":87,"name":"улица","short_name":"ул"}
+Wrote body
+#lt_09 @POST http://localhost:1337/admin/api/object/street_type/87 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":87,"type":"old"}
+     got body: {"id":87,"type":"old"}
+sended body: {"id":87,"name":"улица","short_name":"ул"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/street_type/88
+body = {"id":88,"name":"аллея","short_name":"алл"}
+Wrote body
+#lt_10 @POST http://localhost:1337/admin/api/object/street_type/88 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":88,"type":"old"}
+     got body: {"id":88,"type":"old"}
+sended body: {"id":88,"name":"аллея","short_name":"алл"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/street_type
+body = null
+#lt_11 @GET http://localhost:1337/admin/api/object/street_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":87,"name":"улица"},{"id":88,"name":"аллея"}]
+     got body: [{"id":87,"name":"улица"},{"id":88,"name":"аллея"}]
+#########
+total tasks: 11
+total successes: 11
+total fails: 0

@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "enum_01",
+    "url": "http://localhost:1337/admin/api/object/enumeration",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "enum_02",
+    "url": "http://localhost:1337/admin/api/object/enumeration",
+    "method": "post",
+    "body": {"id":33,"name":"Черновик", "enumeration_type":{"id":31,"name":"Черновики", "mask":"Ч-%N" , "is_draft":true , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0}, "current_index":0, "last_drop":"01.01.2015 00:00:00", "next_drop":"01.01.2015 00:00:00"},
+    "want":   {"id":33, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "enum_03",
+    "url": "http://localhost:1337/admin/api/object/enumeration/33",
+    "method": "delete",
+    "want":   {"id":33, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "enum_04",
+    "url": "http://localhost:1337/admin/api/object/enumeration",
+    "method": "post",
+    "body": {"id":34,"name":"Черновик", "enumeration_type":{"id":31,"name":"Черновики", "mask":"Ч-%N" , "is_draft":true , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0}, "current_index":0, "last_drop":"01.01.2015 00:00:00", "next_drop":"01.01.2015 00:00:00"},
+    "want": {"id":34, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "enum_05",
+    "url": "http://localhost:1337/admin/api/object/enumeration/34",
+    "method": "get",
+    "want": {"id":34,"name":"Черновик", "enumeration_type":{"id":31,"name":"Черновики", "mask":"Ч-%N" , "is_draft":true , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0}, "current_index":0, "last_drop":"01.01.2015 00:00:00", "next_drop":"01.01.2015 00:00:00"},
+    "want_code": 200
+},
+{ 
+    "tag": "enum_06",
+    "url": "http://localhost:1337/admin/api/object/enumeration",
+    "method": "post",
+    "body": {"id":35,"name":"Чистовик", "enumeration_type":{"id":32,"name":"Входящие", "mask":"В-%N" , "is_draft":false , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0}, "current_index":100, "last_drop":"01.01.2015 00:00:00", "next_drop":"01.01.2015 00:00:00"},
+    "want": {"id":35, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "enum_07",
+    "url": "http://localhost:1337/admin/api/object/enumeration/35",
+    "method": "get",
+    "want": {"id":35,"name":"Чистовик", "enumeration_type":{"id":32,"name":"Входящие", "mask":"В-%N" , "is_draft":false , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0}, "current_index":100, "last_drop":"01.01.2015 00:00:00", "next_drop":"01.01.2015 00:00:00"},
+    "want_code": 200
+},
+{ 
+    "tag": "enum_08",
+    "url": "http://localhost:1337/admin/api/object/enumeration",
+    "method": "get",
+    "want":   [{"id":34,"name":"Черновик"},{"id":35,"name":"Чистовик"}],
+    "want_code": 200
+},
+{ 
+    "tag": "enum_09",
+    "url": "http://localhost:1337/admin/api/object/enumeration/34",
+    "method": "post",
+    "body": {"id":34,"name":"Черновая", "enumeration_type":{"id":31,"name":"Черновики", "mask":"Ч-%N" , "is_draft":true , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0}, "current_index":0, "last_drop":"01.01.2015 00:00:00", "next_drop":"01.01.2015 00:00:00"},
+    "want": {"id":34, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "enum_10",
+    "url": "http://localhost:1337/admin/api/object/enumeration/35",
+    "method": "post",
+    "body": {"id":35,"name":"Чистовая", "enumeration_type":{"id":32,"name":"Входящие", "mask":"В-%N" , "is_draft":false , "is_periodic":true, "period_type":{"id":27, "code":7}, "period_length":1, "start_date":"01.01.2015 00:00:00", "start_index":0}, "current_index":100, "last_drop":"01.01.2015 00:00:00", "next_drop":"01.01.2015 00:00:00"},
+    "want": {"id":35, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "enum_11",
+    "url": "http://localhost:1337/admin/api/object/enumeration",
+    "method": "get",
+    "want":   [{"id":34,"name":"Черновая"},{"id":35,"name":"Чистовая"}],
+    "want_code": 200
+}
+]

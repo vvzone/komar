@@ -1,0 +1,17 @@
+[
+{ 
+    "tag": "pgt_01",
+    "url": "http://localhost:1337/admin/api/object/post_group_tree",
+    "method": "get",
+    "want":   [{"id":67,"name":"Руководство","children":[]},{"id":68,"name":"Исполнителм","children":[{"id":69,"name":"Программисты","children":[]},{"id":70,"name":"Тестировщики","children":[]}]}],
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_02",
+    "url": "http://localhost:1337/admin/api/object/post_group_tree/68",
+    "method": "get",
+    "want":   {"name":"Исполнителм","parent_id":null,"children":[{"name":"Тестировщики","parent_id":68,"children":[],"id":70},{"name":"Программисты","parent_id":68,"children":[],"id":69}],"id":68},
+    "want_code": 200
+}
+
+]

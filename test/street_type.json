@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "lt_01",
+    "url": "http://localhost:1337/admin/api/object/street_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "lt_02",
+    "url": "http://localhost:1337/admin/api/object/street_type",
+    "method": "post",
+    "body": {"id":0,"name":"Улица", "short_name":"ул."},
+    "want":   {"id":86, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "lt_03",
+    "url": "http://localhost:1337/admin/api/object/street_type/86",
+    "method": "delete",
+    "want":   {"id":86, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "lt_04",
+    "url": "http://localhost:1337/admin/api/object/street_type",
+    "method": "post",
+    "body": {"id":0,"name":"Улица", "short_name":"ул."},
+    "want": {"id":87, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "lt_05",
+    "url": "http://localhost:1337/admin/api/object/street_type/87",
+    "method": "get",
+    "want": {"id":87,"name":"Улица", "short_name":"ул."},
+    "want_code": 200
+},
+{ 
+    "tag": "lt_06",
+    "url": "http://localhost:1337/admin/api/object/street_type",
+    "method": "post",
+    "body": {"id":0,"name":"Аллея", "short_name":"ал."},
+    "want": {"id":88, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "lt_07",
+    "url": "http://localhost:1337/admin/api/object/street_type/88",
+    "method": "get",
+    "want": {"id":88,"name":"Аллея", "short_name":"ал."},
+    "want_code": 200
+},
+{ 
+    "tag": "lt_08",
+    "url": "http://localhost:1337/admin/api/object/street_type",
+    "method": "get",
+    "want":   [{"id":87,"name":"Улица"},{"id":88,"name":"Аллея"}],
+    "want_code": 200
+},
+{ 
+    "tag": "lt_09",
+    "url": "http://localhost:1337/admin/api/object/street_type/87",
+    "method": "post",
+    "body": {"id":87,"name":"улица", "short_name":"ул"},
+    "want": {"id":87, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "lt_10",
+    "url": "http://localhost:1337/admin/api/object/street_type/88",
+    "method": "post",
+    "body": {"id":88,"name":"аллея", "short_name":"алл"},
+    "want": {"id":88, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "lt_11",
+    "url": "http://localhost:1337/admin/api/object/street_type",
+    "method": "get",
+    "want":   [{"id":87,"name":"улица"},{"id":88,"name":"аллея"}],
+    "want_code": 200
+}
+]

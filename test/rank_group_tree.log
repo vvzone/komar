@@ -1,0 +1,19 @@
+Doing request: @GET http://localhost:1337/admin/api/object/rank_group_tree
+body = null
+#rgt_01 @GET http://localhost:1337/admin/api/object/rank_group_tree : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":55,"name":"Руководство","children":[]},{"id":56,"name":"�?сполнителм","children":[{"id":57,"name":"Программисты","children":[]},{"id":58,"name":"Тестировщики","children":[]}]}]
+     got body: [{"id":55,"name":"Руководство","children":[]},{"id":56,"name":"�?сполнителм","children":[{"id":57,"name":"Программисты","children":[]},{"id":58,"name":"Тестировщики","children":[]}]}]
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/rank_group_tree/56
+body = null
+#rgt_02 @GET http://localhost:1337/admin/api/object/rank_group_tree/56 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"name":"�?сполнителм","description":"Основной состав","parent_id":null,"children":[{"name":"Программисты","description":"Программисты","parent_id":56,"children":[],"id":57},{"name":"Тестировщики","description":"Вспомогательный состав","parent_id":56,"children":[],"id":58}],"id":56}
+     got body: {"name":"�?сполнителм","description":"Основной состав","parent_id":null,"children":[{"name":"Тестировщики","description":"Вспомогательный состав","parent_id":56,"children":[],"id":58},{"name":"Программисты","description":"Программисты","parent_id":56,"children":[],"id":57}],"id":56}
+#########
+total tasks: 2
+total successes: 1
+total fails: 1

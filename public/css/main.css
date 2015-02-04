@@ -190,6 +190,13 @@ ul.client_menu > li div.childs i.fa {
   margin-top: 4px;
   margin-right: 0;
 }
+ul.client_menu > li div.childs i.glyphicon {
+  float: left;
+  font-size: 100%;
+  margin: 5px;
+  margin-top: 2px;
+  margin-right: 0;
+}
 ul.client_menu > li div.childs i.fa-map-marker {
   font-size: 120%;
 }
@@ -236,6 +243,13 @@ ul.client_menu > li div.classificator {
 }
 ul.client_menu > li div.classificator:hover {
   background: #d4cbc9;
+}
+ul.client_menu > li div.create_new_document {
+  background: #7acafa;
+  border-top: 1px solid #a5ddff;
+}
+ul.client_menu > li div.create_new_document:hover {
+  background: #a5ddff;
 }
 ul.client_menu > li div.childs_open {
   background: #d4cbc9;

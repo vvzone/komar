@@ -1,0 +1,127 @@
+Doing request: @GET http://localhost:1337/admin/api/object/node_state_code
+body = null
+#ct_01 @GET http://localhost:1337/admin/api/object/node_state_code : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state_code
+body = {"id":0,"name":"принят","code":1}
+Wrote body
+#ct_02 @POST http://localhost:1337/admin/api/object/node_state_code : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":122,"type":"new"}
+     got body: {"id":122,"type":"new"}
+sended body: {"id":0,"name":"принят","code":1}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/node_state_code/122
+body = null
+#ct_03 @DELETE http://localhost:1337/admin/api/object/node_state_code/122 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":122,"type":"deleted"}
+     got body: {"id":122,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state_code
+body = {"id":0,"name":"Создан","code":1}
+Wrote body
+#ct_04 @POST http://localhost:1337/admin/api/object/node_state_code : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":123,"type":"new"}
+     got body: {"id":123,"type":"new"}
+sended body: {"id":0,"name":"Создан","code":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state_code/123
+body = null
+#ct_05 @GET http://localhost:1337/admin/api/object/node_state_code/123 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":123,"name":"Создан","code":1}
+     got body: {"code":1,"name":"Создан","id":123}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state_code
+body = {"id":0,"name":"Принят","code":2}
+Wrote body
+#ct_06 @POST http://localhost:1337/admin/api/object/node_state_code : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":124,"type":"new"}
+     got body: {"id":124,"type":"new"}
+sended body: {"id":0,"name":"Принят","code":2}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state_code/124
+body = null
+#ct_07 @GET http://localhost:1337/admin/api/object/node_state_code/124 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":124,"name":"Принят","code":2}
+     got body: {"code":2,"name":"Принят","id":124}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state_code
+body = {"id":0,"name":"Прочтен","code":3}
+Wrote body
+#ct_07_1 @POST http://localhost:1337/admin/api/object/node_state_code : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":125,"type":"new"}
+     got body: {"id":125,"type":"new"}
+sended body: {"id":0,"name":"Прочтен","code":3}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state_code/125
+body = null
+#ct_07_2 @GET http://localhost:1337/admin/api/object/node_state_code/125 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":125,"name":"Прочтен","code":3}
+     got body: {"code":3,"name":"Прочтен","id":125}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state_code
+body = {"id":0,"name":"�?сполнен","code":4}
+Wrote body
+#ct_07_3 @POST http://localhost:1337/admin/api/object/node_state_code : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":126,"type":"new"}
+     got body: {"id":126,"type":"new"}
+sended body: {"id":0,"name":"�?сполнен","code":4}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state_code/126
+body = null
+#ct_07_4 @GET http://localhost:1337/admin/api/object/node_state_code/126 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":126,"name":"�?сполнен","code":4}
+     got body: {"code":4,"name":"�?сполнен","id":126}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state_code
+body = null
+#ct_08 @GET http://localhost:1337/admin/api/object/node_state_code : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":123,"name":"Создан"},{"id":124,"name":"Принят"},{"id":125,"name":"Прочтен"},{"id":126,"name":"�?сполнен"}]
+     got body: [{"id":123,"name":"Создан"},{"id":124,"name":"Принят"},{"id":125,"name":"Прочтен"},{"id":126,"name":"�?сполнен"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/node_state_code/123
+body = {"id":123,"name":"Завершен","code":1}
+Wrote body
+#ct_09 @POST http://localhost:1337/admin/api/object/node_state_code/123 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":123,"type":"old"}
+     got body: {"id":123,"type":"old"}
+sended body: {"id":123,"name":"Завершен","code":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/node_state_code
+body = null
+#ct_123 @GET http://localhost:1337/admin/api/object/node_state_code : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":123,"name":"Завершен"},{"id":124,"name":"Принят"},{"id":125,"name":"Прочтен"},{"id":126,"name":"�?сполнен"}]
+     got body: [{"id":123,"name":"Завершен"},{"id":124,"name":"Принят"},{"id":125,"name":"Прочтен"},{"id":126,"name":"�?сполнен"}]
+#########
+total tasks: 14
+total successes: 11
+total fails: 3

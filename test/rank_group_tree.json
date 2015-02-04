@@ -1,0 +1,17 @@
+[
+{ 
+    "tag": "rgt_01",
+    "url": "http://localhost:1337/admin/api/object/rank_group_tree",
+    "method": "get",
+    "want":   [{"id":55,"name":"Руководство","children":[]},{"id":56,"name":"�?сполнителм","children":[{"id":57,"name":"Программисты","children":[]},{"id":58,"name":"Тестировщики","children":[]}]}],
+    "want_code": 200
+},
+{ 
+    "tag": "rgt_02",
+    "url": "http://localhost:1337/admin/api/object/rank_group_tree/56",
+    "method": "get",
+    "want":   {"name":"�?сполнителм","description":"Основной состав","parent_id":null,"children":[{"name":"Программисты","description":"Программисты","parent_id":56,"children":[],"id":57},{"name":"Тестировщики","description":"Вспомогательный состав","parent_id":56,"children":[],"id":58}],"id":56},
+    "want_code": 200
+}
+
+]

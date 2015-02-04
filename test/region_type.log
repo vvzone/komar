@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/region_type
+body = null
+#rt_01 @GET http://localhost:1337/admin/api/object/region_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region_type
+body = {"id":0,"name":"автономия","short_name":"а.о."}
+Wrote body
+#rt_02 @POST http://localhost:1337/admin/api/object/region_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":71,"type":"new"}
+     got body: {"id":71,"type":"new"}
+sended body: {"id":0,"name":"автономия","short_name":"а.о."}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/region_type/71
+body = null
+#rt_03 @DELETE http://localhost:1337/admin/api/object/region_type/71 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":71,"type":"deleted"}
+     got body: {"id":71,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region_type
+body = {"id":0,"name":"область-1","short_name":"обл."}
+Wrote body
+#rt_04 @POST http://localhost:1337/admin/api/object/region_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":72,"type":"new"}
+     got body: {"id":72,"type":"new"}
+sended body: {"id":0,"name":"область-1","short_name":"обл."}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/region_type/72
+body = null
+#rt_05 @GET http://localhost:1337/admin/api/object/region_type/72 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":72,"name":"область-1","short_name":"обл."}
+     got body: {"name":"область-1","short_name":"обл.","id":72}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region_type
+body = {"id":0,"name":"край-1","short_name":"обл."}
+Wrote body
+#rt_06 @POST http://localhost:1337/admin/api/object/region_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":73,"type":"new"}
+     got body: {"id":73,"type":"new"}
+sended body: {"id":0,"name":"край-1","short_name":"обл."}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/region_type/73
+body = null
+#rt_07 @GET http://localhost:1337/admin/api/object/region_type/73 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":73,"name":"край-1","short_name":"кр."}
+     got body: {"name":"край-1","short_name":"обл.","id":73}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/region_type
+body = null
+#rt_08 @GET http://localhost:1337/admin/api/object/region_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":72,"name":"область-1"},{"id":73,"name":"край-1"}]
+     got body: [{"id":72,"name":"область-1"},{"id":73,"name":"край-1"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region_type/72
+body = {"id":72,"name":"область","short_name":"обл."}
+Wrote body
+#rt_09 @POST http://localhost:1337/admin/api/object/region_type/72 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":72,"type":"old"}
+     got body: {"id":72,"type":"old"}
+sended body: {"id":72,"name":"область","short_name":"обл."}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region_type/73
+body = {"id":73,"name":"край","short_name":"кр."}
+Wrote body
+#rt_10 @POST http://localhost:1337/admin/api/object/region_type/73 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":73,"type":"old"}
+     got body: {"id":73,"type":"old"}
+sended body: {"id":73,"name":"край","short_name":"кр."}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/region_type
+body = null
+#rt_11 @GET http://localhost:1337/admin/api/object/region_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":72,"name":"область"},{"id":73,"name":"край"}]
+     got body: [{"id":72,"name":"область"},{"id":73,"name":"край"}]
+#########
+total tasks: 11
+total successes: 10
+total fails: 1

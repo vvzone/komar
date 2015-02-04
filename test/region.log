@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/region
+body = null
+#r_01 @GET http://localhost:1337/admin/api/object/region : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region
+body = {"id":0,"name":"Брянск","code":"32","description":"Передовая","region_type":{"id":72}}
+Wrote body
+#r_02 @POST http://localhost:1337/admin/api/object/region : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":74,"type":"new"}
+     got body: {"id":74,"type":"new"}
+sended body: {"id":0,"name":"Брянск","code":"32","description":"Передовая","region_type":{"id":72}}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/region/74
+body = null
+#r_03 @DELETE http://localhost:1337/admin/api/object/region/74 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":74,"type":"deleted"}
+     got body: {"id":74,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region
+body = {"id":0,"name":"Брянск","code":"32","description":"Передовая","region_type":{"id":72}}
+Wrote body
+#r_04 @POST http://localhost:1337/admin/api/object/region : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":75,"type":"new"}
+     got body: {"id":75,"type":"new"}
+sended body: {"id":0,"name":"Брянск","code":"32","description":"Передовая","region_type":{"id":72}}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/region/75
+body = null
+#r_05 @GET http://localhost:1337/admin/api/object/region/75 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":75,"name":"Брянск","code":"32","description":"Передовая","region_type":{"id":72}}
+     got body: {"name":"Брянск","code":32,"region_type":{"name":"область","short_name":"обл.","id":72},"description":"Передовая","id":75}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region
+body = {"id":0,"name":"Краснодар","code":"15","description":"Тыл","region_type":{"id":73}}
+Wrote body
+#r_06 @POST http://localhost:1337/admin/api/object/region : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":76,"type":"new"}
+     got body: {"id":76,"type":"new"}
+sended body: {"id":0,"name":"Краснодар","code":"15","description":"Тыл","region_type":{"id":73}}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/region/76
+body = null
+#r_07 @GET http://localhost:1337/admin/api/object/region/76 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":76,"name":"Краснодар","code":"15","description":"Тыл","region_type":{"id":73}}
+     got body: {"name":"Краснодар","code":15,"region_type":{"name":"край","short_name":"кр.","id":73},"description":"Тыл","id":76}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/region
+body = null
+#r_08 @GET http://localhost:1337/admin/api/object/region : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":75,"name":"Брянск"},{"id":76,"name":"Краснодар"}]
+     got body: [{"id":75,"name":"Брянск"},{"id":76,"name":"Краснодар"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region/75
+body = {"id":75,"name":"Брянская","code":"32","description":"Передовая","region_type":{"id":72}}
+Wrote body
+#r_09 @POST http://localhost:1337/admin/api/object/region/75 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":75,"type":"old"}
+     got body: {"id":75,"type":"old"}
+sended body: {"id":75,"name":"Брянская","code":"32","description":"Передовая","region_type":{"id":72}}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/region/76
+body = {"id":76,"name":"Краснодарский","code":"15","description":"Тыл","region_type":{"id":73}}
+Wrote body
+#r_10 @POST http://localhost:1337/admin/api/object/region/76 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":76,"type":"old"}
+     got body: {"id":76,"type":"old"}
+sended body: {"id":76,"name":"Краснодарский","code":"15","description":"Тыл","region_type":{"id":73}}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/region
+body = null
+#r_11 @GET http://localhost:1337/admin/api/object/region : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":75,"name":"Брянская"},{"id":76,"name":"Краснодарский"}]
+     got body: [{"id":75,"name":"Брянская"},{"id":76,"name":"Краснодарский"}]
+#########
+total tasks: 11
+total successes: 9
+total fails: 2

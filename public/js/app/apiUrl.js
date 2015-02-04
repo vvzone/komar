@@ -30,7 +30,7 @@ define(
         var URLs = {
             client_menus: function(){
                 var local = host + sys_prefix + "/client_menu";
-                var production = host + sys_prefix + "/client_menu_tree/0";
+                var production = host + sys_prefix + "/client_menu_tree";
 
                 return (local_server)? local: production;
             },
@@ -43,7 +43,7 @@ define(
             },
             client_menus_right: function(){
                 var local = host + sys_prefix + "/client_menu_right";
-                var production = host + sys_prefix + "/client_menu_tree/0";
+                var production = host + sys_prefix + "/client_menu_tree";
 
                 return (local_server)? local: production;
             },
@@ -56,7 +56,7 @@ define(
             },
             menus: function(){
                 var local = host + sys_prefix + "/menu";
-                var production = host + sys_prefix + "/admin_menu_tree/0";
+                var production = host + sys_prefix + "/admin_menu_tree";
 
                 return (local_server)? local: production;
             },
@@ -110,14 +110,14 @@ define(
             /* Документы */
             documents: function() {
                 var local = host + prefix + "/document";
-                var production = host + prefix + "/documents";
+                var production = host + prefix + "/document";
 
                 return (local_server)? local: production;
             },
             document: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
                 var local = host + prefix + "/document/"+ id;
-                var production = host + prefix + "/documents/"+ id;
+                var production = host + prefix + "/document/"+ id;
 
                 return (local_server)? local: production;
             },

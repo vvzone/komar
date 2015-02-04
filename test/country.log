@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/country
+body = null
+#c_01 @GET http://localhost:1337/admin/api/object/country : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/country
+body = {"id":0,"name":"РФ","code":"043","full_name":"Россия"}
+Wrote body
+#ct_02 @POST http://localhost:1337/admin/api/object/country : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":13,"type":"new"}
+     got body: {"id":13,"type":"new"}
+sended body: {"id":0,"name":"РФ","code":"043","full_name":"Россия"}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/country/13
+body = null
+#ct_03 @DELETE http://localhost:1337/admin/api/object/country/13 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":13,"type":"deleted"}
+     got body: {"id":13,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/country
+body = {"id":0,"name":"Рос","code":"843","full_name":"Россия"}
+Wrote body
+#ct_04 @POST http://localhost:1337/admin/api/object/country : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":14,"type":"new"}
+     got body: {"id":14,"type":"new"}
+sended body: {"id":0,"name":"Рос","code":"843","full_name":"Россия"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/country/14
+body = null
+#ct_05 @GET http://localhost:1337/admin/api/object/country/14 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":14,"name":"Рос","code":"843","full_name":"Россия"}
+     got body: {"code":"843","name":"Рос","full_name":"Россия","id":14}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/country
+body = {"id":0,"name":"Укр","code":"844","full_name":"Украина"}
+Wrote body
+#ct_06 @POST http://localhost:1337/admin/api/object/country : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":15,"type":"new"}
+     got body: {"id":15,"type":"new"}
+sended body: {"id":0,"name":"Укр","code":"844","full_name":"Украина"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/country/15
+body = null
+#ct_07 @GET http://localhost:1337/admin/api/object/country/15 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":15,"name":"Укр","code":"844","full_name":"Украина"}
+     got body: {"code":"844","name":"Укр","full_name":"Украина","id":15}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/country
+body = null
+#ct_08 @GET http://localhost:1337/admin/api/object/country : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":14,"name":"Рос"},{"id":15,"name":"Укр"}]
+     got body: [{"id":14,"name":"Рос"},{"id":15,"name":"Укр"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/country/14
+body = {"id":14,"name":"Россия","code":"043","full_name":"Россия"}
+Wrote body
+#ct_09 @POST http://localhost:1337/admin/api/object/country/14 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":14,"type":"old"}
+     got body: {"id":14,"type":"old"}
+sended body: {"id":14,"name":"Россия","code":"043","full_name":"Россия"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/country/15
+body = {"id":15,"name":"Украина","code":"044","full_name":"Украина"}
+Wrote body
+#ct_10 @POST http://localhost:1337/admin/api/object/country/15 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":15,"type":"old"}
+     got body: {"id":15,"type":"old"}
+sended body: {"id":15,"name":"Украина","code":"044","full_name":"Украина"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/country
+body = null
+#ct_11 @GET http://localhost:1337/admin/api/object/country : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":14,"name":"Россия"},{"id":15,"name":"Украина"}]
+     got body: [{"id":14,"name":"Россия"},{"id":15,"name":"Украина"}]
+#########
+total tasks: 11
+total successes: 11
+total fails: 0

@@ -1,0 +1,27 @@
+Doing request: @GET http://localhost:1337/admin/api/object/client
+body = null
+#ct_01 @GET http://localhost:1337/admin/api/object/client : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":5,"name":"root"},{"id":41,"name":"Специальные программные технологии"},{"id":44,"name":"Специальные программные технологии"},{"id":131,"name":"Сидорников Сидор Сидорович"},{"id":132,"name":"Петров Петр Петрович"}]
+     got body: [{"id":5,"name":"root"},{"id":41,"name":"Специальные программные технологии"},{"id":44,"name":"Специальные программные технологии"},{"id":131,"name":"Сидорников Сидор Сидорович"},{"id":132,"name":"Петров Петр Петрович"}]
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/client/131
+body = null
+#ct_02 @GET http://localhost:1337/admin/api/object/client/131 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":131,"full_name":"Сидоров Сидор Сидорович","identification_number":"123","is_external":false,"person":{"name":"Сидоров Сидор Сидорович","short_name":"Сидоров С.С.","first_name":"Сидор","patronymic":"Сидорович","family":"Сидоров","birth_date":"01.01.1980","birth_place":"Москва","sex":{"id":82}}}
+     got body: {"is_external":false,"identification_number":"123","full_name":"Сидорников Сидор Сидорович","person":{"first_name":"Сидор","patronymic":"Сидорович","family":"Сидорников","birth_date":"01.01.1980","birth_place":"Москва","sex":{"name":"муж.","short_name":"м","id":null},"inn":null,"citizenship":null,"deputy":null,"id":131},"unit":null,"id":131}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/client/41
+body = null
+#ct_03 @GET http://localhost:1337/admin/api/object/client/41 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":38,"full_name":"Специальные программные технологии","identification_number":"0123","is_external":false,"unit":{"short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null}}
+     got body: {"is_external":false,"identification_number":"0123","full_name":"Специальные программные технологии","person":null,"unit":{"short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"id":41},"id":41}
+#########
+total tasks: 3
+total successes: 1
+total fails: 2

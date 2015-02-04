@@ -1,0 +1,108 @@
+[
+{ 
+    "tag": "rg_01",
+    "url": "http://localhost:1337/admin/api/object/rank_group",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "rg_02",
+    "url": "http://localhost:1337/admin/api/object/rank_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":null, "name":"Руководящие","description":"Руководящие должности"},
+    "want":   {"id":54, "type":"new"},
+    "want_code": 200
+},
+
+{ 
+    "tag": "rg_03",
+    "url": "http://localhost:1337/admin/api/object/rank_group/54",
+    "method": "delete",
+    "want":   {"id":54, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_04",
+    "url": "http://localhost:1337/admin/api/object/rank_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":null, "name":"Руководящие","description":"Руководящие должности"},
+    "want": {"id":55, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_05",
+    "url": "http://localhost:1337/admin/api/object/rank_group/55",
+    "method": "get",
+    "want": {"id":55,"parent_id":null, "name":"Руководящие","description":"Руководящие должности"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_06",
+    "url": "http://localhost:1337/admin/api/object/rank_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":null, "name":"Инженерные","description":"Инженерные должности"},
+    "want": {"id":56, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_07",
+    "url": "http://localhost:1337/admin/api/object/rank_group/56",
+    "method": "get",
+    "want": {"id":56,"parent_id":null, "name":"Инженерные","description":"Инженерные должности"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_08",
+    "url": "http://localhost:1337/admin/api/object/rank_group",
+    "method": "get",
+    "want":   [{"id":55,"name":"Руководящие"},{"id":56,"name":"Инженерные"}],
+    "want_code": 200
+},
+{ 
+    "tag": "rg_09",
+    "url": "http://localhost:1337/admin/api/object/rank_group/55",
+    "method": "post",
+    "body": {"id":55,"parent_id":null, "name":"Руководство","description":"Руководящие должности"},
+    "want": {"id":55, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_10",
+    "url": "http://localhost:1337/admin/api/object/rank_group/56",
+    "method": "post",
+    "body": {"id":56,"parent_id":null, "name":"Исполнителм","description":"Основной состав"},
+    "want": {"id":56, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_11",
+    "url": "http://localhost:1337/admin/api/object/rank_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":56, "name":"Программисты","description":"Программисты"},
+    "want": {"id":57, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_12",
+    "url": "http://localhost:1337/admin/api/object/rank_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":56, "name":"Тестировщики","description":"Вспомогательный состав"},
+    "want": {"id":58, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "rg_13",
+    "url": "http://localhost:1337/admin/api/object/rank_group",
+    "method": "get",
+    "want":   [{"id":55,"name":"Руководство"},{"id":56,"name":"Исполнители"},{"id":57,"name":"Программисты"},{"id":58,"name":"Тестировщики"}],
+    "want_code": 200
+},
+{ 
+    "tag": "rg_14",
+    "url": "http://localhost:1337/admin/api/object/rank_group/56",
+    "method": "get",
+    "want": {"id":56,"parent_id":null, "name":"Исполнители", "description":"Основной состав"},
+    "want_code": 200
+}
+]

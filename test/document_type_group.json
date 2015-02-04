@@ -1,0 +1,107 @@
+[
+{ 
+    "tag": "dtg_01",
+    "url": "http://localhost:1337/admin/api/object/document_type_group",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_02",
+    "url": "http://localhost:1337/admin/api/object/document_type_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":null, "name":"Хозяйственные","short_name":"Хоз", "is_service":false},
+    "want": {"id":16, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_03",
+    "url": "http://localhost:1337/admin/api/object/document_type_group/16",
+    "method": "delete",
+    "want": {"id":16, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_04",
+    "url": "http://localhost:1337/admin/api/object/document_type_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":null, "name":"Хозяйство","short_name":"Хоз", "is_service":false},
+    "want": {"id":17, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_05",
+    "url": "http://localhost:1337/admin/api/object/document_type_group/17",
+    "method": "get",
+    "want": {"id":17,"parent_id":null, "name":"Хозяйство","short_name":"Хоз", "is_service":false,"children":[]},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_06",
+    "url": "http://localhost:1337/admin/api/object/document_type_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":null, "name":"Военка","short_name":"Воен", "is_service":false,"children":[]},
+    "want": {"id":18, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_07",
+    "url": "http://localhost:1337/admin/api/object/document_type_group/18",
+    "method": "get",
+    "want": {"id":18,"parent_id":null, "name":"Военка","short_name":"Воен", "is_service":false,"children":[]},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_08",
+    "url": "http://localhost:1337/admin/api/object/document_type_group",
+    "method": "get",
+    "want":   [{"id":17,"name":"Хозяйство"},{"id":18,"name":"Военка"}],
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_09",
+    "url": "http://localhost:1337/admin/api/object/document_type_group/17",
+    "method": "post",
+    "body": {"id":17,"parent_id":null, "name":"Хозяйственные","short_name":"Хоз", "is_service":false,"children":[]},
+    "want": {"id":17, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_10",
+    "url": "http://localhost:1337/admin/api/object/document_type_group/18",
+    "method": "post",
+    "body": {"id":18,"parent_id":null, "name":"Военные","short_name":"В", "is_service":false,"children":[]},
+    "want": {"id":18, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_11",
+    "url": "http://localhost:1337/admin/api/object/document_type_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":18, "name":"Боевые","short_name":"Бой", "is_service":false,"children":[]},
+    "want": {"id":19, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_12",
+    "url": "http://localhost:1337/admin/api/object/document_type_group",
+    "method": "post",
+    "body": {"id":0,"parent_id":18, "name":"Учебные","short_name":"Уч", "is_service":false,"children":[]},
+    "want": {"id":20, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_13",
+    "url": "http://localhost:1337/admin/api/object/document_type_group",
+    "method": "get",
+    "want":   [{"id":17,"name":"Хозяйственные"},{"id":18,"name":"Военные"},{"id":19,"name":"Боевые"},{"id":20,"name":"Учебные"}],
+    "want_code": 200
+},
+{ 
+    "tag": "dtg_14",
+    "url": "http://localhost:1337/admin/api/object/document_type_group/18",
+    "method": "get",
+    "want": {"id":18,"parent_id":null, "name":"Военные","short_name":"В", "is_service":false, "children":[{"id":19,"name":"Боевые","short_name":"Бой","is_service":false},{"id":20,"name":"Учебные","short_name":"Уч","is_service":false}]},
+    "want_code": 200
+}
+]

@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "c_01",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type",
+    "method": "post",
+    "body": {"id":0,"name":"секретно", "short_name":"сек.", "single_numeration":true, "level":1},
+    "want": {"id":77, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type/77",
+    "method": "delete",
+    "want": {"id":77, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type",
+    "method": "post",
+    "body": {"id":0,"name":"несекретно", "short_name":"нс", "single_numeration":false, "level":1},
+    "want": {"id":78, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type/78",
+    "method": "get",
+    "want": {"id":78,"name":"несекретно", "short_name":"нс", "single_numeration":false, "level":1},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type",
+    "method": "post",
+    "body": {"id":0,"name":"секретно", "short_name":"сек.", "single_numeration":true, "level":1},
+    "want": {"id":79, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type/79",
+    "method": "get",
+    "want": {"id":79,"name":"секретно", "short_name":"сек.", "single_numeration":true, "level":1},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type",
+    "method": "get",
+    "want":   [{"id":78,"name":"несекретно"},{"id":79,"name":"секретно"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type/78",
+    "method": "post",
+    "body": {"id":78,"name":"обычный", "short_name":"орд.", "single_numeration":false, "level":1},
+    "want": {"id":78, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type/79",
+    "method": "post",
+    "body": {"id":79,"name":"секретный", "short_name":"сек.", "single_numeration":true, "level":1},
+    "want": {"id":79, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/secrecy_type",
+    "method": "get",
+    "want":   [{"id":78,"name":"обычный"},{"id":79,"name":"секретный"}],
+    "want_code": 200
+}
+]

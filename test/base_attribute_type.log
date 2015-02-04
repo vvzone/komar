@@ -1,0 +1,135 @@
+Doing request: @GET http://127.0.0.1:1337/admin/api/object/base_attribute_type
+body = null
+#at_01 @GET http://127.0.0.1:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"целый","code":1}
+Wrote body
+#at_02 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":89,"type":"new"}
+     got body: {"id":89,"type":"new"}
+sended body: {"id":0,"name":"целый","code":1}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/base_attribute_type/89
+body = null
+#at_03 @DELETE http://localhost:1337/admin/api/object/base_attribute_type/89 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":89,"type":"deleted"}
+     got body: {"id":89,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"целое","code":1}
+Wrote body
+#at_04_1 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":90,"type":"new"}
+     got body: {"id":90,"type":"new"}
+sended body: {"id":0,"name":"целое","code":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/base_attribute_type/90
+body = null
+#at_05 @GET http://localhost:1337/admin/api/object/base_attribute_type/90 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":90,"name":"целое","code":1}
+     got body: {"code":1,"name":"целое","id":90}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"вещественное","code":2}
+Wrote body
+#at_04_2 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":91,"type":"new"}
+     got body: {"id":91,"type":"new"}
+sended body: {"id":0,"name":"вещественное","code":2}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"текст","code":3}
+Wrote body
+#at_04_3 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":92,"type":"new"}
+     got body: {"id":92,"type":"new"}
+sended body: {"id":0,"name":"текст","code":3}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"булевский","code":4}
+Wrote body
+#at_04_4 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":93,"type":"new"}
+     got body: {"id":93,"type":"new"}
+sended body: {"id":0,"name":"булевский","code":4}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"дата","code":5}
+Wrote body
+#at_04_5 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":94,"type":"new"}
+     got body: {"id":94,"type":"new"}
+sended body: {"id":0,"name":"дата","code":5}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"время","code":6}
+Wrote body
+#at_04_6 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":95,"type":"new"}
+     got body: {"id":95,"type":"new"}
+sended body: {"id":0,"name":"время","code":6}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"дата/время","code":7}
+Wrote body
+#at_04_7 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":96,"type":"new"}
+     got body: {"id":96,"type":"new"}
+sended body: {"id":0,"name":"дата/время","code":7}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"список","code":8}
+Wrote body
+#at_04_8 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":97,"type":"new"}
+     got body: {"id":97,"type":"new"}
+sended body: {"id":0,"name":"список","code":8}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/base_attribute_type
+body = {"id":0,"name":"составной","code":9}
+Wrote body
+#at_04_9 @POST http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":98,"type":"new"}
+     got body: {"id":98,"type":"new"}
+sended body: {"id":0,"name":"составной","code":9}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/base_attribute_type
+body = null
+#at_11 @GET http://localhost:1337/admin/api/object/base_attribute_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":90,"name":"целое"},{"id":91,"name":"вещественное"},{"id":92,"name":"текст"},{"id":93,"name":"булевский"},{"id":94,"name":"дата"},{"id":95,"name":"время"},{"id":96,"name":"дата/время"},{"id":97,"name":"список"},{"id":98,"name":"составной"}]
+     got body: [{"id":90,"name":"целое"},{"id":91,"name":"вещественное"},{"id":92,"name":"текст"},{"id":93,"name":"булевский"},{"id":94,"name":"дата"},{"id":95,"name":"время"},{"id":96,"name":"дата/время"},{"id":97,"name":"список"},{"id":98,"name":"составной"}]
+#########
+total tasks: 14
+total successes: 14
+total fails: 0

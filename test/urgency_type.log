@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/urgency_type
+body = null
+#c_01 @GET http://localhost:1337/admin/api/object/urgency_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/urgency_type
+body = {"id":0,"name":"срочно","short_name":"ср","level":1}
+Wrote body
+#ct_02 @POST http://localhost:1337/admin/api/object/urgency_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":83,"type":"new"}
+     got body: {"id":83,"type":"new"}
+sended body: {"id":0,"name":"срочно","short_name":"ср","level":1}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/urgency_type/83
+body = null
+#ct_03 @DELETE http://localhost:1337/admin/api/object/urgency_type/83 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":83,"type":"deleted"}
+     got body: {"id":83,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/urgency_type
+body = {"id":0,"name":"несрочно","short_name":"нс","level":0}
+Wrote body
+#ct_04 @POST http://localhost:1337/admin/api/object/urgency_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":84,"type":"new"}
+     got body: {"id":84,"type":"new"}
+sended body: {"id":0,"name":"несрочно","short_name":"нс","level":0}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/urgency_type/84
+body = null
+#ct_05 @GET http://localhost:1337/admin/api/object/urgency_type/84 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":84,"name":"несрочно","short_name":"нс","level":0}
+     got body: {"name":"несрочно","short_name":"нс","level":0,"id":84}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/urgency_type
+body = {"id":0,"name":"срочно","short_name":"ср","level":1}
+Wrote body
+#ct_06 @POST http://localhost:1337/admin/api/object/urgency_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":85,"type":"new"}
+     got body: {"id":85,"type":"new"}
+sended body: {"id":0,"name":"срочно","short_name":"ср","level":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/urgency_type/85
+body = null
+#ct_07 @GET http://localhost:1337/admin/api/object/urgency_type/85 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":85,"name":"срочно","short_name":"ср","level":1}
+     got body: {"name":"срочно","short_name":"ср","level":1,"id":85}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/urgency_type
+body = null
+#ct_08 @GET http://localhost:1337/admin/api/object/urgency_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":84,"name":"несрочно"},{"id":85,"name":"срочно"}]
+     got body: [{"id":84,"name":"несрочно"},{"id":85,"name":"срочно"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/urgency_type/84
+body = {"id":84,"name":"обычный","short_name":"нс.","level":0}
+Wrote body
+#ct_09 @POST http://localhost:1337/admin/api/object/urgency_type/84 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":84,"type":"old"}
+     got body: {"id":84,"type":"old"}
+sended body: {"id":84,"name":"обычный","short_name":"нс.","level":0}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/urgency_type/85
+body = {"id":85,"name":"срочный","short_name":"с.","level":1}
+Wrote body
+#ct_10 @POST http://localhost:1337/admin/api/object/urgency_type/85 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":85,"type":"old"}
+     got body: {"id":85,"type":"old"}
+sended body: {"id":85,"name":"срочный","short_name":"с.","level":1}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/urgency_type
+body = null
+#ct_11 @GET http://localhost:1337/admin/api/object/urgency_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":84,"name":"обычный"},{"id":85,"name":"срочный"}]
+     got body: [{"id":84,"name":"обычный"},{"id":85,"name":"срочный"}]
+#########
+total tasks: 11
+total successes: 11
+total fails: 0

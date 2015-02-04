@@ -1,0 +1,86 @@
+[
+{ 
+    "tag": "un_01",
+    "url": "http://localhost:1337/admin/api/object/unit",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "un_02",
+    "url": "http://localhost:1337/admin/api/object/unit",
+    "method": "post",
+    "body": {"id":0,"name":"СПТ", "short_name":"СПТ", "own_numeration":true, "is_legal":true, "parent_id":null, "unit_commanders":[], "client":{"full_name":"СПТ","identification_number":"3424523","is_external":false}, "allowed_enumerations":[{"id":34}, {"id":35}]},
+    "want":   {"id":38, "type":"new"},
+    "want_code": 200
+},
+
+
+{ 
+    "tag": "un_03",
+    "url": "http://localhost:1337/admin/api/object/unit/38",
+    "method": "delete",
+    "want":   {"id":38, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "un_04",
+    "url": "http://localhost:1337/admin/api/object/unit",
+    "method": "post",
+    "body": {"id":0,"name":"СПТ", "short_name":"СПТ", "own_numeration":true, "is_legal":true, "parent_id":null, "unit_commanders":[], "client":{"id":37, "full_name":"Специальные программные технологии", "identification_number":"0123", "is_external":false}, "allowed_enumerations":[{"id":34}, {"id":35}]},
+    "want": {"id":41, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "un_05",
+    "url": "http://localhost:1337/admin/api/object/unit/41",
+    "method": "get",
+    "want": {"id":41,"name":"СПТ", "short_name":"СПТ", "own_numeration":true, "is_legal":true, "parent_id":null, "unit_commanders":[], "client":{"id":37, "full_name":"Специальные программные технологии", "identification_number":"0123", "is_external":false }, "allowed_enumerations":[{"id":34}, {"id":35}]},
+    "want_code": 200
+},
+{ 
+    "tag": "un_06",
+    "url": "http://localhost:1337/admin/api/object/unit",
+    "method": "post",
+    "body": {"id":0,"name":"СПТ/ОРСПО", "short_name":"ОРСПО", "own_numeration":false, "is_legal":false, "parent_id":37, "unit_commanders":[], "client":{"id":38, "full_name":"Отдел разработки СПО", "identification_number":"0123.1", "is_external":false}, "allowed_enumerations":[{"id":34}, {"id":35}]},
+    "want": {"id":44, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "un_07",
+    "url": "http://localhost:1337/admin/api/object/unit/44",
+    "method": "get",
+    "want": {"id":44,"name":"ОРСПО", "short_name":"ОРСПО", "own_numeration":false, "is_legal":false, "parent_id":37, "unit_commanders":[], "client":{"id":38, "full_name":"Отдел разработки СПО", "identification_number":"0123.1", "is_external":false}, "allowed_enumerations":[{"id":34}, {"id":35}]},
+    "want_code": 200
+},
+{ 
+    "tag": "un_08",
+    "url": "http://localhost:1337/admin/api/object/unit",
+    "method": "get",
+    "want":   [{"id":41,"name":"СПТ"},{"id":44,"name":"ОРСПО"}],
+    "want_code": 200
+},
+{ 
+    "tag": "un_09",
+    "url": "http://localhost:1337/admin/api/object/unit/37",
+    "method": "post",
+    "body": {"id":41,"name":"ООО \"СПТ\"", "short_name":"СПТ", "own_numeration":true, "is_legal":true, "parent_id":null, "unit_commanders":[], "client":{"id":38, "full_name":"Специальные программные технологии", "identification_number":"0123", "is_external":false}, "allowed_enumerations":[{"id":34}, {"id":35}]},
+    "want": {"id":41, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "un_10",
+    "url": "http://localhost:1337/admin/api/object/unit/38",
+    "method": "post",
+    "body": {"id":44,"name":"СПТ/ОРСПО", "short_name":"ОРСПО", "own_numeration":false, "is_legal":false, "parent_id":37, "unit_commanders":[], "client":{"id":38, "full_name":"Отдел разработки СПО", "identification_number":"0123.1", "is_external":false}, "allowed_enumerations":[{"id":34}, {"id":35}]},
+    "want": {"id":44, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "un_11",
+    "url": "http://localhost:1337/admin/api/object/unit",
+    "method": "get",
+    "want":   [{"id":41,"name":"ООО \"СПТ\""},{"id":44,"name":"СПТ/ОРСПО"}],
+    "want_code": 200
+}
+]

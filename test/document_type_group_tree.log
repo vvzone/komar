@@ -1,0 +1,19 @@
+Doing request: @GET http://localhost:1337/admin/api/object/document_type_group_tree
+body = null
+#dtgt_01 @GET http://localhost:1337/admin/api/object/document_type_group_tree : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":17,"name":"Хозяйственные","children":[]},{"id":18,"name":"Военные","children":[{"id":20,"name":"Учебные","children":[]},{"id":19,"name":"Боевые","children":[]}]}]
+     got body: [{"id":17,"name":"Хозяйственные","children":[]},{"id":18,"name":"Военные","children":[{"id":19,"name":"Боевые","children":[]},{"id":20,"name":"Учебные","children":[]}]}]
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/document_type_group_tree/18
+body = null
+#dtg_02 @GET http://localhost:1337/admin/api/object/document_type_group_tree/18 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"parent_id":null,"name":"Военные","short_name":"В","is_service":false,"children":[{"parent_id":18,"name":"Боевые","short_name":"Бой","is_service":false,"children":[],"id":19},{"parent_id":18,"name":"Учебные","short_name":"Уч","is_service":false,"children":[],"id":20}],"id":18}
+     got body: {"parent_id":null,"name":"Военные","short_name":"В","is_service":false,"children":[{"parent_id":18,"name":"Учебные","short_name":"Уч","is_service":false,"children":[],"id":20},{"parent_id":18,"name":"Боевые","short_name":"Бой","is_service":false,"children":[],"id":19}],"id":18}
+#########
+total tasks: 2
+total successes: 0
+total fails: 2

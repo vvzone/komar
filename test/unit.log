@@ -1,0 +1,93 @@
+Doing request: @GET http://localhost:1337/admin/api/object/unit
+body = null
+#un_01 @GET http://localhost:1337/admin/api/object/unit : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/unit
+body = {"id":0,"name":"СПТ","short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"unit_commanders":[],"client":{"full_name":"СПТ","identification_number":"3424523","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+Wrote body
+#un_02 @POST http://localhost:1337/admin/api/object/unit : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":38,"type":"new"}
+     got body: {"id":38,"type":"new"}
+sended body: {"id":0,"name":"СПТ","short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"unit_commanders":[],"client":{"full_name":"СПТ","identification_number":"3424523","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/unit/38
+body = null
+#un_03 @DELETE http://localhost:1337/admin/api/object/unit/38 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":38,"type":"deleted"}
+     got body: {"id":38,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/unit
+body = {"id":0,"name":"СПТ","short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"unit_commanders":[],"client":{"id":37,"full_name":"Специальные программные технологии","identification_number":"0123","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+Wrote body
+#un_04 @POST http://localhost:1337/admin/api/object/unit : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":41,"type":"new"}
+     got body: {"id":41,"type":"new"}
+sended body: {"id":0,"name":"СПТ","short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"unit_commanders":[],"client":{"id":37,"full_name":"Специальные программные технологии","identification_number":"0123","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/unit/41
+body = null
+#un_05 @GET http://localhost:1337/admin/api/object/unit/41 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":41,"name":"СПТ","short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"unit_commanders":[],"client":{"id":37,"full_name":"Специальные программные технологии","identification_number":"0123","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+     got body: {"name":"Специальные программные технологии","short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"client":{"full_name":"Специальные программные технологии","identification_number":"0123","is_external":false,"id":41},"allowed_enumerations":[{"name":"Чистовая","enumeration_type":{"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"name":"год","code":7,"short_name":"г.","id":27},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0,"id":32},"current_index":100,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00","id":35},{"name":"Черновая","enumeration_type":{"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"name":"год","code":7,"short_name":"г.","id":27},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0,"id":31},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00","id":34}],"id":41}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/unit
+body = {"id":0,"name":"СПТ/ОРСПО","short_name":"ОРСПО","own_numeration":false,"is_legal":false,"parent_id":37,"unit_commanders":[],"client":{"id":38,"full_name":"Отдел разработки СПО","identification_number":"0123.1","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+Wrote body
+#un_06 @POST http://localhost:1337/admin/api/object/unit : FAIL
+expected code: 200
+     got code: 404
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/unit/44
+body = null
+#un_07 @GET http://localhost:1337/admin/api/object/unit/44 : FAIL
+expected code: 200
+     got code: 404
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/unit
+body = null
+#un_08 @GET http://localhost:1337/admin/api/object/unit : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":41,"name":"СПТ"},{"id":44,"name":"ОРСПО"}]
+     got body: [{"id":41,"name":"Специальные программные технологии"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/unit/37
+body = {"id":41,"name":"ООО \"СПТ\"","short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"unit_commanders":[],"client":{"id":38,"full_name":"Специальные программные технологии","identification_number":"0123","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+Wrote body
+#un_09 @POST http://localhost:1337/admin/api/object/unit/37 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":41,"type":"old"}
+     got body: {"id":44,"type":"new"}
+  sended body: {"id":41,"name":"ООО \"СПТ\"","short_name":"СПТ","own_numeration":true,"is_legal":true,"parent_id":null,"unit_commanders":[],"client":{"id":38,"full_name":"Специальные программные технологии","identification_number":"0123","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/unit/38
+body = {"id":44,"name":"СПТ/ОРСПО","short_name":"ОРСПО","own_numeration":false,"is_legal":false,"parent_id":37,"unit_commanders":[],"client":{"id":38,"full_name":"Отдел разработки СПО","identification_number":"0123.1","is_external":false},"allowed_enumerations":[{"id":34},{"id":35}]}
+Wrote body
+#un_10 @POST http://localhost:1337/admin/api/object/unit/38 : FAIL
+expected code: 200
+     got code: 404
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/unit
+body = null
+#un_11 @GET http://localhost:1337/admin/api/object/unit : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: [{"id":41,"name":"ООО \"СПТ\""},{"id":44,"name":"СПТ/ОРСПО"}]
+     got body: [{"id":41,"name":"Специальные программные технологии"},{"id":44,"name":"Специальные программные технологии"}]
+#########
+total tasks: 11
+total successes: 4
+total fails: 7

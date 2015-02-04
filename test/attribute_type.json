@@ -1,0 +1,99 @@
+[
+{ 
+    "tag": "c_01",
+    "url": "http://localhost:1337/admin/api/object/attribute_type",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/attribute_type",
+    "method": "post",
+    "body": {"id":0,"name":"координата", "machine_name":"crd", "description":"координата на карте", "base_attr_type":{"code":2},"verification_command":null, "list_values":null, "max":"180.0", "min":"-180.0", "mask":null, "max_length":0, "parent_ids":null, "all_parents":null, "children":null},
+    "want": {"id":101, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/attribute_type/101",
+    "method": "delete",
+    "want": {"id":101, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/attribute_type",
+    "method": "post",
+    "body": {"id":0,"name":"широта", "machine_name":"crd", "description":"координата на карте", "base_attr_type":{"code":2},"verification_command":null, "list_values":null, "max":"180.0", "min":"-180.0", "mask":null, "max_length":0, "parent_ids":null, "all_parents":null, "children":null},
+    "want": {"id":104, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/attribute_type/104",
+    "method": "get",
+    "want": {"id":104,"name":"широта", "machine_name":"crd", "description":"координата на карте", "base_attr_type":{"code":2,"name":"вещественное","id":91},"verification_command":null, "list_values":null, "max":"180.0", "min":"-180.0", "mask":null, "max_length":null, "parent_ids":[], "all_parents":[], "children":[]},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/attribute_type",
+    "method": "post",
+    "body": {"id":0,"name":"долгота", "machine_name":"crd", "description":"координата на карте", "base_attr_type":{"code":2},"verification_command":null, "list_values":null, "max":"180.0", "min":"-180.0", "mask":null, "max_length":null, "parent_ids":null, "all_parents":null, "children":null},
+    "want": {"id":107, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/attribute_type/107",
+    "method": "get",
+    "want":  {"id":107,"name":"долгота", "machine_name":"crd", "description":"координата на карте", "base_attr_type":{"code":2,"name":"вещественное","id":91},"verification_command":null, "list_values":null, "max":"180.0", "min":"-180.0", "mask":null, "max_length":null, "parent_ids":[], "all_parents":[], "children":[]},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/attribute_type",
+    "method": "post",
+    "body": {"id":0,"name":"метка", "machine_name":"text", "description":"метка на карте", "base_attr_type":{"code":3},"verification_command":null, "list_values":null, "max":null, "min":null, "mask":null, "max_length":30, "parent_ids":null, "all_parents":null, "children":null},
+    "want": {"id":110, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/attribute_type",
+    "method": "post",
+    "body": {"id":0,"name":"точка", "machine_name":"point", "description":"точка на карте", "base_attr_type":{"code":9},"verification_command":null, "list_values":null, "max":null, "min":null, "mask":null, "max_length":0, "parent_ids":null, "all_parents":null, "children":[{"id":104, "min_count":1, "max_count":1},{"id":107, "min_count":1, "max_count":1},{"id":110, "min_count":0, "max_count":1}]},
+    "want": {"id":114, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09_1",
+    "url": "http://localhost:1337/admin/api/object/attribute_type/114",
+    "method": "get",
+    "want":  {"id":114,"name":"точка", "machine_name":"point", "description":"точка на карте", "base_attr_type":{"code":9},"verification_command":null, "list_values":null, "max":null, "min":null, "mask":null, "max_length":0, "parent_ids":null, "all_parents":null, "children":[{"id":104, "min_count":1, "max_count":1},{"id":107, "min_count":1, "max_count":1},{"id":110, "min_count":0, "max_count":1}]},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/attribute_type",
+    "method": "post",
+    "body": {"id":0,"name":"маршрут", "machine_name":"route", "description":"маршрут на карте", "base_attr_type":{"code":9},"verification_command":null, "list_values":null, "max":null, "min":null, "mask":null, "max_length":0, "parent_ids":null, "all_parents":null, "children":[{"id":110, "min_count":0, "max_count":1},{"id":114, "min_count":2, "max_count":100}]},
+    "want": {"id":117, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/attribute_type",
+    "method": "get",
+    "want":   [{"id":104,"name":"широта"},{"id":107,"name":"долгота"}, {"id":110,"name":"метка"}, {"id":114,"name":"точка"}, {"id":117,"name":"маршрут"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/attribute_type/117",
+    "method": "get",
+    "want": {"id":117,"name":"маршрут", "machine_name":"route", "description":"маршрут на карте", "base_attr_type":{"code":9},"verification_command":null, "list_values":null, "max":null, "min":null, "mask":null, "max_length":0, "parent_ids":[], "all_parents":[], "children":[{"id":110, "min_count":0, "max_count":1},{"id":114, "min_count":2, "max_count":100}]},
+    "want_code": 200
+}
+]

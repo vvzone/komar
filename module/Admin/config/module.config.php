@@ -306,7 +306,21 @@ return array(
                                 'controller'    => 'Object\Controller\User'
                             )
                         )
-                    )
+                    ),
+                    /* ---- === CLIENT ROUTES === ----*/
+                    'inbox' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/inbox[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Inbox'
+                            )
+                        )
+                    ),
                 )
             )
         ),

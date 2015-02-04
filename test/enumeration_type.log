@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration_type
+body = null
+#et_01 @GET http://localhost:1337/admin/api/object/enumeration_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration_type
+body = {"id":0,"name":"Черновик","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+Wrote body
+#et_02 @POST http://localhost:1337/admin/api/object/enumeration_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":30,"type":"new"}
+     got body: {"id":30,"type":"new"}
+sended body: {"id":0,"name":"Черновик","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/enumeration_type/30
+body = null
+#et_03 @DELETE http://localhost:1337/admin/api/object/enumeration_type/30 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":30,"type":"deleted"}
+     got body: {"id":30,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration_type
+body = {"id":0,"name":"Черновой","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+Wrote body
+#et_04 @POST http://localhost:1337/admin/api/object/enumeration_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":31,"type":"new"}
+     got body: {"id":31,"type":"new"}
+sended body: {"id":0,"name":"Черновой","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration_type/31
+body = null
+#et_05 @GET http://localhost:1337/admin/api/object/enumeration_type/31 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":31,"name":"Черновой","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+     got body: {"name":"Черновой","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"name":"год","code":7,"short_name":"г.","id":27},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0,"id":31}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration_type
+body = {"id":0,"name":"Входящий","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+Wrote body
+#et_06 @POST http://localhost:1337/admin/api/object/enumeration_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":32,"type":"new"}
+     got body: {"id":32,"type":"new"}
+sended body: {"id":0,"name":"Входящий","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration_type/32
+body = null
+#et_07 @GET http://localhost:1337/admin/api/object/enumeration_type/32 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":32,"name":"Входящий","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+     got body: {"name":"Входящий","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"name":"год","code":7,"short_name":"г.","id":27},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0,"id":32}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration_type
+body = null
+#et_08 @GET http://localhost:1337/admin/api/object/enumeration_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":31,"name":"Черновой"},{"id":32,"name":"Входящий"}]
+     got body: [{"id":31,"name":"Черновой"},{"id":32,"name":"Входящий"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration_type/31
+body = {"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+Wrote body
+#et_09 @POST http://localhost:1337/admin/api/object/enumeration_type/31 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":31,"type":"old"}
+     got body: {"id":31,"type":"old"}
+sended body: {"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration_type/32
+body = {"id":32,"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+Wrote body
+#et_10 @POST http://localhost:1337/admin/api/object/enumeration_type/32 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":32,"type":"old"}
+     got body: {"id":32,"type":"old"}
+sended body: {"id":32,"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration_type
+body = null
+#et_11 @GET http://localhost:1337/admin/api/object/enumeration_type : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":31,"name":"Черновики"},{"id":32,"name":"Входящие"}]
+     got body: [{"id":31,"name":"Черновики"},{"id":32,"name":"Входящие"}]
+#########
+total tasks: 11
+total successes: 9
+total fails: 2

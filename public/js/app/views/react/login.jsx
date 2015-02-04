@@ -6,7 +6,8 @@ define(
         'jquery',
         'react',
         'config',
-        'app_registry'
+        'app_registry',
+        'jCookie'
     ],function($, React, Config, app_registry){
 
         var debug = (Config['debug'] && Config['debug']['debug_login'])? 1:null;
@@ -48,7 +49,7 @@ define(
                 var self = this;
                 var token = '';
                 $.ajax({
-                    url: '/admin/login',
+                    url: (Config['local_server'])? Config['login_url']['local_server']: Config['login_url']['production_server'],
                     type:'POST',
                     data: formValues,
                     headers: {
@@ -56,24 +57,35 @@ define(
                     },
                     success:function (data) {
                         (debug)?console.log(["Login request details: ", data]):null;
-
                         console.info(['data', data]);
-                        token = data.result['token'];
-                        $('meta[name="csrf-token"]').attr('content', 'TOKEN '+token);
-                        //$('#x-auth-token').val(data[0]['token']);
-                        //window.location.replace('#');
-                        //setUp ajax
-                        $.ajaxSetup({
-                            headers: { 'Authorization': 'TOKEN '+token },
-                            beforeSend: function(xhr) {
-                                xhr.setRequestHeader('Authorization', 'TOKEN '+token);
+                        if(data.result){
+                            if(data.result['token']){
+                                token = data.result['token'];
+                                $('meta[name="csrf-token"]').attr('content', 'TOKEN '+token);
+
+                                $.cookie('token', token);
+                                $.cookie('username', login);
+
+                                //$('#x-auth-token').val(data[0]['token']);
+                                //window.location.replace('#');
+                                //setUp ajax
+                                $.ajaxSetup({
+                                    headers: { 'Authorization': 'TOKEN '+token },
+                                    beforeSend: function(xhr) {
+                                        xhr.setRequestHeader('Authorization', 'TOKEN '+token);
+                                    }
+                                });
+                                app_registry.auth = {
+                                    username: login,
+                                    token: token
+                                };
+                                self.callback();
+                            }else{
+                                $('#loginMsgBox').html('<div class="alert alert-error">Server error: token undefined...</div>');
                             }
-                        });
-                        app_registry.auth = {
-                            login: login,
-                            token: token
-                        };
-                        self.callback();
+                        }else{
+                            $('#loginMsgBox').html('<div class="alert alert-error">Server error: can\'t process server response...</div>');
+                        }
                     },
                     error: function(data){
                         (debug)?console.warn('Error received:'):null;

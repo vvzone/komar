@@ -1,0 +1,101 @@
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration
+body = null
+#enum_01 @GET http://localhost:1337/admin/api/object/enumeration : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration
+body = {"id":33,"name":"Черновик","enumeration_type":{"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+Wrote body
+#enum_02 @POST http://localhost:1337/admin/api/object/enumeration : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":33,"type":"new"}
+     got body: {"id":33,"type":"new"}
+sended body: {"id":33,"name":"Черновик","enumeration_type":{"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/enumeration/33
+body = null
+#enum_03 @DELETE http://localhost:1337/admin/api/object/enumeration/33 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":33,"type":"deleted"}
+     got body: {"id":33,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration
+body = {"id":34,"name":"Черновик","enumeration_type":{"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+Wrote body
+#enum_04 @POST http://localhost:1337/admin/api/object/enumeration : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":34,"type":"new"}
+     got body: {"id":34,"type":"new"}
+sended body: {"id":34,"name":"Черновик","enumeration_type":{"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration/34
+body = null
+#enum_05 @GET http://localhost:1337/admin/api/object/enumeration/34 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":34,"name":"Черновик","enumeration_type":{"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+     got body: {"name":"Черновик","enumeration_type":{"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"name":"год","code":7,"short_name":"г.","id":27},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0,"id":31},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00","id":34}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration
+body = {"id":35,"name":"Чистовик","enumeration_type":{"id":32,"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":100,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+Wrote body
+#enum_06 @POST http://localhost:1337/admin/api/object/enumeration : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":35,"type":"new"}
+     got body: {"id":35,"type":"new"}
+sended body: {"id":35,"name":"Чистовик","enumeration_type":{"id":32,"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":100,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration/35
+body = null
+#enum_07 @GET http://localhost:1337/admin/api/object/enumeration/35 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":35,"name":"Чистовик","enumeration_type":{"id":32,"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":100,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+     got body: {"name":"Чистовик","enumeration_type":{"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"name":"год","code":7,"short_name":"г.","id":27},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0,"id":32},"current_index":100,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00","id":35}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration
+body = null
+#enum_08 @GET http://localhost:1337/admin/api/object/enumeration : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":34,"name":"Черновик"},{"id":35,"name":"Чистовик"}]
+     got body: [{"id":34,"name":"Черновик"},{"id":35,"name":"Чистовик"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration/34
+body = {"id":34,"name":"Черновая","enumeration_type":{"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+Wrote body
+#enum_09 @POST http://localhost:1337/admin/api/object/enumeration/34 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":34,"type":"old"}
+     got body: {"id":34,"type":"old"}
+sended body: {"id":34,"name":"Черновая","enumeration_type":{"id":31,"name":"Черновики","mask":"Ч-%N","is_draft":true,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":0,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/enumeration/35
+body = {"id":35,"name":"Чистовая","enumeration_type":{"id":32,"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":100,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+Wrote body
+#enum_10 @POST http://localhost:1337/admin/api/object/enumeration/35 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":35,"type":"old"}
+     got body: {"id":35,"type":"old"}
+sended body: {"id":35,"name":"Чистовая","enumeration_type":{"id":32,"name":"Входящие","mask":"В-%N","is_draft":false,"is_periodic":true,"period_type":{"id":27,"code":7},"period_length":1,"start_date":"01.01.2015 00:00:00","start_index":0},"current_index":100,"last_drop":"01.01.2015 00:00:00","next_drop":"01.01.2015 00:00:00"}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/enumeration
+body = null
+#enum_11 @GET http://localhost:1337/admin/api/object/enumeration : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":34,"name":"Черновая"},{"id":35,"name":"Чистовая"}]
+     got body: [{"id":34,"name":"Черновая"},{"id":35,"name":"Чистовая"}]
+#########
+total tasks: 11
+total successes: 9
+total fails: 2

@@ -1,0 +1,84 @@
+[
+{ 
+    "tag": "c_01",
+    "url": "http://localhost:1337/admin/api/object/country",
+    "method": "get",
+    "want":   [],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/country",
+    "method": "post",
+    "body": {"id":0,"name":"РФ", "code":"043", "full_name":"Россия"},
+    "want": {"id":13, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/country/13",
+    "method": "delete",
+    "want": {"id":13, "type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/country",
+    "method": "post",
+    "body": {"id":0,"name":"Рос", "code":"843", "full_name":"Россия"},
+    "want": {"id":14, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/country/14",
+    "method": "get",
+    "want": {"id":14,"name":"Рос", "code":"843", "full_name":"Россия"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/country",
+    "method": "post",
+    "body": {"id":0,"name":"Укр", "code":"844", "full_name":"Украина"},
+    "want": {"id":15, "type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/country/15",
+    "method": "get",
+    "want": {"id":15,"name":"Укр", "code":"844", "full_name":"Украина"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/country",
+    "method": "get",
+    "want":   [{"id":14,"name":"Рос"},{"id":15,"name":"Укр"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/country/14",
+    "method": "post",
+    "body": {"id":14,"name":"Россия", "code":"043", "full_name":"Россия"},
+    "want": {"id":14, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_10",
+    "url": "http://localhost:1337/admin/api/object/country/15",
+    "method": "post",
+    "body": {"id":15,"name":"Украина", "code":"044", "full_name":"Украина"},
+    "want": {"id":15, "type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/country",
+    "method": "get",
+    "want":   [{"id":14,"name":"Россия"},{"id":15,"name":"Украина"}],
+    "want_code": 200
+}
+]

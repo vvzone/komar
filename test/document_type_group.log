@@ -1,0 +1,129 @@
+Doing request: @GET http://localhost:1337/admin/api/object/document_type_group
+body = null
+#dtg_01 @GET http://localhost:1337/admin/api/object/document_type_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: []
+     got body: []
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/document_type_group
+body = {"id":0,"parent_id":null,"name":"Хозяйственные","short_name":"Хоз","is_service":false}
+Wrote body
+#dtg_02 @POST http://localhost:1337/admin/api/object/document_type_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":16,"type":"new"}
+     got body: {"id":16,"type":"new"}
+sended body: {"id":0,"parent_id":null,"name":"Хозяйственные","short_name":"Хоз","is_service":false}
+#########
+Doing request: @DELETE http://localhost:1337/admin/api/object/document_type_group/16
+body = null
+#dtg_03 @DELETE http://localhost:1337/admin/api/object/document_type_group/16 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":16,"type":"deleted"}
+     got body: {"id":16,"type":"deleted"}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/document_type_group
+body = {"id":0,"parent_id":null,"name":"Хозяйство","short_name":"Хоз","is_service":false}
+Wrote body
+#dtg_04 @POST http://localhost:1337/admin/api/object/document_type_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":17,"type":"new"}
+     got body: {"id":17,"type":"new"}
+sended body: {"id":0,"parent_id":null,"name":"Хозяйство","short_name":"Хоз","is_service":false}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/document_type_group/17
+body = null
+#dtg_05 @GET http://localhost:1337/admin/api/object/document_type_group/17 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":17,"parent_id":null,"name":"Хозяйство","short_name":"Хоз","is_service":false,"children":[]}
+     got body: {"parent_id":null,"name":"Хозяйство","short_name":"Хоз","is_service":false,"children":[],"types":[],"id":17}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/document_type_group
+body = {"id":0,"parent_id":null,"name":"Военка","short_name":"Воен","is_service":false,"children":[]}
+Wrote body
+#dtg_06 @POST http://localhost:1337/admin/api/object/document_type_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":18,"type":"new"}
+     got body: {"id":18,"type":"new"}
+sended body: {"id":0,"parent_id":null,"name":"Военка","short_name":"Воен","is_service":false,"children":[]}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/document_type_group/18
+body = null
+#dtg_07 @GET http://localhost:1337/admin/api/object/document_type_group/18 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":18,"parent_id":null,"name":"Военка","short_name":"Воен","is_service":false,"children":[]}
+     got body: {"parent_id":null,"name":"Военка","short_name":"Воен","is_service":false,"children":[],"types":[],"id":18}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/document_type_group
+body = null
+#dtg_08 @GET http://localhost:1337/admin/api/object/document_type_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":17,"name":"Хозяйство"},{"id":18,"name":"Военка"}]
+     got body: [{"id":17,"name":"Хозяйство"},{"id":18,"name":"Военка"}]
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/document_type_group/17
+body = {"id":17,"parent_id":null,"name":"Хозяйственные","short_name":"Хоз","is_service":false,"children":[]}
+Wrote body
+#dtg_09 @POST http://localhost:1337/admin/api/object/document_type_group/17 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":17,"type":"old"}
+     got body: {"id":17,"type":"old"}
+sended body: {"id":17,"parent_id":null,"name":"Хозяйственные","short_name":"Хоз","is_service":false,"children":[]}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/document_type_group/18
+body = {"id":18,"parent_id":null,"name":"Военные","short_name":"В","is_service":false,"children":[]}
+Wrote body
+#dtg_10 @POST http://localhost:1337/admin/api/object/document_type_group/18 : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":18,"type":"old"}
+     got body: {"id":18,"type":"old"}
+sended body: {"id":18,"parent_id":null,"name":"Военные","short_name":"В","is_service":false,"children":[]}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/document_type_group
+body = {"id":0,"parent_id":18,"name":"Боевые","short_name":"Бой","is_service":false,"children":[]}
+Wrote body
+#dtg_11 @POST http://localhost:1337/admin/api/object/document_type_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":19,"type":"new"}
+     got body: {"id":19,"type":"new"}
+sended body: {"id":0,"parent_id":18,"name":"Боевые","short_name":"Бой","is_service":false,"children":[]}
+#########
+Doing request: @POST http://localhost:1337/admin/api/object/document_type_group
+body = {"id":0,"parent_id":18,"name":"Учебные","short_name":"Уч","is_service":false,"children":[]}
+Wrote body
+#dtg_12 @POST http://localhost:1337/admin/api/object/document_type_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: {"id":20,"type":"new"}
+     got body: {"id":20,"type":"new"}
+sended body: {"id":0,"parent_id":18,"name":"Учебные","short_name":"Уч","is_service":false,"children":[]}
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/document_type_group
+body = null
+#dtg_13 @GET http://localhost:1337/admin/api/object/document_type_group : code: 200 : SUCCESS
+expected code: 200
+     got code: 200
+expected body: [{"id":17,"name":"Хозяйственные"},{"id":18,"name":"Военные"},{"id":19,"name":"Боевые"},{"id":20,"name":"Учебные"}]
+     got body: [{"id":17,"name":"Хозяйственные"},{"id":18,"name":"Военные"},{"id":19,"name":"Боевые"},{"id":20,"name":"Учебные"}]
+#########
+Doing request: @GET http://localhost:1337/admin/api/object/document_type_group/18
+body = null
+#dtg_14 @GET http://localhost:1337/admin/api/object/document_type_group/18 : code: 200 : FAIL
+expected code: 200
+     got code: 200
+expected body: {"id":18,"parent_id":null,"name":"Военные","short_name":"В","is_service":false,"children":[{"id":19,"name":"Боевые","short_name":"Бой","is_service":false},{"id":20,"name":"Учебные","short_name":"Уч","is_service":false}]}
+     got body: {"parent_id":null,"name":"Военные","short_name":"В","is_service":false,"children":[{"parent_id":18,"name":"Учебные","short_name":"Уч","is_service":false,"id":20},{"parent_id":18,"name":"Боевые","short_name":"Бой","is_service":false,"id":19}],"types":[],"id":18}
+#########
+total tasks: 14
+total successes: 11
+total fails: 3

@@ -1,0 +1,76 @@
+[
+{ 
+    "tag": "ct_01",
+    "url": "http://localhost:1337/admin/api/object/person",
+    "method": "get",
+    "want":   [{"id":5,"name":"root"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_02",
+    "url": "http://localhost:1337/admin/api/object/person",
+    "method": "post",
+    "body": {"id":130,"name":"Сидоров Сидор Сидорович","short_name":"Сидоров С.С.","first_name":"Сидор","patronymic":"Сидорович","family":"Сидоров","birth_date":"01.01.1980","birth_place":"Москва","sex":{"id":82},"client":{"full_name":"Сидоров Сидор Сидорович", "identification_number":"123", "is_external":false}},
+    "want":   {"id":130,"type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_03",
+    "url": "http://localhost:1337/admin/api/object/person/130",
+    "method": "delete",
+    "want":   {"id":130,"type":"deleted"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_04",
+    "url": "http://localhost:1337/admin/api/object/person",
+    "method": "post",
+    "body" : {"id":131,"name":"Сидоров Сидор Сидорович","short_name":"Сидоров С.С.","first_name":"Сидор","patronymic":"Сидорович","family":"Сидоров","birth_date":"01.01.1980","birth_place":"Москва","sex":{"id":82},"client":{"full_name":"Сидоров Сидор Сидорович", "identification_number":"123", "is_external":false}},
+    "want": {"id":131,"type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_05",
+    "url": "http://localhost:1337/admin/api/object/person/131",
+    "method": "get",
+    "want":   {"id":131,"name":"Сидоров Сидор Сидорович","short_name":"Сидоров С.С.","first_name":"Сидор","patronymic":"Сидорович","family":"Сидоров","birth_date":"01.01.1980","birth_place":"Москва","sex":{"id":82},"client":{"full_name":"Сидоров Сидор Сидорович", "identification_number":"123", "is_external":false}},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_06",
+    "url": "http://localhost:1337/admin/api/object/person",
+    "method": "post",
+    "body" : {"id":132,"name":"Петров Петр Петрович","short_name":"Петров П.П.","first_name":"Петр","patronymic":"Петрович","family":"Петров","birth_date":"01.01.1970","birth_place":"Москва","sex":{"id":82},"client":{"full_name":"Петров Петр Петрович", "identification_number":"123", "is_external":false}},
+    "want": {"id":132,"type":"new"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_07",
+    "url": "http://localhost:1337/admin/api/object/person/132",
+    "method": "get",
+    "want":   {"id":132,"name":"Петров Петр Петрович","short_name":"Петров П.П.","first_name":"Петр","patronymic":"Петрович","family":"Петров","birth_date":"01.01.1970","birth_place":"Москва","sex":{"id":82},"client":{"full_name":"Петров Петр Петрович", "identification_number":"123", "is_external":false}},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_08",
+    "url": "http://localhost:1337/admin/api/object/person",
+    "method": "get",
+    "want":   [{"id":5,"name":"root"},{"id":131,"name":"Сидоров Сидор Сидорович"},{"id":132,"name":"Петров Петр Петрович"}],
+    "want_code": 200
+},
+{ 
+    "tag": "ct_09",
+    "url": "http://localhost:1337/admin/api/object/person/131",
+    "method": "post",
+    "body" : {"id":131,"name":"Сидорников Сидор Сидорович","short_name":"Сидорников С.С.","first_name":"Сидор","patronymic":"Сидорович","family":"Сидорников","birth_date":"01.01.1980","birth_place":"Москва","sex":{"id":82},"client":{"full_name":"Сидорников Сидор Сидорович", "identification_number":"123", "is_external":false}},
+    "want": {"id":131,"type":"old"},
+    "want_code": 200
+},
+{ 
+    "tag": "ct_11",
+    "url": "http://localhost:1337/admin/api/object/person",
+    "method": "get",
+    "want":   [{"id":5,"name":"root"},{"id":131,"name":"Сидорников Сидор Сидорович"},{"id":132,"name":"Петров Петр Петрович"}],
+    "want_code": 200
+}
+]
