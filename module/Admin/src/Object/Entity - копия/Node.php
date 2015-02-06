@@ -286,15 +286,21 @@ class Node
         return $this->client->getAll();
     }
 
+    public function getNodeSimple(){
+        return array(
+            'id' => $this->getId(),
+        );
+    }
+
     public function getAll(){
         return array(
             'id' => $this->getId(),
             'node_level_id' => $this->node_level->getId(),
-            'recipient_type' => array(
+            /*'recipient_type' => array(
                 'id' => 234,
                 'code' => 4,
                 'name' => 'Визирующее лицо'
-            ),
+            ),*/
             'sort_order' => $this->getSortOrder(),
             'task' => $this->getTask(),
             'node_state' => $this->getNodeStateId(),

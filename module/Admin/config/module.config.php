@@ -101,10 +101,15 @@ return array(
                             'constraints' => array(
                                 'id'     => '[0-9]*'
                             ),
+                            /*
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Admin\Controller',
                                 'controller'    => 'Admin\Controller\Index',
                                 'action' => 'client'
+                            )*/
+                            'defaults' => array(
+                                    '__NAMESPACE__' => 'Object\Controller',
+                                    'controller'    => 'Object\Controller\MenuClient',
                             )
                         )
                     ),
@@ -361,6 +366,8 @@ return array(
 
             'Admin\Controller\Auth' => 'Admin\Controller\AuthController',
 
+            /* ===  Menu  === */
+            'Object\Controller\MenuClient' => 'Object\Controller\MenuClientController',
             /* === Object === */
             'Object\Controller\Index' => 'Object\Controller\IndexController',
             'Object\Controller\Unit' => 'Object\Controller\UnitController',
@@ -375,7 +382,7 @@ return array(
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
             'Object\Controller\Post' => 'Object\Controller\PostController',
-            'Object\Controller\User' => 'Object\Controller\UserController',
+            'Object\Controller\User' => 'Object\Controller\UserController'
         )
     ),
     'view_manager' => array(

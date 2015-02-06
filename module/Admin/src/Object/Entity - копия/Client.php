@@ -53,6 +53,12 @@ class Client
      */
     protected $unitInfo;
 
+    /**
+     *
+     * @ORM\OneToMany(targetEntity="Object\Entity\Node", mappedBy="client", cascade={"all"}, orphanRemoval=true)
+     * */
+    protected $nodes;
+
     public function __construct()
     {
         $this->personInfo = new ArrayCollection();
@@ -172,10 +178,24 @@ class Client
         if($unit){
             return $unit->getPlain();
         }
-        //return null;
 
+        //return null;
         //2-do
         return $this->unitInfo->last();
+    }
+
+    /*
+     * Get Nodes where current client is a receiver
+     */
+    public function getNodes(){
+       return $this->nodes;
+    }
+
+    /*
+     * get inbox-counter
+     */
+    public function getInboxCounter(){
+        return $this->nodes->count();
     }
 
     public function getAll()
