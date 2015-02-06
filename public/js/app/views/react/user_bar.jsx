@@ -42,7 +42,7 @@ define(
                     headers: {
                         Authorization: 'TOKEN '+app_registry.auth.token
                     },
-                    success:function (data) {
+                    success: function(data) {
                         (debug)?console.log(["Logout request details: ", data]):null;
                         $('meta[name="csrf-token"]').attr('content', '');
                         $.ajaxSetup({

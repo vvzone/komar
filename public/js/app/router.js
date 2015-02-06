@@ -25,7 +25,6 @@ define(
              ClientMenuList, ClientMenuListRight, AdminMenuList,
              MapView){ //2-do: to many components loaded by default!
 
-
         var debug = (Config['debug'] && Config['debug']['debug_router'])? 1:null;
             // Set up a a Router.
             var Router = Backbone.Router.extend({
@@ -39,18 +38,12 @@ define(
                     'admin/:view' : 'adminCollectionView',
                     'admin': 'admin',
                     'client/:view': 'clientCollectionView',
+                    'client/:view/new': 'clientItemNew',
                     'client': 'client',
                     '*action': 'no_route'
                 },
                 before: function( route ) {
-
-                    // Do something with every route before it's routed. "route" is a string
-                    // containing the route fragment just like regular Backbone route
-                    // handlers. If the url has more fragments, the before callback will
-                    // also get them, eg: before: function( frag1, frag2, frag3 )
-                    // (just like regular Backbone route handlers).
                     (debug)?console.log(['Router -> before, route:', route]):null;
-
                     if(route != 'login'){
                         if(Config['cfsr_token']){
                             var token = $('meta[name="csrf-token"]').attr('content');
@@ -72,11 +65,6 @@ define(
                     }else{
                         removeUserBar();
                     }
-                    // Returning false from inside of the before filter will prevent the
-                    // current route's callback from running, and will prevent the after
-                    // filter's callback from running.
-                    //
-
                 },
                 after: {
                     // define a specific callback for a certain route.
@@ -157,6 +145,9 @@ define(
                         return ClientMenuList;
                     });
                     CollectionsRouter.initialize(view, null, null);
+                },
+                clientItemNew: function(view){
+                    console.info('Router->clientItemNew, view='+view);
                 },
                 documentation: function(){
                     console.info('Router->documentation');

@@ -8,6 +8,5 @@ serve_static=true
 check_public_names=false
 static_dir_name=public
 default_index_html=true
-auth=true
-serve_with_netty=false
+auth=false
 max_token_idle_ms=600000
