@@ -64,10 +64,10 @@ class Client extends \Object\Entity\Client implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'fullName', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'identificationNumber', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'isExternal', 'personInfo', 'unitInfo');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'fullName', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'identificationNumber', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'isExternal', 'personInfo', 'unitInfo', 'nodes');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'fullName', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'identificationNumber', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'isExternal', 'personInfo', 'unitInfo');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'fullName', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'identificationNumber', '' . "\0" . 'Object\\Entity\\Client' . "\0" . 'isExternal', 'personInfo', 'unitInfo', 'nodes');
     }
 
     /**
@@ -274,6 +274,17 @@ class Client extends \Object\Entity\Client implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUnitInfo', array());
 
         return parent::getUnitInfo();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getNodes()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNodes', array());
+
+        return parent::getNodes();
     }
 
     /**

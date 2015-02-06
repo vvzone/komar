@@ -9,7 +9,7 @@
 
 namespace Object\Controller;
 
-use Object\Entity\User;
+use Object\Entity\Node;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
@@ -20,50 +20,32 @@ use Admin\Controller\RestController;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 
-class UserController extends RestController
+class NodeController extends RestController
 {
-    protected $clientTable;
-    //protected $clientTableList;
-    protected $unitTable;
-    protected $usersTable;
-
-    /*-------------- default methods ----------*/
-
     public function getList()
     {
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        //$results = $objectManager->getRepository('Object\Entity\User')->findByToken('12345qwerty98745')->getResult(); //TEST!
-        $results = $objectManager->getRepository('Object\Entity\User')->findAll(); //TEST!
+        $results = $objectManager->getRepository('Object\Entity\Node')->findAll(); //TEST!
         $data = array();
 
         foreach($results as $user){
-            $data[] = $user->getUserSimple(); //getAll - for with Person
+            $data[] = $user->getNodeSimple(); //getAll - for with Person
         }
         return new JsonModel(
            $data
         );
     }
 
-    //
     public function get($id)
     {
-        /*
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-        $user = $objectManager->find('Object\Entity\User', $id);
-        return new JsonModel($user->getAll());
-
-        */
-
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $results = $objectManager->getRepository('Object\Entity\User')->findByToken($id)->getResult();
+        $results = $objectManager->getRepository('Object\Entity\Node')->findByToken($id)->getResult();
 
         foreach($results as $user){
             $data[] = $user->getLogin();
@@ -77,11 +59,11 @@ class UserController extends RestController
     public function create($data)
     {
         //$data['id'] = 0; --????
-        $user = new User();
+        $user = new Node();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\User');
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Node');
 
         $data = $this->RESTtoCamelCase($data);
         $user = $hydrator->hydrate($data, $user);
@@ -96,12 +78,12 @@ class UserController extends RestController
     public function update($id, $data)
     {
         $data['id'] = $id;
-        $user = new User();
+        $user = new Node();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\User');
+        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Node');
         $data = $this->RESTtoCamelCase($data);
         $user = $hydrator->hydrate($data, $user);
         $objectManager->persist($user);
@@ -114,12 +96,12 @@ class UserController extends RestController
 
     public function delete($id)
     {
-        //$this->getUsersTable()->deleteUser($id);
+        //$this->getNodesTable()->deleteNode($id);
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $user = $objectManager->find('Object\Entity\User', $id);
+        $user = $objectManager->find('Object\Entity\Node', $id);
         $objectManager->remove($user);
         $objectManager->flush();
 
@@ -129,32 +111,4 @@ class UserController extends RestController
     }
 
 
-    public function getClientTable()
-    {
-        if (!$this->clientTable) {
-            $sm = $this->getServiceLocator();
-            $this->clientTable = $sm->get('Object\Model\ClientTable');
-        }
-        return $this->clientTable;
-    }
-
-    public function getUnitTable()
-    {
-        if (!$this->unitTable) {
-            $sm = $this->getServiceLocator();
-            $this->unitTable = $sm->get('Object\Model\UnitTable');
-        }
-        return $this->unitTable;
-    }
-
-    public function getUsersTable()
-    {
-        if (!$this->usersTable) {
-            $sm = $this->getServiceLocator();
-            $this->usersTable = $sm->get('Object\Model\UsersTable');
-        }
-        return $this->usersTable;
-    }
-
-/*-------------- default methods ----------*/
 }

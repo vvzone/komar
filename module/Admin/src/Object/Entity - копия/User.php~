@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Table(name="user", indexes={@ORM\Index(name="person_id", columns={"person_id"})})
+ * @ORM\Table(name="user")
  * @ORM\Entity
  */
 class User
@@ -38,26 +38,9 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="token", type="text", nullable=true)
+     * @ORM\Column(name="token", type="string", length=32, nullable=true)
      */
     private $token;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_admin", type="boolean", nullable=false)
-     */
-    private $isAdmin;
-
-    /**
-     * @var \Object\Entity\Person
-     *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\Person")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="person_id", referencedColumnName="id")
-     * })
-     */
-    private $person;
 
 
 }
