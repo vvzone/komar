@@ -21,8 +21,6 @@ use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 use Object\Entity\MenuClientTree;
 
-
-
 class MenuClientController extends RestController
 {
 

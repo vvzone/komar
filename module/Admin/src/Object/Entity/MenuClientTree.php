@@ -3,11 +3,15 @@
 namespace Object\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * MenuClient
  *
- * @ORM\Entity(repositoryClass="Gedmo\Tree\Repository\TreeNodeRepository")
+ * @Gedmo\Tree(type="nested")
+ * @ORM\Table(name="menu_client")
+ *
+ * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  */
 class MenuClientTree
 {
