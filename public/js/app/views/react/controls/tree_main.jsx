@@ -10,16 +10,21 @@ define(
         'backbone',
         'react',
         'event_bus',
+        'config',
         'jsx!views/react/controls/tree_mixin',
         'jsx!views/react/controls/tree_node_box',
         'jsx!views/react/base/btn_add',
         'jsx!views/react/base/btn_edit',
         'jsx!views/react/base/btn_delete'
 
-    ],function($, _, Backbone, React, EventBus,
+    ],function($, _, Backbone, React, EventBus, Config,
                TreeClassMixin, TreeNodeBox,
                ButtonAdd, ButtonEdit, ButtonDelete
         ){
+
+        console.log('views/react/controls/tree_main.jsx loaded...');
+
+        var debug = (Config['debug'] && Config['debug']['debug_tree'])? 1:null;
 
         var TreeNode = React.createClass({
             mixins: [TreeClassMixin],
@@ -36,15 +41,13 @@ define(
                 }
             },
             componentWillMount: function(){
-                console.log('Node WillMount -> this.props.model:');
-                console.log(this.props.model);
-                //if(this.props.model.get('childNodes')!=null){
+                (debug)?console.log(['Node WillMount -> this.props.model:', this.props.model]):null;
                 var childs = this.props.model.get('items');
                 if(childs.length>0){
                     this.setState({visible: false});
                 }
                 window.addEventListener("closeWhoOpenEvent", this.closeState, true);
-                console.log('Node WillMount -> add event =closeWhoOpenEvent=');
+                (debug)?console.log('Node WillMount -> add event =closeWhoOpenEvent='):null;
             },
             componentWillUnmount: function () {
                 window.removeEventListener("closeWhoOpenEvent", this.closeState, true);
@@ -74,8 +77,7 @@ define(
                 this.getDOMNode().dispatchEvent(closeWhoOpenEvent);
             },
             getNodeTreeDependency: function(){
-                console.info('===getNodeTreeDependency===');
-                console.log('podpindosnost!');
+                (debug)?console.info('===getNodeTreeDependency==='):null;
                 /*
                  if(typeof this.props.tree_dependency.id_name_in_dependency != 'undefined' ){
                  var url = 'http://zend_test/main/'

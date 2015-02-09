@@ -26,7 +26,6 @@ define(
                         var collection_name = 'models/'+view+'_collection';
                         (debug)?console.log('try to load '+ collection_name):null;
                         var Collection = require([collection_name], function(Collection){
-
                             switch(route_name[view]){
                                 case('list'):
                                     (debug)?console.log('will use ListView for collection output...'):null;

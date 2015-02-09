@@ -13,16 +13,17 @@ define(
                 debug_menu: null,
                 debug_collection_router: null,
                 debug_models_and_collections: null,
-                apiUrl: null,
+                apiUrl: 1,
                 debug_list: null,
                 debug_main_list: null,
                 debug_modals: null,
                 debug_item_edit: null,
                 debug_control_router: null,
                 debug_route_levels_control: null,
-                debug_login: 1,
+                debug_login: null,
                 debug_router: 1,
-                debug_map: 1
+                debug_map: 1,
+                debug_tree: 1
             },
             collections_router: [
                 {ranks: 'list'},
@@ -54,7 +55,8 @@ define(
                 {documents: 'client_list'},
                 //{documents_output: 'client_list'},
                 {route: 'list'},
-                {very_urgency: 'list'}
+                {very_urgency: 'list'},
+                {client_menu: 'tree'}
             ],
             local_server: true,
             temp: null,

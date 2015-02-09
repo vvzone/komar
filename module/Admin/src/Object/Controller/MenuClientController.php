@@ -23,40 +23,16 @@ use Object\Entity\MenuClientTree;
 
 class MenuClientController extends RestController
 {
-
-    public function getList()
-    {
+    public function getList(){
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $results = $objectManager->getRepository('Object\Entity\MenuClientTree')->findAll(); //TEST!
-        $data = array();
-
-        foreach($results as $user){
-            $data[] = $user->getMenuClientSimple(); //getAll - for with Person
-        }
+        $repo = $objectManager->getRepository('Object\Entity\MenuClientTree');
+        $arrayTree = $repo->childrenHierarchy();
 
         return new JsonModel(
-            $data
-        );
-    }
-
-    public function getListOld()
-    {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-
-        $results = $objectManager->getRepository('Object\Entity\MenuClient')->findAll(); //TEST!
-        $data = array();
-
-        foreach($results as $user){
-            $data[] = $user->getMenuClientSimple(); //getAll - for with Person
-        }
-
-        return new JsonModel(
-           $data
+            $arrayTree
         );
     }
 
@@ -68,8 +44,8 @@ class MenuClientController extends RestController
 
         $results = $objectManager->getRepository('Object\Entity\MenuClient')->findByToken($id)->getResult();
 
-        foreach($results as $user){
-            $data[] = $user->getLogin();
+        foreach($results as $menu){
+            $data[] = $menu->getMenuClientSimple();
         }
 
         return new JsonModel(array(
@@ -80,15 +56,16 @@ class MenuClientController extends RestController
     public function create($data)
     {
         //$data['id'] = 0; --????
-        $user = new MenuClient();
+        $menuElement = new MenuClient();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
         $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\MenuClient');
 
         $data = $this->RESTtoCamelCase($data);
-        $user = $hydrator->hydrate($data, $user);
-        $objectManager->persist($user);
+        $menuElement = $hydrator->hydrate($data, $menuElement);
+
+        $objectManager->persist($menuElement);
         $objectManager->flush();
 
         return new JsonModel(array(

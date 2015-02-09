@@ -9,9 +9,11 @@ use Gedmo\Mapping\Annotation as Gedmo;
  * MenuClient
  *
  * @Gedmo\Tree(type="nested")
- * @ORM\Table(name="menu_client")
+ * @ORM\Table(name="menu_client_tree")
  *
  * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
+ * custom rep:
+ * ORM\Entity(repositoryClass="Entity\Repository\ClientMenuRepository")
  */
 class MenuClientTree
 {
@@ -26,28 +28,24 @@ class MenuClientTree
 
     /**
      * @var string
-     *
      * @ORM\Column(name="name", type="string", length=64, nullable=false)
      */
     private $name;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="entity", type="string", length=128, nullable=true)
      */
     private $entity;
 
     /**
      * @var string
-     *
      * @ORM\Column(name="icon", type="string", length=64, nullable=true)
      */
     private $icon;
 
     /**
      * @var boolean
-     *
      * @ORM\Column(name="is_not_screen", type="boolean", nullable=true)
      */
     private $isNotScreen;
@@ -63,27 +61,39 @@ class MenuClientTree
     private $type;
 
     /**
-     * @ORM\gedmo:TreeLeft
+     * @Gedmo\TreeLeft
      * @ORM\Column(name="lft", type="integer")
      */
     private $lft;
 
     /**
-     * @ORM\gedmo:TreeRight
+     * @Gedmo\TreeLevel
+     * @ORM\Column(name="lvl", type="integer")
+     */
+    private $lvl;
+
+    /**
+     * @Gedmo\TreeRight
      * @ORM\Column(name="rgt", type="integer")
      */
     private $rgt;
 
     /**
-     * @ORM\gedmo:TreeParent
-     * @ManyToOne(targetEntity="Object\Entity\MenuClient", inversedBy="children")
+     * @Gedmo\TreeRoot
+     * @ORM\Column(name="root", type="integer", nullable=true)
+     */
+    private $root;
+
+    /**
+     * @Gedmo\TreeParent
+     * @ORM\ManyToOne(targetEntity="Object\Entity\MenuClient", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id", onDelete="CASCADE")
      */
     private $parent;
 
     /**
-     *
-     * @OneToMany(targetEntity="Category", mappedBy="parent")
-     * @OrderBy({"lft" = "ASC"})
+     * @ORM\OneToMany(targetEntity="Object\Entity\MenuClient", mappedBy="parent")
+     * @ORM\OrderBy({"lft" = "ASC"})
      */
     private $children;
 
