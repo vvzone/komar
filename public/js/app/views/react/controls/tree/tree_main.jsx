@@ -50,40 +50,36 @@ define(
                 var tree = this.makeTreeFromFlat(clone);
                 this.setState({collection: tree});
             },
-            makeTreeFromFlat: function(collection){
+            sortCollection: function(collection){
                 var pre_sort = collection.groupBy(function(model){
-                   return model.get('parent');
+                    return model.get('parent');
                 });
                 var sorted_collection = collection.sortBy(function(model){
                     return model.get('parent');
                 });
-                var slepok = sorted_collection.map(function(model){
-                    var record = model.get('name')+', id='+model.get('id')+' parent='+model.get('parent');
-                    return record;
-                });
                 var nodes = sorted_collection.map(function(model){
                     return model;
                 });
+
+                return nodes;
+            },
+            makeTreeFromFlat: function(collection){
+                var nodes = this.sortCollection(collection);
 
                 var map = {}, node, roots = [];
                 for (var i = 0; i < _.size(nodes); i += 1) {
                     if(typeof nodes[i] != 'undefined'){
                         //check for trash in collection
                         node = nodes[i];
-                        if(node.get('items')!=null){
-                            (debug)?console.log('makeTreeFromFlat > cleanup items...'):null;
-                            node.set({items: null}, {silent: true}); //?what tha f...?
-                        }
+                        (debug)?console.log('makeTreeFromFlat > cleanup items...'):null;
+                        node.set({items: []}, {silent: true}); //items = [];
 
-                        if(node.get('items') == null){
-                            node.set({items: []}, {silent: true}); //items = [];
-                        }
                         map[node.get('id')] = i; // use map to look-up the parents подобное сохранение не позволит сохранять возврат при произвольной сортировке
-                        console.log('map['+node.get('id')+'] ='+i);
-                        console.log(map[node.get('id')]);
+                        (debug)?console.log(['map['+node.get('id')+'] ='+i, map[node.get('id')]]):null;
+
                         if (node.get('parent')!= null) {
                             var num = map[node.get('parent')]; //нет в мап
-                            console.log('num='+num);
+                            (debug)?console.log('num='+num):null;
                             var items = nodes[num].get('items'); //так как нет в мап то num - undefined
                             items.push(node);
                             nodes[num].set('items', items);
@@ -93,13 +89,11 @@ define(
                         }
                     }
                 }
-                console.log('Maked tree:');
-                console.log(roots);
+                (debug)?console.log(['Maked tree:',roots]):null;
                 var tree_collection = collection.clone();
                 tree_collection.reset();
                 tree_collection.set(roots);
-                console.info('MainTree -> makeTreeFromFlat -> result collection:');
-                console.info(tree_collection);
+                (debug)?console.info(['MainTree -> makeTreeFromFlat -> result collection:', tree_collection]):null;
                 return tree_collection;
             },
             cleanOldRelations: function(collection){
@@ -107,91 +101,82 @@ define(
                 return cleaned;
             },
             moved: function(event){
-                console.info('MainTree -> TreeNodeMove (listener) catch...');
+                (debug)?console.info('MainTree -> TreeNodeMove (listener) catch...'):null;
                 var droppedOn_Id = event.droppedOn_id; //2
-                console.log('droppedOn_Id='+droppedOn_Id);
+                (debug)?console.log('droppedOn_Id='+droppedOn_Id):null;
                 var dragged = event.dragged;
-                console.log('dragged:');
-                console.log(dragged);
+                (debug)?console.log(['dragged:', dragged]):null;
                 var new_items = this.state.plain_collection;
-                var slepok = new_items.map(function(model){
-                    var record = model.get('name')+', id='+model.get('id')+' parent='+model.get('parent');
-                    return record;
-                });
-                console.log('slepok -> plain_collection');
-                console.log(slepok);
-
-
                 var original_model = new_items.get(dragged.model.get('id'));
-                console.log('new_items.get('+dragged.model.get('id')+')');
-
-                console.log('original_model, slepok:');
-                console.log(original_model.get('name')+', id='+original_model.get('id')+' parent='+original_model.get('parent'));
-
                 original_model.set('parent', droppedOn_Id);
-
-                console.log('original_model, slepok , after set parent='+droppedOn_Id);
-                console.log(original_model.get('name')+', id='+original_model.get('id')+' parent='+original_model.get('parent'));
-
-                console.info('Main Tree -> moved, current collection:');
-                console.log(this.state.collection);
-                console.log('flat new_items');
-                console.log(new_items);
-
-                var slepok_2 = new_items.map(function(model){
-                    var record = model.get('name')+', id='+model.get('id')+' parent='+model.get('parent');
-                    return record;
-                });
-                console.log('slepok_2 -> plain_collection');
-                console.log(slepok_2);
-
                 var tree = this.makeTreeFromFlat(new_items);
-                console.info('Main Tree -> moved, changed collection: ');
-                console.log(tree);
+                (debug)?console.info(['Main Tree -> moved, changed collection: ', tree]):null;
                 this.setState({
                         collection: tree,
                         plain_collection: new_items
-                    }); //FIX -> collection ,                        plain_collection: new_items
+                    }); //FIX -> collection ,
             },
             componentWillUnmount: function() {
                 window.removeEventListener("TreeNodeMove", this.handleMyEvent, true);
             },
-            treeSearch: function(node){
-                if(typeof node.childNodes != 'undefined'){
-                    return node.id;
-                }else{
-                    this.treeSearch(node.id);
-                }
-            },
             render: function(){
-                var tree = [];
-                var tree_output = {};
+                var tree_output = <div className="info">Нет элементов</div>;
                 var self = this;
+                this.treeHeader();
+                if(this.state.collection.length>0){
+                    tree_output = this.state.collection.map(function(model){
+                        return(
+                            <TreeNode
+                            key={model.get('id')}
+                            model={model}
+                            tree_dependency={model.attr_dependencies}
+                            move={self.moved}
+                            />
+                            );
+                    });
+                }
+                return(
+                    <div>
+                        {this.treeControlPanel()}
+                        <ul className="tree">{tree_output}</ul>
+                    </div>
+                );
+            },
+            /* -= template methods =- */
+            addItem: function(){
+                //var new_model = this.props.collection.create(null, {silent: true}); //!silent - don't force re-render before save model to server
+                var new_model = this.props.collection.add(); //!silent - don't force re-render before save model to server
+                EventBus.trigger('item-add', new_model);
+            },
+            newElementButton: function(){
+                return(
+                    <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
+                );
+            },
+            treeHeader: function(){
                 var collection = this.props.collection;
                 if(collection.collection_rus_name){
                     $('#main_top').html('<h2>Каталог &laquo;'+collection.collection_rus_name+'&raquo;</h2>');
                 }else{
                     $('#main_top').html('<h2>Название каталога не задано.</h2>');
                 }
-
+            },
+            switchToPlain: function(){
+                var collection = this.props.collection;
                 var switch_view = '';
                 if(collection.may_tree){
                     var view_as_plain_url ='#'+collection.collection_name+'_plain';
                     switch_view = <div className="switch_view">Отображать: [ <a href={view_as_plain_url} className="underline">Списком</a> / Деревом ]</div>;
                 }
-
-                tree_output = this.state.collection.map(function(model){
-                        return(
-                                <TreeNode
-                                key={model.get('id')}
-                                model={model}
-                                tree_dependency={model.attr_dependencies}
-                                move={self.moved}
-                                />
-                            );
-                        //return(<div>{model.get('name')}</div>)
-                });
-                return(<div>{switch_view}<ul className="tree">{tree_output}</ul></div>);
+                return switch_view;
+            },
+            treeControlPanel: function(){
+                return(
+                    <div className="tree_control_panel">
+                    {this.switchToPlain()}
+                    {this.newElementButton()}
+                    </div>
+                );
             }
         });
 

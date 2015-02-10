@@ -17,7 +17,8 @@ define(
                 id: null,
                 name: null,
                 parent: null,
-                rus_name: null,
+                icon: null,
+                entity: null,
                 is_non_independent: false,
                 is_not_screen: false,
                 order: null,
@@ -34,7 +35,9 @@ define(
                 items: 'Служебное поле клиентской части'
             },
             attr_rus_names: {
-                name: 'Адрес',
+                name: 'Имя',
+                icon: 'Иконка',
+                entity: 'Ссылка',
                 rus_name: 'Русское имя',
                 is_non_independent: 'Скрыт в меню',
                 is_not_screen: 'Описательный'

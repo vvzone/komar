@@ -77,10 +77,6 @@ define(
                 }
             },
             render: function(){
-                /*
-                console.log('SimpleListItem render, item');
-                console.log(this.props.model);
-                */
 
                 var editable = this.props.model.get('attr_rus_names');
                 var editable_controls = [];
@@ -96,7 +92,6 @@ define(
                 }
 
                 var edit_form = <div className="EditItemForm">{editable_controls}</div>;
-
                 var error_box = '';
                 if(this.state.action_error){
                     EventBus.trigger('error', 'Ошибка', this.state.action_error.response);
