@@ -57,8 +57,7 @@ define(
                     },
                     bubbles: true
                 });
-                console.log('nodeControlClicked > dispatch event:');
-                console.log(customEvent);
+                (debug)?console.log(['nodeControlClicked > dispatch event:', customEvent]):null;
                 this.getDOMNode().dispatchEvent(customEvent);
             },
             whenClicked: function(){
@@ -73,148 +72,77 @@ define(
             },
             getNodeTreeDependency: function(){
                 (debug)?console.info('===getNodeTreeDependency==='):null;
-                /*
-                 if(typeof this.props.tree_dependency.id_name_in_dependency != 'undefined' ){
-                 var url = 'http://zend_test/main/'
-                 + this.props.tree_dependency.source
-                 + '/search/'
-                 + this.props.tree_dependency.id_name_in_dependency
-                 + '/'
-                 + this.props.node.id;
-                 var data = '';
-                 console.info('url: '+url);
-
-                 $.get(url, function (result) {
-                 var dependency_items = [];
-                 dependency_items = result.data;
-                 data = result.data;
-                 }.bind(this));
-                 return data;
-                 }*/
             },
-            render: function () {
-                var self = this;
-                var className = "";
+            isVisible: function(){
                 var style = {};
                 if (!this.state.visible) {
                     style.display = "none";
                 }
-
-
-                var dependency_box = [];
-                console.log('Node Render');
-                console.log('Node Render -> this.props.model');
-                console.log(this.props.model);
-
-                /*
-                 if(typeof this.props.tree_dependency != 'undefined'){
-                 //if(this.props.had_dependeny_items){
-                 className = 'glyphicon';
-                 if (this.state.open == true) {
-                 className += " glyphicon-chevron-left";
-                 } else {
-                 className += " glyphicon-chevron-right";
-                 }
-                 dependency_box[0] = <div className="dependency_open_link"><span className={className} onClick={this.whenClicked}></span></div>;
-
-
-                 if(this.state.open == true){
-                 dependency_box[1] =
-                 <div className="tree_dependency_box">
-                 <div className="dependencies_list">
-                 <EntityBlock
-                 entity_name = {this.props.tree_dependency.entity_name}
-                 db_prop_name={this.props.tree_dependency.id_name_in_dependency}
-                 host={this.props.node} />
-                 </div>
-                 </div>;
-                 }
-                 }
-                 */
-
-                var tree_dependency ='';
-
-                var current_childs = this.props.model.get('items');
-                if (current_childs != null && current_childs.length > 0) { // after tree-making this is may be not null
-                    console.info('Node Render -> this.props.model.get(items)!=null');
-                    console.log(this.props.model.get('items'));
-                    if(this.props.model.get('items').length>0){
-                        console.log('this.props.model.get(items).length= '+this.props.model.get('items').length);
-                        className = "glyphicon togglable";
-                        if (this.state.visible) {
-                            className += " glyphicon-minus";
-                        } else {
-                            className += " glyphicon-plus";
-                        }
-                        var node_key = 'tree_box_node'+this.props.model.get('id');
-
-                        //<TreeNodeBox item={this.props.model} />
-                        //<MainTree source={null} childs={this.props.model.get('items')} tree_dependency={this.props.model.get('attr_dependency')} />
-
-                        var childs = this.props.model.get('items');
-                        console.info('childs --->:');
-                        console.log(childs);
-                        //child_box = <MainTree childs={childs} />;
-
-                        var child_box ={} ;
-
-                        child_box = childs.map(function(child){
-                            return <TreeNode model={child} move={self.props.move}/>; //{child.get('name')}
-                        });
-
-                        console.log('Render Node NAME = '+ this.props.model.get('name'));
-                        return(
-                            <li>
-                                <div className="tree_box_node"
-                                draggable="true"
-                                onDrop={this.drop}
-                                onDragEnd={this.dragEnd}
-                                onDragStart={this.dragStart}
-                                onDragOver={this.dragOver}
-                                onDragLeave={this.dragLeave}
-                                key={node_key}
-                                id={this.props.model.get('id')} >
-                                    <span onClick={this.toggle} className={className}></span>
-                                    <TreeNodeBox model={this.props.model} />
-                        {dependency_box}
-                                </div>
-                                <div className="tree_box_node_controls">
-                                    <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
-                                    <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
-                                    <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
-                                </div>
-                                <div className="tree_childs" style={style}>
-                                    <ul>
-                                    {child_box}
-                                    </ul>
-                                </div>
-                            </li>
-                            );
-                    }
-                }else{
-                    console.warn('regular Node w/out childs:');
-                    console.log('Render Node NAME = '+ this.props.model.get('name'));
-                    return(
-                        <li>
-                            <div className="tree_box_node"
-                            draggable="true"
-                            onDragEnd={this.dragEnd}
-                            onDragStart={this.dragStart}
-                            onDragOver={this.dragOver}
-                            onDragLeave={this.dragLeave}
-                            onDrop={this.drop}
-                            id={this.props.model.get('id')}>
-                                <TreeNodeBox model={this.props.model} tree_dependency={tree_dependency}/>
-                        {dependency_box}
-                            </div>
-                            <div className="tree_box_node_controls">
-                                <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
-                                <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
-                                <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
-                            </div>
-                        </li>
-                        );
+                return style;
+            },
+            render: function () {
+                var self = this;
+                (debug)?console.log(['Node Render -> this.props.model', this.props.model]):null;
+                var open_button, children_box = null
+                if(this.haveChildren()){
+                    open_button = this.openButton();
+                    children_box = this.childrenBox();
                 }
+                return(
+                    <li>
+                        <div className="tree_box_node"
+                        draggable="true"
+                        onDragEnd={this.dragEnd}
+                        onDragStart={this.dragStart}
+                        onDragOver={this.dragOver}
+                        onDragLeave={this.dragLeave}
+                        onDrop={this.drop}
+                        id={this.props.model.get('id')}>
+                            {open_button}
+                            <TreeNodeBox model={this.props.model} />
+                            {this.leavesBox()}
+                        </div>
+                        <div className="tree_box_node_controls">
+                            <ButtonAdd mini="true" clicked={this.nodeControlClicked} />
+                            <ButtonEdit mini="true" clicked={this.nodeControlClicked} />
+                            <ButtonDelete mini="true" clicked={this.nodeControlClicked} />
+                        </div>
+                        {children_box}
+                    </li>
+                );
+            },
+            leavesBox: function(){
+
+            },
+            haveChildren: function(){
+                if(this.props.model.get('items') != null && this.props.model.get('items').length > 0){
+                    return true;
+                }
+                return false;
+            },
+            openButton: function(){
+                var className = "glyphicon togglable";
+                if (this.state.visible) {
+                    className += " glyphicon-minus";
+                } else {
+                    className += " glyphicon-plus";
+                }
+                return(
+                    <span onClick={this.toggle} className={className}></span>
+                );
+            },
+            childrenBox: function(){
+                var self = this;
+                var child_box = this.props.model.get('items').map(function(child){
+                    return <TreeNode model={child} move={self.props.move} />;
+                });
+                return(
+                    <div className="tree_childs" style={this.isVisible()}>
+                        <ul>
+                           {child_box}
+                        </ul>
+                    </div>
+                );
             },
             toggle: function () {
                 this.setState({visible: !this.state.visible});

@@ -27,10 +27,6 @@ define(
         var debug = (Config['debug'] && Config['debug']['debug_tree'])? 1:null;
 
         var MainTree = React.createClass({
-            /*
-            * props:
-            * childs, collection (same)
-            * */
             getInitialState: function() {
                 return {
                     collection: [], //array!!
@@ -39,74 +35,49 @@ define(
                 };
             },
             componentWillMount: function() {
-                console.warn('MainTree -> componentWillMount');
-                //this will throw all components handle
-                //window.addEventListener("TreeNodeMove", this.handleMyEvent, true);
+                (debug)?console.warn('MainTree -> componentWillMount'):null;
             },
             componentDidMount: function() {
-                console.warn('MainTree -> componentDidMount');
+                (debug)?console.warn('MainTree -> componentDidMount'):null;
                 if(this.props.childs!=null){
-                    console.log('MainTree -> childrens');
+                    (debug)?console.log('MainTree -> childrens'):null;
                     this.setState({plain_collection: this.props.childs});
                 }else{
                     this.setState({plain_collection: this.props.collection});
                 }
-                console.info('this.state.plain_collection:');
-                console.info(this.state.plain_collection);
                 var collection = this.props.collection;
                 var clone = collection.clone();
                 var tree = this.makeTreeFromFlat(clone);
                 this.setState({collection: tree});
             },
             makeTreeFromFlat: function(collection){
-
-
                 var pre_sort = collection.groupBy(function(model){
                    return model.get('parent');
                 });
-
-                console.info('pre_sort');
-                console.info(pre_sort);
-
                 var sorted_collection = collection.sortBy(function(model){
-                    console.log(model.get('name')+'.get(parent)('+model.get('id')+')='+model.get('parent'));
                     return model.get('parent');
                 });
-
                 var slepok = sorted_collection.map(function(model){
                     var record = model.get('name')+', id='+model.get('id')+' parent='+model.get('parent');
                     return record;
                 });
-                console.log('slepok -> sorted_collection');
-                console.log(slepok);
-
                 var nodes = sorted_collection.map(function(model){
                     return model;
                 });
 
-                console.info('makeTreeFromFlat, received collection:');
-                console.info(collection);
-                console.info('makeTreeFromFlat, received nodes');
-                console.info(nodes);
-
                 var map = {}, node, roots = [];
-                for (var i = 0; i < _.size(nodes); i += 1) { //nodes.length
-                    console.warn('size' + _.size(nodes));
-                    console.log('map');
-                    console.log(map);
+                for (var i = 0; i < _.size(nodes); i += 1) {
                     if(typeof nodes[i] != 'undefined'){
                         //check for trash in collection
                         node = nodes[i];
                         if(node.get('items')!=null){
-                            console.log('makeTreeFromFlat > cleanup items...');
+                            (debug)?console.log('makeTreeFromFlat > cleanup items...'):null;
                             node.set({items: null}, {silent: true}); //?what tha f...?
                         }
 
                         if(node.get('items') == null){
                             node.set({items: []}, {silent: true}); //items = [];
                         }
-                        console.log('node');
-                        console.log(node);
                         map[node.get('id')] = i; // use map to look-up the parents подобное сохранение не позволит сохранять возврат при произвольной сортировке
                         console.log('map['+node.get('id')+'] ='+i);
                         console.log(map[node.get('id')]);
@@ -131,7 +102,7 @@ define(
                 console.info(tree_collection);
                 return tree_collection;
             },
-            cleanOldRealationship: function(collection){
+            cleanOldRelations: function(collection){
                 var cleaned = {};
                 return cleaned;
             },
