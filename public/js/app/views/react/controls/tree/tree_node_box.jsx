@@ -3,7 +3,7 @@
 var storage = {};
 
 define(
-    'views/react/controls/tree_node_box',
+    'views/react/controls/tree/tree_node_box',
     [
         'react'
 

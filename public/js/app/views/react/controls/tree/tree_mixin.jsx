@@ -1,7 +1,7 @@
 /** @jsx React.DOM */
 
 define(
-    'views/react/controls/tree_mixin',
+    'views/react/controls/tree/tree_mixin',
     [
         'jquery',
         'underscore',

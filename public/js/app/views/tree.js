@@ -35,7 +35,7 @@ define(
                 console.log(this.collection);
                 var self = this;
                 $(document).ready(function(){
-                     require(['jsx!views/react/controls/tree_main'], function(TreeMain){
+                     require(['jsx!views/react/controls/tree/tree_main'], function(TreeMain){
                          console.log('trying set collection 2 obj:');
                          console.info(self.collection);
 
