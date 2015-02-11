@@ -144,8 +144,8 @@ define(
             },
             /* -= template methods =- */
             addItem: function(){
-                //var new_model = this.props.collection.create(null, {silent: true}); //!silent - don't force re-render before save model to server
-                var new_model = this.props.collection.add(); //!silent - don't force re-render before save model to server
+                var new_model = this.props.collection.model.prototype.clone(); //!silent - don't force re-render before save model to server
+                console.info(['new_model', new_model]);
                 EventBus.trigger('item-add', new_model);
             },
             newElementButton: function(){

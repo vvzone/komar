@@ -29,7 +29,7 @@ define(
             // * search
             // * filter
             addItem: function(){
-                var new_model = this.props.collection.create(null, {silent: true}); //!silent - don't force re-render before save model to server
+                var new_model = this.props.collection.model.prototype.clone();
                 EventBus.trigger('item-add', new_model);
             },
             render: function(){

@@ -41,7 +41,6 @@ define(
                 });
 
                 (debug)?console.log('dom node:'):null;
-
                 var element = $(this.refs.item_edit.getDOMNode()).find('.item')[0]; //call for ItemEdit not MainItemEdit
                 this.refs.modal.hide();
 
