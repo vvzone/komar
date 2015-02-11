@@ -4,6 +4,7 @@ namespace Object\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Zend\Feed\Reader\Collection;
 
 /**
  * MenuClient
@@ -53,7 +54,7 @@ class MenuClient
     /**
      * @var \Object\Entity\MenuClientType
      *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\MenuClientType")
+     * @ORM\ManyToOne(targetEntity="Object\Entity\MenuClientType", cascade={"persist"})
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="type", referencedColumnName="id")
      * })
@@ -61,20 +62,19 @@ class MenuClient
     private $type;
 
     /**
-     * @var \Object\Entity\MenuClient
      *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\MenuClient")
+     * @ORM\OneToMany(targetEntity="Object\Entity\MenuClient", mappedBy="parent")
+     */
+    private $children;
+
+    /**
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\MenuClient", inversedBy="children")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      * })
      */
     private $parent;
-
-    /**
-     * @var \Object\Entity\MenuClient
-     * @ORM\OneToMany(targetEntity="Object\Entity\MenuClient", mappedBy="parent")
-     */
-    private $children;
 
     public function __construct()
     {
@@ -206,6 +206,13 @@ class MenuClient
         return $this->type;
     }
 
+    public function getTypeObj(){
+        if($this->getType()){
+            return $this->getType()->getAll();
+        }
+        return $this->getType();
+    }
+
     /**
      * Set parent
      *
@@ -229,35 +236,64 @@ class MenuClient
         return $this->parent;
     }
 
-    public function getChildren(){
-        return $this->children;
+    public function getParentObj(){
+        if($this->parent){
+            return $this->parent->getAll();
+        }
+        return $this->parent;
     }
 
     /**
      * Add child
      *
-     * @param \Object\Entity\MenuClient $child
-     * @return \Object\Entity\MenuClient
+     * @param \Doctrine\Common\Collections\Collection $children
+     * @return MenuClient
      */
-    public function addChildren(\Object\Entity\MenuClient $child){
-        $this->children[] = $child;
+    public function addChildren(\Doctrine\Common\Collections\Collection $children)
+    {
+        //$this->children[] = $child;
+        foreach($children as $child){
+            if( ! $this->children->contains($child)) {
+                $this->children->add($child);
+            }
+        }
 
         return $this;
     }
 
     /**
-     * Remove person
+     * Remove child
      *
-     * @param \Object\Entity\MenuClient $child
+     * @param \Doctrine\Common\Collections\Collection $children
      */
-    public function removeChildren(\Object\Entity\MenuClient $child){
-        $this->children->removeElement($child);
-
+    public function removeChildren(\Doctrine\Common\Collections\Collection $children)
+    {
+        //$this->children->removeElement($child);
+        foreach($children as $child){
+            $this->children->removeElement($child);
+        }
     }
 
-    public function getMenuClientTree(){
-
+    /**
+     * Get children
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getChildren(){
+        return $this->children;
     }
+
+
+    public function getChildrenOutput(){
+
+        $children = $this->getChildren();
+        foreach($this->children as $child){
+            $children[] = $child->getAll();
+        }
+        return $children;
+    }
+
+
 
     public function getMenuClientSimple(){
         $simpleObj =array(
@@ -265,9 +301,9 @@ class MenuClient
             'name' => $this->getName(),
             'entity' => $this->getEntity(),
             'is_not_screen' => $this->getIsNotScreen(),
-            'type' => $this->getType()->getName(),
-            'parent_id' => $this->getParent(),
-            'icon' => $this->getIcon(),
+            'type' => $this->getType(),
+            'parent_id' => $this->getParent()->getId(),
+            'icon' => $this->getIcon()
         );
 
         /*
@@ -283,8 +319,9 @@ class MenuClient
             'name' => $this->getName(),
             'entity' => $this->getEntity(),
             'is_not_screen' => $this->getIsNotScreen(),
-            'type' => $this->getType(),
+            'type' => $this->getTypeObj(),
             'icon' => $this->getIcon(),
+            'parent' => $this->getParentObj(),
             'children' => $this->getChildren()
         );
     }

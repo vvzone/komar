@@ -290,6 +290,17 @@ class Client extends \Object\Entity\Client implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getInboxCounter()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInboxCounter', array());
+
+        return parent::getInboxCounter();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getAll()
     {
 

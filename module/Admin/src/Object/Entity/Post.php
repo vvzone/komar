@@ -42,6 +42,21 @@ class Post
      */
     private $description;
 
+    /**
+     * @var \Doctrine\Common\Collections\ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Rank")
+     * @ORM\JoinTable(name="post_rank",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="post_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="rank_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $allowedRanks;
+
     /*
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -55,6 +70,7 @@ class Post
     public function __construct()
     {
         $this->unitsHaveCurrentPost = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->allowedRanks = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -138,6 +154,53 @@ class Post
     }
 
     /**
+     * Add AllowedRank
+     *
+     * @param \Doctrine\Common\Collections\Collection
+     * @return Post
+     */
+    public function addAllowedRanks(\Doctrine\Common\Collections\Collection $AllowedRanks)
+    {
+        foreach($AllowedRanks as $Rank){
+            if( ! $this->allowedRanks->contains($Rank)) {
+                $this->allowedRanks->add($Rank);
+            }
+        }
+        return $this;
+    }
+
+    /**
+     * Remove AllowedRank
+     *
+     * @param \Doctrine\Common\Collections\Collection
+     */
+    public function removeAllowedRanks(\Doctrine\Common\Collections\Collection $AllowedRanks)
+    {
+        foreach($AllowedRanks as $Rank){
+            $this->allowedRanks->removeElement($Rank);
+        }
+    }
+
+    /*
+     * @return \Doctrine\Common\Collections\Collection
+     * */
+
+    public function getAllowedRanks(){
+        return $this->allowedRanks;
+    }
+
+    public function getAllowedRanksObj(){
+        if($this->getAllowedRanks()->count()>0){
+            $allowed_ranks = array();
+            foreach($this->getAllowedRanks() as $Rank){
+                $allowed_ranks[] = $Rank->getAll();
+            }
+            return $allowed_ranks;
+        }
+        return array();
+    }
+
+    /**
      * Add unit
      *
      * @param \Object\Entity\Unit $unit
@@ -184,6 +247,7 @@ class Post
             'short_name' => $this->getShortName(),
             'description' => $this->getDescription(),
             'unit' => '',
+            'allowed_ranks' => $this->getAllowedRanksObj(),
             'unitsHaveCurrentPost' => $this->getUnitsHaveCurrentPost()
         );
     }

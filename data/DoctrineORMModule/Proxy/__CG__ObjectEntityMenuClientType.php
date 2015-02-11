@@ -210,4 +210,15 @@ class MenuClientType extends \Object\Entity\MenuClientType implements \Doctrine\
         return parent::getName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getAll()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
+
+        return parent::getAll();
+    }
+
 }

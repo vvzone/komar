@@ -62,4 +62,11 @@ class MenuClientType
     {
         return $this->name;
     }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName()
+        );
+    }
 }

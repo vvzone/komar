@@ -28,8 +28,14 @@ class MenuClientController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $repo = $objectManager->getRepository('Object\Entity\MenuClientTree');
-        $arrayTree = $repo->childrenHierarchy();
+        $arrayTree = array();
+        //$repo = $objectManager->getRepository('Object\Entity\MenuClientTree');
+        $repo = $objectManager->getRepository('Object\Entity\MenuClient')->findAll();
+        //$arrayTree = $repo->childrenHierarchy();
+
+        foreach($repo as $menu){
+            $arrayTree[] = $menu->getMenuClientSimple(); //getAll - for with Person
+        }
 
         return new JsonModel(
             $arrayTree
@@ -42,14 +48,10 @@ class MenuClientController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $results = $objectManager->getRepository('Object\Entity\MenuClient')->findByToken($id)->getResult();
-
-        foreach($results as $menu){
-            $data[] = $menu->getMenuClientSimple();
-        }
+        $menuElement = $objectManager->find('Object\Entity\MenuClient', $id);
 
         return new JsonModel(array(
-            $results
+            $menuElement->getAll()
         ));
     }
 
