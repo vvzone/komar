@@ -115,7 +115,12 @@ define(
         properties_types['route'] = 'simple_select';
         properties_types['node_levels'] = 'node_levels';
 
-
+        /* ---- client_menu ----*/
+        properties_types['icon'] = 'tiny_text';
+        properties_types['entity'] = 'tiny_text';
+        properties_types['is_non_independent'] = 'bool_select';
+        properties_types['is_not_screen'] = 'bool_select';
+        properties_types['type'] = 'simple_select';
 
 
 

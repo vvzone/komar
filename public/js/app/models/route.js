@@ -44,12 +44,7 @@ define(
                     this.set({node_levels: NodeLevelsCollection});
                 }
                 */
-                this.on('destroy', this.baDaBum);
-            },
-            baDaBum: function(){
-                console.warn('KABOOM!');
             }
-
         });
 
         return Model;

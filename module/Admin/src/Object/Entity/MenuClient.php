@@ -3,6 +3,7 @@
 namespace Object\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * MenuClient
@@ -75,7 +76,10 @@ class MenuClient
      */
     private $children;
 
-
+    public function __construct()
+    {
+        $this->children = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -227,6 +231,28 @@ class MenuClient
 
     public function getChildren(){
         return $this->children;
+    }
+
+    /**
+     * Add child
+     *
+     * @param \Object\Entity\MenuClient $child
+     * @return \Object\Entity\MenuClient
+     */
+    public function addChildren(\Object\Entity\MenuClient $child){
+        $this->children[] = $child;
+
+        return $this;
+    }
+
+    /**
+     * Remove person
+     *
+     * @param \Object\Entity\MenuClient $child
+     */
+    public function removeChildren(\Object\Entity\MenuClient $child){
+        $this->children->removeElement($child);
+
     }
 
     public function getMenuClientTree(){

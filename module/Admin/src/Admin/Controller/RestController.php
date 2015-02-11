@@ -45,8 +45,9 @@ class RestController extends AbstractRestfulController
             }
             return $data;
         }else{
-            $response = $e->getResponse();
-            $response->setStatusCode(401);
+
+            //$response = $e->getResponse();
+            //$response->setStatusCode(401);
         }
     }
 

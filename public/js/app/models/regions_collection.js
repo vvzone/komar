@@ -17,20 +17,6 @@ define(
             collection_name: 'regions',
             url: function() {
                 return apiUrl('regions');
-            },
-
-            initialize: function(){
-                /*this.on('change', function(){
-                    console.info('Collection Change! > fetch');
-                    this.fetch();
-                }, this);*/
-
-                this.on('destroy', function(){
-                    this.liluDallas;
-                }, this);
-            },
-            liluDallas: function(){
-                console.warn('Multi-passport!');
             }
         });
 
