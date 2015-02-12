@@ -9,21 +9,31 @@
 
 namespace Object\Controller;
 
-//use Zend\Mvc\Controller\AbstractActionController;\
 use Object\Entity\Post;
+use Admin\Controller\RestController;
+use Zend\EventManager\EventManagerInterface;
 
+/* filter */
+use Zend\InputFilter\Factory;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Input;
+use Zend\Validator;
+
+/* hydra & orm */
+use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+
+/* data out */
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-
-use Zend\EventManager\EventManagerInterface;
-use Admin\Controller\RestController;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
 class PostController extends RestController
 {
 
     /*-------------- default methods ----------*/
+    public function checkInputJson($data){
+
+    }
 
     public function getList()
     {
@@ -56,12 +66,27 @@ class PostController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Post');
 
-        $data = $this->RESTtoCamelCase($data);
-        $post = $hydrator->hydrate($data, $post);
-        $objectManager->persist($post);
-        $objectManager->flush();
+        $inputFilter= $post->getInputFilter();
+        if($inputFilter->setData($data)->isValid()){
+            /*
+            $data = array(
+                'isValid' => true,
+                'data' => $data,
+                'filtered' => $inputFilter->getValues()
+            );*/
+
+            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Post');
+            $data = $this->RESTtoCamelCase($data);
+            $post = $hydrator->hydrate($data, $post);
+            $objectManager->persist($post);
+            $objectManager->flush();
+
+        }else{
+            $response = $this->getResponse();
+            $response->setStatusCode(400);
+            $data = $inputFilter->getMessages();
+        }
 
         return new JsonModel(array(
             $data,
@@ -76,11 +101,18 @@ class PostController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Post');
-        $data = $this->RESTtoCamelCase($data);
-        $post = $hydrator->hydrate($data, $post);
-        $objectManager->persist($post);
-        $objectManager->flush();
+        $inputFilter= $post->getInputFilter();
+        if($inputFilter->setData($data)->isValid()){
+            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Post');
+            $data = $this->RESTtoCamelCase($data);
+            $post = $hydrator->hydrate($data, $post);
+            $objectManager->persist($post);
+            $objectManager->flush();
+        }else{
+            $response = $this->getResponse();
+            $response->setStatusCode(400);
+            $data = $inputFilter->getMessages();
+        };
 
         return new JsonModel(
             $data
@@ -101,17 +133,6 @@ class PostController extends RestController
             'data' => 'deleted',
         ));
     }
-
-
-    /*
-    public function getPostTableList()
-    {
-        if (!$this->postTableList) {
-            $sm = $this->getServiceLocator();
-            $this->postTableList = $sm->get('Object\Model\PostTableList');
-        }
-        return $this->postTableList;
-    }*/
 
 /*-------------- default methods ----------*/
 }

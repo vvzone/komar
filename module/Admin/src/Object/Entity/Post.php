@@ -3,6 +3,9 @@
 namespace Object\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Object\InputFilter\PostFilter;
+use Zend\InputFilter\Factory as InputFactory;
+
 
 /**
  * Post
@@ -64,6 +67,8 @@ class Post
      * */
     private $unitsHaveCurrentPost;
 
+    protected $inputFilter;
+
     /**
      * Constructor
      */
@@ -71,6 +76,22 @@ class Post
     {
         $this->unitsHaveCurrentPost = new \Doctrine\Common\Collections\ArrayCollection();
         $this->allowedRanks = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    public function setInputFilter(){
+        $filter = new PostFilter();
+        $filter->init();
+        $this->inputFilter = $filter;
+    }
+
+    /**
+     * @return \Object\InputFilter\PostFilter
+     */
+    public function getInputFilter(){
+        if(!$this->inputFilter){
+            $this->setInputFilter();
+        }
+        return $this->inputFilter;
     }
 
 
