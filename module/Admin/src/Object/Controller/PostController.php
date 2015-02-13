@@ -51,19 +51,10 @@ class PostController extends RestController
 
         $paginator = new Paginator($adapter);
         $paginator->setDefaultItemCountPerPage('5');
-        
-        $page = 2;
 
-        $paginator->setCurrentPageNumber($page);
-
-        //$data = array();
+        $page = (int)$this->params()->fromQuery('page', 1);
+        $paginator->setCurrentPageNumber((int)$page);
         $data = $paginator->getCurrentItems();
-
-        /*
-        foreach ($results as $result) {
-            $data[] = $result->getPostSimple();
-        }
-        */
 
         return new JsonModel($data);
     }

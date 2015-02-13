@@ -289,9 +289,10 @@ return array(
                     'post' => array(
                         'type'    => 'segment',
                         'options' => array(
-                            'route'    => '/post[/:id]',
+                            'route'    => '/post[/:id][/page/:page]',
                             'constraints' => array(
-                                'id'     => '[0-9]*'
+                                'id'     => '[0-9]*',
+                                'page'   => '[0-9]*'
                             ),
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Object\Controller',
