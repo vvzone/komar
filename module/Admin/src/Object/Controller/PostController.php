@@ -50,13 +50,25 @@ class PostController extends RestController
         $adapter = new \Object\Paginator\Adapter($repository);
 
         $paginator = new Paginator($adapter);
-        $paginator->setDefaultItemCountPerPage('5');
-
         $page = (int)$this->params()->fromQuery('page', 1);
+        $records_per_page = (int)$this->params()->fromQuery('limit', 10);
+
+        $records_per_page = ($records_per_page<1)?10:$records_per_page;
+        $paginator->setDefaultItemCountPerPage($records_per_page);
         $paginator->setCurrentPageNumber((int)$page);
         $data = $paginator->getCurrentItems();
 
         return new JsonModel($data);
+
+        /*
+        return new JsonModel(
+            array(
+                'data' => $data,
+                'page' => $page,
+                'per_page' => $records_per_page
+            )
+        );
+        */
     }
 
     public function get($id)
@@ -77,13 +89,6 @@ class PostController extends RestController
 
         $inputFilter= $post->getInputFilter();
         if($inputFilter->setData($data)->isValid()){
-            /*
-            $data = array(
-                'isValid' => true,
-                'data' => $data,
-                'filtered' => $inputFilter->getValues()
-            );*/
-
             $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Post');
             $data = $this->RESTtoCamelCase($data);
             $post = $hydrator->hydrate($data, $post);
