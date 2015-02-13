@@ -338,10 +338,12 @@ return array(
         'factories' => array(
             'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
             'Authentication\Adapter\HeaderAuthentication' => 'Authentication\Factory\AuthenticationAdapterFactory',
-            'Authentication\Listener\ApiAuthenticationListener' => 'Authentication\Factory\AuthenticationListenerFactory'
+            'Authentication\Listener\ApiAuthenticationListener' => 'Authentication\Factory\AuthenticationListenerFactory',
+
         ),
         'invokables' => array(
-            'Object\Repository\UserRepository' => 'Object\Repository\UserRepository'
+            'Object\Repository\UserRepository' => 'Object\Repository\UserRepository',
+            'Object\Repository\PostRepository' => 'Object\Repository\PostRepository'
         ),
         'aliases' => array(
             'translator' => 'MvcTranslator',

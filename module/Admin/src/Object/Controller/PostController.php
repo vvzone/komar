@@ -9,6 +9,7 @@
 
 namespace Object\Controller;
 
+//use Doctrine\ORM\Tools\Pagination\Paginator;
 use Object\Entity\Post;
 use Admin\Controller\RestController;
 use Zend\EventManager\EventManagerInterface;
@@ -23,7 +24,11 @@ use Zend\Validator;
 use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
+use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
+use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
+
 /* data out */
+use Zend\Paginator\Paginator as Paginator;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
@@ -41,12 +46,24 @@ class PostController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $results = $objectManager->getRepository('Object\Entity\Post')->findAll();
-        $data = array();
+        $repository = $objectManager->getRepository('Object\Entity\Post');
+        $adapter = new \Object\Paginator\Adapter($repository);
 
+        $paginator = new Paginator($adapter);
+        $paginator->setDefaultItemCountPerPage('5');
+        
+        $page = 2;
+
+        $paginator->setCurrentPageNumber($page);
+
+        //$data = array();
+        $data = $paginator->getCurrentItems();
+
+        /*
         foreach ($results as $result) {
             $data[] = $result->getPostSimple();
         }
+        */
 
         return new JsonModel($data);
     }

@@ -10,8 +10,8 @@ use Zend\InputFilter\Factory as InputFactory;
 /**
  * Post
  *
+ * @ORM\Entity(repositoryClass="Object\Repository\PostRepository")
  * @ORM\Table(name="post")
- * @ORM\Entity
  */
 class Post
 {
@@ -69,9 +69,6 @@ class Post
 
     protected $inputFilter;
 
-    /**
-     * Constructor
-     */
     public function __construct()
     {
         $this->unitsHaveCurrentPost = new \Doctrine\Common\Collections\ArrayCollection();
