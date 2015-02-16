@@ -42,33 +42,27 @@ class PostController extends RestController
 
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
+        $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
         $repository = $objectManager->getRepository('Object\Entity\Post');
-        $adapter = new \Object\Paginator\Adapter($repository);
 
+        //$paginator = $serviceLocator->get('Object\Paginator');
+        //$data = $paginator->paginatedList();
+
+        $adapter = new \Object\Paginator\Adapter($repository);
         $paginator = new Paginator($adapter);
+
         $page = (int)$this->params()->fromQuery('page', 1);
         $records_per_page = (int)$this->params()->fromQuery('limit', 10);
-
         $records_per_page = ($records_per_page<1)?10:$records_per_page;
+
         $paginator->setDefaultItemCountPerPage($records_per_page);
         $paginator->setCurrentPageNumber((int)$page);
         $data = $paginator->getCurrentItems();
 
         return new JsonModel($data);
-
-        /*
-        return new JsonModel(
-            array(
-                'data' => $data,
-                'page' => $page,
-                'per_page' => $records_per_page
-            )
-        );
-        */
     }
 
     public function get($id)

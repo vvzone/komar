@@ -322,8 +322,8 @@ return array(
                                 'id'     => '[0-9]*'
                             ),
                             'defaults' => array(
-                                '__NAMESPACE__' => 'Object\Controller',
-                                'controller'    => 'Object\Controller\Inbox'
+                                '__NAMESPACE__' => 'Client\Controller',
+                                'controller'    => 'Client\Controller\Messages'
                             )
                         )
                     ),
@@ -332,6 +332,9 @@ return array(
         ),
     ),
     'service_manager' => array(
+        'service' => array(
+            'Object\Paginator\Adapter' => 'Object\Paginator\Adapter'
+        ),
         'abstract_factories' => array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
@@ -340,11 +343,13 @@ return array(
             'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
             'Authentication\Adapter\HeaderAuthentication' => 'Authentication\Factory\AuthenticationAdapterFactory',
             'Authentication\Listener\ApiAuthenticationListener' => 'Authentication\Factory\AuthenticationListenerFactory',
-
+            'Object\Paginator' => 'Object\Factory\PaginatorFactory'
         ),
         'invokables' => array(
             'Object\Repository\UserRepository' => 'Object\Repository\UserRepository',
-            'Object\Repository\PostRepository' => 'Object\Repository\PostRepository'
+            'Object\Repository\PostRepository' => 'Object\Repository\PostRepository',
+            'Object\Repository\DocumentRepository' => 'Object\Repository\DocumentRepository',
+            'Object\Paginator\Adapter' => 'Object\Paginator\Adapter'
         ),
         'aliases' => array(
             'translator' => 'MvcTranslator',
@@ -385,7 +390,9 @@ return array(
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
             'Object\Controller\Post' => 'Object\Controller\PostController',
-            'Object\Controller\User' => 'Object\Controller\UserController'
+            'Object\Controller\User' => 'Object\Controller\UserController',
+            /* === Client === */
+            'Client\Controller\Messages' => 'Client\Controller\MessagesController'
         )
     ),
     'view_manager' => array(

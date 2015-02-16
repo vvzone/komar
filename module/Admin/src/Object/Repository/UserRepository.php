@@ -89,6 +89,7 @@ $result = $query = $qb->getQuery();
             ->where('user.token = ?1')
             ->setParameters($filter)
             ->setMaxResults(1);
+
         $query = $this->_em->createQuery('SELECT u.login, u.password FROM Object\Entity\User u WHERE u.token = :token');
         $query->setParameter('token', $token);
         $result = $query->getOneOrNullResult();

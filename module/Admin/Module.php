@@ -47,6 +47,7 @@ class Module implements AutoloaderProviderInterface
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                     'Object' => __DIR__ . '/src/Object',
                     'Authentication' => __DIR__ . '/src/Authentication',
+                    'Client' => __DIR__ . '/src/Client',
                 ),
             ),
         );
