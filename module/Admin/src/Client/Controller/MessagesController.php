@@ -33,14 +33,17 @@ class MessagesController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $results = $objectManager->getRepository('Object\Entity\Document')->getInbox();
+        $results = $objectManager->getRepository('Object\Entity\Document')->getInbox(24);
         $data = array();
 
-        $data[] = $results;
+        $data[] = $results->getDocumentSimple(); //->getAll()
+
         /*
         foreach ($results as $result) {
-            $data[] = $result->getDocumentSimple();
-        }*/
+            //$data[] = $result->getDocumentSimple();
+            $data[] = $result->getAll();
+        }
+        */
 
         return new JsonModel($data);
     }

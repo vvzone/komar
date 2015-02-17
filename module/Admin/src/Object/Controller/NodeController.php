@@ -44,16 +44,9 @@ class NodeController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
+        $node = $objectManager->find('Object\Entity\Node', $id);
 
-        $results = $objectManager->getRepository('Object\Entity\Node')->findByToken($id)->getResult();
-
-        foreach($results as $user){
-            $data[] = $user->getLogin();
-        }
-
-        return new JsonModel(array(
-            $results
-        ));
+        return new JsonModel($node->getAll());
     }
 
     public function create($data)

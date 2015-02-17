@@ -247,6 +247,19 @@ return array(
                             )
                         )
                     ),
+                    'node' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/node[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Node'
+                            )
+                        )
+                    ),
                     'route' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -386,6 +399,7 @@ return array(
             'Object\Controller\Sex' => 'Object\Controller\SexController',
             'Object\Controller\Document' => 'Object\Controller\DocumentController',
             'Object\Controller\NodeLevel' => 'Object\Controller\NodeLevelController',
+            'Object\Controller\Node' => 'Object\Controller\NodeController',
             'Object\Controller\Route' => 'Object\Controller\RouteController',
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
