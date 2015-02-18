@@ -122,4 +122,13 @@ class NodeLevelType
     {
         return $this->defaultNodeLevelName;
     }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'code' => $this->getCode(),
+            'name' => $this->getName(),
+            'default_name' => $this->getDefaultNodeLevelName()
+        );
+    }
 }

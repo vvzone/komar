@@ -34,16 +34,17 @@ class MessagesController extends RestController
             ->get('Doctrine\ORM\EntityManager');
 
         $results = $objectManager->getRepository('Object\Entity\Document')->getInbox(24);
+        //$results = $objectManager->getRepository('Object\Entity\Document')->getClientIdFromPersonId(10);
+        //$results = $objectManager->getRepository('Object\Entity\Document')->getAuthored(5); //person
+        //$results = $objectManager->getRepository('Object\Entity\Document')->getSent(5); //person
+        //$results = $objectManager->getRepository('Object\Entity\Document')->getDraft(5); //person
         $data = array();
 
-        $data[] = $results->getDocumentSimple(); //->getAll()
-
-        /*
+        //$data[] = $results->getDocumentSimple(); //->getAll()
         foreach ($results as $result) {
-            //$data[] = $result->getDocumentSimple();
-            $data[] = $result->getAll();
+            //$data[] = $result;
+            $data[] = $result->getDocumentSimple();
         }
-        */
 
         return new JsonModel($data);
     }

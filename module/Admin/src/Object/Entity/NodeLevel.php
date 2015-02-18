@@ -205,6 +205,7 @@ class NodeLevel
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
+            'level_type' => $this->getNodeLevelType()->getAll(),
             'level_order' => $this->getLevelOrder(),
             'nodes' => $this->getNodes()
         );

@@ -254,4 +254,15 @@ class NodeLevelType extends \Object\Entity\NodeLevelType implements \Doctrine\OR
         return parent::getDefaultNodeLevelName();
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    public function getAll()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
+
+        return parent::getAll();
+    }
+
 }
