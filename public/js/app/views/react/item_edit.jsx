@@ -57,12 +57,12 @@ define(
                     (debug)?console.log(['property[key], key='+key, property[key], 'current_item['+key+'] old:', current_item.attributes[key]]):null;
                     if(property[key] == "true" || property[key] == "false"){
                         if(property[key] == "true"){
-                            current_item.attributes[key] = true;
+                            current_item.set(key, true);
                         }else{
-                            current_item.attributes[key] = false;
+                            current_item.set(key, false);
                         }
                     }else{
-                        current_item.attributes[key] = property[key];
+                        current_item.set(key, property[key]);
                     }
                     (debug)?console.log(['current_item['+key+'] now:', current_item.attributes[key]]):null;
                 }
@@ -223,10 +223,12 @@ define(
                     }
                 }
 
+                // Поля для зависимости
                 for(var prop in model.attr_rus_names){
                     if(debug){
                         console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
                         console.log('model.attributes['+prop+']='+model.attributes[prop]);
+
                     }
 
                     //Выводить скрытые поля для Добавления Нового
