@@ -13,18 +13,7 @@ define(
     ],function(_, $, React, Config, BootstrapModal, EventBus, ControlsConfig, ControlsRouter, Constants){
 
         var debug = (Config['debug'] && Config['debug']['debug_item_edit'])? 1:null;
-
         var ItemEditBox = React.createClass({
-            /*
-             * Props:
-             * old: <<<<<<<<<<<<
-             * item - item array
-             * prototype.editable_properties - from server
-             * dependencies - from entity
-             * >>>>>>>>>>>>>>>>>>>
-             * new: model
-             *
-             * */
             getInitialState: function () {
                 return {
                     model: [],
@@ -32,24 +21,21 @@ define(
                 }
             },
             saveForm: function () {
-                //this.props.model.save;
                 if(debug){
                     console.info('saveForm-> item to save:');
                     console.info(this.state.model);
                 }
 
                 var mySelf = this;
-
                 if(this.state.model.isValid()){
-                    console.info('this.state.model.isValid', this.state.model.isValid(true));
+                    console.info('this.state.model.isValid', this.state.model.isValid());
                     console.info('model', this.state.model);
+
                     this.state.model.save(null, {
                         success:  function(model, response){
                             (debug)?console.info('item_edit -> save success!'):null;
-                            //mySelf.props.callback('save');
                             mySelf.state.model.collection.fetch({
                                 success: function(){
-                                    //sync
                                     //EventBus.trigger('success', 'Изменения синхронизированы.');
                                 },
                                 error: function(){
@@ -65,20 +51,10 @@ define(
                 }
             },
             itemUpdate: function (property) {
-                (debug)?console.info('itemUpdate'):null;
+                (debug)?console.info(['itemUpdate, property:', property]):null;
                 var current_item = this.state.model;
-                if(debug){
-                    console.log('property:');
-                    console.log(property);
-                }
-
                 for (var key in property) {
-                    if(debug){
-                        console.log('property[key], key='+key);
-                        console.log(property[key]);
-                        console.log('current_item['+key+'] old:');
-                        console.log(current_item.attributes[key]);
-                    }
+                    (debug)?console.log(['property[key], key='+key, property[key], 'current_item['+key+'] old:', current_item.attributes[key]]):null;
                     if(property[key] == "true" || property[key] == "false"){
                         if(property[key] == "true"){
                             current_item.attributes[key] = true;
@@ -88,10 +64,7 @@ define(
                     }else{
                         current_item.attributes[key] = property[key];
                     }
-                    if(debug){
-                        console.log('current_item['+key+'] now:');
-                        console.log(current_item.attributes[key]);
-                    }
+                    (debug)?console.log(['current_item['+key+'] now:', current_item.attributes[key]]):null;
                 }
                 this.setState({model: current_item}); //не нужно так как обновляется модель - не факт ибо нет ре-рендера
             },
@@ -110,22 +83,15 @@ define(
                     if(this.state.dependency_array != null){
                         if(debug){
                             console.error('call to ControlRouter -> this.controlRouterCallWithDependency');
-                            console.log('this.state.dependency_array['+prop+']');
-                            console.log(this.state.dependency_array[prop]);
+                            console.log(['this.state.dependency_array['+prop+']',this.state.dependency_array[prop]]);
+
                         }
-                            return this.controlRouterCallWithDependency(model, prop);
+                        return this.controlRouterCallWithDependency(model, prop);
                     }
                 }
                 return this.controlRouterCall(model, prop);
             },
             controlRouterCallWithDependency: function(model, prop){
-                if(debug){
-                    console.info('controlRouterCallWithDependency');
-                    console.info('this.state.dependency_array['+prop+']');
-                    console.info(this.state.dependency_array[prop]);
-                    console.info('model.attributes['+prop+']');
-                    console.info(model.attributes[prop]);
-                }
                 return <ControlsRouter
                 type={ControlsConfig[prop]}
                 value={model.attributes[prop]}
@@ -205,9 +171,6 @@ define(
 
                                 }
                             );
-
-
-
                         }else{
                             (debug)?console.warn('current model.attr_dependencies['+prop+'] == constant'):null;
 
@@ -232,67 +195,38 @@ define(
                 //window.removeEventListener("saveButtonClick", this.saveForm, true);
             },
             render: function () {
-                //var editable = this.props.prototype.editable_properties;
                 var model = this.state.model;
-                if(debug){
-                    console.info('ItemEditBox -> RENDER');
-                    console.log('ItemEditBox, model:');
-                    console.log(model);
-                    console.log('ItemEditBox, this.state:');
-                    console.log(this.state);
-                }
                 var controls = [];
                 var counter = 0;
                 var dependencies_by_place = {};
 
                 if(this.state.dependency_array!=null){
-                if(model.dependency_values_fields!= null){
-                    for(var dependency in model.dependency_values_fields){
-                        if(debug){
-                            console.info('this.state.dependency_array:');
-                            console.info(this.state.dependency_array);
-                            console.info('trying set to model...');
-                        }
-                        var target_field = model.dependency_values_fields[dependency];
-                        var dependency_array = this.state.dependency_array;
-
-                        _.each(dependency_array, function(dep_obj, key){
-                            if(debug){
-                                console.info('dep_obj');
-                                console.info(dep_obj);
-                                console.info('model.set('+target_field+', '+dep_obj[0][target_field]+')');
+                    if (model.dependency_values_fields != null) {
+                        for (var dependency in model.dependency_values_fields) {
+                            if (debug) {
+                                console.info('this.state.dependency_array:');
+                                console.info(this.state.dependency_array);
+                                console.info('trying set to model...');
                             }
-                            model.set('document_'+target_field, dep_obj[0][target_field]);
-                        });
+                            var target_field = model.dependency_values_fields[dependency];
+                            var dependency_array = this.state.dependency_array;
 
-
-                        /*
-                        for(var dependency_object in this.state.dependency_array){
-                            var value = this.state.dependency_array[dependency_object];
-                            console.info('value');
-                            console.info(value[0].target_field);
-                            console.info('model.set('+target_field+', '+value+')');
-                            model.set(target_field, value[target_field]);
-                        }*/
+                            _.each(dependency_array, function (dep_obj, key) {
+                                if (debug) {
+                                    console.info('dep_obj');
+                                    console.info(dep_obj);
+                                    console.info('model.set(' + target_field + ', ' + dep_obj[0][target_field] + ')');
+                                }
+                                model.set('document_' + target_field, dep_obj[0][target_field]);
+                            });
+                        }
                     }
                 }
-                }
 
-                if(debug){
-                    console.info('ItemEditBox -> RENDER');
-                    console.log('ItemEditBox, model:');
-                    console.log(model);
-                    console.log('ItemEditBox, this.state:');
-                    console.log(this.state);
-                }
-
-
-                // Поля для зависимости
                 for(var prop in model.attr_rus_names){
                     if(debug){
                         console.log('ControlsConfig['+prop+']='+ControlsConfig[prop]);
                         console.log('model.attributes['+prop+']='+model.attributes[prop]);
-
                     }
 
                     //Выводить скрытые поля для Добавления Нового
