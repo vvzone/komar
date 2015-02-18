@@ -4,9 +4,10 @@ define(
         'jquery',
         'underscore',
         'backbone',
+        //'backbone_validation',
         'react',
         'apiUrl'
-    ],function($, _, Backbone, React, apiUrl){
+    ],function($, _, Backbone, React, apiUrl){ //Validation,
 
         console.log('models/post loaded');
 
@@ -17,6 +18,13 @@ define(
                 short_name: null,
                 description: null,
                 allowed_ranks: null
+            },
+            validation: {
+                name: {
+                    required: true,
+                    length: 4,
+                    msg: 'Некорректное название должности (4 символа минимум)'
+                }
             },
             attr_description: {
                 allowed_ranks: 'Массив объектов типа ranks'
@@ -36,14 +44,12 @@ define(
             },
             initialize: function(){
                 console.info('Model init');
-                this.on('destroy', this.baDaBum);
-                /*this.on('change', function(){
-                    console.error('model -> change');
-                }, this);*/
-            },
-            baDaBum: function(){
-                console.warn('KABOOM!');
+                this.on('change', function(){
+                    console.info('change');
+                    console.info(['isValid', this.isValid()]);
+                })
             }
+
         });
 
         return Position;

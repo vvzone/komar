@@ -5,8 +5,11 @@ define(
     [
         'jquery',
         'react',
-        'jsx!views/react/modals/bootstrap_modal_mixin'
-    ],function($, React, BootstrapModalMixin){
+        'jsx!views/react/modals/bootstrap_modal_mixin',
+        'config'
+    ],function($, React, BootstrapModalMixin, Config){
+
+        var debug = (Config['debug'] && Config['debug']['modals'])? 1:null;
 
         var ModalWindowError = React.createClass({
             mixins: [BootstrapModalMixin],
@@ -31,7 +34,21 @@ define(
                         response_msg = response;
                     }
 
-                    response = <div className="server-log">Ответ сервера: {response_msg}</div>;
+                    var error_msgs = [];
+                    if(this.props.response.responseJSON){
+                        var errors = this.props.response.responseJSON;
+                        for(var error in errors){
+                            var field_errors = [];
+                            for(var error_field in errors[error]){
+                                field_errors.push(<div>{error_field}:{errors[error][error_field]}</div>);
+                            }
+                            error_msgs.push(<div>{field_errors}</div>);
+                        }
+                        var error_description = <div>Обнаружены следующие ошибки: {field_errors}</div>;
+                    }
+                    (debug)?console.info(['this.props.response', this.props.response]):null;
+
+                    response = <div className="server-log">Ответ сервера: {response_msg}{error_description}</div>;
                 }
 
                 var header ='';

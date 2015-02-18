@@ -17,10 +17,11 @@ define(
                 };
             },
             render: function(){
-                var id = 'tiny_control_'+this.props.russian_name;
+                var id = this.props.name; //'tiny_control_'+this.props.russian_name;
                 return(<div className="form-group">
                     <label htmlFor={id}>{this.props.russian_name}</label>
                     <input type="text" className="form-control" name={this.props.name} value={this.state.value} onChange={this.handleChange} />
+                    <span className="help-block hidden"></span>
                 </div>)
             }
         });

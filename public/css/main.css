@@ -645,13 +645,13 @@ div.list_box div.list_box_select select {
   padding: 3px;
   border-radius: 3px;
   border: 1px solid #d6e5ed;
-  min-width: 396px;
+  min-width: 351px;
 }
 div.list_box div.empty_list_box {
   padding: 3px;
   border-radius: 3px;
   border: 1px solid #d6e5ed;
-  min-width: 396px;
+  min-width: 351px;
   min-height: 178px;
 }
 .enlight {

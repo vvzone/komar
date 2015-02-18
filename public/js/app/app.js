@@ -4,6 +4,7 @@ define(
         'jquery',
         'underscore',
         'backbone',
+        'backbone_validation',
         'react',
         'config',
 
@@ -17,9 +18,8 @@ define(
         'router', // Request router.js
         'event_bus',
         'app_registry'
-
     ],
-    function($, _, Backbone, React, Config,
+    function($, _, Backbone, BackboneValidation, React, Config,
              ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd,
              Router, EventBus, app_registry){ //, UserBarComponent
 
@@ -27,6 +27,30 @@ define(
         var debug_modals = (Config['debug'] && Config['debug']['debug_modals'])? 1:null;
 
     var init = function(){
+
+        Backbone.Validation.configure({
+            forceUpdate: true
+        });
+
+        _.extend(Backbone.Validation.callbacks, {
+            valid: function (view, attr, selector) {
+                console.info(['valid =', view, attr, selector]);
+                var $el = view.$('[name=' + attr + ']'),
+                    $group = $el.closest('.form-group');
+
+                $group.removeClass('has-error');
+                $group.find('.help-block').html('').addClass('hidden');
+            },
+            invalid: function (view, attr, error, selector) {
+                console.info(['invalid =',view, attr, error, selector]);
+                var $el = view.$('[name=' + attr + ']'),
+                    $group = $el.closest('.form-group');
+
+                $group.addClass('has-error');
+                $group.find('.help-block').html(error).removeClass('hidden');
+            }
+        });
+
 
         //2 do: убрать основные эвенты окон в другой модуль нихера не понятно
 

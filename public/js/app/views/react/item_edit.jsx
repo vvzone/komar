@@ -40,25 +40,29 @@ define(
 
                 var mySelf = this;
 
-                this.state.model.save(null, {
-                    success:  function(model, response){
-                        (debug)?console.info('item_edit -> save success!'):null;
-                        //mySelf.props.callback('save');
-                        mySelf.state.model.collection.fetch({
-                            success: function(){
-                                //sync
-                                //EventBus.trigger('success', 'Изменения синхронизированы.');
-                            },
-                            error: function(){
-                                EventBus.trigger('error', 'Ошибка', 'Изменения сохранены, однако, при попытке синхронизироваться с сервером возникла ошибка.', response);
-                            }
-                        });
-                        EventBus.trigger('success', 'Изменения сохранены.');
-                    },
-                    error: function(model, response){
-                        EventBus.trigger('error', 'Ошибка', 'Не удалось сохранить изменения', response);
-                    }
-                });
+                if(this.state.model.isValid()){
+                    console.info('this.state.model.isValid', this.state.model.isValid(true));
+                    console.info('model', this.state.model);
+                    this.state.model.save(null, {
+                        success:  function(model, response){
+                            (debug)?console.info('item_edit -> save success!'):null;
+                            //mySelf.props.callback('save');
+                            mySelf.state.model.collection.fetch({
+                                success: function(){
+                                    //sync
+                                    //EventBus.trigger('success', 'Изменения синхронизированы.');
+                                },
+                                error: function(){
+                                    EventBus.trigger('error', 'Ошибка', 'Изменения сохранены, однако, при попытке синхронизироваться с сервером возникла ошибка.', response);
+                                }
+                            });
+                            EventBus.trigger('success', 'Изменения сохранены.');
+                        },
+                        error: function(model, response){
+                            EventBus.trigger('error', 'Ошибка', 'Не удалось сохранить изменения', response);
+                        }
+                    });
+                }
             },
             itemUpdate: function (property) {
                 (debug)?console.info('itemUpdate'):null;

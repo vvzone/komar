@@ -5,6 +5,7 @@ require.config({
         jCookie: './libs/jquery/jquery.cookie',
         underscore: './libs/underscore/underscore-min',
         backbone: './libs/backbone/backbone',
+        backbone_validation: './libs/backbone/backbone-validation-min',
         bootstrap: './libs/bootstrap/bootstrap.min',
         //jsx: './libs/jsx/JSXTransformer',
         jsx: './libs/jsx/jsx',
@@ -44,6 +45,9 @@ require.config({
         backbone: {
             deps:["jquery", "underscore"],
             exports: 'Backbone'
+        },
+        backbone_validation: {
+            deps:["backbone", "underscore"]
         },
         route_filter: {
             deps: ['backbone']
