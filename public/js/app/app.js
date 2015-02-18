@@ -32,6 +32,10 @@ define(
             forceUpdate: true
         });
 
+        _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
+
+        console.info(['Validation mixin:', Backbone.Validation.mixin]);
+
         _.extend(Backbone.Validation.callbacks, {
             valid: function (view, attr, selector) {
                 console.info(['valid =', view, attr, selector]);

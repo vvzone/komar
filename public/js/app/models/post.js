@@ -21,9 +21,10 @@ define(
             },
             validation: {
                 name: {
-                    required: true,
-                    length: 4,
-                    msg: 'Некорректное название должности (4 символа минимум)'
+                    required: true
+                },
+                short_name: {
+                    minLength: 8
                 }
             },
             attr_description: {
@@ -39,14 +40,23 @@ define(
             model_rus_name: 'Должность',
             attr_dependencies: {'allowed_ranks': 'allowed_ranks'}, //for recursive objects
             /* there is may needed collection-file for every dependency, for use one dependency-entity for many controls */
+            /*validate: function (attrs) {
+                if (!/^.+@.+\..+$/.test(attrs.name)) {
+                    return "'" + attrs.name + "' is not a valid name.";
+                }
+            },*/
             url: function() {
                 return apiUrl('post', this.id);
             },
             initialize: function(){
-                console.info('Model init');
                 this.on('change', function(){
                     console.info('change');
+                    console.info(['validate', this.validate()]);
                     console.info(['isValid', this.isValid()]);
+                    console.info(['this', this]);
+                    this.bind('validated:invalid', function(model, errors) {
+                        this.validationErrors = errors;
+                    });
                 })
             }
 

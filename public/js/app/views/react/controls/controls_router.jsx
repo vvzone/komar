@@ -61,22 +61,23 @@ define(
                 var discard = this.props.discard;
                 var self = this;
                 var dependency_array = this.props.dependency_array;
+                var validation_error = this.props.error;
                 switch (type) {
                     case('icon_select'):
                         return(<div>Icon's Select</div>)
                         break;
                     case('tiny_text'):
-                        return(<ControlTinyText value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
+                        return(<ControlTinyText value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} error={validation_error} />);
                         break;
                     case('small_text'):
-                        return(<ControlSmallText value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
+                        return(<ControlSmallText value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} error={validation_error} />);
                         break;
                     case('bool_select'):
-                        return(<ControlBoolSelect value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
+                        return(<ControlBoolSelect value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} error={validation_error} />);
                         break;
                     case('simple_select'):
                         console.info('control_router->simple_select, this.props:');
-                        return(<SimpleSelect options={this.props.dependency_array} selected={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} />);
+                        return(<SimpleSelect options={this.props.dependency_array} selected={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} error={validation_error} />);
                         break;
                     case('list_box'):
                         console.log('control_router->list_box');

@@ -17,11 +17,16 @@ define(
                 };
             },
             render: function(){
+                console.info(['TinyText render, this.props', this.props]);
+                var error = [];
+                if(this.props.error){
+                    error = <span className="help-block warn">{this.props.error}</span>
+                }
                 var id = this.props.name; //'tiny_control_'+this.props.russian_name;
                 return(<div className="form-group">
                     <label htmlFor={id}>{this.props.russian_name}</label>
                     <input type="text" className="form-control" name={this.props.name} value={this.state.value} onChange={this.handleChange} />
-                    <span className="help-block hidden"></span>
+                    {error}
                 </div>)
             }
         });

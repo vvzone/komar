@@ -50,6 +50,7 @@ define(
                 var callback_item=[];
                 callback_item = this.props.items[callback['id']];
 
+                /*
                 console.info('ListBox->handle:');
                 console.log('this.props.items');
                 console.log(this.props.items);
@@ -57,10 +58,11 @@ define(
                 console.log(callback['id']);
                 console.log('callback_item = this.props.items['+callback['id']+']');
                 console.log(callback_item);
+                */
                 callback['item'] = callback_item;
 
                 this.props.callback(callback); //они оба передадут коллбэк
-                console.log('listbox update');
+                //console.log('listbox update');
                 //this.forceUpdate();
 
 
@@ -69,8 +71,10 @@ define(
                 }
             },
             handleChange: function(event){
+                /*
                 console.info('selected');
                 console.info(event.target);
+                */
                 this.setState({selected: event.target.value});
             },
             render: function(){
@@ -79,14 +83,18 @@ define(
                 /*console.log('list-box whole array:');
                  console.info(this.props.items);*/
 
+                /*
                 console.info('ListBox props');
                 console.info(this.props);
+                */
 
                 var items;
                 (typeof this.props.items !='undefined')? items = this.props.items : items=[];
 
+                /*
                 console.log('size(items)'+_.size(items));
                 console.log(items);
+                */
                 if(_.size(items)>0){
                     for(var key in this.props.items){
 
@@ -163,15 +171,19 @@ define(
                     target_list = this.state.items_right;
                 }
 
+                /*
                 console.log('listChange -> callback[id]:'+callback['id']);
                 console.info('callback:');
                 console.log(callback);
+                */
 
                 // чо за херня какой то бред - не бред, удаление из списка при мув-лефт-райт
+                /*
                 console.log('delete from current_list['+callback['id']+']');
                 console.log('current_list:');
                 console.log(current_list);
                 console.log('target_list['+callback['id']+']='+callback['item']+' (callback[item])');
+                */
                 delete current_list[callback['id']];
                 target_list[callback['id']] = callback['item'];
 
@@ -188,9 +200,10 @@ define(
 
 
                 var callback_new = [];
+                /*
                 console.info('ListBoxTwoSide > listChange: available props');
                 console.log(this.props);
-
+                */
                 var desorted_array = [];
                 for(var key in this.state.items_left){
                     desorted_array.push(this.state.items_left[key]);
@@ -201,9 +214,11 @@ define(
             },
             componentWillMount: function() {
                 //если сразу все ок.
+                /*
                 console.info('ListBoxTwoSide-> WILL MOUNT');
                 console.log('this.props');
                 console.log(this.props);
+                */
                 if(_.size(this.props.items_left)> 0 && _.size(this.props.items_right)> 0){
                     this.calculateState(this.props.items_left, this.props.items_right);
                 }
@@ -214,7 +229,7 @@ define(
             componentDidMount: function() {
                 var arr_items_2_select = [];
                 //всегда выполнять второй запрос только при удачном первом иначе голод и разруха
-                console.info('ListBoxTwoSide-> DID MOUNT');
+                //console.info('ListBoxTwoSide-> DID MOUNT');
                 /*console.log('this.props.items_left:');
                 console.log(this.props.items_left);
                 console.log('this.props.items_right:');
@@ -234,48 +249,52 @@ define(
 
             },
             calculateState: function(items_left, items_right){
+                /*
                 console.log('CALCULON!!!1');
                 console.info('items_left');
                 console.info(items_left);
                 console.info('items_right');
                 console.info(items_right);
+                */
 
                 var sorted_by_id_items_left = {};
                 if(typeof items_left != 'undefined'){
-                    console.warn('items_left > 0, resort');
+                    //console.warn('items_left > 0, resort');
                     for(var new_id_left in items_left){
                         if(typeof items_left[new_id_left]['id'] == 'undefined'){
                             //throw error
-                            console.error('В контрол ListBox переданы данные неверного формата');
+                            //console.error('В контрол ListBox переданы данные неверного формата');
                             //EventBus.trigger('error', 'Ошибка', 'В контрол ListBox переданы данные неверного формата');
                         }
-                        console.warn(items_left[new_id_left]['id']);
+                        //console.warn(items_left[new_id_left]['id']);
                         sorted_by_id_items_left[items_left[new_id_left]['id']] = items_left[new_id_left];
                     }
                 }
-                console.info('sorted_by_id_items_left');
-                console.info(sorted_by_id_items_left);
+                //console.info('sorted_by_id_items_left');
+                //console.info(sorted_by_id_items_left);
 
                 //resort by id
                 var sorted_by_id_items_right = {};
                 if(typeof items_right != 'undefined'){
-                    console.warn('items_right > 0, resort');
+                    //console.warn('items_right > 0, resort');
                     for(var new_id in items_right){
                         if(typeof items_right[new_id]['id'] == 'undefined'){
                             //throw error
-                            console.error('В контрол ListBox переданы данные неверного формата');
+                            //console.error('В контрол ListBox переданы данные неверного формата');
                             //EventBus.trigger('error', 'Ошибка', 'В контрол ListBox переданы данные неверного формата');
                         }
                         sorted_by_id_items_right[items_right[new_id]['id']] = items_right[new_id];
                     }
                 }
+                /*
                 console.info('sorted_by_id_items_right');
                 console.info(sorted_by_id_items_right);
+                */
 
                 //if(_.size(sorted_by_id_items_left) > 0 or _.size(sorted_by_id_items_right)>0){
                 if(_.size(sorted_by_id_items_left) > 0 || _.size(sorted_by_id_items_right)>0){
                     for(var id in sorted_by_id_items_left){
-                        console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
+                        //console.warn('clear same id from sorted_by_id_items_right['+id+']='+sorted_by_id_items_right[id]['name']);
                         delete sorted_by_id_items_right[id];
                     }
 
@@ -286,8 +305,10 @@ define(
                 }
             },
             componentWillReceiveProps: function(new_props){
+                /*
                 console.info('componentWillReceiveProps');
                 console.warn(new_props);
+                */
                 //if(_.size(new_props.items_left)> 0 && _.size(new_props.items_right)> 0){
                 if(_.size(new_props.items_left)> 0 || _.size(new_props.items_right)> 0){
                     this.calculateState(new_props.items_left, new_props.items_right);
@@ -299,12 +320,15 @@ define(
                 var state_items_left = this.state.items_left;
                 var state_items_right = this.state.items_right;
 
+                /*
                 console.warn('ListBoxTwoSide, state.items_left:');
                 console.warn(state_items_left);
+                */
 
-
+                /*
                 console.warn('ListBoxTwoSide, state.items_right:');
                 console.warn(state_items_right);
+                */
 
                 combined[0] =
                     <div className="list_box_container">
@@ -317,10 +341,12 @@ define(
                         <ListBox key="combo_right" key_prefix="right" items={state_items_right} callback={this.listChange} type="right" />
                     </div>;
 
+                /*
                 console.info('ListBoxTwoSide props');
                 console.info(this.props);
                 console.info('ListBoxTwoSide state');
                 console.info(this.state);
+                */
                 return(
                     <div className="form-group">
                     <label htmlFor="list_box_outer_container">{this.props.russian_name}</label>

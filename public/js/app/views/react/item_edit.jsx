@@ -3,6 +3,7 @@ define(
     [
         'underscore',
         'jquery',
+        'backbone',
         'react',
         'config',
         'jsx!views/react/modals/bootstrap_modal_mixin',
@@ -10,7 +11,7 @@ define(
         'views/react/controls/controls_config',
         'jsx!views/react/controls/controls_router',
         'models/constants'
-    ],function(_, $, React, Config, BootstrapModal, EventBus, ControlsConfig, ControlsRouter, Constants){
+    ],function(_, $, Backbone, React, Config, BootstrapModal, EventBus, ControlsConfig, ControlsRouter, Constants){
 
         var debug = (Config['debug'] && Config['debug']['debug_item_edit'])? 1:null;
         var ItemEditBox = React.createClass({
@@ -28,7 +29,8 @@ define(
 
                 var mySelf = this;
                 if(this.state.model.isValid()){
-                    console.info('this.state.model.isValid', this.state.model.isValid());
+                    console.info('this.state.model.validate', this.state.model.validate());
+                    console.info('this.state.model.isValid', this.state.model.isValid(true));
                     console.info('model', this.state.model);
 
                     this.state.model.save(null, {
@@ -105,12 +107,23 @@ define(
                     console.info('controlRouterCall-> model.attributes['+prop+']');
                     console.info(model.attributes[prop]);
                 }
+                var error = [];
+                if(this.state.model.validationErrors){
+                    console.warn(['validationErrors!',this.state.model.validationErrors]);
+                    if(this.state.model.validationErrors[prop]){
+                        console.warn(['this.state.model.validationErrors['+prop+']', this.state.model.validationErrors[prop]]);
+                        error = this.state.model.validationErrors[prop];
+                    }
+                }
+
                 return <ControlsRouter
                 type={ControlsConfig[prop]}
                 value={model.attributes[prop]}
                 name={prop}
                 russian_name={model.attr_rus_names[prop]}
-                callback={this.itemUpdate} key={prop} />;
+                callback={this.itemUpdate} key={prop}
+                error={error}
+                />;
             },
             componentDidMount: function(){
                 var cur_node = $(this.getDOMNode())[0];
