@@ -141,8 +141,12 @@ class IndexController extends AbstractActionController
                 'children' => $array_unit),
         );
 
-        $JsonModel = new JsonModel();
-        $JsonModel->setVariables($data_array);
+        $response = array(
+            'requested_data' => $data_array
+        );
+
+        $JsonModel = new JsonModel($response);
+        //$JsonModel->setVariables($data_array);
         return $JsonModel;
     }
     //

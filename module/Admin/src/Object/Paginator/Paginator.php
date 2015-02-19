@@ -13,25 +13,30 @@ use Zend\Paginator\Paginator as ZendPaginator;
 class Paginator extends ZendPaginator{
 
     protected $paginator;
+    protected $adapter;
 
+    /**
+     * @param $adapter
+     */
     public function __constructor($adapter){
         $this->adapter = $adapter;
-        //$this->paginator = new ZendPaginator();
+
     }
 
-    public function paginatedList(){
-        $page = 1;
-        $records_per_page = 5;
+    public function setPaginationRequest($requestedPagination){
+        $this->setDefaultItemCountPerPage($requestedPagination['records_per_page']);
+        $this->setCurrentPageNumber($requestedPagination['page']);
+    }
 
-        //$page = (int)$this->params()->fromQuery('page', 1);
-        //$records_per_page = (int)$this->params()->fromQuery('limit', 10);
-
-        $records_per_page = ($records_per_page<1)?10:$records_per_page;
-
-        $this->setDefaultItemCountPerPage($records_per_page);
-        $this->setCurrentPageNumber((int)$page);
-
-        return $this->getCurrentItems();
+    /**
+     * @return array
+     */
+    public function getAPI(){
+        return array(
+            'current_page' => $this->getCurrentPageNumber(),
+            'total' => $this->count(),
+            'records_per_page' => $this->getItemCountPerPage()
+        );
     }
 
 }

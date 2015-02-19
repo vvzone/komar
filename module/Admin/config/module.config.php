@@ -479,6 +479,10 @@ return array(
         'shared' => array(
             'token' => false
         ),
+    ),
+    /* CUSTOM APP CONFIG */
+    'paginator' => array(
+        'records_per_page' => 10
     )
 
 );

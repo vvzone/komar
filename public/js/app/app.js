@@ -34,6 +34,12 @@ define(
 
         _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
 
+        Backbone.Collection.prototype.parse = function(response){
+            console.info(['response', response]);
+            console.info(['response.requested_data', response.requested_data]);
+            return response.requested_data;
+        };
+
         console.info(['Validation mixin:', Backbone.Validation.mixin]);
 
         _.extend(Backbone.Validation.callbacks, {

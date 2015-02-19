@@ -8,6 +8,7 @@ use Zend\Paginator\Adapter\AdapterInterface;
 class Adapter implements AdapterInterface{
 
     protected $repository;
+    protected $pageCount;
 
     /**
      * Construct
@@ -28,11 +29,13 @@ class Adapter implements AdapterInterface{
 
     }
 
+
+
     /**
      * @return int|void
      */
     public function count(){
-        $this->repository->count();
+        return $this->repository->count();
     }
 
 }

@@ -21,10 +21,35 @@ class RestController extends AbstractRestfulController
         'DELETE',
     );
 
+    protected $requestedPagination;
+
+    public function setRequestedPagination($e){
+        $request  = $e->getRequest();
+        $method   = $request->getMethod();
+        if($method == 'GET'){
+            $config = $this->getServiceLocator()->get('config');
+            $page = (int)$this->params()->fromQuery('page', 1);
+            $page = ($page<1)?1:$page;
+
+            $records_per_page = (int)$this->params()->fromQuery('limit', $config['paginator']['records_per_page']);
+            $records_per_page = ($records_per_page<1)?$config['paginator']['records_per_page']:$records_per_page;
+
+            $this->requestedPagination = array(
+                'page' => $page,
+                'records_per_page' => $records_per_page
+            );
+        }
+    }
+
+    public function getRequestedPagination(){
+        return $this->requestedPagination;
+    }
+
     public function setEventManager(EventManagerInterface $events)
     {
         parent::setEventManager($events);
         $events->attach('dispatch', array($this, 'checkOptions'), 10);
+        $events->attach('dispatch', array($this, 'setRequestedPagination'), 11);
     }
 
     public function RESTtoCamelCase($data){

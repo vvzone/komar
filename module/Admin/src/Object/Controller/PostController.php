@@ -28,9 +28,13 @@ use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 
 /* data out */
-use Zend\Paginator\Paginator as Paginator;
+//use Zend\Paginator\Paginator as Paginator;
+use Object\Paginator\Paginator as Paginator;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
+
+use Object\Response\JSONResponse;
+
 
 class PostController extends RestController
 {
@@ -48,22 +52,16 @@ class PostController extends RestController
         $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
         $repository = $objectManager->getRepository('Object\Entity\Post');
 
-        //$paginator = $serviceLocator->get('Object\Paginator');
-        //$data = $paginator->paginatedList();
-
         $adapter = new \Object\Paginator\Adapter($repository);
+
         $paginator = new Paginator($adapter);
+        $paginator->setPaginationRequest($this->requestedPagination);
 
-        $page = (int)$this->params()->fromQuery('page', 1);
-        $records_per_page = (int)$this->params()->fromQuery('limit', 10);
-        $records_per_page = ($records_per_page<1)?10:$records_per_page;
-
-        $paginator->setDefaultItemCountPerPage($records_per_page);
-        $paginator->setCurrentPageNumber((int)$page);
-        $data = $paginator->getCurrentItems();
-
-        return new JsonModel($data);
+        $response = new JSONResponse($paginator->getCurrentItems());
+        $response->setAdditional('paginator', $paginator->getAPI());
+        return $response->getResponse();
     }
+
 
     public function get($id)
     {
