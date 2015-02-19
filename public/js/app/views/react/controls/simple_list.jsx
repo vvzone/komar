@@ -28,11 +28,6 @@ define(
                 var collection = this.props.collection;
 
                 var items = collection.map(function(model){
-                    /*
-                    console.log('SimpleList -> collection.map, model:');
-                    console.log(model);
-                    */
-
                     return <SimpleListItem model={model} />
                 });
                 if(items.length<1){

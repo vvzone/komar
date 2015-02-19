@@ -36,6 +36,7 @@ define(
                     'enter': 'enter',
                     'admin/:view/:id(/:param)': 'adminItemView',
                     'admin/:view' : 'adminCollectionView',
+                    'admin/:view?page=:page(&limit=:limit)' : 'adminCollectionView',
                     'admin': 'admin',
                     'client/:view': 'clientCollectionView',
                     'client/:view/new': 'clientItemNew',
@@ -122,8 +123,9 @@ define(
                     console.info('view='+view+' id='+id+' param='+param);
                     AdminMenuList.initialize();
                 },
-                adminCollectionView: function(view){
+                adminCollectionView: function(view, page, limit){
                     console.info('Router->collectionView: collection='+view);
+                    console.warn(['view, page, limit', view, page, limit]);
                     AdminMenuList.initialize();
                     CollectionsRouter.initialize(view, null, null);
                 },

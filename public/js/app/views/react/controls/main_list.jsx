@@ -11,9 +11,11 @@ define(
         'jsx!views/react/base/error_msg',
         'jsx!views/react/base/info_msg',
         'jsx!views/react/search',
+        'jsx!views/react/controls/paginator/paginator',
+
         //'models/rank',
         'event_bus'
-    ],function($, React, Config, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, Search, EventBus){
+    ],function($, React, Config, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, Search, Paginator, EventBus){
 
         var debug = (Config['debug'] && Config['debug']['debug_main_list'])? 1:null;
         console.log('module views/react/controls/main_list loaded');
@@ -24,6 +26,9 @@ define(
             },
             componentWillUnmount: function(){
                 $('#main_top').html('');
+            },
+            collectionRePaginate: function(event){
+                console.info(['collectionPaginate', event]);
             },
             //2-do:
             // * search
@@ -60,6 +65,7 @@ define(
                         <Search />
                         <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
                         <ul>{items}</ul>
+                        <Paginator pagination={this.props.pagination} callback={this.collectionRePaginate} />
                     </div>
                     </div>
                     );

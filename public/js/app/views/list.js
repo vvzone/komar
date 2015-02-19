@@ -18,7 +18,7 @@ define(
 
             template: '<div id="main_list_header"></div>' +
                 '<div id="main_list"></div>',
-            initialize: function() {
+            initialize: function(options) {
                 (debug)?console.log('ListView (backbone) initialization...'):null;
                 _.bindAll(this, 'render');
                 (debug)?console.log('init, this.collection:'):null;
@@ -27,15 +27,19 @@ define(
                 this.collection.bind('destroy', this.render, this);
                 this.collection.bind('change', this.render, this);
                 this.collection.bind('reset', this.render, this);
-                this.render();
+                this.render(options);
             },
-            render: function(){
+            render: function(options){
                 var self = this;
                 $(document).ready(function(){
                     require(['jsx!views/react/controls/main_list'], function(MainList){
+                        console.warn(['self.pagination', self.pagination]);
+                        console.warn(['self', self]);
+
                         React.renderComponent(
                             new MainList({
-                                collection: self.collection
+                                collection: self.collection,
+                                pagination: options.pagination
                             }), document.getElementById("main_main")
                         );
                     });
@@ -58,12 +62,18 @@ define(
                         console.warn(['error, response: ', response]);
                         EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
                     },
-                    success: function(){
+                    success: function(collection, response, options){
+                        console.info(['collection, response, options', collection, response, options]);
                         if(debug){
                             console.info('success & Current collection:');
                             console.info(Collection.toJSON())
                         };
-                        var View = new ListView({collection: Collection});
+                        var paginator = null;
+                        if(response.paginator){
+                            paginator = response.paginator
+                        }
+
+                        var View = new ListView({collection: Collection, pagination: paginator});
                     }
                 });
             };
