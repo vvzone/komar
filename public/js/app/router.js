@@ -34,9 +34,9 @@ define(
                     'react': 'react',
                     'login': 'login',
                     'enter': 'enter',
-                    'admin/:view/:id(/:param)': 'adminItemView',
+                    'admin/:view/:id': 'adminItemView',
                     'admin/:view' : 'adminCollectionView',
-                    'admin/:view?page=:page(&limit=:limit)' : 'adminCollectionView',
+                    //'admin/:view(?page=:page)(/&imit=:limit)' : 'adminCollectionView',
                     'admin': 'admin',
                     'client/:view': 'clientCollectionView',
                     'client/:view/new': 'clientItemNew',
@@ -123,11 +123,11 @@ define(
                     console.info('view='+view+' id='+id+' param='+param);
                     AdminMenuList.initialize();
                 },
-                adminCollectionView: function(view, page, limit){
+                adminCollectionView: function(view, parameters){
                     console.info('Router->collectionView: collection='+view);
-                    console.warn(['view, page, limit', view, page, limit]);
+                    console.warn(['view, parameters', view, parameters]);
                     AdminMenuList.initialize();
-                    CollectionsRouter.initialize(view, null, null);
+                    CollectionsRouter.initialize(view, parameters, null);
                 },
                 /* ==== CLIENT ==== */
                 client: function(){
@@ -141,7 +141,7 @@ define(
                     //MapView.show();
 
                 },
-                clientCollectionView: function(view){
+                clientCollectionView: function(view, parameters){
                     console.info('Router->clientCollectionView: collection='+view);
                     var ClientMenu =require(['views/client_menu_list'], function(ClientMenuList){
                         return ClientMenuList;

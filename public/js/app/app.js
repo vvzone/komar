@@ -3,8 +3,12 @@ define(
     [
         'jquery',
         'underscore',
+
         'backbone',
         'backbone_validation',
+        'backbone_query_parameters',
+        'backbone_paginator',
+
         'react',
         'config',
 
@@ -19,7 +23,9 @@ define(
         'event_bus',
         'app_registry'
     ],
-    function($, _, Backbone, BackboneValidation, React, Config,
+    function($, _,
+             Backbone, BackboneValidation, BackboneQueryParameters, BackbonePaginator,
+             React, Config,
              ModalWindowError, ModalWindowSuccess, ModalWindowEdit, ModalWindowOpen, ModalWindowDeleteConfirmation, ModalWindowAdd,
              Router, EventBus, app_registry){ //, UserBarComponent
 
@@ -35,6 +41,12 @@ define(
         _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
 
         Backbone.Collection.prototype.parse = function(response){
+            console.info(['response', response]);
+            console.info(['response.requested_data', response.requested_data]);
+            return response.requested_data;
+        };
+
+        Backbone.PageableCollection.prototype.parse = function(response){
             console.info(['response', response]);
             console.info(['response.requested_data', response.requested_data]);
             return response.requested_data;

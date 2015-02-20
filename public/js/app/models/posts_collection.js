@@ -4,14 +4,15 @@ define(
         'jquery',
         'underscore',
         'backbone',
+        'backbone_paginator',
         'react',
         'apiUrl',
         'models/post'
-    ],function($, _, Backbone, React, apiUrl, Post){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Post){
 
         console.log('models/post_collection loaded');
 
-        var Posts = Backbone.Collection.extend({
+        var Posts = Backbone.PageableCollection.extend({
             model: Post,
             collection_rus_name: 'Должности',
             collection_name: 'posts',

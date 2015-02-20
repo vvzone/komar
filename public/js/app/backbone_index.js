@@ -5,7 +5,9 @@ require.config({
         jCookie: './libs/jquery/jquery.cookie',
         underscore: './libs/underscore/underscore-min',
         backbone: './libs/backbone/backbone',
+        backbone_query_parameters: './libs/backbone/backbone.queryparams.min', //filter to url's
         backbone_validation: './libs/backbone/backbone-validation-min',
+        backbone_paginator: './libs/backbone/backbone.paginator.min',
         bootstrap: './libs/bootstrap/bootstrap.min',
         //jsx: './libs/jsx/JSXTransformer',
         jsx: './libs/jsx/jsx',
@@ -48,6 +50,12 @@ require.config({
         },
         backbone_validation: {
             deps:["backbone", "underscore"]
+        },
+        backbone_query_parameters:{
+            deps: ["backbone"]
+        },
+        backbone_paginator: {
+            deps: ["backbone"]
         },
         route_filter: {
             deps: ['backbone']
