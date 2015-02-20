@@ -9,15 +9,30 @@
 
 namespace Object\Controller;
 
-//use Zend\Mvc\Controller\AbstractActionController;\
-use Object\Entity\Document;
 use Object\Entity\Post;
+use Admin\Controller\RestController;
+use Zend\EventManager\EventManagerInterface;
 
+/* filter */
+use Zend\InputFilter\Factory;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Input;
+use Zend\Validator;
+
+/* hydra & orm */
+use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+
+use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
+use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
+
+/* data out */
+//use Zend\Paginator\Paginator as Paginator;
+use Object\Paginator\Paginator as Paginator;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
-use Zend\EventManager\EventManagerInterface;
-use Admin\Controller\RestController;
+use Object\Response\JSONResponse;
 
 
 //class DocumentController extends AbstractActionController
@@ -30,18 +45,20 @@ class DocumentController extends RestController
 
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $results = $objectManager->getRepository('Object\Entity\Document')->findAll();
-        $data = array();
+        $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
+        $repository = $objectManager->getRepository('Object\Entity\Document');
 
-        foreach ($results as $result) {
-            $data[] = $result->getDocumentSimple();
-        }
+        $adapter = new \Object\Paginator\Adapter($repository);
 
-        return new JsonModel($data);
+        $paginator = new Paginator($adapter);
+        $paginator->setPaginationRequest($this->requestedPagination);
+
+        $response = new JSONResponse($paginator->getCurrentItems());
+        $response->setAdditional('paginator', $paginator->getAPI());
+        return $response->getResponse();
     }
 
     public function get($id)

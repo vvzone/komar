@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Rank
  *
  * @ORM\Table(name="rank")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\RankRepository")
  */
 class Rank
 {
@@ -49,6 +49,24 @@ class Rank
      */
     private $isOfficer;
 
+
+    protected $inputFilter;
+
+    public function setInputFilter(){
+        $filter = new \Object\InputFilter\RankFilter();
+        $filter->init();
+        $this->inputFilter = $filter;
+    }
+
+    /**
+     * @return \Object\InputFilter\PostFilter
+     */
+    public function getInputFilter(){
+        if(!$this->inputFilter){
+            $this->setInputFilter();
+        }
+        return $this->inputFilter;
+    }
 
 
     /**

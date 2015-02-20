@@ -64,10 +64,10 @@ class Post extends \Object\Entity\Post implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'unitsHaveCurrentPost');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'allowedRanks', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'unitsHaveCurrentPost', 'inputFilter');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'unitsHaveCurrentPost');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'allowedRanks', '' . "\0" . 'Object\\Entity\\Post' . "\0" . 'unitsHaveCurrentPost', 'inputFilter');
     }
 
     /**
@@ -176,6 +176,28 @@ class Post extends \Object\Entity\Post implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function setInputFilter()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInputFilter', array());
+
+        return parent::setInputFilter();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInputFilter()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInputFilter', array());
+
+        return parent::getInputFilter();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getId()
     {
         if ($this->__isInitialized__ === false) {
@@ -252,6 +274,50 @@ class Post extends \Object\Entity\Post implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', array());
 
         return parent::getDescription();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addAllowedRanks(\Doctrine\Common\Collections\Collection $AllowedRanks)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addAllowedRanks', array($AllowedRanks));
+
+        return parent::addAllowedRanks($AllowedRanks);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeAllowedRanks(\Doctrine\Common\Collections\Collection $AllowedRanks)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeAllowedRanks', array($AllowedRanks));
+
+        return parent::removeAllowedRanks($AllowedRanks);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAllowedRanks()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAllowedRanks', array());
+
+        return parent::getAllowedRanks();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAllowedRanksObj()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAllowedRanksObj', array());
+
+        return parent::getAllowedRanksObj();
     }
 
     /**

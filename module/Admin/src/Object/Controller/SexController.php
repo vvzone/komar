@@ -9,14 +9,31 @@
 
 namespace Object\Controller;
 
-use Object\Model\Client;
+//use Doctrine\ORM\Tools\Pagination\Paginator;
+use Object\Entity\Post;
+use Admin\Controller\RestController;
+use Zend\EventManager\EventManagerInterface;
+
+/* filter */
+use Zend\InputFilter\Factory;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Input;
+use Zend\Validator;
+
+/* hydra & orm */
+use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+
+use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
+use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
+
+/* data out */
+//use Zend\Paginator\Paginator as Paginator;
+use Object\Paginator\Paginator as Paginator;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
-use Object\Entity\Clients as ClientORM;
-use Zend\EventManager\EventManagerInterface;
-use Admin\Controller\RestController;
-
+use Object\Response\JSONResponse;
 
 class SexController extends RestController
 {
@@ -29,22 +46,20 @@ class SexController extends RestController
 
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        //$results = $objectManager->getRepository('Object\Entity\Clients')->findBy(array('identificationNumber' => 19612));
-        $results = $objectManager->getRepository('Object\Entity\Sex')->findAll();
+        $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
+        $repository = $objectManager->getRepository('Object\Entity\Sex');
 
-        //var_dump($results);
-        //$results = $this->getClientTable()->fetchAll();
-        $data = array();
+        $adapter = new \Object\Paginator\Adapter($repository);
 
-        foreach ($results as $result) {
-            $data[] = $result->getSexSimple();
-        }
+        $paginator = new Paginator($adapter);
+        $paginator->setPaginationRequest($this->requestedPagination);
 
-        return new JsonModel($data);
+        $response = new JSONResponse($paginator->getCurrentItems());
+        $response->setAdditional('paginator', $paginator->getAPI());
+        return $response->getResponse();
     }
 
     public function get($id)

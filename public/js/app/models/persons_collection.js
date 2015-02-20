@@ -11,7 +11,7 @@ define(
 
         console.log('models/persons_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Физлица',
             collection_name: 'persons',

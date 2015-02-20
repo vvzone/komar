@@ -1,5 +1,5 @@
 define(
-    'models/document_type_collection',
+    'models/document_types_collection',
     [
         'jquery',
         'underscore',
@@ -11,7 +11,7 @@ define(
 
         console.log('models/doc_types_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Типы документов',
             collection_name: 'document_type',

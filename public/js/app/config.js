@@ -11,7 +11,7 @@ define(
         var Config = {
             debug: {
                 debug_menu: null,
-                debug_collection_router: null,
+                debug_collection_router: 1,
                 debug_models_and_collections: null,
                 apiUrl: 1,
                 debug_list: null,
@@ -30,7 +30,7 @@ define(
                 {posts: 'list'},
                 {secrecy_types: 'list'},
                 {urgency_types: 'list'},
-                {document_type: 'list'},
+                {document_types: 'list'},
                 {doc_type_groups: 'tree'},
                 {doc_type_groups_plain: 'list'},
                 {attribute_types: 'list'},

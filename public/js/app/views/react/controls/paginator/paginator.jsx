@@ -48,6 +48,9 @@ define(
                 console.info(current_url.indexOf("?"));
                 var where_params_start = current_url.indexOf("?");
                 where_params_start = where_params_start +'';
+                if(where_params_start == -1){
+                    where_params_start = current_url.length;
+                }
                 var new_url = 'admin#'+current_url.substring(0, where_params_start);
                 console.info(['new_url', new_url]);
 

@@ -11,7 +11,7 @@ define(
 
         console.log('models/units_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Подразделения',
             collection_name: 'units',

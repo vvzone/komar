@@ -10,7 +10,7 @@ define(
     ],function($, _, Backbone, React, apiUrl, Model){
         console.log('models/route_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Маршрут',
             collection_name: 'route',

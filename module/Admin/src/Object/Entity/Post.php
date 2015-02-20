@@ -69,12 +69,6 @@ class Post
 
     protected $inputFilter;
 
-    public function __construct()
-    {
-        $this->unitsHaveCurrentPost = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->allowedRanks = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
     public function setInputFilter(){
         $filter = new PostFilter();
         $filter->init();
@@ -89,6 +83,12 @@ class Post
             $this->setInputFilter();
         }
         return $this->inputFilter;
+    }
+
+    public function __construct()
+    {
+        $this->unitsHaveCurrentPost = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->allowedRanks = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 

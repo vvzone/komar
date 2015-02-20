@@ -10,15 +10,29 @@
 namespace Object\Controller;
 
 use Object\Entity\Rank;
-use Zend\View\Model\ViewModel;
-use Zend\View\Model\JsonModel;
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-
-use Object\Entity\Client as ClientORM;
-use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
+use Zend\EventManager\EventManagerInterface;
+
+/* filter */
+use Zend\InputFilter\Factory;
+use Zend\InputFilter\InputFilter;
+use Zend\InputFilter\Input;
+use Zend\Validator;
+
+/* hydra & orm */
+use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
 use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
+use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
+use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
+
+/* data out */
+//use Zend\Paginator\Paginator as Paginator;
+use Object\Paginator\Paginator as Paginator;
+use Zend\View\Model\ViewModel;
+use Zend\View\Model\JsonModel;
+
+use Object\Response\JSONResponse;
 
 class RankController extends RestController
 {
@@ -31,24 +45,20 @@ class RankController extends RestController
 
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        //$results = $objectManager->getRepository('Object\Entity\Clients')->findBy(array('identificationNumber' => 19612));
-        $results = $objectManager->getRepository('Object\Entity\Rank')->findAll();
+        $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
+        $repository = $objectManager->getRepository('Object\Entity\Rank');
 
-        //var_dump($results);
-        //$results = $this->getClientTable()->fetchAll();
-        $data = array();
+        $adapter = new \Object\Paginator\Adapter($repository);
 
-        foreach ($results as $result) {
-            $data[] = $result->getRankSimple();
-        }
+        $paginator = new Paginator($adapter);
+        $paginator->setPaginationRequest($this->requestedPagination);
 
-        return new JsonModel(
-            $data
-        );
+        $response = new JSONResponse($paginator->getCurrentItems());
+        $response->setAdditional('paginator', $paginator->getAPI());
+        return $response->getResponse();
     }
 
     public function get($id)
@@ -62,36 +72,50 @@ class RankController extends RestController
 
     public function create($data)
     {
-        //$data['id'] = 0; --????
-        $rank = new Rank();
+        $post = new Rank();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Rank');
 
-        $data = $this->RESTtoCamelCase($data);
-        $rank = $hydrator->hydrate($data, $rank);
-        $objectManager->persist($rank);
-        $objectManager->flush();
+        $inputFilter= $post->getInputFilter();
+        if($inputFilter->setData($data)->isValid()){
+            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Rank');
+            $data = $this->RESTtoCamelCase($data);
+            $post = $hydrator->hydrate($data, $post);
+            $objectManager->persist($post);
+            $objectManager->flush();
+
+        }else{
+            $response = $this->getResponse();
+            $response->setStatusCode(400);
+            $data = $inputFilter->getMessages();
+        }
 
         return new JsonModel(array(
-            'data' => $data,
+            $data,
         ));
     }
 
     public function update($id, $data)
     {
         $data['id'] = $id;
-        $rank = new Rank();
+        $post = new Rank();
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Rank');
-        $data = $this->RESTtoCamelCase($data);
-        $rank = $hydrator->hydrate($data, $rank);
-        $objectManager->persist($rank);
-        $objectManager->flush();
+        $inputFilter= $post->getInputFilter();
+        if($inputFilter->setData($data)->isValid()){
+            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Rank');
+            $data = $this->RESTtoCamelCase($data);
+            $post = $hydrator->hydrate($data, $post);
+            $objectManager->persist($post);
+            $objectManager->flush();
+        }else{
+            $response = $this->getResponse();
+            $response->setStatusCode(400);
+            $data = $inputFilter->getMessages();
+        };
 
         return new JsonModel(
             $data
@@ -114,33 +138,4 @@ class RankController extends RestController
         ));
     }
 
-
-    public function getClientTable()
-    {
-        if (!$this->clientTable) {
-            $sm = $this->getServiceLocator();
-            $this->clientTable = $sm->get('Object\Model\ClientTable');
-        }
-        return $this->clientTable;
-    }
-
-    public function getUnitTable()
-    {
-        if (!$this->unitTable) {
-            $sm = $this->getServiceLocator();
-            $this->unitTable = $sm->get('Object\Model\UnitTable');
-        }
-        return $this->unitTable;
-    }
-
-    public function getRanksTable()
-    {
-        if (!$this->ranksTable) {
-            $sm = $this->getServiceLocator();
-            $this->ranksTable = $sm->get('Object\Model\RanksTable');
-        }
-        return $this->ranksTable;
-    }
-
-/*-------------- default methods ----------*/
 }

@@ -70,7 +70,7 @@ class IndexController extends AbstractActionController
             array('id' => 106021, 'category' => 'base', 'entity' => 'doc_type_groups', 'screen' => 'doc_type_groups', 'name' => 'Группы типов документов'),
             array('id' => 106022, 'category' => 'base', 'entity' => 'doc_secrecy_types', 'screen' => 'doc_secrecy_types', 'name' => 'Типы секретности документа'),
             array('id' => 106023, 'category' => 'base', 'entity' => 'doc_urgency_types', 'screen' => 'doc_urgency_types', 'name' => 'Типы срочности документа'),
-            array('id' => 106030, 'category' => 'base', 'entity' => 'doc_types', 'screen' => 'doc_types', 'name' => 'Типы документов'),
+            array('id' => 106030, 'category' => 'base', 'entity' => 'document_types', 'screen' => 'document_types', 'name' => 'Типы документов'),
             array('id' => 106040, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'node_types', 'name' => 'Типы узлов маршрута'),
             array('id' => 106050, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'name' => 'Типы аттрибутов'),
             array('id' => 106060, 'category' => 'base', 'entity' => 'enumeration', 'screen' => 'enumeration', 'name' => 'Нумерация'),
@@ -82,14 +82,13 @@ class IndexController extends AbstractActionController
             array('id' => 102, 'category' => 'base', 'entity' => 'posts', 'screen' => 'positions', 'name' => 'Должности'),
             array('id' => 103, 'category' => 'base', 'entity' => 'position_rank', 'screen' => 'positions', 'name' => 'Соответствие звания должности',
                 'isNonIndependent' => true ),
-            array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => 'Типы удостоверяющих личность документов'),
+            //array('id' => 104, 'category' => 'base', 'entity' => 'pass_doc_types', 'screen' => 'pass_doc_types', 'name' => 'Типы удостоверяющих личность документов'),
             array('id' => 105, 'category' => 'base', 'entity' => 'sys', 'screen' => 'sys', 'name' => 'Основные настройки', 'is_not_screen' => true,
                 'children' => $sys),
             array('id' => 106, 'category' => 'base', 'entity' => 'sys_docs', 'screen' => 'sys_docs', 'name' => 'Настройки документов', 'is_not_screen' => true,
                 'children' => $sys_docs
             ),
             array('id' => 107, 'category' => 'base', 'entity' => 'commander_types', 'screen' => 'commander_types', 'name' => 'Тип руководства подразделения'),
-
         );
 
         $array_staff = array(
@@ -105,7 +104,7 @@ class IndexController extends AbstractActionController
         );
 
         $array_doc = array(
-            array('id' => 301, 'category' => 'doc', 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Документы'),
+            //array('id' => 301, 'category' => 'doc', 'entity' => 'doc', 'screen' => 'doc', 'name' => 'Документы'),
             array('id' => 302, 'category' => 'doc', 'entity' => 'doc_attribute', 'screen' => 'doc', 'name' => 'Аттрибуты документа',
                 'isNonIndependent' => true ),
             array('id' => 303, 'category' => 'doc', 'entity' => 'pass_docs', 'screen' => 'pass_docs', 'name' => 'Документы удостоверяющие личность'),
@@ -139,6 +138,7 @@ class IndexController extends AbstractActionController
                 'children' => $array_doc),
             array('id' => 4, 'entity' => 'unit', 'screen' => 'unit', 'name' => 'Подразделение', 'is_not_screen' => true,
                 'children' => $array_unit),
+
         );
 
         $response = array(

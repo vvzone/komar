@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * DocumentType
  *
  * @ORM\Table(name="document_type")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\DocumentTypeRepository")
  */
 class DocumentType
 {

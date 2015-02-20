@@ -11,7 +11,7 @@ use \Doctrine\ORM\Query\Expr\OrderBy;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class PersonRepository extends EntityRepository implements ServiceLocatorAwareInterface
+class RankRepository extends EntityRepository implements ServiceLocatorAwareInterface
 {
     protected $services;
 
@@ -34,7 +34,7 @@ class PersonRepository extends EntityRepository implements ServiceLocatorAwareIn
     {
         $query = $this->getEntityManager()->createQueryBuilder();
         $query->select(array('r.id'))
-            ->from('Object\Entity\Person', 'r');
+            ->from('Object\Entity\Rank', 'r');
 
         $result = $query->getQuery()->getResult();
 
@@ -52,8 +52,8 @@ class PersonRepository extends EntityRepository implements ServiceLocatorAwareIn
     public function getItems($offset, $itemCountPerPage)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select(array("p.id", "concat(p.familyName, ' ', p.firstName, ' ', p.patronymicName) as name"))
-            ->from('Object\Entity\Person', 'p')
+        $query->select(array('p.id', 'p.name'))
+            ->from('Object\Entity\Rank', 'p')
             ->setFirstResult($offset)
             ->setMaxResults($itemCountPerPage);
 
@@ -62,47 +62,6 @@ class PersonRepository extends EntityRepository implements ServiceLocatorAwareIn
         return $result;
     }
 
-    public function test()
-    {
-        return 'PersonRepository -> test';
-    }
-
-    public function getDeputy($unit_id){
-
-        $filter[1] = $unit_id;
-
-
-        /*
-        $queryBuilder = $this->_em->createQueryBuilder();
-        $queryBuilder->select('person')
-            ->from('Object\Entity\Person', 'person')
-            ->where('person. = ?1')
-            ->setParameters($filter)
-            ->setMaxResults(1);
-        $query = $this->_em->createQuery('SELECT u.login, u.password FROM Object\Entity\User u WHERE u.token = :token');
-        $query->setParameter('token', $token);*/
-
-        $result= $query->getQuery();
-
-
-        return $result;
-    }
-
-    public function getByCredentials($credentials){
-
-
-        $query = $this->_em->createQuery('SELECT u.login, u.token FROM Object\Entity\User u WHERE u.login = :login AND u.password = :password');
-        $query->setParameters(array(
-            'login' => $credentials['login'],
-            'password'=> $credentials['password']
-        ));
-
-
-        //$query->setParameters('password', $credentials['password']);
-
-        $result = $query->getOneOrNullResult();
-        return $result;
-    }
 
     /**
      * @param $token
@@ -122,13 +81,6 @@ class PersonRepository extends EntityRepository implements ServiceLocatorAwareIn
         $query->setParameter('token', $token);
         $result = $query->getOneOrNullResult();
         return $result;
-    }
-
-    public function findByCredentials($authorizationPair){
-        $login = $authorizationPair[0];
-        $password = $authorizationPair[1];
-
-        return 'error method';
     }
 
 }

@@ -11,7 +11,7 @@ define(
 
         console.log('models/sex_types_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Типы пола',
             collection_name: 'sex_types',

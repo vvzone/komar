@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Route
  *
  * @ORM\Table(name="route", indexes={@ORM\Index(name="fk_route_document_type1_idx", columns={"document_type_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\RouteRepository")
  */
 class Route
 {

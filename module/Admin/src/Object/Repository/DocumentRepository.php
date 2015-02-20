@@ -24,6 +24,38 @@ class DocumentRepository extends EntityRepository implements ServiceLocatorAware
         return $this->services;
     }
 
+    public function count()
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $query->select(array('d.id'))
+            ->from('Object\Entity\Document', 'd');
+
+        $result = $query->getQuery()->getResult();
+
+        return count($result);
+    }
+
+    /**
+     * Returns a list of users
+     *
+     * @param int $offset           Offset
+     * @param int $itemCountPerPage Max results
+     *
+     * @return array
+     */
+    public function getItems($offset, $itemCountPerPage)
+    {
+        $query = $this->getEntityManager()->createQueryBuilder();
+        $query->select(array('d.id', 'd.name'))
+            ->from('Object\Entity\Document', 'd')
+            ->setFirstResult($offset)
+            ->setMaxResults($itemCountPerPage);
+
+        $result = $query->getQuery()->getResult(Query::HYDRATE_ARRAY);
+
+        return $result;
+    }
+
     /**
      * Authored, != draft
      * @param $person_id

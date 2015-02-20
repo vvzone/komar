@@ -16,6 +16,16 @@ define(
                 name: null,
                 short_name: null
             },
+            validation: {
+                name: {
+                    required: true,
+                    msg: "Обязательное поле"
+                },
+                short_name: {
+                    required: true,
+                    msg: "Обязательное поле"
+                }
+            },
             attr_rus_names: {
                 name: 'Название',
                 short_name: 'Краткое название'
@@ -27,14 +37,12 @@ define(
                 return apiUrl('sex_type', this.id);
             },
             initialize: function(){
-                console.info('Model init');
-                this.on('destroy', this.baDaBum);
-                /*this.on('change', function(){
-                    console.error('model -> change');
-                }, this);*/
-            },
-            baDaBum: function(){
-                console.warn('KABOOM!');
+                this.on('change', function(){
+                    this.validate();
+                    this.bind('validated:invalid', function(model, errors) {
+                        this.validationErrors = errors;
+                    });
+                })
             }
         });
 

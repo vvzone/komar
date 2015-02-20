@@ -48,18 +48,8 @@ class PostController extends RestController
     {
         $serviceLocator = $this
             ->getServiceLocator();
-
-        $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
-        $repository = $objectManager->getRepository('Object\Entity\Post');
-
-        $adapter = new \Object\Paginator\Adapter($repository);
-
-        $paginator = new Paginator($adapter);
-        $paginator->setPaginationRequest($this->requestedPagination);
-
-        $response = new JSONResponse($paginator->getCurrentItems());
-        $response->setAdditional('paginator', $paginator->getAPI());
-        return $response->getResponse();
+        $result = $serviceLocator->get('Doctrine\ORM\PostRESTListPagination');
+        return $result;
     }
 
 

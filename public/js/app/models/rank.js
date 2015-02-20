@@ -19,11 +19,20 @@ define(
                 is_officer: false,
                 description: 'Без описания'
             },
+            validation: {
+                name: {
+                    required: true,
+                    msg: "Обязательное поле"
+                },
+                short_name: {
+                    minLength: 3,
+                    msg: "Не может быть короче 3 символов"
+                }
+            },
             attr_rus_names: {
                 name: 'Название',
                 short_name: 'Сокр. название',
                 description: 'Описание',
-                /*order: 'Порядок',*/
                 is_officer: 'Офицер'
             },
             model_name: 'rank',
@@ -33,11 +42,15 @@ define(
                 return apiUrl('rank', this.id);
             },
             initialize: function(){
-                (debug)?console.info('Model init'):null;
-                this.on('destroy', this.baDaBum);
-            },
-            baDaBum: function(){
-                (debug)?console.warn('KABOOM!'):null;
+                this.on('change', function(){
+                    console.info('change');
+                    console.info(['validate', this.validate()]);
+                    console.info(['isValid', this.isValid()]);
+                    console.info(['this', this]);
+                    this.bind('validated:invalid', function(model, errors) {
+                        this.validationErrors = errors;
+                    });
+                })
             }
         });
 
