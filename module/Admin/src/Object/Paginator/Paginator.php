@@ -34,7 +34,7 @@ class Paginator extends ZendPaginator{
     public function getAPI(){
         return array(
             'current_page' => $this->getCurrentPageNumber(),
-            'total' => $this->count(),
+            'total_pages' => $this->count(),
             'records_per_page' => $this->getItemCountPerPage()
         );
     }

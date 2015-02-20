@@ -31,7 +31,7 @@ class RestController extends AbstractRestfulController
             $page = (int)$this->params()->fromQuery('page', 1);
             $page = ($page<1)?1:$page;
 
-            $records_per_page = (int)$this->params()->fromQuery('limit', $config['paginator']['records_per_page']);
+            $records_per_page = (int)$this->params()->fromQuery('per_page', $config['paginator']['records_per_page']);
             $records_per_page = ($records_per_page<1)?$config['paginator']['records_per_page']:$records_per_page;
 
             $this->requestedPagination = array(

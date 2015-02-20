@@ -146,7 +146,7 @@ define(
                     var ClientMenu =require(['views/client_menu_list'], function(ClientMenuList){
                         return ClientMenuList;
                     });
-                    CollectionsRouter.initialize(view, null, null);
+                    CollectionsRouter.initialize(view, null);
                 },
                 clientItemNew: function(view){
                     console.info('Router->clientItemNew, view='+view);

@@ -13,12 +13,23 @@ define(
     ],
     function($, _, Backbone, EventBus, Config,
              ListView, ClientListView, TreeView){
-        var initialize = function(view, id, param){
+
+        var initialize = function(view, parameters){
             console.log('collection_router initialization...');
             var debug = (Config['debug'] && Config['debug']['debug_collection_router'])? 1:null;
             (debug)? console.info('debug for collection router are ON'):null;
             var ViewCollection = 'undefined';
             var route_collection_array = Config['collections_router'];
+
+            var pagination_request  =  {};
+            if(parameters){
+               if(parameters.page){
+                   pagination_request.page = parseInt(parameters.page);
+               }
+               if(parameters.limit){
+                   pagination_request.per_page = parseInt(parameters.limit);
+               }
+            }
             var search = _.each(route_collection_array, function(route_name){
                 if(route_name[view]){
                     if(!Collection){
@@ -29,7 +40,7 @@ define(
                             switch(route_name[view]){
                                 case('list'):
                                     (debug)?console.log('will use ListView for collection output...'):null;
-                                    ListView.initialize(Collection);
+                                    ListView.initialize(Collection, pagination_request);
                                     return Collection;
                                 break;
                                 case('tree'):

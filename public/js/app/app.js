@@ -41,16 +41,22 @@ define(
         _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
 
         Backbone.Collection.prototype.parse = function(response){
-            console.info(['response', response]);
-            console.info(['response.requested_data', response.requested_data]);
             return response.requested_data;
         };
 
         Backbone.PageableCollection.prototype.parse = function(response){
-            console.info(['response', response]);
-            console.info(['response.requested_data', response.requested_data]);
             return response.requested_data;
         };
+
+        /*
+        Backbone.PageableCollection.queryParams = {
+
+            // `Backbone.PageableCollection#queryParams` converts to ruby's
+            // will_paginate keys by default.
+            currentPage: "current_page",
+            pageSize: "page_size"
+        };
+        */
 
         console.info(['Validation mixin:', Backbone.Validation.mixin]);
 

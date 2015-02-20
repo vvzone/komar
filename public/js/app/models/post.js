@@ -21,10 +21,12 @@ define(
             },
             validation: {
                 name: {
-                    required: true
+                    required: true,
+                    msg: "Обязательное поле"
                 },
                 short_name: {
-                    minLength: 8
+                    minLength: 5,
+                    msg: "Не может быть короче 5 символов"
                 }
             },
             attr_description: {
@@ -59,7 +61,6 @@ define(
                     });
                 })
             }
-
         });
 
         return Position;

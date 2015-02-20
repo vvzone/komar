@@ -47,7 +47,7 @@ define(
             }
         });
 
-            var initialize = function(CollectionModule){
+            var initialize = function(CollectionModule, pagination_request){
                 var Collection = new CollectionModule;
                 if(debug){
                     console.log('CollectionModule');
@@ -56,8 +56,32 @@ define(
                     console.log(Collection);
                     console.log('trying fetch collection...');
                 }
+                var page = 1;
+                var per_page = 10;
+                if(pagination_request){
+                    if(pagination_request.page){
+                        page = pagination_request.page;
+                    }
+                    if(pagination_request.per_page){
+                        per_page = pagination_request.per_page;
+                    }
+                }
+                Collection.state.pageSize = per_page;
+                Collection.state.currentPage = page;
+
+                /*
+                Collection.getPage(page).done(function(collection, response, options){
+                    var paginator = null;
+                    console.info(['response', collection, response, options]);
+                    if(response.paginator){
+                        paginator = response.paginator
+                    }
+                    var View = new ListView({collection: Collection, pagination: paginator});
+                });
+                */
+
                 var p = Collection.fetch({
-                    /*data: {recursive: 1},*/
+
                     error: function(obj, response){
                         console.warn(['error, response: ', response]);
                         EventBus.trigger('error', 'Ошибка', 'Невозможно получить коллекцию.', response);
@@ -76,6 +100,7 @@ define(
                         var View = new ListView({collection: Collection, pagination: paginator});
                     }
                 });
+
             };
 
         return {

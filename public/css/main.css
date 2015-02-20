@@ -454,7 +454,13 @@ div.List div.MainList {
     }*/
 }
 div.List div.MainList ul {
+  clear: both;
+  overflow: hidden;
   padding: 0;
+}
+div.List div.MainList div.paginator {
+  clear: both;
+  overflow: hidden;
 }
 div.List div.MainList div.search {
   float: left;

@@ -13,7 +13,7 @@ define(
         var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         (debug)?console.log('models/ranks_collection loaded'):null;
 
-        var Ranks = Backbone.Collection.extend({
+        var Ranks = Backbone.PageableCollection.extend({
             model: Rank,
             collection_rus_name: 'Звания',
             collection_name: 'ranks',

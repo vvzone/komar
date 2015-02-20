@@ -28,6 +28,8 @@ define(
                 }
 
                 var mySelf = this;
+                this.state.model.validate();
+                console.warn(['this.state.model',this.state.model]);
                 if(this.state.model.isValid()){
                     console.info('this.state.model.validate', this.state.model.validate());
                     console.info('this.state.model.isValid', this.state.model.isValid(true));
@@ -50,6 +52,17 @@ define(
                             EventBus.trigger('error', 'Ошибка', 'Не удалось сохранить изменения', response);
                         }
                     });
+                }else{
+                    alert('error');
+                    console.warn(['this.state.model.validationErrors',this.state.model.validationErrors]);
+                    var validation_errors = [];
+                    if(this.state.model.validationErrors){
+                        validation_errors = _.each(this.state.model.validationErrors, function(error){
+                            return error;
+                        });
+                    }
+
+                    EventBus.trigger('error', 'Ошибка', validation_errors);
                 }
             },
             itemUpdate: function (property) {
@@ -86,7 +99,6 @@ define(
                         if(debug){
                             console.error('call to ControlRouter -> this.controlRouterCallWithDependency');
                             console.log(['this.state.dependency_array['+prop+']',this.state.dependency_array[prop]]);
-
                         }
                         return this.controlRouterCallWithDependency(model, prop);
                     }
