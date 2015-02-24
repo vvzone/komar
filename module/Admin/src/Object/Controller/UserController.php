@@ -31,20 +31,10 @@ class UserController extends RestController
 
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-
-        //$results = $objectManager->getRepository('Object\Entity\User')->findByToken('12345qwerty98745')->getResult(); //TEST!
-        $results = $objectManager->getRepository('Object\Entity\User')->findAll(); //TEST!
-        $data = array();
-
-        foreach($results as $user){
-            $data[] = $user->getUserSimple(); //getAll - for with Person
-        }
-        return new JsonModel(
-           $data
-        );
+        $serviceLocator = $this
+            ->getServiceLocator();
+        $result = $serviceLocator->get('Doctrine\ORM\UserRESTListPagination');
+        return $result;
     }
 
     //

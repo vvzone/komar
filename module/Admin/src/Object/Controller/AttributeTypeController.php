@@ -27,18 +27,10 @@ class AttributeTypeController extends RestController
 
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-
-        $results = $objectManager->getRepository('Object\Entity\AttributeType')->findAll();
-        $data = array();
-
-        foreach ($results as $result) {
-            $data[] = $result->getAttributeTypeSimple();
-        }
-
-        return new JsonModel($data);
+        $serviceLocator = $this
+            ->getServiceLocator();
+        $result = $serviceLocator->get('Doctrine\ORM\AttributeTypeRESTListPagination');
+        return $result;
     }
 
     public function get($id)

@@ -11,7 +11,7 @@ use \Doctrine\ORM\Query\Expr\OrderBy;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class PostRepository extends EntityRepository implements ServiceLocatorAwareInterface
+class PageableRepository extends EntityRepository implements ServiceLocatorAwareInterface
 {
     protected $services;
 

@@ -11,7 +11,7 @@ use \Doctrine\ORM\Query\Expr\OrderBy;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class PostRepository extends EntityRepository implements ServiceLocatorAwareInterface
+class ClientRepository extends EntityRepository implements ServiceLocatorAwareInterface
 {
     protected $services;
 
@@ -33,8 +33,8 @@ class PostRepository extends EntityRepository implements ServiceLocatorAwareInte
     public function count()
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select(array('p.id'))
-            ->from('Object\Entity\Post', 'p');
+        $query->select(array('c.id'))
+            ->from('Object\Entity\Client', 'c');
 
         $result = $query->getQuery()->getResult();
 
@@ -52,14 +52,25 @@ class PostRepository extends EntityRepository implements ServiceLocatorAwareInte
     public function getItems($offset, $itemCountPerPage)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select(array('p.id', 'p.name'))
-            ->from('Object\Entity\Post', 'p')
+        $query->select(array('c.id', 'c.fullName as full_name'))
+            ->from('Object\Entity\Client', 'c')
             ->setFirstResult($offset)
             ->setMaxResults($itemCountPerPage);
 
         $result = $query->getQuery()->getResult(Query::HYDRATE_ARRAY);
 
         return $result;
+    }
+
+    public function getOnlyPersons()
+    {
+        $qb= $this->_em->createQueryBuilder();
+
+        /*
+         * SELECT * FROM `clients` as c RIGHT JOIN `persons` as p ON c.id=p.client
+         * */
+
+        return $qb->getQuery();
     }
 
 }

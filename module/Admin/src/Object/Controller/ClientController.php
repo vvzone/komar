@@ -20,31 +20,13 @@ use Admin\Controller\RestController;
 
 class ClientController extends RestController
 {
-    protected $clientTable;
-    //protected $clientTableList;
-    protected $unitTable;
-    protected $personTable;
-
-    /*-------------- default methods ----------*/
 
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-
-        //$results = $objectManager->getRepository('Object\Entity\Clients')->findBy(array('identificationNumber' => 19612));
-        $results = $objectManager->getRepository('Object\Entity\Client')->findAll();
-
-        //var_dump($results);
-        //$results = $this->getClientTable()->fetchAll();
-        $data = array();
-
-        foreach ($results as $result) {
-            $data[] = $result->getClientSimple();
-        }
-
-        return new JsonModel($data);
+        $serviceLocator = $this
+            ->getServiceLocator();
+        $result = $serviceLocator->get('Doctrine\ORM\ClientRESTListPagination');
+        return $result;
     }
 
     public function get($id)
@@ -93,32 +75,4 @@ class ClientController extends RestController
     }
 
 
-    public function getClientTable()
-    {
-        if (!$this->clientTable) {
-            $sm = $this->getServiceLocator();
-            $this->clientTable = $sm->get('Object\Model\ClientTable');
-        }
-        return $this->clientTable;
-    }
-
-    public function getUnitTable()
-    {
-        if (!$this->unitTable) {
-            $sm = $this->getServiceLocator();
-            $this->unitTable = $sm->get('Object\Model\UnitTable');
-        }
-        return $this->unitTable;
-    }
-
-    public function getPersonTable()
-    {
-        if (!$this->personTable) {
-            $sm = $this->getServiceLocator();
-            $this->personTable = $sm->get('Object\Model\PersonTable');
-        }
-        return $this->personTable;
-    }
-
-/*-------------- default methods ----------*/
 }

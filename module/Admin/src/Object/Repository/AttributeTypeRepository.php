@@ -11,7 +11,7 @@ use \Doctrine\ORM\Query\Expr\OrderBy;
 use Zend\ServiceManager\ServiceLocatorAwareInterface;
 use Zend\ServiceManager\ServiceLocatorInterface;
 
-class PostRepository extends EntityRepository implements ServiceLocatorAwareInterface
+class AttributeTypeRepository extends EntityRepository implements ServiceLocatorAwareInterface
 {
     protected $services;
 
@@ -33,11 +33,10 @@ class PostRepository extends EntityRepository implements ServiceLocatorAwareInte
     public function count()
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select(array('p.id'))
-            ->from('Object\Entity\Post', 'p');
+        $query->select(array('a.id'))
+            ->from('Object\Entity\AttributeType', 'a');
 
         $result = $query->getQuery()->getResult();
-
         return count($result);
     }
 
@@ -52,8 +51,8 @@ class PostRepository extends EntityRepository implements ServiceLocatorAwareInte
     public function getItems($offset, $itemCountPerPage)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select(array('p.id', 'p.name'))
-            ->from('Object\Entity\Post', 'p')
+        $query->select(array('a.id', 'a.name'))
+            ->from('Object\Entity\AttributeType', 'a')
             ->setFirstResult($offset)
             ->setMaxResults($itemCountPerPage);
 

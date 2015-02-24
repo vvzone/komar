@@ -3,6 +3,7 @@
 namespace Object\Repository;
 
 use \Doctrine\ORM\EntityRepository;
+use \Doctrine\ORM\Query;
 use \Doctrine\ORM\Query\Expr\Select;
 use \Doctrine\ORM\Query\Expr\From;
 use \Doctrine\ORM\Query\Expr\OrderBy;

@@ -16,7 +16,6 @@ class PaginatorAbstractFactory implements AbstractFactoryInterface
     public function canCreateServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName){
 
         return (substr($requestedName, -18) === 'RESTListPagination');
-
     }
 
     public function createServiceWithName(ServiceLocatorInterface $serviceLocator, $name, $requestedName){
@@ -28,6 +27,7 @@ class PaginatorAbstractFactory implements AbstractFactoryInterface
         $entityClass = 'Object\\Entity\\' . $entityName;
 
         $repository = $entityManager->getRepository($entityClass);
+        //$repository = $entityManager->getRepository("Object\\Entity\\Client");
 
         $adapter = new \Object\Paginator\Adapter($repository);
 

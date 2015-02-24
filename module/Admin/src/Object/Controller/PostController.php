@@ -28,9 +28,6 @@ use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
 use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
 
 /* data out */
-//use Zend\Paginator\Paginator as Paginator;
-use Object\Paginator\Paginator as Paginator;
-use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
 use Object\Response\JSONResponse;

@@ -44,18 +44,8 @@ class UnitController extends RestController
     {
         $serviceLocator = $this
             ->getServiceLocator();
-
-        $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
-        $repository = $objectManager->getRepository('Object\Entity\Unit');
-
-        $adapter = new \Object\Paginator\Adapter($repository);
-
-        $paginator = new Paginator($adapter);
-        $paginator->setPaginationRequest($this->requestedPagination);
-
-        $response = new JSONResponse($paginator->getCurrentItems());
-        $response->setAdditional('paginator', $paginator->getAPI());
-        return $response->getResponse();
+        $result = $serviceLocator->get('Doctrine\ORM\UnitRESTListPagination');
+        return $result;
     }
 
     public function get($id)

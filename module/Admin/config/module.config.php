@@ -360,9 +360,11 @@ return array(
             'Object\Paginator' => 'Object\Factory\PaginatorFactory'
         ),
         'invokables' => array(
-            'Object\Repository\UserRepository' => 'Object\Repository\UserRepository',
+           /* 'Object\Repository\UserRepository' => 'Object\Repository\UserRepository',
             'Object\Repository\PostRepository' => 'Object\Repository\PostRepository',
             'Object\Repository\DocumentRepository' => 'Object\Repository\DocumentRepository',
+            'Object\Repository\AttributeTypeRepository' => 'Object\Repository\AttributeTypeRepository',
+           */
             'Object\Paginator\Adapter' => 'Object\Paginator\Adapter'
         ),
         'aliases' => array(
