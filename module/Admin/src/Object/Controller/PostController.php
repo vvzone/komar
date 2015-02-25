@@ -56,11 +56,17 @@ class PostController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
         $post = $objectManager->find('Object\Entity\Post', $id);
-        return new JsonModel($post->getAll());
+        return $this->getOutput($post);
     }
 
     public function create($data)
     {
+
+        $serviceLocator = $this
+            ->getServiceLocator();
+
+        $result = $serviceLocator->get('Doctrine\ORM\Post_REST_API_Create');
+
         $post = new Post();
         $objectManager = $this
             ->getServiceLocator()

@@ -4,6 +4,7 @@ namespace Admin\Controller;
 
 use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\EventManager\EventManagerInterface;
+use Zend\View\Model\JsonModel;
 
 class RestController extends AbstractRestfulController
 {
@@ -22,6 +23,25 @@ class RestController extends AbstractRestfulController
     );
 
     protected $requestedPagination;
+
+    /**
+     * @param $object
+     * @return JsonModel
+     */
+    public function getOutput($object = null){
+        if(!$object){
+            $this->response->setStatusCode(404);
+            return new JsonModel(
+                array(
+                    'message' => 'Объект с id#'.$this->params()->fromRoute('id', false).' не найден.'
+                )
+            );
+        }else{
+            return new JsonModel($object->getAll());
+        }
+    }
+
+    //$this->getRouteMatch()->getParam('id', false)
 
     public function setRequestedPagination($e){
         $request  = $e->getRequest();

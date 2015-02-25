@@ -11,8 +11,6 @@ namespace Object\Controller;
 
 use Object\Model\Client;
 use Zend\Json\Server\Error;
-use Zend\View\Model\ViewModel;
-use Zend\View\Model\JsonModel;
 
 use Object\Entity\Clients as ClientORM;
 use Zend\EventManager\EventManagerInterface;
@@ -35,12 +33,8 @@ class ClientController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-
         $client = $objectManager->find('Object\Entity\Client', $id);
-        if(!$client){
-            //throw error 404
-        }
-        return new JsonModel($client->getAll());
+        return $this->getOutput($client);
     }
 
     public function create($data)

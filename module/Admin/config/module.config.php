@@ -431,6 +431,7 @@ return array(
             'Zend\Cache\Service\StorageCacheAbstractServiceFactory',
             'Zend\Log\LoggerAbstractServiceFactory',
             'Object\Factory\PaginatorAbstractFactory',
+            'Object\Factory\ObjectCreateAbstractFactory',
         ),
         'factories' => array(
             'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',

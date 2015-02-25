@@ -243,8 +243,8 @@ class Client
     public function getAddressCollection(){
         $collection = array();
         foreach($this->address as $address){
-            //$collection[] = $address->getAll();
-            $collection[] = $address->getAddressSimple();
+            $collection[] = $address->getAll();
+            //$collection[] = $address->getAddressSimple();
         }
         return $collection;
     }
