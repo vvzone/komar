@@ -10,6 +10,7 @@
 namespace Object\Controller;
 
 use Object\Model\Client;
+use Zend\Json\Server\Error;
 use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
 
@@ -36,6 +37,9 @@ class ClientController extends RestController
             ->get('Doctrine\ORM\EntityManager');
 
         $client = $objectManager->find('Object\Entity\Client', $id);
+        if(!$client){
+            //throw error 404
+        }
         return new JsonModel($client->getAll());
     }
 

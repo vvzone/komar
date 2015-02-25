@@ -59,10 +59,26 @@ class Client
      * */
     protected $nodes;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Address", inversedBy="client")
+     * @ORM\JoinTable(name="client_has_address",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="address_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $address;
+
     public function __construct()
     {
         $this->personInfo = new ArrayCollection();
         $this->unitInfo = new ArrayCollection();
+        $this->address = new ArrayCollection();
     }
 
     /**
@@ -191,6 +207,48 @@ class Client
        return $this->nodes;
     }
 
+    /**
+     * Add address
+     *
+     * @param \Object\Entity\Address $address
+     * @return Client
+     */
+    public function addAddress(Address $address)
+    {
+        $this->address[] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Remove address
+     *
+     * @param \Object\Entity\Address $address
+     */
+    public function removeAddress(Address $address)
+    {
+        $this->address->removeElement($address);
+    }
+
+    /**
+     * Get address
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    public function getAddressCollection(){
+        $collection = array();
+        foreach($this->address as $address){
+            //$collection[] = $address->getAll();
+            $collection[] = $address->getAddressSimple();
+        }
+        return $collection;
+    }
+
     /*
      * get inbox-counter
      */
@@ -206,6 +264,7 @@ class Client
             'full_name' => $this->getFullName(),
             'identification_number' => $this->getIdentificationNumber(),
             'is_external' => $this->getIsExternal(),
+            'address' => $this->getAddressCollection(),
             //'person_id' => $this->getPersonId()->getFirstName(), //Lazy loading!
             'person' => $this->getPersonInfo(),
             'unit' => $this->getUnitInfo()

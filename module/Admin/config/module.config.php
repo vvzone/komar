@@ -326,6 +326,85 @@ return array(
                             )
                         )
                     ),
+                    /* --- Client --- */
+                    'address_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/address_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\AddressType'
+                            )
+                        )
+                    ),
+                    'region_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/region_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\RegionType'
+                            )
+                        )
+                    ),
+                    'region' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/region[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Region'
+                            )
+                        )
+                    ),
+                    'location_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/location_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\LocationType'
+                            )
+                        )
+                    ),
+                    'street_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/street_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\StreetType'
+                            )
+                        )
+                    ),
+                    'address' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/address[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Address'
+                            )
+                        )
+                    ),
                     /* ---- === CLIENT ROUTES === ----*/
                     'inbox' => array(
                         'type'    => 'segment',
@@ -408,6 +487,13 @@ return array(
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
             'Object\Controller\Post' => 'Object\Controller\PostController',
             'Object\Controller\User' => 'Object\Controller\UserController',
+            /* - Address- */
+            'Object\Controller\AddressType' => 'Object\Controller\AddressTypeController',
+            'Object\Controller\RegionType' => 'Object\Controller\RegionTypeController',
+            'Object\Controller\Region' => 'Object\Controller\RegionController',
+            'Object\Controller\LocationType' => 'Object\Controller\LocationTypeController',
+            'Object\Controller\StreetType' => 'Object\Controller\StreetTypeController',
+            'Object\Controller\Address' => 'Object\Controller\AddressController',
             /* === Client === */
             'Client\Controller\Messages' => 'Client\Controller\MessagesController'
         )

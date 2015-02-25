@@ -1,0 +1,171 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Address
+ *
+ * @ORM\Table(name="address", indexes={@ORM\Index(name="fk_address_address_type1_idx", columns={"address_type_id"}), @ORM\Index(name="fk_address_region1_idx", columns={"region_id"}), @ORM\Index(name="fk_address_location_type1_idx", columns={"location_type_id"}), @ORM\Index(name="fk_address_street_type1_idx", columns={"street_type_id"})})
+ * @ORM\Entity
+ */
+class Address
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="start_date", type="datetime", nullable=true)
+     */
+    private $startDate;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="address", type="text", length=16777215, nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="post_code", type="string", length=45, nullable=true)
+     */
+    private $postCode;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="is_main", type="integer", nullable=true)
+     */
+    private $isMain;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="area", type="string", length=45, nullable=true)
+     */
+    private $area;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="location", type="string", length=45, nullable=true)
+     */
+    private $location;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="street", type="string", length=45, nullable=true)
+     */
+    private $street;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="house", type="integer", nullable=true)
+     */
+    private $house;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="house_suffix", type="string", length=3, nullable=true)
+     */
+    private $houseSuffix;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="building", type="integer", nullable=true)
+     */
+    private $building;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="flat", type="integer", nullable=true)
+     */
+    private $flat;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="post_box", type="integer", nullable=true)
+     */
+    private $postBox;
+
+    /**
+     * @var \Object\Entity\AddressType
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Object\Entity\AddressType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="address_type_id", referencedColumnName="id")
+     * })
+     */
+    private $addressType;
+
+    /**
+     * @var \Object\Entity\Region
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Object\Entity\Region")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="region_id", referencedColumnName="id")
+     * })
+     */
+    private $region;
+
+    /**
+     * @var \Object\Entity\LocationType
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Object\Entity\LocationType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="location_type_id", referencedColumnName="id")
+     * })
+     */
+    private $locationType;
+
+    /**
+     * @var \Object\Entity\StreetType
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Object\Entity\StreetType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="street_type_id", referencedColumnName="id")
+     * })
+     */
+    private $streetType;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Client", mappedBy="address")
+     */
+    private $client;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->client = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}
