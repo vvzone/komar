@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Region
  *
  * @ORM\Table(name="region", indexes={@ORM\Index(name="fk_Region_region_type_idx", columns={"region_type_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\RegionRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Region")
  */
 class Region extends Filtered
 {

@@ -10,9 +10,9 @@ use Zend\Feed\Reader\Collection;
  * MenuClient
  *
  * @ORM\Table(name="menu_client", indexes={@ORM\Index(name="parent_id", columns={"parent_id"}), @ORM\Index(name="type", columns={"type"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\MenuClient")
  */
-class MenuClient
+class MenuClient extends Filtered
 {
     /**
      * @var integer

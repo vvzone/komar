@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Route
  *
  * @ORM\Table(name="route", indexes={@ORM\Index(name="fk_route_document_type1_idx", columns={"document_type_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\RouteRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Route")
  */
-class Route
+class Route extends Filtered
 {
     /**
      * @var integer

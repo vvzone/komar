@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Country
  *
  * @ORM\Table(name="country")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\Country")
  */
-class Country
+class Country extends Filtered
 {
     /**
      * @var integer

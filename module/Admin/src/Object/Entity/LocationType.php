@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * LocationType
  *
  * @ORM\Table(name="location_type")
- * @ORM\Entity(repositoryClass="Object\Repository\LocationTypeRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\LocationType")
  */
-class LocationType
+class LocationType extends Filtered
 {
     /**
      * @var integer

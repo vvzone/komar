@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * PostRank
  *
  * @ORM\Table(name="post_rank", indexes={@ORM\Index(name="post_id", columns={"post_id", "rank_id"}), @ORM\Index(name="rank_id", columns={"rank_id"}), @ORM\Index(name="IDX_412C8FEE4B89032C", columns={"post_id"})})
- * @ORM\Entity
+ *  @ORM\Entity(repositoryClass="Object\Repository\PostRank")
  */
-class PostRank
+class PostRank extends Filtered
 {
     /**
      * @var integer

@@ -7,10 +7,10 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Client
  *
- * @ORM\Entity(repositoryClass="Object\Repository\ClientRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Client")
  * @ORM\Table(name="client")
  */
-class Client
+class Client extends Filtered
 {
     /**
      * @var integer

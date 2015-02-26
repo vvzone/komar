@@ -15,6 +15,13 @@ class PageableRepository extends EntityRepository implements ServiceLocatorAware
 {
     protected $services;
 
+    public function getCurrentEntityClass(){
+        $parts       = explode('\\', get_called_class());
+        $entityName  = end($parts);
+        $entityClass = 'Object\\Entity\\' . $entityName;
+        return $entityClass;
+    }
+
     public function setServiceLocator(ServiceLocatorInterface $serviceLocator)
     {
         $this->services = $serviceLocator;
@@ -33,8 +40,8 @@ class PageableRepository extends EntityRepository implements ServiceLocatorAware
     public function count()
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select(array('p.id'))
-            ->from('Object\Entity\Post', 'p');
+        $query->select(array('entity.id'))
+            ->from($this->getCurrentEntityClass(), 'entity');
 
         $result = $query->getQuery()->getResult();
 
@@ -52,8 +59,8 @@ class PageableRepository extends EntityRepository implements ServiceLocatorAware
     public function getItems($offset, $itemCountPerPage)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
-        $query->select(array('p.id', 'p.name'))
-            ->from('Object\Entity\Post', 'p')
+        $query->select(array('entity.id', 'entity.name'))
+            ->from($this->getCurrentEntityClass(), 'entity')
             ->setFirstResult($offset)
             ->setMaxResults($itemCountPerPage);
 

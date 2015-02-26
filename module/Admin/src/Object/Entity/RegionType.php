@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * RegionType
  *
  * @ORM\Table(name="region_type")
- * @ORM\Entity(repositoryClass="Object\Repository\RegionTypeRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\RegionType")
  */
-class RegionType
+class RegionType extends Filtered
 {
     /**
      * @var integer

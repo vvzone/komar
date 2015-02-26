@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * MenuClientType
  *
  * @ORM\Table(name="menu_client_type")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\MenuClientType")
  */
-class MenuClientType
+class MenuClientType extends Filtered
 {
     /**
      * @var integer

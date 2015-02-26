@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Person
  *
  * @ORM\Table(name="person", indexes={@ORM\Index(name="fk_person_sex1_idx", columns={"sex_id"}), @ORM\Index(name="fk_person_client1_idx", columns={"client_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\PersonRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Person")
  */
-class Person
+class Person extends Filtered
 {
     /**
      * @var integer

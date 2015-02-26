@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * NodeLevel
  *
  * @ORM\Table(name="node_level", indexes={@ORM\Index(name="fk_node_level_node_level_type1_idx", columns={"node_level_type_id"}), @ORM\Index(name="fk_node_level_route1_idx", columns={"route_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\NodeLevel")
  */
-class NodeLevel
+class NodeLevel extends Filtered
 {
     /**
      * @var integer

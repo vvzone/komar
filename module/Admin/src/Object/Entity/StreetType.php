@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * StreetType
  *
  * @ORM\Table(name="street_type")
- * @ORM\Entity(repositoryClass="Object\Repository\StreetTypeRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\StreetType")
  */
-class StreetType
+class StreetType extends Filtered
 {
     /**
      * @var integer

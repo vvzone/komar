@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * NodeLevelType
  *
  * @ORM\Table(name="node_level_type")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\NodeLevelType")
  */
-class NodeLevelType
+class NodeLevelType extends Filtered
 {
     /**
      * @var integer

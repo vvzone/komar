@@ -13,9 +13,9 @@ use Doctrine\ORM\Mapping as ORM;
  *      @ORM\Index(name="fk_address_region1_idx", columns={"region_id"}),
  *      @ORM\Index(name="fk_address_location_type1_idx", columns={"location_type_id"}),
  *      @ORM\Index(name="fk_address_street_type1_idx", columns={"street_type_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\AddressRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Address")
  */
-class Address
+class Address extends Filtered
 {
     /**
      * @var integer

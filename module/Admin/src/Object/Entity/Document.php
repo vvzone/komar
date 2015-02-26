@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Document
  *
  * @ORM\Table(name="document", indexes={@ORM\Index(name="fk_document_persons1_idx", columns={"document_author_id"}), @ORM\Index(name="fk_document_document_type1_idx", columns={"document_type_id"}), @ORM\Index(name="fk_document_node_level1_idx", columns={"current_node_level_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\DocumentRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Document")
  */
-class Document
+class Document extends Filtered
 {
     /**
      * @var integer

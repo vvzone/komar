@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Rank
  *
  * @ORM\Table(name="rank")
- * @ORM\Entity(repositoryClass="Object\Repository\RankRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Rank")
  */
-class Rank
+class Rank extends Filtered
 {
     /**
      * @var integer

@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * DocumentType
  *
  * @ORM\Table(name="document_type")
- * @ORM\Entity(repositoryClass="Object\Repository\DocumentTypeRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\DocumentType")
  */
-class DocumentType
+class DocumentType extends Filtered
 {
     /**
      * @var integer

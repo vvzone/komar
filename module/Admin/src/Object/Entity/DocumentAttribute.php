@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * DocumentAttribute
  *
  * @ORM\Table(name="document_attribute", indexes={@ORM\Index(name="fk_Document_Attribute_Document1_idx", columns={"document_id"}), @ORM\Index(name="fk_Document_Attribute_ Attribute_Type1_idx", columns={"attribute_type_id"}), @ORM\Index(name="fk_document_attribute_persons1_idx", columns={"author_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\DocumentAttribute")
  */
-class DocumentAttribute
+class DocumentAttribute extends Filtered
 {
     /**
      * @var integer

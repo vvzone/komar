@@ -10,9 +10,9 @@ use Object\InputFilter\AddressTypeFilter;
  * AddressType
  *
  * @ORM\Table(name="address_type")
- * @ORM\Entity(repositoryClass="Object\Repository\AddressTypeRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\AddressType")
  */
-class AddressType
+class AddressType extends Filtered
 {
     /**
      * @var integer

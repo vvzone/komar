@@ -247,6 +247,19 @@ return array(
                             )
                         )
                     ),
+                    'node_level_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/node_level_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\NodeLevelType'
+                            )
+                        )
+                    ),
                     'node' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -270,6 +283,19 @@ return array(
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Object\Controller',
                                 'controller'    => 'Object\Controller\Route'
+                            )
+                        )
+                    ),
+                    'document_attribute' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/document_attribute[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\DocumentAttribute'
                             )
                         )
                     ),
@@ -327,6 +353,19 @@ return array(
                         )
                     ),
                     /* --- Client --- */
+                    'country' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/country[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\Country'
+                            )
+                        )
+                    ),
                     'address_type' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -481,14 +520,21 @@ return array(
             'Object\Controller\Rank' => 'Object\Controller\RankController',
             'Object\Controller\Sex' => 'Object\Controller\SexController',
             'Object\Controller\Document' => 'Object\Controller\DocumentController',
+
             'Object\Controller\NodeLevel' => 'Object\Controller\NodeLevelController',
+            'Object\Controller\NodeLevelType' => 'Object\Controller\NodeLevelTypeController',
             'Object\Controller\Node' => 'Object\Controller\NodeController',
+
             'Object\Controller\Route' => 'Object\Controller\RouteController',
+
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
+            'Object\Controller\DocumentAttribute' => 'Object\Controller\DocumentAttributeController',
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
+
             'Object\Controller\Post' => 'Object\Controller\PostController',
             'Object\Controller\User' => 'Object\Controller\UserController',
             /* - Address- */
+            'Object\Controller\Country' => 'Object\Controller\CountryController',
             'Object\Controller\AddressType' => 'Object\Controller\AddressTypeController',
             'Object\Controller\RegionType' => 'Object\Controller\RegionTypeController',
             'Object\Controller\Region' => 'Object\Controller\RegionController',

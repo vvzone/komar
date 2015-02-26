@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * LinkedDocument
  *
  * @ORM\Table(name="linked_document")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\LinkedDocument")
  */
-class LinkedDocument
+class LinkedDocument extends Filtered
 {
     /**
      * @var integer

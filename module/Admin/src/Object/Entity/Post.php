@@ -9,10 +9,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Post
  *
- * @ORM\Entity(repositoryClass="Object\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Post")
  * @ORM\Table(name="post")
  */
-class Post extends _Filtered
+class Post extends Filtered
 {
     /**
      * @var integer
