@@ -16,10 +16,8 @@ use Object\Entity\Clients as ClientORM;
 use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
 
-
 class ClientController extends RestController
 {
-
     public function getList()
     {
         $serviceLocator = $this

@@ -6,6 +6,8 @@ use Zend\Mvc\Controller\AbstractRestfulController;
 use Zend\EventManager\EventManagerInterface;
 use Zend\View\Model\JsonModel;
 
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
+
 class RestController extends AbstractRestfulController
 {
     protected $eventIdentifier = 'Object\Controller';

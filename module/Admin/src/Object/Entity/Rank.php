@@ -45,7 +45,7 @@ class Rank
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_officer", type="boolean", nullable=false)
+     * @ORM\Column(name="is_officer", type="boolean", nullable=true)
      */
     private $isOfficer;
 
