@@ -85,6 +85,7 @@ class ObjectCreateAbstractFactory implements AbstractFactoryInterface
         $entityClass = 'Object\\Entity\\' . $entityName;
 
         $Object = new $entityClass;
+
         $objectManager = $serviceLocator
             ->get('Doctrine\ORM\EntityManager');
 
@@ -98,22 +99,37 @@ class ObjectCreateAbstractFactory implements AbstractFactoryInterface
         /* --- /get & parse request --- */
 
         $inputFilter= $Object->getInputFilter();
+        //var_dump($inputFilter);
 
         if($inputFilter->setData($data)->isValid()){
-            $hydrator = new DoctrineHydrator($objectManager, $entityClass);
+            try {
+                //$data = 'valid';
+                $hydrator = new DoctrineHydrator($objectManager, $entityClass);
+                $data = $this->RESTtoCamelCase($data);
+                if($this->getIdentifier($serviceLocator)){
+                    $data['id'] =  $this->getIdentifier($serviceLocator);
+                }
+                $Object = $hydrator->hydrate($data, $Object);
+                $objectManager->persist($Object);
+                $objectManager->flush();
+                //$data = array('id' => $Object->getId());
+                $data = $hydrator->extract($Object);
 
-            $data = $this->RESTtoCamelCase($data);
-            if($this->getIdentifier($serviceLocator)){
-                $data['id'] =  $this->getIdentifier($serviceLocator);
+
+            } catch (\Exception $e) { //logic errors
+                $response = $serviceLocator->get('Response');
+                $response->setStatusCode(500);
+                $data = array();
+                $data['messages'][] = 'ObjectCreateAbstractFactory fail';
+                do {
+                    $data['messages'][] = $e->getMessage();
+                } while ($e = $e->getPrevious());
+
+                return new JsonModel(array(
+                    $data
+                ));
             }
-            $Object = $hydrator->hydrate($data, $Object);
-
-            $objectManager->persist($Object);
-            $objectManager->flush();
-            //$data = array('id' => $Object->getId());
-            $data = $hydrator->extract($Object);
-
-        }else{
+        }else{//validation errors
             $response = $serviceLocator->get('Response');
             $response->setStatusCode(400);
             $data = $inputFilter->getMessages();
@@ -122,6 +138,7 @@ class ObjectCreateAbstractFactory implements AbstractFactoryInterface
         return new JsonModel(array(
             $data
         ));
+
     }
 
     public function getIdentifier(ServiceLocatorInterface $serviceLocator){

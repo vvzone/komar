@@ -10,14 +10,14 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="region", indexes={@ORM\Index(name="fk_Region_region_type_idx", columns={"region_type_id"})})
  * @ORM\Entity(repositoryClass="Object\Repository\RegionRepository")
  */
-class Region
+class Region extends Filtered
 {
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
-     * ORM\Id
-     * ORM\GeneratedValue(strategy="NONE")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -45,16 +45,14 @@ class Region
     /**
      * @var \Object\Entity\RegionType
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\RegionType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="region_type_id", referencedColumnName="id")
      * })
      */
     private $regionType;
-
-
 
     /**
      * Set id

@@ -138,6 +138,10 @@ class Module implements AutoloaderProviderInterface
             $code = 404;
             $response->setStatusCode($code);
         }
+        if($error =='error-exception'){
+
+        }
+
 
         $errorJson = array(
             'message'   => $message,
