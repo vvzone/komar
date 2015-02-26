@@ -9,20 +9,17 @@
 
 namespace Object\Controller;
 
-use Object\Model\Client;
-use Zend\Json\Server\Error;
-
-use Object\Entity\Clients as ClientORM;
-use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
+use Zend\View\Model\JsonModel;
 
 class ClientController extends RestController
 {
+
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('Doctrine\ORM\ClientRESTListPagination');
+        $result = $serviceLocator->get('ClientRESTListPagination');
         return $result;
     }
 
@@ -31,44 +28,40 @@ class ClientController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $client = $objectManager->find('Object\Entity\Client', $id);
-        return $this->getOutput($client);
+        $object = $objectManager->find('Object\Entity\Client', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        $data['id'] = 0;
-        $client = new Client();
-        $client->exchangeArray($data);
-        $id = $this->getClientTable()->saveClient($client);
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        $serviceLocator = $this
+            ->getServiceLocator();
+
+        $result = $serviceLocator->get('ClientRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $client = $this->getClientTable()->getClient($id);
-        $client_temp = new Client();
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        // on next line may place hydration
-        $client_temp->exchangeArray($data); //delete this one after form will be added
-        $id = $this->getClientTable()->saveClient($client_temp); //($form->getData());
-
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        $result = $serviceLocator->get('ClientRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
     {
-        $this->getClientTable()->deleteClient($id);
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        $object = $objectManager->find('Object\Entity\Client', $id);
+        $objectManager->remove($object);
+        $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-
 }

@@ -9,42 +9,17 @@
 
 namespace Object\Controller;
 
-use Object\Entity\Post;
 use Admin\Controller\RestController;
-use Zend\EventManager\EventManagerInterface;
-
-/* filter */
-use Zend\InputFilter\Factory;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Input;
-use Zend\Validator;
-
-/* hydra & orm */
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-
-use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
-use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
-
-/* data out */
-//use Zend\Paginator\Paginator as Paginator;
-use Object\Paginator\Paginator as Paginator;
-use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
-
-use Object\Response\JSONResponse;
-
 
 class RouteController extends RestController
 {
-
-    /*-------------- default methods ----------*/
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('Doctrine\ORM\RouteRESTListPagination');
+        $result = $serviceLocator->get('RouteRESTListPagination');
         return $result;
     }
 
@@ -53,34 +28,26 @@ class RouteController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $route = $objectManager->find('Object\Entity\Route', $id);
-        return new JsonModel($route->getAll());
+        $object = $objectManager->find('Object\Entity\Route', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        $serviceLocator = $this
+            ->getServiceLocator();
+
+        $result = $serviceLocator->get('RouteRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $route = new Route();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Route');
-        $data = $this->RESTtoCamelCase($data);
-        $route = $hydrator->hydrate($data, $route);
-        $objectManager->persist($route);
-        $objectManager->flush();
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('RouteRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
@@ -89,25 +56,12 @@ class RouteController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $route = $objectManager->find('Object\Entity\Route', $id);
-        $objectManager->remove($route);
+        $object = $objectManager->find('Object\Entity\Route', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-
-    /*
-    public function getRouteTableList()
-    {
-        if (!$this->routeTableList) {
-            $sm = $this->getServiceLocator();
-            $this->routeTableList = $sm->get('Object\Model\RouteTableList');
-        }
-        return $this->routeTableList;
-    }*/
-
-/*-------------- default methods ----------*/
 }

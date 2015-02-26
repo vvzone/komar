@@ -9,41 +9,17 @@
 
 namespace Object\Controller;
 
-use Object\Entity\DocumentType;
 use Admin\Controller\RestController;
-use Zend\EventManager\EventManagerInterface;
-
-/* filter */
-use Zend\InputFilter\Factory;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Input;
-use Zend\Validator;
-
-/* hydra & orm */
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-
-use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
-use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
-
-/* data out */
-//use Zend\Paginator\Paginator as Paginator;
-use Object\Paginator\Paginator as Paginator;
-use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
-
-use Object\Response\JSONResponse;
 
 class DocumentTypeController extends RestController
 {
-
-    /*-------------- default methods ----------*/
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('Doctrine\ORM\DocumentTypeRESTListPagination');
+        $result = $serviceLocator->get('DocumentTypeRESTListPagination');
         return $result;
     }
 
@@ -52,34 +28,26 @@ class DocumentTypeController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $document_type = $objectManager->find('Object\Entity\DocumentType', $id);
-        return new JsonModel($document_type->getAll());
+        $object = $objectManager->find('Object\Entity\DocumentType', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        $serviceLocator = $this
+            ->getServiceLocator();
+
+        $result = $serviceLocator->get('DocumentTypeRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $document_type = new DocumentType();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\DocumentType');
-        $data = $this->RESTtoCamelCase($data);
-        $document_type = $hydrator->hydrate($data, $document_type);
-        $objectManager->persist($document_type);
-        $objectManager->flush();
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('DocumentTypeRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
@@ -88,25 +56,12 @@ class DocumentTypeController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $document_type = $objectManager->find('Object\Entity\DocumentType', $id);
-        $objectManager->remove($document_type);
+        $object = $objectManager->find('Object\Entity\DocumentType', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-
-    /*
-    public function getDocumentTypeTableList()
-    {
-        if (!$this->document_typeTableList) {
-            $sm = $this->getServiceLocator();
-            $this->document_typeTableList = $sm->get('Object\Model\DocumentTypeTableList');
-        }
-        return $this->document_typeTableList;
-    }*/
-
-/*-------------- default methods ----------*/
 }

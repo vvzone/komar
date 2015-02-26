@@ -9,37 +9,18 @@
 
 namespace Object\Controller;
 
-use Object\Entity\MenuClient;
-use Zend\View\Model\ViewModel;
-use Zend\View\Model\JsonModel;
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-
-use Object\Entity\Client as ClientORM;
-use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-
-use Object\Entity\MenuClientTree;
+use Zend\View\Model\JsonModel;
 
 class MenuClientController extends RestController
 {
-    public function getList(){
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
 
-        $arrayTree = array();
-        //$repo = $objectManager->getRepository('Object\Entity\MenuClientTree');
-        $repo = $objectManager->getRepository('Object\Entity\MenuClient')->findAll();
-        //$arrayTree = $repo->childrenHierarchy();
-
-        foreach($repo as $menu){
-            $arrayTree[] = $menu->getMenuClientSimple(); //getAll - for with Person
-        }
-
-        return new JsonModel(
-            $arrayTree
-        );
+    public function getList()
+    {
+        $serviceLocator = $this
+            ->getServiceLocator();
+        $result = $serviceLocator->get('MenuClientRESTListPagination');
+        return $result;
     }
 
     public function get($id)
@@ -47,68 +28,40 @@ class MenuClientController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-
-        $menuElement = $objectManager->find('Object\Entity\MenuClient', $id);
-
-        return new JsonModel(array(
-            $menuElement->getAll()
-        ));
+        $object = $objectManager->find('Object\Entity\MenuClient', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        //$data['id'] = 0; --????
-        $menuElement = new MenuClient();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\MenuClient');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $data = $this->RESTtoCamelCase($data);
-        $menuElement = $hydrator->hydrate($data, $menuElement);
-
-        $objectManager->persist($menuElement);
-        $objectManager->flush();
-
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        $result = $serviceLocator->get('MenuClientRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $user = new MenuClient();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\MenuClient');
-        $data = $this->RESTtoCamelCase($data);
-        $user = $hydrator->hydrate($data, $user);
-        $objectManager->persist($user);
-        $objectManager->flush();
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('MenuClientRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
     {
-        //$this->getMenuClientsTable()->deleteMenuClient($id);
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $user = $objectManager->find('Object\Entity\MenuClient', $id);
-        $objectManager->remove($user);
+        $object = $objectManager->find('Object\Entity\MenuClient', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-
 }

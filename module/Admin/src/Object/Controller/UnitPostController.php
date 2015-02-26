@@ -9,38 +9,18 @@
 
 namespace Object\Controller;
 
-//use Zend\Mvc\Controller\AbstractActionController;\
-use Object\Entity\UnitPost;
-use Object\Entity\Post;
-use Object\Entity\Unit;
-
-use Zend\View\Model\ViewModel;
+use Admin\Controller\RestController;
 use Zend\View\Model\JsonModel;
 
-use Zend\EventManager\EventManagerInterface;
-use Admin\Controller\RestController;
-
-
-//class UnitController extends AbstractActionController
 class UnitPostController extends RestController
 {
 
-    /*-------------- default methods ----------*/
-
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-
-        $results = $objectManager->getRepository('Object\Entity\UnitPost')->findAll();
-        $data = array();
-
-        foreach ($results as $result) {
-            $data[] = $result->getUnitPostSimple();
-        }
-
-        return new JsonModel($data);
+        $serviceLocator = $this
+            ->getServiceLocator();
+        $result = $serviceLocator->get('UnitPostRESTListPagination');
+        return $result;
     }
 
     public function get($id)
@@ -48,34 +28,26 @@ class UnitPostController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $unitPost = $objectManager->find('Object\Entity\UnitPost', $id);
-        return new JsonModel($unitPost->getAll());
+        $object = $objectManager->find('Object\Entity\UnitPost', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        $serviceLocator = $this
+            ->getServiceLocator();
+
+        $result = $serviceLocator->get('UnitPostRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $unit = new Unit();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Unit');
-        $data = $this->RESTtoCamelCase($data);
-        $unit = $hydrator->hydrate($data, $unit);
-        $objectManager->persist($unit);
-        $objectManager->flush();
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('UnitPostRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
@@ -84,25 +56,12 @@ class UnitPostController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $unit = $objectManager->find('Object\Entity\Unit', $id);
-        $objectManager->remove($unit);
+        $object = $objectManager->find('Object\Entity\UnitPost', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-
-    /*
-    public function getUnitTableList()
-    {
-        if (!$this->unitTableList) {
-            $sm = $this->getServiceLocator();
-            $this->unitTableList = $sm->get('Object\Model\UnitTableList');
-        }
-        return $this->unitTableList;
-    }*/
-
-/*-------------- default methods ----------*/
 }

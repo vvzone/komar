@@ -12,14 +12,14 @@ namespace Object\Controller;
 use Admin\Controller\RestController;
 use Zend\View\Model\JsonModel;
 
-class NodeLevelController extends RestController
+class MenuClientTypeController extends RestController
 {
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('NodeLevelRESTListPagination');
+        $result = $serviceLocator->get('MenuClientTypeRESTListPagination');
         return $result;
     }
 
@@ -28,7 +28,7 @@ class NodeLevelController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $object = $objectManager->find('Object\Entity\NodeLevel', $id);
+        $object = $objectManager->find('Object\Entity\MenuClientType', $id);
         return $this->getOutput($object);
     }
 
@@ -37,7 +37,7 @@ class NodeLevelController extends RestController
         $serviceLocator = $this
             ->getServiceLocator();
 
-        $result = $serviceLocator->get('NodeLevelRESTAPICreate');
+        $result = $serviceLocator->get('MenuClientTypeRESTAPICreate');
         return $result;
     }
 
@@ -46,7 +46,7 @@ class NodeLevelController extends RestController
         $serviceLocator = $this
             ->getServiceLocator();
 
-        $result = $serviceLocator->get('NodeLevelRESTAPICreate');
+        $result = $serviceLocator->get('MenuClientTypeRESTAPICreate');
         return $result;
     }
 
@@ -56,7 +56,7 @@ class NodeLevelController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $object = $objectManager->find('Object\Entity\NodeLevel', $id);
+        $object = $objectManager->find('Object\Entity\MenuClientType', $id);
         $objectManager->remove($object);
         $objectManager->flush();
 

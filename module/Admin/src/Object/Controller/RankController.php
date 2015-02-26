@@ -9,45 +9,17 @@
 
 namespace Object\Controller;
 
-use Object\Entity\Rank;
 use Admin\Controller\RestController;
-use Zend\EventManager\EventManagerInterface;
-
-/* filter */
-use Zend\InputFilter\Factory;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Input;
-use Zend\Validator;
-
-/* hydra & orm */
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-
-use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
-use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
-
-/* data out */
-//use Zend\Paginator\Paginator as Paginator;
-use Object\Paginator\Paginator as Paginator;
-use Zend\View\Model\ViewModel;
 use Zend\View\Model\JsonModel;
-
-use Object\Response\JSONResponse;
 
 class RankController extends RestController
 {
-    protected $clientTable;
-    //protected $clientTableList;
-    protected $unitTable;
-    protected $ranksTable;
-
-    /*-------------- default methods ----------*/
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('Doctrine\ORM\RankRESTListPagination');
+        $result = $serviceLocator->get('RankRESTListPagination');
         return $result;
     }
 
@@ -56,76 +28,40 @@ class RankController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $rank = $objectManager->find('Object\Entity\Rank', $id);
-        return new JsonModel($rank->getAll());
+        $object = $objectManager->find('Object\Entity\Rank', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        $post = new Rank();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $inputFilter= $post->getInputFilter();
-        if($inputFilter->setData($data)->isValid()){
-            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Rank');
-            $data = $this->RESTtoCamelCase($data);
-            $post = $hydrator->hydrate($data, $post);
-            $objectManager->persist($post);
-            $objectManager->flush();
-
-        }else{
-            $response = $this->getResponse();
-            $response->setStatusCode(400);
-            $data = $inputFilter->getMessages();
-        }
-
-        return new JsonModel(array(
-            $data,
-        ));
+        $result = $serviceLocator->get('RankRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $post = new Rank();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $inputFilter= $post->getInputFilter();
-        if($inputFilter->setData($data)->isValid()){
-            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Rank');
-            $data = $this->RESTtoCamelCase($data);
-            $post = $hydrator->hydrate($data, $post);
-            $objectManager->persist($post);
-            $objectManager->flush();
-        }else{
-            $response = $this->getResponse();
-            $response->setStatusCode(400);
-            $data = $inputFilter->getMessages();
-        };
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('RankRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
     {
-        //$this->getRanksTable()->deleteRank($id);
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $rank = $objectManager->find('Object\Entity\Rank', $id);
-        $objectManager->remove($rank);
+        $object = $objectManager->find('Object\Entity\Rank', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
 }

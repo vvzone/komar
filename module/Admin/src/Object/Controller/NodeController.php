@@ -9,34 +9,18 @@
 
 namespace Object\Controller;
 
-use Object\Entity\Node;
-use Zend\View\Model\ViewModel;
-use Zend\View\Model\JsonModel;
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-
-use Object\Entity\Client as ClientORM;
-use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-
+use Zend\View\Model\JsonModel;
 
 class NodeController extends RestController
 {
+
     public function getList()
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-
-        $results = $objectManager->getRepository('Object\Entity\Node')->findAll(); //TEST!
-        $data = array();
-
-        foreach($results as $user){
-            $data[] = $user->getNodeSimple(); //getAll - for with Person
-        }
-        return new JsonModel(
-           $data
-        );
+        $serviceLocator = $this
+            ->getServiceLocator();
+        $result = $serviceLocator->get('NodeRESTListPagination');
+        return $result;
     }
 
     public function get($id)
@@ -44,64 +28,40 @@ class NodeController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $node = $objectManager->find('Object\Entity\Node', $id);
-
-        return new JsonModel($node->getAll());
+        $object = $objectManager->find('Object\Entity\Node', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        //$data['id'] = 0; --????
-        $user = new Node();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Node');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $data = $this->RESTtoCamelCase($data);
-        $user = $hydrator->hydrate($data, $user);
-        $objectManager->persist($user);
-        $objectManager->flush();
-
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        $result = $serviceLocator->get('NodeRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $user = new Node();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Node');
-        $data = $this->RESTtoCamelCase($data);
-        $user = $hydrator->hydrate($data, $user);
-        $objectManager->persist($user);
-        $objectManager->flush();
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('NodeRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
     {
-        //$this->getNodesTable()->deleteNode($id);
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $user = $objectManager->find('Object\Entity\Node', $id);
-        $objectManager->remove($user);
+        $object = $objectManager->find('Object\Entity\Node', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-
 }

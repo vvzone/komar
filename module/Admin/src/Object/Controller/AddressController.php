@@ -9,104 +9,45 @@
 
 namespace Object\Controller;
 
-use Object\Entity\Address;
 use Admin\Controller\RestController;
-use Zend\EventManager\EventManagerInterface;
-
-/* filter */
-use Zend\InputFilter\Factory;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Input;
-use Zend\Validator;
-
-/* hydra & orm */
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-
-use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
-use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
-
-/* data out */
 use Zend\View\Model\JsonModel;
-use Object\Response\JSONResponse;
-
 
 class AddressController extends RestController
 {
-
-    /*-------------- default methods ----------*/
-    public function checkInputJson($data){
-
-    }
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('Doctrine\ORM\AddressRESTListPagination');
+        $result = $serviceLocator->get('AddressRESTListPagination');
         return $result;
     }
-
 
     public function get($id)
     {
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $address = $objectManager->find('Object\Entity\Address', $id);
-        return new JsonModel($address->getAll());
+        $object = $objectManager->find('Object\Entity\Address', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        $address = new Address();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $inputFilter= $address->getInputFilter();
-        if($inputFilter->setData($data)->isValid()){
-            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Address');
-            $data = $this->RESTtoCamelCase($data);
-            $address = $hydrator->hydrate($data, $address);
-            $objectManager->persist($address);
-            $objectManager->flush();
-
-        }else{
-            $response = $this->getResponse();
-            $response->setStatusCode(400);
-            $data = $inputFilter->getMessages();
-        }
-
-        return new JsonModel(array(
-            $data,
-        ));
+        $result = $serviceLocator->get('AddressRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $address = new Address();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $inputFilter= $address->getInputFilter();
-        if($inputFilter->setData($data)->isValid()){
-            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\Address');
-            $data = $this->RESTtoCamelCase($data);
-            $address = $hydrator->hydrate($data, $address);
-            $objectManager->persist($address);
-            $objectManager->flush();
-        }else{
-            $response = $this->getResponse();
-            $response->setStatusCode(400);
-            $data = $inputFilter->getMessages();
-        };
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('AddressRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
@@ -115,14 +56,12 @@ class AddressController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $address = $objectManager->find('Object\Entity\Address', $id);
-        $objectManager->remove($address);
+        $object = $objectManager->find('Object\Entity\Address', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-/*-------------- default methods ----------*/
 }

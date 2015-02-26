@@ -9,105 +9,45 @@
 
 namespace Object\Controller;
 
-use Object\Entity\LocationType;
 use Admin\Controller\RestController;
-use Zend\EventManager\EventManagerInterface;
-
-/* filter */
-use Zend\InputFilter\Factory;
-use Zend\InputFilter\InputFilter;
-use Zend\InputFilter\Input;
-use Zend\Validator;
-
-/* hydra & orm */
-use Zend\Filter\Word\UnderscoreToCamelCase as UnderscoreToCamelCase;
-use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
-
-use DoctrineORMModule\Paginator\Adapter\DoctrinePaginator as DoctrineAdapter;
-use Doctrine\ORM\Tools\Pagination\Paginator as ORMPaginator;
-
-/* data out */
 use Zend\View\Model\JsonModel;
-
-use Object\Response\JSONResponse;
-
 
 class LocationTypeController extends RestController
 {
-
-    /*-------------- default methods ----------*/
-    public function checkInputJson($data){
-
-    }
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('Doctrine\ORM\LocationTypeRESTListPagination');
+        $result = $serviceLocator->get('LocationTypeRESTListPagination');
         return $result;
     }
-
 
     public function get($id)
     {
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $post = $objectManager->find('Object\Entity\LocationType', $id);
-        return new JsonModel($post->getAll());
+        $object = $objectManager->find('Object\Entity\LocationType', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        $post = new LocationType();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $inputFilter= $post->getInputFilter();
-        if($inputFilter->setData($data)->isValid()){
-            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\LocationType');
-            $data = $this->RESTtoCamelCase($data);
-            $post = $hydrator->hydrate($data, $post);
-            $objectManager->persist($post);
-            $objectManager->flush();
-
-        }else{
-            $response = $this->getResponse();
-            $response->setStatusCode(400);
-            $data = $inputFilter->getMessages();
-        }
-
-        return new JsonModel(array(
-            $data,
-        ));
+        $result = $serviceLocator->get('LocationTypeRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $post = new LocationType();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $inputFilter= $post->getInputFilter();
-        if($inputFilter->setData($data)->isValid()){
-            $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\LocationType');
-            $data = $this->RESTtoCamelCase($data);
-            $post = $hydrator->hydrate($data, $post);
-            $objectManager->persist($post);
-            $objectManager->flush();
-        }else{
-            $response = $this->getResponse();
-            $response->setStatusCode(400);
-            $data = $inputFilter->getMessages();
-        };
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('LocationTypeRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
@@ -116,14 +56,12 @@ class LocationTypeController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $post = $objectManager->find('Object\Entity\LocationType', $id);
-        $objectManager->remove($post);
+        $object = $objectManager->find('Object\Entity\LocationType', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-/*-------------- default methods ----------*/
 }

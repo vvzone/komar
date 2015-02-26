@@ -9,27 +9,17 @@
 
 namespace Object\Controller;
 
-//use Zend\Mvc\Controller\AbstractActionController;\
-use Object\Entity\AttributeType;
-use Object\Entity\Post;
-
-use Zend\View\Model\ViewModel;
-use Zend\View\Model\JsonModel;
-
-use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
-
+use Zend\View\Model\JsonModel;
 
 class AttributeTypeController extends RestController
 {
-
-    /*-------------- default methods ----------*/
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('Doctrine\ORM\AttributeTypeRESTListPagination');
+        $result = $serviceLocator->get('AttributeTypeRESTListPagination');
         return $result;
     }
 
@@ -38,34 +28,26 @@ class AttributeTypeController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $attribute_type = $objectManager->find('Object\Entity\AttributeType', $id);
-        return new JsonModel($attribute_type->getAll());
+        $object = $objectManager->find('Object\Entity\AttributeType', $id);
+        return $this->getOutput($object);
     }
 
     public function create($data)
     {
-        return new JsonModel(array(
-            'data' => $data,
-        ));
+        $serviceLocator = $this
+            ->getServiceLocator();
+
+        $result = $serviceLocator->get('AttributeTypeRESTAPICreate');
+        return $result;
     }
 
     public function update($id, $data)
     {
-        $data['id'] = $id;
-        $attribute_type = new AttributeType();
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
+        $serviceLocator = $this
+            ->getServiceLocator();
 
-        $hydrator = new DoctrineHydrator($objectManager,'Object\Entity\AttributeType');
-        $data = $this->RESTtoCamelCase($data);
-        $attribute_type = $hydrator->hydrate($data, $attribute_type);
-        $objectManager->persist($attribute_type);
-        $objectManager->flush();
-
-        return new JsonModel(
-            $data
-        );
+        $result = $serviceLocator->get('AttributeTypeRESTAPICreate');
+        return $result;
     }
 
     public function delete($id)
@@ -74,25 +56,12 @@ class AttributeTypeController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $attribute_type = $objectManager->find('Object\Entity\AttributeType', $id);
-        $objectManager->remove($attribute_type);
+        $object = $objectManager->find('Object\Entity\AttributeType', $id);
+        $objectManager->remove($object);
         $objectManager->flush();
 
         return new JsonModel(array(
             'data' => 'deleted',
         ));
     }
-
-
-    /*
-    public function getAttributeTypeTableList()
-    {
-        if (!$this->attribute_typeTableList) {
-            $sm = $this->getServiceLocator();
-            $this->attribute_typeTableList = $sm->get('Object\Model\AttributeTypeTableList');
-        }
-        return $this->attribute_typeTableList;
-    }*/
-
-/*-------------- default methods ----------*/
 }

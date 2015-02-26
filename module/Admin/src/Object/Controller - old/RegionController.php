@@ -11,15 +11,16 @@ namespace Object\Controller;
 
 use Admin\Controller\RestController;
 use Zend\View\Model\JsonModel;
+use DoctrineModule\Stdlib\Hydrator\DoctrineObject as DoctrineHydrator;
 
-class NodeLevelController extends RestController
+class RegionController extends RestController
 {
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('NodeLevelRESTListPagination');
+        $result = $serviceLocator->get('RegionRESTListPagination');
         return $result;
     }
 
@@ -28,7 +29,7 @@ class NodeLevelController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $object = $objectManager->find('Object\Entity\NodeLevel', $id);
+        $object = $objectManager->find('Object\Entity\Region', $id);
         return $this->getOutput($object);
     }
 
@@ -37,7 +38,33 @@ class NodeLevelController extends RestController
         $serviceLocator = $this
             ->getServiceLocator();
 
-        $result = $serviceLocator->get('NodeLevelRESTAPICreate');
+        $result = $serviceLocator->get('RegionRESTAPICreate');
+
+
+        /*
+        $post = new \Object\Entity\Region();
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+
+        $inputFilter = $post->getInputFilter();
+        if ($inputFilter->setData($data)->isValid()) {
+            $hydrator = new DoctrineHydrator($objectManager, 'Object\Entity\Rank');
+            $data = $this->RESTtoCamelCase($data);
+            $post = $hydrator->hydrate($data, $post);
+            $objectManager->persist($post);
+            $objectManager->flush();
+
+        } else {
+            $response = $this->getResponse();
+            $response->setStatusCode(400);
+            $data = $inputFilter->getMessages();
+        }
+        return new JsonModel(array(
+            $data,
+        ));
+        */
+
         return $result;
     }
 
@@ -46,7 +73,7 @@ class NodeLevelController extends RestController
         $serviceLocator = $this
             ->getServiceLocator();
 
-        $result = $serviceLocator->get('NodeLevelRESTAPICreate');
+        $result = $serviceLocator->get('RegionRESTAPICreate');
         return $result;
     }
 
@@ -56,7 +83,7 @@ class NodeLevelController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $object = $objectManager->find('Object\Entity\NodeLevel', $id);
+        $object = $objectManager->find('Object\Entity\Region', $id);
         $objectManager->remove($object);
         $objectManager->flush();
 
