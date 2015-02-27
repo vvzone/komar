@@ -64,10 +64,10 @@ class RegionType extends \Object\Entity\RegionType implements \Doctrine\ORM\Prox
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'shortName');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'shortName', 'inputFilter', 'EntityName');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'shortName');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\RegionType' . "\0" . 'shortName', 'inputFilter', 'EntityName');
     }
 
     /**
@@ -252,6 +252,39 @@ class RegionType extends \Object\Entity\RegionType implements \Doctrine\ORM\Prox
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAll', array());
 
         return parent::getAll();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getEntityName()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityName', array());
+
+        return parent::getEntityName();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setInputFilter()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setInputFilter', array());
+
+        return parent::setInputFilter();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getInputFilter()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getInputFilter', array());
+
+        return parent::getInputFilter();
     }
 
 }

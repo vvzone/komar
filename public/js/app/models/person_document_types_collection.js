@@ -3,15 +3,15 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/person_document_type'
-    ],function($, _, Backbone, React, apiUrl, Model){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Model){
 
         console.log('models/person_document_types_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Типы документов удостоверающих личность',
             collection_name: 'person_document_types',

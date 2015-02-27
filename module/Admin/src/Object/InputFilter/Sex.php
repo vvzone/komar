@@ -5,7 +5,7 @@ namespace Object\InputFilter;
 use Zend\InputFilter\InputFilter;
 
 
-class SexFilter extends InputFilter{
+class Sex extends InputFilter{
     public function init(){
 
         $this->add(array(

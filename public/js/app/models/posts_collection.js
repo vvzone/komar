@@ -3,8 +3,7 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
-        'backbone_paginator',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/post'

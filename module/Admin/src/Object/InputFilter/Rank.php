@@ -5,7 +5,7 @@ namespace Object\InputFilter;
 use Zend\InputFilter\InputFilter;
 
 
-class RankFilter extends InputFilter{
+class Rank extends InputFilter{
     public function init(){
 
         $this->add(array(

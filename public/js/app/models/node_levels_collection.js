@@ -3,14 +3,14 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/node_level'
-    ],function($, _, Backbone, React, apiUrl, NodeLevelModel){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, NodeLevelModel){
         console.log('models/node_level_collection');
 
-        var NodeLevelCollection = Backbone.Collection.extend({
+        var NodeLevelCollection = Backbone.PageableCollection.extend({
             model: NodeLevelModel,
             collection_rus_name: 'Этапы маршрута',
             collection_name: 'node_level_collection',

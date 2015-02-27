@@ -3,15 +3,15 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/enumeration'
-    ],function($, _, Backbone, React, apiUrl, Model){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Model){
 
         console.log('models/enumeration_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Нумерации',
             collection_name: 'enumeration',

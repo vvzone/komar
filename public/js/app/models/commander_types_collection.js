@@ -3,15 +3,15 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/commander_type'
-    ],function($, _, Backbone, React, apiUrl, Model){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Model){
 
         console.log('models/commander_types_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Типы руководства подразделения',
             collection_name: 'commander_types',

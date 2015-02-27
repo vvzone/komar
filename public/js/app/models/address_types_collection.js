@@ -3,17 +3,17 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/address_type',
         'config'
-    ],function($, _, Backbone, React, apiUrl, Model, Config){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Model, Config){
 
         var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/address_types_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Типы адреса',
             collection_name: 'address_types',

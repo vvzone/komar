@@ -34,6 +34,7 @@ define(
                 $(document).ready(function(){
                     require(['jsx!views/react/controls/main_list'], function(MainList){
                         console.warn(['self.pagination', self.pagination]);
+                        console.warn(['options', options]);
                         console.warn(['self', self]);
 
                         React.renderComponent(
@@ -66,20 +67,29 @@ define(
                         per_page = pagination_request.per_page;
                     }
                 }
+
                 Collection.state.pageSize = per_page;
                 Collection.state.currentPage = page;
 
-                /*
+
+                //{"id":null,"code":"7","name":"Россия","full_name":"Российская Федерация"}
+
+
                 Collection.getPage(page).done(function(collection, response, options){
                     var paginator = null;
-                    console.info(['response', collection, response, options]);
-                    if(response.paginator){
-                        paginator = response.paginator
+                    console.info(['collection, response, options', collection, response, options]);
+                    console.info(['paginator', collection.paginator]);
+                    if(collection.paginator){
+                        paginator = collection.paginator
+                        console.info(['paginator', response.paginator]);
                     }
                     var View = new ListView({collection: Collection, pagination: paginator});
                 });
-                */
 
+
+
+
+                /*
                 var p = Collection.fetch({
 
                     error: function(obj, response){
@@ -101,6 +111,7 @@ define(
                     }
                 });
 
+                */
             };
 
         return {

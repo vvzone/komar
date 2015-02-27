@@ -5,7 +5,7 @@ namespace Object\InputFilter;
 use Zend\InputFilter\InputFilter;
 
 
-class AddressTypeFilter extends InputFilter{
+class AddressType extends InputFilter{
     public function init(){
 
         $this->add(array(

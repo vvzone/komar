@@ -5,7 +5,7 @@ namespace Object\InputFilter;
 use Zend\InputFilter\InputFilter;
 
 
-class RouteFilter extends InputFilter{
+class Route extends InputFilter{
     public function init(){
 
         $this->add(array(

@@ -5,7 +5,7 @@ namespace Object\InputFilter;
 use Zend\InputFilter\InputFilter;
 
 
-class StreetTypeFilter extends InputFilter{
+class StreetType extends InputFilter{
     public function init(){
 
         $this->add(array(

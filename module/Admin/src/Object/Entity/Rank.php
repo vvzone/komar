@@ -50,25 +50,6 @@ class Rank extends Filtered
     private $isOfficer;
 
 
-    protected $inputFilter;
-
-    public function setInputFilter(){
-        $filter = new \Object\InputFilter\RankFilter();
-        $filter->init();
-        $this->inputFilter = $filter;
-    }
-
-    /**
-     * @return \Object\InputFilter\PostFilter
-     */
-    public function getInputFilter(){
-        if(!$this->inputFilter){
-            $this->setInputFilter();
-        }
-        return $this->inputFilter;
-    }
-
-
     /**
      * Get id
      *

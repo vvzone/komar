@@ -3,15 +3,15 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'config',
         'models/client_menu_tree'
-    ],function($, _, Backbone, React, apiUrl, Config, Menu){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Config, Menu){
         var debug = (Config['debug'] && Config['debug']['debug_menu'])? 1:null;
         console.log('models/client_menu_collection loaded');
-        var MenuCollection = Backbone.Collection.extend({
+        var MenuCollection = Backbone.PageableCollection.extend({
             model: Menu,
             url: function() {
                 return apiUrl('client_menus_right');

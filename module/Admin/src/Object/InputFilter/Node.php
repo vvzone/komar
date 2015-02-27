@@ -5,7 +5,7 @@ namespace Object\InputFilter;
 use Zend\InputFilter\InputFilter;
 
 
-class NodeFilter extends InputFilter{
+class Node extends InputFilter{
     public function init(){
 
         $this->add(array(

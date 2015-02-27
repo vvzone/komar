@@ -3,15 +3,15 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/menu_tree'
-    ],function($, _, Backbone, React, apiUrl, Menu){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Menu){
 
         console.log('models/menu_collection loaded');
 
-        var MenuCollection = Backbone.Collection.extend({
+        var MenuCollection = Backbone.PageableCollection.extend({
             model: Menu,
             url: function() {
                 return apiUrl('menus');

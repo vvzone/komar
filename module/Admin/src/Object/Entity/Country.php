@@ -122,4 +122,13 @@ class Country extends Filtered
     {
         return $this->fullName;
     }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'code' => $this->getCode(),
+            'name' => $this->getName(),
+            'full_name' => $this->getFullName()
+        );
+    }
 }

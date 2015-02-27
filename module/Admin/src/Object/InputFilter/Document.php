@@ -5,7 +5,7 @@ namespace Object\InputFilter;
 use Zend\InputFilter\InputFilter;
 
 
-class DocumentFilter extends InputFilter{
+class Document extends InputFilter{
     public function init(){
 
         $this->add(array(

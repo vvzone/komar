@@ -24,11 +24,11 @@ define(
             attr_rus_names: {
                 name: 'Название',
                 code: 'Код',
-                region_types: 'Тип региона',
+                region_type: 'Тип региона',
                 description: 'Описание'
             },
             attr_dependencies: {
-                region_types: 'region_types'
+                region_type: 'region_types'
             }, //for recursive objects
             model_name: 'region',
             model_rus_name: 'Регион',

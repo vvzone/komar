@@ -3,12 +3,12 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'config',
         'models/rank'
-    ],function($, _, Backbone, React, apiUrl, Config, Rank){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Config, Rank){
 
         var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         (debug)?console.log('models/ranks_collection loaded'):null;

@@ -36,6 +36,7 @@ define(
         /* countries */
         properties_types['code'] = 'tiny_text';
 
+        properties_types['region_type'] = 'simple_select';
         properties_types['region_types'] = 'simple_select';
 
         /* ? many */
@@ -46,7 +47,7 @@ define(
         properties_types['isPeriodic'] = 'bool_select';
         properties_types['is_periodic'] = 'bool_select';
 
-        properties_types['period_types'] = 'simple_select';
+        properties_types['period_type'] = 'simple_select';
         properties_types['period_length'] = 'tiny_text';
         properties_types['start_date'] = 'tiny_text'; /* Заменить на календарь! */
         properties_types['min_index'] = 'tiny_text';
@@ -67,9 +68,9 @@ define(
         properties_types['secrecy_types'] = 'simple_select';
         properties_types['secrecy_type'] = 'simple_select';
 
-        properties_types['attribute_types'] = 'list_box';
+        properties_types['attribute_type'] = 'list_box';
 
-        properties_types['document_attribute_types'] = 'document_attribute_types';
+        properties_types['document_attribute_type'] = 'document_attribute_types';
 
         properties_types['document_type'] = 'simple_select';
 

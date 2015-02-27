@@ -14,7 +14,7 @@ define(
                 debug_collection_router: 1,
                 debug_models_and_collections: null,
                 apiUrl: 1,
-                debug_list: null,
+                debug_list: 1,
                 debug_main_list: null,
                 debug_modals: null,
                 debug_item_edit: null,

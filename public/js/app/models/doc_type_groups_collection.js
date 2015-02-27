@@ -3,15 +3,15 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/doc_type_group'
-    ],function($, _, Backbone, React, apiUrl, DocTypeGroup){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, DocTypeGroup){
 
         console.log('models/doc_type_groups_collection');
 
-        var MenuCollection = Backbone.Collection.extend({
+        var MenuCollection = Backbone.PageableCollection.extend({
             model: DocTypeGroup,
             collection_rus_name: 'Группы типов документов',
             collection_name: 'doc_type_groups',

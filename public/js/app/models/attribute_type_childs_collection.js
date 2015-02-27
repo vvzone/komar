@@ -3,17 +3,17 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'config',
         'models/attribute_type'
-    ],function($, _, Backbone, React, apiUrl, Config, Model){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Config, Model){
 
         var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/attribute_types_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
             collection_rus_name: 'Доступные примитивы',
             collection_name: 'attribute_type_childs',

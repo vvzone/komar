@@ -5,7 +5,7 @@ namespace Object\InputFilter;
 use Zend\InputFilter\InputFilter;
 
 
-class AttributeTypeFilter extends InputFilter{
+class AttributeType extends InputFilter{
     public function init(){
 
         $this->add(array(

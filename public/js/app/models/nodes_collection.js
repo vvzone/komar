@@ -3,15 +3,15 @@ define(
     [
         'jquery',
         'underscore',
-        'backbone',
+        'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
         'models/node'
-    ],function($, _, Backbone, React, apiUrl, NodeModel){
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, NodeModel){
 
         console.log('models/nodes_collection ');
 
-        var NodesCollection = Backbone.Collection.extend({
+        var NodesCollection = Backbone.PageableCollection.extend({
             model: NodeModel,
             collection_rus_name: 'Коллекция нод',
             collection_name: 'nodes_collection',

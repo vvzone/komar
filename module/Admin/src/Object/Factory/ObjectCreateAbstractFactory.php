@@ -99,7 +99,7 @@ class ObjectCreateAbstractFactory implements AbstractFactoryInterface
         /* --- /get & parse request --- */
 
         $inputFilter= $Object->getInputFilter();
-        var_dump($inputFilter);
+        //var_dump($inputFilter);
 
         if($inputFilter->setData($data)->isValid()){
             try {

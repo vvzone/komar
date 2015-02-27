@@ -24,8 +24,17 @@ define(
             componentWillMount: function(){
                 (debug)?console.log('MainList WillMount'):null;
             },
+            componentDidMount: function(){
+                window.addEventListener('fetch', this.collectionFetch());
+                EventBus.on('fetch', this.collectionFetch());
+            },
+            collectionFetch: function(){
+                console.info('catch! event');
+                this.props.collection.fetch();
+            },
             componentWillUnmount: function(){
                 $('#main_top').html('');
+
             },
             collectionRePaginate: function(event){
                 console.info(['collectionPaginate', event]);
@@ -34,8 +43,14 @@ define(
             // * search
             // * filter
             addItem: function(){
+                console.info(['this.props.collection', this.props.collection]);
                 var new_model = this.props.collection.model.prototype.clone();
+                new_model.collection = this.props.collection;
+                console.info(['new_model', new_model]);
+                var model = this.props.collection.add();
+                console.info(['model', model]);
                 EventBus.trigger('item-add', new_model);
+
             },
             render: function(){
                 var collection = this.props.collection;
@@ -58,6 +73,14 @@ define(
                     switch_view = <div className="switch_view">Отображать: [ Списком / <a href={view_as_plain_url} className="underline">Деревом</a> ]</div>;
                 }
 
+
+                var pagination_request = null;
+                var paginator = {};
+                if(this.props.pagination){
+                    pagination_request = this.props.pagination;
+                    paginator = <Paginator pagination={pagination_request} callback={this.collectionRePaginate} />
+                }
+
                 return(
                     <div className="List">
                     <div className="MainList">
@@ -65,7 +88,7 @@ define(
                         <Search />
                         <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
                         <ul>{items}</ul>
-                        <Paginator pagination={this.props.pagination} callback={this.collectionRePaginate} />
+                        {paginator}
                     </div>
                     </div>
                     );

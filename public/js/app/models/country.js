@@ -17,6 +17,16 @@ define(
                 name: null,
                 full_name: null
             },
+            validation: {
+                name: {
+                    required: true,
+                    msg: "Обязательное поле"
+                },
+                code: {
+                    required: true,
+                    msg: "Обязательное поле"
+                }
+            },
             attr_rus_names: {
                 name: 'Название',
                 code: 'Код',
@@ -29,11 +39,15 @@ define(
                 return apiUrl('country', this.id);
             },
             initialize: function(){
-                console.info('Model init');
-                this.on('destroy', this.baDaBum);
-                /*this.on('change', function(){
-                    console.error('model -> change');
-                }, this);*/
+                this.on('change', function(){
+                    console.info('change');
+                    console.info(['validate', this.validate()]);
+                    console.info(['isValid', this.isValid()]);
+                    console.info(['this', this]);
+                    this.bind('validated:invalid', function(model, errors) {
+                        this.validationErrors = errors;
+                    });
+                })
             },
             baDaBum: function(){
                 console.warn('KABOOM!');

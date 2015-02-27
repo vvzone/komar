@@ -151,7 +151,7 @@ define(
             },
             /* Группы типов док-ов */
             doc_type_groups: function() {
-                var local = host + prefix + "/doctypegroups";
+                var local = host + prefix + "/document_type_group";
                 var production = host + prefix + "/document_type_group";
 
                 return (local_server)? local: production;
@@ -179,107 +179,107 @@ define(
             },
             /* Типы атрибутов документа*/
             document_attribute_types: function() {
-                var local = host + prefix + "/docattributetypes";
+                var local = host + prefix + "/attribute_type";
                 var production = host + prefix + "/attribute_type";
 
                 return (local_server)? local: production;
             },
             document_attribute_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/docattributetypes/"+ id;
+                var local = host + prefix + "/attribute_type/"+ id;
                 var production = host + prefix + "/attribute_type/"+ id;
 
                 return (local_server)? local: production;
             },
             /* Типы документов удостоверяющих личность*/
             person_document_types: function() {
-                var local = host + prefix + "/persondoctypes";
+                var local = host + prefix + "/person_document_type";
                 var production = host + prefix + "/person_document_type";
 
                 return (local_server)? local: production;
             },
             person_document_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/persondoctypes/"+ id;
+                var local = host + prefix + "/person_document_type/"+ id;
                 var production = host + prefix + "/person_document_type/"+ id;
 
                 return (local_server)? local: production;
             },
             /* Страны */
             countries: function() {
-                var local = host + prefix + "/countries";
+                var local = host + prefix + "/country";
                 var production = host + prefix + "/country";
 
                 return (local_server)? local: production;
             },
             country: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/countries/"+ id;
+                var local = host + prefix + "/country/"+ id;
                 var production = host + prefix + "/country/"+ id;
 
                 return (local_server)? local: production;
             },
             address_types: function() {
-                var local = host + prefix + "/addresstypes";
+                var local = host + prefix + "/address_type";
                 var production = host + prefix + "/address_type";
 
                 return (local_server)? local: production;
             },
             address_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/addresstypes/"+ id;
+                var local = host + prefix + "/address_type/"+ id;
                 var production = host + prefix + "/address_type/"+ id;
 
                 return (local_server)? local: production;
             },
             region_types: function() {
-                var local = host + prefix + "/regiontypes";
+                var local = host + prefix + "/region_type";
                 var production = host + prefix + "/region_type";
 
                 return (local_server)? local: production;
             },
             region_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/regiontypes/"+ id;
+                var local = host + prefix + "/region_type/"+ id;
                 var production = host + prefix + "/region_type/"+ id;
 
                 return (local_server)? local: production;
             },
             regions: function() {
-                var local = host + prefix + "/regions";
+                var local = host + prefix + "/region";
                 var production = host + prefix + "/region";
 
                 return (local_server)? local: production;
             },
             region: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/regions/"+ id;
+                var local = host + prefix + "/region/"+ id;
                 var production = host + prefix + "/region/"+ id;
 
                 return (local_server)? local: production;
             },
             location_types: function() {
-                var local = host + prefix + "/locationtypes";
+                var local = host + prefix + "/location_type";
                 var production = host + prefix + "/location_type";
 
                 return (local_server)? local: production;
             },
             location_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/locationtypes/"+ id;
+                var local = host + prefix + "/location_type/"+ id;
                 var production = host + prefix + "/location_type/"+ id;
 
                 return (local_server)? local: production;
             },
             street_types: function() {
-                var local = host + prefix + "/streettypes";
+                var local = host + prefix + "/street_type";
                 var production = host + prefix + "/street_type";
 
                 return (local_server)? local: production;
             },
             street_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/streettypes/"+ id;
+                var local = host + prefix + "/street_type/"+ id;
                 var production = host + prefix + "/street_type/"+ id;
 
                 return (local_server)? local: production;
@@ -299,14 +299,14 @@ define(
             },
             /* Тип руководства подразделения*/
             commander_types: function() {
-                var local = host + prefix + "/commandertypes";
+                var local = host + prefix + "/commander_type";
                 var production = host + prefix + "/commander_type";
 
                 return (local_server)? local: production;
             },
             commander_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/commandertypes/"+ id;
+                var local = host + prefix + "/commander_type/"+ id;
                 var production = host + prefix + "/commander_type/"+ id;
 
                 return (local_server)? local: production;
@@ -328,42 +328,42 @@ define(
                 return (local_server)? local: production;
             },
             enumeration_types: function() {
-                var local = host + prefix + "/enumerationtypes";
+                var local = host + prefix + "/enumeration_type";
                 var production = host + prefix + "/enumeration_type";
 
                 return (local_server)? local: production;
             },
             enumeration_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/enumerationtypes/"+ id;
+                var local = host + prefix + "/enumeration_type/"+ id;
                 var production = host + prefix + "/enumeration_type/"+ id;
 
                 return (local_server)? local: production;
             },
             /* Фактическая E-нумерация */
             enumerations: function() {
-                var local = host + prefix + "/enumerations";
+                var local = host + prefix + "/enumeration";
                 var production = host + prefix + "/enumeration";
 
                 return (local_server)? local: production;
             },
             enumeration: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/enumerations/"+ id;
+                var local = host + prefix + "/enumeration/"+ id;
                 var production = host + prefix + "/enumeration/"+ id;
 
                 return (local_server)? local: production;
             },
             /* Node Types */
             node_types: function() {
-                var local = host + prefix + "/nodetypes";
+                var local = host + prefix + "/node_type";
                 var production = host + prefix + "/node_type";
 
                 return (local_server)? local: production;
             },
             node_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = host + prefix + "/nodetypes/"+ id;
+                var local = host + prefix + "/node_type/"+ id;
                 var production = host + prefix + "/node_type/"+ id;
 
                 return (local_server)? local: production;
