@@ -389,7 +389,7 @@ class Unit extends Filtered
             'is_legal' => $this->getIsLegal(),
             'own_numeration' => $this->getOwnNumeration(),
             'unit_posts' => $this->getPostsList(),
-            //'identification_number' => $this->getClient()->getIdentificationNumber()
+            'identification_number' => $this->getClient()->getIdentificationNumber()
         );
     }
 

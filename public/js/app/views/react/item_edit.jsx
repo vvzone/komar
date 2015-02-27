@@ -47,7 +47,29 @@ define(
                                     EventBus.trigger('error', 'Ошибка', 'Изменения сохранены, однако, при попытке синхронизироваться с сервером возникла ошибка.', response);
                                 }
                             });
-                            EventBus.trigger('fetch');
+
+                            var event; // The custom event that will be created
+
+                            if (document.createEvent) {
+                                event = document.createEvent("HTMLEvents");
+                                event.initEvent("fetch", true, true);
+                            } else {
+                                event = document.createEventObject();
+                                event.eventType = "fetch";
+                            }
+
+                            event.eventName = "fetch";
+
+                            $(window).trigger('my_fetch');
+
+                            console.info('trying dipatch event...');
+                            //if (document.createEvent) {
+                                //window.dispatchEvent(event);
+                            //} else {
+                                //window.fireEvent("on" + event.eventType, event);
+                            //}
+
+                            //EventBus.trigger('fetch');
                             EventBus.trigger('success', 'Изменения сохранены.');
                         },
                         error: function(model, response){

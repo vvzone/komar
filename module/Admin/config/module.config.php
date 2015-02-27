@@ -352,6 +352,46 @@ return array(
                             )
                         )
                     ),
+                    /* --- настройки доков --- */
+                    'period_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/period_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\PeriodType'
+                            )
+                        )
+                    ),
+                    'secrecy_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/secrecy_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\SecrecyType'
+                            )
+                        )
+                    ),
+                    'urgency_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/urgency_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\UrgencyType'
+                            )
+                        )
+                    ),
                     /* --- Client --- */
                     'country' => array(
                         'type'    => 'segment',
@@ -533,6 +573,10 @@ return array(
 
             'Object\Controller\Post' => 'Object\Controller\PostController',
             'Object\Controller\User' => 'Object\Controller\UserController',
+            /* - Document preferences -*/
+            'Object\Controller\PeriodType' => 'Object\Controller\PeriodTypeController',
+            'Object\Controller\SecrecyType' => 'Object\Controller\SecrecyTypeController',
+            'Object\Controller\UrgencyType' => 'Object\Controller\UrgencyTypeController',
             /* - Address- */
             'Object\Controller\Country' => 'Object\Controller\CountryController',
             'Object\Controller\AddressType' => 'Object\Controller\AddressTypeController',

@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Sex
+ * RegionType
  *
- * @ORM\Table(name="sex")
- * @ORM\Entity(repositoryClass="Object\Repository\Sex")
+ * @ORM\Table(name="region_type")
+ * @ORM\Entity(repositoryClass="Object\Repository\RegionType")
  */
-class Sex extends Filtered
+class RegionType extends Filtered
 {
     /**
      * @var integer
@@ -31,21 +31,11 @@ class Sex extends Filtered
     /**
      * @var string
      *
-     * @ORM\Column(name="short_name", type="string", length=5, nullable=false)
+     * @ORM\Column(name="short_name", type="string", length=8, nullable=true)
      */
     private $shortName;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\OneToMany(targetEntity="Object\Entity\Person", mappedBy="sex_id", cascade={"all"}, orphanRemoval=true)
-     */
-    private $person;
 
-    public function __construct()
-    {
-        $this->person = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * Get id
@@ -61,7 +51,7 @@ class Sex extends Filtered
      * Set name
      *
      * @param string $name
-     * @return Sex
+     * @return RegionType
      */
     public function setName($name)
     {
@@ -84,23 +74,13 @@ class Sex extends Filtered
      * Set shortName
      *
      * @param string $shortName
-     * @return Sex
+     * @return RegionType
      */
     public function setShortName($shortName)
     {
         $this->shortName = $shortName;
 
         return $this;
-    }
-
-
-    public function getPerson(){
-        //return $this->person;
-        $persons = array();
-        foreach($this->person as $person){
-            $persons[] = $person->getPersonSimple();
-        }
-        return $persons;
     }
 
     /**
@@ -113,20 +93,10 @@ class Sex extends Filtered
         return $this->shortName;
     }
 
-    public function getSexSimple(){
+    public function getRegionTypeSimple(){
         return array(
             'id' => $this->getId(),
-            'name' => $this->getName(),
-            'short_name' => $this->getShortName()
-        );
-    }
-
-    public function getMain(){
-        return array(
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'short_name' => $this->getShortName(),
-            //'person' => $this->getPerson()
+            'name' => $this->getName()
         );
     }
 
@@ -134,8 +104,7 @@ class Sex extends Filtered
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'short_name' => $this->getShortName(),
-            //'person' => $this->getPerson()
+            'short_name' => $this->getShortName()
         );
     }
 }

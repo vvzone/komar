@@ -129,13 +129,4 @@ class Sex extends Filtered
             //'person' => $this->getPerson()
         );
     }
-
-    public function getAll(){
-        return array(
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'short_name' => $this->getShortName(),
-            //'person' => $this->getPerson()
-        );
-    }
 }

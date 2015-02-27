@@ -144,7 +144,7 @@ define(
             },
             secrecy_type: function(trash_id) {
                 var id = (trash_id)? trash_id:'';
-                var local = + prefix + "/secrecy_type/"+ id;
+                var local = host + prefix + "/secrecy_type/"+ id;
                 var production = host + prefix + "/secrecy_type/"+ id;
 
                 return (local_server)? local: production;

@@ -2,7 +2,7 @@
 
 namespace Object\Repository;
 
-class AddressType extends PageableRepository
+class _ extends PageableRepository
 {
 
 }

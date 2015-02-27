@@ -25,11 +25,13 @@ define(
                 (debug)?console.log('MainList WillMount'):null;
             },
             componentDidMount: function(){
-                window.addEventListener('fetch', this.collectionFetch());
-                EventBus.on('fetch', this.collectionFetch());
+                //window.addEventListener('fetch', this.collectionFetch());
+                window.addEventListener('my_fetch', this.collectionFetch);
+                //EventBus.on('fetch', this.collectionFetch());
             },
             collectionFetch: function(){
-                console.info('catch! event');
+                alert('catch!');
+                console.warn('catch! event');
                 this.props.collection.fetch();
             },
             componentWillUnmount: function(){
@@ -45,6 +47,7 @@ define(
             addItem: function(){
                 console.info(['this.props.collection', this.props.collection]);
                 var new_model = this.props.collection.model.prototype.clone();
+                //var new_model = this.props.collection.create(null);
                 new_model.collection = this.props.collection;
                 console.info(['new_model', new_model]);
                 var model = this.props.collection.add();

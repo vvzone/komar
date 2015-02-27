@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Sex
+ * SecrecyType
  *
- * @ORM\Table(name="sex")
- * @ORM\Entity(repositoryClass="Object\Repository\Sex")
+ * @ORM\Table(name="secrecy_type")
+ * @ORM\Entity(repositoryClass="Object\Repository\SecrecyType")
  */
-class Sex extends Filtered
+class SecrecyType extends Filtered
 {
     /**
      * @var integer
@@ -31,21 +31,25 @@ class Sex extends Filtered
     /**
      * @var string
      *
-     * @ORM\Column(name="short_name", type="string", length=5, nullable=false)
+     * @ORM\Column(name="short_name", type="string", length=12, nullable=false)
      */
     private $shortName;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var integer
      *
-     * @ORM\OneToMany(targetEntity="Object\Entity\Person", mappedBy="sex_id", cascade={"all"}, orphanRemoval=true)
+     * @ORM\Column(name="single_numeration", type="integer", nullable=false)
      */
-    private $person;
+    private $singleNumeration;
 
-    public function __construct()
-    {
-        $this->person = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="level", type="integer", nullable=false)
+     */
+    private $level;
+
+
 
     /**
      * Get id
@@ -61,7 +65,7 @@ class Sex extends Filtered
      * Set name
      *
      * @param string $name
-     * @return Sex
+     * @return SecrecyType
      */
     public function setName($name)
     {
@@ -84,23 +88,13 @@ class Sex extends Filtered
      * Set shortName
      *
      * @param string $shortName
-     * @return Sex
+     * @return SecrecyType
      */
     public function setShortName($shortName)
     {
         $this->shortName = $shortName;
 
         return $this;
-    }
-
-
-    public function getPerson(){
-        //return $this->person;
-        $persons = array();
-        foreach($this->person as $person){
-            $persons[] = $person->getPersonSimple();
-        }
-        return $persons;
     }
 
     /**
@@ -113,21 +107,50 @@ class Sex extends Filtered
         return $this->shortName;
     }
 
-    public function getSexSimple(){
-        return array(
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'short_name' => $this->getShortName()
-        );
+    /**
+     * Set singleNumeration
+     *
+     * @param integer $singleNumeration
+     * @return SecrecyType
+     */
+    public function setSingleNumeration($singleNumeration)
+    {
+        $this->singleNumeration = $singleNumeration;
+
+        return $this;
     }
 
-    public function getMain(){
-        return array(
-            'id' => $this->getId(),
-            'name' => $this->getName(),
-            'short_name' => $this->getShortName(),
-            //'person' => $this->getPerson()
-        );
+    /**
+     * Get singleNumeration
+     *
+     * @return integer 
+     */
+    public function getSingleNumeration()
+    {
+        return $this->singleNumeration;
+    }
+
+    /**
+     * Set level
+     *
+     * @param integer $level
+     * @return SecrecyType
+     */
+    public function setLevel($level)
+    {
+        $this->level = $level;
+
+        return $this;
+    }
+
+    /**
+     * Get level
+     *
+     * @return integer 
+     */
+    public function getLevel()
+    {
+        return $this->level;
     }
 
     public function getAll(){
@@ -135,7 +158,8 @@ class Sex extends Filtered
             'id' => $this->getId(),
             'name' => $this->getName(),
             'short_name' => $this->getShortName(),
-            //'person' => $this->getPerson()
+            'single_numeration' => $this->getSingleNumeration(),
+            'level' => $this->getLevel()
         );
     }
 }

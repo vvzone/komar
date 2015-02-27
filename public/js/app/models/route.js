@@ -16,7 +16,7 @@ define(
             defaults: {
                 id: null,
                 name: null,
-                document_type: null,
+                document_type: 1,
                 node_levels: null
             },
             attr_rus_names: {
