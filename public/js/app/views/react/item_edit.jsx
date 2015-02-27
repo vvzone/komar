@@ -295,6 +295,7 @@ define(
                             }
                         }else{
                             //have hidden_fields, but this is not that one
+                            /*
                             if(typeof model.view_only[prop]!='undefined'){
 
                                 //nothing...
@@ -302,7 +303,10 @@ define(
                                 controls.push(
                                     this.callControlRouter(model, prop)
                                 );
-                            }
+                            }*/
+                            controls.push(
+                                this.callControlRouter(model, prop)
+                            );
                         }
                     }else{
                         //does not have hidden_fields in model

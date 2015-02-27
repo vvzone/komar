@@ -1,22 +1,22 @@
 define(
-    'models/region_types_collection',
+    'models/document_types_collection',
     [
         'jquery',
         'underscore',
         'backbone', 'backbone_paginator',
         'react',
         'apiUrl',
-        'models/region_type'
+        'models/document_type'
     ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Model){
 
-        console.log('models/region_types_collection loaded');
+        console.log('models/doc_types_collection loaded');
 
         var Collection = Backbone.PageableCollection.extend({
             model: Model,
-            collection_rus_name: 'Типы регионов',
-            collection_name: 'region_type',
+            collection_rus_name: 'Типы документов',
+            collection_name: 'document_type',
             url: function() {
-                return apiUrl('region_type');
+                return apiUrl('document_types');
             },
 
             initialize: function(){

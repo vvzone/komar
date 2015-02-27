@@ -254,7 +254,7 @@ class AttributeType extends Filtered
             'machine_name' => $this->getMachineName(),
             'description' => $this->getDescription(),
             'base_attribute_code' => $this->getBaseAttributeTypeCode(),
-            'document_type' => $this->getDocumentType()
+            //'document_type' => $this->getDocumentType()
         );
     }
 }

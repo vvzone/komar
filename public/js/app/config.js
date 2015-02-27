@@ -26,6 +26,7 @@ define(
                 debug_tree: 1
             },
             collections_router: [
+                {attribute_types: 'list'},
                 {ranks: 'list'},
                 {posts: 'list'},
                 {secrecy_types: 'list'},

@@ -67,12 +67,12 @@ class IndexController extends AbstractActionController
         $sys_docs = array(
             array('id' => 106010, 'category' => 'base', 'entity' => 'period_types', 'screen' => 'period_types', 'name' => 'Типы периодов'),
             array('id' => 106020, 'category' => 'base', 'entity' => 'enumeration_types', 'screen' => 'enumeration_types', 'name' => 'Типы нумерации'),
-            array('id' => 106021, 'category' => 'base', 'entity' => 'doc_type_groups', 'screen' => 'doc_type_groups', 'name' => 'Группы типов документов'),
-            array('id' => 106022, 'category' => 'base', 'entity' => 'doc_secrecy_types', 'screen' => 'doc_secrecy_types', 'name' => 'Типы секретности документа'),
-            array('id' => 106023, 'category' => 'base', 'entity' => 'doc_urgency_types', 'screen' => 'doc_urgency_types', 'name' => 'Типы срочности документа'),
+            //array('id' => 106021, 'category' => 'base', 'entity' => 'doc_type_groups', 'screen' => 'doc_type_groups', 'name' => 'Группы типов документов'),
+            array('id' => 106022, 'category' => 'base', 'entity' => 'secrecy_types', 'screen' => 'secrecy_types', 'name' => 'Типы секретности документа'),
+            array('id' => 106023, 'category' => 'base', 'entity' => 'urgency_types', 'screen' => 'urgency_types', 'name' => 'Типы срочности документа'),
             array('id' => 106030, 'category' => 'base', 'entity' => 'document_types', 'screen' => 'document_types', 'name' => 'Типы документов'),
             array('id' => 106040, 'category' => 'base', 'entity' => 'node_types', 'screen' => 'node_types', 'name' => 'Типы узлов маршрута'),
-            array('id' => 106050, 'category' => 'base', 'entity' => 'doc_attributes_types', 'screen' => 'doc_attributes_types', 'name' => 'Типы аттрибутов'),
+            array('id' => 106050, 'category' => 'base', 'entity' => 'attribute_types', 'screen' => 'attribute_types', 'name' => 'Типы аттрибутов'),
             array('id' => 106060, 'category' => 'base', 'entity' => 'enumeration', 'screen' => 'enumeration', 'name' => 'Нумерация'),
         );
 
@@ -92,7 +92,7 @@ class IndexController extends AbstractActionController
         );
 
         $array_staff = array(
-            array('id' => 201, 'category' => 'staff', 'entity' => 'persons', 'screen' => 'person', 'name' => 'Картотека Личных дел'),
+            array('id' => 201, 'category' => 'staff', 'entity' => 'persons', 'screen' => 'person', 'name' => 'Физлица'),
             array('id' => 202, 'category' => 'staff', 'entity' => 'person_position_history', 'screen' => 'person', 'name' => 'История назначений',
                 'isNonIndependent' => true ),
             array('id' => 203, 'category' => 'staff', 'entity' => 'person_rank_history', 'screen' => 'person', 'name' => 'История присвоения званий',

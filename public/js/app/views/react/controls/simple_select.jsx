@@ -45,7 +45,7 @@ define(
                 console.info('this.props.options');
                 console.info(this.props.options);
                 if(this.state.selected){
-                    selected = this.state.selected;
+                    selected = this.state.selected.id;
                     console.log('SELECTED');
                     console.log(selected);
                 }

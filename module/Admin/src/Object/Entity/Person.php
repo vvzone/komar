@@ -219,6 +219,10 @@ class Person extends Filtered
      */
     public function getBirthDate()
     {
+        if($this->birthDate){
+            $this->birthDate->format('d.m.Y');
+        }
+
         return $this->birthDate;
     }
 
@@ -476,8 +480,8 @@ class Person extends Filtered
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
-            'person_post' => $this->getUnitPostsList(),
-            'client' => $this->getClient()->getAll()
+            //'person_post' => $this->getUnitPostsList(),
+            //'client' => $this->getClient()->getAll()
             //'person_post_count' => $this->personPost->count()
         );
     }

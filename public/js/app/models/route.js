@@ -25,7 +25,7 @@ define(
                 node_levels: 'Этапы маршрута'
             },
             attr_dependencies: {
-                document_type: 'document_type'
+                document_type: 'document_types'
             },
             model_name: 'route',
             model_rus_name: 'Маршрут',

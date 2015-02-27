@@ -18,8 +18,18 @@ define(
                 region_type: null,
                 description: null
             },
+            validation: {
+                name: {
+                    required: true,
+                    msg: "Обязательное поле"
+                },
+                code: {
+                    required: true,
+                    msg: "Обязательное поле"
+                }
+            },
             attr_description:{
-                region_type: 'Объект типа региона'
+                region_types: 'Объект типа региона'
             },
             attr_rus_names: {
                 name: 'Название',
@@ -36,11 +46,15 @@ define(
                 return apiUrl('region', this.id);
             },
             initialize: function(){
-                console.info('Model init');
-                this.on('destroy', this.baDaBum);
-                /*this.on('change', function(){
-                    console.error('model -> change');
-                }, this);*/
+                this.on('change', function(){
+                    console.info('change');
+                    console.info(['validate', this.validate()]);
+                    console.info(['isValid', this.isValid()]);
+                    console.info(['this', this]);
+                    this.bind('validated:invalid', function(model, errors) {
+                        this.validationErrors = errors;
+                    });
+                })
             },
             baDaBum: function(){
                 console.warn('KABOOM!');
