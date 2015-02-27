@@ -1,22 +1,22 @@
 define(
-    'models/countries_collection',    
+    'models/enumeration_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/country'
+        'models/enumeration'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/countries_collection loaded');
+        console.log('models/enumeration_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Страны',
-            collection_name: 'countries',
+            collection_rus_name: 'Нумерации',
+            collection_name: 'enumeration',
             url: function() {
-                return apiUrl('countries');
+                return apiUrl('enumeration');
             },
 
             initialize: function(){

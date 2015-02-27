@@ -1,24 +1,23 @@
 define(
-    'models/countries_collection',    
+    'models/clients_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/country'
+        'models/client'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/countries_collection loaded');
+        console.log('models/clients_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Страны',
-            collection_name: 'countries',
+            collection_rus_name: 'Клиенты',
+            collection_name: 'clients',
             url: function() {
-                return apiUrl('countries');
+                return apiUrl('clients');
             },
-
             initialize: function(){
                 /*this.on('change', function(){
                     console.info('Collection Change! > fetch');

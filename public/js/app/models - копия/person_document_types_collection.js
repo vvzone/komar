@@ -1,22 +1,22 @@
 define(
-    'models/countries_collection',    
+    'models/person_document_types_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/country'
+        'models/person_document_type'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/countries_collection loaded');
+        console.log('models/person_document_types_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Страны',
-            collection_name: 'countries',
+            collection_rus_name: 'Типы документов удостоверающих личность',
+            collection_name: 'person_document_types',
             url: function() {
-                return apiUrl('countries');
+                return apiUrl('person_document_types');
             },
 
             initialize: function(){

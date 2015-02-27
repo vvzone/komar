@@ -49,13 +49,13 @@ define(
 
             var initialize = function(CollectionModule, pagination_request){
                 var Collection = new CollectionModule;
-                if(debug){
+                //if(debug){
                     console.log('CollectionModule');
                     console.log(CollectionModule);
                     console.log('Collection');
                     console.log(Collection);
                     console.log('trying fetch collection...');
-                }
+                //}
                 var page = 1;
                 var per_page = 10;
                 if(pagination_request){

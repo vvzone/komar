@@ -1,22 +1,22 @@
 define(
-    'models/countries_collection',    
+    'models/period_types_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/country'
+        'models/period_type'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/countries_collection loaded');
+        console.log('models/period_types_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Страны',
-            collection_name: 'countries',
+            collection_rus_name: 'Типы периодов',
+            collection_name: 'period_types',
             url: function() {
-                return apiUrl('countries');
+                return apiUrl('period_types');
             },
 
             initialize: function(){

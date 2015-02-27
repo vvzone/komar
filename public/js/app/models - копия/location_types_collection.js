@@ -1,22 +1,22 @@
 define(
-    'models/countries_collection',    
+    'models/location_types_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/country'
+        'models/location_type'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/countries_collection loaded');
+        console.log('models/location_types_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Страны',
-            collection_name: 'countries',
+            collection_rus_name: 'Типы населенного пункта',
+            collection_name: 'location_types',
             url: function() {
-                return apiUrl('countries');
+                return apiUrl('location_types');
             },
 
             initialize: function(){

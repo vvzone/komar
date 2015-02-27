@@ -1,22 +1,22 @@
 define(
-    'models/countries_collection',    
+    'models/sex_types_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/country'
+        'models/sex_type'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/countries_collection loaded');
+        console.log('models/sex_types_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
+        var Collection = Backbone.PageableCollection.extend({
             model: Model,
-            collection_rus_name: 'Страны',
-            collection_name: 'countries',
+            collection_rus_name: 'Типы пола',
+            collection_name: 'sex_types',
             url: function() {
-                return apiUrl('countries');
+                return apiUrl('sex_types');
             },
 
             initialize: function(){

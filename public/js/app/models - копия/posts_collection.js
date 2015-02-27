@@ -1,24 +1,24 @@
 define(
-    'models/countries_collection',    
+    'models/posts_collection',
     [
         'jquery',
         'underscore',
         'backbone',
+        'backbone_paginator',
         'react',
         'apiUrl',
-        'models/country'
-    ],function($, _, Backbone, React, apiUrl, Model){
+        'models/post'
+    ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Post){
 
-        console.log('models/countries_collection loaded');
+        console.log('models/post_collection loaded');
 
-        var Collection = Backbone.Collection.extend({
-            model: Model,
-            collection_rus_name: 'Страны',
-            collection_name: 'countries',
+        var Posts = Backbone.PageableCollection.extend({
+            model: Post,
+            collection_rus_name: 'Должности',
+            collection_name: 'posts',
             url: function() {
-                return apiUrl('countries');
+                return apiUrl('posts');
             },
-
             initialize: function(){
                 /*this.on('change', function(){
                     console.info('Collection Change! > fetch');
@@ -34,7 +34,8 @@ define(
             }
         });
 
-        return Collection;
+        //return Posts;
+        return Posts;
     }
 );
 

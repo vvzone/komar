@@ -1,22 +1,22 @@
 define(
-    'models/countries_collection',    
+    'models/region_types_collection',
     [
         'jquery',
         'underscore',
         'backbone',
         'react',
         'apiUrl',
-        'models/country'
+        'models/region_type'
     ],function($, _, Backbone, React, apiUrl, Model){
 
-        console.log('models/countries_collection loaded');
+        console.log('models/region_types_collection loaded');
 
         var Collection = Backbone.Collection.extend({
             model: Model,
-            collection_rus_name: 'Страны',
-            collection_name: 'countries',
+            collection_rus_name: 'Типы регионов',
+            collection_name: 'region_types',
             url: function() {
-                return apiUrl('countries');
+                return apiUrl('region_types');
             },
 
             initialize: function(){
