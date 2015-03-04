@@ -1,4 +1,4 @@
-define(['underscore', 'backbone', 'jquery', 'jCookie'], function(_, Backbone, $) {
+define(['underscore', 'backbone', 'jquery', 'jCookie', 'config'], function(_, Backbone, $, Config) {
     var app_registry = {};
     app_registry.global_event_obj = _.extend({}, Backbone.Events);
     app_registry.models = {};
@@ -6,6 +6,11 @@ define(['underscore', 'backbone', 'jquery', 'jCookie'], function(_, Backbone, $)
     app_registry.router = {};
 
     app_registry.user_bar = {};
+
+    var Config = {}; //Config;
+    app_registry.config = Config;
+
+    var debug = (Config['debug'] && Config['debug']['debug_app_registry'])? 1:null;
 
     app_registry.auth = {
         username: null,
@@ -15,22 +20,14 @@ define(['underscore', 'backbone', 'jquery', 'jCookie'], function(_, Backbone, $)
     app_registry.test = 'Test!';
 
     app_registry.isAuth = function(){
-        console.info(['app_registry.isAuth check app_registry.auth', app_registry.auth]);
-
-        if(app_registry.auth.username!=null && app_registry.auth.token!=null){
-            console.log('yes!');
-            console.log(['app_registry.auth.username',app_registry.auth.username]);
-            console.log(['app_registry.auth.token', app_registry.auth.token]);
-            return true;
-        }
-        console.log('no!');
-        return false;
+        (debug)?console.info(['app_registry.isAuth check app_registry.auth', app_registry.auth]):null;
+        return (app_registry.auth.username!=null && app_registry.auth.token!=null);
     };
 
     app_registry.getAuth = function(){
-        console.info(['app_registry -> getAuth', app_registry.auth]);
+        (debug)?console.info(['app_registry -> getAuth', app_registry.auth]):null;
         if($.cookie('token') && $.cookie('username')){
-            console.info('set app_auth from cookie');
+            (debug)?console.info('set app_auth from cookie'):null;
             app_registry.auth.token = $.cookie('token');
             app_registry.auth.username = $.cookie('username');
 
@@ -44,7 +41,7 @@ define(['underscore', 'backbone', 'jquery', 'jCookie'], function(_, Backbone, $)
     };
 
     app_registry.clearAuth = function(){
-        console.log('app_registry -> cancelAuth');
+        (debug)?console.log('app_registry -> cancelAuth'):null;
         $.removeCookie('token');
         $.removeCookie('username');
         app_registry.auth.token = null;
@@ -60,7 +57,7 @@ define(['underscore', 'backbone', 'jquery', 'jCookie'], function(_, Backbone, $)
     };
 
     app_registry.init = function(){
-        console.info('app_registry -> init');
+        (debug)?console.info('app_registry -> init'):null;
         app_registry.getAuth();
     };
 

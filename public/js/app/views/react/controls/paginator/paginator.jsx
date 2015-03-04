@@ -9,6 +9,10 @@ define(
         'underscore',
         'app_registry'
     ],function($, Backbone, React, _, app_registry){
+
+        var Config = app_registry.config;
+        var debug = (Config['debug'] && Config['debug']['debug_paginator'])? 1:null;
+
         var Paginator = React.createClass({
             getInitialState: function(){
                 return {
@@ -38,21 +42,20 @@ define(
                 var left_dots = this.leftDots(begin, end);
                 var right_dots = this.leftDots(begin, end);
 
-                console.info(['paginator', this.props.pagination]);
-                console.info(['calc', begin_and_end, begin, end, left_dots, right_dots]);
+                (debug)?console.info(['paginator', this.props.pagination]):null;
+                (debug)?console.info(['calc', begin_and_end, begin, end, left_dots, right_dots]):null;
+                (debug)?console.info(['app_registry.router', app_registry.router]):null;
+                (debug)?console.info(['Backbone.history.fragment', Backbone.history.fragment]):null;
 
-                console.info(['app_registry', app_registry]);
-                console.info(['router', app_registry.router]);
-                console.info(['Backbone.history.fragment', Backbone.history.fragment]);
                 var current_url = Backbone.history.fragment;
-                console.info(current_url.indexOf("?"));
+                (debug)?console.info(current_url.indexOf("?")):null;
                 var where_params_start = current_url.indexOf("?");
                 where_params_start = where_params_start +'';
                 if(where_params_start == -1){
                     where_params_start = current_url.length;
                 }
                 var new_url = 'admin#'+current_url.substring(0, where_params_start);
-                console.info(['new_url', new_url]);
+                (debug)?console.info(['new_url', new_url]):null;
 
                 var pages= [];
                 var url =new_url;

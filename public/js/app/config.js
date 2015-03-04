@@ -10,20 +10,25 @@ define(
         console.info('config loaded...');
         var Config = {
             debug: {
+                debug_app_registry: null,
                 debug_menu: null,
-                debug_collection_router: 1,
+                debug_collection_router: null,
                 debug_models_and_collections: null,
-                apiUrl: 1,
-                debug_list: 1,
-                debug_main_list: null,
+                apiUrl: null,
+                debug_list: null,
+                debug_main_list: 1,
                 debug_modals: null,
                 debug_item_edit: null,
                 debug_control_router: null,
                 debug_route_levels_control: null,
                 debug_login: null,
-                debug_router: 1,
-                debug_map: 1,
-                debug_tree: 1
+                debug_router: null,
+                debug_map: null,
+                debug_tree: null,
+                debug_paginator: 1,
+                debug_controls: {
+                    tiny_text: null
+                }
             },
             collections_router: [
                 {attribute_types: 'list'},

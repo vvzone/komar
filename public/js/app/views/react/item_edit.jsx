@@ -21,6 +21,13 @@ define(
                     dependency_array: {}
                 }
             },
+            componentWillUnmount: function(){
+                //window.removeEventListener("saveButtonClick", this.saveForm, true);
+                console.log('itemEdit dismount, collection fetch');
+                var fetched = this.state.model.collection.fetch();
+                console.info(['this.state.model.collection', this.state.model.collection]);
+                console.info(['fetched', fetched]);
+            },
             saveForm: function () {
                 if(debug){
                     console.info('saveForm-> item to save:');
@@ -222,7 +229,6 @@ define(
                             );
                         }else{
                             (debug)?console.warn('current model.attr_dependencies['+prop+'] == constant'):null;
-
                             if(typeof Constants[prop] != 'undefined'){
                                 var dep = {};
                                 dep[prop] = Constants[prop];
@@ -239,9 +245,6 @@ define(
                 this.setState({
                     model: this.props.model
                 });
-            },
-            componentWillUnmount: function () {
-                //window.removeEventListener("saveButtonClick", this.saveForm, true);
             },
             render: function () {
                 var model = this.state.model;

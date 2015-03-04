@@ -61,8 +61,8 @@ class DocumentAttribute extends Filtered
     /**
      * @var \Object\Entity\AttributeType
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\AttributeType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
@@ -73,8 +73,8 @@ class DocumentAttribute extends Filtered
     /**
      * @var \Object\Entity\Person
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\Person")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="author_id", referencedColumnName="id")
@@ -242,6 +242,20 @@ class DocumentAttribute extends Filtered
      */
     public function getAuthor()
     {
+        if($this->author){
+            return $this->author->getBigFIO();
+        }
         return $this->author;
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'composite_attribute_id' => $this->getCompositeAttributeId(),
+            'sort_order' => $this->getArrayIndex(),
+            'data' => $this->getData(),
+            'attribute_type' => $this->getAttributeType(),
+            'author' => $this->getAuthor()
+        );
     }
 }

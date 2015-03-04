@@ -24,9 +24,15 @@ define(
                 (debug)?console.log('init, this.collection:'):null;
                 (debug)?console.log(this.collection):null;
 
+
                 this.collection.bind('destroy', this.render, this);
-                this.collection.bind('change', this.render, this);
+                //this.collection.bind('change', this.render, this);
                 this.collection.bind('reset', this.render, this);
+                var self = this;
+                EventBus.on('success', function(){
+                    self.collection.fetch();
+                });
+                this.collection.bind('', this.render, this);
                 this.render(options);
             },
             render: function(options){

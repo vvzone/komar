@@ -7,7 +7,6 @@ define(
         'react',
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
-
         console.log('models/country loaded');
 
         var Model = Backbone.Model.extend({

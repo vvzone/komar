@@ -16,7 +16,6 @@ define(
         //'models/rank',
         'event_bus'
     ],function($, React, Config, InstantSearch, ButtonAdd, ButtonEdit, ButtonDelete, ErrorMsg, InfoMsg, Search, Paginator, EventBus){
-
         var debug = (Config['debug'] && Config['debug']['debug_main_list'])? 1:null;
         console.log('module views/react/controls/main_list loaded');
 
@@ -36,7 +35,6 @@ define(
             },
             componentWillUnmount: function(){
                 $('#main_top').html('');
-
             },
             collectionRePaginate: function(event){
                 console.info(['collectionPaginate', event]);
@@ -46,9 +44,11 @@ define(
             // * filter
             addItem: function(){
                 console.info(['this.props.collection', this.props.collection]);
-                var new_model = this.props.collection.model.prototype.clone();
+                //var new_model = this.props.collection.model.prototype.clone();
+                var collection = this.props.collection.add({});
+                var new_model = collection.last();
                 //var new_model = this.props.collection.create(null);
-                new_model.collection = this.props.collection;
+                //new_model.collection = this.props.collection;
                 console.info(['new_model', new_model]);
                 var model = this.props.collection.add();
                 console.info(['model', model]);
@@ -56,6 +56,7 @@ define(
 
             },
             render: function(){
+                console.info('MainList->render');
                 var collection = this.props.collection;
                 if(collection.collection_rus_name){
                     $('#main_top').html('<h2>Каталог &laquo;'+collection.collection_rus_name+'&raquo;</h2>');

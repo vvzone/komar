@@ -5,9 +5,11 @@ define(
     [
         'jquery',
         'react',
-        'jsx!views/react/controls/controls_mixin'
-    ],function($, React, ControlsMixin){
-        
+        'jsx!views/react/controls/controls_mixin',
+        'config'
+    ],function($, React, ControlsMixin, Config){
+
+        var debug = (Config['debug'] && Config['debug']['debug_controls']['tiny_text'] )? 1:null;
         var ControlTinyText = React.createClass({
             mixins: [ControlsMixin],
             getInitialState: function() {
@@ -17,7 +19,7 @@ define(
                 };
             },
             render: function(){
-                console.info(['TinyText render, this.props', this.props]);
+                (debug)?console.info(['TinyText render, this.props', this.props]):null;
                 var error = [];
                 if(this.props.error){
                     error = <span className="help-block warn">{this.props.error}</span>
