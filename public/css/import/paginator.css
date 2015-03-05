@@ -1,0 +1,16 @@
+/* colors */
+/* -- headr -- */
+/* fonts */
+.paginator {
+  clear: both;
+  overflow: hidden;
+}
+.paginator ul.pages {
+  overflow: hidden;
+  width: 500px;
+}
+.paginator ul.pages li {
+  float: left;
+  list-style-type: none;
+  margin: 2px;
+}

@@ -27,7 +27,8 @@ define(
                 debug_tree: null,
                 debug_paginator: 1,
                 debug_controls: {
-                    tiny_text: null
+                    tiny_text: null,
+                    simple_select: null
                 }
             },
             collections_router: [
@@ -85,7 +86,11 @@ define(
                 menu_map: ['classifier', 'documents_on_map', 'layers']
             },
             cookie_name: 'moskit',
-            csrf_token: false
+            csrf_token: false,
+            paginator: {
+                default_per_page: 10,
+                default_raginator_range: 10 //pages
+            }
         };
 
         return Config;

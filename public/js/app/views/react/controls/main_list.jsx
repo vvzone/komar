@@ -33,6 +33,13 @@ define(
                 console.warn('catch! event');
                 this.props.collection.fetch();
             },
+            getPaginator: function(){
+                var pagination_request = this.props.pagination;
+                if(this.props.pagination){
+                    return <Paginator pagination={pagination_request} callback={this.collectionRePaginate} />;
+                }
+                return null;
+            },
             componentWillUnmount: function(){
                 $('#main_top').html('');
             },
@@ -77,14 +84,6 @@ define(
                     switch_view = <div className="switch_view">Отображать: [ Списком / <a href={view_as_plain_url} className="underline">Деревом</a> ]</div>;
                 }
 
-
-                var pagination_request = null;
-                var paginator = {};
-                if(this.props.pagination){
-                    pagination_request = this.props.pagination;
-                    paginator = <Paginator pagination={pagination_request} callback={this.collectionRePaginate} />
-                }
-
                 return(
                     <div className="List">
                     <div className="MainList">
@@ -92,7 +91,7 @@ define(
                         <Search />
                         <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
                         <ul>{items}</ul>
-                        {paginator}
+                        {this.getPaginator()}
                     </div>
                     </div>
                     );

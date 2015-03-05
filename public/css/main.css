@@ -481,7 +481,7 @@ div.List div.MainList div.btn_add button {
 div.List div.MainList div {
   /*padding: @min;*/
 }
-div.List div.MainList ul li.item {
+div.List div.MainList ul > li.item {
   list-style-type: none;
   clear: both;
   float: left;
@@ -493,33 +493,33 @@ div.List div.MainList ul li.item {
   /*min-width: @list_item_width;*/
   width: 99%;
 }
-div.List div.MainList ul li.item a {
+div.List div.MainList ul > li.item a {
   text-decoration: none;
 }
-div.List div.MainList ul li.item div.item_name,
-div.List div.MainList ul li.item div.item_cp {
+div.List div.MainList ul > li.item div.item_name,
+div.List div.MainList ul > li.item div.item_cp {
   float: right;
 }
-div.List div.MainList ul li.item div.item_name {
+div.List div.MainList ul > li.item div.item_name {
   min-width: 564.66666667px;
   float: left;
 }
-div.List div.MainList ul li.item div.item_cp {
+div.List div.MainList ul > li.item div.item_cp {
   min-width: 180px;
 }
-div.List div.MainList ul li.item div.item_cp button {
+div.List div.MainList ul > li.item div.item_cp button {
   margin-left: 2px;
   text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
 }
-div.List div.MainList li {
+div.List div.MainList > li {
   margin: 2px;
   width: 99%;
 }
-div.List div.MainList li .alert-info {
+div.List div.MainList > li .alert-info {
   clear: both;
   padding: 10px;
 }
-div.List div.MainList li span.msg {
+div.List div.MainList > li span.msg {
   padding-left: 10px;
 }
 div.List div.SimpleList {
@@ -1078,4 +1078,17 @@ div#select_entry div.bg_box:hover {
 }
 div#select_entry div.bg_box:hover div {
   text-decoration: underline;
+}
+.paginator {
+  clear: both;
+  overflow: hidden;
+}
+.paginator ul.pages {
+  overflow: hidden;
+  width: 500px;
+}
+.paginator ul.pages li {
+  float: left;
+  list-style-type: none;
+  margin: 2px;
 }

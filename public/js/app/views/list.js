@@ -9,13 +9,11 @@ define(
         'event_bus'
 
     ],function($, _, Backbone, React, Config, EventBus){
-
         var debug = (Config['debug'] && Config['debug']['debug_list'])? 1:null;
         console.log('module views/list loaded');
 
         var ListView = Backbone.View.extend({
             el: '#main_main', // 2-do: extend from base-class
-
             template: '<div id="main_list_header"></div>' +
                 '<div id="main_list"></div>',
             initialize: function(options) {
@@ -23,7 +21,6 @@ define(
                 _.bindAll(this, 'render');
                 (debug)?console.log('init, this.collection:'):null;
                 (debug)?console.log(this.collection):null;
-
 
                 this.collection.bind('destroy', this.render, this);
                 //this.collection.bind('change', this.render, this);
