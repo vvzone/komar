@@ -1100,6 +1100,7 @@ div#select_entry div.bg_box:hover div {
   width: 30px;
   height: 30px;
   margin: 5px;
+  text-align: center;
 }
 .paginator ul.pages li a {
   border-radius: 100%;
@@ -1108,11 +1109,16 @@ div#select_entry div.bg_box:hover div {
   line-height: 1.5;
   width: 30px;
   height: 30px;
-  padding: 4px 10px;
+  padding: 4px 0;
 }
 .paginator ul.pages li a:hover {
   background-color: #4DAD16;
   color: white;
+}
+.paginator ul.pages li span.glyphicon {
+  line-height: 1;
+  top: 0;
+  padding: 4px 0;
 }
 .paginator ul.pages li.current_page {
   padding: 4px 10px;
