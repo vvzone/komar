@@ -44,16 +44,6 @@ define(
                 (debug)?console.info(['app_registry.router', app_registry.router]):null;
                 (debug)?console.info(['Backbone.history.fragment', Backbone.history.fragment]):null;
 
-                /*
-                var cash = 2.8388;
-                var inflation = 0.035;
-                var period = 20;
-
-                for(var i=10; i<period; i++){
-                    cash = cash + (cash*inflation);
-                }
-                console.log('cash', cash);
-                */
 
                 return (
                     <div className="paginator">
@@ -68,51 +58,69 @@ define(
                 var begin = begin_and_end[0];
                 var end = begin_and_end[1];
 
-                var left_dots = this.leftDots(begin, end);
+                var button_previous = this.leftDots(begin, end);
                 console.log(['leftDots(begin, end)', this.leftDots(begin, end),begin, end]);
-                var right_dots = this.leftDots(begin, end);
+                var button_next = this.rightDots(begin, end);
 
                 var current_page = this.props.pagination.current_page;
 
-                var current_url = Backbone.history.fragment;
 
-                (debug)?console.info(current_url.indexOf("?")):null;
+                var pages= [];
+                pages.push(button_previous);
+                var url = this.getUrl();
+                for(var i=begin; i<end+1; i++){
+                    url = this.makeUrl(i);
+                    console.info(['current_page', current_page]);
+                    if(i == current_page){
+                        pages.push(
+                            <li className="current_page">{i}</li>
+                        );
+                    }else{
+                        pages.push(
+                            <li><a href={url}>{i}</a></li>
+                        );
+                    }
+                }
+                pages.push(button_next);
+                return pages;
+            },
+            getUrl: function(){
+                var current_url = Backbone.history.fragment;
                 var where_params_start = current_url.indexOf("?");
+                (debug)?console.info(current_url.indexOf("?")):null;
                 where_params_start = where_params_start +'';
                 if(where_params_start == -1){
                     where_params_start = current_url.length;
                 }
-                var new_url = 'admin#'+current_url.substring(0, where_params_start);
-                (debug)?console.info(['new_url', new_url]):null;
-
-                var pages= [];
-                (left_dots)?pages.push(<li><span className="previous">...</span></li>):null;
-                var url =new_url;
-                for(var i=begin; i<end+1; i++){
-                    url = new_url + '?page='+i+'&limit='+per_page;
-                    console.info(['current_page', current_page]);
-                    if(i == current_page){
-                        pages.push(
-                            <li><span className="current_page">{i}</span></li>
-                        );
-                    }else{
-                        pages.push(
-                            <li><span><a href={url}>{i}</a></span></li>
-                        );
-                    }
-                }
-                (right_dots)?pages.push(<li><span className="next">...</span></li>):null;
-                return pages;
+                var url = 'admin#'+current_url.substring(0, where_params_start);
+                (debug)?console.info(['current_url, w/o params', url]):null;
+                return url;
             },
-            setLimitTen:function(){
-
+            makeUrl: function(page){
+                var per_page = this.props.pagination.records_per_page;
+                var new_url = this.getUrl() + '?page='+page+'&limit='+per_page;
+                return new_url;
             },
-            setLimitTwenty: function(){
-
+            getPrevButton: function(page){
+                return (
+                    <li className="paginator_control">
+                        <a href={this.makeUrl(page)}>
+                            <span className="glyphicon glyphicon-chevron-left"></span>
+                        </a>
+                    </li>);
+            },
+            getNextButton: function(page){
+                return(
+                    <li className="paginator_control">
+                        <a href={this.makeUrl(page)}>
+                            <span className="glyphicon glyphicon-chevron-right"></span>
+                        </a>
+                    </li>);
             },
             calculateVisibleBlock: function(){
                 var range = Math.floor(this.state.page_show / 2);
                 var nav_begin = this.props.pagination.current_page - range;
+                var total  = this.props.pagination.total_pages
                 var zero_less = 0;
                 if(nav_begin<=0){
                     zero_less = Math.abs(nav_begin)+1;
@@ -121,7 +129,17 @@ define(
                 if (this.state.page_show % 2 == 0) { // Если четное кол-во
                     nav_begin++;
                 }
+                console.info(['this.props.pagination.current_page + range + zero_less', this.props.pagination.current_page,range,zero_less]);
+
                 var nav_end = this.props.pagination.current_page + range + zero_less;
+
+                if(nav_end > total){
+                    var delta = nav_end - total;
+                    nav_end = total;
+                    if(nav_begin+1 > delta){
+                        nav_begin  = nav_begin-delta;
+                    }
+                }
                 return [nav_begin, nav_end];
             },
             leftDots: function(nav_begin, nav_end){
@@ -132,21 +150,29 @@ define(
                         nav_end++;
                     }
                     nav_begin = 1;
-                    left_dots = false;
+                    return left_dots = false;
                 }
-                return left_dots;
+
+                var previous_page = nav_begin-1;
+                return this.getPrevButton(previous_page);
             },
             rightDots: function(nav_begin, nav_end){
+                console.info(['rightDots: nav_begin, nav_end', nav_begin, nav_end]);
                 var right_dots = true;
-                if (nav_end >= this.state.page_count - 1 ) {
-                    nav_begin = this.state.page_count - this.page_show + 1;
-                    if (nav_end == this.state.page_count - 1) {
+                var total  = this.props.pagination.total_pages;
+                console.info(['total', total]);
+
+                if (nav_end > total - 1 ) {
+                    nav_begin = total - this.page_show + 1;
+                    if (nav_end == total - 1) {
                         nav_begin--;
                     }
-                    nav_end = this.state.page_count;
+                    nav_end = total;
                     right_dots = false;
                 }
-                return right_dots;
+
+                var next_page = nav_end+1;
+                return (right_dots)?this.getNextButton(next_page):false;
             }
         });
 

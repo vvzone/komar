@@ -5,13 +5,44 @@
   overflow: hidden;
 
   ul.pages{
+    //display: inline-block;
     overflow: hidden;
     width: 500px;
 
     li{
-      float: left;
+      /*
+      display: inline;
       list-style-type: none;
-      margin: @min
+      margin: @min;
+      line-height: @big*3;
+      */
+
+      float: left;
+      display: block;
+      line-height: 1.5;
+      width: @big*3;
+      height: @big*3;
+      margin: 5px;
+
+      a{
+        border-radius: 100%;
+
+        float: left;
+        display: block;
+        line-height: 1.5;
+        width: @big*3;
+        height: @big*3;
+        padding: @min*2 @big;
+      }
+
+      a:hover{
+        background-color: #4DAD16;
+        color: white;
+      }
+    }
+
+    li.current_page{
+      padding: @min*2 @big;
     }
   }
 }

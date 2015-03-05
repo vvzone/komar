@@ -1088,7 +1088,32 @@ div#select_entry div.bg_box:hover div {
   width: 500px;
 }
 .paginator ul.pages li {
+  /*
+      display: inline;
+      list-style-type: none;
+      margin: @min;
+      line-height: @big*3;
+      */
   float: left;
-  list-style-type: none;
-  margin: 2px;
+  display: block;
+  line-height: 1.5;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+.paginator ul.pages li a {
+  border-radius: 100%;
+  float: left;
+  display: block;
+  line-height: 1.5;
+  width: 30px;
+  height: 30px;
+  padding: 4px 10px;
+}
+.paginator ul.pages li a:hover {
+  background-color: #4DAD16;
+  color: white;
+}
+.paginator ul.pages li.current_page {
+  padding: 4px 10px;
 }
