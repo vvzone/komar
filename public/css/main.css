@@ -453,7 +453,7 @@ div.List div.MainList {
       cursor: pointer;
     }*/
 }
-div.List div.MainList ul {
+div.List div.MainList > ul {
   clear: both;
   overflow: hidden;
   padding: 0;
@@ -1087,6 +1087,8 @@ div#select_entry div.bg_box:hover div {
   overflow: hidden;
   float: left;
   width: 500px;
+  margin: 0;
+  padding: 0;
 }
 .paginator ul.pages > li {
   /*
@@ -1122,25 +1124,43 @@ div#select_entry div.bg_box:hover div {
   padding: 4px 0;
 }
 .paginator ul.pages li.current_page {
-  padding: 4px 10px;
+  padding: 4px 0;
+  float: left;
+  display: block;
+  line-height: 1.5;
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+  text-align: center;
   background-color: #4DAD16;
   border-radius: 100%;
   color: white;
 }
 .paginator div.limit {
   overflow: hidden;
-  float: left;
+  float: right;
+  padding-top: 10px;
 }
 .paginator div.limit label,
 .paginator div.limit ul.options_block {
   float: left;
 }
+.paginator div.limit ul.options_block {
+  margin: 0;
+  padding: 0;
+  padding-right: 10px;
+}
 .paginator div.limit ul.options_block > li {
   float: left;
   display: block;
-  line-height: 1.5;
-  width: 20px;
+  margin: 0;
+  padding: 0;
+  margin-left: 5px;
   height: 30px;
-  margin: 5px;
-  text-align: center;
+}
+.paginator div.limit ul.options_block li:after {
+  content: ', ';
+}
+.paginator div.limit ul.options_block li:last-child:after {
+  content: '';
 }

@@ -9,6 +9,8 @@
     overflow: hidden;
     float: left;
     width: 500px;
+    margin: 0;
+    padding: 0;
 
     >li{
       /*
@@ -50,7 +52,15 @@
     }
 
     li.current_page{
-      padding: @min*2 @big;
+      padding: @min*2 0;
+      float: left;
+      display: block;
+      line-height: 1.5;
+      width: @big*3;
+      height: @big*3;
+      margin: 5px;
+      text-align: center;
+
       background-color: #4DAD16;
       border-radius: 100%;
       color: white;
@@ -59,21 +69,32 @@
 
   div.limit{
     overflow: hidden;
-    float: left;
+    float: right;
+    padding-top: @big;
 
     label, ul.options_block{
       float: left;
     }
 
     ul.options_block{
+      margin: 0;
+      padding: 0;
+      padding-right: @big;
+
       >li{
         float: left;
         display: block;
-        line-height: 1.5;
-        width: @big*2;
+        margin: 0;
+        padding: 0;
+        margin-left: @med;
         height: @big*3;
-        margin: 5px;
-        text-align: center;
+      }
+      li:after{
+        content: ', ';
+      }
+
+      li:last-child:after{
+        content: '';
       }
 
     }
