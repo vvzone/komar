@@ -117,10 +117,6 @@ define(
                 return pages;
             },
             getUrl: function(){
-                if(this.state.current_url !=null){
-                    (debug)?console.info(['return current_state.url', this.state.current_url]):null;
-                    return this.state.current_url
-                }else{
                     (debug)?console.info(['calculating current_url']):null;
                     var current_url = Backbone.history.fragment;
                     var where_params_start = current_url.indexOf("?");
@@ -135,7 +131,6 @@ define(
                         current_url: url
                     });
                     return url;
-                }
             },
             makeUrl: function(page){
                 var per_page = this.props.pagination.records_per_page;
