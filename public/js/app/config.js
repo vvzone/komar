@@ -89,7 +89,8 @@ define(
             csrf_token: false,
             paginator: {
                 default_per_page: 10,
-                default_raginator_range: 10 //pages
+                default_raginator_range: 9,
+                per_page_options: [5, 10, 20, 30, 50]
             }
         };
 

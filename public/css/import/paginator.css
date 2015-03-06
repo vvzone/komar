@@ -7,9 +7,10 @@
 }
 .paginator ul.pages {
   overflow: hidden;
+  float: left;
   width: 500px;
 }
-.paginator ul.pages li {
+.paginator ul.pages > li {
   /*
       display: inline;
       list-style-type: none;
@@ -24,7 +25,7 @@
   margin: 5px;
   text-align: center;
 }
-.paginator ul.pages li a {
+.paginator ul.pages > li a {
   border-radius: 100%;
   float: left;
   display: block;
@@ -33,15 +34,35 @@
   height: 30px;
   padding: 4px 0;
 }
-.paginator ul.pages li a:hover {
+.paginator ul.pages > li a:hover {
   background-color: #4DAD16;
   color: white;
 }
-.paginator ul.pages li span.glyphicon {
+.paginator ul.pages > li span.glyphicon {
   line-height: 1;
   top: 0;
   padding: 4px 0;
 }
 .paginator ul.pages li.current_page {
   padding: 4px 10px;
+  background-color: #4DAD16;
+  border-radius: 100%;
+  color: white;
+}
+.paginator div.limit {
+  overflow: hidden;
+  float: left;
+}
+.paginator div.limit label,
+.paginator div.limit ul.options_block {
+  float: left;
+}
+.paginator div.limit ul.options_block > li {
+  float: left;
+  display: block;
+  line-height: 1.5;
+  width: 20px;
+  height: 30px;
+  margin: 5px;
+  text-align: center;
 }
