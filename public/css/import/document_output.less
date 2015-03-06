@@ -1,0 +1,52 @@
+@import 'constants.less';
+
+ul.info_box{
+  list-style: none;
+  border: 1px solid @base_font_color;
+  padding: 5px;
+  overflow: hidden;
+
+  li{
+    margin-right: @big*2;
+
+    div{
+      padding-right: @med;
+    }
+
+    div.name{
+      float: left;
+      clear: both;
+    }
+
+    div.data{
+      float: left;
+    }
+
+  }
+
+}
+
+div.annotation{
+  margin-top: 15px;
+  color: @base_font_color
+}
+
+
+div.document_output{
+  padding: 10px;
+  border: 1px solid black;
+
+  div.header{
+    color: black;
+    font-size: 16pt;
+    margin-top: 15px;
+    margin-left: 25px;
+    margin-bottom: 15px;
+  }
+
+  div.main_text{
+    color: black;
+    margin-left: 25px;
+    margin-bottom: 25px;
+  }
+}

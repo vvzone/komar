@@ -1,0 +1,42 @@
+/* colors */
+/* -- headr -- */
+/* fonts */
+/* for level nodes */
+div#select_entry {
+  position: absolute;
+  left: 39%;
+  right: 61%;
+  width: 900px;
+  margin: 250px 0 0 -150px;
+}
+div#select_entry div.bg_box {
+  background: none repeat scroll 0 0 white;
+  border: 1px solid white;
+  color: white;
+  float: left;
+  margin-right: 20px;
+  opacity: 0.55;
+  padding-top: 100px;
+  width: 350px;
+  height: 230px;
+  cursor: pointer;
+}
+div#select_entry div.bg_box div.entry_option {
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  opacity: 1;
+  text-align: center;
+  font-size: 140%;
+}
+div#select_entry div.bg_box div.entry_option span.glyphicon {
+  margin-right: 10px;
+  margin-left: - 10px;
+}
+div#select_entry div.bg_box:hover {
+  opacity: 0.75;
+  border: 1px solid white;
+  text-decoration: underline;
+}
+div#select_entry div.bg_box:hover div {
+  text-decoration: underline;
+}

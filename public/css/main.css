@@ -4,6 +4,7 @@
 /* colors */
 /* -- headr -- */
 /* fonts */
+/* for level nodes */
 body {
   height: 100%;
   color: #428bca;
@@ -778,13 +779,11 @@ div.switch_view {
   font-size: 1.5em;
   border-color: #e4141a;
   /*
-
   .modal-body{
     text-align: center;
     padding: @big;
     font-size: 0.8em;
   }
-
   */
 }
 .alert-warning .modal-header {
@@ -801,7 +800,6 @@ div.switch_view {
   text-align: center;
   padding: 10px;
 }
-/* for level nodes */
 div.level {
   margin-top: 0;
   padding: 10px;

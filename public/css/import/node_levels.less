@@ -1,0 +1,145 @@
+
+@import 'constants.less';
+
+div.level{
+  margin-top: 0; //@min;
+  padding: @big;
+  padding-left: @big;
+  font-family: @base_font;
+  color: @level_color_8;
+  line-height: 1.5;
+  font-weight: 100;
+  background: @level_bg_dark;
+  border-radius: @min;
+
+  div.level_name{
+    font-size: 1.2em;
+    padding: @big;
+  }
+
+  div.level_nodes{
+    /*padding: 10px;*/
+    overflow: hidden;
+
+    div{
+      float: left;
+      display: table-cell;
+      vertical-align: middle;
+
+      ul{
+        overflow: hidden;
+
+        li{
+          cursor: pointer;
+          float:left;
+          display: block;
+          //font-family: Helvetica;
+          font-size: @base_font_size;
+          margin-left: @min;
+          margin-top: @min;
+          padding: @big;
+          padding-left: @big*4;
+          padding-right: @big*4;
+          background: @level_color_1;
+          color: @level_almost_white;
+          opacity: 0.75;
+        }
+
+        li:hover{
+          opacity: 1;
+        }
+
+        li.level_color_1{
+          background: @level_color_1;
+        }
+
+        li.level_color_2{
+          background: @level_color_2;
+        }
+
+        li.level_color_3{
+          background: @level_color_3;
+        }
+
+        li.level_color_4{
+          background: @level_color_4;
+        }
+
+        li.level_color_5{
+          background: @level_color_5;
+        }
+
+        li.level_color_6{
+          background: @level_color_6;
+        }
+
+        li.level_color_7{
+          background: @level_color_7;
+        }
+
+        li.level_color_8{
+          background: @level_color_8;
+        }
+
+        li.level_color_9{
+          background: @level_color_9;
+        }
+
+        li.dragging{
+          border: 1px solid white;
+          z-index: 3;
+        }
+      }//
+
+      li.node_real{
+        display: table-cell;
+        overflow: hidden;
+        /*width: 60px;
+        height: 60px;*/
+        //background: url('/img/admin/node_real.png');
+        background-image: url('/img/admin/node_real_small_white.png')!important;
+        background-repeat: no-repeat!important;
+        background-position: 9px 46%!important;
+      }
+
+      div.node_title{
+        /*overflow: hidden;*/
+        display: inline-block;
+        vertical-align:middle;
+        width: 60px;
+        height: 35px;
+        /*margin-top: 15px;*/
+        font-size: 0.8em;
+        color: #ffffff;
+        text-align: center;
+        top: 50%;
+        /*background: url('/img/admin/blue_50_opacity.png');
+        border-radius: @big;*/
+      }
+    }
+
+    div.node_abstract{
+      display: table-cell;
+      overflow: hidden;
+      width: 60px;
+      height: 60px;
+      //background: url('/img/admin/node_abstract.png');
+      background: url('/img/admin/node_abstract_dark.png');
+    }
+
+    div.node_real{
+      display: table-cell;
+      overflow: hidden;
+      width: 60px;
+      height: 60px;
+      //background: url('/img/admin/node_real.png');
+      background: url('/img/admin/node_real_dark.png');
+    }
+  }
+}
+div.level:nth-child(odd){
+  background: @level_bg_light;
+  //color: @bg_level_light;
+  color: @level_color_8;
+  //color: #2d5eaf;
+}

@@ -1,0 +1,46 @@
+@import 'constants';
+
+div#select_entry {
+  position: absolute;
+  left: 39%;
+  right: 61%;
+  width: @big*90;
+  margin: 250px 0 0 -150px;
+
+  div.bg_box {
+    background: none repeat scroll 0 0 white;
+    border: 1px solid white;
+    color: white;
+    float: left;
+    margin-right: @big*2;
+    opacity: 0.55;
+    padding-top: @big*10;
+    width: @big*35;
+    height: @big*23;
+    cursor: pointer;
+
+    div.entry_option {
+      color: black;
+      font-family: @base_font;
+      opacity: 1;
+      text-align: center;
+      font-size: 140%;
+
+      span.glyphicon{
+        margin-right: @big;
+        margin-left: - @big;
+      }
+    }
+  }
+
+  div.bg_box:hover{
+    opacity: 0.75;
+    border: 1px solid white;
+    text-decoration: underline;
+
+    div{
+      text-decoration: underline;
+    }
+  }
+
+}
