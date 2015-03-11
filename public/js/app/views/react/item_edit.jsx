@@ -134,6 +134,9 @@ define(
                         return this.controlRouterCallWithDependency(model, prop);
                     }
                 }
+                if(this.props.model.form != null && typeof(this.props.model.form[prop])!='undefined'){
+                    return this.modelDescribedControlRouterCall(model, prop);
+                }
                 return this.controlRouterCall(model, prop);
             },
             controlRouterCallWithDependency: function(model, prop){
@@ -144,6 +147,20 @@ define(
                 name={prop}
                 russian_name={model.attr_rus_names[prop]}
                 callback={this.itemUpdate} key={prop} />;
+            },
+            modelDescribedControlRouterCall: function(model, prop){
+                var error = {};
+                if(model.form[prop] == 'model'){
+
+                }
+                return (<ControlsRouter
+                    type={model.form[prop]}
+                    value={model.attributes[prop]}
+                    name={prop}
+                    russian_name={model.attr_rus_names[prop]}
+                    callback={this.itemUpdate} key={prop}
+                    error={error}
+                        />);
             },
             controlRouterCall: function(model, prop){
                 if(debug){
