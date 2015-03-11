@@ -38,8 +38,8 @@ define(
                     per_page: this.props.pagination.records_per_page,
                     total_records: this.props.pagination.total_records,
                     total_pages: this.props.pagination.total_pages,
-                    current_url: this.getUrl()
-                    //current_page: this.props.pagination.current_page - будет обновлять карент только единожды
+                    current_url: this.getUrl(),
+                    current_page: this.props.pagination.current_page //- будет обновлять карент только единожды
                 });
             },
             render: function(){

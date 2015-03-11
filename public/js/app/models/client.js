@@ -9,9 +9,7 @@ define(
         'config',
         'models/person',
         'models/unit'
-
     ],function($, _, Backbone, React, apiUrl, Config, PersonModel, UnitModel){
-
         var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         console.log('models/client loaded');
 
@@ -22,6 +20,7 @@ define(
                 identification_number: null,
                 full_name: null,
                 name: null,
+                type: null, //is_person o is_unit
                 person: null,
                 unit: null
             },
@@ -50,6 +49,17 @@ define(
                 //base_attr_type: 'constant',
                 //attribute_type_childs: 'attribute_type_childs' //запрашиваем коллекцию
             }, //for recursive objects
+            list_output: {
+                name: 'full_name'
+            },
+            table_output: {
+
+            },
+            form: {
+                identification_number: 'tiny_text',
+                is_external: 'bool',
+                full_name: 'tiny_text'
+            },
             url: function() {
                 return apiUrl('client', this.id);
             },

@@ -23,7 +23,8 @@ define(
                 inn: null,
                 citizenship: null,
                 deputy: null,
-                person_post: null
+                person_post: null,
+                user: null
                 //client: null,
                 //identification_number: null,
                 //is_external: null
@@ -38,7 +39,8 @@ define(
                 inn: 'ИНН',
                 citizenship: 'Гражданство',
                 deputy: 'Заместитель',
-                person_post: 'Должность'
+                person_post: 'Должность',
+                user: 'Профиль пользователя системы'
                 //client: 'Общая информация',
                 //identification_number: 'Идентификационный номер',
                 //is_external: 'Внешний'
@@ -47,12 +49,24 @@ define(
                 client: 'client'
             },
             attr_dependencies: {
-                //deputy: 'constant',
-                deputy: 'deputy',
+                deputy: 'constant', //'deputy'
                 sex_types: 'sex_types'
             }, //for recursive objects
             model_name: 'person',
             model_rus_name: 'Физлицо',
+            form: {
+                first_name: 'tiny_text',
+                patronymic_name: 'tiny_text',
+                family_name: 'tiny_text',
+                birth_date: 'tiny_text',
+                birth_place: 'tiny_text',
+                sex_types: 'simple_select',
+                inn: 'tiny_text',
+                citizenship: 'tiny_text',
+                deputy: 'simple_select',
+                person_post: null, //simple_select
+                user: 'model'
+            },
            /* beforeSave: function(){
                 this.client.set('identification_number', this.get('identification_number'));
                 this.client.set('is_external', this.get('is_external'));

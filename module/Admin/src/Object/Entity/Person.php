@@ -113,11 +113,18 @@ class Person extends Filtered
     private $unitPost;
 
     /**
+     *  @ORM\OneToMany(targetEntity="Object\Entity\User", mappedBy="person", cascade={"all"}, orphanRemoval=true)
+     */
+    private $user;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->unitPost = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**
@@ -406,6 +413,26 @@ class Person extends Filtered
         return $this->unitPost;
     }
 
+    public function getUser(){
+        if($this->user->count() > 1)
+        {
+            throw new \Exception('Fatal. DB corruption detected. More than one user to current person-record.', 500);
+        }
+        $user = $this->user->last();
+        if($user){
+            return $user->getUserSimple();
+        }
+        return false;
+    }
+
+    public function setUser($user){
+       $this->user = $user;
+    }
+
+    public function addUser($user){
+
+    }
+
     public function getUnitPostsList(){
         $list = array();
         foreach($this->getUnitPost() as $unit_post){
@@ -480,6 +507,7 @@ class Person extends Filtered
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
+            'user' => $this->getUser()
             //'person_post' => $this->getUnitPostsList(),
             //'client' => $this->getClient()->getAll()
             //'person_post_count' => $this->personPost->count()

@@ -64,10 +64,10 @@ class Person extends \Object\Entity\Person implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'firstName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'patronymicName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'familyName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'birthDate', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'birthPlace', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'inn', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'citizenship', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'deputy', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'sex', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'client', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'unitPost', 'inputFilter', 'EntityName');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'firstName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'patronymicName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'familyName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'birthDate', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'birthPlace', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'inn', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'citizenship', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'deputy', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'sex', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'client', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'unitPost', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'user', 'inputFilter', 'EntityName');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'firstName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'patronymicName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'familyName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'birthDate', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'birthPlace', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'inn', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'citizenship', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'deputy', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'sex', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'client', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'unitPost', 'inputFilter', 'EntityName');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'firstName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'patronymicName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'familyName', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'birthDate', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'birthPlace', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'inn', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'citizenship', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'deputy', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'sex', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'client', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'unitPost', '' . "\0" . 'Object\\Entity\\Person' . "\0" . 'user', 'inputFilter', 'EntityName');
     }
 
     /**
@@ -450,6 +450,39 @@ class Person extends \Object\Entity\Person implements \Doctrine\ORM\Proxy\Proxy
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUnitPost', array());
 
         return parent::getUnitPost();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getUser()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getUser', array());
+
+        return parent::getUser();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function setUser($user)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setUser', array($user));
+
+        return parent::setUser($user);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addUser($user)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addUser', array($user));
+
+        return parent::addUser($user);
     }
 
     /**

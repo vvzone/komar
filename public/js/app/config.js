@@ -58,6 +58,7 @@ define(
                 {units: 'list'},
                 {units_tree: 'tree'},
                 {clients: 'list'},
+                {users: 'list'},
                 {units_plain: 'list'},
                 {documents: 'client_list'},
                 //{documents_output: 'client_list'},
@@ -91,6 +92,12 @@ define(
                 default_per_page: 10,
                 default_raginator_range: 9,
                 per_page_options: [5, 10, 20, 30, 50]
+            },
+            component_list: {
+                max_name_length: 75
+            },
+            component_table: {
+                max_name_length: 55
             }
         };
 

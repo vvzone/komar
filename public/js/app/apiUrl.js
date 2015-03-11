@@ -408,6 +408,19 @@ define(
 
                 return (local_server)? local: production;
             },
+            users: function(){
+                var local = host + prefix + "/user";
+                var production = host + prefix + "/user";
+
+                return (local_server)? local: production;
+            },
+            user: function(trash_id){
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/user/"+ id;
+                var production = host + prefix + "/user/"+ id;
+
+                return (local_server)? local: production;
+            },
             routes: function() {
                 var local = host + prefix + "/route";
                 var production = host + prefix + "/route";

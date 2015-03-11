@@ -126,6 +126,18 @@ define(
                     }
                 }
             },
+            getItemName: function(){
+                if(this.props.model.list_output){
+                    var field = this.props.model.list_output.name;
+                    var name = this.props.model.get(field);
+                    var max_limit = Config['component_list']['max_name_length'];
+                    if(name.length> max_limit){
+                        name = name.substr(0, max_limit)+'...';
+                    }
+                    return name;
+                }
+                return this.props.model.get('name');
+            },
             render: function(){
                 var editable = this.props.model.get('attr_rus_names');
                 var editable_controls = [];
@@ -149,7 +161,7 @@ define(
                 }
                 return(
                     <li className="item" key={'item'+this.props.model.get('id')}>
-                        <div className="item_name" clicked={this.whenClicked}>{this.props.model.get('name')}</div>
+                        <div className="item_name" clicked={this.whenClicked}>{this.getItemName()}</div>
                         <div className="item_cp">
                             <ButtonEdit clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'edit' +this.props.model.get('id')} mini="false" />
                             <ButtonDelete clicked={this.whenClickedCP} id={this.props.model.get('id')} key={'delete'+this.props.model.get('id')} mini="false" />
