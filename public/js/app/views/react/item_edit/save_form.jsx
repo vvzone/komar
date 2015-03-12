@@ -14,7 +14,7 @@ define(
         return function(){
             return {
                 saveForm: function () {
-                    var mySelf = this;
+                    var self = this;
                     this.state.model.validate();
                     (debug)?console.info(['saveForm-> item to save:', this.state.model]):null;
 
@@ -25,15 +25,8 @@ define(
                         this.state.model.save(null, {
                             success:  function(model, response){
                                 (debug)?console.info('item_edit -> save success!'):null;
-                                mySelf.state.model.collection.fetch({
-                                    success: function(){
-                                        EventBus.trigger('success', 'Изменения синхронизированы.')
-                                    },
-                                    error: function(){
-                                        EventBus.trigger('error', 'Ошибка', 'Изменения сохранены, однако, при попытке синхронизироваться с сервером возникла ошибка.', response);
-                                    }
-                                });
                                 EventBus.trigger('success', 'Изменения сохранены.');
+                                self.afterSave();
                             },
                             error: function(model, response){
                                 EventBus.trigger('error', 'Ошибка', 'Не удалось сохранить изменения', response);
@@ -50,6 +43,20 @@ define(
                         }
 
                         EventBus.trigger('error', 'Ошибка', validation_errors);
+                    }
+                },
+                afterSave: function(){
+                    if(this.props.interface){
+                        this.routeToCollection();
+                    }else{
+                        this.state.model.collection.fetch({
+                            success: function(){
+                                EventBus.trigger('success', 'Изменения синхронизированы.')
+                            },
+                            error: function(){
+                                EventBus.trigger('error', 'Ошибка', 'Изменения сохранены, однако, при попытке синхронизироваться с сервером возникла ошибка.', response);
+                            }
+                        });
                     }
                 }
             };

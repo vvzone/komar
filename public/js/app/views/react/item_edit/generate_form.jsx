@@ -4,7 +4,7 @@ define(
     'views/react/item_edit/generate_form',
     [
         'underscore','jquery', 'backbone', 'react',
-        'config','event_bus',
+        'config','event_bus', 'app_registry',
 
         'jsx!views/react/modals/bootstrap_modal_mixin',
 
@@ -18,7 +18,7 @@ define(
         'jsx!views/react/item_edit/test'
     ],function(
         _, $, Backbone, React,
-        Config, EventBus,
+        Config, EventBus, app_registry,
         BootstrapModal,
         ControlsConfig, Constants,
         SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin, TestMixin
@@ -40,14 +40,14 @@ define(
                 cur_node.on('saveButtonClick', this.saveForm);
             },
             componentWillMount: function () {
-                var self, context = this;
+                var self = this;
                 for(var prop in this.props.model.attr_rus_names){
                     //check if he have sub-model to output
                     if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
                         (debug)?console.log('prop w dependency: '+prop):null;
 
                         if(this.props.model.attr_dependencies[prop]!='constant'){
-                            this.getDependency(prop, context);
+                            this.getDependency(prop);
                         }else{
                             (debug)?console.warn('current model.attr_dependencies['+prop+'] == constant'):null;
                             if(typeof Constants[prop] != 'undefined'){
@@ -100,7 +100,6 @@ define(
                         }
                     }else{
                         //does not have hidden_fields in model
-                        console.info(['model, prop', model, prop]);
                         controls.push(
                             this.callControlRouter(model, prop)
                         );
@@ -111,14 +110,32 @@ define(
                     EventBus.trigger('error', 'Ошибка', 'Не найдено ни одного контрола');
                     return(<ErrorMsg msg="Не найдено ни одного контрола" />);
                 }
-                var edit_box = [];
-                edit_box.push(<form role="form" className="ControlsBox">{controls}</form>);
+                var form_box = [];
+                form_box.push(<form role="form" className="ControlsBox">{controls}</form>);
 
                 return(
                     <div className="item">
-                        {edit_box}
+                        {form_box}
+                        {this.getInterfaceButtons()}
                     </div>
-                    )
+                );
+            },
+            getInterfaceButtons: function(){
+                if(this.props.interface){
+                    return (
+                        <div className="buttons">
+                            <button type="button" className="btn btn-success" onClick={this.saveForm}>Сохранить</button>
+                            <button type="button" className="btn btn-default" onClick={this.routeToCollection}>Отменить</button>
+                        </div>
+                    );
+                }
+            },
+            routeToCollection: function(){
+                var collection_name = this.props.model.model_name+'s';
+                var new_route = 'admin/'+collection_name;
+                (debug)?console.info(['new_route', new_route]):null;
+                app_registry.router.navigate(new_route, true);
+
             }
         });
 

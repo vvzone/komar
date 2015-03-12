@@ -20,16 +20,20 @@ define(
 
                 if(id && id !='new'){
                     var model = new Model({id: id});
+                    (debug)?console.log('fetch existing model'):null;
                     model.fetch({
                         success: function(){
                             console.info(['model', model]);
                             React.renderComponent(
                                 new Form({
-                                    model: model
+                                    model: model,
+                                    interface: true
                                 }), document.getElementById("main_main")
                             );
                         }
                     });
+                }else{
+                    (debug)?console.log('create new'):null;
                 }
 
             }, function(err){

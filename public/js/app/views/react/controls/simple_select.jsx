@@ -5,9 +5,10 @@ define(
     [
         'jquery',
         'react',
-        'jsx!views/react/controls/controls_mixin'
-    ],function($, React, ControlsMixin){
-
+        'jsx!views/react/controls/controls_mixin',
+        'config'
+    ],function($, React, ControlsMixin, Config){
+        var debug = (Config['debug'] && Config['debug']['debug_controls']['tiny_text'] )? 1:null;
         /* Select */
 
         var SimpleSelect = React.createClass({
@@ -24,26 +25,18 @@ define(
             handleChange: function(event){
                 this.setState({selected: event.target.value});
                 var property = {};
-                console.error(this.props.name);
                 property[this.props.name] = event.target.value;
                 this.props.callback(property);
             },
             componentWillMount: function() {
                 this.setState({selected: this.props.selected});
-                console.info('SimpleSelect -> WillMount selected='+this.props.selected);
-                console.log('===========this.props=========');
-                console.log(this.props);
-
+                (debug)?console.info('SimpleSelect -> WillMount selected='+this.props.selected):null;
                 this.setState({options: this.props.options});
             },
             render: function(){
-                console.info('SimpleSelect -> Render');
-                console.log(this.props);
                 var options = [];
                 var selected = 0;
-                console.info('-----simple select-------');
-                console.info('this.props.options');
-                console.info(this.props.options);
+                (debug)?console.log(['this.props.options', this.props.options]):null;
                 if(this.state.selected){
                     if(selected = this.state.selected.id){
                       selected = this.state.selected.id;
@@ -51,9 +44,6 @@ define(
                     else{
                       selected = this.state.selected;
                     }
-                    
-                    console.log('SELECTED');
-                    console.log(selected);
                 }
 
                 for(var key in this.props.options){

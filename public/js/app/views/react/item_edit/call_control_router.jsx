@@ -20,7 +20,7 @@ define(
                     // Коллекция может быть еще не получена и тогда это приведет к неправильному Контролл-Роуту
                     // коллекция ведь зависит от State
 
-                    (debug)?console.warn('-> callControlRouter'):null;
+                    (debug)?console.log('-> callControlRouter'):null;
 
                     //Model have a dependency-description for current field
                     if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
@@ -28,8 +28,7 @@ define(
 
                         if(this.state.dependency_array != null){
                             if(debug){
-                                console.error('call to ControlRouter -> this.controlRouterCallWithDependency');
-                                console.log(['this.state.dependency_array['+prop+']',this.state.dependency_array[prop]]);
+                                (debug)?console.log(['this.state.dependency_array['+prop+']',this.state.dependency_array[prop]]):null;
                             }
                             return this.initWithDependency(model, prop);
                         }
@@ -52,14 +51,21 @@ define(
                                 key={prop}
                             />;
                 },
+                getSubForm: function(prop, values){
+                    (debug)?console.info(['getSubForm(prop, values)', prop, values]):null;
+
+                    /*
+                    require(['models/'+prop], function(Model){
+
+                    });
+                    */
+                },
                 initModelDescribed: function(model, prop){
-                    (debug)?console.log(['initModelDescribed model, prop', model, prop]):null;
+                    (debug)?console.log(['initModelDescribed model.get('+prop+')', model.get(prop)]):null;
                     var error={};
-
-                    (debug)?console.info(['model', model]):null;
-                    (debug)?console.info(['model.get('+prop+')', model.get(prop)]):null;
-                    (debug)?console.info(['model.attributes', model.attributes]):null;
-
+                    if(model.form[prop] == 'model'){
+                        return this.getSubForm(prop, model.get(prop));
+                    }
                     return <ControlsRouter
                                 type={model.form[prop]}
                                 value={model.get(prop)}

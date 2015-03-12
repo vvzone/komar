@@ -13,10 +13,9 @@ define(
 
         return function(){
             return {
-                getDependency: function(prop, context){
+                getDependency: function(prop){
                     (debug)?console.warn('current model.attr_dependencies['+prop+'] NOT constant'):null;
                     var self = this;
-                    var self2 = context;
 
                     require([
                         'models/'+this.props.model.attr_dependencies[prop]+'_collection'
