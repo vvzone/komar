@@ -48,6 +48,6 @@ define(
                     return control;
                 }
             }
-        }
+        }()
     }
 );

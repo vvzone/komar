@@ -8,24 +8,25 @@ define(
 
         'jsx!views/react/modals/bootstrap_modal_mixin',
 
-        'views/react/controls/controls_config', 'models/constants', 'jsx!views/react/controls/controls_router',
+        'views/react/controls/controls_config', 'models/constants',
 
         'jsx!views/react/item_edit/save_form',
         'jsx!views/react/item_edit/update_item',
         'jsx!views/react/item_edit/call_control_router',
         'jsx!views/react/item_edit/get_dependency',
-        'jsx!views/react/item_edit/process_hidden_field'
+        'jsx!views/react/item_edit/process_hidden_field',
+        'jsx!views/react/item_edit/test'
     ],function(
         _, $, Backbone, React,
         Config, EventBus,
         BootstrapModal,
-        ControlsConfig, ControlsRouter, Constants,
-        SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin
+        ControlsConfig, Constants,
+        SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin, TestMixin
         ){
 
         var debug = (Config['debug'] && Config['debug']['debug_item_edit'])? 1:null;
 
-        var ItemEditBox = React.createClass({
+        var Form = React.createClass({
             mixins: [SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin],
             getInitialState: function () {
                 return {
@@ -99,6 +100,7 @@ define(
                         }
                     }else{
                         //does not have hidden_fields in model
+                        console.info(['model, prop', model, prop]);
                         controls.push(
                             this.callControlRouter(model, prop)
                         );
@@ -119,5 +121,7 @@ define(
                     )
             }
         });
+
+        return Form;
     }
 );

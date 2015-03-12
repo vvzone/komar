@@ -6,6 +6,7 @@ define(
         'backbone',
         'config',
         'models/collections_router',
+        'views/item_edit',
         'react',
         'event_bus',
         'route_filter',
@@ -20,7 +21,7 @@ define(
 
         'views/map'
     ],
-    function($, _, Backbone, Config, CollectionsRouter, React, EventBus, RouteFilter,
+    function($, _, Backbone, Config, CollectionsRouter, ItemEdit, React, EventBus, RouteFilter,
              app_registry, UserBarComponent, SelectEntry,
              ClientMenuList, ClientMenuListRight, AdminMenuList,
              MapView){ //2-do: to many components loaded by default!
@@ -35,6 +36,7 @@ define(
                     'login': 'login',
                     'enter': 'enter',
                     'admin/:view/:id': 'adminItemView',
+                    'admin/:view/:id/:action': 'adminItemAction',
                     'admin/:view' : 'adminCollectionView',
                     //'admin/:view(?page=:page)(/&imit=:limit)' : 'adminCollectionView',
                     'admin': 'admin',
@@ -119,8 +121,15 @@ define(
                     cleanMainScreen();
                 },
                 adminItemView : function(view, id, param){
-                    console.info('Router->itemView: view='+view+' , id='+id,+' , param='+param);
-                    console.info('view='+view+' id='+id+' param='+param);
+                    console.info(['Router->itemView: view, id, param', view, id, param]);
+                    if(id == 'new'){
+                        return this.adminItemAction(view, id, param);
+                    }
+                    AdminMenuList.initialize();
+                },
+                adminItemAction : function(view, id, param){
+                    console.info(['Router->itemAction: view, id, param', view, id, param]);
+                    ItemEdit.initialize(view, id, param);
                     AdminMenuList.initialize();
                 },
                 adminCollectionView: function(view, parameters){

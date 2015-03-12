@@ -8,8 +8,9 @@ define(
         'react',
         'config',
         'event_bus',
-        'views/react/controls/controls_config'
-    ],function($, Bootstrap, React, Config, EventBus, DefaultControlsConfig){
+        'views/react/controls/controls_config',
+        'jsx!views/react/controls/controls_router'
+    ],function($, Bootstrap, React, Config, EventBus, DefaultControlsConfig, ControlsRouter){
         var debug = (Config['debug'] && Config['debug']['debug_item_edit'])? 1:null;
 
         return function(){
@@ -52,15 +53,16 @@ define(
                             />;
                 },
                 initModelDescribed: function(model, prop){
-                    var error = {};
-                    if(model.form[prop] == 'model'){
-                        //require();
-                        //var model = {};
-                        //return (<MainItemEdit model={model} />);
-                    }
+                    (debug)?console.log(['initModelDescribed model, prop', model, prop]):null;
+                    var error={};
+
+                    (debug)?console.info(['model', model]):null;
+                    (debug)?console.info(['model.get('+prop+')', model.get(prop)]):null;
+                    (debug)?console.info(['model.attributes', model.attributes]):null;
+
                     return <ControlsRouter
                                 type={model.form[prop]}
-                                value={model.attributes[prop]}
+                                value={model.get(prop)}
                                 name={prop}
                                 russian_name={model.attr_rus_names[prop]}
                                 callback={this.itemUpdate}
@@ -93,6 +95,6 @@ define(
                             />;
                 }
             }
-        }
+        }()
     }
 );

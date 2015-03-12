@@ -36,6 +36,6 @@ define(
                     (debug)?console.log(e):null;
                 }
             };
-        };
+        }();
     }
 );
