@@ -6,8 +6,9 @@ define(
         'backbone',
         'react',
         'apiUrl',
-        'models/client_sub_model'
-    ],function($, _, Backbone, React, apiUrl, ClientSubModel){
+        'models/client_sub_model',
+        'models/user'
+    ],function($, _, Backbone, React, apiUrl, ClientSubModel, UserSubModel){
 
         console.log('models/person loaded');
 
@@ -67,6 +68,31 @@ define(
                 person_post: null, //simple_select
                 user: 'model'
             },
+            parse: function(response, xhr){
+                if (_.has(response, 'user')){
+                    if(_.size(response.user)>0){
+                        // Check if this model has a property called nodes
+                        if (!_.has(this, 'user')) {  // It does not...
+                            // So instantiate a collection and pass in raw data
+                            //this.listValues = new ListCollection(response.listValues);
+
+                            this.attributes.user = new UserSubModel(response.user);
+                            //this.identifical_number = response.client.identifical_number; //?set
+                            //this.is_external = response.client.is_external;
+                        } else {
+                            // It does, so just reset the collection
+
+                            this.attributes.user = new UserSubModel(response.user);
+
+                            //this.client.reset(new ClientSubModel(response.client));
+                            //this.identifical_number = response.client.identifical_number;
+                            //this.is_external = response.client.is_external;
+                        }
+                    }
+                }
+                // Same for edge...
+                return response;
+            },
            /* beforeSave: function(){
                 this.client.set('identification_number', this.get('identification_number'));
                 this.client.set('is_external', this.get('is_external'));
@@ -98,6 +124,7 @@ define(
             initialize: function(){
                 console.info('Model init');
                 this.on('destroy', this.baDaBum);
+                this.attributes.user = new UserSubModel;
             },
             baDaBum: function(){
                 console.warn('KABOOM!');

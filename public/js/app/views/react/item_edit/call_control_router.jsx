@@ -8,9 +8,12 @@ define(
         'react',
         'config',
         'event_bus',
+
         'views/react/controls/controls_config',
-        'jsx!views/react/controls/controls_router'
-    ],function($, Bootstrap, React, Config, EventBus, DefaultControlsConfig, ControlsRouter){
+        'jsx!views/react/controls/controls_router',
+        'jsx!views/react/item_edit/sub_form'
+    ],function($, Bootstrap, React, Config, EventBus,
+               DefaultControlsConfig, ControlsRouter, SubForm){
         var debug = (Config['debug'] && Config['debug']['debug_item_edit'])? 1:null;
 
         return function(){
@@ -51,19 +54,12 @@ define(
                                 key={prop}
                             />;
                 },
-                getSubForm: function(prop, values){
-                    (debug)?console.info(['getSubForm(prop, values)', prop, values]):null;
-
-                    /*
-                    require(['models/'+prop], function(Model){
-
-                    });
-                    */
-                },
                 initModelDescribed: function(model, prop){
                     (debug)?console.log(['initModelDescribed model.get('+prop+')', model.get(prop)]):null;
                     var error={};
+                    //var current_node = 'sub_form_'+prop;
                     if(model.form[prop] == 'model'){
+                        //return <div id={current_node}>{this.getSubForm(prop, model.get(prop))}</div>;
                         return this.getSubForm(prop, model.get(prop));
                     }
                     return <ControlsRouter

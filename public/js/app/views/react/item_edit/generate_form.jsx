@@ -2,7 +2,7 @@
 
 define(
     'views/react/item_edit/generate_form',
-    [
+        [
         'underscore','jquery', 'backbone', 'react',
         'config','event_bus', 'app_registry',
 
@@ -136,6 +136,33 @@ define(
                 (debug)?console.info(['new_route', new_route]):null;
                 app_registry.router.navigate(new_route, true);
 
+            },
+            getSubForm: function(prop, values){
+                (debug)?console.info(['getSubForm(prop, values)', prop, values]):null;
+
+                var model = {};
+                model = this.props.model.get(prop);
+                console.info(['>model', model]);
+                /*
+                 require(['models/'+prop], function(Model){
+                    model = new Model(values);
+                    console.info(['populated model:', model]);
+                    //<SubForm model={model} />
+                     return (
+                         <div className="sub_form">
+                             <div>SubForm</div>
+                             <Form model={model} />
+                         </div>
+                         );
+                 });
+                 */
+
+                return <Form model={model} />;
+
+                //return (<div><SubForm model_name={prop} model_values={values} /></div>);
+                //return (<div><SubForm model_name={prop} model_values={values} /></div>);
+
+                //console.info(['Form', SubForm]);
             }
         });
 
