@@ -157,7 +157,8 @@ define(
                  });
                  */
 
-                return <Form model={model} />;
+                console.info(['return form-model', model]);
+                return <Form model={model} submodel=true />;
 
                 //return (<div><SubForm model_name={prop} model_values={values} /></div>);
                 //return (<div><SubForm model_name={prop} model_values={values} /></div>);

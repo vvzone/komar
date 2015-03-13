@@ -70,66 +70,48 @@ define(
             },
             parse: function(response, xhr){
                 if (_.has(response, 'user')){
+                    console.log('has');
                     if(_.size(response.user)>0){
+                        console.log('>0');
                         // Check if this model has a property called nodes
+                        //response.user = new UserSubModel(response.user);
+                        response.user = new UserSubModel(response.user);
+                        /*
                         if (!_.has(this, 'user')) {  // It does not...
                             // So instantiate a collection and pass in raw data
-                            //this.listValues = new ListCollection(response.listValues);
-
-                            this.attributes.user = new UserSubModel(response.user);
-                            //this.identifical_number = response.client.identifical_number; //?set
-                            //this.is_external = response.client.is_external;
+                            console.log('this !has');
+                            response.user = new UserSubModel(response.user);
                         } else {
+                            console.log('this else');
                             // It does, so just reset the collection
-
-                            this.attributes.user = new UserSubModel(response.user);
-
-                            //this.client.reset(new ClientSubModel(response.client));
-                            //this.identifical_number = response.client.identifical_number;
-                            //this.is_external = response.client.is_external;
+                            //response.user.reset(new UserSubModel(response.user));
+                            this.attributes.user.reset(new UserSubModel(response.user));
                         }
+                        */
+                    }else{
+                        delete response.user;
                     }
                 }
-                // Same for edge...
                 return response;
             },
-           /* beforeSave: function(){
+            /*
+            beforeSave: function(){
                 this.client.set('identification_number', this.get('identification_number'));
                 this.client.set('is_external', this.get('is_external'));
             },
-            parse: function(response, xhr){
-                if (_.has(response, 'client')){
-                    if(_.size(response.client)>0){
-                        // Check if this model has a property called nodes
-                        if (!_.has(this, 'client')) {  // It does not...
-                            // So instantiate a collection and pass in raw data
-                            //this.listValues = new ListCollection(response.listValues);
-                            this.client = new ClientSubModel(response.client);
-                            this.identifical_number = response.client.identifical_number; //?set
-                            this.is_external = response.client.is_external;
-                        } else {
-                            // It does, so just reset the collection
-                            this.client.reset(new ClientSubModel(response.client));
-                            this.identifical_number = response.client.identifical_number;
-                            this.is_external = response.client.is_external;
-                        }
-                    }
-                }
-                // Same for edge...
-                return response;
-            },*/
+            */
             url: function() {
                 return apiUrl('person', this.id);
             },
             initialize: function(){
-                console.info('Model init');
-                this.on('destroy', this.baDaBum);
-                this.attributes.user = new UserSubModel;
-            },
-            baDaBum: function(){
-                console.warn('KABOOM!');
-            }
+                console.info('Model Person init');
 
+                //when nested model is new
+                this.set({
+                    user: new UserSubModel()
+                });
+
+            }
         });
 
         return Model;
