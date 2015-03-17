@@ -2,7 +2,11 @@
 
 define(
     'views/react/item_edit/test',
-    [], function(){
+    [
+        'jquery',
+        'bootstrap',
+        'react'
+    ], function($, Bootstrap, React){
 
         var TestMixin = function(){
             var test_value = 0;
@@ -13,6 +17,14 @@ define(
             }
         }();
 
-        return TestMixin
+        var TestComponent = React.createClass({
+            render: function(){
+                return <div>TestComponent</div>;
+            }
+        });
+
+        //return TestMixin
+
+        return TestComponent;
     }
 );

@@ -8,7 +8,8 @@ define(
         'react',
         'config',
         'event_bus',
-        'jsx!views/react/item_edit/generate_form'
+        //'jsx!views/react/item_edit/generate_form'
+        //'jsx!views/react/item_edit/test'
     ],function($, Bootstrap, React, Config, EventBus, Form){
 
         var SubForm = React.createClass({
@@ -22,6 +23,7 @@ define(
             },
             render: function(){
                 var self = this;
+                /*
                 require(['models/'+this.props.model_name], function(Model){
                     var model = new Model(self.props.model_values);
                     console.info(['populated model:', model]);
@@ -30,20 +32,24 @@ define(
                     self.setState({
                         model: model
                     });
-                    /*
+
                     return (
                         <div className="sub_form">
                             <div>SubForm</div>
 
                         </div>
                         );
-                    */
+
                 });
 
+                 <Form model={this.state.model} interface={false} callback={this.callBack} />
+                */
+
+
+                console.log(['Form', Form]);
                 return(
                     <div className="sub_form">
-                        <div>SubForm</div>
-                        <Form model={this.state.model} interface={false} callback={this.callBack} />
+
                     </div>
                 );
             }

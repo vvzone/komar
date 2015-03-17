@@ -30,7 +30,10 @@ define(
                                 success: function(){
                                     (debug)?console.info(['dependency collection:', DependencyCollection.toJSON()]):null;
                                     var current_dependency = DependencyCollection.toJSON();
-                                    dependency_array[DependencyCollection.collection_name] = current_dependency;
+                                    dependency_array[prop] = current_dependency;
+
+                                    (debug)?console.log(['prop', prop, 'current_dependency', current_dependency]):null;
+
                                     //this why field name in model, and dependency should be equivalent BAD! Decision, but required for require Js use
 
                                     self.setState({

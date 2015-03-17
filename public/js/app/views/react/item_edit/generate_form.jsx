@@ -15,13 +15,14 @@ define(
         'jsx!views/react/item_edit/call_control_router',
         'jsx!views/react/item_edit/get_dependency',
         'jsx!views/react/item_edit/process_hidden_field',
-        'jsx!views/react/item_edit/test'
+        'jsx!views/react/item_edit/test',
+        'jsx!views/react/item_edit/sub_form'
     ],function(
         _, $, Backbone, React,
         Config, EventBus, app_registry,
         BootstrapModal,
         ControlsConfig, Constants,
-        SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin, TestMixin
+        SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin, TestMixin, SubForm
         ){
 
         var debug = (Config['debug'] && Config['debug']['debug_item_edit'])? 1:null;
@@ -111,7 +112,12 @@ define(
                     return(<ErrorMsg msg="Не найдено ни одного контрола" />);
                 }
                 var form_box = [];
-                form_box.push(<form role="form" className="ControlsBox">{controls}</form>);
+
+                if(this.props.sub_form){
+                    form_box.push(<div className="sub_form">{controls}</div>); //can't nest form to form???
+                }else{
+                    form_box.push(<form role="form" className="ControlsBox">{controls}</form>); //can't nest form to form???
+                }
 
                 return(
                     <div className="item">
@@ -143,27 +149,8 @@ define(
                 var model = {};
                 model = this.props.model.get(prop);
                 console.info(['>model', model]);
-                /*
-                 require(['models/'+prop], function(Model){
-                    model = new Model(values);
-                    console.info(['populated model:', model]);
-                    //<SubForm model={model} />
-                     return (
-                         <div className="sub_form">
-                             <div>SubForm</div>
-                             <Form model={model} />
-                         </div>
-                         );
-                 });
-                 */
 
-                console.info(['return form-model', model]);
-                return <Form model={model} submodel=true />;
-
-                //return (<div><SubForm model_name={prop} model_values={values} /></div>);
-                //return (<div><SubForm model_name={prop} model_values={values} /></div>);
-
-                //console.info(['Form', SubForm]);
+                return (<Form model={model} sub_form="true" />);
             }
         });
 

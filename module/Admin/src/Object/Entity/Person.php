@@ -486,7 +486,7 @@ class Person extends Filtered
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
-            'sex_types' => $this->getSexId(),
+            'sex_type' => $this->getSexId(),
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship()
         );
@@ -503,7 +503,7 @@ class Person extends Filtered
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
-            'sex_types' => $this->getSexId(),
+            'sex_type' => $this->getSexId(),
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),

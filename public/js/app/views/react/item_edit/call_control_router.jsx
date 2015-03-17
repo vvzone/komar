@@ -44,8 +44,15 @@ define(
                     return this.initDefault(model, prop);
                 },
                 initWithDependency: function(model, prop){
+                    var control_type = '';
+                    if(DefaultControlsConfig[prop]){
+                        control_type = DefaultControlsConfig[prop];
+                    }else{
+                        control_type = model.form[prop];
+                    }
+
                     return <ControlsRouter
-                                type={DefaultControlsConfig[prop]}
+                                type={control_type}
                                 value={model.attributes[prop]}
                                 dependency_array = {this.state.dependency_array[prop]}
                                 name={prop}
@@ -60,7 +67,7 @@ define(
                     //var current_node = 'sub_form_'+prop;
                     if(model.form[prop] == 'model'){
                         //return <div id={current_node}>{this.getSubForm(prop, model.get(prop))}</div>;
-                        return this.getSubForm(prop, model.get(prop));
+                        return (this.getSubForm(prop, model.get(prop)));
                     }
                     return <ControlsRouter
                                 type={model.form[prop]}
