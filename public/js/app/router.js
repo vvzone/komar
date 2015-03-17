@@ -122,7 +122,7 @@ define(
                 },
                 adminItemView : function(view, id, param){
                     console.info(['Router->itemView: view, id, param', view, id, param]);
-                    if(id == 'new'){
+                    if(id == 'new' ||id == 'add' ){
                         return this.adminItemAction(view, id, param);
                     }
                     AdminMenuList.initialize();

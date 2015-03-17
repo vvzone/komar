@@ -18,12 +18,14 @@ define(
             //model load
             require(['models/'+view], function(Model){
 
-                if(id && id !='new'){
+                if(id && id !='new' && id!='add'){
                     var model = new Model({id: id});
                     (debug)?console.log('fetch existing model'):null;
                     model.fetch({
                         success: function(){
                             console.info(['model', model]);
+                            $('#main_main').html(''); //clean previous
+
                             React.renderComponent(
                                 new Form({
                                     model: model,
@@ -34,6 +36,17 @@ define(
                     });
                 }else{
                     (debug)?console.log('create new'):null;
+                    var model = new Model({id: id});
+                    
+                    console.info(['model', model]);
+                    $('#main_main').html(''); //clean previous
+
+                    React.renderComponent(
+                        new Form({
+                            model: model,
+                            interface: true
+                        }), document.getElementById("main_main")
+                    );
                 }
 
             }, function(err){

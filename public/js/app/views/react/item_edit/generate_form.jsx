@@ -14,15 +14,13 @@ define(
         'jsx!views/react/item_edit/update_item',
         'jsx!views/react/item_edit/call_control_router',
         'jsx!views/react/item_edit/get_dependency',
-        'jsx!views/react/item_edit/process_hidden_field',
-        'jsx!views/react/item_edit/test',
-        'jsx!views/react/item_edit/sub_form'
+        'jsx!views/react/item_edit/process_hidden_field'
     ],function(
         _, $, Backbone, React,
         Config, EventBus, app_registry,
         BootstrapModal,
         ControlsConfig, Constants,
-        SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin, TestMixin, SubForm
+        SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin
         ){
 
         var debug = (Config['debug'] && Config['debug']['debug_item_edit'])? 1:null;
@@ -68,7 +66,10 @@ define(
                 });
             },
             render: function () {
-                var model = this.state.model;
+                console.warn('generate_form.jsx -> render');
+                //var model = this.state.model;
+                console.info(['this.props.model', this.props.model]);
+                var model = this.props.model;
                 var controls = [];
                 if(this.state.dependency_array!=null){
                     if (model.dependency_values_fields != null) {
@@ -86,7 +87,6 @@ define(
                 }
 
                 for(var prop in model.attr_rus_names){
-
                     //Выводить скрытые поля для Добавления Нового
                     if(typeof model.hidden_fields != 'undefined' && model.hidden_fields != null){
                         if(typeof model.hidden_fields[prop] != 'undefined'){
@@ -145,10 +145,8 @@ define(
             },
             getSubForm: function(prop, values){
                 (debug)?console.info(['getSubForm(prop, values)', prop, values]):null;
-
                 var model = {};
                 model = this.props.model.get(prop);
-                console.info(['>model', model]);
 
                 return (<Form model={model} sub_form="true" />);
             }
