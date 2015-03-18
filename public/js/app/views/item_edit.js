@@ -37,7 +37,7 @@ define(
                 }else{
                     (debug)?console.log('create new'):null;
                     var model = new Model({id: id});
-                    
+
                     console.info(['model', model]);
                     $('#main_main').html(''); //clean previous
 

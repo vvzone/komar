@@ -63,6 +63,26 @@ define(
                 person_post: null, //simple_select
                 user: 'model'
             },
+            table: {
+                columns: {
+                    id: {
+                        header: 'N',
+                        value: function(){
+                            return '00'+this.get('id');
+                        }
+                    },
+                    family_name: {},
+                    birth_date: {},
+                    birth_place: {},
+                    sex_type: {
+                        value: function(){
+                            return this.get('sex_type').substr(0, 1);
+                        }
+                    },
+                    inn: {},
+                    citizenship: {}
+                }
+            },
             parse: function(response, xhr){
                 if (_.has(response, 'user')){
                     console.log('has');

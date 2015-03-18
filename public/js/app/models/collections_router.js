@@ -9,10 +9,11 @@ define(
 
         'views/list',
         'views/client_list',
-        'views/tree'
+        'views/tree',
+        'views/table'
     ],
     function($, _, Backbone, EventBus, Config,
-             ListView, ClientListView, TreeView){
+             ListView, ClientListView, TreeView, TableView){
 
         var initialize = function(view, parameters){
             console.log('collection_router initialization...');
@@ -51,6 +52,11 @@ define(
                                 case('client_list'):
                                     (debug)?console.log('will use ClientListView for collection output...'):null;
                                     ClientListView.initialize(Collection);
+                                    return Collection;
+                                break;
+                                case('table'):
+                                    (debug)?console.log('will use TableView for collection output...'):null;
+                                    TableView.initialize(Collection);
                                     return Collection;
                                 break;
                                 default:

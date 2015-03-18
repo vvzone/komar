@@ -29,7 +29,8 @@ define(
                 debug_controls: {
                     tiny_text: null,
                     simple_select: null
-                }
+                },
+                debug_table: 1
             },
             collections_router: [
                 {attribute_types: 'list'},
@@ -54,7 +55,7 @@ define(
                 {enumeration_types: 'list'},
                 {enumeration: 'list'},
                 {node_types: 'list'},
-                {persons: 'list'},
+                {persons: 'table'},
                 {units: 'list'},
                 {units_tree: 'tree'},
                 {clients: 'list'},

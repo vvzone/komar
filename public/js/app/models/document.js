@@ -56,6 +56,14 @@ define(
             },
             model_name: 'document_attribute_type',
             model_rus_name: 'Документ',
+            form: {
+                name: 'tiny_text'
+            },
+            table: {
+                headers: {
+
+                }
+            },
             url: function() {
                 return apiUrl('document', this.id);
             },
