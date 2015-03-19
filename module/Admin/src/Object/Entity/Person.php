@@ -130,7 +130,7 @@ class Person extends Filtered
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -153,7 +153,7 @@ class Person extends Filtered
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -176,7 +176,7 @@ class Person extends Filtered
     /**
      * Get patronymicName
      *
-     * @return string 
+     * @return string
      */
     public function getPatronymicName()
     {
@@ -199,7 +199,7 @@ class Person extends Filtered
     /**
      * Get familyName
      *
-     * @return string 
+     * @return string
      */
     public function getFamilyName()
     {
@@ -222,12 +222,12 @@ class Person extends Filtered
     /**
      * Get birthDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthDate()
     {
         if($this->birthDate){
-            $this->birthDate->format('d.m.Y');
+            return $this->birthDate->format('d.m.Y');
         }
 
         return $this->birthDate;
@@ -249,7 +249,7 @@ class Person extends Filtered
     /**
      * Get birthPlace
      *
-     * @return string 
+     * @return string
      */
     public function getBirthPlace()
     {
@@ -272,7 +272,7 @@ class Person extends Filtered
     /**
      * Get inn
      *
-     * @return integer 
+     * @return integer
      */
     public function getInn()
     {
@@ -295,7 +295,7 @@ class Person extends Filtered
     /**
      * Get citizenship
      *
-     * @return string 
+     * @return string
      */
     public function getCitizenship()
     {
@@ -318,7 +318,7 @@ class Person extends Filtered
     /**
      * Get deputy
      *
-     * @return integer 
+     * @return integer
      */
     public function getDeputy()
     {
@@ -341,7 +341,7 @@ class Person extends Filtered
     /**
      * Get sex
      *
-     * @return \Object\Entity\Sex 
+     * @return \Object\Entity\Sex
      */
     public function getSex()
     {
@@ -371,7 +371,7 @@ class Person extends Filtered
     /**
      * Get client
      *
-     * @return \Object\Entity\Client 
+     * @return \Object\Entity\Client
      */
     public function getClient()
     {
@@ -404,7 +404,7 @@ class Person extends Filtered
     /**
      * Get unitPost
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUnitPost()
     {
@@ -515,16 +515,30 @@ class Person extends Filtered
     }
 
     public function getPersonSimple(){
-        $name = null;
-        /*if($this->getPerson()){
-            $name = $this->getPerson()->getFIO();
-        }
-        if($this->getUnit()){
-            $name = $this->getUnit()->getName();
-        }*/
         return array(
             'id' => $this->getId(),
-            'name' => $this->getFIO()
+            'first_name' => $this->getFirstName(),
+            'patronymic_name' => $this->getPatronymicName(),
+            'family_name' => $this->getFamilyName(),
+            'birth_date' => $this->getBirthDate(),
+            'birth_place' => $this->getBirthPlace(),
+            'sex_type' => $this->getSexId(),
+            'inn' => $this->getInn(),
+            'citizenship' => $this->getCitizenship(),
+        );
+    }
+
+    public function getEntityTable(){
+        return array(
+            'id' => $this->getId(),
+            'first_name' => $this->getFirstName(),
+            'patronymic_name' => $this->getPatronymicName(),
+            'family_name' => $this->getFamilyName(),
+            'birth_date' => $this->getBirthDate(),
+            'birth_place' => $this->getBirthPlace(),
+            'sex_type' => $this->getSexId(),
+            'inn' => $this->getInn(),
+            'citizenship' => $this->getCitizenship(),
         );
     }
 

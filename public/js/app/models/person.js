@@ -67,16 +67,20 @@ define(
                 columns: {
                     id: {
                         header: 'N',
-                        value: function(){
-                            return '00'+this.get('id');
+                        value: function(value){
+                            if(value.length){
+
+                            }
+                            return value;
                         }
                     },
                     family_name: {},
                     birth_date: {},
                     birth_place: {},
                     sex_type: {
-                        value: function(){
-                            return this.get('sex_type').substr(0, 1);
+                        value: function(value){
+                            value += '';
+                            return value.substr(0, 1);
                         }
                     },
                     inn: {},

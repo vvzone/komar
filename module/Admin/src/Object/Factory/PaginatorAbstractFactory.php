@@ -29,9 +29,12 @@ class PaginatorAbstractFactory implements AbstractFactoryInterface
             $entityClass = 'Object\\Entity\\' . $entityName;
 
             $repository = $entityManager->getRepository($entityClass);
-            //$repository = $entityManager->getRepository("Object\\Entity\\Client");
+
+            $requested_sorting = $this->getRequestedSorting($serviceLocator);
 
             $adapter = new \Object\Paginator\Adapter($repository);
+
+            $adapter->setSortOrder($requested_sorting);
 
             $paginator = new Paginator($adapter);
 
@@ -51,8 +54,11 @@ class PaginatorAbstractFactory implements AbstractFactoryInterface
 
             $paginator->setPaginationRequest($requested_pagination);
 
+            $paginator->setPaginationSorting($requested_sorting);
+
             $response = new JSONResponse($paginator->getCurrentItems());
             $response->setAdditional('paginator', $paginator->getAPI());
+            $response->setAdditional('sorting', $requested_sorting);
 
         } catch (\Exception $e) { //logic errors
             $response = $serviceLocator->get('Response');
@@ -72,6 +78,17 @@ class PaginatorAbstractFactory implements AbstractFactoryInterface
 
         return $response->getResponse();
     }
+
+    public function getRequestedSorting($serviceLocator){
+        $sort_by= (string)$serviceLocator->get('ControllerPluginManager')->get('params')->fromQuery('sort_by', 'id');
+        $sort_order = (string)$serviceLocator->get('ControllerPluginManager')->get('params')->fromQuery('sort_order', 'asc');
+        $requested_sorting = array(
+            'sort_by' => $sort_by,
+            'sort_order' => $sort_order
+        );
+        return $requested_sorting;
+    }
+
 
     /*
     public function createService(ServiceLocatorInterface $serviceLocator)

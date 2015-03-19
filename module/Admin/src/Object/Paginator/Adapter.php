@@ -10,6 +10,9 @@ class Adapter implements AdapterInterface{
     protected $repository;
     protected $pageCount;
 
+    protected $sortBy;
+    protected $sortOrder;
+
     /**
      * Construct
      *
@@ -25,10 +28,13 @@ class Adapter implements AdapterInterface{
      * @return array
      */
     public function getItems($offset, $itemCountPerPage){
-        return $this->repository->getItems($offset, $itemCountPerPage);
-
+        return $this->repository->getItems($offset, $itemCountPerPage, $this->sortBy, $this->sortOrder);
     }
 
+    public function setSortOrder($requestedSorting){
+        $this->sortBy = $requestedSorting['sort_by'];
+        $this->sortOrder = $requestedSorting['sort_order'];
+    }
 
 
     /**

@@ -1,5 +1,5 @@
 define(
-    'views/item_edit',
+    'views/table',
     [
         'jquery',
         'underscore',
@@ -32,7 +32,7 @@ define(
             render: function(options){
                 var self = this;
                 $(document).ready(function(){
-                    require(['jsx!views/react/controls/table/generate_table'], function(Table){
+                    require(['jsx!views/react/table/generate_table'], function(Table){
                         console.warn(['self.pagination', self.pagination]);
                         console.warn(['options', options]);
                         console.warn(['self', self]);

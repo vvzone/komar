@@ -28,6 +28,10 @@ class Paginator extends ZendPaginator{
         $this->setCurrentPageNumber($requestedPagination['page']);
     }
 
+    public function setPaginationSorting($requestedSorting){
+
+    }
+
     /**
      * @return array
      */

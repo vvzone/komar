@@ -21,23 +21,64 @@ define(
             mixins: [Test],
             render: function(){
                 return(
-                    <div className="table">Table</div>
+                    <table>
+                        <tbody>
+                            <tr>{this.getTableHeader()}</tr>
+                            {this.getTable()}
+                        </tbody>
+                    </table>
                 );
+            },
+            getTable: function(){
+                var table = [];
+                var self = this;
+                _.each(this.props.collection.models, function(model){
+                    table.push(
+                        <tr>{self.getTableRow(model)}</tr>
+                    );
+                });
+                return table;
+            },
+            getTableRow: function(model){
+                var row = [];
+                console.info(['model', model]);
+                _.each(this.props.collection.model.prototype.table.columns, function(rule, prop){
+                    var value = model.get(prop);
+                    console.log(['model.get('+prop+')', value]);
+
+                    if(_.has(rule, 'value')){
+                        row.push(
+                            <td>{rule.value(value)}</td>
+                        );
+                        console.warn(['rule.draw(value)', rule.value(value)]);
+                    }else{
+                        row.push(
+                            <td>{value}</td>
+                        );
+                        console.log('normal value', value);
+                    }
+                });
+
+                return row;
             },
             getTableHeader: function(){
                 var header = [];
-                _.each(this.props.model.table.header, function(num, key){
-                    console.log(['num, key', num, key]);
+                var self = this;
+                (debug)?console.info(['this.props.collection', this.props.collection]):null;
+                _.each(this.props.collection.model.prototype.table.columns, function(rule, prop){
+                    (debug)?console.log(['rule, prop', rule, prop]):null;
+                    header.push(<th>{self.getColumnHeader(rule, prop)}</th>);
                 });
-
-                /*
-                for(var i=0; i<this.props.model.table.length; i++){
-                    header.push(
-                        <td>{this.props.model.attr_rus_names[]}</td>
-                    );
+                return header;
+            },
+            getColumnHeader: function(rule, prop){
+                var header ='';
+                if(_.has(rule, 'header')){
+                    header = rule.header;
+                }else{
+                    header = this.props.collection.model.prototype.attr_rus_names[prop];
                 }
-                */
-
+                return header;
             }
         });
 
