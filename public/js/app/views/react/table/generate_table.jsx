@@ -80,9 +80,33 @@ define(
                 (debug)?console.info(['this.props.collection', this.props.collection]):null;
                 _.each(this.props.collection.model.prototype.table.columns, function(rule, prop){
                     (debug)?console.log(['rule, prop', rule, prop]):null;
-                    header.push(<th>{self.getColumnHeader(rule, prop)}</th>);
+                    var url = 'url';
+                    var new_url= self.getCurrentUrl(prop);
+                    header.push(<th><a href={new_url}>{self.getColumnHeader(rule, prop)}</a></th>);
                 });
                 return header;
+            },
+            getHeaderLink: function(){
+
+            },
+            getCurrentUrl: function(sort_by_name){
+                (debug)?console.info(['calculating current_url']):null;
+                var current_url = Backbone.history.fragment;
+                var where_params_start = current_url.indexOf("?");
+                (debug)?console.info(current_url.indexOf("?")):null;
+                where_params_start = where_params_start +'';
+                if(where_params_start == -1){
+                    where_params_start = current_url.length;
+                }
+                var url_params = current_url.substring(where_params_start);
+                (debug)?console.info(['params', url_params]):null;
+                var url = 'admin#'+current_url.substring(0, where_params_start);
+                (debug)?console.info(['current_url, w/o params', url]):null;
+
+
+                return url+'?sort_by='+sort_by_name;
+            },
+            getParameters: function(url_params){
             },
             getColumnHeader: function(rule, prop){
                 var header ='';

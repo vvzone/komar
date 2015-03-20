@@ -152,10 +152,14 @@ define(
                 },
                 clientCollectionView: function(view, parameters){
                     console.info('Router->clientCollectionView: collection='+view);
+                    console.info(['Router, parameters:', parameters]);
+                    /*
                     var ClientMenu =require(['views/client_menu_list'], function(ClientMenuList){
                         return ClientMenuList;
                     });
-                    CollectionsRouter.initialize(view, null);
+                    */
+                    ClientMenuList.initialize();
+                    CollectionsRouter.initialize(view, parameters, null);
                 },
                 clientItemNew: function(view){
                     console.info('Router->clientItemNew, view='+view);

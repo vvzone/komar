@@ -23,12 +23,19 @@ define(
             var route_collection_array = Config['collections_router'];
 
             var pagination_request  =  {};
+            var sort_request = {};
             if(parameters){
                if(parameters.page){
                    pagination_request.page = parseInt(parameters.page);
                }
                if(parameters.limit){
                    pagination_request.per_page = parseInt(parameters.limit);
+               }
+               if(parameters.sort_by){
+                   sort_request.sort_by = parameters.sort_by;
+                   if(parameters.sort_order){
+                       sort_request.sort_order = parameters.sort_order;
+                   }
                }
             }
             var search = _.each(route_collection_array, function(route_name){
@@ -56,7 +63,7 @@ define(
                                 break;
                                 case('table'):
                                     (debug)?console.log('will use TableView for collection output...'):null;
-                                    TableView.initialize(Collection);
+                                    TableView.initialize(Collection, pagination_request, sort_request);
                                     return Collection;
                                 break;
                                 default:

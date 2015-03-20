@@ -63,7 +63,7 @@ define(
             table: {
                 columns: {
                     id: {
-                        header: 'N'
+                        header: '№'
                     },
                     name: {},
                     document_author: {},
@@ -74,14 +74,12 @@ define(
                         header: 'Маршрут',
                         value: function(value){
                             return value;
-                            //return 'Марш='+value;
                         }
                     },
                     current_node: {
                         header: 'Текущий этап',
                         value: function(value){
                             return value;
-                            //return 'Этап='+value;
                         }
                     }
                 }

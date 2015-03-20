@@ -81,7 +81,7 @@ class PaginatorAbstractFactory implements AbstractFactoryInterface
 
     public function getRequestedSorting($serviceLocator){
         $sort_by= (string)$serviceLocator->get('ControllerPluginManager')->get('params')->fromQuery('sort_by', 'id');
-        $sort_order = (string)$serviceLocator->get('ControllerPluginManager')->get('params')->fromQuery('sort_order', 'asc');
+        $sort_order = (string)$serviceLocator->get('ControllerPluginManager')->get('params')->fromQuery('order', 'asc');
         $requested_sorting = array(
             'sort_by' => $sort_by,
             'sort_order' => $sort_order

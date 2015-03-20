@@ -37,6 +37,7 @@ define(
                         console.warn(['options', options]);
                         console.warn(['self', self]);
 
+                        $('#main_main').html('');
                         React.renderComponent(
                             new Table({
                                 collection: self.collection,
@@ -48,7 +49,7 @@ define(
             }
         });
 
-        var initialize = function(CollectionModule, pagination_request){
+        var initialize = function(CollectionModule, pagination_request, sort_request){
             var Collection = new CollectionModule;
             //if(debug){
             console.log('CollectionModule');
@@ -65,6 +66,19 @@ define(
                 }
                 if(pagination_request.per_page){
                     per_page = pagination_request.per_page;
+                }
+            }
+
+            if(sort_request){
+                if(sort_request.sort_by){
+                    console.info('===========/*\===========');
+                    (debug)?console.warn(['sort_request.sort_by', sort_request.sort_by]):null;
+                    (debug)?console.warn(['sort_request.sort_order', sort_request.sort_order]):null;
+                    var sort_order = -1; //asc
+                    if(sort_request.sort_order && sort_request.sort_order !='asc'){
+                        sort_order = 1; //desc
+                    }
+                    Collection.setSorting(sort_request.sort_by, sort_order);
                 }
             }
 
