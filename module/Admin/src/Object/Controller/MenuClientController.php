@@ -20,11 +20,28 @@ class MenuClientController extends RestController
         $serviceLocator = $this
             ->getServiceLocator();
         //$result = $serviceLocator->get('MenuClientRESTListPagination');
+
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $result = $objectManager->getRepository('Object\Entity\MenuClient');
+        /*
+        $result = $objectManager->getRepository('Object\Entity\MenuClient')->findAll();
         return $result;
+        */
+        $arrayTree = array();
+        //$repo = $objectManager->getRepository('Object\Entity\MenuClientTree');
+        $repo = $objectManager->getRepository('Object\Entity\MenuClient')->findAll();
+        //$arrayTree = $repo->childrenHierarchy();
+
+        foreach($repo as $menu){
+            $arrayTree[] = $menu->getMenuClientSimple(); //getAll - for with Person
+        }
+
+        return new JsonModel(
+            array(
+                'requested_data' => $arrayTree
+            )
+        );
     }
 
     public function get($id)

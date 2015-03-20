@@ -10,23 +10,37 @@ define(
         'config',
         'event_bus',
 
-        'jsx!views/react/table/test'
+        'jsx!views/react/controls/paginator/paginator'
     ],function(
             $, _, Backbone, React, Config, EventBus,
-            Test
+            Paginator
         ){
         var debug = (Config['debug'] && Config['debug']['debug_table'])? 1:null;
 
         var Table = React.createClass({
-            mixins: [Test],
+            //mixins: [Test],
+            getPaginator: function(){
+                var pagination_request = this.props.pagination;
+                if(this.props.pagination){
+                    return <Paginator pagination={pagination_request} callback={this.collectionRePaginate} />;
+                }
+                return null;
+            },
+            collectionRePaginate: function(event){
+                console.info(['collectionPaginate', event]);
+            },
             render: function(){
                 return(
-                    <table className="table table-striped table-bordered table-hover">
-                        <tbody>
-                            <tr>{this.getTableHeader()}</tr>
-                            {this.getTable()}
-                        </tbody>
-                    </table>
+                    <div className="table_component">
+                        <table className="table table-striped table-bordered table-hover">
+                            <tbody>
+                                <tr>{this.getTableHeader()}</tr>
+                                {this.getTable()}
+                            </tbody>
+                        </table>
+                        <div>{this.getPaginator()}</div>
+                    </div>
+
                 );
             },
             getTable: function(){

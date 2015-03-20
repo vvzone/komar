@@ -366,6 +366,10 @@ class Document extends Filtered
      */
     public function getRoute()
     {
+        /*
+        if($this->route){
+            $this->route->getKeys();
+        }*/
         return $this->route;
     }
 
@@ -429,6 +433,27 @@ class Document extends Filtered
             'id' => $this->getId(),
             'name' => $this->getName(),
             'date' => $this->getDate()
+        );
+    }
+
+    public function getPlain(){
+        return array(
+
+        );
+    }
+
+    public function getTable(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'document_author' => $this->getDocumentAuthor()->getFIO(),
+            'document_name' => $this->getName(),
+            'date' => $this->getDate(),
+            'document_type' => $this->getDocumentType()->getName(),
+            'secrecy_type' => $this->getDocumentType()->getSecrecyType()->getName(),
+            'urgency_type' => $this->getDocumentType()->getUrgencyType()->getName(),
+            'route' => 'Default', //$this->getRoute(),
+            'current_node' => $this->getCurrentNodeLevel()->getName()
         );
     }
 }

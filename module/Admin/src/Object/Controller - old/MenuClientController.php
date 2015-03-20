@@ -38,7 +38,9 @@ class MenuClientController extends RestController
         }
 
         return new JsonModel(
-            $arrayTree
+            array(
+                'requested_data' => $arrayTree
+            )
         );
     }
 

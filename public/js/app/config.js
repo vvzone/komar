@@ -65,7 +65,8 @@ define(
                 //{documents_output: 'client_list'},
                 {route: 'list'},
                 {very_urgency: 'list'},
-                {client_menu: 'tree'}
+                {client_menu: 'tree'},
+                {inbox: 'table'}
             ],
             local_server: true,
             temp: null,

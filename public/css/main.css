@@ -1163,6 +1163,12 @@ div#select_entry div.bg_box:hover div {
   content: '';
 }
 /* ===== TABLE ===== */
-table {
+table.table {
   color: #525252;
+}
+.table-hover tbody tr:hover td {
+  background-color: #dff0d8!important;
+}
+.table-hover tbody th:hover {
+  background-color: #d9edf7!important;
 }

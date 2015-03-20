@@ -20,7 +20,7 @@ use Zend\EventManager\EventManagerInterface;
 use Admin\Controller\RestController;
 
 
-class MessagesController extends RestController
+class InboxController extends RestController
 {
     protected $documentTable;
     protected $documentTableList;
@@ -28,39 +28,11 @@ class MessagesController extends RestController
     /*-------------- default methods ----------*/
 
     public function getList()
-
     {
-        $objectManager = $this
-            ->getServiceLocator()
-            ->get('Doctrine\ORM\EntityManager');
-
-        //$results = $objectManager->getRepository('Object\Entity\Document')->getInbox(24);
-        //$results = $objectManager->getRepository('Object\Entity\Document')->getClientIdFromPersonId(10);
-        $results = $objectManager->getRepository('Object\Entity\Document')->getAuthored(5); //person
-        //$results = $objectManager->getRepository('Object\Entity\Document')->getSent(5); //person
-        //$results = $objectManager->getRepository('Object\Entity\Document')->getDraft(5); //person
-        $data = array();
-
-        //$data[] = $results->getDocumentSimple(); //->getAll()
-
-        foreach ($results as $result) {
-            //$data[] = $result;
-            //$data[] = $result->getDocumentSimple();
-            $data[] = $result->getTable();
-        }
-
-
-        return new JsonModel(
-           array(
-               'requested_data' => $data,
-               "paginator" => array(
-                    "current_page" => 1,
-                    "total_pages"=> 2,
-                    "total_records"=> 19,
-                    "records_per_page"=> 10
-               ),
-           )
-        );
+        $serviceLocator = $this
+            ->getServiceLocator();
+        $result = $serviceLocator->get('InboxMessagesTablePaginated');
+        return $result;
     }
 
     public function get($id)

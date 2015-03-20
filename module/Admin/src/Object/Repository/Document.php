@@ -2,6 +2,8 @@
 
 namespace Object\Repository;
 
+use \Doctrine\ORM\Query;
+
 class Document extends PageableRepository
 {
     /**
@@ -43,7 +45,7 @@ class Document extends PageableRepository
             "SELECT D FROM Object\Entity\Document D WHERE D.documentAuthor = :person_id"
         );
         $query->setParameter('person_id', $person_id);
-        $result = $query->getResult();
+        $result = $query->getResult(); //Query::HYDRATE_ARRAY
         return $result;
     }
 
@@ -58,7 +60,10 @@ class Document extends PageableRepository
             (SELECT NL.id FROM Object\Entity\NodeLevel NL JOIN NL.nodes N WITH N.id IN (SELECT n.id FROM Object\Entity\Node n WHERE n.client = :client_id))"
         );
         $query->setParameter('client_id', $client_id);
-        $result = $query->getResult(); //->getArrayResult()
+        //$result = $query->getResult(); //->getArrayResult()
+        $result = $query->getQuery()->getResult(Query::HYDRATE_ARRAY);
+        $result = null;
+        //$result = $query->getResult(Query::HYDRATE_ARRAY);
 
         return $result;
     }

@@ -57,16 +57,32 @@ class DocumentType extends Filtered
     private $isService;
 
     /**
-     * @var integer
+     * var integer
      *
-     * @ORM\Column(name="secrecy_type", type="integer", nullable=true)
+     * ORM\Column(name="secrecy_type", type="integer", nullable=true)
+     */
+    /**
+     * @var \Object\Entity\SecrecyType
+     *
+     * @ORM\OneToOne(targetEntity="Object\Entity\SecrecyType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="secrecy_type", referencedColumnName="id")
+     * })
      */
     private $secrecyType;
 
     /**
-     * @var integer
+     * var integer
      *
-     * @ORM\Column(name="urgency_type", type="integer", nullable=true)
+     * ORM\Column(name="urgency_type", type="integer", nullable=true)
+     */
+    /**
+     * @var \Object\Entity\UrgencyType
+     *
+     * @ORM\OneToOne(targetEntity="Object\Entity\UrgencyType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="urgency_type", referencedColumnName="id")
+     * })
      */
     private $urgencyType;
 

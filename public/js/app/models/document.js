@@ -39,6 +39,7 @@ define(
                 date: 'Дата',
                 secrecy_type: 'Секретность',
                 urgency_type: 'Срочность',
+                route: 'Маршрут',
                 current_node: 'Текущий этап маршрута',
                 document_attribute_types: 'Аттрибуты документа'
             },
@@ -60,8 +61,29 @@ define(
                 name: 'tiny_text'
             },
             table: {
-                headers: {
-
+                columns: {
+                    id: {
+                        header: 'N'
+                    },
+                    name: {},
+                    document_author: {},
+                    date: {},
+                    secrecy_type: {},
+                    urgency_type: {},
+                    route: {
+                        header: 'Маршрут',
+                        value: function(value){
+                            return value;
+                            //return 'Марш='+value;
+                        }
+                    },
+                    current_node: {
+                        header: 'Текущий этап',
+                        value: function(value){
+                            return value;
+                            //return 'Этап='+value;
+                        }
+                    }
                 }
             },
             url: function() {

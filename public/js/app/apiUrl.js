@@ -121,6 +121,13 @@ define(
 
                 return (local_server)? local: production;
             },
+            /* Документы */
+            inbox: function() {
+                var local = host + prefix + "/inbox";
+                var production = host + prefix + "/inbox";
+
+                return (local_server)? local: production;
+            },
             /* Срочность */
             urgency_types: function() {
                 var local = host + prefix + "/urgency_type";
@@ -434,6 +441,7 @@ define(
 
                 return (local_server)? local: production;
             }
+
         };
 
         //apiUrl добавить

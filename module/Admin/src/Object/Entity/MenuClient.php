@@ -203,6 +203,9 @@ class MenuClient extends Filtered
      */
     public function getType()
     {
+        if($this->type){
+            return $this->type->getName();
+        }
         return $this->type;
     }
 
@@ -302,7 +305,7 @@ class MenuClient extends Filtered
             'entity' => $this->getEntity(),
             'is_not_screen' => $this->getIsNotScreen(),
             'type' => $this->getType(),
-            'parent_id' => $this->getParent()->getId(),
+            'parent_id' => $this->getParent(),
             'icon' => $this->getIcon()
         );
 
