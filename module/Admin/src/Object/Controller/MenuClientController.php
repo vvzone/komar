@@ -19,7 +19,11 @@ class MenuClientController extends RestController
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('MenuClientRESTListPagination');
+        //$result = $serviceLocator->get('MenuClientRESTListPagination');
+        $objectManager = $this
+            ->getServiceLocator()
+            ->get('Doctrine\ORM\EntityManager');
+        $result = $objectManager->getRepository('Object\Entity\MenuClient');
         return $result;
     }
 

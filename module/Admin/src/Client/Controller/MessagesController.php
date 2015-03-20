@@ -33,9 +33,9 @@ class MessagesController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $results = $objectManager->getRepository('Object\Entity\Document')->getInbox(24);
+        //$results = $objectManager->getRepository('Object\Entity\Document')->getInbox(24);
         //$results = $objectManager->getRepository('Object\Entity\Document')->getClientIdFromPersonId(10);
-        //$results = $objectManager->getRepository('Object\Entity\Document')->getAuthored(5); //person
+        $results = $objectManager->getRepository('Object\Entity\Document')->getAuthored(5); //person
         //$results = $objectManager->getRepository('Object\Entity\Document')->getSent(5); //person
         //$results = $objectManager->getRepository('Object\Entity\Document')->getDraft(5); //person
         $data = array();

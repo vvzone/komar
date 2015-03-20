@@ -1162,3 +1162,7 @@ div#select_entry div.bg_box:hover div {
 .paginator div.limit ul.options_block li:last-child:after {
   content: '';
 }
+/* ===== TABLE ===== */
+table {
+  color: #525252;
+}

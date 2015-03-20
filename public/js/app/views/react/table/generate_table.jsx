@@ -21,7 +21,7 @@ define(
             mixins: [Test],
             render: function(){
                 return(
-                    <table>
+                    <table className="table table-striped table-bordered table-hover">
                         <tbody>
                             <tr>{this.getTableHeader()}</tr>
                             {this.getTable()}
@@ -45,8 +45,7 @@ define(
                 _.each(this.props.collection.model.prototype.table.columns, function(rule, prop){
                     var value = model.get(prop);
                     console.log(['model.get('+prop+')', value]);
-
-                    if(_.has(rule, 'value')){
+                    if(_.has(rule, 'value') && value){
                         row.push(
                             <td>{rule.value(value)}</td>
                         );

@@ -75,14 +75,20 @@ define(
                         }
                     },
                     family_name: {},
-                    birth_date: {},
+                    birth_date: {
+                        value: function(value){
+                            return value.date;
+                        }
+                    },
                     birth_place: {},
+                    /*
                     sex_type: {
                         value: function(value){
                             value += '';
                             return value.substr(0, 1);
                         }
                     },
+                    */
                     inn: {},
                     citizenship: {}
                 }

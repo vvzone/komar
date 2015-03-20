@@ -120,6 +120,10 @@ class PageableRepository extends EntityRepository implements ServiceLocatorAware
             if(property_exists($this->getCurrentEntityClass(), $requestedSortBy)){
                 $sortBy = $requestedSortBy;
             }else{
+                $serviceLocator = $this->getServiceLocator();
+                var_dump($serviceLocator);
+                //$response = $serviceLocator->get('Response');
+                //$response->setStatusCode(500);
                 echo 'Wrong sortBy-property='.$requestedSortBy;
             }
         }

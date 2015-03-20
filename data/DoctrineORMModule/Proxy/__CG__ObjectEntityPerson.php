@@ -565,6 +565,17 @@ class Person extends \Object\Entity\Person implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
+    public function getEntityTable()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getEntityTable', array());
+
+        return parent::getEntityTable();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getEntityName()
     {
 
