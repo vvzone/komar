@@ -1,13 +1,95 @@
+@import 'constants.less';
+
 table.table{
   color: #525252;
 
+  th{
+    font: normal 1.5 sans-serif!important;
+    font: bold 0.8em/1.5 sans-serif;
+    color: #9c9c9c;
+    //border: 1px solid #8b0000;
+
+    //background: #444444;
+    //background: #777777;
+
+    /*
+      background: #e9eaec;
+      background: -moz-linear-gradient(top, #e9eaec 1%, #dee2e8 100%);
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #e9eaec), color-stop(100%, #dee2e8));
+      background: -webkit-linear-gradient(top, #e9eaec 1%, #dee2e8 100%);
+      background: -o-linear-gradient(top, #e9eaec 1%, #dee2e8 100%);
+      background: -ms-linear-gradient(top, #e9eaec 1%, #dee2e8 100%);
+      background: linear-gradient(to bottom, #e9eaec 1%, #dee2e8 100%);
+    */
+
+    /*
+        background: #777777;
+    background: -moz-linear-gradient(top, #9c9c9c 1%, #777777 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #9c9c9c), color-stop(100%, #777777));
+    background: -webkit-linear-gradient(top, #9c9c9c 1%, #777777 100%);
+    background: -o-linear-gradient(top, #9c9c9c 1%, #777777 100%);
+    background: -ms-linear-gradient(top, #9c9c9c 1%, #777777 100%);
+    background: linear-gradient(to bottom, #9c9c9c 1%, #777777 100%);
+    */
+
+    /*
+    background: #777777;
+    background: -moz-linear-gradient(top, #8a8a8a 1%, #777777 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #8a8a8a), color-stop(100%, #777777));
+    background: -webkit-linear-gradient(top, #8a8a8a 1%, #777777 100%);
+    background: -o-linear-gradient(top, #8a8a8a 1%, #777777 100%);
+    background: -ms-linear-gradient(top, #8a8a8a 1%, #777777 100%);
+    background: linear-gradient(to bottom, #8a8a8a 1%, #777777 100%);
+    */
+    background: #777777;
+    background: -moz-linear-gradient(top, #818080 1%, #777777 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #818080), color-stop(100%, #777777));
+    background: -webkit-linear-gradient(top, #818080 1%, #777777 100%);
+    background: -o-linear-gradient(top, #818080 1%, #777777 100%);
+    background: -ms-linear-gradient(top, #818080 1%, #777777 100%);
+    background: linear-gradient(to bottom, #818080 1%, #777777 100%);
+
+
+    a{
+      //color: #9c9c9c;
+      color: white;
+    }
+
+    a:hover{
+      text-decoration: none;
+    }
+
+  }
+
+  th:hover{
+    //background-color: #fcf8e3!important;
+    //background-color: #d9edf7!important;
+    //background: #c6bdbb;
+    //background: #777777;
+    //background: #9c9c9c;
+    background: #8a8a8a;
+    background: -moz-linear-gradient(top, #9c9c9c 1%, #8a8a8a 100%);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(1%, #9c9c9c), color-stop(100%, #8a8a8a));
+    background: -webkit-linear-gradient(top, #9c9c9c 1%, #8a8a8a 100%);
+    background: -o-linear-gradient(top, #9c9c9c 1%, #8a8a8a 100%);
+    background: -ms-linear-gradient(top, #9c9c9c 1%, #8a8a8a 100%);
+    background: linear-gradient(to bottom, #9c9c9c 1%, #8a8a8a 100%);
+    cursor: pointer;
+
+    a{
+      //text-decoration: underline;
+    }
+  }
+
+  td{
+    font: bold 0.8em/1.5 sans-serif;
+    background: white;
+  }
+
+  tr:hover td{
+    background-color: #dff0d8!important;
+    //background-color: #c6f0fe!important;
+  }
 }
 
-.table-hover tbody tr:hover td{
-  background-color: #dff0d8!important;
-}
 
-.table-hover tbody th:hover{
-  //background-color: #fcf8e3!important;
-  background-color: #d9edf7!important;
-}

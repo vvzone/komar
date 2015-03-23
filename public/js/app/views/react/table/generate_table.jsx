@@ -10,10 +10,11 @@ define(
         'config',
         'event_bus',
 
-        'jsx!views/react/controls/paginator/paginator'
+        'jsx!views/react/controls/paginator/paginator',
+        'jsx!views/react/table/header_link'
     ],function(
             $, _, Backbone, React, Config, EventBus,
-            Paginator
+            Paginator, HeaderLink
         ){
         var debug = (Config['debug'] && Config['debug']['debug_table'])? 1:null;
 
@@ -32,9 +33,11 @@ define(
             render: function(){
                 return(
                     <div className="table_component">
-                        <table className="table table-striped table-bordered table-hover">
-                            <tbody>
+                        <table className="table table-bordered table-striped table-hover">
+                            <thead>
                                 <tr>{this.getTableHeader()}</tr>
+                            </thead>
+                            <tbody>
                                 {this.getTable()}
                             </tbody>
                         </table>
@@ -42,6 +45,7 @@ define(
                     </div>
 
                 );
+                //table-bordered
             },
             getTable: function(){
                 var table = [];
@@ -82,12 +86,24 @@ define(
                     (debug)?console.log(['rule, prop', rule, prop]):null;
                     var url = 'url';
                     var new_url= self.getCurrentUrl(prop);
-                    header.push(<th><a href={new_url}>{self.getColumnHeader(rule, prop)}</a></th>);
+                    //header.push(<th onClick={self.testFunc}><a href={new_url}>{self.getColumnHeader(rule, prop)}</a></th>);
+                    var isSelected = self.isCurrentSelected(prop);
+                    header.push(
+                        <HeaderLink url={new_url} column_name={prop} column_rus_name={self.getColumnHeader(rule, prop)} sort_order={isSelected} callback={self.switchSortOrder} />
+                    );
                 });
                 return header;
             },
-            getHeaderLink: function(){
-
+            isCurrentSelected: function(prop){
+                if(this.state.active_column == prop){
+                    return true;
+                }
+                return false;
+            },
+            switchSortOrder: function(name){
+                this.setState({
+                    active_column: name
+                });
             },
             getCurrentUrl: function(sort_by_name){
                 (debug)?console.info(['calculating current_url']):null;
