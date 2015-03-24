@@ -23,7 +23,7 @@ define(
                 (debug)?console.log(this.collection):null;
 
                 this.collection.bind('destroy', this.render, this);
-                //this.collection.bind('change', this.render, this);
+                this.collection.bind('change', this.render, this);
                 this.collection.bind('reset', this.render, this);
                 var self = this;
                 EventBus.on('success', function(){
