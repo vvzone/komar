@@ -12,7 +12,7 @@ define(
         var HeaderLink = React.createClass({
             render: function(){
                 return (
-                    <th onClick={this.callBack}>{this.props.sort_order}<a href={this.props.current_url}>{this.props.column_rus_name}</a></th>
+                    <th onClick={this.callBack}>{this.getSorting}<a href={this.props.current_url}>{this.props.column_rus_name}</a></th>
                 );
             },
             callBack: function(){
@@ -22,6 +22,7 @@ define(
             getSorting: function(){
                 if(this.props.sort_order){
                     console.log('have sort_order');
+                    return this.props.sort_order.sort_order;
                 }
             }
         });

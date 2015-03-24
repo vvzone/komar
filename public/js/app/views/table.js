@@ -93,7 +93,9 @@ define(
                     paginator = collection.paginator
                     console.info(['paginator', response.paginator]);
                 }
-                var View = new TableView({collection: Collection, pagination: paginator});
+
+                console.warn(['collection.sorting', collection.sorting, collection]);
+                var View = new TableView({collection: Collection, pagination: paginator, sort_order: collection.sorting});
             });
         };
 

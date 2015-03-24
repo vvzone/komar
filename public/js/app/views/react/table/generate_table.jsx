@@ -20,6 +20,11 @@ define(
 
         var Table = React.createClass({
             //mixins: [Test],
+            getInitialState: function(){
+                return {
+                    active_column: null
+                }
+            },
             getPaginator: function(){
                 var pagination_request = this.props.pagination;
                 if(this.props.pagination){
@@ -87,23 +92,28 @@ define(
                     var url = 'url';
                     var new_url= self.getCurrentUrl(prop);
                     //header.push(<th onClick={self.testFunc}><a href={new_url}>{self.getColumnHeader(rule, prop)}</a></th>);
-                    var isSelected = self.isCurrentSelected(prop);
                     header.push(
-                        <HeaderLink url={new_url} column_name={prop} column_rus_name={self.getColumnHeader(rule, prop)} sort_order={isSelected} callback={self.switchSortOrder} />
+                        <HeaderLink url={new_url}
+                        column_name={prop}
+                        column_rus_name={self.getColumnHeader(rule, prop)}
+                        sort_order={self.isCurrentSelected(prop)}
+                        callback={self.switchSortOrder} />
                     );
                 });
                 return header;
             },
             isCurrentSelected: function(prop){
-                if(this.state.active_column == prop){
-                    return true;
+                if(this.props.sort_order.sort_by == prop){
+                    console.info(['this.props.sort_order.sort_by == prop', this.props.sort_order.sort_by, prop]);
+                    return this.props.sort_order.sort_order;
                 }
+                console.info('no');
                 return false;
             },
             switchSortOrder: function(name){
-                this.setState({
-                    active_column: name
-                });
+                console.info(['switchSortOrder, name', name]);
+                var url = this.getCurrentUrl(name);
+                console.info(['redirect url', url]);
             },
             getCurrentUrl: function(sort_by_name){
                 (debug)?console.info(['calculating current_url']):null;
