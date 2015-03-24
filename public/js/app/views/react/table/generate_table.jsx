@@ -9,22 +9,18 @@ define(
         'react',
         'config',
         'event_bus',
+        'app_registry',
 
         'jsx!views/react/controls/paginator/paginator',
         'jsx!views/react/table/header_link'
     ],function(
-            $, _, Backbone, React, Config, EventBus,
+            $, _, Backbone, React, Config, EventBus, app_registry,
             Paginator, HeaderLink
         ){
         var debug = (Config['debug'] && Config['debug']['debug_table'])? 1:null;
 
         var Table = React.createClass({
             //mixins: [Test],
-            getInitialState: function(){
-                return {
-                    active_column: null
-                }
-            },
             getPaginator: function(){
                 var pagination_request = this.props.pagination;
                 if(this.props.pagination){
@@ -110,10 +106,18 @@ define(
                 console.info('no');
                 return false;
             },
-            switchSortOrder: function(name){
+            switchSortOrder: function(name, sorted_by){
                 console.info(['switchSortOrder, name', name]);
                 var url = this.getCurrentUrl(name);
                 console.info(['redirect url', url]);
+                if(sorted_by){
+                    if(sorted_by == 'asc'){
+                        url += '&sort_order=desc';
+                    }else{
+                        url += '&sort_order=asc';
+                    }
+                }
+                app_registry.router.navigate(url, true);
             },
             getCurrentUrl: function(sort_by_name){
                 (debug)?console.info(['calculating current_url']):null;
@@ -126,7 +130,7 @@ define(
                 }
                 var url_params = current_url.substring(where_params_start);
                 (debug)?console.info(['params', url_params]):null;
-                var url = 'admin#'+current_url.substring(0, where_params_start);
+                var url = '#'+current_url.substring(0, where_params_start);
                 (debug)?console.info(['current_url, w/o params', url]):null;
 
 

@@ -41,7 +41,8 @@ define(
                         React.renderComponent(
                             new Table({
                                 collection: self.collection,
-                                pagination: options.pagination
+                                pagination: options.pagination,
+                                sort_order: options.sort_order
                             }), document.getElementById("main_main")
                         );
                     });
