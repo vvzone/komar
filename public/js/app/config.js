@@ -17,20 +17,21 @@ define(
                 apiUrl: null,
                 debug_list: null,
                 debug_main_list: 1,
+                debug_list_item: 1,
                 debug_modals: null,
-                debug_item_edit: 1,
+                debug_item_edit: null,
                 debug_control_router: null,
                 debug_route_levels_control: null,
                 debug_login: null,
                 debug_router: null,
                 debug_map: null,
                 debug_tree: null,
-                debug_paginator: 1,
+                debug_paginator: null,
                 debug_controls: {
                     tiny_text: null,
                     simple_select: null
                 },
-                debug_table: 1
+                debug_table: null
             },
             collections_router: [
                 {attribute_types: 'list'},

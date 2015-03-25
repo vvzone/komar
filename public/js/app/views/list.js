@@ -35,7 +35,7 @@ define(
             render: function(options){
                 var self = this;
                 $(document).ready(function(){
-                    require(['jsx!views/react/controls/main_list'], function(MainList){
+                    require(['jsx!views/react/list/main_list'], function(MainList){
                         console.warn(['self.pagination', self.pagination]);
                         console.warn(['options', options]);
                         console.warn(['self', self]);
