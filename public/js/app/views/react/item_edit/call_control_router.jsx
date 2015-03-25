@@ -22,11 +22,11 @@ define(
                 callControlRouter: function(model, prop){
                     // Коллекция может быть еще не получена и тогда это приведет к неправильному Контролл-Роуту
                     // коллекция ведь зависит от State
-
                     (debug)?console.log('-> callControlRouter'):null;
 
                     //Model have a dependency-description for current field
                     if(this.props.model.attr_dependencies!=null && typeof(this.props.model.attr_dependencies[prop])!='undefined'){
+                        console.log(['typeof(this.props.model.attr_dependencies['+prop+')', typeof(this.props.model.attr_dependencies[prop])]);
                         (debug)?console.log('this.props.model.attr_dependencies['+prop+']='+this.props.model.attr_dependencies[prop]):null;
 
                         if(this.state.dependency_array != null){
@@ -37,7 +37,11 @@ define(
                         }
                     }
 
+                    console.log(['form', this.props.model.form]);
+                    console.log(['this.props.model.form['+prop+']', this.props.model.form[prop]]);
+
                     if(this.props.model.form != null && typeof(this.props.model.form[prop])!='undefined'){
+                        console.info(['typeof(this.props.model.attr_dependencies['+prop+')', typeof(this.props.model.attr_dependencies[prop])]);
                         return this.initModelDescribed(model, prop);
                     }
 

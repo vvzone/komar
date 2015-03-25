@@ -101,6 +101,7 @@ define(
                         }
                     }else{
                         //does not have hidden_fields in model
+                        console.info(['====>', prop]);
                         controls.push(
                             this.callControlRouter(model, prop)
                         );

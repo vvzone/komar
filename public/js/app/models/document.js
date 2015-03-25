@@ -28,7 +28,7 @@ define(
                 presentation: null,
                 route: null, //simple_select
                 current_node: null,
-                document_attributes: null
+                document_attribute: null
             },
             attr_rus_names: {
                 name: 'Название',
@@ -39,7 +39,7 @@ define(
                 urgency_type: 'Срочность',
                 route: 'Маршрут',
                 current_node: 'Текущий этап маршрута',
-                document_attribute_types: 'Аттрибуты документа'
+                document_attribute: 'Аттрибуты документа'
             },
             view_only:{
                 'current_node': 'current_node'
@@ -87,7 +87,7 @@ define(
                 date: 'tiny_text',
                 secrecy_type: 'simple_select',
                 urgency_type: 'simple_select',
-                document_attributes: {
+                document_attribute: {
                     header: 'tiny_text',
                     main_text:  'textarea'
                 }
