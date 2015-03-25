@@ -61,23 +61,35 @@ define(
             getTableRow: function(model){
                 var row = [];
                 console.info(['model', model]);
+                var self = this;
                 _.each(this.props.collection.model.prototype.table.columns, function(rule, prop){
                     var value = model.get(prop);
                     console.log(['model.get('+prop+')', value]);
                     if(_.has(rule, 'value') && value){
                         row.push(
-                            <td>{rule.value(value)}</td>
+                            //<td>{rule.value(value)}</td>
+                            self.getRowCell(rule.value(value), model)
                         );
                         console.warn(['rule.draw(value)', rule.value(value)]);
                     }else{
                         row.push(
-                            <td>{value}</td>
+                            //<td>{value}</td>
+                            self.getRowCell(value, model)
                         );
                         console.log('normal value', value);
                     }
                 });
 
                 return row;
+            },
+            getRowCell: function(value, model){
+                return(
+                    <td onClick={this.openRow.bind(this, model)}>{value}</td>
+                );
+            },
+            openRow: function(model){
+                console.log(['openRow model', model]);
+                EventBus.trigger('item-open', model);
             },
             getTableHeader: function(){
                 var header = [];
@@ -99,9 +111,11 @@ define(
                 return header;
             },
             isCurrentSelected: function(prop){
-                if(this.props.sort_order.sort_by == prop){
-                    console.info(['this.props.sort_order.sort_by == prop', this.props.sort_order.sort_by, prop]);
-                    return this.props.sort_order.sort_order;
+                if(this.props.sort_order){
+                    if(this.props.sort_order.sort_by == prop){
+                        console.info(['this.props.sort_order.sort_by == prop', this.props.sort_order.sort_by, prop]);
+                        return this.props.sort_order.sort_order;
+                    }
                 }
                 console.info('no');
                 return false;

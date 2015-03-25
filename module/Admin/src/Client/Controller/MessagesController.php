@@ -50,15 +50,18 @@ class MessagesController extends RestController
         }
 
 
+        $paginator = null;
+        $paginator = array(
+            "current_page" => 1,
+            "total_pages"=> 2,
+            "total_records"=> 19,
+            "records_per_page"=> 10
+        );
+
         return new JsonModel(
            array(
                'requested_data' => $data,
-               "paginator" => array(
-                    "current_page" => 1,
-                    "total_pages"=> 2,
-                    "total_records"=> 19,
-                    "records_per_page"=> 10
-               ),
+               "paginator" => $paginator
            )
         );
     }

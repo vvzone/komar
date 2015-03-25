@@ -36,9 +36,11 @@ define(
                 var self = this;
                 $(document).ready(function(){
                     require(['jsx!views/react/list/main_list'], function(MainList){
-                        console.warn(['self.pagination', self.pagination]);
-                        console.warn(['options', options]);
-                        console.warn(['self', self]);
+                        if(debug){
+                            console.warn(['self.pagination', self.pagination]);
+                            console.warn(['options', options]);
+                            console.warn(['self', self]);
+                        }
 
                         React.renderComponent(
                             new MainList({
@@ -53,13 +55,13 @@ define(
 
             var initialize = function(CollectionModule, pagination_request){
                 var Collection = new CollectionModule;
-                //if(debug){
+                if(debug){
                     console.log('CollectionModule');
                     console.log(CollectionModule);
                     console.log('Collection');
                     console.log(Collection);
                     console.log('trying fetch collection...');
-                //}
+                }
                 var page = 1;
                 var per_page = 10;
                 if(pagination_request){
@@ -80,11 +82,11 @@ define(
 
                 Collection.getPage(page).done(function(collection, response, options){
                     var paginator = null;
-                    console.info(['collection, response, options', collection, response, options]);
-                    console.info(['paginator', collection.paginator]);
+                    (debug)?console.info(['collection, response, options', collection, response, options]):null;
+                    (debug)?console.info(['paginator', collection.paginator]):null;
                     if(collection.paginator){
-                        paginator = collection.paginator
-                        console.info(['paginator', response.paginator]);
+                        paginator = collection.paginator;
+                        (debug)?console.info(['paginator', response.paginator]):null;
                     }
                     var View = new ListView({collection: Collection, pagination: paginator});
                 });
