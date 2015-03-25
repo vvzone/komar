@@ -1233,4 +1233,5 @@ table.table td {
 }
 table.table tr:hover td {
   background-color: #dff0d8!important;
+  cursor: pointer;
 }

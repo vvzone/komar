@@ -7,9 +7,7 @@ define(
         'react',
         'apiUrl'
     ],function($, _, Backbone, React, apiUrl){
-
         console.log('models/document loaded');
-
 
         var Model = Backbone.Model.extend({
             defaults: {
@@ -50,16 +48,16 @@ define(
                 'document_type':'document_type'
             },
             attr_dependencies: {
-                'document_type': 'document_type'
+                document_type: 'document_types',
+                secrecy_type: 'secrecy_types',
+                urgency_type: 'urgency_types',
+                route: 'route'
             }, //for recursive objects
             dependency_values_fields: {
                 document_attribute_types: 'document_attribute_types'
             },
             model_name: 'document_attribute_type',
             model_rus_name: 'Документ',
-            form: {
-                name: 'tiny_text'
-            },
             table: {
                 columns: {
                     id: {
@@ -82,6 +80,16 @@ define(
                             return value;
                         }
                     }
+                }
+            },
+            form: {
+                name: 'tiny_text',
+                date: 'tiny_text',
+                secrecy_type: 'simple_select',
+                urgency_type: 'simple_select',
+                document_attributes: {
+                    header: 'tiny_text',
+                    main_text:  'textarea'
                 }
             },
             url: function() {

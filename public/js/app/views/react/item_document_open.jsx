@@ -197,17 +197,13 @@ define(
                 console.info(model.get('document_attributes'));
                 //for(var attribute in model.get('document_attributes')){
 
-                //var attributes = model.get('document_attributes');
-                var attributes = model.attributes;
-                console.info(['attributes', attributes]);
-                _.each(attributes, function(value, key){
-                    console.info(['value, key', value, key]);
-                    attributes_box.push(<div className={key}>{value}</div>);
+                var attributes = model.get('document_attributes');
+                _.each(attributes, function(num, key){
+                    attributes_box.push(<div className={num.type}>{num.data}</div>);
                 });
 
                 var output_document = [];
                 output_document.push(<div className="document_output">{attributes_box}</div>);
-
 
                 for(var prop in model.attr_rus_names){
                     if(model.edit_only){
@@ -230,13 +226,12 @@ define(
                     }
                 }
 
-
                 if(controls.length == 0){
                     EventBus.trigger('error', 'Ошибка', 'Не найдено ни одного контрола');
                     return(<ErrorMsg msg="Не найдено ни одного контрола" />);
                 }
                 var info_box = [];
-                //info_box.push(<form role="form" className="ControlsBox"><div className="annotation">Аннотация</div><ul className="info_box">{controls}</ul></form>);
+                info_box.push(<form role="form" className="ControlsBox"><div className="annotation">Аннотация</div><ul className="info_box">{controls}</ul></form>);
 
 
                 return(
