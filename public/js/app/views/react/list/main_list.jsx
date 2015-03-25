@@ -21,10 +21,12 @@ define(
 
         var MainList = React.createClass({
             getPaginator: function(){
+                /*
                 var pagination_request = this.props.pagination;
                 if(this.props.pagination){
                     return <Paginator pagination={pagination_request} callback={this.collectionRePaginate} />;
                 }
+                */
                 return null;
             },
             componentWillUnmount: function(){

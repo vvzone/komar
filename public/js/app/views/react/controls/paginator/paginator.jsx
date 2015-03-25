@@ -102,7 +102,6 @@ define(
                 var url = this.getUrl();
                 for(var i=begin; i<end+1; i++){
                     url = this.makeUrl(i);
-                    console.info(['current_page', current_page]);
                     if(i == current_page){
                         pages.push(
                             <li className="current_page">{i}</li>
@@ -165,7 +164,8 @@ define(
                 if (this.state.page_show % 2 == 0) { // Если четное кол-во
                     nav_begin++;
                 }
-                console.info(['this.props.pagination.current_page + range + zero_less', this.props.pagination.current_page,range,zero_less]);
+                (debug)?console.info(['nav_end = ', this.props.pagination.current_page + range + zero_less]):null;
+                (debug)?console.info(['this.props.pagination.current_page + range + zero_less', this.props.pagination.current_page,range,zero_less]):null;
                 var nav_end = this.props.pagination.current_page + range + zero_less;
 
                 if(nav_end > total){
@@ -192,10 +192,10 @@ define(
                 return this.getPrevButton(previous_page);
             },
             rightDots: function(nav_begin, nav_end){
-                console.info(['rightDots: nav_begin, nav_end', nav_begin, nav_end]);
+                (debug)?console.info(['rightDots: nav_begin, nav_end', nav_begin, nav_end]):null;
                 var right_dots = true;
                 var total  = this.props.pagination.total_pages;
-                console.info(['total', total]);
+                (debug)?console.info(['total', total]):null;
 
                 if (nav_end > total - 1 ) {
                     nav_begin = total - this.page_show + 1;
