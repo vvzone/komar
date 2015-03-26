@@ -35,6 +35,7 @@ define(
             },
             collections_router: [
                 {attribute_types: 'list'},
+                {document_attributes: 'list'},
                 {ranks: 'list'},
                 {posts: 'list'},
                 {secrecy_types: 'list'},

@@ -477,6 +477,28 @@ class Document extends \Object\Entity\Document implements \Doctrine\ORM\Proxy\Pr
     /**
      * {@inheritDoc}
      */
+    public function getPlain()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getPlain', array());
+
+        return parent::getPlain();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getTable()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getTable', array());
+
+        return parent::getTable();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getEntityName()
     {
 

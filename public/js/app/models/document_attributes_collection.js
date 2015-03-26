@@ -1,5 +1,5 @@
 define(
-    'models/document_attribute_collection',
+    'models/document_attributes_collection',
     [
         'jquery',
         'underscore',

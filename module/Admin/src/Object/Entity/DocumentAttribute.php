@@ -17,7 +17,7 @@ class DocumentAttribute extends Filtered
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\GeneratedValue(strategy="NONE")
      */
     private $id;
 
@@ -254,7 +254,7 @@ class DocumentAttribute extends Filtered
             'composite_attribute_id' => $this->getCompositeAttributeId(),
             'sort_order' => $this->getArrayIndex(),
             'data' => $this->getData(),
-            'attribute_type' => $this->getAttributeType(),
+            'attribute_type' => $this->getAttributeType()->getMachineName(),
             'author' => $this->getAuthor()
         );
     }
