@@ -198,6 +198,19 @@ define(
 
                 return (local_server)? local: production;
             },
+            document_attributes: function() {
+                var local = host + prefix + "/document_attribute";
+                var production = host + prefix + "/document_attribute";
+
+                return (local_server)? local: production;
+            },
+            document_attribute: function(trash_id) {
+                var id = (trash_id)? trash_id:'';
+                var local = host + prefix + "/document_attribute/"+ id;
+                var production = host + prefix + "/document_attribute/"+ id;
+
+                return (local_server)? local: production;
+            },
             /* Типы документов удостоверяющих личность*/
             person_document_types: function() {
                 var local = host + prefix + "/person_document_type";

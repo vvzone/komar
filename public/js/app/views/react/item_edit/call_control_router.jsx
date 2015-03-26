@@ -36,12 +36,7 @@ define(
                             return this.initWithDependency(model, prop);
                         }
                     }
-
-                    console.log(['form', this.props.model.form]);
-                    console.log(['this.props.model.form['+prop+']', this.props.model.form[prop]]);
-
                     if(this.props.model.form != null && typeof(this.props.model.form[prop])!='undefined'){
-                        console.info(['typeof(this.props.model.attr_dependencies['+prop+')', typeof(this.props.model.attr_dependencies[prop])]);
                         return this.initModelDescribed(model, prop);
                     }
 
@@ -69,10 +64,35 @@ define(
                     (debug)?console.log(['initModelDescribed model.get('+prop+')', model.get(prop)]):null;
                     var error={};
                     //var current_node = 'sub_form_'+prop;
-                    if(model.form[prop] == 'model'){
+
+                    var prop_description = model.form[prop];
+                    if(prop_description == 'model'){
                         //return <div id={current_node}>{this.getSubForm(prop, model.get(prop))}</div>;
                         return (this.getSubForm(prop, model.get(prop)));
                     }
+
+                    if(typeof(prop_description) == 'object'){
+                        console.warn(['prop_description is object', prop, prop_description]);
+                        var sub_controls = [];
+                        var self = this;
+                        _.each(prop_description, function(sub_prop_control, sub_prop_name){
+                            sub_controls.push(
+                                <ControlsRouter
+                                type={sub_prop_control}
+                                value={model.get(prop).get(sub_prop_name)}
+                                name={sub_prop_name}
+                                russian_name={model.attr_rus_names[prop][sub_prop_name]}
+                                callback={self.itemUpdate}
+                                key={sub_prop_name}
+                                error={error}
+                                />
+                            );
+                        });
+                        return sub_controls;
+
+
+                    }
+
                     return <ControlsRouter
                                 type={model.form[prop]}
                                 value={model.get(prop)}
