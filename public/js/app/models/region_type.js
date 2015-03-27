@@ -25,16 +25,6 @@ define(
             model_rus_name: 'Тип региона',
             url: function() {
                 return apiUrl('region_type', this.id);
-            },
-            initialize: function(){
-                console.info('Model init');
-                this.on('destroy', this.baDaBum);
-                /*this.on('change', function(){
-                    console.error('model -> change');
-                }, this);*/
-            },
-            baDaBum: function(){
-                console.warn('KABOOM!');
             }
         });
 

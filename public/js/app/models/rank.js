@@ -14,6 +14,7 @@ define(
 
         var Rank = Backbone.Model.extend({
             defaults: {
+                id: null,
                 name: null,
                 short_name: null,
                 is_officer: false,
@@ -34,6 +35,10 @@ define(
                 short_name: 'Сокр. название',
                 description: 'Описание',
                 is_officer: 'Офицер'
+            },
+            form: {
+                name: 'tiny_text',
+                is_officer: 'simple_select',
             },
             model_name: 'rank',
             model_rus_name: 'Звание',

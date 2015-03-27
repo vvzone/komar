@@ -40,9 +40,6 @@ define(
                 person_post: 'Должность',
                 user: 'Профиль пользователя системы'
             },
-            sub_models: {
-                client: 'client'
-            },
             attr_dependencies: {
                 deputy: 'constant', //'deputy'
                 sex_types: 'sex_types',

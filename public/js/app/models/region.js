@@ -37,9 +37,9 @@ define(
                 region_type: 'Тип региона',
                 description: 'Описание'
             },
-            attr_dependencies: {
+            attr_dependencies: {            
                 region_type: 'region_types'
-            }, //for recursive objects
+            },
             model_name: 'region',
             model_rus_name: 'Регион',
             url: function() {

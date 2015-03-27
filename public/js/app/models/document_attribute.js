@@ -34,15 +34,7 @@ define(
             },
             url: function() {
                 return apiUrl('document_attribute', this.id);
-            },
-            initialize: function(){
-                console.info('Model init');
-                this.on('destroy', this.baDaBum);
-            },
-            baDaBum: function(){
-                console.warn('KABOOM!');
             }
-
         });
 
         return Model;

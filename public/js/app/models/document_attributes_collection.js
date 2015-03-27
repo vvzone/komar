@@ -17,12 +17,6 @@ define(
             collection_name: 'document_attributes',
             url: function() {
                 return apiUrl('document_attributes');
-            },
-            initialize: function(){
-                this.on('destroy', this.liluDallas, this);
-            },
-            liluDallas: function(){
-                console.warn('Multi-passport!');
             }
         });
 
