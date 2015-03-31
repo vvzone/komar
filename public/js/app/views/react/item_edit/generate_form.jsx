@@ -14,13 +14,17 @@ define(
         'jsx!views/react/item_edit/update_item',
         'jsx!views/react/item_edit/call_control_router',
         'jsx!views/react/item_edit/get_dependency',
-        'jsx!views/react/item_edit/process_hidden_field'
+        'jsx!views/react/item_edit/process_hidden_field',
+
+        'jsx!views/react/template/template_controller'
     ],function(
         _, $, Backbone, React,
         Config, EventBus, app_registry,
         BootstrapModal,
         ControlsConfig, Constants,
-        SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin
+        SaveFormMixin, UpdateItemMixin, CallControlRouterMixin, GetDependencyMixin, ProcessHiddenFieldMixin,
+
+        TemplateController
         ){
 
         var debug = (Config['debug'] && Config['debug']['debug_item_edit'])? 1:null;
@@ -65,10 +69,7 @@ define(
                     model: this.props.model
                 });
             },
-            render: function () {
-                console.warn('generate_form.jsx -> render');
-                //var model = this.state.model;
-                console.info(['this.props.model', this.props.model]);
+            renderSmart: function(){
                 var model = this.props.model;
                 var controls = [];
                 if(this.state.dependency_array!=null){
@@ -118,6 +119,57 @@ define(
                 }else{
                     form_box.push(<form role="form" className="ControlsBox">{controls}</form>); //can't nest form to form???
                 }
+
+                return form_box;
+            },
+            renderTemplate: function(){
+                var template_url = this.props.model.template.edit; //'jsx!'+ Config['template_url'] + 
+
+                var self = this;
+                console.info(['renderTemplate, url:', template_url]);
+
+                var form_box = [];
+
+                form_box.push(
+                    <div className="template">
+                        <TemplateController template={template_url} model={this.props.model} />
+                    </div>
+                );
+
+                /*
+                var Template = require([template_url], function(Template){
+                    //template.push(new Template);
+                    new Template({
+                            model: self.props.model
+                    });
+                });
+                */
+                console.info(['form_box', form_box]);
+                return form_box;
+            },
+            hasTemplate: function(){
+                var model = this.props.model;
+                if(model.template){
+                    if(model.template.edit){
+                        return true;
+                    }
+                }
+                return false;
+            },
+            render: function () {
+                console.warn('generate_form.jsx -> render');
+                //var model = this.state.model;
+                console.info(['this.props.model', this.props.model]);
+
+                var model = this.props.model;
+                var form_box = [];
+
+                form_box = (this.hasTemplate())?this.renderTemplate(): this.renderSmart();
+
+                /*
+                form_box = this.renderTemplate();
+                form_box = this.renderSmart();
+                */
 
                 return(
                     <div className="item">

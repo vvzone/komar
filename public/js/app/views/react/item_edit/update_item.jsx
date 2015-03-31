@@ -13,9 +13,15 @@ define(
 
         return function(){
             return {
-                itemUpdate: function (property) {
+                itemUpdate: function (property, parent_property) {
                     (debug)?console.info(['itemUpdate, property:', property]):null;
+
                     var current_item = this.state.model;
+                    if(parent_property){
+                        _.has(current_item.attributes, parent_property);
+                        console.info(['_.has(current_item.attributes, parent_property)', _.has(current_item.attributes, parent_property)]);
+                    }
+
                     for (var key in property) {
                         (debug)?console.log(['property[key], key='+key, property[key], 'current_item['+key+'] old:', current_item.attributes[key]]):null;
                         if(property[key] == "true" || property[key] == "false"){

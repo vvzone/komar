@@ -58,6 +58,7 @@ define(
                 {enumeration: 'list'},
                 {node_types: 'list'},
                 {persons: 'table'},
+                //{persons: 'template/form/person'},
                 {units: 'list'},
                 {units_tree: 'tree'},
                 {clients: 'list'},
@@ -84,6 +85,7 @@ define(
                 local_server: '/admin/logout',
                 production_server: '/admin/api/commands/return_token'
             },
+            template_url: 'views/react/template/',
             menu_group_classes: {
                 menu_new_doc: ['new_document'],
                 menu_msg: ['inbox', 'sent'],

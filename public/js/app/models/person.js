@@ -47,6 +47,9 @@ define(
             }, //for recursive objects
             model_name: 'person',
             model_rus_name: 'Физлицо',
+            template: {
+                edit: 'form/person'
+            },
             form: {
                 first_name: 'tiny_text',
                 patronymic_name: 'tiny_text',

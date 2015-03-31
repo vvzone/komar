@@ -60,23 +60,23 @@ define(
             },
             getTableRow: function(model){
                 var row = [];
-                console.info(['model', model]);
+                (debug)?console.info(['model', model]):null;
                 var self = this;
                 _.each(this.props.collection.model.prototype.table.columns, function(rule, prop){
                     var value = model.get(prop);
-                    console.log(['model.get('+prop+')', value]);
+                    (debug)?console.log(['model.get('+prop+')', value]):null;
                     if(_.has(rule, 'value') && value){
                         row.push(
                             //<td>{rule.value(value)}</td>
                             self.getRowCell(rule.value(value), model)
                         );
-                        console.warn(['rule.draw(value)', rule.value(value)]);
+                        (debug)?console.warn(['rule.draw(value)', rule.value(value)]):null;
                     }else{
                         row.push(
                             //<td>{value}</td>
                             self.getRowCell(value, model)
                         );
-                        console.log('normal value', value);
+                        (debug)?console.log('normal value', value):null;
                     }
                 });
 
@@ -88,7 +88,7 @@ define(
                 );
             },
             openRow: function(model){
-                console.log(['openRow model', model]);
+                (debug)?console.log(['openRow model', model]):null;
                 EventBus.trigger('item-open', model);
             },
             getTableHeader: function(){
@@ -113,7 +113,7 @@ define(
             isCurrentSelected: function(prop){
                 if(this.props.sort_order){
                     if(this.props.sort_order.sort_by == prop){
-                        console.info(['this.props.sort_order.sort_by == prop', this.props.sort_order.sort_by, prop]);
+                        (debug)?console.info(['this.props.sort_order.sort_by == prop', this.props.sort_order.sort_by, prop]):null;
                         return this.props.sort_order.sort_order;
                     }
                 }
@@ -121,9 +121,9 @@ define(
                 return false;
             },
             switchSortOrder: function(name, sorted_by){
-                console.info(['switchSortOrder, name', name]);
+                (debug)?console.info(['switchSortOrder, name', name]):null;
                 var url = this.getCurrentUrl(name);
-                console.info(['redirect url', url]);
+                (debug)?console.info(['redirect url', url]):null;
                 if(sorted_by){
                     if(sorted_by == 'asc'){
                         url += '&sort_order=desc';
@@ -131,6 +131,7 @@ define(
                         url += '&sort_order=asc';
                     }
                 }
+                alert(['url', url]);
                 app_registry.router.navigate(url, true);
             },
             getCurrentUrl: function(sort_by_name){

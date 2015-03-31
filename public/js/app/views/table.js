@@ -72,7 +72,6 @@ define(
 
             if(sort_request){
                 if(sort_request.sort_by){
-                    console.info('===========/*\===========');
                     (debug)?console.warn(['sort_request.sort_by', sort_request.sort_by]):null;
                     (debug)?console.warn(['sort_request.sort_order', sort_request.sort_order]):null;
                     var sort_order = -1; //asc
