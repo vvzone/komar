@@ -91,7 +91,7 @@ define(
                         }
                         return(
                             <SimpleList collection={value} callback={self.callBack} />
-                            );
+                        );
                     break;
                     case('node_levels'):
                         if(debug){

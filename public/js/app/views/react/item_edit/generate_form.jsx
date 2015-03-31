@@ -123,16 +123,21 @@ define(
                 return form_box;
             },
             renderTemplate: function(){
-                var template_url = this.props.model.template.edit; //'jsx!'+ Config['template_url'] + 
+                var template_url = this.props.model.template.edit; //'jsx!'+ Config['template_url'] +
 
                 var self = this;
                 console.info(['renderTemplate, url:', template_url]);
 
                 var form_box = [];
 
+                console.warn(['this.state', this.state]);
+                var dependency_array = this.state.dependency_array;
+
+                console.warn(['dependency_array', dependency_array]);
+
                 form_box.push(
                     <div className="template">
-                        <TemplateController template={template_url} model={this.props.model} />
+                        <TemplateController template={template_url} model={this.props.model} dependency_array={dependency_array} />
                     </div>
                 );
 

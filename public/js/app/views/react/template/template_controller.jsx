@@ -17,7 +17,7 @@ define(
                 console.info(['TEMPLATE this.props.template', this.props.template]);
                 switch(this.props.template){
                     case('form/person'):
-                        return(<PersonForm model={this.props.model} />);
+                        return(<PersonForm model={this.props.model} dependency_array={this.props.dependency_array} />);
                     break;
                 }
 
