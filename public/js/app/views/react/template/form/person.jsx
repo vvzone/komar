@@ -6,15 +6,13 @@ define(
         'backbone',
         'react',
 
-        'jsx!views/react/controls/tiny_text',
-        'jsx!views/react/controls/simple_select',
-        'jsx!views/react/controls/bool_select',
-        'jsx!views/react/controls/list_box',
-        'jsx!views/react/controls/simple_list'
+        'jsx!views/react/template/control_adapter/tiny_text',
+        'jsx!views/react/template/control_adapter/simple_select',
+        'jsx!views/react/template/control_adapter/small_text'
     ],
     function(
             $, _, Backbone, React,
-            TinyText, SimpleSelect, BoolSelect, ListBox, SimpleList
+            TinyText, SimpleSelect, SmallText
         ){
         var Template = React.createClass({
             callBack: function(){
@@ -27,6 +25,9 @@ define(
                     }
                 }
                 return null;
+            },
+            getPropDataFromSubModel: function(prop_sub_model, prop){
+
             },
             getPropDataFromModel: function (prop) {
                 //var dependency_array = this.getPropDependency(prop);
@@ -54,11 +55,30 @@ define(
                 console.info(['TEMPLATE this.props', this.props]);
                 console.info(['this.getPropDataFromModel(first_name)', this.getPropDataFromModel('first_name')]);
                 console.warn(['this.props.dependency_array', this.props.dependency_array]);
-                // <TinyText control_init={this.getPropDataFromModel('first_name')} />
+                /*
+
+                 birth_date: 'Дата рождения',
+                 birth_place: 'Место рождения',
+                 sex_type: 'Пол',
+                 inn: 'ИНН',
+                 citizenship: 'Гражданство',
+                 deputy: 'Заместитель',
+                 person_post: 'Должность',
+                 user: 'Профиль пользователя системы'
+
+                */
+
                 return(
                     <div>
-                        <TinyText control_init={this.getPropDataFromModel('first_name')} />
-                        <SimpleSelect control_init={this.getPropDataFromModel('sex_type')} />
+                        <TinyText template_init={this.getPropDataFromModel('first_name')} />
+                        <TinyText template_init={this.getPropDataFromModel('patronymic_name')} />
+                        <TinyText template_init={this.getPropDataFromModel('family_name')} />
+                        <SmallText template_init={this.getPropDataFromModel('family_name')} />
+                        <SimpleSelect template_init={this.getPropDataFromModel('sex_type')} />
+                        <TinyText template_init={this.getPropDataFromModel('inn')} />
+                        <TinyText template_init={this.getPropDataFromModel('citizenship')} />
+                        <SimpleSelect template_init={this.getPropDataFromModel('deputy')} />
+                        <TinyText template_init={this.getPropDataFromModel('person_post')} />
                     </div>
                 )
             }

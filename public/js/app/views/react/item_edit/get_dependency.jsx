@@ -36,6 +36,8 @@ define(
 
                                     //this why field name in model, and dependency should be equivalent BAD! Decision, but required for require Js use
 
+                                    self.props.model.dependency_array = dependency_array;
+
                                     self.setState({
                                         dependency_array: dependency_array
                                     });
