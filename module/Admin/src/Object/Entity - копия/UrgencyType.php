@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Rank
+ * UrgencyType
  *
- * @ORM\Table(name="rank")
- * @ORM\Entity(repositoryClass="Object\Repository\Rank")
+ * @ORM\Table(name="urgency_type")
+ * @ORM\Entity(repositoryClass="Object\Repository\UrgencyType")
  */
-class Rank extends Filtered
+class UrgencyType extends Filtered
 {
     /**
      * @var integer
@@ -24,30 +24,24 @@ class Rank extends Filtered
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64, nullable=false)
+     * @ORM\Column(name="name", type="string", length=32, nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="short_name", type="string", length=15, nullable=true)
+     * @ORM\Column(name="short_name", type="string", length=12, nullable=false)
      */
     private $shortName;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="level", type="integer", nullable=false)
      */
-    private $description;
+    private $level;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_officer", type="boolean", nullable=true)
-     */
-    private $isOfficer;
 
 
     /**
@@ -64,7 +58,7 @@ class Rank extends Filtered
      * Set name
      *
      * @param string $name
-     * @return Rank
+     * @return UrgencyType
      */
     public function setName($name)
     {
@@ -87,7 +81,7 @@ class Rank extends Filtered
      * Set shortName
      *
      * @param string $shortName
-     * @return Rank
+     * @return UrgencyType
      */
     public function setShortName($shortName)
     {
@@ -107,56 +101,26 @@ class Rank extends Filtered
     }
 
     /**
-     * Set description
+     * Set level
      *
-     * @param string $description
-     * @return Rank
+     * @param integer $level
+     * @return UrgencyType
      */
-    public function setDescription($description)
+    public function setLevel($level)
     {
-        $this->description = $description;
+        $this->level = $level;
 
         return $this;
     }
 
     /**
-     * Get description
+     * Get level
      *
-     * @return string 
+     * @return integer 
      */
-    public function getDescription()
+    public function getLevel()
     {
-        return $this->description;
-    }
-
-    /**
-     * Set isOfficer
-     *
-     * @param boolean $isOfficer
-     * @return Rank
-     */
-    public function setIsOfficer($isOfficer)
-    {
-        $this->isOfficer = $isOfficer;
-
-        return $this;
-    }
-
-    /**
-     * Get isOfficer
-     *
-     * @return boolean 
-     */
-    public function getIsOfficer()
-    {
-        return $this->isOfficer;
-    }
-
-    public function getRankSimple(){
-        return array(
-            'id' => $this->getId(),
-            'name' => $this->getName()
-        );
+        return $this->level;
     }
 
     public function getAll(){
@@ -164,8 +128,7 @@ class Rank extends Filtered
             'id' => $this->getId(),
             'name' => $this->getName(),
             'short_name' => $this->getShortName(),
-            'description' => $this->getDescription(),
-            'is_officer' => $this->getIsOfficer()
+            'level' => $this->getLevel()
         );
     }
 }

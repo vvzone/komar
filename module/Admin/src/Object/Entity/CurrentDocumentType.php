@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DocumentType
+ * CurrentDocumentType
  *
- * @ORM\Table(name="document_type")
- * @ORM\Entity(repositoryClass="Object\Repository\DocumentType")
+ * @ORM\Table(name="current_document_type", indexes={@ORM\Index(name="document_type_id", columns={"document_type_id"})})
+ * @ORM\Entity
  */
-class DocumentType extends Filtered
+class CurrentDocumentType
 {
     /**
      * @var integer
@@ -73,7 +73,7 @@ class DocumentType extends Filtered
     /**
      * @var string
      *
-     * @ORM\Column(name="presentation", type="text", nullable=true)
+     * @ORM\Column(name="presentation", type="text", length=16777215, nullable=true)
      */
     private $presentation;
 
@@ -87,40 +87,20 @@ class DocumentType extends Filtered
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", length=16777215, nullable=true)
      */
     private $description;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Object\Entity\DocumentType
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\AttributeType", inversedBy="documentType")
-     * @ORM\JoinTable(name="document_type_attribute_type",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
+     * })
      */
-    private $attributeType;
+    private $documentType;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\OneToMany(targetEntity="Route", mappedBy="documentType",)
-     */
-    private $route;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->route = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
@@ -137,7 +117,7 @@ class DocumentType extends Filtered
      * Set name
      *
      * @param string $name
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setName($name)
     {
@@ -160,7 +140,7 @@ class DocumentType extends Filtered
      * Set shortName
      *
      * @param string $shortName
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setShortName($shortName)
     {
@@ -183,7 +163,7 @@ class DocumentType extends Filtered
      * Set code
      *
      * @param integer $code
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setCode($code)
     {
@@ -206,7 +186,7 @@ class DocumentType extends Filtered
      * Set defaultHeader
      *
      * @param string $defaultHeader
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setDefaultHeader($defaultHeader)
     {
@@ -229,7 +209,7 @@ class DocumentType extends Filtered
      * Set isService
      *
      * @param boolean $isService
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setIsService($isService)
     {
@@ -252,7 +232,7 @@ class DocumentType extends Filtered
      * Set secrecyType
      *
      * @param integer $secrecyType
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setSecrecyType($secrecyType)
     {
@@ -275,7 +255,7 @@ class DocumentType extends Filtered
      * Set urgencyType
      *
      * @param integer $urgencyType
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setUrgencyType($urgencyType)
     {
@@ -298,7 +278,7 @@ class DocumentType extends Filtered
      * Set presentation
      *
      * @param string $presentation
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setPresentation($presentation)
     {
@@ -321,7 +301,7 @@ class DocumentType extends Filtered
      * Set directionTypeCode
      *
      * @param integer $directionTypeCode
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setDirectionTypeCode($directionTypeCode)
     {
@@ -344,7 +324,7 @@ class DocumentType extends Filtered
      * Set description
      *
      * @param string $description
-     * @return DocumentType
+     * @return CurrentDocumentType
      */
     public function setDescription($description)
     {
@@ -364,55 +344,32 @@ class DocumentType extends Filtered
     }
 
     /**
-     * Add attributeType
+     * Set documentType
      *
-     * @param \Object\Entity\AttributeType $attributeType
-     * @return DocumentType
+     * @param \Object\Entity\DocumentType $documentType
+     * @return CurrentDocumentType
      */
-    public function addAttributeType(\Object\Entity\AttributeType $attributeType)
+    public function setDocumentType(\Object\Entity\DocumentType $documentType = null)
     {
-        $this->attributeType[] = $attributeType;
+        $this->documentType = $documentType;
 
         return $this;
     }
 
     /**
-     * Remove attributeType
+     * Get documentType
      *
-     * @param \Object\Entity\AttributeType $attributeType
+     * @return \Object\Entity\DocumentType 
      */
-    public function removeAttributeType(\Object\Entity\AttributeType $attributeType)
+    public function getDocumentType()
     {
-        $this->attributeType->removeElement($attributeType);
-    }
-
-    /**
-     * Get attributeType
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getAttributeType()
-    {
-        //return $this->attributeType;
-        $attribute_types = array();
-        foreach($this->attributeType as $attribute_type){
-            $attribute_types[] = $attribute_type->getPlain();
-        }
-        return $attribute_types;
-    }
-
-    /**
-     * Only one route for one document_type allowed
-     * @return \Object\Entity\Route
-     */
-    public function getRoute(){
-        //return $this->route->last()->getRouteSimple();
-        return $this->route->last()->getId();
+        return $this->documentType;
     }
 
     public function getAll(){
         return array(
             'id' => $this->getId(),
+            'document_type' => $this->getDocumentType(),
             'name' => $this->getName(),
             'short_name' => $this->getShortName(),
             'code' => $this->getCode(),
@@ -421,18 +378,36 @@ class DocumentType extends Filtered
             'secrecy_type' => $this->getSecrecyType(),
             'urgency_type' => $this->getUrgencyType(),
             'presentation' => $this->getPresentation(),
-            'direction_type' => $this->getDirectionTypeCode(),
-            'description' => $this->getDescription(),
-            'attribute_types' => $this->getAttributeType(),
-            'route' => $this->getRoute()
+            'direction_type_code' => $this->getDirectionTypeCode(),
+            'description' => $this->getDescription()
         );
     }
 
-    public function getDocumentTypeSimple(){
+    public function getCurrentDocumentTypeSimple(){
         return array(
             'id' => $this->getId(),
+            'name' => $this->getName()
+        );
+    }
+
+    public function getPlane(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName()
+        );
+    }
+
+    public function getTable(){
+        return array(
+            'id' => $this->getId(),
+            'document_type' => $this->getDocumentType()->getId(),
             'name' => $this->getName(),
-            'attribute_types' => $this->getAttributeType()
+            'short_name' => $this->getShortName(),
+            'code' => $this->getCode(),
+            'is_service' => $this->getIsService(),
+            'secrecy_type' => $this->getSecrecyType(),
+            'urgency_type' => $this->getUrgencyType(),
+            'direction_type_code' => $this->getDirectionTypeCode(),
         );
     }
 }

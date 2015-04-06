@@ -448,7 +448,7 @@ class DocumentType extends Filtered
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'attribute_types' => $this->getAttributeType()
+            //'attribute_types' => $this->getAttributeType()
         );
     }
 }

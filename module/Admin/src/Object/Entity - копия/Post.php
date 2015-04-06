@@ -3,17 +3,16 @@
 namespace Object\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Object\InputFilter\PostFilter;
-use Zend\InputFilter\Factory as InputFactory;
+//use Object\InputFilter\PostFilter;
 
 
 /**
  * Post
  *
- * @ORM\Entity(repositoryClass="Object\Repository\PostRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Post")
  * @ORM\Table(name="post")
  */
-class Post
+class Post extends Filtered
 {
     /**
      * @var integer
@@ -66,24 +65,6 @@ class Post
      * @ORM\ManyToMany(targetEntity="Unit", mappedBy="posts")
      * */
     private $unitsHaveCurrentPost;
-
-    protected $inputFilter;
-
-    public function setInputFilter(){
-        $filter = new PostFilter();
-        $filter->init();
-        $this->inputFilter = $filter;
-    }
-
-    /**
-     * @return \Object\InputFilter\PostFilter
-     */
-    public function getInputFilter(){
-        if(!$this->inputFilter){
-            $this->setInputFilter();
-        }
-        return $this->inputFilter;
-    }
 
     public function __construct()
     {

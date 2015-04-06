@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * MenuClientType
+ * PeriodType
  *
- * @ORM\Table(name="menu_client_type")
+ * @ORM\Table(name="period_type")
  * @ORM\Entity
  */
-class MenuClientType
+class PeriodType
 {
     /**
      * @var integer
@@ -24,9 +24,16 @@ class MenuClientType
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=8, nullable=false)
+     * @ORM\Column(name="name", type="string", length=16, nullable=false)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=6, nullable=false)
+     */
+    private $code;
 
 
 }

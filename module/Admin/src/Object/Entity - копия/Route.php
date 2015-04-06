@@ -8,16 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
  * Route
  *
  * @ORM\Table(name="route", indexes={@ORM\Index(name="fk_route_document_type1_idx", columns={"document_type_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\RouteRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Route")
  */
-class Route
+class Route extends Filtered
 {
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 

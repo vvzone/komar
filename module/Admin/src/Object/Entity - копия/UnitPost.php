@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * UnitPost
  *
  * @ORM\Table(name="unit_post", indexes={@ORM\Index(name="fk_unit_post_unit1_idx", columns={"unit_id"}), @ORM\Index(name="fk_unit_post_post1_idx", columns={"post_id"})})
- * @ORM\Entity
+ *  @ORM\Entity(repositoryClass="Object\Repository\UnitPost")
  */
-class UnitPost
+class UnitPost extends Filtered
 {
     /**
      * @var integer

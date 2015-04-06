@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Rank
+ * SecrecyType
  *
- * @ORM\Table(name="rank")
+ * @ORM\Table(name="secrecy_type")
  * @ORM\Entity
  */
-class Rank
+class SecrecyType
 {
     /**
      * @var integer
@@ -24,30 +24,30 @@ class Rank
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64, nullable=false)
+     * @ORM\Column(name="name", type="string", length=32, nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="short_name", type="string", length=15, nullable=true)
+     * @ORM\Column(name="short_name", type="string", length=12, nullable=false)
      */
     private $shortName;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="single_numeration", type="integer", nullable=false)
      */
-    private $description;
+    private $singleNumeration;
 
     /**
-     * @var boolean
+     * @var integer
      *
-     * @ORM\Column(name="is_officer", type="boolean", nullable=false)
+     * @ORM\Column(name="level", type="integer", nullable=false)
      */
-    private $isOfficer;
+    private $level;
 
 
 }

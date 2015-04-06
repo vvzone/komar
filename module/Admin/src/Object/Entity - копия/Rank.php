@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Rank
  *
  * @ORM\Table(name="rank")
- * @ORM\Entity(repositoryClass="Object\Repository\RankRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Rank")
  */
-class Rank
+class Rank extends Filtered
 {
     /**
      * @var integer
@@ -45,28 +45,9 @@ class Rank
     /**
      * @var boolean
      *
-     * @ORM\Column(name="is_officer", type="boolean", nullable=false)
+     * @ORM\Column(name="is_officer", type="boolean", nullable=true)
      */
     private $isOfficer;
-
-
-    protected $inputFilter;
-
-    public function setInputFilter(){
-        $filter = new \Object\InputFilter\RankFilter();
-        $filter->init();
-        $this->inputFilter = $filter;
-    }
-
-    /**
-     * @return \Object\InputFilter\PostFilter
-     */
-    public function getInputFilter(){
-        if(!$this->inputFilter){
-            $this->setInputFilter();
-        }
-        return $this->inputFilter;
-    }
 
 
     /**

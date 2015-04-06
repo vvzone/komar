@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * MenuClientType
+ * PeriodType
  *
- * @ORM\Table(name="menu_client_type")
- * @ORM\Entity(repositoryClass="Object\Repository\MenuClientType")
+ * @ORM\Table(name="period_type")
+ * @ORM\Entity(repositoryClass="Object\Repository\PeriodType")
  */
-class MenuClientType extends Filtered
+class PeriodType extends Filtered
 {
     /**
      * @var integer
@@ -24,9 +24,16 @@ class MenuClientType extends Filtered
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=8, nullable=false)
+     * @ORM\Column(name="name", type="string", length=16, nullable=false)
      */
     private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code", type="string", length=6, nullable=false)
+     */
+    private $code;
 
 
 
@@ -44,12 +51,12 @@ class MenuClientType extends Filtered
      * Set name
      *
      * @param string $name
-     * @return MenuClientType
+     * @return PeriodType
      */
     public function setName($name)
     {
         $this->name = $name;
-    
+
         return $this;
     }
 
@@ -63,10 +70,34 @@ class MenuClientType extends Filtered
         return $this->name;
     }
 
+    /**
+     * Set code
+     *
+     * @param string $code
+     * @return PeriodType
+     */
+    public function setCode($code)
+    {
+        $this->code = $code;
+
+        return $this;
+    }
+
+    /**
+     * Get code
+     *
+     * @return string 
+     */
+    public function getCode()
+    {
+        return $this->code;
+    }
+
     public function getAll(){
         return array(
             'id' => $this->getId(),
-            'name' => $this->getName()
+            'name' => $this->getName(),
+            'code' => $this->getCode()
         );
     }
 }

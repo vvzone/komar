@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * DocumentType
+ * CurrentDocumentType
  *
- * @ORM\Table(name="document_type")
+ * @ORM\Table(name="current_document_type", indexes={@ORM\Index(name="document_type_id", columns={"document_type_id"})})
  * @ORM\Entity
  */
-class DocumentType
+class CurrentDocumentType
 {
     /**
      * @var integer
@@ -73,7 +73,7 @@ class DocumentType
     /**
      * @var string
      *
-     * @ORM\Column(name="presentation", type="text", nullable=true)
+     * @ORM\Column(name="presentation", type="text", length=16777215, nullable=true)
      */
     private $presentation;
 
@@ -87,31 +87,19 @@ class DocumentType
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @ORM\Column(name="description", type="text", length=16777215, nullable=true)
      */
     private $description;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
+     * @var \Object\Entity\DocumentType
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\AttributeType", inversedBy="documentType")
-     * @ORM\JoinTable(name="document_ attribute_type",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
-     *   }
-     * )
+     * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
+     * })
      */
-    private $attributeType;
+    private $documentType;
 
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 }

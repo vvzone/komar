@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Post
+ * UrgencyType
  *
- * @ORM\Table(name="post")
+ * @ORM\Table(name="urgency_type")
  * @ORM\Entity
  */
-class Post
+class UrgencyType
 {
     /**
      * @var integer
@@ -24,7 +24,7 @@ class Post
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64, nullable=false)
+     * @ORM\Column(name="name", type="string", length=32, nullable=false)
      */
     private $name;
 
@@ -36,11 +36,11 @@ class Post
     private $shortName;
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="description", type="text", nullable=false)
+     * @ORM\Column(name="level", type="integer", nullable=false)
      */
-    private $description;
+    private $level;
 
 
 }

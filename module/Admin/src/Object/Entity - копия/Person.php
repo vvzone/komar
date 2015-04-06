@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Person
  *
  * @ORM\Table(name="person", indexes={@ORM\Index(name="fk_person_sex1_idx", columns={"sex_id"}), @ORM\Index(name="fk_person_client1_idx", columns={"client_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\PersonRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Person")
  */
-class Person
+class Person extends Filtered
 {
     /**
      * @var integer
@@ -113,17 +113,24 @@ class Person
     private $unitPost;
 
     /**
+     *  @ORM\OneToMany(targetEntity="Object\Entity\User", mappedBy="person", cascade={"all"}, orphanRemoval=true)
+     */
+    private $user;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->unitPost = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->user = new \Doctrine\Common\Collections\ArrayCollection();
+
     }
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -146,7 +153,7 @@ class Person
     /**
      * Get firstName
      *
-     * @return string 
+     * @return string
      */
     public function getFirstName()
     {
@@ -169,7 +176,7 @@ class Person
     /**
      * Get patronymicName
      *
-     * @return string 
+     * @return string
      */
     public function getPatronymicName()
     {
@@ -192,7 +199,7 @@ class Person
     /**
      * Get familyName
      *
-     * @return string 
+     * @return string
      */
     public function getFamilyName()
     {
@@ -215,10 +222,14 @@ class Person
     /**
      * Get birthDate
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getBirthDate()
     {
+        if($this->birthDate){
+            return $this->birthDate->format('d.m.Y');
+        }
+
         return $this->birthDate;
     }
 
@@ -238,7 +249,7 @@ class Person
     /**
      * Get birthPlace
      *
-     * @return string 
+     * @return string
      */
     public function getBirthPlace()
     {
@@ -261,7 +272,7 @@ class Person
     /**
      * Get inn
      *
-     * @return integer 
+     * @return integer
      */
     public function getInn()
     {
@@ -284,7 +295,7 @@ class Person
     /**
      * Get citizenship
      *
-     * @return string 
+     * @return string
      */
     public function getCitizenship()
     {
@@ -307,7 +318,7 @@ class Person
     /**
      * Get deputy
      *
-     * @return integer 
+     * @return integer
      */
     public function getDeputy()
     {
@@ -330,7 +341,7 @@ class Person
     /**
      * Get sex
      *
-     * @return \Object\Entity\Sex 
+     * @return \Object\Entity\Sex
      */
     public function getSex()
     {
@@ -360,7 +371,7 @@ class Person
     /**
      * Get client
      *
-     * @return \Object\Entity\Client 
+     * @return \Object\Entity\Client
      */
     public function getClient()
     {
@@ -393,13 +404,33 @@ class Person
     /**
      * Get unitPost
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUnitPost()
     {
         //return $this->unitPost->last()->getPost()->getName();
         //$unitPost = $this->unitPost->last();
         return $this->unitPost;
+    }
+
+    public function getUser(){
+        if($this->user->count() > 1)
+        {
+            throw new \Exception('Fatal. DB corruption detected. More than one user to current person-record.', 500);
+        }
+        $user = $this->user->last();
+        if($user){
+            return $user->getUserSimple();
+        }
+        return false;
+    }
+
+    public function setUser($user){
+       $this->user = $user;
+    }
+
+    public function addUser($user){
+
     }
 
     public function getUnitPostsList(){
@@ -455,7 +486,7 @@ class Person
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
-            'sex_types' => $this->getSexId(),
+            'sex_type' => $this->getSexId(),
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship()
         );
@@ -472,27 +503,42 @@ class Person
             'family_name' => $this->getFamilyName(),
             'birth_date' => $this->getBirthDate(),
             'birth_place' => $this->getBirthPlace(),
-            'sex_types' => $this->getSexId(),
+            'sex_type' => $this->getSexId(),
             'inn' => $this->getInn(),
             'citizenship' => $this->getCitizenship(),
             'deputy' => $this->getDeputy(),
-            'person_post' => $this->getUnitPostsList(),
-            'client' => $this->getClient()->getAll()
+            'user' => $this->getUser()
+            //'person_post' => $this->getUnitPostsList(),
+            //'client' => $this->getClient()->getAll()
             //'person_post_count' => $this->personPost->count()
         );
     }
 
     public function getPersonSimple(){
-        $name = null;
-        /*if($this->getPerson()){
-            $name = $this->getPerson()->getFIO();
-        }
-        if($this->getUnit()){
-            $name = $this->getUnit()->getName();
-        }*/
         return array(
             'id' => $this->getId(),
-            'name' => $this->getFIO()
+            'first_name' => $this->getFirstName(),
+            'patronymic_name' => $this->getPatronymicName(),
+            'family_name' => $this->getFamilyName(),
+            'birth_date' => $this->getBirthDate(),
+            'birth_place' => $this->getBirthPlace(),
+            'sex_type' => $this->getSexId(),
+            'inn' => $this->getInn(),
+            'citizenship' => $this->getCitizenship(),
+        );
+    }
+
+    public function getEntityTable(){
+        return array(
+            'id' => $this->getId(),
+            'first_name' => $this->getFirstName(),
+            'patronymic_name' => $this->getPatronymicName(),
+            'family_name' => $this->getFamilyName(),
+            'birth_date' => $this->getBirthDate(),
+            'birth_place' => $this->getBirthPlace(),
+            'sex_type' => $this->getSexId(),
+            'inn' => $this->getInn(),
+            'citizenship' => $this->getCitizenship(),
         );
     }
 

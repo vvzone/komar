@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Entity(repositoryClass="Gedmo\Tree\Entity\Repository\NestedTreeRepository")
  * custom rep:
- * ORM\Entity(repositoryClass="Entity\Repository\ClientMenuRepository")
+ * ORM\Entity(repositoryClass="Object\Repository\ClientMenuTreeRepository")
  */
 class MenuClientTree
 {

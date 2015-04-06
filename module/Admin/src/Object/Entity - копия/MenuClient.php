@@ -10,9 +10,9 @@ use Zend\Feed\Reader\Collection;
  * MenuClient
  *
  * @ORM\Table(name="menu_client", indexes={@ORM\Index(name="parent_id", columns={"parent_id"}), @ORM\Index(name="type", columns={"type"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\MenuClient")
  */
-class MenuClient
+class MenuClient extends Filtered
 {
     /**
      * @var integer
@@ -203,6 +203,9 @@ class MenuClient
      */
     public function getType()
     {
+        if($this->type){
+            return $this->type->getName();
+        }
         return $this->type;
     }
 
@@ -302,7 +305,7 @@ class MenuClient
             'entity' => $this->getEntity(),
             'is_not_screen' => $this->getIsNotScreen(),
             'type' => $this->getType(),
-            'parent_id' => $this->getParent()->getId(),
+            'parent_id' => $this->getParent(),
             'icon' => $this->getIcon()
         );
 

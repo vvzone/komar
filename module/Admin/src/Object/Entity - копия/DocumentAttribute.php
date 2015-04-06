@@ -8,16 +8,16 @@ use Doctrine\ORM\Mapping as ORM;
  * DocumentAttribute
  *
  * @ORM\Table(name="document_attribute", indexes={@ORM\Index(name="fk_Document_Attribute_Document1_idx", columns={"document_id"}), @ORM\Index(name="fk_Document_Attribute_ Attribute_Type1_idx", columns={"attribute_type_id"}), @ORM\Index(name="fk_document_attribute_persons1_idx", columns={"author_id"})})
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Object\Repository\DocumentAttribute")
  */
-class DocumentAttribute
+class DocumentAttribute extends Filtered
 {
     /**
      * @var integer
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\GeneratedValue(strategy="NONE")
      */
     private $id;
 
@@ -61,8 +61,8 @@ class DocumentAttribute
     /**
      * @var \Object\Entity\AttributeType
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\AttributeType")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
@@ -73,8 +73,8 @@ class DocumentAttribute
     /**
      * @var \Object\Entity\Person
      *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * ORM\Id
+     * ORM\GeneratedValue(strategy="NONE")
      * @ORM\OneToOne(targetEntity="Object\Entity\Person")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="author_id", referencedColumnName="id")
@@ -242,6 +242,20 @@ class DocumentAttribute
      */
     public function getAuthor()
     {
+        if($this->author){
+            return $this->author->getBigFIO();
+        }
         return $this->author;
+    }
+
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'composite_attribute_id' => $this->getCompositeAttributeId(),
+            'sort_order' => $this->getArrayIndex(),
+            'data' => $this->getData(),
+            'attribute_type' => $this->getAttributeType()->getMachineName(),
+            'author' => $this->getAuthor()
+        );
     }
 }

@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AttributeType
  *
- * @ORM\Entity(repositoryClass="Object\Repository\AttributeTypeRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\AttributeType")
  * @ORM\Table(name="attribute_type")
  */
-class AttributeType
+class AttributeType extends Filtered
 {
     /**
      * @var integer
@@ -254,7 +254,7 @@ class AttributeType
             'machine_name' => $this->getMachineName(),
             'description' => $this->getDescription(),
             'base_attribute_code' => $this->getBaseAttributeTypeCode(),
-            'document_type' => $this->getDocumentType()
+            //'document_type' => $this->getDocumentType()
         );
     }
 }

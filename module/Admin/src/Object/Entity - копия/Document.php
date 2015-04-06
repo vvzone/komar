@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
  * Document
  *
  * @ORM\Table(name="document", indexes={@ORM\Index(name="fk_document_persons1_idx", columns={"document_author_id"}), @ORM\Index(name="fk_document_document_type1_idx", columns={"document_type_id"}), @ORM\Index(name="fk_document_node_level1_idx", columns={"current_node_level_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\DocumentRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\Document")
  */
-class Document
+class Document extends Filtered
 {
     /**
      * @var integer
@@ -366,6 +366,10 @@ class Document
      */
     public function getRoute()
     {
+        /*
+        if($this->route){
+            $this->route->getKeys();
+        }*/
         return $this->route;
     }
 
@@ -429,6 +433,27 @@ class Document
             'id' => $this->getId(),
             'name' => $this->getName(),
             'date' => $this->getDate()
+        );
+    }
+
+    public function getPlain(){
+        return array(
+
+        );
+    }
+
+    public function getTable(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'document_author' => $this->getDocumentAuthor()->getFIO(),
+            'document_name' => $this->getName(),
+            'date' => $this->getDate(),
+            'document_type' => $this->getDocumentType()->getName(),
+            'secrecy_type' => $this->getDocumentType()->getSecrecyType()->getName(),
+            'urgency_type' => $this->getDocumentType()->getUrgencyType()->getName(),
+            'route' => 'Default', //$this->getRoute(),
+            'current_node' => $this->getCurrentNodeLevel()->getName()
         );
     }
 }

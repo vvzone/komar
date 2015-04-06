@@ -7,10 +7,10 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * User
  *
- * @ORM\Entity(repositoryClass="Object\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="Object\Repository\User")
  * @ORM\Table(name="user", indexes={@ORM\Index(name="person_id", columns={"person_id"})})
  */
-class User
+class User extends Filtered
 {
     /**
      * @var integer
