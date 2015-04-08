@@ -74,7 +74,7 @@ define(
             local_server: true,
             temp: null,
             host: {
-                local_server: 'zend-test:9080',
+                local_server: 'zend_test:9080',
                 production_server: '127.0.0.1:1337'
             },
             login_url: {
@@ -86,6 +86,7 @@ define(
                 production_server: '/admin/api/commands/return_token'
             },
             template_url: 'views/react/template/',
+            search_url: '/search',
             menu_group_classes: {
                 menu_new_doc: ['new_document'],
                 menu_msg: ['inbox', 'sent'],

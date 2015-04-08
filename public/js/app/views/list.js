@@ -42,6 +42,8 @@ define(
                             console.warn(['self', self]);
                         }
 
+                        $('#main_main').html('');
+
                         React.renderComponent(
                             new MainList({
                                 collection: self.collection,

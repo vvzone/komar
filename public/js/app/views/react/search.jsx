@@ -5,8 +5,9 @@ define(
     'views/react/search',
     [
         'jquery',
-        'react'
-    ],function($, React){
+        'react',
+        'config'
+    ],function($, React, Config){
 
         var SearchBox = React.createClass({
             doSearch:function(){
@@ -16,28 +17,27 @@ define(
             render: function(){
                 return(
                     <div className="search"><input type="text" ref="searchInput" placeholder="Поиск" value={this.props.query} onChange={this.doSearch} /></div>
-                    )
+                )
             }
         });
 
         var InstantSearch = React.createClass({
-            /*getInitialState: function() {
-             return {
-             current_entity: '',
-             items: []
-             }
-             },*/
             startSearch: function(query){
+                console.info(['SearchBox', this.props]);
+
+                var search_url= this.props.source+'?search='+query; //
+                console.info(['search_url', search_url]);
+
                 $.ajax({
-                    type: "POST",
-                    url: 'http://zend_test/main/'+this.props.source,
-                    data: query,
+                    type: "GET",
+                    url: search_url,
+                    //data: query,
                     success: function(data) {
-                        //this.setState({items: data})
                         this.props.searchReceived(data)
                     }.bind(this),
                     dataType: 'json'
                 });
+
                 console.log('query='+query);
             },
             componentDidMount: function() {
@@ -45,8 +45,9 @@ define(
                 this.setState({current_entity: this.props.entity_name});
             },
             render: function(){
+                console.info(['SearchBox', this.props]);
                 //startSearch={this.startSearch}
-                return(<SearchBox startSearch={this.startSearch}/>)
+                return(<SearchBox startSearch={this.startSearch} />)
             }
         });
 

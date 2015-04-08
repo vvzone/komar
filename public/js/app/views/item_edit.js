@@ -17,7 +17,6 @@ define(
 
             //model load
             require(['models/'+view], function(Model){
-
                 if(id && id !='new' && id!='add'){
                     var model = new Model({id: id});
                     (debug)?console.log('fetch existing model'):null;

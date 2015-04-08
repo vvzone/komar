@@ -13,8 +13,9 @@ define(
         var local_server = (Config['local_server'])? true: null;
         (debug)?console.log('local_server='+local_server):null;
 
-        var andrey_host_url = 'http://127.0.0.1:1337';
-        var local_host_url = 'http://zend_test:9080';
+        var andrey_host_url ='http://'+Config['host']['production_server'];
+        var local_host_url = 'http://'+Config['host']['local_server'];
+
         var host = (local_server)? local_host_url: andrey_host_url;
 
         var prefix = '/admin/api/object';

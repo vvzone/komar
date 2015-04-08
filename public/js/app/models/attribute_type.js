@@ -63,7 +63,6 @@ define(
                 attribute_type_lists: 'attribute_type_lists'
             },
             //list_values: new ListCollection(),
-            /*
             hidden_fields:{
                 list_values: {base_attr_type: 8},
                 max: {base_attr_type: [1,2,4,5,6,7]},
@@ -71,7 +70,7 @@ define(
                 mask: {base_attr_type: 3},
                 max_length: {base_attr_type: [3]},
                 attribute_type_childs: {base_attr_type: [9]}
-            },*/
+            },
             url: function() {
                 return apiUrl('attribute_type', this.id);
             },

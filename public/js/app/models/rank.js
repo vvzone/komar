@@ -38,7 +38,7 @@ define(
             },
             form: {
                 name: 'tiny_text',
-                is_officer: 'simple_select',
+                is_officer: 'bool_select'
             },
             model_name: 'rank',
             model_rus_name: 'Звание',

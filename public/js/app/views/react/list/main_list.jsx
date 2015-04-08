@@ -21,12 +21,10 @@ define(
 
         var MainList = React.createClass({
             getPaginator: function(){
-                /*
                 var pagination_request = this.props.pagination;
                 if(this.props.pagination){
                     return <Paginator pagination={pagination_request} callback={this.collectionRePaginate} />;
                 }
-                */
                 return null;
             },
             componentWillUnmount: function(){
@@ -47,6 +45,10 @@ define(
                 console.info(['model', model]);
                 EventBus.trigger('item-add', new_model);
 
+            },
+            collectionUpdate: function(data){
+                console.log(['collectionUpdate', data.requested_data]);
+                this.props.collection.reset(data.requested_data);
             },
             render: function(){
                 console.info('MainList->render');
@@ -74,7 +76,7 @@ define(
                     <div className="List">
                     <div className="MainList">
                         {switch_view}
-                        <Search />
+                        <Search source={collection.url()} searchReceived={this.collectionUpdate} />
                         <div className="btn_add"><ButtonAdd clicked={this.addItem} /></div>
                         <ul>{items}</ul>
                         {this.getPaginator()}

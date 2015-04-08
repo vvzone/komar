@@ -44,7 +44,6 @@ define(
                         </table>
                         <div>{this.getPaginator()}</div>
                     </div>
-
                 );
                 //table-bordered
             },

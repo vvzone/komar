@@ -18,11 +18,11 @@ define(
             getInitialState: function(){
                 return {
                     page_count: null, // кол-во страниц
-                    //page_active: null, // активная страница
+                    page_active: null, // активная страница
                     page_show: 9,
                     per_page: 10,
                     current_url: null,
-                    //current_page: null,
+                    current_page: null,
                     total_records: null,
                     total_pages: null
                 }
@@ -124,7 +124,9 @@ define(
                     if(where_params_start == -1){
                         where_params_start = current_url.length;
                     }
-                    var url = 'admin#'+current_url.substring(0, where_params_start);
+
+                    var url ='#'+current_url.substring(0, where_params_start);
+
                     (debug)?console.info(['current_url, w/o params', url]):null;
                     this.setState({
                         current_url: url
