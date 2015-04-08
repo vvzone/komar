@@ -21,10 +21,13 @@ define(
                 console.log('SimpleList WillMount');
             },
             addItem: function(){
-                var new_model = this.props.collection.create(null, {silent: true}); //!silent - don't force re-render before save model to server
+                //var new_model = this.props.collection.create(null, {silent: true}); //!silent - don't force re-render before save model to server
+                var new_model = this.props.collection.add(); //!silent - don't force re-render before save model to server
                 EventBus.trigger('item-add', new_model);
             },
             render: function(){
+                console.warn('=====*=======');
+                console.info(['this.props.collection', this.props.collection]);
                 var collection = this.props.collection;
 
                 var items = collection.map(function(model){

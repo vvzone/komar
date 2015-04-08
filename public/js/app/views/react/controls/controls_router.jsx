@@ -62,9 +62,11 @@ define(
                 var self = this;
                 var dependency_array = this.props.dependency_array;
                 var validation_error = this.props.error;
+                console.info('ControlRouter->');
+                console.info(this.props);
                 switch (type) {
                     case('icon_select'):
-                        return(<div>Icon's Select</div>)
+                        return(<div>Icon's Select</div>);
                         break;
                     case('tiny_text'):
                         return(<ControlTinyText value={value} name={name} russian_name={russian_name} discard={discard} callback={self.callBack} error={validation_error} />);

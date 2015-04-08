@@ -88,6 +88,7 @@ define(
 
         properties_types['listValues'] = 'simple_list';
         properties_types['list_values'] = 'simple_list';
+        properties_types['attribute_type_lists'] = 'simple_list';
         properties_types['mask'] = 'tiny_text';
         properties_types['max_length'] = 'tiny_text';
         properties_types['value'] = 'tiny_text';

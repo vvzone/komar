@@ -1,5 +1,5 @@
 define(
-    'models/attribute_type_list_collection',
+    'models/attribute_type_lists_collection',
         [
             'jquery',
             'underscore',
@@ -11,7 +11,7 @@ define(
         ],function($, _, Backbone, BackbonePaginator, React, apiUrl, Config, Model){
 
             var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
-            console.log('models/attribute_types_list_collection loaded');
+            console.log('models/attribute_types_lists_collection loaded');
 
             var Collection = Backbone.PageableCollection.extend({
                 model: Model,

@@ -43,6 +43,7 @@ define(
                     return this.initDefault(model, prop);
                 },
                 initWithDependency: function(model, prop){
+                    console.warn('initWithDependency');
                     var control_type = '';
                     if(DefaultControlsConfig[prop]){
                         control_type = DefaultControlsConfig[prop];
@@ -52,6 +53,7 @@ define(
 
                     return <ControlsRouter
                                 type={control_type}
+                                model={model}
                                 value={model.attributes[prop]}
                                 dependency_array = {this.state.dependency_array[prop]}
                                 name={prop}
@@ -62,6 +64,7 @@ define(
                 },
                 initModelDescribed: function(model, prop){
                     (debug)?console.log(['initModelDescribed model.get('+prop+')', model.get(prop)]):null;
+                    console.warn('initModelDescribed');
                     var error={};
                     //var current_node = 'sub_form_'+prop;
 
@@ -79,6 +82,7 @@ define(
                             sub_controls.push(
                                 <ControlsRouter
                                 type={sub_prop_control}
+                                model={model}
                                 value={model.get(prop).get(sub_prop_name)}
                                 name={sub_prop_name}
                                 russian_name={model.attr_rus_names[prop][sub_prop_name]}
@@ -96,6 +100,7 @@ define(
                     return <ControlsRouter
                                 type={model.form[prop]}
                                 value={model.get(prop)}
+                                model={model}
                                 name={prop}
                                 russian_name={model.attr_rus_names[prop]}
                                 callback={this.itemUpdate}
@@ -117,9 +122,11 @@ define(
                         }
                     }
 
+                    console.warn('initDefault');
                     return <ControlsRouter
                                 type={DefaultControlsConfig[prop]}
                                 value={model.attributes[prop]}
+                                model={model}
                                 name={prop}
                                 russian_name={model.attr_rus_names[prop]}
                                 callback={this.itemUpdate}

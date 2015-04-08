@@ -70,6 +70,7 @@ define(
                 });
             },
             renderSmart: function(){
+                console.error('renderSmart');
                 var model = this.props.model;
                 var controls = [];
                 if(this.state.dependency_array!=null){
