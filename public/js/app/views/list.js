@@ -22,14 +22,34 @@ define(
                 (debug)?console.log('init, this.collection:'):null;
                 (debug)?console.log(this.collection):null;
 
-                this.collection.bind('destroy', this.render, this);
-                this.collection.bind('change', this.render, this);
-                this.collection.bind('reset', this.render, this);
+                this.collection.bind('destroy', this.reRender, this);
+                this.collection.bind('change', this.reRender, this);
+                this.collection.bind('reset', this.reRender, this);
                 var self = this;
                 EventBus.on('success', function(){
                     self.collection.fetch();
                 });
                 this.collection.bind('', this.render, this);
+                this.render(options);
+            },
+            getPaginationFromState: function(state){
+                return {
+                    page: parseInt(state.currentPage),
+                    records_per_page: state.pageSize
+                };
+            },
+            reRender: function(collection){
+                /*
+                console.warn(['reRender, event', collection]);
+                console.info(collection.state);
+                var options = {};
+                options['pagination'] = this.getPaginationFromState(collection.state);
+                console.warn(['generated pagination', options.pagination]);
+                this.render(options);
+                */
+                var options = {};
+                options['pagination'] = collection.paginator;
+                console.warn(['collection.paginator', collection.paginator]);
                 this.render(options);
             },
             render: function(options){

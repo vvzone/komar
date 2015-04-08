@@ -58,7 +58,7 @@ define(
                 var current_page = this.props.pagination.current_page;
                 var current_limit = this.props.pagination.records_per_page;
                 var total_records = this.props.pagination.total_records;
-                var total_pages = this.props.pagination.total_pages
+                var total_pages = this.props.pagination.total_pages;
 
                 var current_first = (current_limit*(current_page-1))+1;
                 var new_page = Math.ceil(current_first/new_limit);

@@ -12,16 +12,22 @@ define(
         'jsx!views/react/base/btn_add',
         'jsx!views/react/base/info_msg',
         'jsx!views/react/list/list_item',
-        'event_bus'
+        'event_bus',
+        'app_registry'
     ],function($, React, Config,
                InstantSearch, Search, Paginator,
-               ButtonAdd,InfoMsg, ListItem, EventBus){
+               ButtonAdd,InfoMsg, ListItem, EventBus, app_registry){
         var debug = (Config['debug'] && Config['debug']['debug_main_list'])? 1:null;
         console.log('module views/react/controls/main_list loaded');
 
         var MainList = React.createClass({
             getPaginator: function(){
                 var pagination_request = this.props.pagination;
+
+                pagination_request['search'] = {
+                    field: 'name'
+                };
+
                 if(this.props.pagination){
                     return <Paginator pagination={pagination_request} callback={this.collectionRePaginate} />;
                 }
@@ -47,7 +53,7 @@ define(
 
             },
             collectionUpdate: function(data){
-                console.log(['collectionUpdate', data.requested_data]);
+                this.props.collection.paginator = data.paginator;
                 this.props.collection.reset(data.requested_data);
             },
             render: function(){
