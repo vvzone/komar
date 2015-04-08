@@ -35,9 +35,9 @@ class Document extends Filtered
      */
     private $date;
     /**
-     * @var string
+     * var string
      *
-     * @ORM\Column(name="document_number", type="string", length=45, nullable=true)
+     * ORM\Column(name="document_number", type="string", length=45, nullable=true)
      */
     private $documentNumber;
 
@@ -53,17 +53,18 @@ class Document extends Filtered
      */
     private $documentAuthor;
 
+
     /**
      * @var \Object\Entity\DocumentType
      *
      * ORM\Id
      * ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\DocumentType")
+     * @ORM\OneToOne(targetEntity="Object\Entity\CurrentDocumentType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="current_document_type_id", referencedColumnName="id")
      * })
      */
-    private $documentType;
+    private $currentDocumentType;
 
     /*
      * @var \Object\Entity\NodeLevel
@@ -251,34 +252,30 @@ class Document extends Filtered
         return $this->documentAuthor;
     }
 
+
     /**
-     * Set documentType
+     * Set currentDocumentType
      *
-     * @param \Object\Entity\DocumentType $documentType
+     * @param \Object\Entity\CurrentDocumentType $currentDocumentType
      * @return Document
      */
-    public function setDocumentType(\Object\Entity\DocumentType $documentType)
+    public function setCurrentDocumentType(\Object\Entity\CurrentDocumentType $currentDocumentType)
     {
-        $this->documentType = $documentType;
+        $this->curentDocumentType = $currentDocumentType;
 
         return $this;
     }
 
     /**
-     * Get documentType
+     * Get currentDocumentType
      *
-     * @return \Object\Entity\DocumentType 
+     * @return \Object\Entity\CurrentDocumentType
      */
-    public function getDocumentType()
+    public function getCurrentDocumentType()
     {
-        return $this->documentType;
-        //return $this->documentType->getName();
-        //return $this->documentType->getAll();
+        return $this->currentDocumentType;
     }
 
-    public function getDocumentTypeName(){
-        return $this->documentType->getName();
-    }
 
     /**
      * Set currentNodeLevel
@@ -405,7 +402,7 @@ class Document extends Filtered
         return $attributes;
     }
     public function getDocumentName(){
-        $type = $this->getDocumentTypeName();
+        $type = $this->getCurrentDocumentType()->getName();
         $date = ' от '.$this->getDate();
         $attribute_name = '"'.$this->getName().'"';
         $name = $type.' '.$date.' '.$attribute_name;
@@ -415,14 +412,15 @@ class Document extends Filtered
     public function getAll(){
         return array(
             'id' => $this->getId(),
+            //'document_type' => $this->getDocumentTypeCheckCurrent(),
+            'current_document_type' => $this->getCurrentDocumentType()->getAll(),
             'generated_name' => $this->getDocumentName(),
             'name' => $this->getName(),
             'document_name' => $this->getName(),
             'date' => $this->getDate(),
             'document_author' => $this->getDocumentAuthor()->getFIO(),
-            'document_type' => $this->getDocumentType()->getAll(),
-            'secrecy_type' => $this->getDocumentType()->getSecrecyType(),
-            'urgency_type' => $this->getDocumentType()->getUrgencyType(),
+            //'secrecy_type' => $this->getCurrentDocumentType()->getSecrecyType(),
+            //'urgency_type' => $this->getCurrentDocumentType()->getUrgencyType(),
             'document_attributes' => $this->getDocumentAttributes(),
             'current_node' => $this->getCurrentNodeLevel()->getName()
         );
@@ -438,7 +436,8 @@ class Document extends Filtered
 
     public function getPlain(){
         return array(
-
+            'id' => $this->getId(),
+            'name' => $this->getName(),
         );
     }
 
@@ -449,9 +448,9 @@ class Document extends Filtered
             'document_author' => $this->getDocumentAuthor()->getFIO(),
             'document_name' => $this->getName(),
             'date' => $this->getDate(),
-            'document_type' => $this->getDocumentType()->getName(),
-            'secrecy_type' => $this->getDocumentType()->getSecrecyType()->getName(),
-            'urgency_type' => $this->getDocumentType()->getUrgencyType()->getName(),
+            'document_type' => $this->getCurrentDocumentType()->getName(),
+            'secrecy_type' => $this->getCurrentDocumentType()->getSecrecyType()->getName(),
+            'urgency_type' => $this->getCurrentDocumentType()->getUrgencyType()->getName(),
             'route' => 'Default', //$this->getRoute(),
             'current_node' => $this->getCurrentNodeLevel()->getName()
         );
