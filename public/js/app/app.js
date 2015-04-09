@@ -36,10 +36,12 @@ define(
         Backbone.Validation.configure({
             forceUpdate: true
         });
+
         _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
         Backbone.Collection.prototype.parse = function(response){
             return response.requested_data;
         };
+
         Backbone.PageableCollection.prototype.parse = function(response){
             return response.requested_data;
         };
@@ -51,8 +53,6 @@ define(
             pageSize: "page_size"
         };
         */
-
-        console.info(['Validation mixin:', Backbone.Validation.mixin]);
 
         _.extend(Backbone.Validation.callbacks, {
             valid: function (view, attr, selector) {
@@ -190,13 +190,7 @@ define(
         console.log('app initialization...');
         app_registry.init();
         Router.initialize();
-        //app_registry.router = Router.initialize();
-        /*
-        React.renderComponent(
-            UserBarComponent(),
-            document.getElementById("header_login")
-        );
-        */
+
     };
 
     return {

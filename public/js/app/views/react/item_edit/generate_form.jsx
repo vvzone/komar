@@ -39,8 +39,17 @@ define(
             },
             componentDidMount: function(){
                 var cur_node = $(this.getDOMNode())[0];
+                console.warn('====================');
+                console.info(['$(this.getDOMNode())[0]', $(this.getDOMNode())[0]]);
+                console.info(['$(this.getDOMNode())', $(this.getDOMNode())]);
+                console.warn('====================');
                 _.extend(cur_node, Backbone.Events);
-                cur_node.on('saveButtonClick', this.saveForm);
+
+                var self = this;
+                cur_node.on('saveButtonClick', function(){
+                    console.log('catch saveButtonClick');
+                    self.saveForm();
+                });
             },
             componentWillMount: function () {
                 var self = this;

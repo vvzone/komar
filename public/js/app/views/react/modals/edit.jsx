@@ -25,12 +25,7 @@ define(
                 this.refs.modal.show();
             },
             handleExternalHide: function () {
-                if(debug){
-                    console.info('->handleExternalHide');
-                    console.info(this.refs);
-                }
                 this.refs.modal.hide();
-                //this.hide();
             },
             throwSave: function(){
                 (debug)?console.log('modal -> throwSave'):null;
@@ -40,15 +35,14 @@ define(
                 });
 
                 (debug)?console.log('dom node:'):null;
-                var element = $(this.refs.item_edit.getDOMNode()).find('.item')[0]; //call for ItemEdit not MainItemEdit
-                this.refs.modal.hide();
-
+                var element = $(this.refs.item_edit.getDOMNode())[0]; //call for ItemEdit not MainItemEdit
                 (debug)?console.log(element):null;
+
                 element.trigger('saveButtonClick', customEvent);
+                //this.refs.modal.hide();
             },
             componentDidMount: function () {
                 var self = this;
-
                 var this_node = $(self.getDOMNode()).parent()[0];
                 _.extend(this_node, Backbone.Events);
 
@@ -69,9 +63,6 @@ define(
                 }, self);
                 */
             },
-            componentWillUnmount: function(){
-                (debug)?console.warn('Unmounting React EDIT'):null;
-            },
             callback: function(action){
                 if(debug){
                     console.info('Modal Edit Window callback from MaiItemEdit..., action:');
@@ -87,20 +78,14 @@ define(
                 ];
                 var obj_name = '';
                 (this.props.model.get('name'))? obj_name =this.props.model.get('name'): obj_name='Новая запись';
-                var header = <div>{this.props.model.model_rus_name} / {obj_name}</div>; //+this.entity.name;
-
-                if(debug){
-                    console.log('ModalWindowEdit, this.props.model:');
-                    console.log(this.props.model);
-                }
+                var header = <div>{this.props.model.model_rus_name} / {obj_name}</div>;
                 return(
-                    <ModalWindowBase ref="modal"
-                    show={false}
-                    header={header}
-                    buttons={buttons}
-                    >
-                        <MainItemEdit ref="item_edit" model={this.props.model} callback={this.callback} />
-                    </ModalWindowBase>
+                        <ModalWindowBase ref="modal"
+                        show={false}
+                        header={header}
+                        buttons={buttons} >
+                            <MainItemEdit ref="item_edit" model={this.props.model} callback={this.callback} />
+                        </ModalWindowBase>
                     );
 
             }

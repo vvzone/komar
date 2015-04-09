@@ -18,7 +18,7 @@ define(
                 debug_list: null,
                 debug_main_list: null,
                 debug_list_item: null,
-                debug_modals: null,
+                debug_modals: 1,
                 debug_item_edit: 1,
                 debug_control_router: null,
                 debug_route_levels_control: null,
