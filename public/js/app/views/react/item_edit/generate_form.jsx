@@ -216,7 +216,7 @@ define(
                 //app_registry.router.navigate(Backbone.history.fragment, true);
 
                 app_registry.router.navigate(new_route, true);
-                app_registry.router.navigate(current_page, true); //very bad desicion
+                //app_registry.router.navigate(current_page, true); //very bad desicion
 
             },
             getSubForm: function(prop, values){

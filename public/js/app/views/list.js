@@ -35,7 +35,7 @@ define(
                     records_per_page: state.pageSize
                 };
             },
-            reRender: function(collection){
+            reRender: function(model){
                 /*
                 console.warn(['reRender, event', collection]);
                 console.info(collection.state);
@@ -45,9 +45,10 @@ define(
                 this.render(options);
                 */
                 var options = {};
-                if(collection.paginator){
-                    options['pagination'] = collection.paginator;
-                    console.warn(['collection.paginator', collection.paginator]);
+                console.info(['reRender', model]);
+                if(model.collection.paginator){
+                    options['pagination'] = model.collection.paginator;
+                    console.warn(['collection.paginator', model.collection.paginator]);
                 }else{
                     options['pagination'] = {
                         page: 1,
@@ -115,9 +116,11 @@ define(
                     (debug)?console.info(['paginator', collection.paginator]):null;
                     if(collection.paginator){
                         paginator = collection.paginator;
+                        Collection.paginator = collection.paginator;
                         (debug)?console.info(['paginator', response.paginator]):null;
                     }
-                    var View = new ListView({collection: Collection, pagination: paginator});
+
+                    var View = new ListView({collection: Collection, pagination: paginator}); //Collection
                 });
 
 
