@@ -204,10 +204,19 @@ define(
                 }
             },
             routeToCollection: function(){
+                console.info('routeToCollection... ');
                 var collection_name = this.props.model.model_name+'s';
                 var new_route = 'admin/'+collection_name;
                 (debug)?console.info(['new_route', new_route]):null;
+
+                var current_page = Backbone.history.fragment;
+                var refresh = Backbone.history.fragment + '&refresh=true';
+
+                //$('#main_main').html('');
+                //app_registry.router.navigate(Backbone.history.fragment, true);
+
                 app_registry.router.navigate(new_route, true);
+                app_registry.router.navigate(current_page, true); //very bad desicion
 
             },
             getSubForm: function(prop, values){

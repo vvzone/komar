@@ -39,20 +39,15 @@ define(
                 (debug)?console.log(element):null;
 
                 element.trigger('saveButtonClick', customEvent);
-                //this.refs.modal.hide();
             },
             componentDidMount: function () {
                 var self = this;
                 var this_node = $(self.getDOMNode()).parent()[0];
                 _.extend(this_node, Backbone.Events);
 
-                if(debug){
-                    console.info('this->mount, this_node for windows-close:');
-                    console.info(this_node);
-                }
 
                 /*
-                this_node.on('windows-close', function(){
+                this_node.on('windows-close', function () {
                     console.info('windows-close catch by window-EDIT');
                     console.info('this_node');
                     console.info(this_node);
@@ -65,11 +60,12 @@ define(
             },
             callback: function(action){
                 if(debug){
-                    console.info('Modal Edit Window callback from MaiItemEdit..., action:');
+                    console.info('Modal Edit Window callback from MainItemEdit..., action:');
                     console.info(action);
                 }
                 if(action == 'save'){
-                    this.refs.modal.hide();
+                    //this.refs.modal.hide();
+                    alert('action save!');
                 }
             },
             render: function(){

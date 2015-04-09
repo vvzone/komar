@@ -120,20 +120,21 @@ define(
             }); //try to get full-model
         });
 
-        EventBus.on('item-edit', function(model){
+        EventBus.on('item-edit', function(model_old){
             if((debug_modals)){
                 console.info('EventBus -> item-edit, model:');
-                console.log(model);
+                console.log(model_old);
             }
 
-            var collection = model.collection;
-            var id = model.get('id');
+            var collection = model_old.collection;
+            var id = model_old.get('id');
             var new_collection  = collection.clone(); //save collection with simple objects
+
+            collection.remove(model_old); //cut-off from parent collection
             var model = new_collection.get(id);
 
+
             console.info(['model', model]);
-            //var model = collection.get(model.get('id'));
-            var id = model.get('id');
 
             //model.silentFetch
             model.fetch({
@@ -167,6 +168,8 @@ define(
         EventBus.on('success', function(header, msg){
             console.info('EventBus -> success');
             var last_window = $('.modal_window').filter(':last')[0];
+
+            /*
             var parent_window = $('.modal_window').filter(function(index){
                 return $('.modal_window', this).length-2;
             })[0];
@@ -176,6 +179,7 @@ define(
             var test_window = $('.modal_window').filter(function(index){
                 return $('.modal_window', this).length-2;
             });
+            */
 
             React.renderComponent(
                 ModalWindowSuccess({

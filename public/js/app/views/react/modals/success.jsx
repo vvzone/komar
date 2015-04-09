@@ -22,11 +22,6 @@ define(
             componentDidMount: function() {
                 this.show();
                 _.extend($(this.getDOMNode()), Backbone.Events);
-                /*
-                EventBus.once('windows-close', function(){
-                    console.info('windows-close catch by window-SUCCESS');
-                    this.hide();
-                }, this);*/
             },
             cancelTimer: function(){
                 console.log('cancelTimer!');
@@ -35,12 +30,10 @@ define(
                 });
             },
             componentWillUnmount: function(){
-                //console.warn('Success, unmount, throw window close');
                 console.warn('Unmounting React SUCCESS window');
-                //EventBus.trigger('windows-close');
             },
-            callback: function(){
-                console.log('modal window callback, hide');
+            hideByTimer: function(){
+                console.log('hide by timer');
                 this.hide();
             },
             hideParent: function(){
@@ -57,50 +50,57 @@ define(
                 //last_window.trigger('windows-close');
             },
             render: function () {
-                console.log('this.state.timer');
-                console.log(this.state.timer);
-                var buttons =
-                        <button type="button" className={'btn btn-default'} onClick={this.hideParent} key="default">
-                            Закрыть <Timer timer="3" stop_timer={this.state.stop_timer} callback={this.callback} />
-                        </button>;
-
-
-                var msg ='';
-                var header = '';
-                var top = <div className="modal-header">
-                    <span className="glyphicon glyphicon-ok-sign" onClick={this.hideParent}></span>
-                                    {this.renderCloseButton()}
-                </div>;
-
-                if(this.props.header){
-                    if(this.props.header.length>0){
-                       header= <div className="header"><strong>{this.props.header}</strong></div>;
-                    }
-                }
-                if(this.props.msg){
-                    msg = <div className="msg">{this.props.msg}</div>;
-                }
-                var main_msg = <div className="modal-body">
-                {header}
-                {msg}</div>;
-                var response = '';
-                if(this.props.response){
-                    response = <div className="modal-body">Ответ сервера: {this.props.response}</div>;
-                }
                 return(
                     <div className="modal fade" onClick={this.cancelTimer}>
                         <div className="modal-dialog">
                             <div className="modal-content alert-success">
-                                    {top}
-                                    {main_msg}
-                                    {response}
+                                    {this.getWindowTop()}
+                                    {this.getMainMsg()}
+                                    {this.getResponseMsg()}
                                 <div className="modal-footer">
-                                    {buttons}
+                                    {this.getWindowButtons()}
                                 </div>
                             </div>
                         </div>
                     </div>
                     );
+            },
+            getWindowTop: function(){
+                return <div className="modal-header">
+                            <span className="glyphicon glyphicon-ok-sign" onClick={this.hideParent}></span>
+                            {this.renderCloseButton()}
+                       </div>;
+            },
+            getMainMsg: function(){
+                return <div className="modal-body">
+                            {this.getHeader()}
+                            {this.getMsg()}
+                        </div>;
+            },
+            getMsg: function(){
+                if(this.props.msg){
+                    return  <div className="msg">{this.props.msg}</div>;
+                }
+                return null;
+            },
+            getHeader: function(){
+                if(this.props.header){
+                    if(this.props.header.length>0){
+                        return <div className="header"><strong>{this.props.header}</strong></div>;
+                    }
+                }
+                return null;
+            },
+            getResponseMsg: function(){
+                if(this.props.response){
+                    return <div className="modal-body">Ответ сервера: {this.props.response}</div>;
+                }
+                return null;
+            },
+            getWindowButtons: function(){
+                return <button type="button" className={'btn btn-default'} onClick={this.hideParent} key="default">
+                        Закрыть <Timer timer="3" stop_timer={this.state.stop_timer} callback={this.hideByTimer} />
+                       </button>;
             }
         });
 

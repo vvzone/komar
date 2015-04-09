@@ -15,15 +15,12 @@ define(
             var handlerProps =
                 ['handleShow', 'handleShown', 'handleHide', 'handleHidden'];
 
-
             var bsModalEvents = {
                 handleShow: 'show.bs.modal',
                 handleShown: 'shown.bs.modal',
                 handleHide: 'hide.bs.modal', //hide.bs.modal
                 handleHidden: 'hidden.bs.modal'
             };
-
-            //это фактически колбэки
 
             return {
                 propTypes: {
@@ -72,20 +69,9 @@ define(
                     var self = this;
                     var this_node = $(this.getDOMNode());
 
-
-                    this_node.on('hide.bs.modal', function(){
-                        if(debug){
-                            console.info('BOOTSTRAP_MODAL_MIXIN catch ON hide.bs.modal, by:');
-                            console.info(this_node);
-                        }
-
-                        //self.unMountReactAfterHide(this_node); //исполнение приводит к закрытиию всех окон так как там не задан this_node, а начинается поиск
-                        //нет, не по этому ;)
-                    });
-
                 },
                 componentWillUnmount: function () {
-                    (debug)?console.log('bootsratp modal unmount'):null;
+                    (debug)?console.log('bootsratp modal WillUnmount'):null;
                     var $modal = $(this.getDOMNode())
                     handlerProps.forEach(function (prop) {
                         if (this[prop]) {
@@ -102,18 +88,13 @@ define(
                         console.info('unMountReactAfterHide->react_node');
                         console.info(react_node);
                     }
-                    var unmount = React.unmountComponentAtNode(react_node);
-                    (debug)?console.info(unmount):null;
+                    React.unmountComponentAtNode(react_node);
                 },
                 hide: function () {
-                    (debug)?console.log('(X) HIDE CATCH BY:'):null;
                     var this_node = $(this.getDOMNode());
-                    (debug)?console.log(this_node):null;
+                    (debug)?console.log(['modal hide at node:', this_node]):null;
                     this_node.modal('hide');
                     this.unMountReactAfterHide(this_node);
-                },
-                test: function(){
-                    alert('test');
                 },
                 show: function () {
                     $(this.getDOMNode()).modal('show');

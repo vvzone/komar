@@ -26,9 +26,6 @@ define(
                 this.collection.bind('change', this.reRender, this);
                 this.collection.bind('reset', this.reRender, this);
                 var self = this;
-                EventBus.on('success', function(){
-                    self.collection.fetch();
-                });
                 this.collection.bind('', this.render, this);
                 this.render(options);
             },
@@ -71,7 +68,8 @@ define(
                             console.warn(['self', self]);
                         }
 
-                        $('#main_main').html('');
+                        //$('#main_main').html('');
+                        React.unmountComponentAtNode($('#main_main')[0]);
 
                         React.renderComponent(
                             new MainList({

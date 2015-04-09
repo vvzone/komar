@@ -25,8 +25,8 @@ define(
                         this.state.model.save(null, {
                             success:  function(model, response){
                                 (debug)?console.info('item_edit -> save success!'):null;
-                                EventBus.trigger('success', 'Изменения сохранены.');
                                 self.afterSave();
+                                EventBus.trigger('success', 'Изменения сохранены.');
                             },
                             error: function(model, response){
                                 EventBus.trigger('error', 'Ошибка', 'Не удалось сохранить изменения', response);
@@ -46,9 +46,13 @@ define(
                     }
                 },
                 afterSave: function(){
+
                     if(this.props.interface){
                         this.routeToCollection();
                     }else{
+                        console.info(['this.state.model', this.state.model]);
+                        this.routeToCollection();
+                        /*
                         this.state.model.collection.fetch({
                             success: function(){
                                 EventBus.trigger('success', 'Изменения синхронизированы.')
@@ -57,6 +61,7 @@ define(
                                 EventBus.trigger('error', 'Ошибка', 'Изменения сохранены, однако, при попытке синхронизироваться с сервером возникла ошибка.', response);
                             }
                         });
+                        */
                     }
                 }
             };
