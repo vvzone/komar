@@ -20,7 +20,9 @@ define(
                 if(id && id !='new' && id!='add'){
                     var model = new Model({id: id});
                     (debug)?console.log('fetch existing model'):null;
-                    model.fetch({
+                    //var model_old = model;
+                    //model = model.clone();
+                    model.silentFetch({
                         success: function(){
                             console.info(['model', model]);
                             $('#main_main').html(''); //clean previous

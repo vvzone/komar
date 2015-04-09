@@ -6,13 +6,14 @@ define(
         'backbone',
         'react',
         'apiUrl',
-        'config'
-    ],function($, _, Backbone, React, apiUrl, Config){
+        'config',
+        'models/base/rest_model'
+    ],function($, _, Backbone, React, apiUrl, Config, RestModel){
 
         var debug = (Config['debug'] && Config['debug']['debug_models_and_collections'])? 1:null;
         (debug)?console.log('models/rank loaded'):null;
 
-        var Rank = Backbone.Model.extend({
+        var Rank = RestModel.extend({
             defaults: {
                 id: null,
                 name: null,
@@ -45,7 +46,8 @@ define(
             attr_dependencies: [], //for recursive objects
             url: function() {
                 return apiUrl('rank', this.id);
-            },
+            }
+            /*,
             initialize: function(){
                 this.on('change', function(){
                     console.info('change');
@@ -57,6 +59,7 @@ define(
                     });
                 })
             }
+            */
         });
 
         return Rank;

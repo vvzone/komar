@@ -33,24 +33,18 @@ define(
         var debug_modals = (Config['debug'] && Config['debug']['debug_modals'])? 1:null;
 
     var init = function(){
-
         Backbone.Validation.configure({
             forceUpdate: true
         });
-
         _.extend(Backbone.Model.prototype, Backbone.Validation.mixin);
-
         Backbone.Collection.prototype.parse = function(response){
             return response.requested_data;
         };
-
         Backbone.PageableCollection.prototype.parse = function(response){
             return response.requested_data;
         };
-
         /*
         Backbone.PageableCollection.queryParams = {
-
             // `Backbone.PageableCollection#queryParams` converts to ruby's
             // will_paginate keys by default.
             currentPage: "current_page",
@@ -132,7 +126,16 @@ define(
                 console.log(model);
             }
 
+            var collection = model.collection;
             var id = model.get('id');
+            var new_collection  = collection.clone(); //save collection with simple objects
+            var model = new_collection.get(id);
+
+            console.info(['model', model]);
+            //var model = collection.get(model.get('id'));
+            var id = model.get('id');
+
+            //model.silentFetch
             model.fetch({
                 success: function(){
                     React.renderComponent(
@@ -142,6 +145,7 @@ define(
                     );
                 }
             }); //try to get full-model
+
         });
 
         EventBus.on('item-delete', function(model){

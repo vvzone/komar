@@ -9,7 +9,7 @@ define(
         'react',
         'config',
         'jsx!views/react/modals/base',
-        'jsx!views/react/item_edit',
+        'jsx!views/react/item_edit/generate_form',
         'event_bus'
     ],function($, _, Backbone, React, Config, ModalWindowBase, MainItemEdit, EventBus){
 
@@ -24,7 +24,6 @@ define(
             handleShowModal: function () {
                 this.refs.modal.show();
             },
-
             handleExternalHide: function () {
                 if(debug){
                     console.info('->handleExternalHide');
