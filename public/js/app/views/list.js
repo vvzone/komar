@@ -48,8 +48,17 @@ define(
                 this.render(options);
                 */
                 var options = {};
-                options['pagination'] = collection.paginator;
-                console.warn(['collection.paginator', collection.paginator]);
+                if(collection.paginator){
+                    options['pagination'] = collection.paginator;
+                    console.warn(['collection.paginator', collection.paginator]);
+                }else{
+                    options['pagination'] = {
+                        page: 1,
+                        records_per_page: 10,
+                        total_records: 1,
+                        total_pages: 1
+                    };
+                }
                 this.render(options);
             },
             render: function(options){
