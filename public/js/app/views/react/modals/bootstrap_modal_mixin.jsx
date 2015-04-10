@@ -56,13 +56,10 @@ define(
                         remote: this.props.remote
                     });
                     handlerProps.forEach(function (prop) {
-                        (debug)?console.info('fucking prop is '+prop):null;
                         if (this[prop]) {
-                            (debug)?console.log('this[prop]'):null;
                             $modal.on(bsModalEvents[prop], this[prop])
                         }
                         if (this.props[prop]) {
-                            (debug)?console.log('this.props[prop]'):null;
                             $modal.on(bsModalEvents[prop], this.props[prop])
                         }
                     }.bind(this));
@@ -83,10 +80,9 @@ define(
                     }.bind(this))
                 },
                 unMountReactAfterHide: function(node){
-                    var react_node = node.parent()[0]; //возможно здесь нужно заменить на :last - не нужно здесь поиск не по имени класса
+                    var react_node = node[0];
                     if(debug){
-                        console.info('unMountReactAfterHide->react_node');
-                        console.info(react_node);
+                        console.info(['unMountReactAfterHide', react_node]);
                     }
                     React.unmountComponentAtNode(react_node);
                 },

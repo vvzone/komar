@@ -36,18 +36,10 @@ define(
                 console.log('hide by timer');
                 this.hide();
             },
-            hideParent: function(){
-                /*
-                var last_window = $('.modal_window').filter(function(index){
-                    return $('.modal_window', this).length-2;
-                })[0];
-                console.info('last_window');
-                console.info(last_window);
-                */
-
+            hideByButton: function(){
+                console.log('hide by button');
+                //this.cancelTimer();
                 this.hide();
-                //$('.modal-backdrop').filter(':last').remove();
-                //last_window.trigger('windows-close');
             },
             render: function () {
                 return(
@@ -98,7 +90,7 @@ define(
                 return null;
             },
             getWindowButtons: function(){
-                return <button type="button" className={'btn btn-default'} onClick={this.hideParent} key="default">
+                return <button type="button" className={'btn btn-default'} onClick={this.hideByButton} key="default">
                         Закрыть <Timer timer="3" stop_timer={this.state.stop_timer} callback={this.hideByTimer} />
                        </button>;
             }

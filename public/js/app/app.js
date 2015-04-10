@@ -125,20 +125,8 @@ define(
                 console.info('EventBus -> item-edit, model:');
                 console.log(model_old);
             }
-
-            /*
-            var collection = model_old.collection;
-            var id = model_old.get('id');
-            var new_collection  = collection.clone(); //save collection with simple objects
-
-            collection.remove(model_old); //cut-off from parent collection
-            var model = new_collection.get(id);
-*/
             var model = model_old;
 
-            console.info(['model', model]);
-
-            //model.silentFetch
             model.fetch({
                 success: function(){
                     React.renderComponent(

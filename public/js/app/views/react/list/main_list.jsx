@@ -50,7 +50,6 @@ define(
                 var model = this.props.collection.add();
                 console.info(['model', model]);
                 EventBus.trigger('item-add', new_model);
-
             },
             collectionUpdate: function(data){
                 this.props.collection.paginator = data.paginator;

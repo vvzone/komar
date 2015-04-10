@@ -204,19 +204,16 @@ define(
                 }
             },
             routeToCollection: function(){
-                console.info('routeToCollection... ');
                 var collection_name = this.props.model.model_name+'s';
-                var new_route = 'admin/'+collection_name;
-                (debug)?console.info(['new_route', new_route]):null;
+                var entry_point = app_registry.router_helpers.currentEntryPoint();
 
-                var current_page = Backbone.history.fragment;
-                var refresh = Backbone.history.fragment + '&refresh=true';
+                var new_route = entry_point + '/' + collection_name;
+                (debug) ? console.info(['new_route', new_route]) : null;
 
-                //$('#main_main').html('');
-                //app_registry.router.navigate(Backbone.history.fragment, true);
+                var current_route_wo_params = app_registry.router_helpers.currentUrlWithOutParams();
+                (debug) ? console.info(['current_route_wo_params', current_route_wo_params]) : null;
 
-                app_registry.router.navigate(new_route, true);
-                //app_registry.router.navigate(current_page, true); //very bad desicion
+                //app_registry.router.navigate(new_route, true);
 
             },
             getSubForm: function(prop, values){

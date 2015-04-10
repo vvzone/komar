@@ -6,9 +6,10 @@ define(
         'backbone',
         'react',
         'config',
-        'event_bus'
+        'event_bus',
+        'app_registry'
 
-    ],function($, _, Backbone, React, Config, EventBus){
+    ],function($, _, Backbone, React, Config, EventBus, app_registry){
         var debug = (Config['debug'] && Config['debug']['debug_list'])? 1:null;
         console.log('module views/list loaded');
 
@@ -16,46 +17,45 @@ define(
             el: '#main_main', // 2-do: extend from base-class
             template: '<div id="main_list_header"></div>' +
                 '<div id="main_list"></div>',
+            routeToCollection: function(){
+                app_registry.router.navigate(app_registry.currentUrlWithOutParams(), true);
+            },
             initialize: function(options) {
                 (debug)?console.log('ListView (backbone) initialization...'):null;
                 _.bindAll(this, 'render');
                 (debug)?console.log('init, this.collection:'):null;
                 (debug)?console.log(this.collection):null;
-
-                this.collection.bind('destroy', this.reRender, this);
-                this.collection.bind('change', this.reRender, this);
-                this.collection.bind('reset', this.reRender, this);
+                
+                this.collection.bind('destroy', this.catchDestroy, this);
+                this.collection.bind('change', this.catchChange, this);
+                this.collection.bind('reset', this.catchReset, this);
                 var self = this;
                 this.collection.bind('', this.render, this);
                 this.render(options);
             },
-            getPaginationFromState: function(state){
-                return {
-                    page: parseInt(state.currentPage),
-                    records_per_page: state.pageSize
-                };
+            catchDestroy: function(model){
+                console.log('catchDestroy');
+                var url =  app_registry.router_helpers.refreshUrlTmstmp(Backbone.history.fragment);
+                app_registry.router.navigate(url, true);
+            },
+            catchChange: function(model){
+                console.log('catchChange');
+                this.reRender(model);
+            },
+            catchReset: function(model){
+                console.log('catchReset');
+                this.reRender(model);
             },
             reRender: function(model){
-                /*
-                console.warn(['reRender, event', collection]);
-                console.info(collection.state);
-                var options = {};
-                options['pagination'] = this.getPaginationFromState(collection.state);
-                console.warn(['generated pagination', options.pagination]);
-                this.render(options);
-                */
                 var options = {};
                 console.info(['reRender', model]);
-                if(model.collection.paginator){
-                    options['pagination'] = model.collection.paginator;
-                    console.warn(['collection.paginator', model.collection.paginator]);
-                }else{
-                    options['pagination'] = {
-                        page: 1,
-                        records_per_page: 10,
-                        total_records: 1,
-                        total_pages: 1
-                    };
+                if(model.collection){
+                    if(model.collection.paginator){
+                        options['pagination'] = model.collection.paginator;
+                        console.warn(['collection.paginator', model.collection.paginator]);
+                    }else{
+                        EventBus.trigger('error', 'Не могу получить данные о пагинации');
+                    }
                 }
                 this.render(options);
             },
@@ -69,7 +69,6 @@ define(
                             console.warn(['self', self]);
                         }
 
-                        //$('#main_main').html('');
                         React.unmountComponentAtNode($('#main_main')[0]);
 
                         React.renderComponent(

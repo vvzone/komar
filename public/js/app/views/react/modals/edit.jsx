@@ -44,19 +44,6 @@ define(
                 var self = this;
                 var this_node = $(self.getDOMNode()).parent()[0];
                 _.extend(this_node, Backbone.Events);
-
-
-                /*
-                this_node.on('windows-close', function () {
-                    console.info('windows-close catch by window-EDIT');
-                    console.info('this_node');
-                    console.info(this_node);
-                    //this.refs.modal.hide();
-
-                    React.unmountComponentAtNode($(self.getDOMNode()).parent().children('.modal_window')[0]);
-                    self.refs.modal.hide();
-                }, self);
-                */
             },
             callback: function(action){
                 if(debug){
