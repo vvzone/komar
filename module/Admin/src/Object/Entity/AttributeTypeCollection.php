@@ -174,7 +174,7 @@ class AttributeTypeCollection
     public function getAll(){
         return array(
             'id' => $this->getId(),
-            'parent_attribute_type' => $this->getParentAttributeAll(),
+            //'parent_attribute_type' => $this->getParentAttributeAll(),
             'attribute_type' => $this->getAttribute(),
             'min' => $this->getMin(),
             'max' => $this->getMax()

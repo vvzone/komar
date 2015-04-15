@@ -281,6 +281,18 @@ class AttributeType extends Filtered
             'machine_name' => $this->getMachineName(),
             'description' => $this->getDescription(),
             'base_attribute_code' => $this->getBaseAttributeTypeCode(),
+            //'attribute_type_collection' => $this->getAttributeTypeCollection(),
+            //'document_type' => $this->getDocumentType()
+        );
+    }
+
+    public function getAllForCreation(){
+        return array(
+            'id' => $this->getId(),
+            'name' => $this->getName(),
+            'machine_name' => $this->getMachineName(),
+            'description' => $this->getDescription(),
+            'base_attribute_code' => $this->getBaseAttributeTypeCode(),
             'attribute_type_collection' => $this->getAttributeTypeCollection(),
             //'document_type' => $this->getDocumentType()
         );

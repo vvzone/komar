@@ -170,8 +170,8 @@ class DocumentAttributeCollection
     public function getAll(){
         return array(
             'id' => $this->getId(),
-            'attribute_type_collection' => 'test',
-            //'attribute_type_collection' => $this->getAttributeTypeCollection(),
+            //'attribute_type_collection' => 'test',
+            'attribute_type_collection' => $this->getAttributeTypeCollection(),
             //'parent_document_attribute_type' => $this->getParentDocumentAttribute(),
             'document_attribute' => $this->getDocumentAttribute()
         );

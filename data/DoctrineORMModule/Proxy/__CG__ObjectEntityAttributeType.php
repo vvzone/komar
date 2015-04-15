@@ -378,6 +378,17 @@ class AttributeType extends \Object\Entity\AttributeType implements \Doctrine\OR
     /**
      * {@inheritDoc}
      */
+    public function getAllForCreation()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAllForCreation', array());
+
+        return parent::getAllForCreation();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getEntityName()
     {
 
