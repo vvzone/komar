@@ -299,6 +299,19 @@ return array(
                             )
                         )
                     ),
+                    'document_attribute_collection' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/document_attribute_collection[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\DocumentAttributeCollection'
+                            )
+                        )
+                    ),
                     'current_document_type' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -338,16 +351,16 @@ return array(
                             )
                         )
                     ),
-                    'attribute_type_complex_collection' => array(
+                    'attribute_type_collection' => array(
                         'type'    => 'segment',
                         'options' => array(
-                            'route'    => '/attribute_type_complex_collection[/:id]',
+                            'route'    => '/attribute_type_collection[/:id]',
                             'constraints' => array(
                                 'id'     => '[0-9]*'
                             ),
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Object\Controller',
-                                'controller'    => 'Object\Controller\AttributeTypeComplexCollection'
+                                'controller'    => 'Object\Controller\AttributeTypeCollection'
                             )
                         )
                     ),
@@ -598,8 +611,9 @@ return array(
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
 
             'Object\Controller\DocumentAttribute' => 'Object\Controller\DocumentAttributeController',
+            'Object\Controller\DocumentAttributeCollection' => 'Object\Controller\DocumentAttributeCollectionController',
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
-            'Object\Controller\AttributeTypeComplexCollection' => 'Object\Controller\AttributeTypeComplexCollectionController',
+            'Object\Controller\AttributeTypeCollection' => 'Object\Controller\AttributeTypeCollectionController',
 
             'Object\Controller\Post' => 'Object\Controller\PostController',
             'Object\Controller\User' => 'Object\Controller\UserController',

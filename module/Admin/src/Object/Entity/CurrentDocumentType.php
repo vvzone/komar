@@ -102,6 +102,30 @@ class CurrentDocumentType
     private $documentType;
 
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\DocumentAttributeCollection", inversedBy="cdt")
+     * @ORM\JoinTable(name="cdt_has_dac",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="cdt_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="dac_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $documentAttributeCollection;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->documentAttributeCollection = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -366,6 +390,41 @@ class CurrentDocumentType
         return $this->documentType;
     }
 
+    /**
+     * Add dac
+     *
+     * @param \Object\Entity\DocumentAttributeCollection $dac
+     * @return CurrentDocumentType
+     */
+    public function addDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $dac)
+    {
+        $this->documentAttributeCollection[] = $dac;
+
+        return $this;
+    }
+
+    /**
+     * Remove dac
+     *
+     * @param \Object\Entity\DocumentAttributeCollection $dac
+     */
+    public function removeDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $dac)
+    {
+        $this->documentAttributeCollection->removeElement($dac);
+    }
+
+    /**
+     * Get dac
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDocumentAttributeCollection()
+    {
+        return $this->documentAttributeCollection;
+    }
+
+    //$documentAttributeCollection
+
     public function getAll(){
         return array(
             'id' => $this->getId(),
@@ -379,7 +438,8 @@ class CurrentDocumentType
             'urgency_type' => $this->getUrgencyType(),
             'presentation' => $this->getPresentation(),
             'direction_type_code' => $this->getDirectionTypeCode(),
-            'description' => $this->getDescription()
+            'description' => $this->getDescription(),
+            'document_attribute_collection' => $this->getDocumentAttributeCollection()
         );
     }
 

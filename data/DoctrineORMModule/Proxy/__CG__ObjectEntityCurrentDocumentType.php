@@ -64,10 +64,10 @@ class CurrentDocumentType extends \Object\Entity\CurrentDocumentType implements 
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'code', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'defaultHeader', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'isService', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'secrecyType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'urgencyType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'presentation', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'directionTypeCode', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'documentType');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'code', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'defaultHeader', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'isService', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'secrecyType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'urgencyType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'presentation', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'directionTypeCode', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'documentAttributeCollection');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'code', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'defaultHeader', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'isService', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'secrecyType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'urgencyType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'presentation', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'directionTypeCode', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'documentType');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'shortName', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'code', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'defaultHeader', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'isService', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'secrecyType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'urgencyType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'presentation', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'directionTypeCode', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\CurrentDocumentType' . "\0" . 'documentAttributeCollection');
     }
 
     /**
@@ -428,6 +428,39 @@ class CurrentDocumentType extends \Object\Entity\CurrentDocumentType implements 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDocumentType', array());
 
         return parent::getDocumentType();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function addDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $dac)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addDocumentAttributeCollection', array($dac));
+
+        return parent::addDocumentAttributeCollection($dac);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $dac)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeDocumentAttributeCollection', array($dac));
+
+        return parent::removeDocumentAttributeCollection($dac);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getDocumentAttributeCollection()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDocumentAttributeCollection', array());
+
+        return parent::getDocumentAttributeCollection();
     }
 
     /**

@@ -4,7 +4,7 @@ namespace Object\Repository;
 
 use \Doctrine\ORM\Query;
 
-class AttributeTypeComplexCollection extends PageableRepository
+class AttributeTypeCollection extends PageableRepository
 {
 
     /**

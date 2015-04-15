@@ -1,0 +1,59 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DocumentAttributeCollection
+ *
+ * @ORM\Table(name="document_attribute_collection", indexes={@ORM\Index(name="attribute_type_id", columns={"attribute_type_id"}), @ORM\Index(name="parent_document_attribute_id", columns={"parent_document_attribute_id"})})
+ * @ORM\Entity
+ */
+class DocumentAttributeCollection
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var \Object\Entity\AttributeType
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
+     * })
+     */
+    private $attributeType;
+
+    /**
+     * @var \Object\Entity\DocumentAttribute
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentAttribute")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parent_document_attribute_id", referencedColumnName="id")
+     * })
+     */
+    private $parentDocumentAttribute;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\CurrentDocumentType", mappedBy="dac")
+     */
+    private $cdt;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->cdt = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

@@ -1,0 +1,73 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * MenuClient
+ *
+ * @ORM\Table(name="menu_client", indexes={@ORM\Index(name="parent_id", columns={"parent_id"}), @ORM\Index(name="type", columns={"type"})})
+ * @ORM\Entity
+ */
+class MenuClient
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=64, nullable=false)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="entity", type="string", length=128, nullable=true)
+     */
+    private $entity;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_not_screen", type="boolean", nullable=true)
+     */
+    private $isNotScreen;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="icon", type="string", length=64, nullable=true)
+     */
+    private $icon;
+
+    /**
+     * @var \Object\Entity\MenuClient
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\MenuClient")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     * })
+     */
+    private $parent;
+
+    /**
+     * @var \Object\Entity\MenuClientType
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\MenuClientType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="type", referencedColumnName="id")
+     * })
+     */
+    private $type;
+
+
+}

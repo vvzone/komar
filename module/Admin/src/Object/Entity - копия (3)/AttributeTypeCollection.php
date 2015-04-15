@@ -5,12 +5,12 @@ namespace Object\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * AttributeTypeComplexCollection
+ * AttributeTypeCollection
  *
- * @ORM\Table(name="attribute_type_complex_collection", indexes={@ORM\Index(name="parent_attribute_id", columns={"parent_attribute_id"}), @ORM\Index(name="attribute_id", columns={"attribute_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\AttributeTypeComplexCollection")
+ * @ORM\Table(name="attribute_type_collection", indexes={@ORM\Index(name="parent_attribute_id", columns={"parent_attribute_id"}), @ORM\Index(name="attribute_id", columns={"attribute_id"})})
+ * @ORM\Entity(repositoryClass="Object\Repository\AttributeTypeCollection")
  */
-class AttributeTypeComplexCollection
+class AttributeTypeCollection
 {
     /**
      * @var integer
@@ -71,7 +71,7 @@ class AttributeTypeComplexCollection
      * Set min
      *
      * @param integer $min
-     * @return AttributeTypeComplexCollection
+     * @return AttributeTypeCollection
      */
     public function setMin($min)
     {
@@ -94,7 +94,7 @@ class AttributeTypeComplexCollection
      * Set max
      *
      * @param integer $max
-     * @return AttributeTypeComplexCollection
+     * @return AttributeTypeCollection
      */
     public function setMax($max)
     {
@@ -117,7 +117,7 @@ class AttributeTypeComplexCollection
      * Set attribute
      *
      * @param \Object\Entity\AttributeType $attribute
-     * @return AttributeTypeComplexCollection
+     * @return AttributeTypeCollection
      */
     public function setAttribute(\Object\Entity\AttributeType $attribute = null)
     {
@@ -142,7 +142,7 @@ class AttributeTypeComplexCollection
      * Set parentAttribute
      *
      * @param \Object\Entity\AttributeType $parentAttribute
-     * @return AttributeTypeComplexCollection
+     * @return AttributeTypeCollection
      */
     public function setParentAttribute(\Object\Entity\AttributeType $parentAttribute = null)
     {
@@ -154,11 +154,19 @@ class AttributeTypeComplexCollection
     /**
      * Get parentAttribute
      *
+     * @return \Object\Entity\AttributeType
+     */
+    public function getParentAttribute(){
+        return $this->parentAttribute;
+    }
+    /**
+     * Get parentAttribute
+     *
      * @return \Object\Entity\AttributeType 
      */
-    public function getParentAttribute()
+    public function getParentAttributeAll()
     {
-        if($this->parentAttribute){
+        if($this->getParentAttribute()){
             return $this->parentAttribute->getAll();
         }
     }
@@ -166,7 +174,17 @@ class AttributeTypeComplexCollection
     public function getAll(){
         return array(
             'id' => $this->getId(),
-            'parent_attribute_type' => $this->getParentAttribute(),
+            'parent_attribute_type' => $this->getParentAttributeAll(),
+            'attribute_type' => $this->getAttribute(),
+            'min' => $this->getMin(),
+            'max' => $this->getMax()
+        );
+    }
+
+    public function getAllWithDownDirection(){
+        return array(
+            'id' => $this->getId(),
+            'parent_attribute_type' => $this->getParentAttribute()->getId(),
             'attribute_type' => $this->getAttribute(),
             'min' => $this->getMin(),
             'max' => $this->getMax()

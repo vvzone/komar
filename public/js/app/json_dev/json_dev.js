@@ -2,7 +2,7 @@
 var Assigned_DT ={
     id: 1,
     document_type: 10,
-    attribute_type_collections: [
+    document_attribute_collection: [
         {
             id: 100,
             attribute_type: {
@@ -23,7 +23,7 @@ var Assigned_DT ={
                     attribute_type: 1000,
                     parent_attribute_collection: 100,
                     data: null,
-                    attribute_type_collection: [
+                    document_attribute_collection: [
                         {
                             id: 101,
                             attribute_type: {
@@ -65,7 +65,7 @@ var Assigned_DT ={
                                     attribute_type: 1002,
                                     parent_at_coll: 102,
                                     data: null,
-                                    attribute_type_collection: [
+                                    document_attribute_collection: [
                                         {
                                             name: 'x',
                                             att_type: {

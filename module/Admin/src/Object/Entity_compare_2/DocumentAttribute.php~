@@ -1,0 +1,59 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DocumentAttribute
+ *
+ * @ORM\Table(name="document_attribute", indexes={@ORM\Index(name="fk_document_attribute_persons1_idx", columns={"author_id"}), @ORM\Index(name="document_attribute_collection_id", columns={"document_attribute_collection_id"})})
+ * @ORM\Entity
+ */
+class DocumentAttribute
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="array_index", type="integer", nullable=true)
+     */
+    private $arrayIndex;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="data", type="text", length=16777215, nullable=true)
+     */
+    private $data;
+
+    /**
+     * @var \Object\Entity\DocumentAttributeCollection
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentAttributeCollection")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="document_attribute_collection_id", referencedColumnName="id")
+     * })
+     */
+    private $documentAttributeCollection;
+
+    /**
+     * @var \Object\Entity\Person
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Person")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="author_id", referencedColumnName="id")
+     * })
+     */
+    private $author;
+
+
+}

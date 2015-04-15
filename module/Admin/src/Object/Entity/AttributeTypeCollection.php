@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * AttributeTypeCollection
  *
- * @ORM\Table(name="attribute_type_collection", indexes={@ORM\Index(name="attribute_type_id", columns={"attribute_type_id"}), @ORM\Index(name="fk_attribute_type_collection_document_attribute1_idx", columns={"document_attribute_id"})})
- * @ORM\Entity
+ * @ORM\Table(name="attribute_type_collection", indexes={@ORM\Index(name="parent_attribute_id", columns={"parent_attribute_id"}), @ORM\Index(name="attribute_id", columns={"attribute_id"})})
+ * @ORM\Entity(repositoryClass="Object\Repository\AttributeTypeCollection")
  */
 class AttributeTypeCollection
 {
@@ -24,51 +24,37 @@ class AttributeTypeCollection
     /**
      * @var integer
      *
-     * @ORM\Column(name="min_da", type="integer", nullable=false)
+     * @ORM\Column(name="min", type="integer", nullable=false)
      */
-    private $minDa;
+    private $min;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="max_da", type="integer", nullable=false)
+     * @ORM\Column(name="max", type="integer", nullable=false)
      */
-    private $maxDa;
+    private $max;
 
     /**
      * @var \Object\Entity\AttributeType
      *
      * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="attribute_id", referencedColumnName="id")
      * })
      */
-    private $attributeType;
+    private $attribute;
 
     /**
-     * @var \Object\Entity\DocumentAttribute
+     * @var \Object\Entity\AttributeType
      *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentAttribute")
+     * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeType")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="document_attribute_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="parent_attribute_id", referencedColumnName="id")
      * })
      */
-    private $documentAttribute;
+    private $parentAttribute;
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\CurrentDocumentType", mappedBy="atc")
-     */
-    private $cdt;
-
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->cdt = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
 
     /**
@@ -82,127 +68,126 @@ class AttributeTypeCollection
     }
 
     /**
-     * Set minDa
+     * Set min
      *
-     * @param integer $minDa
+     * @param integer $min
      * @return AttributeTypeCollection
      */
-    public function setMinDa($minDa)
+    public function setMin($min)
     {
-        $this->minDa = $minDa;
+        $this->min = $min;
 
         return $this;
     }
 
     /**
-     * Get minDa
+     * Get min
      *
      * @return integer 
      */
-    public function getMinDa()
+    public function getMin()
     {
-        return $this->minDa;
+        return $this->min;
     }
 
     /**
-     * Set maxDa
+     * Set max
      *
-     * @param integer $maxDa
+     * @param integer $max
      * @return AttributeTypeCollection
      */
-    public function setMaxDa($maxDa)
+    public function setMax($max)
     {
-        $this->maxDa = $maxDa;
+        $this->max = $max;
 
         return $this;
     }
 
     /**
-     * Get maxDa
+     * Get max
      *
      * @return integer 
      */
-    public function getMaxDa()
+    public function getMax()
     {
-        return $this->maxDa;
+        return $this->max;
     }
 
     /**
-     * Set attributeType
+     * Set attribute
      *
-     * @param \Object\Entity\AttributeType $attributeType
+     * @param \Object\Entity\AttributeType $attribute
      * @return AttributeTypeCollection
      */
-    public function setAttributeType(\Object\Entity\AttributeType $attributeType = null)
+    public function setAttribute(\Object\Entity\AttributeType $attribute = null)
     {
-        $this->attributeType = $attributeType;
+        $this->attribute = $attribute;
 
         return $this;
     }
 
     /**
-     * Get attributeType
+     * Get attribute
      *
      * @return \Object\Entity\AttributeType 
      */
-    public function getAttributeType()
+    public function getAttribute()
     {
-        return $this->attributeType;
+        if($this->attribute){
+            return $this->attribute->getAll();
+        }
     }
 
     /**
-     * Set documentAttribute
+     * Set parentAttribute
      *
-     * @param \Object\Entity\DocumentAttribute $documentAttribute
+     * @param \Object\Entity\AttributeType $parentAttribute
      * @return AttributeTypeCollection
      */
-    public function setDocumentAttribute(\Object\Entity\DocumentAttribute $documentAttribute = null)
+    public function setParentAttribute(\Object\Entity\AttributeType $parentAttribute = null)
     {
-        $this->documentAttribute = $documentAttribute;
+        $this->parentAttribute = $parentAttribute;
 
         return $this;
     }
 
     /**
-     * Get documentAttribute
+     * Get parentAttribute
      *
-     * @return \Object\Entity\DocumentAttribute 
+     * @return \Object\Entity\AttributeType
      */
-    public function getDocumentAttribute()
+    public function getParentAttribute(){
+        return $this->parentAttribute;
+    }
+    /**
+     * Get parentAttribute
+     *
+     * @return \Object\Entity\AttributeType 
+     */
+    public function getParentAttributeAll()
     {
-        return $this->documentAttribute;
+        if($this->getParentAttribute()){
+            return $this->parentAttribute->getAll();
+        }
     }
 
-    /**
-     * Add cdt
-     *
-     * @param \Object\Entity\CurrentDocumentType $cdt
-     * @return AttributeTypeCollection
-     */
-    public function addCdt(\Object\Entity\CurrentDocumentType $cdt)
-    {
-        $this->cdt[] = $cdt;
-
-        return $this;
+    public function getAll(){
+        return array(
+            'id' => $this->getId(),
+            'parent_attribute_type' => $this->getParentAttributeAll(),
+            'attribute_type' => $this->getAttribute(),
+            'min' => $this->getMin(),
+            'max' => $this->getMax()
+        );
     }
 
-    /**
-     * Remove cdt
-     *
-     * @param \Object\Entity\CurrentDocumentType $cdt
-     */
-    public function removeCdt(\Object\Entity\CurrentDocumentType $cdt)
-    {
-        $this->cdt->removeElement($cdt);
-    }
-
-    /**
-     * Get cdt
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCdt()
-    {
-        return $this->cdt;
+    public function getAllWithDownDirection(){
+        return array(
+            'id' => $this->getId(),
+            'parent_attribute_type' => $this->getParentAttribute()->getId(),
+            'attribute_type' => $this->getAttribute(),
+            'min' => $this->getMin(),
+            'max' => $this->getMax()
+        );
     }
 }

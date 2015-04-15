@@ -24,13 +24,6 @@ class DocumentAttribute extends Filtered
     /**
      * @var integer
      *
-     * @ORM\Column(name="composite_attribute_id", type="integer", nullable=true)
-     */
-    private $compositeAttributeId;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="array_index", type="integer", nullable=true)
      */
     private $arrayIndex;
@@ -42,33 +35,7 @@ class DocumentAttribute extends Filtered
      */
     private $data;
 
-    /*
-     * @var \Object\Entity\Document
-     *
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\Document")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="document_id", referencedColumnName="id")
-     * })
-     */
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Object\Entity\Document", inversedBy="documentAttributes")
-     */
-    private $document;
-
-    /**
-     * @var \Object\Entity\AttributeType
-     *
-     * ORM\Id
-     * ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\AttributeType")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
-     * })
-     */
-    private $attributeType;
 
     /**
      * @var \Object\Entity\Person
@@ -100,34 +67,11 @@ class DocumentAttribute extends Filtered
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set compositeAttributeId
-     *
-     * @param integer $compositeAttributeId
-     * @return DocumentAttribute
-     */
-    public function setCompositeAttributeId($compositeAttributeId)
-    {
-        $this->compositeAttributeId = $compositeAttributeId;
-
-        return $this;
-    }
-
-    /**
-     * Get compositeAttributeId
-     *
-     * @return integer 
-     */
-    public function getCompositeAttributeId()
-    {
-        return $this->compositeAttributeId;
     }
 
     /**
@@ -146,7 +90,7 @@ class DocumentAttribute extends Filtered
     /**
      * Get arrayIndex
      *
-     * @return integer 
+     * @return integer
      */
     public function getArrayIndex()
     {
@@ -169,58 +113,13 @@ class DocumentAttribute extends Filtered
     /**
      * Get data
      *
-     * @return string 
+     * @return string
      */
     public function getData()
     {
         return $this->data;
     }
 
-    /**
-     * Set document
-     *
-     * @param \Object\Entity\Document $document
-     * @return DocumentAttribute
-     */
-    public function setDocument(\Object\Entity\Document $document)
-    {
-        $this->document = $document;
-
-        return $this;
-    }
-
-    /**
-     * Get document
-     *
-     * @return \Object\Entity\Document 
-     */
-    public function getDocument()
-    {
-        return $this->document;
-    }
-
-    /**
-     * Set attributeType
-     *
-     * @param \Object\Entity\AttributeType $attributeType
-     * @return DocumentAttribute
-     */
-    public function setAttributeType(\Object\Entity\AttributeType $attributeType)
-    {
-        $this->attributeType = $attributeType;
-
-        return $this;
-    }
-
-    /**
-     * Get attributeType
-     *
-     * @return \Object\Entity\AttributeType 
-     */
-    public function getAttributeType()
-    {
-        return $this->attributeType;
-    }
 
     /**
      * Set author
@@ -238,7 +137,7 @@ class DocumentAttribute extends Filtered
     /**
      * Get author
      *
-     * @return \Object\Entity\Person 
+     * @return \Object\Entity\Person
      */
     public function getAuthor()
     {
@@ -251,10 +150,10 @@ class DocumentAttribute extends Filtered
     public function getAll(){
         return array(
             'id' => $this->getId(),
-            'composite_attribute_id' => $this->getCompositeAttributeId(),
-            'sort_order' => $this->getArrayIndex(),
+            //'composite_attribute_id' => $this->getCompositeAttributeId(),
+            'array_index' => $this->getArrayIndex(),
             'data' => $this->getData(),
-            'attribute_type' => $this->getAttributeType()->getMachineName(),
+            //'attribute_type' => $this->getAttributeType()->getMachineName(),
             'author' => $this->getAuthor()
         );
     }

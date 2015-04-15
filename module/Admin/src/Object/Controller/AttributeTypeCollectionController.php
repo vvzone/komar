@@ -12,14 +12,14 @@ namespace Object\Controller;
 use Admin\Controller\RestController;
 use Zend\View\Model\JsonModel;
 
-class AttributeTypeComplexCollectionController extends RestController
+class AttributeTypeCollectionController extends RestController
 {
 
     public function getList()
     {
         $serviceLocator = $this
             ->getServiceLocator();
-        $result = $serviceLocator->get('AttributeTypeComplexCollectionRESTListPagination');
+        $result = $serviceLocator->get('AttributeTypeCollectionRESTListPagination');
         return $result;
     }
 
@@ -28,7 +28,7 @@ class AttributeTypeComplexCollectionController extends RestController
         $objectManager = $this
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
-        $object = $objectManager->find('Object\Entity\AttributeTypeComplexCollection', $id);
+        $object = $objectManager->find('Object\Entity\AttributeTypeCollection', $id);
         return $this->getOutput($object);
     }
 
@@ -37,7 +37,7 @@ class AttributeTypeComplexCollectionController extends RestController
         $serviceLocator = $this
             ->getServiceLocator();
 
-        $result = $serviceLocator->get('AttributeTypeComplexCollectionRESTAPICreate');
+        $result = $serviceLocator->get('AttributeTypeCollectionRESTAPICreate');
         return $result;
     }
 
@@ -46,7 +46,7 @@ class AttributeTypeComplexCollectionController extends RestController
         $serviceLocator = $this
             ->getServiceLocator();
 
-        $result = $serviceLocator->get('AttributeTypeComplexCollectionRESTAPICreate');
+        $result = $serviceLocator->get('AttributeTypeCollectionRESTAPICreate');
         return $result;
     }
 
@@ -56,7 +56,7 @@ class AttributeTypeComplexCollectionController extends RestController
             ->getServiceLocator()
             ->get('Doctrine\ORM\EntityManager');
 
-        $object = $objectManager->find('Object\Entity\AttributeTypeComplexCollection', $id);
+        $object = $objectManager->find('Object\Entity\AttributeTypeCollection', $id);
         $objectManager->remove($object);
         $objectManager->flush();
 

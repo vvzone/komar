@@ -38,7 +38,7 @@ class DocumentAttributeController extends RestController
             ->getServiceLocator();
         $objectManager = $serviceLocator
             ->get('Doctrine\ORM\EntityManager');
-        $objectManager->getRepository('Object\Entity\DocumentAttributes')->getSubAttributesByAttributeType();
+        $objectManager->getRepository('Object\Entity\DocumentAttribute')->getSubAttributesByAttributeType();
     }
 
     public function create($data)
