@@ -46,6 +46,7 @@ class DocumentAttribute extends Filtered
      */
     private $documentAttributeCollection;
 
+
     /**
      * @var \Object\Entity\Person
      *
@@ -58,7 +59,21 @@ class DocumentAttribute extends Filtered
      */
     private $author;
 
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Object\Entity\DocumentAttributeCollection", mappedBy="parentDocumentAttribute")
+     *
+     */
+    private $childrenCollection;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->childrenCollection = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Set id
@@ -150,7 +165,17 @@ class DocumentAttribute extends Filtered
      */
     public function getDocumentAttributeCollection()
     {
-        return $this->documentAttributeCollection;
+        /*
+        if($this->documentAttributeCollection){
+
+            $dac_collection = array();
+            foreach($this->documentAttributeCollection as $dac){
+                $dac_collection[] = $dac;
+            }
+            return $dac_collection;
+        }
+        */
+        return $this->documentAttributeCollection->getId();
     }
 
 
@@ -180,6 +205,18 @@ class DocumentAttribute extends Filtered
         return $this->author;
     }
 
+    public function getChildrenCollection(){
+        if($this->childrenCollection){
+            $children = array();
+            foreach($this->childrenCollection as $dac){
+                $children[] = $dac->getAll();
+            }
+
+            return $children;
+        }
+    }
+
+
     public function getAll(){
         return array(
             'id' => $this->getId(),
@@ -187,7 +224,9 @@ class DocumentAttribute extends Filtered
             'array_index' => $this->getArrayIndex(),
             'data' => $this->getData(),
             //'attribute_type' => $this->getAttributeType()->getMachineName(),
-            'author' => $this->getAuthor()
+            'author' => $this->getAuthor(),
+            'children_collections' => $this->getChildrenCollection()
+            //'document_attribute_collection' => $this->getDocumentAttributeCollection()
         );
     }
 }
