@@ -115,15 +115,14 @@ class CurrentDocumentType
      *   }
      * )
      */
-    private $documentAttributeCollection;
-
+    private $dac;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->documentAttributeCollection = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->dac = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -396,9 +395,9 @@ class CurrentDocumentType
      * @param \Object\Entity\DocumentAttributeCollection $dac
      * @return CurrentDocumentType
      */
-    public function addDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $dac)
+    public function addDac(\Object\Entity\DocumentAttributeCollection $dac)
     {
-        $this->documentAttributeCollection[] = $dac;
+        $this->dac[] = $dac;
 
         return $this;
     }
@@ -408,9 +407,9 @@ class CurrentDocumentType
      *
      * @param \Object\Entity\DocumentAttributeCollection $dac
      */
-    public function removeDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $dac)
+    public function removeDac(\Object\Entity\DocumentAttributeCollection $dac)
     {
-        $this->documentAttributeCollection->removeElement($dac);
+        $this->dac->removeElement($dac);
     }
 
     /**
@@ -418,9 +417,16 @@ class CurrentDocumentType
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getDocumentAttributeCollection()
+    public function getDac()
     {
-        return $this->documentAttributeCollection;
+        if($this->dac){
+            $collections = array();
+            foreach($this->dac as $dac){
+                $collections[] = $dac->getAll();
+            }
+            return $collections;
+        }
+        //return $this->dac;
     }
 
     //$documentAttributeCollection
@@ -439,7 +445,7 @@ class CurrentDocumentType
             'presentation' => $this->getPresentation(),
             'direction_type_code' => $this->getDirectionTypeCode(),
             'description' => $this->getDescription(),
-            'document_attribute_collection' => $this->getDocumentAttributeCollection()
+            'document_attribute_collection' => $this->getDac()
         );
     }
 

@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * DocumentAttributeCollection
  *
- * @ORM\Table(name="document_attribute_collection", indexes={@ORM\Index(name="attribute_type_id", columns={"attribute_type_id"}), @ORM\Index(name="fk_attribute_type_collection_document_attribute1_idx", columns={"document_attribute_id"})})
- * @ORM\Entity(repositoryClass="Object\Repository\DocumentAttributeCollection")
+ * @ORM\Table(name="document_attribute_collection", indexes={@ORM\Index(name="attribute_type_id", columns={"attribute_type_id"}), @ORM\Index(name="parent_document_attribute_id", columns={"parent_document_attribute_id"})})
+ * @ORM\Entity
  */
 class DocumentAttributeCollection
 {
@@ -20,7 +20,6 @@ class DocumentAttributeCollection
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
 
     /**
      * @var \Object\Entity\AttributeTypeCollection
@@ -49,21 +48,12 @@ class DocumentAttributeCollection
      */
     private $cdt;
 
-
-    /**
-     * @var \Doctrine\Common\Collections\ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="Object\Entity\DocumentAttribute", mappedBy="documentAttributeCollection", cascade={"all"}, orphanRemoval=true)
-     */
-    private $documentAttribute;
-
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->cdt = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->documentAttribute = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -76,7 +66,6 @@ class DocumentAttributeCollection
     {
         return $this->id;
     }
-
 
     /**
      * Set attributeType
@@ -98,7 +87,7 @@ class DocumentAttributeCollection
      */
     public function getAttributeTypeCollection()
     {
-        return $this->attributeTypeCollection->getAll();
+        return $this->attributeTypeCollection;
     }
 
     /**
@@ -117,7 +106,7 @@ class DocumentAttributeCollection
     /**
      * Get parentDocumentAttribute
      *
-     * @return \Object\Entity\DocumentAttribute
+     * @return \Object\Entity\DocumentAttribute 
      */
     public function getParentDocumentAttribute()
     {
@@ -155,24 +144,5 @@ class DocumentAttributeCollection
     public function getCdt()
     {
         return $this->cdt;
-    }
-
-    public function getDocumentAttribute(){
-        if($this->documentAttribute){
-            $dac = array();
-            foreach($this->documentAttribute as $da){
-                $dac[] = $da->getAll();
-            }
-            return $dac;
-        }
-    }
-
-    public function getAll(){
-        return array(
-            'id' => $this->getId(),
-            'attribute_type_collection' => $this->getAttributeTypeCollection(),
-            'parent_document_attribute_type' => $this->getParentDocumentAttribute(),
-            'document_attribute' => $this->getDocumentAttribute()
-        );
     }
 }

@@ -36,6 +36,15 @@ class DocumentAttribute extends Filtered
     private $data;
 
 
+    /**
+     * @var \Object\Entity\DocumentAttributeCollection
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentAttributeCollection")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="document_attribute_collection_id", referencedColumnName="id")
+     * })
+     */
+    private $documentAttributeCollection;
 
     /**
      * @var \Object\Entity\Person
@@ -118,6 +127,30 @@ class DocumentAttribute extends Filtered
     public function getData()
     {
         return $this->data;
+    }
+
+
+    /**
+     * Set documentAttributeCollection
+     *
+     * @param \Object\Entity\DocumentAttributeCollection $documentAttributeCollection
+     * @return DocumentAttribute
+     */
+    public function setDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $documentAttributeCollection = null)
+    {
+        $this->documentAttributeCollection = $documentAttributeCollection;
+
+        return $this;
+    }
+
+    /**
+     * Get documentAttributeCollection
+     *
+     * @return \Object\Entity\DocumentAttributeCollection
+     */
+    public function getDocumentAttributeCollection()
+    {
+        return $this->documentAttributeCollection;
     }
 
 
