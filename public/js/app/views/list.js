@@ -25,7 +25,7 @@ define(
                 _.bindAll(this, 'render');
                 (debug)?console.log('init, this.collection:'):null;
                 (debug)?console.log(this.collection):null;
-                
+
                 this.collection.bind('destroy', this.catchDestroy, this);
                 this.collection.bind('change', this.catchChange, this);
                 this.collection.bind('reset', this.catchReset, this);

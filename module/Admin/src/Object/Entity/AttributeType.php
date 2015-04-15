@@ -43,9 +43,12 @@ class AttributeType extends Filtered
     private $description;
 
     /**
-     * @var integer
+     * @var \Object\Entity\BaseAttributeTypeCode
      *
-     * @ORM\Column(name="base_attribute_type_code", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Object\Entity\BaseAttributeTypeCode")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="base_attribute_type_code", referencedColumnName="id")
+     * })
      */
     private $baseAttributeTypeCode;
 
@@ -56,6 +59,13 @@ class AttributeType extends Filtered
      */
     private $verificationCommand;
 
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Object\Entity\AttributeTypeComplexCollection", mappedBy="parentAttribute")
+     */
+    private $attributeTypeCollection;
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -69,6 +79,7 @@ class AttributeType extends Filtered
     public function __construct()
     {
         $this->documentType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->attributeTypeCollection = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -151,6 +162,14 @@ class AttributeType extends Filtered
         return $this->description;
     }
 
+
+    public function getAttributeTypeCollection()
+    {
+        if($this->attributeTypeCollection->count()>0){
+            return $this->attributeTypeCollection;
+        }
+    }
+
     /**
      * Set baseAttributeTypeCode
      *
@@ -171,7 +190,9 @@ class AttributeType extends Filtered
      */
     public function getBaseAttributeTypeCode()
     {
-        return $this->baseAttributeTypeCode;
+        if($this->baseAttributeTypeCode){
+            return $this->baseAttributeTypeCode->getCodeName();
+        }
     }
 
     /**
@@ -254,7 +275,7 @@ class AttributeType extends Filtered
             'machine_name' => $this->getMachineName(),
             'description' => $this->getDescription(),
             'base_attribute_code' => $this->getBaseAttributeTypeCode(),
-            'list_values' => array()
+            'attribute_type_collection' => $this->getAttributeTypeCollection(),
             //'document_type' => $this->getDocumentType()
         );
     }

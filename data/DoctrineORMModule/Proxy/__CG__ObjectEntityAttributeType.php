@@ -64,10 +64,10 @@ class AttributeType extends \Object\Entity\AttributeType implements \Doctrine\OR
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'machineName', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'baseAttributeTypeCode', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'verificationCommand', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'documentType', 'inputFilter', 'EntityName');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'machineName', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'baseAttributeTypeCode', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'verificationCommand', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'attributeTypeCollection', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'documentType', 'inputFilter', 'EntityName');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'machineName', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'baseAttributeTypeCode', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'verificationCommand', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'documentType', 'inputFilter', 'EntityName');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'machineName', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'baseAttributeTypeCode', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'verificationCommand', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'attributeTypeCollection', '' . "\0" . 'Object\\Entity\\AttributeType' . "\0" . 'documentType', 'inputFilter', 'EntityName');
     }
 
     /**
@@ -252,6 +252,17 @@ class AttributeType extends \Object\Entity\AttributeType implements \Doctrine\OR
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDescription', array());
 
         return parent::getDescription();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getAttributeTypeCollection()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAttributeTypeCollection', array());
+
+        return parent::getAttributeTypeCollection();
     }
 
     /**

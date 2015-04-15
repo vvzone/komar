@@ -95,6 +95,7 @@ define(
                 console.log(model);
             }
 
+            $('.modal_window').html('');
             React.renderComponent(
                 ModalWindowEdit({
                     model: model
@@ -127,6 +128,7 @@ define(
             }
             var model = model_old;
 
+            $('.modal_window').html('');
             model.fetch({
                 success: function(){
                     React.renderComponent(

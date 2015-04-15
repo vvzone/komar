@@ -1,0 +1,117 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * DocumentType
+ *
+ * @ORM\Table(name="document_type")
+ * @ORM\Entity
+ */
+class DocumentType
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=45, nullable=true)
+     */
+    private $name;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="short_name", type="string", length=45, nullable=true)
+     */
+    private $shortName;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="code", type="integer", nullable=true)
+     */
+    private $code;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="default_header", type="string", length=45, nullable=true)
+     */
+    private $defaultHeader;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_service", type="boolean", nullable=true)
+     */
+    private $isService;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="secrecy_type", type="integer", nullable=true)
+     */
+    private $secrecyType;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="urgency_type", type="integer", nullable=true)
+     */
+    private $urgencyType;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="presentation", type="text", length=16777215, nullable=true)
+     */
+    private $presentation;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="direction_type_code", type="integer", nullable=true)
+     */
+    private $directionTypeCode;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text", length=16777215, nullable=true)
+     */
+    private $description;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\AttributeType", inversedBy="documentType")
+     * @ORM\JoinTable(name="document_type_attribute_type",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $attributeType;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+}

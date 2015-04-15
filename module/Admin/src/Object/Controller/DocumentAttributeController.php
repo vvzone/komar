@@ -32,6 +32,15 @@ class DocumentAttributeController extends RestController
         return $this->getOutput($object);
     }
 
+
+    public function createComplex($data){
+        $serviceLocator = $this
+            ->getServiceLocator();
+        $objectManager = $serviceLocator
+            ->get('Doctrine\ORM\EntityManager');
+        $objectManager->getRepository('Object\Entity\DocumentAttributes')->getSubAttributesByAttributeType();
+    }
+
     public function create($data)
     {
         $serviceLocator = $this

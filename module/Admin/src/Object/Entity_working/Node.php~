@@ -1,0 +1,87 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Node
+ *
+ * @ORM\Table(name="node", indexes={@ORM\Index(name="fk_node_node_level1_idx", columns={"node_level_id"}), @ORM\Index(name="fk_node_client1_idx", columns={"client_id"})})
+ * @ORM\Entity
+ */
+class Node
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="sort_order", type="integer", nullable=true)
+     */
+    private $sortOrder;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="tast", type="text", nullable=true)
+     */
+    private $tast;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="node_state_id", type="integer", nullable=true)
+     */
+    private $nodeStateId;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="period_type_id", type="integer", nullable=true)
+     */
+    private $periodTypeId;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="time_stamp", type="datetime", nullable=true)
+     */
+    private $timeStamp;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="period_length", type="integer", nullable=true)
+     */
+    private $periodLength;
+
+    /**
+     * @var \Object\Entity\NodeLevel
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\NodeLevel")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="node_level_id", referencedColumnName="id")
+     * })
+     */
+    private $nodeLevel;
+
+    /**
+     * @var \Object\Entity\Client
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Client")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="client_id", referencedColumnName="id")
+     * })
+     */
+    private $client;
+
+
+}

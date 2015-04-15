@@ -299,6 +299,19 @@ return array(
                             )
                         )
                     ),
+                    'current_document_type' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/current_document_type[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\CurrentDocumentType'
+                            )
+                        )
+                    ),
                     'document_type' => array(
                         'type'    => 'segment',
                         'options' => array(
@@ -322,6 +335,19 @@ return array(
                             'defaults' => array(
                                 '__NAMESPACE__' => 'Object\Controller',
                                 'controller'    => 'Object\Controller\AttributeType'
+                            )
+                        )
+                    ),
+                    'attribute_type_complex_collection' => array(
+                        'type'    => 'segment',
+                        'options' => array(
+                            'route'    => '/attribute_type_complex_collection[/:id]',
+                            'constraints' => array(
+                                'id'     => '[0-9]*'
+                            ),
+                            'defaults' => array(
+                                '__NAMESPACE__' => 'Object\Controller',
+                                'controller'    => 'Object\Controller\AttributeTypeComplexCollection'
                             )
                         )
                     ),
@@ -567,9 +593,13 @@ return array(
 
             'Object\Controller\Route' => 'Object\Controller\RouteController',
 
+            /* --- CDT & DT --- */
+            'Object\Controller\CurrentDocumentType' => 'Object\Controller\CurrentDocumentTypeController',
             'Object\Controller\DocumentType' => 'Object\Controller\DocumentTypeController',
+
             'Object\Controller\DocumentAttribute' => 'Object\Controller\DocumentAttributeController',
             'Object\Controller\AttributeType' => 'Object\Controller\AttributeTypeController',
+            'Object\Controller\AttributeTypeComplexCollection' => 'Object\Controller\AttributeTypeComplexCollectionController',
 
             'Object\Controller\Post' => 'Object\Controller\PostController',
             'Object\Controller\User' => 'Object\Controller\UserController',
