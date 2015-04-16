@@ -59,9 +59,11 @@ class CurrentDocumentTypeController extends RestController
         $CurrentDocumentType = $hydrator->hydrate($data, $CurrentDocumentType);
 
 
-        $DocumentType =  $objectManager->find('Object\Entity\DocumentType', $CurrentDocumentType->getDocumentType);
-        //$DocumentType =  $CurrentDocumentType->getDocumentType();
+
+        //$DocumentType =  $objectManager->find('Object\Entity\DocumentType', $CurrentDocumentType->getDocumentType);
+        $DocumentType =  $CurrentDocumentType->getDocumentType();
         $ATC_collection =  $DocumentType->getAttributeTypeCollection();
+
 
 
 
@@ -69,7 +71,7 @@ class CurrentDocumentTypeController extends RestController
 
         foreach($ATC_collection as $ATC){
 
-            /*
+
             $ATC_hydrator = new DoctrineHydrator($objectManager, 'Object\Entity\AttributeTypeCollection');
             $DAC_hydrator = new DoctrineHydrator($objectManager, 'Object\Entity\DocumentAttributeCollection');
             $DAC = new DocumentAttributeCollection();
@@ -85,17 +87,20 @@ class CurrentDocumentTypeController extends RestController
             $DA = new DocumentAttribute();
             $DA->setAuthor(5); //Temporary!
 
-            $objectManager->persist($DA);
-            $objectManager->flush();
+            //$objectManager->persist($DA);
+            //$objectManager->flush();
 
-            $DAC->addDocumentAttribute($DA);
+            //$DAC->addDocumentAttribute($DA);
 
             $objectManager->persist($DAC);
-            $objectManager->flush();
 
-            */
+            $objectManager->flush(); //все скопом
+
+
             $ATC_collection2[] = $ATC;
         }
+
+
 
         //$data = array('id' => $Object->getId());
         $data = $hydrator->extract($CurrentDocumentType);
@@ -108,9 +113,9 @@ class CurrentDocumentTypeController extends RestController
             new JsonModel(
                 array(
                     'result' => $result,
-                    //'document_type' => $DocumentType->getAll(),
+                    'document_type' => $DocumentType->getAll(),
                     //'attribute_type_collection' => $DocumentType->getAttributeType
-                    'ATC' => $ATC_collection2
+                    //'ATC' => $ATC_collection2
                 )
             )
         );
