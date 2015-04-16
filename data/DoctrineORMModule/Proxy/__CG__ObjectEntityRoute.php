@@ -64,10 +64,10 @@ class Route extends \Object\Entity\Route implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'document', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'node_levels', 'inputFilter', 'EntityName');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'isMain', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'prototypeRoute', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'currentDocumentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'node_levels', 'inputFilter', 'EntityName');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'document', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'node_levels', 'inputFilter', 'EntityName');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'isMain', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'prototypeRoute', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'currentDocumentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'node_levels', 'inputFilter', 'EntityName');
     }
 
     /**
@@ -246,12 +246,23 @@ class Route extends \Object\Entity\Route implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setDocumentType(\Object\Entity\DocumentType $documentType)
+    public function addDocumentType(\Object\Entity\DocumentType $documentType)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'setDocumentType', array($documentType));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addDocumentType', array($documentType));
 
-        return parent::setDocumentType($documentType);
+        return parent::addDocumentType($documentType);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeDocumentType(\Object\Entity\DocumentType $documentType)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeDocumentType', array($documentType));
+
+        return parent::removeDocumentType($documentType);
     }
 
     /**
@@ -268,34 +279,34 @@ class Route extends \Object\Entity\Route implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function addDocument(\Object\Entity\Document $document)
+    public function addCurrentDocumentType(\Object\Entity\CurrentDocumentType $currentDocumentType)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addDocument', array($document));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addCurrentDocumentType', array($currentDocumentType));
 
-        return parent::addDocument($document);
+        return parent::addCurrentDocumentType($currentDocumentType);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function removeDocument(\Object\Entity\Document $document)
+    public function removeCurrentDocumentType(\Object\Entity\CurrentDocumentType $currentDocumentType)
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeDocument', array($document));
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeCurrentDocumentType', array($currentDocumentType));
 
-        return parent::removeDocument($document);
+        return parent::removeCurrentDocumentType($currentDocumentType);
     }
 
     /**
      * {@inheritDoc}
      */
-    public function getDocument()
+    public function getCurrentDocumentType()
     {
 
-        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getDocument', array());
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getCurrentDocumentType', array());
 
-        return parent::getDocument();
+        return parent::getCurrentDocumentType();
     }
 
     /**

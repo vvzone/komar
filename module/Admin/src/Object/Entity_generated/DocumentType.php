@@ -107,11 +107,27 @@ class DocumentType
     private $attributeType;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Route", inversedBy="documentType")
+     * @ORM\JoinTable(name="document_type_has_route",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $route;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -386,5 +402,38 @@ class DocumentType
     public function getAttributeType()
     {
         return $this->attributeType;
+    }
+
+    /**
+     * Add route
+     *
+     * @param \Object\Entity\Route $route
+     * @return DocumentType
+     */
+    public function addRoute(\Object\Entity\Route $route)
+    {
+        $this->route[] = $route;
+
+        return $this;
+    }
+
+    /**
+     * Remove route
+     *
+     * @param \Object\Entity\Route $route
+     */
+    public function removeRoute(\Object\Entity\Route $route)
+    {
+        $this->route->removeElement($route);
+    }
+
+    /**
+     * Get route
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRoute()
+    {
+        return $this->route;
     }
 }

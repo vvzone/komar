@@ -17,7 +17,7 @@ class DocumentAttribute extends Filtered
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
 
@@ -165,7 +165,7 @@ class DocumentAttribute extends Filtered
      */
     public function getDocumentAttributeCollection()
     {
-        /*
+
         if($this->documentAttributeCollection){
 
             $dac_collection = array();
@@ -174,8 +174,8 @@ class DocumentAttribute extends Filtered
             }
             return $dac_collection;
         }
-        */
-        return $this->documentAttributeCollection->getId();
+
+        //return $this->documentAttributeCollection->getId();
     }
 
 

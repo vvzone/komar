@@ -129,7 +129,7 @@ class AttributeTypeCollection
     /**
      * Get attribute
      *
-     * @return \Object\Entity\AttributeType 
+     * @return \Object\Entity\AttributeType
      */
     public function getAttribute()
     {
@@ -157,7 +157,10 @@ class AttributeTypeCollection
      * @return \Object\Entity\AttributeType
      */
     public function getParentAttribute(){
-        return $this->parentAttribute;
+        if($this->parentAttribute){
+            $this->parentAttribute->getId();
+        }
+        return null;
     }
     /**
      * Get parentAttribute
@@ -184,10 +187,11 @@ class AttributeTypeCollection
     public function getAllWithDownDirection(){
         return array(
             'id' => $this->getId(),
-            'parent_attribute_type' => $this->getParentAttribute()->getId(),
+            'parent_attribute_type' => $this->getParentAttribute(),
             'attribute_type' => $this->getAttribute(),
             'min' => $this->getMin(),
             'max' => $this->getMax()
         );
     }
+
 }

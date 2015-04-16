@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * DocumentAttributeCollection
  *
- * @ORM\Table(name="document_attribute_collection", indexes={@ORM\Index(name="attribute_type_id", columns={"attribute_type_id"}), @ORM\Index(name="parent_document_attribute_id", columns={"parent_document_attribute_id"})})
+ * @ORM\Table(name="document_attribute_collection", indexes={@ORM\Index(name="parent_document_attribute_id", columns={"parent_document_attribute_id"}), @ORM\Index(name="attribute_type_collection_id", columns={"attribute_type_collection_id"})})
  * @ORM\Entity
  */
 class DocumentAttributeCollection
@@ -22,16 +22,6 @@ class DocumentAttributeCollection
     private $id;
 
     /**
-     * @var \Object\Entity\AttributeType
-     *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeType")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
-     * })
-     */
-    private $attributeType;
-
-    /**
      * @var \Object\Entity\DocumentAttribute
      *
      * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentAttribute")
@@ -40,6 +30,16 @@ class DocumentAttributeCollection
      * })
      */
     private $parentDocumentAttribute;
+
+    /**
+     * @var \Object\Entity\AttributeTypeCollection
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeTypeCollection")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="attribute_type_collection_id", referencedColumnName="id")
+     * })
+     */
+    private $attributeTypeCollection;
 
     /**
      * @var \Doctrine\Common\Collections\Collection

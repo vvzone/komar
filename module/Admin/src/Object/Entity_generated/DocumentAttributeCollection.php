@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * DocumentAttributeCollection
  *
- * @ORM\Table(name="document_attribute_collection", indexes={@ORM\Index(name="attribute_type_id", columns={"attribute_type_id"}), @ORM\Index(name="parent_document_attribute_id", columns={"parent_document_attribute_id"})})
+ * @ORM\Table(name="document_attribute_collection", indexes={@ORM\Index(name="parent_document_attribute_id", columns={"parent_document_attribute_id"}), @ORM\Index(name="attribute_type_collection_id", columns={"attribute_type_collection_id"})})
  * @ORM\Entity
  */
 class DocumentAttributeCollection
@@ -22,16 +22,6 @@ class DocumentAttributeCollection
     private $id;
 
     /**
-     * @var \Object\Entity\AttributeTypeCollection
-     *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeTypeCollection")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="attribute_type_collection_id", referencedColumnName="id")
-     * })
-     */
-    private $attributeTypeCollection;
-
-    /**
      * @var \Object\Entity\DocumentAttribute
      *
      * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentAttribute")
@@ -40,6 +30,16 @@ class DocumentAttributeCollection
      * })
      */
     private $parentDocumentAttribute;
+
+    /**
+     * @var \Object\Entity\AttributeTypeCollection
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeTypeCollection")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="attribute_type_collection_id", referencedColumnName="id")
+     * })
+     */
+    private $attributeTypeCollection;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -68,29 +68,6 @@ class DocumentAttributeCollection
     }
 
     /**
-     * Set attributeType
-     *
-     * @param \Object\Entity\AttributeTypeCollection $attributeTypeCollection
-     * @return DocumentAttributeCollection
-     */
-    public function setAttributeTypeCollection(\Object\Entity\AttributeTypeCollection $attributeTypeCollection = null)
-    {
-        $this->attributeType = $attributeTypeCollection;
-
-        return $this;
-    }
-
-    /**
-     * Get attributeType
-     *
-     * @return \Object\Entity\AttributeTypeCollection
-     */
-    public function getAttributeTypeCollection()
-    {
-        return $this->attributeTypeCollection;
-    }
-
-    /**
      * Set parentDocumentAttribute
      *
      * @param \Object\Entity\DocumentAttribute $parentDocumentAttribute
@@ -111,6 +88,29 @@ class DocumentAttributeCollection
     public function getParentDocumentAttribute()
     {
         return $this->parentDocumentAttribute;
+    }
+
+    /**
+     * Set attributeTypeCollection
+     *
+     * @param \Object\Entity\AttributeTypeCollection $attributeTypeCollection
+     * @return DocumentAttributeCollection
+     */
+    public function setAttributeTypeCollection(\Object\Entity\AttributeTypeCollection $attributeTypeCollection = null)
+    {
+        $this->attributeTypeCollection = $attributeTypeCollection;
+
+        return $this;
+    }
+
+    /**
+     * Get attributeTypeCollection
+     *
+     * @return \Object\Entity\AttributeTypeCollection 
+     */
+    public function getAttributeTypeCollection()
+    {
+        return $this->attributeTypeCollection;
     }
 
     /**

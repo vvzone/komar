@@ -18,6 +18,16 @@ class AttributeTypeCollection extends PageableRepository
     public function getItems($offset, $itemCountPerPage)
     {
         $query = $this->getEntityManager()->createQueryBuilder();
+
+        /*
+        $queryBuilder = $this->_em->createQueryBuilder();
+        $queryBuilder->select('attribute_type.name')
+            ->from('Object\Entity\User', 'attribute_type')
+            ->where('user.token = ?1')
+            ->setParameters($filter)
+            ->setMaxResults(1);
+        */
+
         $query->select(array('collection.id'))
             ->from($this->getCurrentEntityClass(), 'collection')
             ->setFirstResult($offset)

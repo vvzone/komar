@@ -157,6 +157,30 @@ class DocumentAttributeCollection
         return $this->cdt;
     }
 
+
+    /**
+     * Add documentAttribute
+     *
+     * @param \Object\Entity\DocumentAttribute $documentAttribute
+     * @return DocumentAttributeCollection
+     */
+    public function addDocumentAttribute(\Object\Entity\DocumentAttribute $documentAttribute)
+    {
+        $this->documentAttribute[] = $documentAttribute;
+
+        return $this;
+    }
+
+    /**
+     * Remove cdt
+     *
+     * @param \Object\Entity\DocumentAttribute $documentAttribute
+     */
+    public function removeDocumentAttribute(\Object\Entity\DocumentAttribute $documentAttribute)
+    {
+        $this->documentAttribute->removeElement($documentAttribute);
+    }
+
     public function getDocumentAttribute(){
         if($this->documentAttribute){
             $dac = array();

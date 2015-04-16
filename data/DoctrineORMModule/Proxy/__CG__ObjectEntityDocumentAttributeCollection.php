@@ -268,6 +268,28 @@ class DocumentAttributeCollection extends \Object\Entity\DocumentAttributeCollec
     /**
      * {@inheritDoc}
      */
+    public function addDocumentAttribute(\Object\Entity\DocumentAttribute $documentAttribute)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'addDocumentAttribute', array($documentAttribute));
+
+        return parent::addDocumentAttribute($documentAttribute);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function removeDocumentAttribute(\Object\Entity\DocumentAttribute $documentAttribute)
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'removeDocumentAttribute', array($documentAttribute));
+
+        return parent::removeDocumentAttribute($documentAttribute);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getDocumentAttribute()
     {
 

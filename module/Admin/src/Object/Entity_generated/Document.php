@@ -36,6 +36,16 @@ class Document
     private $date;
 
     /**
+     * @var \Object\Entity\CurrentDocumentType
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\CurrentDocumentType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="current_document_type_id", referencedColumnName="id")
+     * })
+     */
+    private $currentDocumentType;
+
+    /**
      * @var \Object\Entity\DocumentType
      *
      * @ORM\Id
@@ -46,16 +56,6 @@ class Document
      * })
      */
     private $documentType;
-
-    /**
-     * @var \Object\Entity\CurrentDocumentType
-     *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\CurrentDocumentType")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="current_document_type_id", referencedColumnName="id")
-     * })
-     */
-    private $currentDocumentType;
 
     /**
      * @var \Object\Entity\NodeLevel
@@ -97,19 +97,11 @@ class Document
     private $linkedDocument;
 
     /**
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Route", mappedBy="document")
-     */
-    private $route;
-
-    /**
      * Constructor
      */
     public function __construct()
     {
         $this->linkedDocument = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -183,29 +175,6 @@ class Document
     }
 
     /**
-     * Set documentType
-     *
-     * @param \Object\Entity\DocumentType $documentType
-     * @return Document
-     */
-    public function setDocumentType(\Object\Entity\DocumentType $documentType)
-    {
-        $this->documentType = $documentType;
-
-        return $this;
-    }
-
-    /**
-     * Get documentType
-     *
-     * @return \Object\Entity\DocumentType 
-     */
-    public function getDocumentType()
-    {
-        return $this->documentType;
-    }
-
-    /**
      * Set currentDocumentType
      *
      * @param \Object\Entity\CurrentDocumentType $currentDocumentType
@@ -226,6 +195,29 @@ class Document
     public function getCurrentDocumentType()
     {
         return $this->currentDocumentType;
+    }
+
+    /**
+     * Set documentType
+     *
+     * @param \Object\Entity\DocumentType $documentType
+     * @return Document
+     */
+    public function setDocumentType(\Object\Entity\DocumentType $documentType)
+    {
+        $this->documentType = $documentType;
+
+        return $this;
+    }
+
+    /**
+     * Get documentType
+     *
+     * @return \Object\Entity\DocumentType 
+     */
+    public function getDocumentType()
+    {
+        return $this->documentType;
     }
 
     /**
@@ -305,38 +297,5 @@ class Document
     public function getLinkedDocument()
     {
         return $this->linkedDocument;
-    }
-
-    /**
-     * Add route
-     *
-     * @param \Object\Entity\Route $route
-     * @return Document
-     */
-    public function addRoute(\Object\Entity\Route $route)
-    {
-        $this->route[] = $route;
-
-        return $this;
-    }
-
-    /**
-     * Remove route
-     *
-     * @param \Object\Entity\Route $route
-     */
-    public function removeRoute(\Object\Entity\Route $route)
-    {
-        $this->route->removeElement($route);
-    }
-
-    /**
-     * Get route
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getRoute()
-    {
-        return $this->route;
     }
 }

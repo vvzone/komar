@@ -36,35 +36,37 @@ class Route extends Filtered
     private $description;
 
     /**
-     * @var \Object\Entity\DocumentType
+     * @var boolean
      *
-     * ORM\Id
-     * ORM\GeneratedValue(strategy="NONE")
-     * @ORM\OneToOne(targetEntity="Object\Entity\DocumentType")
+     * @ORM\Column(name="is_main", type="boolean", nullable=true)
+     */
+    private $isMain;
+
+
+    /**
+     * @var \Object\Entity\Route
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Route")
      * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
+     *   @ORM\JoinColumn(name="prototype_route_id", referencedColumnName="id")
      * })
+     */
+    private $prototypeRoute;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\CurrentDocumentType", mappedBy="route")
+     */
+    private $currentDocumentType;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\DocumentType", mappedBy="route")
      */
     private $documentType;
 
-    /*
-     * @var \Doctrine\Common\Collections\Collection
-     *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Document", inversedBy="route")
-     * @ORM\JoinTable(name="route_has_document",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="route_id", referencedColumnName="id"),
-     *     @ORM\JoinColumn(name="route_document_type_id", referencedColumnName="document_type_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="document_id", referencedColumnName="id"),
-     *     @ORM\JoinColumn(name="document_document_author_id", referencedColumnName="document_author_id"),
-     *     @ORM\JoinColumn(name="document_document_type_id", referencedColumnName="document_type_id"),
-     *     @ORM\JoinColumn(name="document_current_node_level_id", referencedColumnName="current_node_level_id")
-     *   }
-     * )
-     */
-    private $document;
 
     /**
      * @var \Object\Entity\NodeLevel
@@ -78,7 +80,8 @@ class Route extends Filtered
      */
     public function __construct()
     {
-        $this->document = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->currentDocumentType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->documentType = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -152,22 +155,32 @@ class Route extends Filtered
     }
 
     /**
-     * Set documentType
+     * Add documentType
      *
      * @param \Object\Entity\DocumentType $documentType
      * @return Route
      */
-    public function setDocumentType(\Object\Entity\DocumentType $documentType)
+    public function addDocumentType(\Object\Entity\DocumentType $documentType)
     {
-        $this->documentType = $documentType;
+        $this->documentType[] = $documentType;
 
         return $this;
     }
 
     /**
+     * Remove documentType
+     *
+     * @param \Object\Entity\DocumentType $documentType
+     */
+    public function removeDocumentType(\Object\Entity\DocumentType $documentType)
+    {
+        $this->documentType->removeElement($documentType);
+    }
+
+    /**
      * Get documentType
      *
-     * @return \Object\Entity\DocumentType 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDocumentType()
     {
@@ -175,37 +188,39 @@ class Route extends Filtered
     }
 
     /**
-     * Add document
+     * Add currentDocumentType
      *
-     * @param \Object\Entity\Document $document
+     * @param \Object\Entity\CurrentDocumentType $currentDocumentType
      * @return Route
      */
-    public function addDocument(\Object\Entity\Document $document)
+    public function addCurrentDocumentType(\Object\Entity\CurrentDocumentType $currentDocumentType)
     {
-        $this->document[] = $document;
+        $this->currentDocumentType[] = $currentDocumentType;
 
         return $this;
     }
 
     /**
-     * Remove document
+     * Remove currentDocumentType
      *
-     * @param \Object\Entity\Document $document
+     * @param \Object\Entity\CurrentDocumentType $currentDocumentType
      */
-    public function removeDocument(\Object\Entity\Document $document)
+    public function removeCurrentDocumentType(\Object\Entity\CurrentDocumentType $currentDocumentType)
     {
-        $this->document->removeElement($document);
+        $this->currentDocumentType->removeElement($currentDocumentType);
     }
 
     /**
-     * Get document
+     * Get currentDocumentType
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
-    public function getDocument()
+    public function getCurrentDocumentType()
     {
-        return $this->document;
+        return $this->currentDocumentType;
     }
+
+
 
     /**
      * Add NodeLevel
@@ -227,7 +242,7 @@ class Route extends Filtered
      */
     public function removeNodeLevel(\Object\Entity\NodeLevel $node_level)
     {
-        $this->document->removeElement($node_level);
+        $this->node_levels->removeElement($node_level);
     }
 
     public function getNodeLevels(){
@@ -247,10 +262,10 @@ class Route extends Filtered
     }
 
     public function getAll(){
+
         return array(
             'id' => $this->getId(),
             'name' => $this->getName(),
-            'document_type' => $this->getDocumentType()->getId(),
             'node_levels' => $this->getNodeLevels()
         );
     }

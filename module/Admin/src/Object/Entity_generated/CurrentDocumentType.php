@@ -117,11 +117,27 @@ class CurrentDocumentType
     private $dac;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Route", inversedBy="currentDocumentType")
+     * @ORM\JoinTable(name="current_document_type_has_route",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="current_document_type_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $route;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->dac = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 
@@ -419,5 +435,38 @@ class CurrentDocumentType
     public function getDac()
     {
         return $this->dac;
+    }
+
+    /**
+     * Add route
+     *
+     * @param \Object\Entity\Route $route
+     * @return CurrentDocumentType
+     */
+    public function addRoute(\Object\Entity\Route $route)
+    {
+        $this->route[] = $route;
+
+        return $this;
+    }
+
+    /**
+     * Remove route
+     *
+     * @param \Object\Entity\Route $route
+     */
+    public function removeRoute(\Object\Entity\Route $route)
+    {
+        $this->route->removeElement($route);
+    }
+
+    /**
+     * Get route
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getRoute()
+    {
+        return $this->route;
     }
 }

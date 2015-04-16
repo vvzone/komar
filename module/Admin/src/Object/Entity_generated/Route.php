@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Route
  *
- * @ORM\Table(name="route", indexes={@ORM\Index(name="fk_route_document_type1_idx", columns={"document_type_id"})})
+ * @ORM\Table(name="route", indexes={@ORM\Index(name="fk_route_route1_idx", columns={"prototype_route_id"})})
  * @ORM\Entity
  */
 class Route
@@ -17,18 +17,9 @@ class Route
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="document_type_id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="NONE")
-     */
-    private $documentTypeId = '0';
 
     /**
      * @var string
@@ -45,45 +36,45 @@ class Route
     private $description;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_main", type="boolean", nullable=true)
+     */
+    private $isMain;
+
+    /**
+     * @var \Object\Entity\Route
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\Route")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="prototype_route_id", referencedColumnName="id")
+     * })
+     */
+    private $prototypeRoute;
+
+    /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\Document", inversedBy="route")
-     * @ORM\JoinTable(name="route_has_document",
-     *   joinColumns={
-     *     @ORM\JoinColumn(name="route_id", referencedColumnName="id"),
-     *     @ORM\JoinColumn(name="route_document_type_id", referencedColumnName="document_type_id")
-     *   },
-     *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="document_id", referencedColumnName="id"),
-     *     @ORM\JoinColumn(name="document_document_author_id", referencedColumnName="document_author_id"),
-     *     @ORM\JoinColumn(name="document_document_type_id", referencedColumnName="document_type_id"),
-     *     @ORM\JoinColumn(name="document_current_node_level_id", referencedColumnName="current_node_level_id")
-     *   }
-     * )
+     * @ORM\ManyToMany(targetEntity="Object\Entity\CurrentDocumentType", mappedBy="route")
      */
-    private $document;
+    private $currentDocumentType;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\DocumentType", mappedBy="route")
+     */
+    private $documentType;
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->document = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->currentDocumentType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->documentType = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
-    /**
-     * Set id
-     *
-     * @param integer $id
-     * @return Route
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-
-        return $this;
-    }
 
     /**
      * Get id
@@ -93,29 +84,6 @@ class Route
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set documentTypeId
-     *
-     * @param integer $documentTypeId
-     * @return Route
-     */
-    public function setDocumentTypeId($documentTypeId)
-    {
-        $this->documentTypeId = $documentTypeId;
-
-        return $this;
-    }
-
-    /**
-     * Get documentTypeId
-     *
-     * @return integer 
-     */
-    public function getDocumentTypeId()
-    {
-        return $this->documentTypeId;
     }
 
     /**
@@ -165,35 +133,114 @@ class Route
     }
 
     /**
-     * Add document
+     * Set isMain
      *
-     * @param \Object\Entity\Document $document
+     * @param boolean $isMain
      * @return Route
      */
-    public function addDocument(\Object\Entity\Document $document)
+    public function setIsMain($isMain)
     {
-        $this->document[] = $document;
+        $this->isMain = $isMain;
 
         return $this;
     }
 
     /**
-     * Remove document
+     * Get isMain
      *
-     * @param \Object\Entity\Document $document
+     * @return boolean 
      */
-    public function removeDocument(\Object\Entity\Document $document)
+    public function getIsMain()
     {
-        $this->document->removeElement($document);
+        return $this->isMain;
     }
 
     /**
-     * Get document
+     * Set prototypeRoute
+     *
+     * @param \Object\Entity\Route $prototypeRoute
+     * @return Route
+     */
+    public function setPrototypeRoute(\Object\Entity\Route $prototypeRoute = null)
+    {
+        $this->prototypeRoute = $prototypeRoute;
+
+        return $this;
+    }
+
+    /**
+     * Get prototypeRoute
+     *
+     * @return \Object\Entity\Route 
+     */
+    public function getPrototypeRoute()
+    {
+        return $this->prototypeRoute;
+    }
+
+    /**
+     * Add currentDocumentType
+     *
+     * @param \Object\Entity\CurrentDocumentType $currentDocumentType
+     * @return Route
+     */
+    public function addCurrentDocumentType(\Object\Entity\CurrentDocumentType $currentDocumentType)
+    {
+        $this->currentDocumentType[] = $currentDocumentType;
+
+        return $this;
+    }
+
+    /**
+     * Remove currentDocumentType
+     *
+     * @param \Object\Entity\CurrentDocumentType $currentDocumentType
+     */
+    public function removeCurrentDocumentType(\Object\Entity\CurrentDocumentType $currentDocumentType)
+    {
+        $this->currentDocumentType->removeElement($currentDocumentType);
+    }
+
+    /**
+     * Get currentDocumentType
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getDocument()
+    public function getCurrentDocumentType()
     {
-        return $this->document;
+        return $this->currentDocumentType;
+    }
+
+    /**
+     * Add documentType
+     *
+     * @param \Object\Entity\DocumentType $documentType
+     * @return Route
+     */
+    public function addDocumentType(\Object\Entity\DocumentType $documentType)
+    {
+        $this->documentType[] = $documentType;
+
+        return $this;
+    }
+
+    /**
+     * Remove documentType
+     *
+     * @param \Object\Entity\DocumentType $documentType
+     */
+    public function removeDocumentType(\Object\Entity\DocumentType $documentType)
+    {
+        $this->documentType->removeElement($documentType);
+    }
+
+    /**
+     * Get documentType
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDocumentType()
+    {
+        return $this->documentType;
     }
 }

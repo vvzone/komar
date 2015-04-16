@@ -64,10 +64,10 @@ class DocumentAttribute extends \Object\Entity\DocumentAttribute implements \Doc
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'arrayIndex', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'data', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'documentAttributeCollection', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'author', 'inputFilter', 'EntityName');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'arrayIndex', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'data', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'documentAttributeCollection', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'author', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'childrenCollection', 'inputFilter', 'EntityName');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'arrayIndex', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'data', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'documentAttributeCollection', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'author', 'inputFilter', 'EntityName');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'arrayIndex', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'data', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'documentAttributeCollection', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'author', '' . "\0" . 'Object\\Entity\\DocumentAttribute' . "\0" . 'childrenCollection', 'inputFilter', 'EntityName');
     }
 
     /**
@@ -285,6 +285,17 @@ class DocumentAttribute extends \Object\Entity\DocumentAttribute implements \Doc
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getAuthor', array());
 
         return parent::getAuthor();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function getChildrenCollection()
+    {
+
+        $this->__initializer__ && $this->__initializer__->__invoke($this, 'getChildrenCollection', array());
+
+        return parent::getChildrenCollection();
     }
 
     /**

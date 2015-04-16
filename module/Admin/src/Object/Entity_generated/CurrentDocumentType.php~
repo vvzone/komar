@@ -117,11 +117,27 @@ class CurrentDocumentType
     private $dac;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Route", inversedBy="currentDocumentType")
+     * @ORM\JoinTable(name="current_document_type_has_route",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="current_document_type_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $route;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->dac = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 }

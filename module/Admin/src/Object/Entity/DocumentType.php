@@ -110,22 +110,30 @@ class DocumentType extends Filtered
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\AttributeType", inversedBy="documentType")
-     * @ORM\JoinTable(name="document_type_attribute_type",
+     * @ORM\ManyToMany(targetEntity="Object\Entity\AttributeTypeCollection", inversedBy="documentType")
+     * @ORM\JoinTable(name="document_type_has_attribute_type_collection",
      *   joinColumns={
      *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="attribute_type_collection_id", referencedColumnName="id")
      *   }
      * )
      */
-    private $attributeType;
+    private $attributeTypeCollection;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="Route", mappedBy="documentType",)
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Route", inversedBy="documentType")
+     * @ORM\JoinTable(name="document_type_has_route",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+     *   }
+     * )
      */
     private $route;
 
@@ -134,7 +142,7 @@ class DocumentType extends Filtered
      */
     public function __construct()
     {
-        $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->attributeTypeCollection = new \Doctrine\Common\Collections\ArrayCollection();
         $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -407,12 +415,13 @@ class DocumentType extends Filtered
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getAttributeType()
+    public function getAttributeTypeCollection()
     {
         //return $this->attributeType;
         $attribute_types = array();
-        foreach($this->attributeType as $attribute_type){
-            $attribute_types[] = $attribute_type->getPlain();
+        foreach($this->attributeTypeCollection as $attribute_type_collection){
+            //$attribute_types[] = $attribute_type_collection->getPlain();
+            $attribute_types[] = $attribute_type_collection->getAllWithDownDirection();
         }
         return $attribute_types;
     }
@@ -424,7 +433,8 @@ class DocumentType extends Filtered
     public function getRoute(){
         //return $this->route->last()->getRouteSimple();
         if($this->route->last()){
-            return $this->route->last()->getId();
+            //return $this->route->last()->getId();
+            return $this->route->last()->getRouteSimple();
         }
     }
 
@@ -441,7 +451,7 @@ class DocumentType extends Filtered
             'presentation' => $this->getPresentation(),
             'direction_type' => $this->getDirectionTypeCode(),
             'description' => $this->getDescription(),
-            'attribute_types' => $this->getAttributeType(),
+            'attribute_type_collection' => $this->getAttributeTypeCollection(),
             'route' => $this->getRoute()
         );
     }

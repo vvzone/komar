@@ -1,0 +1,59 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * AttributeTypeComplexCollection
+ *
+ * @ORM\Table(name="attribute_type_complex_collection", indexes={@ORM\Index(name="parent_attribute_id", columns={"parent_attribute_id"}), @ORM\Index(name="attribute_id", columns={"attribute_id"})})
+ * @ORM\Entity
+ */
+class AttributeTypeComplexCollection
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="min", type="integer", nullable=false)
+     */
+    private $min;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="max", type="integer", nullable=false)
+     */
+    private $max;
+
+    /**
+     * @var \Object\Entity\AttributeType
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="attribute_id", referencedColumnName="id")
+     * })
+     */
+    private $attribute;
+
+    /**
+     * @var \Object\Entity\AttributeType
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\AttributeType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="parent_attribute_id", referencedColumnName="id")
+     * })
+     */
+    private $parentAttribute;
+
+
+}

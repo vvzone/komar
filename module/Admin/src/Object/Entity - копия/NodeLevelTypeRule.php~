@@ -1,0 +1,51 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NodeLevelTypeRule
+ *
+ * @ORM\Table(name="node_level_type_rule", indexes={@ORM\Index(name="fk_node_level_type_rule_node_level_type1_idx", columns={"node_level_type_id"})})
+ * @ORM\Entity
+ */
+class NodeLevelTypeRule
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="existing_level_type", type="integer", nullable=true)
+     */
+    private $existingLevelType;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_exist", type="boolean", nullable=true)
+     */
+    private $isExist;
+
+    /**
+     * @var \Object\Entity\NodeLevelType
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Object\Entity\NodeLevelType")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="node_level_type_id", referencedColumnName="id")
+     * })
+     */
+    private $nodeLevelType;
+
+
+}

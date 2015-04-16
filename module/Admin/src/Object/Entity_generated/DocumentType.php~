@@ -107,11 +107,27 @@ class DocumentType
     private $attributeType;
 
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Object\Entity\Route", inversedBy="documentType")
+     * @ORM\JoinTable(name="document_type_has_route",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="route_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $route;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
 }

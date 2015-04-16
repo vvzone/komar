@@ -36,16 +36,6 @@ class DocumentAttribute
     private $data;
 
     /**
-     * @var \Object\Entity\DocumentAttributeCollection
-     *
-     * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentAttributeCollection")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="document_attribute_collection_id", referencedColumnName="id")
-     * })
-     */
-    private $documentAttributeCollection;
-
-    /**
      * @var \Object\Entity\Person
      *
      * @ORM\ManyToOne(targetEntity="Object\Entity\Person")
@@ -54,6 +44,16 @@ class DocumentAttribute
      * })
      */
     private $author;
+
+    /**
+     * @var \Object\Entity\DocumentAttributeCollection
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\DocumentAttributeCollection")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="document_attribute_collection_id", referencedColumnName="id")
+     * })
+     */
+    private $documentAttributeCollection;
 
 
 
@@ -114,29 +114,6 @@ class DocumentAttribute
     }
 
     /**
-     * Set documentAttributeCollection
-     *
-     * @param \Object\Entity\DocumentAttributeCollection $documentAttributeCollection
-     * @return DocumentAttribute
-     */
-    public function setDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $documentAttributeCollection = null)
-    {
-        $this->documentAttributeCollection = $documentAttributeCollection;
-
-        return $this;
-    }
-
-    /**
-     * Get documentAttributeCollection
-     *
-     * @return \Object\Entity\DocumentAttributeCollection 
-     */
-    public function getDocumentAttributeCollection()
-    {
-        return $this->documentAttributeCollection;
-    }
-
-    /**
      * Set author
      *
      * @param \Object\Entity\Person $author
@@ -157,5 +134,28 @@ class DocumentAttribute
     public function getAuthor()
     {
         return $this->author;
+    }
+
+    /**
+     * Set documentAttributeCollection
+     *
+     * @param \Object\Entity\DocumentAttributeCollection $documentAttributeCollection
+     * @return DocumentAttribute
+     */
+    public function setDocumentAttributeCollection(\Object\Entity\DocumentAttributeCollection $documentAttributeCollection = null)
+    {
+        $this->documentAttributeCollection = $documentAttributeCollection;
+
+        return $this;
+    }
+
+    /**
+     * Get documentAttributeCollection
+     *
+     * @return \Object\Entity\DocumentAttributeCollection 
+     */
+    public function getDocumentAttributeCollection()
+    {
+        return $this->documentAttributeCollection;
     }
 }
