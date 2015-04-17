@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Node
  *
- * @ORM\Table(name="node", indexes={@ORM\Index(name="fk_node_node_level1_idx", columns={"node_level_id"}), @ORM\Index(name="fk_node_client1_idx", columns={"client_id"})})
+ * @ORM\Table(name="node", indexes={@ORM\Index(name="fk_node_node_level1_idx", columns={"node_level_id"}), @ORM\Index(name="fk_node_client1_idx", columns={"client_id"}), @ORM\Index(name="node_state_id", columns={"node_state_id"})})
  * @ORM\Entity
  */
 class Node
@@ -38,13 +38,6 @@ class Node
     /**
      * @var integer
      *
-     * @ORM\Column(name="node_state_id", type="integer", nullable=true)
-     */
-    private $nodeStateId;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="period_type_id", type="integer", nullable=true)
      */
     private $periodTypeId;
@@ -62,6 +55,16 @@ class Node
      * @ORM\Column(name="period_length", type="integer", nullable=true)
      */
     private $periodLength;
+
+    /**
+     * @var \Object\Entity\NodeState
+     *
+     * @ORM\ManyToOne(targetEntity="Object\Entity\NodeState")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="node_state_id", referencedColumnName="id")
+     * })
+     */
+    private $nodeState;
 
     /**
      * @var \Object\Entity\Client

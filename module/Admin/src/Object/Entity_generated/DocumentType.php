@@ -95,16 +95,16 @@ class DocumentType
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Object\Entity\AttributeType", inversedBy="documentType")
-     * @ORM\JoinTable(name="document_type_attribute_type",
+     * @ORM\JoinTable(name="document_type_has_attribute_type_collection",
      *   joinColumns={
      *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="attribute_type_collection_id", referencedColumnName="id")
      *   }
      * )
      */
-    private $attributeType;
+    private $attributeTypeCollection;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -126,7 +126,7 @@ class DocumentType
      */
     public function __construct()
     {
-        $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->attributeTypeCollection = new \Doctrine\Common\Collections\ArrayCollection();
         $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -372,36 +372,36 @@ class DocumentType
     }
 
     /**
-     * Add attributeType
+     * Add attributeTypeCollection
      *
-     * @param \Object\Entity\AttributeType $attributeType
+     * @param \Object\Entity\AttributeType $attributeTypeCollection
      * @return DocumentType
      */
-    public function addAttributeType(\Object\Entity\AttributeType $attributeType)
+    public function addAttributeTypeCollection(\Object\Entity\AttributeType $attributeTypeCollection)
     {
-        $this->attributeType[] = $attributeType;
+        $this->attributeTypeCollection[] = $attributeTypeCollection;
 
         return $this;
     }
 
     /**
-     * Remove attributeType
+     * Remove attributeTypeCollection
      *
-     * @param \Object\Entity\AttributeType $attributeType
+     * @param \Object\Entity\AttributeType $attributeTypeCollection
      */
-    public function removeAttributeType(\Object\Entity\AttributeType $attributeType)
+    public function removeAttributeTypeCollection(\Object\Entity\AttributeType $attributeTypeCollection)
     {
-        $this->attributeType->removeElement($attributeType);
+        $this->attributeTypeCollection->removeElement($attributeTypeCollection);
     }
 
     /**
-     * Get attributeType
+     * Get attributeTypeCollection
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getAttributeType()
+    public function getAttributeTypeCollection()
     {
-        return $this->attributeType;
+        return $this->attributeTypeCollection;
     }
 
     /**

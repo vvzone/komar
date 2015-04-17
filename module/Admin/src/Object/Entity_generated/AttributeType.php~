@@ -62,7 +62,7 @@ class AttributeType
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Object\Entity\DocumentType", mappedBy="attributeType")
+     * @ORM\ManyToMany(targetEntity="Object\Entity\DocumentType", mappedBy="attributeTypeCollection")
      */
     private $documentType;
 

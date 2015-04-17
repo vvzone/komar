@@ -36,11 +36,15 @@ class Node extends Filtered
     private $task;
 
     /**
-     * @var integer
+     * @var \Object\Entity\NodeState
      *
-     * @ORM\Column(name="node_state_id", type="integer", nullable=true)
+     * @ORM\ManyToOne(targetEntity="Object\Entity\NodeState")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="node_state_id", referencedColumnName="id")
+     * })
+     *
      */
-    private $nodeStateId;
+    private $nodeState;
 
     /**
      * @var integer
@@ -148,26 +152,26 @@ class Node extends Filtered
     }
 
     /**
-     * Set nodeStateId
+     * Set nodeState
      *
-     * @param integer $nodeStateId
+     * @param \Object\Entity\NodeState $nodeState
      * @return Node
      */
-    public function setNodeStateId($nodeStateId)
+    public function setNodeState(\Object\Entity\NodeState $nodeState)
     {
-        $this->nodeStateId = $nodeStateId;
+        $this->nodeState = $nodeState;
 
         return $this;
     }
 
     /**
-     * Get nodeStateId
+     * Get nodeState
      *
-     * @return integer 
+     * @return \Object\Entity\NodeState
      */
-    public function getNodeStateId()
+    public function getNodeState()
     {
-        return $this->nodeStateId;
+        return $this->nodeState;
     }
 
     /**
@@ -303,9 +307,10 @@ class Node extends Filtered
             ),*/
             'sort_order' => $this->getSortOrder(),
             'task' => $this->getTask(),
-            'node_state' => $this->getNodeStateId(),
+            'node_state' => $this->getNodeState()->getAll(),
+            //'node_state' => $this->getNodeState(),
             'period_length' => $this->getPeriodLength(),
-            'node_level' => $this->getNodeLevel(),
+            'node_level' => $this->getNodeLevel()->getId(),
             'client' => $this->getClient()
         );
     }

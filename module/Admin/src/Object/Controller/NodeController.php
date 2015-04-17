@@ -12,6 +12,8 @@ namespace Object\Controller;
 use Admin\Controller\RestController;
 use Zend\View\Model\JsonModel;
 
+use Object\Entity\NodeLevel;
+
 class NodeController extends RestController
 {
 
@@ -36,7 +38,6 @@ class NodeController extends RestController
     {
         $serviceLocator = $this
             ->getServiceLocator();
-
         $result = $serviceLocator->get('NodeRESTAPICreate');
         return $result;
     }
@@ -45,6 +46,20 @@ class NodeController extends RestController
     {
         $serviceLocator = $this
             ->getServiceLocator();
+
+        $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
+
+        $CurrentNodeLevel = $objectManager->find('Object\Entity\NodeLevel', $data['node_level']);
+        $CurrentNodes = $CurrentNodeLevel->getNodes();
+
+        $CurrentRoute = $objectManager->find('Object\Entity\Route', $data['node_level']);
+
+        foreach($CurrentNodes as $node){
+            if($node['node_state']['code_name'] == 'confirmed'){
+
+            }
+        }
+
 
         $result = $serviceLocator->get('NodeRESTAPICreate');
         return $result;

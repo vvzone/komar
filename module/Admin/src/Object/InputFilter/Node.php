@@ -8,6 +8,7 @@ use Zend\InputFilter\InputFilter;
 class Node extends InputFilter{
     public function init(){
 
+/*
         $this->add(array(
             'name' => 'name',
             'required' => true,
@@ -26,5 +27,6 @@ class Node extends InputFilter{
                 ),
             )
         ));
+*/        
     }
 }

@@ -95,16 +95,16 @@ class DocumentType
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Object\Entity\AttributeType", inversedBy="documentType")
-     * @ORM\JoinTable(name="document_type_attribute_type",
+     * @ORM\JoinTable(name="document_type_has_attribute_type_collection",
      *   joinColumns={
      *     @ORM\JoinColumn(name="document_type_id", referencedColumnName="id")
      *   },
      *   inverseJoinColumns={
-     *     @ORM\JoinColumn(name="attribute_type_id", referencedColumnName="id")
+     *     @ORM\JoinColumn(name="attribute_type_collection_id", referencedColumnName="id")
      *   }
      * )
      */
-    private $attributeType;
+    private $attributeTypeCollection;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -126,7 +126,7 @@ class DocumentType
      */
     public function __construct()
     {
-        $this->attributeType = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->attributeTypeCollection = new \Doctrine\Common\Collections\ArrayCollection();
         $this->route = new \Doctrine\Common\Collections\ArrayCollection();
     }
 

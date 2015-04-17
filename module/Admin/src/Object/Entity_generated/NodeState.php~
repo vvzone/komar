@@ -1,0 +1,46 @@
+<?php
+
+namespace Object\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * NodeState
+ *
+ * @ORM\Table(name="node_state")
+ * @ORM\Entity
+ */
+class NodeState
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="code", type="integer", nullable=false)
+     */
+    private $code;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="code_name", type="string", length=16, nullable=false)
+     */
+    private $codeName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=16, nullable=false)
+     */
+    private $name;
+
+
+}

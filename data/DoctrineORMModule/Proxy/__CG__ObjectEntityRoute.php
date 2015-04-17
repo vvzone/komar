@@ -64,10 +64,10 @@ class Route extends \Object\Entity\Route implements \Doctrine\ORM\Proxy\Proxy
     public function __sleep()
     {
         if ($this->__isInitialized__) {
-            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'isMain', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'prototypeRoute', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'currentDocumentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'node_levels', 'inputFilter', 'EntityName');
+            return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'isMain', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'prototypeRoute', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'currentDocumentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'nodeLevel', 'inputFilter', 'EntityName');
         }
 
-        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'isMain', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'prototypeRoute', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'currentDocumentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'node_levels', 'inputFilter', 'EntityName');
+        return array('__isInitialized__', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'id', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'name', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'description', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'isMain', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'prototypeRoute', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'currentDocumentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'documentType', '' . "\0" . 'Object\\Entity\\Route' . "\0" . 'nodeLevel', 'inputFilter', 'EntityName');
     }
 
     /**
