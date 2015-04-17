@@ -75,33 +75,50 @@ class CurrentDocumentTypeController extends RestController
         foreach($ATC_collection as $ATC){
 
 
-            /*
+
             $ATC_hydrator = new DoctrineHydrator($objectManager, 'Object\Entity\AttributeTypeCollection');
             $DAC_hydrator = new DoctrineHydrator($objectManager, 'Object\Entity\DocumentAttributeCollection');
             $DAC = new DocumentAttributeCollection();
 
-            $da_data = $ATC_hydrator->extract($ATC);
+            //$AttributeTypeCollection = new AttributeTypeCollection();
 
-            $da_data['attribute_type_collection_id'] = $da_data['id'];
-            $da_data['id'] = null; //reset id
+            //$da_data = $ATC_hydrator->extract($ATC);
+            $dac_data = $ATC;
+
+            $dac_data['attribute_type_collection_id'] = $dac_data['id'];
+            $dac_data['id'] = null; //reset id
 
             //unset($da_data['attribute_id']);
-            $DAC = $DAC_hydrator->hydrate($da_data, $DAC);
+            $DAC = $DAC_hydrator->hydrate($dac_data, $DAC);
+
 
             $DA = new DocumentAttribute();
-            $DA->setAuthor(5); //Temporary!
+            $DA_hydrator = new DoctrineHydrator($objectManager, 'Object\Entity\DocumentAttribute');
+            $da_data = array(
+                'author' => 5 //Temporary!
+            );
+            $DA = $DA_hydrator->hydrate($da_data, $DA);
 
-            //$objectManager->persist($DA);
+            $DA->setDocumentAttributeCollection($DAC);
+            //$DAC->addDocumentAttribute($DA);
+
+            $objectManager->persist($DA);
             //$objectManager->flush();
 
-            //$DAC->addDocumentAttribute($DA);
+            $AttributeTypeCollection = new AttributeTypeCollection();
+            $ATC = $ATC_hydrator->hydrate($ATC, $AttributeTypeCollection);
+            $DAC->setAttributeTypeCollection($ATC);
+            //$DAC->setAttributeTypeCollection();
+            $DAC->addDocumentAttribute($DA);
 
             $objectManager->persist($DAC);
 
-            $objectManager->flush(); //все скопом
-            */
+            //$objectManager->flush(); //все скопо
 
-            $ATC_collection2[] = $ATC;
+
+            //$ATC_collection2[] = $dac_data;
+           //$ATC_collection2[] = $ATC->getAll();
+            $ATC_collection3[] = $DAC->getAll();
         }
 
 
@@ -122,7 +139,9 @@ class CurrentDocumentTypeController extends RestController
                     'result' => $result,
                     //'document_type' => $DocumentType->getAll(),
                     //'attribute_type_collection' => $DocumentType->getAttributeTypeCollection(),
-                    'ATC' => $ATC_collection2
+                    //'ATC' => $ATC_collection,
+                    //'ATC2' => $ATC_collection2,
+                    'ATC3' => $ATC_collection3
                 )
             )
         );

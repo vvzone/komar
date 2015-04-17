@@ -86,7 +86,7 @@ class DocumentAttributeCollection
      */
     public function setAttributeTypeCollection(\Object\Entity\AttributeTypeCollection $attributeTypeCollection = null)
     {
-        $this->attributeType = $attributeTypeCollection;
+        $this->attributeTypeCollection = $attributeTypeCollection;
 
         return $this;
     }
@@ -98,7 +98,10 @@ class DocumentAttributeCollection
      */
     public function getAttributeTypeCollection()
     {
-        return $this->attributeTypeCollection->getAll();
+        if($this->attributeTypeCollection){
+            return  $this->attributeTypeCollection->getAll();
+        }
+        return null;
     }
 
     /**
