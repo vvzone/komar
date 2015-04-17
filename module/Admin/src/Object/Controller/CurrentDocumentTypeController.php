@@ -61,17 +61,21 @@ class CurrentDocumentTypeController extends RestController
 
 
         //$DocumentType =  $objectManager->find('Object\Entity\DocumentType', $CurrentDocumentType->getDocumentType);
+
         $DocumentType =  $CurrentDocumentType->getDocumentType();
+
+
         $ATC_collection =  $DocumentType->getAttributeTypeCollection();
 
 
 
 
-        $ATC_collection2 = array();
 
+        $ATC_collection2 = array();
         foreach($ATC_collection as $ATC){
 
 
+            /*
             $ATC_hydrator = new DoctrineHydrator($objectManager, 'Object\Entity\AttributeTypeCollection');
             $DAC_hydrator = new DoctrineHydrator($objectManager, 'Object\Entity\DocumentAttributeCollection');
             $DAC = new DocumentAttributeCollection();
@@ -95,27 +99,30 @@ class CurrentDocumentTypeController extends RestController
             $objectManager->persist($DAC);
 
             $objectManager->flush(); //все скопом
-
+            */
 
             $ATC_collection2[] = $ATC;
         }
 
 
 
+
         //$data = array('id' => $Object->getId());
         $data = $hydrator->extract($CurrentDocumentType);
 
+
         $objectManager->persist($CurrentDocumentType);
         $objectManager->flush();
+
 
         $result = $data;
         return (
             new JsonModel(
                 array(
                     'result' => $result,
-                    'document_type' => $DocumentType->getAll(),
-                    //'attribute_type_collection' => $DocumentType->getAttributeType
-                    //'ATC' => $ATC_collection2
+                    //'document_type' => $DocumentType->getAll(),
+                    //'attribute_type_collection' => $DocumentType->getAttributeTypeCollection(),
+                    'ATC' => $ATC_collection2
                 )
             )
         );
