@@ -223,7 +223,7 @@ class CurrentDocumentTypeController extends RestController
                     //'ATC' => $ATC_collection,
                     //'ATC2' => $ATC_collection2,
                     //'ATC3' => $ATC_collection3
-                    //'CDT' => $CurrentDocumentType->getAll()
+                    'CDT' => $CurrentDocumentType->getAll(),
                     'Route Prototype' => $RoutePrototype,
                     'Current Route' => $CurrentRoute->getAll(),
                     //'current_node_levels' => $current_node_levels,

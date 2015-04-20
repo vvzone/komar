@@ -49,15 +49,32 @@ class NodeController extends RestController
 
         $objectManager = $serviceLocator->get('Doctrine\ORM\EntityManager');
 
+
         $CurrentNodeLevel = $objectManager->find('Object\Entity\NodeLevel', $data['node_level']);
         $CurrentNodes = $CurrentNodeLevel->getNodes();
 
         $CurrentRoute = $objectManager->find('Object\Entity\Route', $data['node_level']);
 
+        $level_completed = true;
         foreach($CurrentNodes as $node){
-            if($node['node_state']['code_name'] == 'confirmed'){
-
+            if($node['node_state']['code_name'] != 'confirmed'){
+                $level_completed = false;
             }
+        }
+
+        if($level_completed){
+            $CurrentNodeLevels = $CurrentRoute->getNodeLevels();
+            $current_level_order = $CurrentNodeLevel->getLevelOrder();
+
+            $current_level_id =  $CurrentNodeLevel->getId();
+
+            foreach($CurrentNodeLevels as $NodeLevel){
+                if($NodeLevel['level_order'] > $current_level_order){
+                    $current_level_id = $NodeLevel['id'];
+                    break;
+                }
+            }
+            $CurrentRoute['current_level']= $current_level_id;
         }
 
 
