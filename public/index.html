@@ -1,2 +1,140 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<h1>Helol world!;</h1>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Тестовый график</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="all"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+</head>
+<body>
+<div id="main_container">
+    <svg id="visualisation" width="80%" height="500"></svg>
+</div>
+
+<script type="application/javascript">
+
+    var graph_data = [
+        {
+            points: [{x: 1, y: 5}, {x: 10, y: 10}, {x: 20, y: 10}, {x: 30, y: 40}, {x: 40, y: 5}],
+            line_type: 'normal',
+            line_color: 'red'
+        },
+        {
+            points: [{x: 0, y: 15}, {x: 10, y: 20}, {x: 20, y: 30}, {x: 30, y: 50}, {x: 40, y: 50}],
+            line_type: 'normal',
+            line_color: 'blue'
+        },
+        {
+            points: [{x: 0, y: 2}, {x: 10, y: 5}, {x: 20, y: 7}, {x: 30, y: 9}, {x: 40, y: 10}],
+            line_type: 'normal',
+            line_width: 1,
+            line_color: 'green'
+        }
+    ];
+
+    InitChart(graph_data, 'Тестовый график', 'Ось X', 'Ось Y', {x: 'black', y: 'blue'});
+
+    function InitChart(data, graph_name, xName, yName, AxisColors) {
+
+
+        var getMinPoint = function(data, type){
+            var array = [];
+            data.forEach(function(line){
+                line.points.forEach(function(coord){
+                    (type == 'x') ? array.push(coord.x) : array.push(coord.y);
+                });
+            });
+            return d3.min(array);
+        };
+
+        var getMaxPoint = function(data, type){
+            var array = [];
+            data.forEach(function(line){
+                line.points.forEach(function(coord){
+                    (type == 'x') ? array.push(coord.x) : array.push(coord.y);
+                });
+            });
+            return d3.max(array);
+        };
+
+        var vis = d3.select("#visualisation"),
+                WIDTH = document.body.clientWidth * 0.8,
+                HEIGHT = 500,
+                MARGINS = {
+                    top: 50,
+                    right: 20,
+                    bottom: 50,
+                    left: 50
+                },
+
+                xScale = d3.scale.linear().range([MARGINS.left, WIDTH - MARGINS.right]).domain([getMinPoint(data, 'x'), getMaxPoint(data, 'x')]),
+                yScale = d3.scale.linear().range([HEIGHT - MARGINS.top, MARGINS.bottom]).domain([getMinPoint(data, 'y'), getMaxPoint(data, 'y')]),
+
+                xAxis = d3.svg.axis()
+                        .scale(xScale)
+                ,
+                yAxis = d3.svg.axis()
+                        .scale(yScale)
+                        .orient("left")
+                ;
+
+        vis.append("svg:g")
+                .attr("class", "x axis")
+                .attr("transform", "translate(0," + (HEIGHT - MARGINS.bottom) + ")")
+                .attr('fill', AxisColors.x)
+                .call(xAxis)
+        .append("text")
+                .attr("y", MARGINS.right*2)
+                .attr("x", WIDTH - MARGINS.right)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text(xName)
+        ;
+
+        vis.append("text")
+                .attr("x", (WIDTH / 2))
+                .attr("y", MARGINS.top / 2)
+                .attr("text-anchor", "middle")
+                .style("font-size", "16px")
+                .style("text-decoration", "underline")
+                .text(graph_name);
+
+        vis.append("svg:g")
+                .attr("class", "y axis")
+                .attr("transform", "translate(" + (MARGINS.left) + ",0)")
+                .attr('fill', AxisColors.y)
+                .call(yAxis)
+        .append("text")
+                .attr("transform", "rotate(-90)")
+                .attr("y", -MARGINS.right*2)
+                .attr("x", -MARGINS.top)
+                .attr("dy", ".71em")
+                .style("text-anchor", "end")
+                .text(yName)
+        ;
+
+        var lineGen = d3.svg.line()
+                .x(function (d) {
+                    return xScale(d.x);
+                })
+                .y(function (d) {
+                    return yScale(d.y);
+                })
+                .interpolate("basis");
+
+        data.forEach(function (d, i) {
+            vis.append('svg:path')
+                    .attr('d', lineGen(d.points))
+                    .attr('stroke', d.line_color)
+                    .attr('stroke-width', 2)
+                    .attr('id', 'line_' + d.line_color)
+                    .attr('fill', 'none')
+            ;
+
+        });
+
+    }
+
+
+</script>
+</body>
+</html>
